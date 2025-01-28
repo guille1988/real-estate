@@ -1,0 +1,102 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Providers;
+
+use App\Exceptions\Handler;
+use Carbon\CarbonImmutable;
+use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Contracts\Debug\ExceptionHandler;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Validation\Rules\Password;
+
+final class AppServiceProvider extends ServiceProvider
+{
+    /**
+     * Register any application services.
+     */
+    public function register(): void
+    {
+        $this->configureExceptionHandler();
+    }
+
+    /**
+     * Bootstrap any application services.
+     */
+    public function boot(): void
+    {
+        $this->configureCommands();
+        $this->configureDates();
+        $this->configureModels();
+        $this->configurePasswordValidation();
+        $this->configureRateLimiting();
+        $this->configureUrl();
+    }
+
+    /**
+     * Configure application's exception handler.
+     */
+    private function configureExceptionHandler(): void
+    {
+        $this->app->singleton(ExceptionHandler::class, Handler::class);
+    }
+
+    /**
+     * Configure application's commands.
+     */
+    private function configureCommands(): void
+    {
+        DB::prohibitDestructiveCommands($this->app->isProduction());
+    }
+
+    /**
+     * Configure application's dates.
+     */
+    private function configureDates(): void
+    {
+        Date::use(CarbonImmutable::class);
+    }
+
+    /**
+     * Configure application's models.
+     */
+    private function configureModels(): void
+    {
+        Model::shouldBeStrict(! $this->app->isProduction());
+        Model::unguard();
+    }
+
+    /**
+     * Configure application's password validation.
+     */
+    private function configurePasswordValidation(): void
+    {
+        Password::defaults(fn (): ?Password => $this->app->isProduction() ? Password::min(8)->uncompromised() : null);
+    }
+
+    /**
+     * Configure application's rate limiting.
+     */
+    private function configureRateLimiting(): void
+    {
+        RateLimiter::for('api', function (Request $request): Limit {
+            return Limit::perSecond(20)
+                ->by($request->user()?->id ?: $request->ip());
+        });
+    }
+
+    /**
+     * Configure application's URL.
+     */
+    private function configureUrl(): void
+    {
+        URL::forceHttps($this->app->isProduction());
+    }
+}

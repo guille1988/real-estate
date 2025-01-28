@@ -1,0 +1,1 @@
+./vendor/bin/sail pint --config pint.json
