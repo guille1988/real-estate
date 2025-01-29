@@ -65,7 +65,11 @@ final class AppServiceProvider extends ServiceProvider
      */
     private function configurePasswordValidation(): void
     {
-        Password::defaults(fn (): ?Password => $this->app->isProduction() ? Password::min(8)->uncompromised() : null);
+        Password::defaults(function (): ?Password {
+            return $this->app->isProduction() ?
+                Password::min(8)->uncompromised() :
+                null;
+        });
     }
 
     /**
