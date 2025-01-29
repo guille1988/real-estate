@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Validation\Rules\Password;
 
 final class AppServiceProvider extends ServiceProvider
 {
@@ -30,7 +29,6 @@ final class AppServiceProvider extends ServiceProvider
         $this->configureCommands();
         $this->configureDates();
         $this->configureModels();
-        $this->configurePasswordValidation();
         $this->configureRateLimiting();
         $this->configureUrl();
     }
@@ -58,18 +56,6 @@ final class AppServiceProvider extends ServiceProvider
     {
         Model::shouldBeStrict(! $this->app->isProduction());
         Model::unguard();
-    }
-
-    /**
-     * Configure application's password validation.
-     */
-    private function configurePasswordValidation(): void
-    {
-        Password::defaults(function (): ?Password {
-            return $this->app->isProduction() ?
-                Password::min(8)->uncompromised() :
-                null;
-        });
     }
 
     /**

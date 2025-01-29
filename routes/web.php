@@ -3,5 +3,9 @@
 declare(strict_types=1);
 
 use Illuminate\Support\Facades\Route;
+use Inertia\Response;
+use Inertia\ResponseFactory;
 
-Route::get('/', fn () => inertia('Home'))->name('home');
+Route::get('/', function (): Response|ResponseFactory {
+    return inertia('Home');
+})->name('home');
