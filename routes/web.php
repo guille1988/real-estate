@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Response;
 use Inertia\ResponseFactory;
 
-Route::get('/', function (): Response|ResponseFactory {
-    return inertia('Home');
-})->name('home');
+Route::middleware('throttle:app')->group(function (): void {
+    Route::get('/', function (): Response|ResponseFactory {
+        return inertia('Home');
+    })->name('home');
+});

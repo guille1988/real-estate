@@ -63,7 +63,7 @@ final class AppServiceProvider extends ServiceProvider
      */
     private function configureRateLimiting(): void
     {
-        RateLimiter::for('api', function (Request $request): Limit {
+        RateLimiter::for('app', function (Request $request): Limit {
             return Limit::perSecond(20)
                 ->by($request->user()?->id ?: $request->ip());
         });
