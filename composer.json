@@ -72,7 +72,7 @@
             "rector --dry-run"
         ],
         "test:type-coverage": "pest --type-coverage --min=100.0",
-        "test:feature-unit": "pest --parallel --ci --coverage --min=100.0",
+        "test:feature-unit": "pest --ci --coverage --min=100.0",
         "test": [
             "@test:lint",
             "@test:types",

@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 
 final class AppServiceProvider extends ServiceProvider
@@ -31,6 +32,7 @@ final class AppServiceProvider extends ServiceProvider
         $this->configureModels();
         $this->configureRateLimiting();
         $this->configureUrl();
+        $this->configureVite();
     }
 
     /**
@@ -75,5 +77,13 @@ final class AppServiceProvider extends ServiceProvider
     private function configureUrl(): void
     {
         URL::forceHttps($this->app->isProduction());
+    }
+
+    /**
+     * Configure application's Vite loading strategy.
+     */
+    private function configureVite(): void
+    {
+        Vite::useAggressivePrefetching();
     }
 }
