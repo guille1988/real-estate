@@ -18,24 +18,6 @@ use Illuminate\Support\ServiceProvider;
 final class AppServiceProvider extends ServiceProvider
 {
     /**
-     * Register any application services.
-     */
-    public function register(): void {}
-
-    /**
-     * Bootstrap any application services.
-     */
-    public function boot(): void
-    {
-        $this->configureCommands();
-        $this->configureDates();
-        $this->configureModels();
-        $this->configureRateLimiting();
-        $this->configureUrl();
-        $this->configureVite();
-    }
-
-    /**
      * Configure application's commands.
      */
     private function configureCommands(): void
@@ -85,5 +67,23 @@ final class AppServiceProvider extends ServiceProvider
     private function configureVite(): void
     {
         Vite::useAggressivePrefetching();
+    }
+
+    /**
+     * Register any application services.
+     */
+    public function register(): void {}
+
+    /**
+     * Bootstrap any application services.
+     */
+    public function boot(): void
+    {
+        $this->configureCommands();
+        $this->configureDates();
+        $this->configureModels();
+        $this->configureRateLimiting();
+        $this->configureUrl();
+        $this->configureVite();
     }
 }

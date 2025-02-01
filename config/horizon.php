@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Middleware\HorizonAuthorizationMiddleware;
 use Illuminate\Support\Str;
 
 return [
@@ -72,7 +73,7 @@ return [
     |
     */
 
-    'middleware' => ['web'],
+    'middleware' => ['web', HorizonAuthorizationMiddleware::class],
 
     /*
     |--------------------------------------------------------------------------
