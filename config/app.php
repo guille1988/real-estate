@@ -125,4 +125,15 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Admin Password
+    |--------------------------------------------------------------------------
+    |
+    | This value is the admin password, that
+    | should be changed periodically overtime.
+    |
+    */
+
+    'admin_password' => (string) env('APP_ADMIN_PASSWORD', 'who_perseveres_wins_88888888'),
 ];

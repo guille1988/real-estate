@@ -14,11 +14,14 @@ final class UserSeeder extends Seeder
      */
     private function seedAdmin(): void
     {
+        /** @var string $password */
+        $password = config('app.admin_password');
+
         User::create([
             'name' => 'Guillermo Felipetti',
             'email' => 'guill388@hotmail.com',
             'email_verified_at' => now(),
-            'password' => bcrypt('gf33238307'),
+            'password' => bcrypt($password),
             'is_admin' => true,
         ]);
     }

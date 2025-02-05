@@ -8,13 +8,19 @@ it("doesn't allow unregistered users to enter horizon dashboard.", function (): 
     $this->get(route('horizon.index'))->assertUnauthorized();
 });
 
-it('opens horizon dashboard to registered admin users.', function (): void {
-    $this->actingAs(User::first())
-        ->withBasicAuth(
-            'guill388@hotmail.com',
-            'gf33238307'
-        )->withHeaders([
-            'php_auth_user' => ['guill388@hotmail.com'],
-            'php_auth_pw' => ['gf33238307'],
-        ])->get(route('horizon.index'))->assertOk();
-})->todo();
+it("doesn't allow non-admin users to enter horizon dashboard.", function (User $user): void {
+    $this->actingAs($user)
+        ->get(route('horizon.index'))
+        ->assertUnauthorized();
+})->with([fn () => User::admin(false)->first()]);
+
+it('opens horizon dashboard to registered admin users.', function (User $admin): void {
+
+    /** @var string $password */
+    $password = config('app.admin_password');
+
+    $this->actingAs($admin)
+        ->withBasicAuth($admin->email, $password)
+        ->get(route('horizon.index'))
+        ->assertOk();
+})->with([fn () => User::admin()->first()]);
