@@ -1,0 +1,22 @@
+<template>
+    <header
+        class="container mx-auto flex items-center justify-between px-4 py-6"
+    >
+        <div class="text-2xl font-bold">Logo</div>
+        <nav>
+            <ul class="flex space-x-6">
+                <li><a href="#" class="hover:text-gray-300">Home</a></li>
+                <li><a href="#" class="hover:text-gray-300">About</a></li>
+                <li>
+                    <a href="#" class="hover:text-gray-300">Properties</a>
+                </li>
+                <li><a href="#" class="hover:text-gray-300">Contact</a></li>
+            </ul>
+        </nav>
+        <button class="rounded bg-blue-600 px-4 py-2 hover:bg-blue-700">
+            Sign Up
+        </button>
+    </header>
+</template>
+
+<script lang="ts" setup></script>
