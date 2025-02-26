@@ -1,5 +1,5 @@
 <template>
-    <section class="container mx-auto px-4 py-16">
+    <section class="container mx-auto mb-16 px-4">
         <h2 class="mb-8 text-3xl font-bold">Featured Properties</h2>
         <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
             <div
