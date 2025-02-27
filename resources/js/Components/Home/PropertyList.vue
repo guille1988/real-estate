@@ -82,7 +82,7 @@
 </template>
 
 <script lang="ts" setup>
-import PropertyCard from '@/Components/Home/Property/PropertyCard.vue';
+import PropertyCard from '@/Components/Home/PropertyCard.vue';
 
 const properties = [
     {
