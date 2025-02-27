@@ -2,7 +2,6 @@
     <div
         class="group overflow-hidden rounded-xl bg-[#111] transition-all hover:bg-[#1a1a1a]"
     >
-        <!-- Property Image -->
         <div class="relative aspect-[4/3] overflow-hidden">
             <img
                 :src="property.image"
@@ -11,17 +10,13 @@
             />
         </div>
 
-        <!-- Content -->
         <div class="p-6">
-            <!-- Category -->
             <p class="mb-2 text-sm text-gray-400">{{ property.category }}</p>
 
-            <!-- Title -->
             <h3 class="mb-3 text-xl font-semibold text-white">
                 {{ property.title }}
             </h3>
 
-            <!-- Description -->
             <p class="text-gray-400">
                 {{ property.description }}
                 <button class="ml-1 text-purple-500 hover:text-purple-400">
@@ -29,7 +24,6 @@
                 </button>
             </p>
 
-            <!-- Price and CTA -->
             <div class="mt-6 flex items-center justify-between">
                 <div>
                     <p class="text-sm text-gray-400">Price</p>

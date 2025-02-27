@@ -1,7 +1,6 @@
 <template>
     <section class="bg-black px-4 py-16">
         <div class="container mx-auto">
-            <!-- Header -->
             <div class="mb-12">
                 <div class="flex items-center gap-2">
                     <svg
@@ -31,7 +30,6 @@
                 </p>
             </div>
 
-            <!-- Property Grid -->
             <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                 <PropertyCard
                     v-for="property in properties"
@@ -40,7 +38,6 @@
                 />
             </div>
 
-            <!-- Pagination -->
             <div class="mt-8 flex items-center justify-between">
                 <span class="text-sm text-gray-400">01 of 10</span>
                 <div class="flex gap-2">
@@ -90,7 +87,7 @@ import PropertyCard from '@/Components/Home/Property/PropertyCard.vue';
 const properties = [
     {
         id: 1,
-        image: '/placeholder.svg?height=300&width=400',
+        image: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmVhdXRpZnVsJTIwaG91c2V8ZW58MHx8MHx8fDA%3D',
         category: 'Coastal Escapes - Where Waves Beckon',
         title: 'Seaside Serenity Villa',
         description:
@@ -99,7 +96,7 @@ const properties = [
     },
     {
         id: 2,
-        image: '/placeholder.svg?height=300&width=400',
+        image: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmVhdXRpZnVsJTIwaG91c2V8ZW58MHx8MHx8fDA%3D',
         category: 'Urban Oasis - Life in the Heart of the City',
         title: 'Metropolitan Haven',
         description:
@@ -108,7 +105,7 @@ const properties = [
     },
     {
         id: 3,
-        image: '/placeholder.svg?height=300&width=400',
+        image: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmVhdXRpZnVsJTIwaG91c2V8ZW58MHx8MHx8fDA%3D',
         category: "Countryside Charm - Escape to Nature's Embrace",
         title: 'Rustic Retreat Cottage',
         description:
