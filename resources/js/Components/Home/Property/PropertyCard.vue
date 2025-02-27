@@ -1,23 +1,63 @@
 <template>
-    <img
-        src="https://images.squarespace-cdn.com/content/v1/58487dc4b8a79b6d02499b60/1649818728006-EX0EE6EYY82VW5KZMX7Q/Francis+York+One+of+the+Most+Beautiful+Homes+For+Sale+in+Illinois+17.jpg?format=2500w"
-        alt="Property"
-        class="h-48 w-full object-cover"
-    />
-    <div class="p-4">
-        <h3 class="mb-2 text-xl font-bold">Beautiful House {{ i }}</h3>
-        <p class="mb-4 text-gray-400">123 Main St, City, State</p>
-        <div class="flex items-center justify-between">
-            <span class="font-bold text-blue-500">$500,000</span>
-            <button class="rounded bg-blue-600 px-4 py-2 hover:bg-blue-700">
-                View Details
-            </button>
+    <div
+        class="group overflow-hidden rounded-xl bg-[#111] transition-all hover:bg-[#1a1a1a]"
+    >
+        <!-- Property Image -->
+        <div class="relative aspect-[4/3] overflow-hidden">
+            <img
+                :src="property.image"
+                :alt="property.title"
+                class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+        </div>
+
+        <!-- Content -->
+        <div class="p-6">
+            <!-- Category -->
+            <p class="mb-2 text-sm text-gray-400">{{ property.category }}</p>
+
+            <!-- Title -->
+            <h3 class="mb-3 text-xl font-semibold text-white">
+                {{ property.title }}
+            </h3>
+
+            <!-- Description -->
+            <p class="text-gray-400">
+                {{ property.description }}
+                <button class="ml-1 text-purple-500 hover:text-purple-400">
+                    Read More
+                </button>
+            </p>
+
+            <!-- Price and CTA -->
+            <div class="mt-6 flex items-center justify-between">
+                <div>
+                    <p class="text-sm text-gray-400">Price</p>
+                    <p class="text-lg font-semibold text-white">
+                        ${{ property.price.toLocaleString() }}
+                    </p>
+                </div>
+                <button
+                    class="rounded-lg bg-purple-600 px-4 py-2 text-sm font-medium text-white hover:bg-purple-700"
+                >
+                    View Property Details
+                </button>
+            </div>
         </div>
     </div>
 </template>
 
 <script lang="ts" setup>
+interface Property {
+    id: number;
+    image: string;
+    category: string;
+    title: string;
+    description: string;
+    price: number;
+}
+
 defineProps<{
-    i: number;
+    property: Property;
 }>();
 </script>
