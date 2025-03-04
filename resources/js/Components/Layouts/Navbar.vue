@@ -25,7 +25,7 @@
                             class="rounded px-3 py-2 transition-colors hover:text-purple-400"
                             :class="{
                                 'border-b-2 border-purple-600 bg-black shadow-[0_0_10px_rgba(0,0,0,0.5)]':
-                                    isPage(Pages.Home),
+                                    isPage(Pages.HOME),
                             }"
                         >
                             Home
@@ -37,7 +37,7 @@
                             class="rounded px-3 py-2 transition-colors hover:text-purple-400"
                             :class="{
                                 'border-b-2 border-purple-600 bg-black shadow-[0_0_10px_rgba(0,0,0,0.5)]':
-                                    isPage(Pages.About),
+                                    isPage(Pages.ABOUT),
                             }"
                         >
                             About Us
@@ -49,7 +49,7 @@
                             class="rounded px-3 py-2 transition-colors hover:text-purple-400"
                             :class="{
                                 'border-b-2 border-purple-600 bg-black shadow-[0_0_10px_rgba(0,0,0,0.5)]':
-                                    isPage(Pages.Properties),
+                                    isPage(Pages.PROPERTIES),
                             }"
                         >
                             Properties
@@ -61,7 +61,7 @@
                             class="rounded px-3 py-2 transition-colors hover:text-purple-400"
                             :class="{
                                 'border-b-2 border-purple-600 bg-black shadow-[0_0_10px_rgba(0,0,0,0.5)]':
-                                    isPage(Pages.Services),
+                                    isPage(Pages.SERVICES),
                             }"
                         >
                             Services
@@ -76,7 +76,7 @@
                     class="rounded px-4 py-2 transition-colors hover:text-purple-400"
                     :class="{
                         'border-b-2 border-purple-600 bg-black shadow-[0_0_10px_rgba(0,0,0,0.5)]':
-                            isPage(Pages.Contact),
+                            isPage(Pages.CONTACT),
                     }"
                 >
                     Contact Us
