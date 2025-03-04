@@ -20,78 +20,75 @@
             <nav>
                 <ul class="flex space-x-8">
                     <li>
-                        <a
-                            href="#"
+                        <Link
+                            :href="route('home')"
                             class="rounded px-3 py-2 transition-colors hover:text-purple-400"
                             :class="{
                                 'border-b-2 border-purple-600 bg-black shadow-[0_0_10px_rgba(0,0,0,0.5)]':
-                                    isActive('home'),
+                                    isPage(Pages.Home),
                             }"
                         >
                             Home
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a
+                        <Link
                             href="#"
                             class="rounded px-3 py-2 transition-colors hover:text-purple-400"
                             :class="{
                                 'border-b-2 border-purple-600 bg-black shadow-[0_0_10px_rgba(0,0,0,0.5)]':
-                                    isActive('about'),
+                                    isPage(Pages.About),
                             }"
                         >
                             About Us
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a
-                            href="#"
+                        <Link
+                            :href="route('properties')"
                             class="rounded px-3 py-2 transition-colors hover:text-purple-400"
                             :class="{
                                 'border-b-2 border-purple-600 bg-black shadow-[0_0_10px_rgba(0,0,0,0.5)]':
-                                    isActive('properties'),
+                                    isPage(Pages.Properties),
                             }"
                         >
                             Properties
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a
+                        <Link
                             href="#"
                             class="rounded px-3 py-2 transition-colors hover:text-purple-400"
                             :class="{
                                 'border-b-2 border-purple-600 bg-black shadow-[0_0_10px_rgba(0,0,0,0.5)]':
-                                    isActive('services'),
+                                    isPage(Pages.Services),
                             }"
                         >
                             Services
-                        </a>
+                        </Link>
                     </li>
                 </ul>
             </nav>
 
             <div>
-                <a
+                <Link
                     href="#"
                     class="rounded px-4 py-2 transition-colors hover:text-purple-400"
                     :class="{
                         'border-b-2 border-purple-600 bg-black shadow-[0_0_10px_rgba(0,0,0,0.5)]':
-                            isActive('contact'),
+                            isPage(Pages.Contact),
                     }"
                 >
                     Contact Us
-                </a>
+                </Link>
             </div>
         </div>
     </header>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { Pages } from '@/Enums/Pages';
+import { Link, usePage } from '@inertiajs/vue3';
 
-const activeItem = ref('home');
-
-const isActive = (item: string) => {
-    return activeItem.value === item;
-};
+const isPage = (page: Pages): boolean => usePage().component === page;
 </script>
