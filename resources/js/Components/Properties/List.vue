@@ -31,7 +31,7 @@
             </div>
 
             <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-                <PropertyCard
+                <Card
                     v-for="property in properties"
                     :key="property.id"
                     :property="property"
@@ -82,7 +82,7 @@
 </template>
 
 <script lang="ts" setup>
-import PropertyCard from '@/Components/Home/PropertyCard.vue';
+import Card from '@/Components/Properties/Card.vue';
 
 const properties = [
     {

@@ -1,14 +1,14 @@
 <template>
     <Layout>
-        <PropertyHeroSection></PropertyHeroSection>
-        <PropertyList></PropertyList>
-        <PropertyContactForm></PropertyContactForm>
+        <HeroSection></HeroSection>
+        <List></List>
+        <ContactForm></ContactForm>
     </Layout>
 </template>
 
 <script lang="ts" setup>
-import PropertyContactForm from '@/Components/Home/PropertyContactForm.vue';
-import PropertyHeroSection from '@/Components/Home/PropertyHeroSection.vue';
-import PropertyList from '@/Components/Home/PropertyList.vue';
+import ContactForm from '@/Components/Properties/ContactForm.vue';
+import HeroSection from '@/Components/Properties/HeroSection.vue';
+import List from '@/Components/Properties/List.vue';
 import Layout from '@/Layouts/Layout.vue';
 </script>
