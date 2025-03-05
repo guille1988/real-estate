@@ -72,11 +72,12 @@
 
             <div>
                 <Link
-                    href="#"
-                    class="rounded px-4 py-2 transition-colors hover:text-purple-400"
+                    :href="route('contact')"
+                    class="rounded-md bg-purple-600 px-6 py-2 text-sm font-medium text-white transition-colors hover:text-black"
                     :class="{
-                        'border-b-2 border-purple-600 bg-black shadow-[0_0_10px_rgba(0,0,0,0.5)]':
-                            isPage(Pages.CONTACT),
+                        'pointer-events-none opacity-0': !isNotPage(
+                            Pages.CONTACT,
+                        ),
                     }"
                 >
                     Contact Us
@@ -91,4 +92,5 @@ import { Pages } from '@/Enums/Pages';
 import { Link, usePage } from '@inertiajs/vue3';
 
 const isPage = (page: Pages): boolean => usePage().component === page;
+const isNotPage = (page: Pages): boolean => !isPage(page);
 </script>
