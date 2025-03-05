@@ -7,7 +7,7 @@ namespace App\Http\Controllers;
 use Inertia\Response;
 use Inertia\ResponseFactory;
 
-final class PropertyController
+final class PropertiesController
 {
     public function __invoke(): Response|ResponseFactory
     {

@@ -33,7 +33,7 @@
                     </li>
                     <li>
                         <Link
-                            href="#"
+                            :href="route('about')"
                             class="rounded px-3 py-2 transition-colors hover:text-purple-400"
                             :class="{
                                 'border-b-2 border-purple-600 bg-black shadow-[0_0_10px_rgba(0,0,0,0.5)]':
@@ -57,7 +57,7 @@
                     </li>
                     <li>
                         <Link
-                            href="#"
+                            :href="route('services')"
                             class="rounded px-3 py-2 transition-colors hover:text-purple-400"
                             :class="{
                                 'border-b-2 border-purple-600 bg-black shadow-[0_0_10px_rgba(0,0,0,0.5)]':
