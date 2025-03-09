@@ -26,8 +26,8 @@
                     </div>
                     <p class="text-sm text-gray-400 md:text-base">
                         Read the success stories and heartfelt testimonials from
-                        our valued clients. Discover why they chose Estatein for
-                        their real estate needs.
+                        our valued clients. Discover why they chose Real State
+                        for their real estate needs.
                     </p>
                 </div>
                 <button
@@ -61,7 +61,7 @@
                         Exceptional Service!
                     </h3>
                     <p class="mb-6 text-gray-400">
-                        Our experience with Estatein was outstanding. Their
+                        Our experience with Real State was outstanding. Their
                         team's dedication and professionalism made finding our
                         dream home a breeze. Highly recommended!
                     </p>
@@ -100,9 +100,9 @@
                         Efficient and Reliable
                     </h3>
                     <p class="mb-6 text-gray-400">
-                        Estatein provided us with top-notch service. They helped
-                        us sell our property quickly and at a great price. We
-                        couldn't be happier with the results.
+                        Real State provided us with top-notch service. They
+                        helped us sell our property quickly and at a great
+                        price. We couldn't be happier with the results.
                     </p>
 
                     <div class="flex items-center gap-3">
@@ -137,7 +137,7 @@
 
                     <h3 class="mb-4 text-xl font-semibold">Trusted Advisors</h3>
                     <p class="mb-6 text-gray-400">
-                        The Estatein team guided us through the entire buying
+                        The Real State team guided us through the entire buying
                         process. Their knowledge and commitment to our needs
                         were impressive. Thank you for your support!
                     </p>
