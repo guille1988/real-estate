@@ -1,14 +1,16 @@
 <template>
     <Layout>
-        <JourneySection></JourneySection>
-        <ValuesSection></ValuesSection>
-        <AchievementsSection></AchievementsSection>
+        <Journey></Journey>
+        <Values></Values>
+        <Achievements></Achievements>
+        <NavigatingExperience></NavigatingExperience>
     </Layout>
 </template>
 
 <script lang="ts" setup>
-import AchievementsSection from '@/Components/About/AchievementsSection.vue';
-import JourneySection from '@/Components/About/JourneySection.vue';
-import ValuesSection from '@/Components/About/ValuesSection.vue';
+import Achievements from '@/Components/About/Achievements.vue';
+import Journey from '@/Components/About/Journey.vue';
+import NavigatingExperience from '@/Components/About/NavigatingExperience.vue';
+import Values from '@/Components/About/Values.vue';
 import Layout from '@/Layouts/Layout.vue';
 </script>
