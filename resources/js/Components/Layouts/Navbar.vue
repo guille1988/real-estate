@@ -45,7 +45,7 @@
                     </li>
                     <li>
                         <Link
-                            :href="route('properties')"
+                            :href="route('properties.index')"
                             class="rounded px-3 py-2 transition-colors hover:text-purple-400"
                             :class="{
                                 'border-b-2 border-purple-600 bg-black shadow-[0_0_10px_rgba(0,0,0,0.5)]':

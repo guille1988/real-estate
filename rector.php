@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Rector\CodeQuality\Rector\FuncCall\CompactToVariablesRector;
 use Rector\Config\RectorConfig;
 use Rector\Php74\Rector\Closure\ClosureToArrowFunctionRector;
 use Rector\Php83\Rector\ClassMethod\AddOverrideAttributeToOverriddenMethodsRector;
@@ -18,6 +19,7 @@ return RectorConfig::configure()
         __DIR__.'/bootstrap/cache',
         ClosureToArrowFunctionRector::class,
         AddOverrideAttributeToOverriddenMethodsRector::class,
+        CompactToVariablesRector::class,
     ])
     ->withPreparedSets(
         deadCode: true,

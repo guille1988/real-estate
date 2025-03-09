@@ -18,8 +18,8 @@ Route::get('about', AboutController::class)
 Route::get('contact', ContactController::class)
     ->name('contact');
 
-Route::get('properties', PropertiesController::class)
-    ->name('properties');
-
 Route::get('services', ServicesController::class)
     ->name('services');
+
+Route::resource('properties', PropertiesController::class)
+    ->only(['index', 'show']);

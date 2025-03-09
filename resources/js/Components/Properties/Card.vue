@@ -32,6 +32,7 @@
                     </p>
                 </div>
                 <button
+                    @click="openDetails"
                     class="rounded-lg bg-purple-600 px-4 py-2 text-sm font-medium text-white hover:bg-purple-700"
                 >
                     View Property Details
@@ -42,6 +43,8 @@
 </template>
 
 <script lang="ts" setup>
+import { router } from '@inertiajs/vue3';
+
 interface Property {
     id: number;
     image: string;
@@ -51,7 +54,13 @@ interface Property {
     price: number;
 }
 
-defineProps<{
+const properties = defineProps<{
     property: Property;
 }>();
+
+const openDetails = (): void => {
+    router.visit(
+        route('properties.show', { property: properties.property.id }),
+    );
+};
 </script>

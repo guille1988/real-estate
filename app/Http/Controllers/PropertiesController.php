@@ -9,8 +9,13 @@ use Inertia\ResponseFactory;
 
 final class PropertiesController
 {
-    public function __invoke(): Response|ResponseFactory
+    public function index(): Response|ResponseFactory
     {
         return inertia('Properties');
+    }
+
+    public function show(int $id): Response|ResponseFactory
+    {
+        return inertia('PropertyDetails', compact('id'));
     }
 }
