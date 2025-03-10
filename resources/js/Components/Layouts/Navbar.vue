@@ -87,7 +87,7 @@
     </header>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
 import { Pages } from '@/Enums/Pages';
 import { Link, usePage } from '@inertiajs/vue3';
 

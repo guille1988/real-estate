@@ -6,7 +6,7 @@
     </Layout>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
 import ContactForm from '@/Components/Properties/ContactForm.vue';
 import HeroSection from '@/Components/Properties/HeroSection.vue';
 import List from '@/Components/Properties/List.vue';

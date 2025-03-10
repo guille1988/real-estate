@@ -81,7 +81,7 @@
     </section>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
 import Card from '@/Components/Properties/Card.vue';
 
 const properties = [

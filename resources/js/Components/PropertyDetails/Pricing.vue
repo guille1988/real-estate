@@ -1,7 +1,6 @@
 <template>
     <section class="w-full bg-black py-16 text-white">
         <div class="container mx-auto px-4 md:px-6 lg:px-8">
-            <!-- Header -->
             <div class="mb-10 max-w-4xl">
                 <h2 class="mb-4 text-3xl font-medium">
                     Comprehensive Pricing Details
@@ -13,7 +12,6 @@
                     you make an informed decision.
                 </p>
 
-                <!-- Note with border and subtle gray background -->
                 <div
                     class="mb-10 border border-neutral-700 bg-neutral-900/50 p-4"
                 >
@@ -25,9 +23,7 @@
                 </div>
             </div>
 
-            <!-- Main Content - Two Column Layout -->
             <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
-                <!-- Left Column - Listing Price -->
                 <div>
                     <h3 class="mb-2 text-sm uppercase text-gray-400">
                         LISTING PRICE
@@ -35,9 +31,7 @@
                     <p class="text-3xl font-medium">$1,250,000</p>
                 </div>
 
-                <!-- Right Column - Details -->
                 <div class="space-y-8 md:col-span-2">
-                    <!-- Additional Fees -->
                     <div class="border border-neutral-700 p-6">
                         <div class="mb-6 flex items-center justify-between">
                             <h4 class="text-lg font-medium">Additional Fees</h4>
@@ -121,7 +115,6 @@
                         </div>
                     </div>
 
-                    <!-- Monthly Costs -->
                     <div class="border border-neutral-700 p-6">
                         <div class="mb-6 flex items-center justify-between">
                             <h4 class="text-lg font-medium">Monthly Costs</h4>
@@ -163,7 +156,6 @@
                         </div>
                     </div>
 
-                    <!-- Total Initial Costs -->
                     <div class="border border-neutral-700 p-6">
                         <div class="mb-6 flex items-center justify-between">
                             <h4 class="text-lg font-medium">
@@ -229,7 +221,6 @@
                         </div>
                     </div>
 
-                    <!-- Monthly Expenses -->
                     <div class="border border-neutral-700 p-6">
                         <div class="mb-6 flex items-center justify-between">
                             <h4 class="text-lg font-medium">

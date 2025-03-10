@@ -153,7 +153,7 @@
     </section>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
 
 const form = ref({
@@ -166,7 +166,7 @@ const form = ref({
     terms: false,
 });
 
-const handleSubmit = () => {
+const handleSubmit = (): void => {
     console.log('Form submitted:', form.value);
 };
 </script>

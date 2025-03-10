@@ -238,7 +238,3 @@
         </div>
     </section>
 </template>
-
-<script lang="ts" setup>
-// No additional logic needed for this component
-</script>

@@ -146,6 +146,7 @@
                                 </p>
                             </div>
                             <button
+                                @click="openDetails(property.id)"
                                 class="w-full rounded-md bg-purple-600 px-4 py-2 text-xs transition-colors duration-300 hover:bg-purple-500 sm:w-auto md:px-6 md:py-3 md:text-sm"
                             >
                                 View Property Details
@@ -200,7 +201,9 @@
     </section>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { router } from '@inertiajs/vue3';
+
 const properties = [
     {
         id: 1,
@@ -231,7 +234,11 @@ const properties = [
     },
 ];
 
-const formatPrice = (price) => {
+const formatPrice = (price: number): string => {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+};
+
+const openDetails = (id: number): void => {
+    router.visit(route('properties.show', { property: id }));
 };
 </script>

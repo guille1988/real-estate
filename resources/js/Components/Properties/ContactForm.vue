@@ -395,10 +395,9 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
 
-// Form data
 const formData = ref({
     firstName: '',
     lastName: '',
@@ -414,7 +413,6 @@ const formData = ref({
     termsAgreed: false,
 });
 
-// Options for dropdowns
 const locations = [
     'New York',
     'Los Angeles',
@@ -444,18 +442,15 @@ const budgetRanges = [
     'Over $1,000,000',
 ];
 
-// Form submission
-const submitForm = () => {
+const submitForm = (): void => {
     if (!formData.value.termsAgreed) {
         alert('Please agree to the Terms of Use and Privacy Policy');
         return;
     }
 
     console.log('Form submitted:', formData.value);
-    // Here you would typically send the data to your backend
     alert('Form submitted successfully!');
 
-    // Reset form after submission
     formData.value = {
         firstName: '',
         lastName: '',

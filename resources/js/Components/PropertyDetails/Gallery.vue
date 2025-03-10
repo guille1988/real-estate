@@ -306,18 +306,18 @@
     </section>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
 
 const currentImage = ref(1);
 const totalImages = 9;
 
-const nextImage = () => {
+const nextImage = (): void => {
     currentImage.value =
         currentImage.value === totalImages ? 1 : currentImage.value + 1;
 };
 
-const prevImage = () => {
+const prevImage = (): void => {
     currentImage.value =
         currentImage.value === 1 ? totalImages : currentImage.value - 1;
 };

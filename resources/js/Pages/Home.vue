@@ -7,7 +7,7 @@
     </Layout>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
 import ClientTestimonials from '@/Components/Home/ClientTestimonials.vue';
 import Faq from '@/Components/Home/Faq.vue';
 import FeaturedProperties from '@/Components/Home/FeaturedProperties.vue';

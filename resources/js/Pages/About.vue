@@ -9,7 +9,7 @@
     </Layout>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
 import Achievements from '@/Components/About/Achievements.vue';
 import Clients from '@/Components/About/Clients.vue';
 import Journey from '@/Components/About/Journey.vue';

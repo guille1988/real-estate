@@ -2,6 +2,6 @@
     <Layout> </Layout>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
 import Layout from '@/Layouts/Layout.vue';
 </script>
