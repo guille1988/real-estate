@@ -6,9 +6,9 @@
                     Effortless Property Management
                 </h2>
                 <p class="leading-relaxed text-gray-400">
-                    Owning a property should be a pleasure, not a hassle.
-                    Estaten's Property Management Service takes the stress out
-                    of property ownership, offering comprehensive solutions
+                    Owning a property should be a pleasure, not a hassle. Real
+                    State's Property Management Service takes the stress out of
+                    property ownership, offering comprehensive solutions
                     tailored to your needs. Explore the categories below to see
                     how we can make property management effortless for you.
                 </p>
@@ -17,7 +17,6 @@
             <div
                 class="mb-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
             >
-                <!-- Tenant Harmony -->
                 <div
                     class="border border-neutral-800 bg-neutral-900/30 p-6 transition-all duration-300 hover:border-purple-500/50"
                 >
@@ -44,7 +43,6 @@
                     </p>
                 </div>
 
-                <!-- Maintenance Ease -->
                 <div
                     class="border border-neutral-800 bg-neutral-900/30 p-6 transition-all duration-300 hover:border-purple-500/50"
                 >
@@ -70,7 +68,6 @@
                     </p>
                 </div>
 
-                <!-- Financial Peace of Mind -->
                 <div
                     class="border border-neutral-800 bg-neutral-900/30 p-6 transition-all duration-300 hover:border-purple-500/50"
                 >
@@ -100,7 +97,6 @@
             </div>
 
             <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
-                <!-- Legal Guardian -->
                 <div
                     class="border border-neutral-800 bg-neutral-900/30 p-6 transition-all duration-300 hover:border-purple-500/50"
                 >
@@ -126,7 +122,6 @@
                     </p>
                 </div>
 
-                <!-- Call to Action -->
                 <div
                     class="border border-neutral-800 bg-neutral-900 p-6 md:col-span-2"
                 >
@@ -156,7 +151,3 @@
         </div>
     </section>
 </template>
-
-<script setup lang="ts">
-// No se requiere lógica adicional para este componente estático
-</script>
