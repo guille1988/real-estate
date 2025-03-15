@@ -6,7 +6,6 @@
 
         <title inertia>{{ config('app.name', 'Real state') }}</title>
 
-        <!-- Scripts -->
         @routes
         @vite(['resources/js/app.ts', "resources/js/Pages/{$page['component']}.vue"])
         @inertiaHead
