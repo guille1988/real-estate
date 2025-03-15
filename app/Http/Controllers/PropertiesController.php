@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use Inertia\Inertia;
 use Inertia\Response;
-use Inertia\ResponseFactory;
 
 final class PropertiesController
 {
-    public function index(): Response|ResponseFactory
+    public function index(): Response
     {
-        return inertia('Properties');
+        return Inertia::render('Properties');
     }
 
-    public function show(int $id): Response|ResponseFactory
+    public function show(int $id): Response
     {
-        return inertia('PropertyDetails', compact('id'));
+        return Inertia::render('PropertyDetails', compact('id'));
     }
 }

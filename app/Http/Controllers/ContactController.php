@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use Inertia\Inertia;
 use Inertia\Response;
-use Inertia\ResponseFactory;
 
 final class ContactController
 {
-    public function __invoke(): Response|ResponseFactory
+    public function __invoke(): Response
     {
-        return inertia('Contact');
+        return Inertia::render('Contact');
     }
 }
