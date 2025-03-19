@@ -2,19 +2,14 @@
     <header class="bg-black py-4 text-white">
         <div class="container mx-auto flex items-center justify-between px-4">
             <div class="flex items-center">
-                <svg
-                    width="32"
-                    height="32"
-                    viewBox="0 0 32 32"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <path
-                        d="M16 0C7.163 0 0 7.163 0 16C0 24.837 7.163 32 16 32C24.837 32 32 24.837 32 16C32 7.163 24.837 0 16 0ZM16 24C11.582 24 8 20.418 8 16C8 11.582 11.582 8 16 8C20.418 8 24 11.582 24 16C24 20.418 20.418 24 16 24Z"
-                        fill="#9333EA"
-                    />
-                </svg>
-                <span class="ml-2 text-xl font-bold">Real estate</span>
+                <img
+                    :src="realStateLogo"
+                    width="48"
+                    height="48"
+                    alt="Real estate logo"
+                    class="object-contain"
+                />
+                <span class="ml-4 text-xl font-bold">Real estate</span>
             </div>
 
             <nav>
@@ -88,6 +83,7 @@
 </template>
 
 <script setup lang="ts">
+import realStateLogo from '@/Assets/Images/real_state_logo.jpg';
 import { Pages } from '@/Enums/Pages';
 import { Link, usePage } from '@inertiajs/vue3';
 

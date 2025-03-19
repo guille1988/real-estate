@@ -45,7 +45,7 @@
 
                 <div class="relative hidden lg:block">
                     <img
-                        src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Captura%20de%20pantalla%202025-03-04%20a%20la%28s%29%2016.15.07-5emremhUqkHPAyniRZ3ECbPWmU0R2j.png"
+                        :src="blueBuilding"
                         alt="Modern blue building"
                         class="h-auto w-full object-contain"
                     />
@@ -212,3 +212,7 @@
         </div>
     </section>
 </template>
+
+<script setup lang="ts">
+import blueBuilding from '@/Assets/Images/blue_building.png';
+</script>
