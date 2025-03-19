@@ -14,7 +14,7 @@
                         fill="#9333EA"
                     />
                 </svg>
-                <span class="ml-2 text-xl font-bold">Real State</span>
+                <span class="ml-2 text-xl font-bold">Real estate</span>
             </div>
 
             <nav>

@@ -7,7 +7,7 @@
                     Elevate Your Real Estate Experience
                 </h2>
                 <p class="text-gray-400">
-                    Welcome to Real State, where your real estate aspirations
+                    Welcome to Real estate, where your real estate aspirations
                     meet expert guidance. Explore our comprehensive range of
                     services, each designed to cater to your unique needs and
                     dreams.

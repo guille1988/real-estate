@@ -26,7 +26,7 @@
                     </div>
                     <p class="text-sm text-gray-400 md:text-base">
                         Read the success stories and heartfelt testimonials from
-                        our valued clients. Discover why they chose Real State
+                        our valued clients. Discover why they chose Real estate
                         for their real estate needs.
                     </p>
                 </div>
@@ -61,7 +61,7 @@
                         Exceptional Service!
                     </h3>
                     <p class="mb-6 text-gray-400">
-                        Our experience with Real State was outstanding. Their
+                        Our experience with Real estate was outstanding. Their
                         team's dedication and professionalism made finding our
                         dream home a breeze. Highly recommended!
                     </p>
@@ -100,7 +100,7 @@
                         Efficient and Reliable
                     </h3>
                     <p class="mb-6 text-gray-400">
-                        Real State provided us with top-notch service. They
+                        Real estate provided us with top-notch service. They
                         helped us sell our property quickly and at a great
                         price. We couldn't be happier with the results.
                     </p>
@@ -137,7 +137,7 @@
 
                     <h3 class="mb-4 text-xl font-semibold">Trusted Advisors</h3>
                     <p class="mb-6 text-gray-400">
-                        The Real State team guided us through the entire buying
+                        The Real estate team guided us through the entire buying
                         process. Their knowledge and commitment to our needs
                         were impressive. Thank you for your support!
                     </p>

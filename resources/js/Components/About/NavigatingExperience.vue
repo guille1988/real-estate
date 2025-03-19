@@ -55,10 +55,10 @@
                     </div>
                 </div>
                 <h2 class="mb-6 text-4xl font-bold md:text-5xl">
-                    Navigating the Real State Experience
+                    Navigating the Real estate Experience
                 </h2>
                 <p class="leading-relaxed text-gray-400">
-                    At Real State, we've designed a straightforward process to
+                    At Real estate, we've designed a straightforward process to
                     help you find and purchase your dream property with ease.
                     Here's a step-by-step guide to how it all works.
                 </p>

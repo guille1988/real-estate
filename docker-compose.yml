@@ -20,7 +20,7 @@ services:
         volumes:
             - '.:/var/www/html'
         networks:
-            - real_state
+            - real_estate
         depends_on:
             - mysql
             - redis
@@ -33,7 +33,7 @@ services:
         volumes:
             - .:/var/www
         networks:
-            - real_state
+            - real_estate
         depends_on:
             - laravel.test
     worker:
@@ -45,7 +45,7 @@ services:
         volumes:
             - .:/var/www
         networks:
-            - real_state
+            - real_estate
         depends_on:
             - laravel.test
     mysql:
@@ -60,10 +60,10 @@ services:
             MYSQL_PASSWORD: '${DB_PASSWORD}'
             MYSQL_ALLOW_EMPTY_PASSWORD: 1
         volumes:
-            - 'real_state-mysql:/var/lib/mysql'
+            - 'real_estate-mysql:/var/lib/mysql'
             - './vendor/laravel/sail/database/mysql/create-testing-database.sh:/docker-entrypoint-initdb.d/10-create-testing-database.sh'
         networks:
-            - real_state
+            - real_estate
         healthcheck:
             test:
                 - CMD
@@ -77,9 +77,9 @@ services:
         ports:
             - '${FORWARD_REDIS_PORT:-6379}:6379'
         volumes:
-            - 'real_state-redis:/data'
+            - 'real_estate-redis:/data'
         networks:
-            - real_state
+            - real_estate
         healthcheck:
             test:
                 - CMD
@@ -88,10 +88,10 @@ services:
             retries: 3
             timeout: 5s
 networks:
-    real_state:
+    real_estate:
         driver: bridge
 volumes:
-    real_state-mysql:
+    real_estate-mysql:
         driver: local
-    real_state-redis:
+    real_estate-redis:
         driver: local

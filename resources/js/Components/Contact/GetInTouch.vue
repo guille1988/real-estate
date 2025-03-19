@@ -3,10 +3,10 @@
         <div class="container mx-auto px-4 md:px-6 lg:px-8">
             <div class="mb-12 max-w-3xl">
                 <h2 class="mb-4 text-3xl font-medium">
-                    Get in Touch with Real State
+                    Get in Touch with Real estate
                 </h2>
                 <p class="text-gray-400">
-                    Welcome to Real State's Contact Us page. We're here to
+                    Welcome to Real estate's Contact Us page. We're here to
                     assist you with any inquiries, requests, or feedback you may
                     have. Whether you're looking to buy or sell a property,
                     explore investment opportunities, or simply want to connect,

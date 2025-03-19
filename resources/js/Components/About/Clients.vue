@@ -58,7 +58,7 @@
                     Our Valued Clients
                 </h2>
                 <p class="leading-relaxed text-gray-400">
-                    At Real State, we have had the privilege of working with a
+                    At Real estate, we have had the privilege of working with a
                     diverse range of clients across various industries. Here are
                     some of the clients we've had the pleasure of serving.
                 </p>
@@ -188,9 +188,10 @@
                             </svg>
                         </div>
                         <p class="text-gray-300">
-                            Real State's expertise in finding the perfect office
-                            space for our expanding operations was invaluable.
-                            They truly understand our business needs.
+                            Real estate's expertise in finding the perfect
+                            office space for our expanding operations was
+                            invaluable. They truly understand our business
+                            needs.
                         </p>
                     </div>
                 </div>
@@ -318,7 +319,7 @@
                             </svg>
                         </div>
                         <p class="text-gray-300">
-                            Real State's ability to identify prime retail
+                            Real estate's ability to identify prime retail
                             locations helped us expand our brand presence. They
                             are a trusted partner in our growth.
                         </p>

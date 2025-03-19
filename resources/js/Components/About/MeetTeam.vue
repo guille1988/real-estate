@@ -55,10 +55,10 @@
                     </div>
                 </div>
                 <h2 class="mb-6 text-4xl font-bold md:text-5xl">
-                    Meet the Real State Team
+                    Meet the Real estate Team
                 </h2>
                 <p class="leading-relaxed text-gray-400">
-                    At Real State, our success is driven by the dedication and
+                    At Real estate, our success is driven by the dedication and
                     expertise of our team. Get to know the people behind our
                     mission to make your real estate dreams a reality.
                 </p>

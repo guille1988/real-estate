@@ -10,9 +10,9 @@
                         </h2>
                         <p class="mb-8 text-gray-400">
                             Building a real estate portfolio requires a
-                            strategic approach. Real State's Investment Advisory
-                            Service empowers you to make smart investments and
-                            informed decisions.
+                            strategic approach. Real estate's Investment
+                            Advisory Service empowers you to make smart
+                            investments and informed decisions.
                         </p>
                     </div>
 

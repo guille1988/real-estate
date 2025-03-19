@@ -6,7 +6,7 @@
                 <p class="w-full text-gray-400">
                     We're excited to connect with you and learn more about your
                     real estate goals. Use the form below to get in touch with
-                    Real State.
+                    Real estate.
                 </p>
                 <p class="w-full text-gray-400">
                     Whether you're a prospective client, partner, or simply

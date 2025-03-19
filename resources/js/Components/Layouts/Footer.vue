@@ -11,7 +11,7 @@
                     <p class="text-gray-400">
                         Your dream property is just a click away. Whether you're
                         looking for a new home, a strategic investment, or
-                        expert real estate advice, Real State is here to assist
+                        expert real estate advice, Real estate is here to assist
                         you every step of the way. Take the first step towards
                         your real estate goals and explore our available
                         properties or get in touch with our team for
@@ -36,7 +36,9 @@
             >
                 <div class="flex items-center">
                     <div class="mr-2 h-8 w-8 rounded-md bg-purple-600"></div>
-                    <span class="text-xl font-bold text-white">Real State</span>
+                    <span class="text-xl font-bold text-white"
+                        >Real estate</span
+                    >
                 </div>
 
                 <div class="relative w-full max-w-xs">
@@ -207,7 +209,7 @@
                 class="flex flex-col items-center justify-between border-t border-gray-800 pt-6 md:flex-row"
             >
                 <p class="mb-4 text-sm text-gray-400 md:mb-0">
-                    ©2023 Real State. All Rights Reserved
+                    ©2023 Real estate. All Rights Reserved
                 </p>
 
                 <div class="flex items-center">

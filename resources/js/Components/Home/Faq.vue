@@ -9,7 +9,7 @@
                         Frequently Asked Questions
                     </h1>
                     <p class="text-lg text-gray-400">
-                        Find answers to common questions about Real State's
+                        Find answers to common questions about Real estate's
                         services, property listings, and the real estate
                         process. We're here to provide clarity and assist you
                         every step of the way.
@@ -27,7 +27,7 @@
                     class="flex h-full flex-col rounded-lg border border-gray-800 bg-[#0A0A0A] p-8"
                 >
                     <h2 class="mb-6 text-2xl font-bold text-white">
-                        How do I search for properties on Real State?
+                        How do I search for properties on Real estate?
                     </h2>
                     <p class="mb-8 flex-grow text-gray-400">
                         Learn how to use our user-friendly search tools to find
@@ -45,7 +45,7 @@
                 >
                     <h2 class="mb-6 text-2xl font-bold text-white">
                         What documents do I need to sell my property through
-                        Real State?
+                        Real estate?
                     </h2>
                     <p class="mb-8 flex-grow text-gray-400">
                         Find out about the necessary documentation for listing
@@ -62,7 +62,7 @@
                     class="flex h-full flex-col rounded-lg border border-gray-800 bg-[#0A0A0A] p-8"
                 >
                     <h2 class="mb-6 text-2xl font-bold text-white">
-                        How can I contact an Real State agent?
+                        How can I contact an Real estate agent?
                     </h2>
                     <p class="mb-8 flex-grow text-gray-400">
                         Discover the different ways you can get in touch with

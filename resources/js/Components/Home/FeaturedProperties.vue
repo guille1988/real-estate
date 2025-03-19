@@ -27,7 +27,7 @@
                     <p class="text-sm text-gray-400 md:text-base">
                         Explore our handpicked selection of featured properties.
                         Each listing offers a glimpse into exceptional homes and
-                        investments available through Real State. Click "View
+                        investments available through Real estate. Click "View
                         Details" for more information.
                     </p>
                 </div>

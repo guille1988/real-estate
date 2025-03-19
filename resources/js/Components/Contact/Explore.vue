@@ -5,7 +5,7 @@
                 <div class="h-64 overflow-hidden rounded-lg sm:h-72">
                     <img
                         src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Captura%20de%20pantalla%202025-03-16%20a%20la%28s%29%2020.36.01-anOlRchkNviDapb3ECgqVEs8nvragt.png"
-                        alt="Real State Office"
+                        alt="Real estate Office"
                         class="h-full w-full object-cover"
                     />
                 </div>
@@ -60,11 +60,11 @@
                             />
                         </svg>
                         <h2 class="text-2xl font-medium text-white">
-                            Explore Real State's World
+                            Explore Real estate's World
                         </h2>
                     </div>
                     <p class="text-sm leading-relaxed text-gray-400">
-                        Step inside the world of Real State, where
+                        Step inside the world of Real estate, where
                         professionalism meets warmth, and expertise meets
                         passion. Our gallery offers a glimpse into our team and
                         workspaces, inviting you to get to know us better.

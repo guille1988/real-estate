@@ -6,11 +6,11 @@
                     Discover Our Office Locations
                 </h2>
                 <p class="w-full text-gray-400">
-                    Real State is here to serve you across multiple locations.
+                    Real estate is here to serve you across multiple locations.
                     Whether you're looking to meet our team, discuss real estate
                     opportunities, or simply drop by for a chat, we have offices
                     conveniently located to serve your needs. Explore the
-                    categories below to find the Real State office nearest to
+                    categories below to find the Real estate office nearest to
                     you.
                 </p>
             </div>
@@ -62,10 +62,10 @@
                         Main Headquarters
                     </div>
                     <h3 class="mb-4 text-xl font-medium">
-                        123 Real State Plaza, City Center, Metropolis
+                        123 Real estate Plaza, City Center, Metropolis
                     </h3>
                     <p class="mb-6 text-gray-400">
-                        Our main headquarters serve as the heart of Real State.
+                        Our main headquarters serve as the heart of Real estate.
                         Located in the bustling city center, this is where our
                         core team of experts operates, driving the excellence
                         and innovation that define us.
@@ -150,7 +150,7 @@
                         456 Urban Avenue, Downtown District, Metropolis
                     </h3>
                     <p class="mb-6 text-gray-400">
-                        Real State's presence extends to multiple regions, each
+                        Real estate's presence extends to multiple regions, each
                         with its own dynamic real estate landscape. Discover our
                         regional offices, staffed by local experts who
                         understand the nuances of their respective markets.
@@ -235,7 +235,7 @@
                         789 Global Tower, Financial District, London
                     </h3>
                     <p class="mb-6 text-gray-400">
-                        Our international headquarters connects Real State to
+                        Our international headquarters connects Real estate to
                         the global real estate market. Located in the heart of
                         London, this office serves as our gateway to
                         international clients and opportunities.

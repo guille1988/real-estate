@@ -5,7 +5,7 @@
                 <h2 class="mb-4 text-3xl font-medium">Unlock Property Value</h2>
                 <p class="leading-relaxed text-gray-400">
                     Selling your property should be a rewarding experience, and
-                    at Real State, we make sure it is. Our Property Selling
+                    at Real estate, we make sure it is. Our Property Selling
                     Service is designed to maximize the value of your property,
                     ensuring you get the best deal possible. Explore the
                     categories below to see how we can help you at every step of

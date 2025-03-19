@@ -6,7 +6,7 @@
                     <h1
                         class="mb-4 text-4xl font-bold leading-tight md:text-5xl lg:text-6xl"
                     >
-                        Discover Your Dream Property with Real State
+                        Discover Your Dream Property with Real estate
                     </h1>
                     <p class="mb-6 max-w-lg text-gray-300">
                         Your journey to finding the perfect property begins
