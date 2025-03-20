@@ -1,7 +1,6 @@
 <template>
     <section class="w-full bg-black py-16 text-white">
         <div class="container mx-auto px-4 md:px-6 lg:px-8">
-            <!-- Header -->
             <div class="mb-12 max-w-3xl">
                 <h2 class="mb-4 text-3xl font-medium">
                     Elevate Your Real Estate Experience
