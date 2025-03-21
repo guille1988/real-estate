@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import Achievements from '@/Components/About/Achievements.vue';
+import Achievements from '@/Components/About/Achievements/Achievements.vue';
 import Clients from '@/Components/About/Clients.vue';
 import Journey from '@/Components/About/Journey.vue';
 import MeetTeam from '@/Components/About/MeetTeam.vue';
