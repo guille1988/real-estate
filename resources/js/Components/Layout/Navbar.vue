@@ -20,7 +20,7 @@
                             class="rounded px-3 py-2 transition-colors hover:text-purple-400"
                             :class="{
                                 'border-b-2 border-purple-600 bg-black shadow-[0_0_10px_rgba(0,0,0,0.5)]':
-                                    isPage(Pages.HOME),
+                                    isPage(PagesEnum.HOME),
                             }"
                         >
                             Home
@@ -32,7 +32,7 @@
                             class="rounded px-3 py-2 transition-colors hover:text-purple-400"
                             :class="{
                                 'border-b-2 border-purple-600 bg-black shadow-[0_0_10px_rgba(0,0,0,0.5)]':
-                                    isPage(Pages.ABOUT),
+                                    isPage(PagesEnum.ABOUT),
                             }"
                         >
                             About Us
@@ -44,7 +44,7 @@
                             class="rounded px-3 py-2 transition-colors hover:text-purple-400"
                             :class="{
                                 'border-b-2 border-purple-600 bg-black shadow-[0_0_10px_rgba(0,0,0,0.5)]':
-                                    isPage(Pages.PROPERTIES),
+                                    isPage(PagesEnum.PROPERTIES),
                             }"
                         >
                             Properties
@@ -56,7 +56,7 @@
                             class="rounded px-3 py-2 transition-colors hover:text-purple-400"
                             :class="{
                                 'border-b-2 border-purple-600 bg-black shadow-[0_0_10px_rgba(0,0,0,0.5)]':
-                                    isPage(Pages.SERVICES),
+                                    isPage(PagesEnum.SERVICES),
                             }"
                         >
                             Services
@@ -71,7 +71,7 @@
                     class="rounded-md bg-purple-600 px-6 py-2 text-sm font-medium text-white transition-colors hover:text-black"
                     :class="{
                         'pointer-events-none opacity-0': !isNotPage(
-                            Pages.CONTACT,
+                            PagesEnum.CONTACT,
                         ),
                     }"
                 >
@@ -84,9 +84,9 @@
 
 <script setup lang="ts">
 import realStateLogo from '@/Assets/Images/real_state_logo.jpg';
-import { Pages } from '@/Enums/Pages';
+import { PagesEnum } from '@/Types/Enums';
 import { Link, usePage } from '@inertiajs/vue3';
 
-const isPage = (page: Pages): boolean => usePage().component === page;
-const isNotPage = (page: Pages): boolean => !isPage(page);
+const isPage = (page: PagesEnum): boolean => usePage().component === page;
+const isNotPage = (page: PagesEnum): boolean => !isPage(page);
 </script>

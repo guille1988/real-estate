@@ -16,11 +16,10 @@
             </div>
 
             <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-                <Card
+                <AchievementCard
                     v-for="card in cards"
                     :key="card.id"
-                    :title="card.title"
-                    :content="card.content"
+                    :card="card"
                 />
             </div>
         </div>
@@ -28,10 +27,11 @@
 </template>
 
 <script setup lang="ts">
-import Card from '@/Components/About/Achievements/Card.vue';
+import AchievementCard from '@/Components/About/Achievements/AchievementCard.vue';
 import ThreeStars from '@/Components/Shared/ThreeStars/ThreeStars.vue';
+import { AchievementCardInterface } from '@/Types/Interfaces';
 
-const cards = [
+const cards: AchievementCardInterface[] = [
     {
         id: 1,
         title: '3+ Years of Excellence',

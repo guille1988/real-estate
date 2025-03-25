@@ -7,8 +7,8 @@
 </template>
 
 <script setup lang="ts">
+import Layout from '@/Components/Layout/Layout.vue';
 import ContactForm from '@/Components/Properties/ContactForm.vue';
 import HeroSection from '@/Components/Properties/HeroSection.vue';
 import List from '@/Components/Properties/List.vue';
-import Layout from '@/Layouts/Layout.vue';
 </script>

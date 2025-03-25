@@ -11,10 +11,10 @@
 
 <script setup lang="ts">
 import Achievements from '@/Components/About/Achievements/Achievements.vue';
-import Clients from '@/Components/About/Clients.vue';
+import Clients from '@/Components/About/Clients/Clients.vue';
 import Journey from '@/Components/About/Journey.vue';
 import MeetTeam from '@/Components/About/MeetTeam.vue';
 import NavigatingExperience from '@/Components/About/NavigatingExperience.vue';
 import Values from '@/Components/About/Values.vue';
-import Layout from '@/Layouts/Layout.vue';
+import Layout from '@/Components/Layout/Layout.vue';
 </script>
