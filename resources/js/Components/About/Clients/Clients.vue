@@ -57,7 +57,7 @@ import ClientCard from '@/Components/About/Clients/ClientCard/ClientCard.vue';
 import NextArrowIcon from '@/Components/About/Clients/ClientCard/NextArrowIcon.vue';
 import PreviousArrowIcon from '@/Components/About/Clients/ClientCard/PreviousArrowIcon.vue';
 import ThreeStars from '@/Components/Shared/ThreeStars/ThreeStars.vue';
-import { ClientCardInterface } from '@/Types/Interfaces';
+import { ClientCardInterface } from '@/Types/App/Interfaces';
 import { computed, Ref, ref } from 'vue';
 
 const cards: ClientCardInterface[] = [

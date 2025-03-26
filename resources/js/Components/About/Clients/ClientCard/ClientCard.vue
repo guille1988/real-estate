@@ -45,7 +45,7 @@
 import CategoryIcon from '@/Components/About/Clients/ClientCard/CategoryIcon.vue';
 import DomainIcon from '@/Components/About/Clients/ClientCard/DomainIcon.vue';
 import FaceIcon from '@/Components/About/Clients/ClientCard/FaceIcon.vue';
-import { ClientCardInterface } from '@/Types/Interfaces';
+import { ClientCardInterface } from '@/Types/App/Interfaces';
 
 const { card } = defineProps<{
     card: ClientCardInterface;

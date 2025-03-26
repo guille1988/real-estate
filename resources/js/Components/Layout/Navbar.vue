@@ -84,7 +84,7 @@
 
 <script setup lang="ts">
 import realStateLogo from '@/Assets/Images/real_state_logo.jpg';
-import { PagesEnum } from '@/Types/Enums';
+import { PagesEnum } from '@/Types/App/Enums';
 import { Link, usePage } from '@inertiajs/vue3';
 
 const isPage = (page: PagesEnum): boolean => usePage().component === page;
