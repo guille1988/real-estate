@@ -13,3 +13,9 @@ export interface AchievementCardInterface {
     title: string;
     content: string;
 }
+
+export interface JourneyCardInterface {
+    id: number;
+    title: string;
+    subtitle: string;
+}
