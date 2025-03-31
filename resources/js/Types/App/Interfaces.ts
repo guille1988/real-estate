@@ -19,3 +19,10 @@ export interface JourneyCardInterface {
     title: string;
     subtitle: string;
 }
+
+export interface MemberCardInterface {
+    id: number;
+    name: string;
+    position: string;
+    image: string;
+}
