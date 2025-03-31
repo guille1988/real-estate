@@ -26,3 +26,9 @@ export interface MemberCardInterface {
     position: string;
     image: string;
 }
+
+export interface NavigatingExperienceCardInterface {
+    id: number;
+    title: string;
+    description: string;
+}
