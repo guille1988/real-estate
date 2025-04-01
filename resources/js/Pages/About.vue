@@ -15,6 +15,6 @@ import Clients from '@/Components/About/Clients/Clients.vue';
 import Journey from '@/Components/About/Journey/Journey.vue';
 import MeetTeam from '@/Components/About/MeetTeam/MeetTeam.vue';
 import NavigatingExperience from '@/Components/About/NavigatingExperience/NavigatingExperience.vue';
-import Values from '@/Components/About/Values.vue';
+import Values from '@/Components/About/Values/Values.vue';
 import Layout from '@/Components/Layout/Layout.vue';
 </script>
