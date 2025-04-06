@@ -32,38 +32,34 @@
 </template>
 
 <script setup lang="ts">
-import GraduationHatIcon from '@/Components/About/Values/GraduationHatIcon.vue';
-import PadlockIcon from '@/Components/About/Values/PadlockIcon.vue';
-import PeopleIcon from '@/Components/About/Values/PeopleIcon.vue';
-import StarIcon from '@/Components/About/Values/StarIcon.vue';
 import ThreeStars from '@/Components/Shared/ThreeStars/ThreeStars.vue';
 import { ValueCardInterface } from '@/Types/App/Interfaces';
-import ValueCard from './ValueCard.vue';
+import ValueCard from './ValueCard/ValueCard.vue';
 const cards: ValueCardInterface[] = [
     {
         id: 1,
-        icon: PadlockIcon,
+        icon: 'PadlockIcon',
         title: 'Trust',
         description:
             'Trust is the cornerstone of every successful real estate transaction.',
     },
     {
         id: 2,
-        icon: GraduationHatIcon,
+        icon: 'GraduationHatIcon',
         title: 'Excellence',
         description:
             'We set the bar high for ourselves. From the properties we list to the services we provide.',
     },
     {
         id: 3,
-        icon: PeopleIcon,
+        icon: 'PeopleIcon',
         title: 'Client-Centric',
         description:
             'Your dreams and needs are at the center of our universe. We listen, understand.',
     },
     {
         id: 4,
-        icon: StarIcon,
+        icon: 'StarIcon',
         title: 'Our Commitment',
         description:
             'We are dedicated to providing you with the highest level of service, professionalism, and support.',

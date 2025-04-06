@@ -12,9 +12,9 @@
 <script setup lang="ts">
 import { NavigatingExperienceCardInterface } from '@/Types/App/Interfaces';
 
-const { card } = defineProps<{
+const { card }: { card: NavigatingExperienceCardInterface } = defineProps<{
     card: NavigatingExperienceCardInterface;
 }>();
 
-const getStep = () => (card.id < 10 ? '0' + card.id : card.id);
+const getStep = (): string => (card.id < 10 ? '0' + card.id : String(card.id));
 </script>

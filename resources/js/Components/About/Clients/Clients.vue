@@ -54,11 +54,11 @@
 
 <script setup lang="ts">
 import ClientCard from '@/Components/About/Clients/ClientCard/ClientCard.vue';
-import NextArrowIcon from '@/Components/About/Clients/ClientCard/NextArrowIcon.vue';
-import PreviousArrowIcon from '@/Components/About/Clients/ClientCard/PreviousArrowIcon.vue';
+import NextArrowIcon from '@/Components/About/Clients/Icons/NextArrowIcon.vue';
+import PreviousArrowIcon from '@/Components/About/Clients/Icons/PreviousArrowIcon.vue';
 import ThreeStars from '@/Components/Shared/ThreeStars/ThreeStars.vue';
 import { ClientCardInterface } from '@/Types/App/Interfaces';
-import { computed, Ref, ref } from 'vue';
+import { computed, ComputedRef, Ref, ref } from 'vue';
 
 const cards: ClientCardInterface[] = [
     {
@@ -105,9 +105,11 @@ const cards: ClientCardInterface[] = [
 
 const currentIndex: Ref<number> = ref(0);
 
-const visibleCards = computed((): Array<ClientCardInterface> => {
-    return cards.slice(currentIndex.value, currentIndex.value + 2);
-});
+const visibleCards: ComputedRef<Array<ClientCardInterface>> = computed(
+    (): Array<ClientCardInterface> => {
+        return cards.slice(currentIndex.value, currentIndex.value + 2);
+    },
+);
 
 const nextSlide = (): void => {
     if (currentIndex.value < cards.length - 2) {

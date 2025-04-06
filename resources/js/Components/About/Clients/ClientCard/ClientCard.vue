@@ -42,12 +42,12 @@
     </div>
 </template>
 <script setup lang="ts">
-import CategoryIcon from '@/Components/About/Clients/ClientCard/CategoryIcon.vue';
-import DomainIcon from '@/Components/About/Clients/ClientCard/DomainIcon.vue';
-import FaceIcon from '@/Components/About/Clients/ClientCard/FaceIcon.vue';
+import CategoryIcon from '@/Components/About/Clients/ClientCard/Icons/CategoryIcon.vue';
+import DomainIcon from '@/Components/About/Clients/ClientCard/Icons/DomainIcon.vue';
+import FaceIcon from '@/Components/About/Clients/ClientCard/Icons/FaceIcon.vue';
 import { ClientCardInterface } from '@/Types/App/Interfaces';
 
-const { card } = defineProps<{
+const { card }: { card: ClientCardInterface } = defineProps<{
     card: ClientCardInterface;
 }>();
 

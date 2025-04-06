@@ -4,7 +4,7 @@
             <div
                 class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-indigo-600/20"
             >
-                <component :is="card.icon" />
+                <component :is="icon" />
             </div>
             <div class="flex flex-col">
                 <h3 class="text-xl font-semibold">{{ card.title }}</h3>
@@ -16,8 +16,14 @@
 
 <script setup lang="ts">
 import { ValueCardInterface } from '@/Types/App/Interfaces';
+import { defineAsyncComponent, type Component } from 'vue';
 
-defineProps<{
+const { card }: { card: ValueCardInterface } = defineProps<{
     card: ValueCardInterface;
 }>();
+
+const icon: Component = defineAsyncComponent(
+    (): Promise<Component> =>
+        import(`./Icons/${card.icon}.vue`) as Promise<Component>,
+);
 </script>

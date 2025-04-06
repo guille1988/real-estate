@@ -35,7 +35,7 @@ export interface NavigatingExperienceCardInterface {
 
 export interface ValueCardInterface {
     id: number;
-    icon: object;
+    icon: string;
     title: string;
     description: string;
 }
