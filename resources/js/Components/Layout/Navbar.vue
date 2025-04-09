@@ -1,5 +1,5 @@
 <template>
-    <header class="bg-black py-4 text-white">
+    <header class="bg-black py-6 text-white">
         <div class="container mx-auto flex items-center justify-between px-4">
             <div class="flex items-center">
                 <img

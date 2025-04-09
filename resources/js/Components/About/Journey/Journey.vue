@@ -1,6 +1,6 @@
 <template>
     <section
-        class="w-full max-w-full overflow-x-hidden bg-black py-16 text-white"
+        class="w-full max-w-full overflow-x-hidden bg-black py-8 text-white"
     >
         <div class="container mx-auto px-4 md:px-6 lg:px-8">
             <div class="grid grid-cols-1 items-center gap-8 lg:grid-cols-12">
