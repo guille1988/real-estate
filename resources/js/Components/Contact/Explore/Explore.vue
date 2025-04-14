@@ -2,29 +2,11 @@
     <section class="w-full bg-black py-16" id="explore-real-state">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-2 gap-4">
-                <div class="h-64 overflow-hidden rounded-lg sm:h-72">
-                    <img
-                        :src="Office"
-                        alt="Real estate Office"
-                        class="h-full w-full object-cover"
-                    />
-                </div>
-
-                <div class="h-64 overflow-hidden rounded-lg sm:h-72">
-                    <img
-                        :src="Team"
-                        alt="Professional Team"
-                        class="h-full w-full object-cover"
-                    />
-                </div>
-
-                <div class="h-64 overflow-hidden rounded-lg sm:h-72">
-                    <img
-                        :src="WorkingTeam"
-                        alt="Team Working"
-                        class="h-full w-full object-cover"
-                    />
-                </div>
+                <ExploreCard
+                    v-for="card in cards"
+                    :key="card.id"
+                    :card="card"
+                />
 
                 <div class="flex h-64 space-x-4 sm:h-72">
                     <div class="flex-1 overflow-hidden rounded-lg">
@@ -78,5 +60,25 @@ import Team from '@/Assets/Images/team.png';
 import TeamManPortrait from '@/Assets/Images/team_man_portrait.png';
 import TeamWomanPortrait from '@/Assets/Images/team_woman_portrait.png';
 import WorkingTeam from '@/Assets/Images/working_team.png';
+import ExploreCard from '@/Components/Contact/Explore/ExploreCard.vue';
 import ThreeStars from '@/Components/Shared/ThreeStars/ThreeStars.vue';
+import { ExploreCardInterface } from '@/Types/App/Interfaces';
+
+const cards: ExploreCardInterface[] = [
+    {
+        id: 1,
+        image: Office,
+        alt: 'Real estate Office',
+    },
+    {
+        id: 2,
+        image: Team,
+        alt: 'Professional Team',
+    },
+    {
+        id: 3,
+        image: WorkingTeam,
+        alt: 'Team Working',
+    },
+];
 </script>

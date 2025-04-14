@@ -39,3 +39,9 @@ export interface ValueCardInterface {
     title: string;
     description: string;
 }
+
+export interface ExploreCardInterface {
+    id: number;
+    image: string;
+    alt: string;
+}
