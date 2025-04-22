@@ -12,7 +12,7 @@
                     <div class="flex-1 overflow-hidden rounded-lg">
                         <img
                             :src="TeamManPortrait"
-                            alt="Team Portrait 1"
+                            alt="Team Man Portrait"
                             class="h-full w-full object-cover"
                         />
                     </div>
@@ -20,7 +20,7 @@
                     <div class="flex-1 overflow-hidden rounded-lg">
                         <img
                             :src="TeamWomanPortrait"
-                            alt="Team Portrait 2"
+                            alt="Team Woman Portrait"
                             class="h-full w-full object-cover"
                         />
                     </div>
