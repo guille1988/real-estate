@@ -3,27 +3,17 @@
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-2 gap-4">
                 <ExploreCard
-                    v-for="card in cards"
+                    v-for="card in filterCardsById([1, 2, 3])"
                     :key="card.id"
                     :card="card"
                 />
 
                 <div class="flex h-64 space-x-4 sm:h-72">
-                    <div class="flex-1 overflow-hidden rounded-lg">
-                        <img
-                            :src="TeamManPortrait"
-                            alt="Team Man Portrait"
-                            class="h-full w-full object-cover"
-                        />
-                    </div>
-
-                    <div class="flex-1 overflow-hidden rounded-lg">
-                        <img
-                            :src="TeamWomanPortrait"
-                            alt="Team Woman Portrait"
-                            class="h-full w-full object-cover"
-                        />
-                    </div>
+                    <ExploreCard
+                        v-for="card in filterCardsById([4, 5])"
+                        :key="card.id"
+                        :card="card"
+                    />
                 </div>
 
                 <div class="mt-8 flex h-64 flex-col sm:h-72">
@@ -41,13 +31,11 @@
                     </p>
                 </div>
 
-                <div class="h-64 overflow-hidden rounded-lg sm:h-72">
-                    <img
-                        :src="Handshake"
-                        alt="Handshake"
-                        class="h-full w-full object-cover"
-                    />
-                </div>
+                <ExploreCard
+                    v-for="card in filterCardsById(6)"
+                    :key="card.id"
+                    :card="card"
+                />
             </div>
         </div>
     </section>
@@ -69,16 +57,42 @@ const cards: ExploreCardInterface[] = [
         id: 1,
         image: Office,
         alt: 'Real estate Office',
+        is_split: false,
     },
     {
         id: 2,
         image: Team,
         alt: 'Professional Team',
+        is_split: false,
     },
     {
         id: 3,
         image: WorkingTeam,
         alt: 'Team Working',
+        is_split: false,
+    },
+    {
+        id: 4,
+        image: TeamManPortrait,
+        alt: 'Team Man Portrait',
+        is_split: true,
+    },
+    {
+        id: 5,
+        image: TeamWomanPortrait,
+        alt: 'Team Woman Portrait',
+        is_split: true,
+    },
+    {
+        id: 6,
+        image: Handshake,
+        alt: 'Handshake',
+        is_split: false,
     },
 ];
+
+const filterCardsById = (ids: number | Array<number>): ExploreCardInterface[] =>
+    cards.filter((card: ExploreCardInterface) =>
+        Array.isArray(ids) ? ids.includes(card.id) : card.id === ids,
+    );
 </script>

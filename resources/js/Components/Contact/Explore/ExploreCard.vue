@@ -1,5 +1,5 @@
 <template>
-    <div class="h-64 overflow-hidden rounded-lg sm:h-72">
+    <div :class="getClass()">
         <img
             :src="card.image"
             :alt="card.alt"
@@ -14,4 +14,7 @@ import { ExploreCardInterface } from '@/Types/App/Interfaces';
 const { card }: { card: ExploreCardInterface } = defineProps<{
     card: ExploreCardInterface;
 }>();
+
+const getClass = (): string =>
+    'overflow-hidden rounded-lg' + (card.is_split ? 'h-64 sm:h-72' : 'flex-1');
 </script>
