@@ -46,3 +46,10 @@ export interface ExploreCardInterface {
     alt: string;
     is_split: boolean;
 }
+
+export interface GetInTouchCardInterface {
+    id: number;
+    link: string;
+    icon: string;
+    label: string;
+}
