@@ -15,71 +15,85 @@
                 </p>
             </div>
 
-            <form @submit.prevent="handleSubmit" class="w-full">
+            <form @submit.prevent="form.post('/')" class="w-full">
                 <div class="mb-8 grid gap-6 md:grid-cols-2">
                     <div class="flex flex-col">
-                        <label for="firstName" class="mb-3 text-sm text-white"
-                            >First Name</label
-                        >
+                        <label for="first_name" class="mb-3 text-sm text-white"
+                            >First Name:
+                        </label>
                         <input
                             type="text"
-                            id="firstName"
-                            v-model="formData.firstName"
+                            id="first_name"
+                            v-model="form.first_name"
                             class="rounded-sm border border-neutral-800 bg-neutral-900/30 px-4 py-3 text-white placeholder-gray-500 focus:border-purple-500 focus:outline-none"
                             placeholder="Enter First Name"
                             required
                         />
+                        <div v-if="form.errors.first_name">
+                            {{ form.errors.first_name }}
+                        </div>
                     </div>
 
                     <div class="flex flex-col">
-                        <label for="lastName" class="mb-3 text-sm text-white"
-                            >Last Name</label
-                        >
+                        <label for="last_name" class="mb-3 text-sm text-white"
+                            >Last Name:
+                        </label>
                         <input
                             type="text"
-                            id="lastName"
-                            v-model="formData.lastName"
+                            id="last_name"
+                            v-model="form.last_name"
                             class="rounded-sm border border-neutral-800 bg-neutral-900/30 px-4 py-3 text-white placeholder-gray-500 focus:border-purple-500 focus:outline-none"
                             placeholder="Enter Last Name"
                             required
                         />
+                        <div v-if="form.errors.last_name">
+                            {{ form.errors.last_name }}
+                        </div>
                     </div>
 
                     <div class="flex flex-col">
                         <label for="email" class="mb-3 text-sm text-white"
-                            >Email</label
-                        >
+                            >Email:
+                        </label>
                         <input
                             type="email"
                             id="email"
-                            v-model="formData.email"
+                            v-model="form.email"
                             class="rounded-sm border border-neutral-800 bg-neutral-900/30 px-4 py-3 text-white placeholder-gray-500 focus:border-purple-500 focus:outline-none"
-                            placeholder="Enter your Email"
+                            placeholder="Enter Your E-mail"
                             required
                         />
+                        <div v-if="form.errors.email">
+                            {{ form.errors.email }}
+                        </div>
                     </div>
 
                     <div class="flex flex-col">
                         <label for="phone" class="mb-3 text-sm text-white"
-                            >Phone</label
-                        >
+                            >Phone:
+                        </label>
                         <input
                             type="tel"
                             id="phone"
-                            v-model="formData.phone"
+                            v-model="form.phone"
                             class="rounded-sm border border-neutral-800 bg-neutral-900/30 px-4 py-3 text-white placeholder-gray-500 focus:border-purple-500 focus:outline-none"
                             placeholder="Enter Phone Number"
                             required
                         />
+                        <div v-if="form.errors.phone">
+                            {{ form.errors.phone }}
+                        </div>
                     </div>
 
                     <div class="flex flex-col">
-                        <label for="inquiryType" class="mb-3 text-sm text-white"
-                            >Inquiry Type</label
-                        >
+                        <label
+                            for="inquiry_type"
+                            class="mb-3 text-sm text-white"
+                            >Inquiry Type:
+                        </label>
                         <select
-                            id="inquiryType"
-                            v-model="formData.inquiryType"
+                            id="inquiry_type"
+                            v-model="form.inquiry_type"
                             class="rounded-sm border border-neutral-800 bg-neutral-900/30 px-4 py-3 text-white focus:border-purple-500 focus:outline-none"
                             required
                         >
@@ -91,15 +105,19 @@
                             <option value="rent">Looking to Rent</option>
                             <option value="other">Other</option>
                         </select>
+
+                        <div v-if="form.errors.inquiry_type">
+                            {{ form.errors.inquiry_type }}
+                        </div>
                     </div>
 
                     <div class="flex flex-col">
                         <label for="source" class="mb-3 text-sm text-white"
-                            >How Did You Hear About Us?</label
+                            >How Did You Hear About Us? :</label
                         >
                         <select
                             id="source"
-                            v-model="formData.source"
+                            v-model="form.source"
                             class="rounded-sm border border-neutral-800 bg-neutral-900/30 px-4 py-3 text-white focus:border-purple-500 focus:outline-none"
                             required
                         >
@@ -110,27 +128,33 @@
                             <option value="other">Other</option>
                         </select>
                     </div>
+                    <div v-if="form.errors.source">
+                        {{ form.errors.source }}
+                    </div>
                 </div>
 
                 <div class="mb-6 flex flex-col">
                     <label for="message" class="mb-3 text-sm text-white"
-                        >Message</label
-                    >
+                        >Message:
+                    </label>
                     <textarea
                         id="message"
-                        v-model="formData.message"
+                        v-model="form.message"
                         rows="6"
                         class="w-full rounded-sm border border-neutral-800 bg-neutral-900/30 px-4 py-3 text-white placeholder-gray-500 focus:border-purple-500 focus:outline-none"
-                        placeholder="Enter your Message here"
+                        placeholder="Enter Your Message Here"
                         required
                     ></textarea>
+                    <div v-if="form.errors.message">
+                        {{ form.errors.message }}
+                    </div>
                 </div>
 
                 <div class="mb-8 flex items-start">
                     <input
                         type="checkbox"
                         id="terms"
-                        v-model="formData.acceptTerms"
+                        v-model="form.accept_terms"
                         class="mt-1 h-4 w-4 rounded border-neutral-800 bg-neutral-900/30 text-purple-500 focus:ring-purple-500"
                         required
                     />
@@ -164,31 +188,18 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { LetsConnectFormInterface } from '@/Types/App/Interfaces';
+import { InertiaForm, useForm } from '@inertiajs/vue3';
 
-interface FormData {
-    firstName: string;
-    lastName: string;
-    email: string;
-    phone: string;
-    inquiryType: string;
-    source: string;
-    message: string;
-    acceptTerms: boolean;
-}
-
-const formData = ref<FormData>({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    inquiryType: '',
-    source: '',
-    message: '',
-    acceptTerms: false,
-});
-
-const handleSubmit = (): void => {
-    console.log('Form submitted:', formData.value);
-};
+const form: InertiaForm<LetsConnectFormInterface> =
+    useForm<LetsConnectFormInterface>({
+        first_name: '',
+        last_name: '',
+        email: '',
+        phone: '',
+        inquiry_type: '',
+        source: '',
+        message: '',
+        accept_terms: false,
+    });
 </script>
