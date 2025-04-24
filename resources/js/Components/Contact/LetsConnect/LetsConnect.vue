@@ -100,10 +100,13 @@
                             <option value="" disabled selected>
                                 Select Inquiry Type
                             </option>
-                            <option value="buy">Looking to Buy</option>
-                            <option value="sell">Looking to Sell</option>
-                            <option value="rent">Looking to Rent</option>
-                            <option value="other">Other</option>
+                            <option
+                                v-for="inquiryType in inquiryTypes"
+                                :key="inquiryType.id"
+                                :value="inquiryType.value"
+                            >
+                                {{ inquiryType.label }}
+                            </option>
                         </select>
 
                         <div v-if="form.errors.inquiry_type">
@@ -122,10 +125,13 @@
                             required
                         >
                             <option value="" disabled selected>Select</option>
-                            <option value="search">Search Engine</option>
-                            <option value="social">Social Media</option>
-                            <option value="referral">Referral</option>
-                            <option value="other">Other</option>
+                            <option
+                                v-for="source in sources"
+                                :key="source.id"
+                                :value="source.value"
+                            >
+                                {{ source.label }}
+                            </option>
                         </select>
                     </div>
                     <div v-if="form.errors.source">
@@ -188,7 +194,10 @@
 </template>
 
 <script setup lang="ts">
-import { LetsConnectFormInterface } from '@/Types/App/Interfaces';
+import {
+    LetsConnectFormInterface,
+    LetsConnectOptionsInterface,
+} from '@/Types/App/Interfaces';
 import { InertiaForm, useForm } from '@inertiajs/vue3';
 
 const form: InertiaForm<LetsConnectFormInterface> =
@@ -202,4 +211,50 @@ const form: InertiaForm<LetsConnectFormInterface> =
         message: '',
         accept_terms: false,
     });
+
+const inquiryTypes: LetsConnectOptionsInterface[] = [
+    {
+        id: 1,
+        value: 'buy',
+        label: 'Looking to Buy',
+    },
+    {
+        id: 2,
+        value: 'sell',
+        label: 'Looking to Sell',
+    },
+    {
+        id: 3,
+        value: 'rent',
+        label: 'Looking to Rent',
+    },
+    {
+        id: 4,
+        value: 'other',
+        label: 'Other',
+    },
+];
+
+const sources: LetsConnectOptionsInterface[] = [
+    {
+        id: 1,
+        value: 'search',
+        label: 'Search Engine',
+    },
+    {
+        id: 2,
+        value: 'social',
+        label: 'Social Media',
+    },
+    {
+        id: 3,
+        value: 'referral',
+        label: 'Referral',
+    },
+    {
+        id: 4,
+        value: 'other',
+        label: 'Other',
+    },
+];
 </script>

@@ -65,3 +65,9 @@ export interface LetsConnectFormInterface {
     message: string;
     accept_terms: boolean;
 }
+
+export interface LetsConnectOptionsInterface {
+    id: number;
+    label: string;
+    value: string;
+}
