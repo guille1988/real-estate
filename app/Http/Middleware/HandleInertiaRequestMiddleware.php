@@ -6,12 +6,11 @@ namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
 use Inertia\Middleware;
-use Tighten\Ziggy\Ziggy;
 
 final class HandleInertiaRequestMiddleware extends Middleware
 {
     /**
-     * The root template that is loaded on the first page visit.
+     * The root template loaded on the first page visited.
      *
      * @var string
      */
@@ -39,10 +38,6 @@ final class HandleInertiaRequestMiddleware extends Middleware
             ...$sharedProperties,
             'auth' => [
                 'user' => $request->user(),
-            ],
-            'ziggy' => fn () => [
-                ...(new Ziggy)->toArray(),
-                'location' => $request->url(),
             ],
         ];
     }

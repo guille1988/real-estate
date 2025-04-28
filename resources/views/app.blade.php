@@ -7,7 +7,6 @@
         <title>{{config('app.name', 'Real estate')}}</title>
         <link rel="icon" href="{{asset('favicon.ico')}}">
 
-        @routes
         @vite(['resources/js/app.ts', "resources/js/Pages/{$page['component']}.vue"])
         @inertiaHead
     </head>

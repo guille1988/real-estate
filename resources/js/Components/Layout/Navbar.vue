@@ -16,7 +16,7 @@
                 <ul class="flex space-x-8">
                     <li>
                         <Link
-                            :href="route('home')"
+                            :href="home().url"
                             class="rounded px-3 py-2 transition-colors hover:text-purple-400"
                             :class="{
                                 'border-b-2 border-purple-600 bg-black shadow-[0_0_10px_rgba(0,0,0,0.5)]':
@@ -28,7 +28,7 @@
                     </li>
                     <li>
                         <Link
-                            :href="route('about')"
+                            :href="about().url"
                             class="rounded px-3 py-2 transition-colors hover:text-purple-400"
                             :class="{
                                 'border-b-2 border-purple-600 bg-black shadow-[0_0_10px_rgba(0,0,0,0.5)]':
@@ -40,7 +40,7 @@
                     </li>
                     <li>
                         <Link
-                            :href="route('properties.index')"
+                            :href="index().url"
                             class="rounded px-3 py-2 transition-colors hover:text-purple-400"
                             :class="{
                                 'border-b-2 border-purple-600 bg-black shadow-[0_0_10px_rgba(0,0,0,0.5)]':
@@ -52,7 +52,7 @@
                     </li>
                     <li>
                         <Link
-                            :href="route('services')"
+                            :href="services().url"
                             class="rounded px-3 py-2 transition-colors hover:text-purple-400"
                             :class="{
                                 'border-b-2 border-purple-600 bg-black shadow-[0_0_10px_rgba(0,0,0,0.5)]':
@@ -67,7 +67,7 @@
 
             <div>
                 <Link
-                    :href="route('contact')"
+                    :href="contact().url"
                     class="rounded-md bg-purple-600 px-6 py-2 text-sm font-medium text-white transition-colors hover:text-black"
                     :class="{
                         'pointer-events-none opacity-0': !isNotPage(
@@ -84,6 +84,11 @@
 
 <script setup lang="ts">
 import realStateLogo from '@/Assets/Images/real_state_logo.jpg';
+import about from '@/Routes/routes/about';
+import contact from '@/Routes/routes/contact';
+import home from '@/Routes/routes/home';
+import { index } from '@/Routes/routes/properties';
+import services from '@/Routes/routes/services';
 import { PagesEnum } from '@/Types/App/Enums';
 import { Link, usePage } from '@inertiajs/vue3';
 
