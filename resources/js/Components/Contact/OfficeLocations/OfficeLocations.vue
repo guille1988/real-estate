@@ -60,20 +60,7 @@
                     class="absolute left-0 top-1/2 z-10 -translate-y-1/2 transform rounded-full bg-neutral-800 p-2 text-white opacity-75 transition-opacity hover:opacity-100 focus:outline-none md:-left-12"
                     aria-label="Previous slide"
                 >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-6 w-6"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                    >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M15 19l-7-7 7-7"
-                        />
-                    </svg>
+                    <PreviousSlideArrowIcon />
                 </button>
 
                 <button
@@ -82,20 +69,7 @@
                     class="absolute right-0 top-1/2 z-10 -translate-y-1/2 transform rounded-full bg-neutral-800 p-2 text-white opacity-75 transition-opacity hover:opacity-100 focus:outline-none md:-right-12"
                     aria-label="Next slide"
                 >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-6 w-6"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                    >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M9 5l7 7-7 7"
-                        />
-                    </svg>
+                    <NextSlideArrowIcon />
                 </button>
 
                 <div class="overflow-hidden">
@@ -124,16 +98,16 @@
                     class="mt-6 flex justify-center gap-2"
                 >
                     <button
-                        v-for="(_, index) in totalSlides"
-                        :key="index"
-                        @click="goToSlide(index)"
+                        v-for="slide in totalSlides"
+                        :key="slide - 1"
+                        @click="goToSlide(slide - 1)"
                         :class="[
                             'h-2 w-2 rounded-full transition-all',
-                            currentSlide === index
+                            currentSlide === slide - 1
                                 ? 'w-4 bg-purple-600'
                                 : 'bg-neutral-700 hover:bg-neutral-500',
                         ]"
-                        :aria-label="`Go to slide ${index + 1}`"
+                        :aria-label="`Go to slide ${slide}`"
                     ></button>
                 </div>
             </div>
@@ -142,6 +116,8 @@
 </template>
 
 <script setup lang="ts">
+import NextSlideArrowIcon from '@/Components/Contact/OfficeLocations/Icons/NextSlideArrowIcon.vue';
+import PreviousSlideArrowIcon from '@/Components/Contact/OfficeLocations/Icons/PreviousSlideArrowIcon.vue';
 import OfficeLocationCard from '@/Components/Contact/OfficeLocations/OfficeLocationCard.vue';
 import { OfficeLocationCardInterface } from '@/Types/App/Interfaces';
 import { computed, ComputedRef, Ref, ref, watch } from 'vue';
