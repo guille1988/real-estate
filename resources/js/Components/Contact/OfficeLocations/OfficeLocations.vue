@@ -165,11 +165,13 @@ const activeTab: Ref<string> = ref('all');
 const currentSlide: Ref<number> = ref(0);
 
 const filteredCards: ComputedRef<OfficeLocationCardInterface[]> = computed(
-    (): OfficeLocationCardInterface[] => {
-        return activeTab.value === 'all'
+    (): OfficeLocationCardInterface[] =>
+        activeTab.value === 'all'
             ? cards
-            : cards.filter((card) => card.location_type === activeTab.value);
-    },
+            : cards.filter(
+                  (card: OfficeLocationCardInterface) =>
+                      card.location_type === activeTab.value,
+              ),
 );
 
 const slides: ComputedRef<OfficeLocationCardInterface[][]> = computed(
