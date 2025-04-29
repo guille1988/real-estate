@@ -71,3 +71,15 @@ export interface LetsConnectOptionsInterface {
     label: string;
     value: string;
 }
+
+export interface OfficeLocationCardInterface {
+    id: number;
+    location_type: string;
+    title: string;
+    address: string;
+    description: string;
+    email: string;
+    phone: string;
+    location: string;
+    url: string;
+}
