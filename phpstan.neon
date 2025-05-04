@@ -4,10 +4,6 @@ includes:
 
 parameters:
     level: max
-
-    ignoreErrors:
-        - '#Access to internal property Illuminate\\Console\\Command::\$components from outside its root namespace Illuminate.#'
-
     paths:
         - app
         - config
