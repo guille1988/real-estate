@@ -18,7 +18,7 @@ use Illuminate\Support\ServiceProvider;
 final class AppServiceProvider extends ServiceProvider
 {
     /**
-     * Configure application's commands.
+     * Configure application commands.
      */
     private function configureCommands(): void
     {
@@ -63,7 +63,7 @@ final class AppServiceProvider extends ServiceProvider
     }
 
     /**
-     * Configure application's Vite loading strategy.
+     * Configure application Vite loading strategy.
      */
     private function configureVite(): void
     {
