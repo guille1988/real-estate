@@ -1,3 +1,5 @@
+import { LocationTypeEnum } from '@/Types/App/Enums';
+
 export interface ClientCardInterface {
     id: number;
     url: string;
@@ -74,7 +76,7 @@ export interface LetsConnectOptionsInterface {
 
 export interface OfficeLocationCardInterface {
     id: number;
-    location_type: string;
+    location_type: LocationTypeEnum;
     title: string;
     address: string;
     description: string;

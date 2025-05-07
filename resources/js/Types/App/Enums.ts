@@ -6,9 +6,8 @@ export enum PagesEnum {
     SERVICES = 'Services',
 }
 
-export enum ValueIconNameEnum {
-    PADLOCK = 'Padlock',
-    GRADUATION_HAT = 'GraduationHat',
-    CLIENT_CENTRIC = 'People',
-    STAR = 'Star',
+export enum LocationTypeEnum {
+    ALL = 'all',
+    REGIONAL = 'regional',
+    INTERNATIONAL = 'international',
 }

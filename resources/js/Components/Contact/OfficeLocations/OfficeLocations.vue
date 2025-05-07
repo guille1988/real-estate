@@ -18,10 +18,10 @@
             <div class="mb-10">
                 <div class="inline-flex rounded-md bg-neutral-900/50 p-1">
                     <button
-                        @click="activeTab = 'all'"
+                        @click="setActiveTab(LocationTypeEnum.ALL)"
                         :class="[
                             'rounded-md px-6 py-2 text-sm transition-colors duration-200',
-                            activeTab === 'all'
+                            activeTabEqualsTo(LocationTypeEnum.ALL)
                                 ? 'bg-neutral-800 outline outline-1 outline-black'
                                 : 'text-gray-400 hover:text-white',
                         ]"
@@ -29,10 +29,10 @@
                         All
                     </button>
                     <button
-                        @click="activeTab = 'regional'"
+                        @click="setActiveTab(LocationTypeEnum.REGIONAL)"
                         :class="[
                             'rounded-md px-6 py-2 text-sm transition-colors duration-200',
-                            activeTab === 'regional'
+                            activeTabEqualsTo(LocationTypeEnum.REGIONAL)
                                 ? 'bg-neutral-800 outline outline-1 outline-black'
                                 : 'text-gray-400 hover:text-white',
                         ]"
@@ -40,10 +40,10 @@
                         Regional
                     </button>
                     <button
-                        @click="activeTab = 'international'"
+                        @click="setActiveTab(LocationTypeEnum.INTERNATIONAL)"
                         :class="[
                             'rounded-md px-6 py-2 text-sm transition-colors duration-200',
-                            activeTab === 'international'
+                            activeTabEqualsTo(LocationTypeEnum.INTERNATIONAL)
                                 ? 'bg-neutral-800 outline outline-1 outline-black'
                                 : 'text-gray-400 hover:text-white',
                         ]"
@@ -76,7 +76,7 @@
                     <div
                         class="flex transition-transform duration-300 ease-in-out"
                         :style="{
-                            transform: `translateX(-${currentSlide * 100}%)`,
+                            transform: `translateX(-${multiplyCurrentSlideBy(100)}%)`,
                         }"
                     >
                         <div
@@ -94,16 +94,16 @@
                 </div>
 
                 <div
-                    v-if="totalSlides > 1"
+                    v-if="totalSlidesAreGreaterThan(1)"
                     class="mt-6 flex justify-center gap-2"
                 >
                     <button
                         v-for="slide in totalSlides"
                         :key="slide - 1"
-                        @click="goToSlide(slide - 1)"
+                        @click="setCurrentSlide(slide - 1)"
                         :class="[
                             'h-2 w-2 rounded-full transition-all',
-                            currentSlide === slide - 1
+                            currentSlideEqualsTo(slide - 1)
                                 ? 'w-4 bg-purple-600'
                                 : 'bg-neutral-700 hover:bg-neutral-500',
                         ]"
@@ -119,13 +119,14 @@
 import NextSlideArrowIcon from '@/Components/Contact/OfficeLocations/Icons/NextSlideArrowIcon.vue';
 import PreviousSlideArrowIcon from '@/Components/Contact/OfficeLocations/Icons/PreviousSlideArrowIcon.vue';
 import OfficeLocationCard from '@/Components/Contact/OfficeLocations/OfficeLocationCard.vue';
+import { LocationTypeEnum } from '@/Types/App/Enums';
 import { OfficeLocationCardInterface } from '@/Types/App/Interfaces';
 import { computed, ComputedRef, Ref, ref, watch } from 'vue';
 
 const cards: OfficeLocationCardInterface[] = [
     {
         id: 1,
-        location_type: 'regional',
+        location_type: LocationTypeEnum.REGIONAL,
         title: 'Main Headquarters',
         address: '123 Real estate Plaza, City Center, Metropolis',
         description:
@@ -137,7 +138,7 @@ const cards: OfficeLocationCardInterface[] = [
     },
     {
         id: 2,
-        location_type: 'regional',
+        location_type: LocationTypeEnum.REGIONAL,
         title: 'Regional Offices',
         address: '456 Urban Avenue, Downtown District, Metropolis',
         description:
@@ -149,7 +150,7 @@ const cards: OfficeLocationCardInterface[] = [
     },
     {
         id: 3,
-        location_type: 'international',
+        location_type: LocationTypeEnum.INTERNATIONAL,
         title: 'International Headquarters',
         address: '789 Global Tower, Financial District, London',
         description:
@@ -161,18 +162,51 @@ const cards: OfficeLocationCardInterface[] = [
     },
 ];
 
-const activeTab: Ref<string> = ref('all');
+const activeTab: Ref<string> = ref(LocationTypeEnum.ALL);
 const currentSlide: Ref<number> = ref(0);
+
+const activeTabEqualsTo = (tab: LocationTypeEnum): boolean =>
+    activeTab.value === tab;
+
+const setActiveTab = (tab: LocationTypeEnum): void => {
+    activeTab.value = tab;
+};
+
+const currentSlideEqualsTo = (slide: number): boolean =>
+    currentSlide.value === slide;
+
+const currentSlideIsGreaterThan = (slide: number): boolean =>
+    currentSlide.value > slide;
+
+const currentSlideIsLessThan = (slide: number): boolean =>
+    currentSlide.value < slide;
+
+const setCurrentSlide = (slide: number): void => {
+    currentSlide.value = slide;
+};
+
+const incrementCurrentSlide = (): void => {
+    currentSlide.value++;
+};
+
+const decrementCurrentSlide = (): void => {
+    currentSlide.value--;
+};
+
+const multiplyCurrentSlideBy = (multiplier: number): number =>
+    currentSlide.value * multiplier;
 
 const filteredCards: ComputedRef<OfficeLocationCardInterface[]> = computed(
     (): OfficeLocationCardInterface[] =>
-        activeTab.value === 'all'
+        activeTabEqualsTo(LocationTypeEnum.ALL)
             ? cards
-            : cards.filter(
-                  (card: OfficeLocationCardInterface) =>
-                      card.location_type === activeTab.value,
+            : cards.filter((card: OfficeLocationCardInterface) =>
+                  activeTabEqualsTo(card.location_type),
               ),
 );
+
+const filteredCardsAreGreaterThan = (quantity: number): boolean =>
+    filteredCards.value.length > quantity;
 
 const slides: ComputedRef<OfficeLocationCardInterface[][]> = computed(
     (): OfficeLocationCardInterface[][] => {
@@ -191,31 +225,26 @@ const totalSlides: ComputedRef<number> = computed(
     (): number => slides.value.length,
 );
 
-const shouldShowArrows: ComputedRef<boolean> = computed(
-    (): boolean => filteredCards.value.length > 2,
+const totalSlidesAreGreaterThan = (slide: number): boolean =>
+    totalSlides.value > slide;
+
+const shouldShowArrows: ComputedRef<boolean> = computed((): boolean =>
+    filteredCardsAreGreaterThan(2),
 );
 
 const nextSlide = (): void => {
-    if (currentSlide.value < totalSlides.value - 1) {
-        currentSlide.value++;
-    } else {
-        currentSlide.value = 0;
-    }
+    currentSlideIsLessThan(totalSlides.value - 1)
+        ? incrementCurrentSlide()
+        : setCurrentSlide(0);
 };
 
 const prevSlide = (): void => {
-    if (currentSlide.value > 0) {
-        currentSlide.value--;
-    } else {
-        currentSlide.value = totalSlides.value - 1;
-    }
-};
-
-const goToSlide = (index: number): void => {
-    currentSlide.value = index;
+    currentSlideIsGreaterThan(0)
+        ? decrementCurrentSlide()
+        : setCurrentSlide(totalSlides.value - 1);
 };
 
 watch(activeTab, (): void => {
-    currentSlide.value = 0;
+    setCurrentSlide(0);
 });
 </script>
