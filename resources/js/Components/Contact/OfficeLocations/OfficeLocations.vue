@@ -1,5 +1,5 @@
 <template>
-    <section class="w-full bg-black py-16 text-white" id="office-locations">
+    <section class="w-full bg-black py-8 text-white" id="office-locations">
         <div class="container mx-auto px-4 md:px-6 lg:px-8">
             <div class="mb-12">
                 <h2 class="mb-4 text-3xl font-medium">
