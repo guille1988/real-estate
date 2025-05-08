@@ -1,11 +1,11 @@
 import { queryParams, type QueryParams, validateParameters } from './../../../../../wayfinder'
 
 /**
- * @see \Laravel\Horizon\Http\Controllers\HomeController::index
- * @see vendor/laravel/horizon/src/Http/Controllers/HomeController.php:14
- * @route /horizon/{view?}
- */
-export const index = (args?: { view?: string | number } | [view: string | number] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
+* @see \Laravel\Horizon\Http\Controllers\HomeController::index
+* @see vendor/laravel/horizon/src/Http/Controllers/HomeController.php:14
+* @route '/horizon/{view?}'
+*/
+export const index = (args?: { view?: string | number } | [view: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
     method: 'get',
 } => ({
@@ -15,15 +15,15 @@ export const index = (args?: { view?: string | number } | [view: string | number
 
 index.definition = {
     methods: ['get','head'],
-    url: '\/horizon\/{view?}',
+    url: '/horizon/{view?}',
 }
 
 /**
- * @see \Laravel\Horizon\Http\Controllers\HomeController::index
- * @see vendor/laravel/horizon/src/Http/Controllers/HomeController.php:14
- * @route /horizon/{view?}
- */
-index.url = (args?: { view?: string | number } | [view: string | number] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+* @see \Laravel\Horizon\Http\Controllers\HomeController::index
+* @see vendor/laravel/horizon/src/Http/Controllers/HomeController.php:14
+* @route '/horizon/{view?}'
+*/
+index.url = (args?: { view?: string | number } | [view: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { view: args }
     }
@@ -36,7 +36,7 @@ index.url = (args?: { view?: string | number } | [view: string | number] | strin
 
     validateParameters(args, [
         "view",
-   ])
+    ])
 
     const parsedArgs = {
         view: args?.view,
@@ -48,11 +48,11 @@ index.url = (args?: { view?: string | number } | [view: string | number] | strin
 }
 
 /**
- * @see \Laravel\Horizon\Http\Controllers\HomeController::index
- * @see vendor/laravel/horizon/src/Http/Controllers/HomeController.php:14
- * @route /horizon/{view?}
- */
-index.get = (args?: { view?: string | number } | [view: string | number] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
+* @see \Laravel\Horizon\Http\Controllers\HomeController::index
+* @see vendor/laravel/horizon/src/Http/Controllers/HomeController.php:14
+* @route '/horizon/{view?}'
+*/
+index.get = (args?: { view?: string | number } | [view: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
     method: 'get',
 } => ({
@@ -61,11 +61,11 @@ index.get = (args?: { view?: string | number } | [view: string | number] | strin
 })
 
 /**
- * @see \Laravel\Horizon\Http\Controllers\HomeController::index
- * @see vendor/laravel/horizon/src/Http/Controllers/HomeController.php:14
- * @route /horizon/{view?}
- */
-index.head = (args?: { view?: string | number } | [view: string | number] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
+* @see \Laravel\Horizon\Http\Controllers\HomeController::index
+* @see vendor/laravel/horizon/src/Http/Controllers/HomeController.php:14
+* @route '/horizon/{view?}'
+*/
+index.head = (args?: { view?: string | number } | [view: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
     method: 'head',
 } => ({

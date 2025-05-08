@@ -1,10 +1,10 @@
 import { queryParams, type QueryParams } from './../../../../../wayfinder'
 
 /**
- * @see \Laravel\Horizon\Http\Controllers\FailedJobsController::index
- * @see vendor/laravel/horizon/src/Http/Controllers/FailedJobsController.php:46
- * @route /horizon/api/jobs/failed
- */
+* @see \Laravel\Horizon\Http\Controllers\FailedJobsController::index
+* @see vendor/laravel/horizon/src/Http/Controllers/FailedJobsController.php:46
+* @route '/horizon/api/jobs/failed'
+*/
 export const index = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
     method: 'get',
@@ -15,23 +15,23 @@ export const index = (options?: { query?: QueryParams, mergeQuery?: QueryParams 
 
 index.definition = {
     methods: ['get','head'],
-    url: '\/horizon\/api\/jobs\/failed',
+    url: '/horizon/api/jobs/failed',
 }
 
 /**
- * @see \Laravel\Horizon\Http\Controllers\FailedJobsController::index
- * @see vendor/laravel/horizon/src/Http/Controllers/FailedJobsController.php:46
- * @route /horizon/api/jobs/failed
- */
+* @see \Laravel\Horizon\Http\Controllers\FailedJobsController::index
+* @see vendor/laravel/horizon/src/Http/Controllers/FailedJobsController.php:46
+* @route '/horizon/api/jobs/failed'
+*/
 index.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
     return index.definition.url + queryParams(options)
 }
 
 /**
- * @see \Laravel\Horizon\Http\Controllers\FailedJobsController::index
- * @see vendor/laravel/horizon/src/Http/Controllers/FailedJobsController.php:46
- * @route /horizon/api/jobs/failed
- */
+* @see \Laravel\Horizon\Http\Controllers\FailedJobsController::index
+* @see vendor/laravel/horizon/src/Http/Controllers/FailedJobsController.php:46
+* @route '/horizon/api/jobs/failed'
+*/
 index.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
     method: 'get',
@@ -41,10 +41,10 @@ index.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 })
 
 /**
- * @see \Laravel\Horizon\Http\Controllers\FailedJobsController::index
- * @see vendor/laravel/horizon/src/Http/Controllers/FailedJobsController.php:46
- * @route /horizon/api/jobs/failed
- */
+* @see \Laravel\Horizon\Http\Controllers\FailedJobsController::index
+* @see vendor/laravel/horizon/src/Http/Controllers/FailedJobsController.php:46
+* @route '/horizon/api/jobs/failed'
+*/
 index.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
     method: 'head',
@@ -54,11 +54,11 @@ index.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 })
 
 /**
- * @see \Laravel\Horizon\Http\Controllers\FailedJobsController::show
- * @see vendor/laravel/horizon/src/Http/Controllers/FailedJobsController.php:101
- * @route /horizon/api/jobs/failed/{id}
- */
-export const show = (args: { id: string | number } | [id: string | number] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
+* @see \Laravel\Horizon\Http\Controllers\FailedJobsController::show
+* @see vendor/laravel/horizon/src/Http/Controllers/FailedJobsController.php:101
+* @route '/horizon/api/jobs/failed/{id}'
+*/
+export const show = (args: { id: string | number } | [id: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
     method: 'get',
 } => ({
@@ -68,15 +68,15 @@ export const show = (args: { id: string | number } | [id: string | number] | str
 
 show.definition = {
     methods: ['get','head'],
-    url: '\/horizon\/api\/jobs\/failed\/{id}',
+    url: '/horizon/api/jobs/failed/{id}',
 }
 
 /**
- * @see \Laravel\Horizon\Http\Controllers\FailedJobsController::show
- * @see vendor/laravel/horizon/src/Http/Controllers/FailedJobsController.php:101
- * @route /horizon/api/jobs/failed/{id}
- */
-show.url = (args: { id: string | number } | [id: string | number] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+* @see \Laravel\Horizon\Http\Controllers\FailedJobsController::show
+* @see vendor/laravel/horizon/src/Http/Controllers/FailedJobsController.php:101
+* @route '/horizon/api/jobs/failed/{id}'
+*/
+show.url = (args: { id: string | number } | [id: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { id: args }
     }
@@ -97,11 +97,11 @@ show.url = (args: { id: string | number } | [id: string | number] | string | num
 }
 
 /**
- * @see \Laravel\Horizon\Http\Controllers\FailedJobsController::show
- * @see vendor/laravel/horizon/src/Http/Controllers/FailedJobsController.php:101
- * @route /horizon/api/jobs/failed/{id}
- */
-show.get = (args: { id: string | number } | [id: string | number] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
+* @see \Laravel\Horizon\Http\Controllers\FailedJobsController::show
+* @see vendor/laravel/horizon/src/Http/Controllers/FailedJobsController.php:101
+* @route '/horizon/api/jobs/failed/{id}'
+*/
+show.get = (args: { id: string | number } | [id: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
     method: 'get',
 } => ({
@@ -110,11 +110,11 @@ show.get = (args: { id: string | number } | [id: string | number] | string | num
 })
 
 /**
- * @see \Laravel\Horizon\Http\Controllers\FailedJobsController::show
- * @see vendor/laravel/horizon/src/Http/Controllers/FailedJobsController.php:101
- * @route /horizon/api/jobs/failed/{id}
- */
-show.head = (args: { id: string | number } | [id: string | number] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
+* @see \Laravel\Horizon\Http\Controllers\FailedJobsController::show
+* @see vendor/laravel/horizon/src/Http/Controllers/FailedJobsController.php:101
+* @route '/horizon/api/jobs/failed/{id}'
+*/
+show.head = (args: { id: string | number } | [id: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
     method: 'head',
 } => ({

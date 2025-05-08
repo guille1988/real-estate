@@ -1,10 +1,10 @@
 import { queryParams, type QueryParams } from './../../../../wayfinder'
 
 /**
- * @see \App\Http\Controllers\HomeController::HomeController
- * @see app/Http/Controllers/HomeController.php:12
- * @route /
- */
+* @see \App\Http\Controllers\HomeController::__invoke
+* @see app/Http/Controllers/HomeController.php:12
+* @route '/'
+*/
 const HomeController = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
     method: 'get',
@@ -15,23 +15,23 @@ const HomeController = (options?: { query?: QueryParams, mergeQuery?: QueryParam
 
 HomeController.definition = {
     methods: ['get','head'],
-    url: '\/',
+    url: '/',
 }
 
 /**
- * @see \App\Http\Controllers\HomeController::HomeController
- * @see app/Http/Controllers/HomeController.php:12
- * @route /
- */
+* @see \App\Http\Controllers\HomeController::__invoke
+* @see app/Http/Controllers/HomeController.php:12
+* @route '/'
+*/
 HomeController.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
     return HomeController.definition.url + queryParams(options)
 }
 
 /**
- * @see \App\Http\Controllers\HomeController::HomeController
- * @see app/Http/Controllers/HomeController.php:12
- * @route /
- */
+* @see \App\Http\Controllers\HomeController::__invoke
+* @see app/Http/Controllers/HomeController.php:12
+* @route '/'
+*/
 HomeController.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
     method: 'get',
@@ -41,10 +41,10 @@ HomeController.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams 
 })
 
 /**
- * @see \App\Http\Controllers\HomeController::HomeController
- * @see app/Http/Controllers/HomeController.php:12
- * @route /
- */
+* @see \App\Http\Controllers\HomeController::__invoke
+* @see app/Http/Controllers/HomeController.php:12
+* @route '/'
+*/
 HomeController.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
     method: 'head',

@@ -1,10 +1,10 @@
 import { queryParams, type QueryParams } from './../../../../../wayfinder'
 
 /**
- * @see \Laravel\Horizon\Http\Controllers\MasterSupervisorController::index
- * @see vendor/laravel/horizon/src/Http/Controllers/MasterSupervisorController.php:18
- * @route /horizon/api/masters
- */
+* @see \Laravel\Horizon\Http\Controllers\MasterSupervisorController::index
+* @see vendor/laravel/horizon/src/Http/Controllers/MasterSupervisorController.php:18
+* @route '/horizon/api/masters'
+*/
 export const index = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
     method: 'get',
@@ -15,23 +15,23 @@ export const index = (options?: { query?: QueryParams, mergeQuery?: QueryParams 
 
 index.definition = {
     methods: ['get','head'],
-    url: '\/horizon\/api\/masters',
+    url: '/horizon/api/masters',
 }
 
 /**
- * @see \Laravel\Horizon\Http\Controllers\MasterSupervisorController::index
- * @see vendor/laravel/horizon/src/Http/Controllers/MasterSupervisorController.php:18
- * @route /horizon/api/masters
- */
+* @see \Laravel\Horizon\Http\Controllers\MasterSupervisorController::index
+* @see vendor/laravel/horizon/src/Http/Controllers/MasterSupervisorController.php:18
+* @route '/horizon/api/masters'
+*/
 index.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
     return index.definition.url + queryParams(options)
 }
 
 /**
- * @see \Laravel\Horizon\Http\Controllers\MasterSupervisorController::index
- * @see vendor/laravel/horizon/src/Http/Controllers/MasterSupervisorController.php:18
- * @route /horizon/api/masters
- */
+* @see \Laravel\Horizon\Http\Controllers\MasterSupervisorController::index
+* @see vendor/laravel/horizon/src/Http/Controllers/MasterSupervisorController.php:18
+* @route '/horizon/api/masters'
+*/
 index.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
     method: 'get',
@@ -41,10 +41,10 @@ index.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 })
 
 /**
- * @see \Laravel\Horizon\Http\Controllers\MasterSupervisorController::index
- * @see vendor/laravel/horizon/src/Http/Controllers/MasterSupervisorController.php:18
- * @route /horizon/api/masters
- */
+* @see \Laravel\Horizon\Http\Controllers\MasterSupervisorController::index
+* @see vendor/laravel/horizon/src/Http/Controllers/MasterSupervisorController.php:18
+* @route '/horizon/api/masters'
+*/
 index.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
     method: 'head',

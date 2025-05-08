@@ -1,10 +1,10 @@
 import { queryParams, type QueryParams } from './../../../../../wayfinder'
 
 /**
- * @see \Laravel\Horizon\Http\Controllers\BatchesController::index
- * @see vendor/laravel/horizon/src/Http/Controllers/BatchesController.php:39
- * @route /horizon/api/batches
- */
+* @see \Laravel\Horizon\Http\Controllers\BatchesController::index
+* @see vendor/laravel/horizon/src/Http/Controllers/BatchesController.php:39
+* @route '/horizon/api/batches'
+*/
 export const index = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
     method: 'get',
@@ -15,23 +15,23 @@ export const index = (options?: { query?: QueryParams, mergeQuery?: QueryParams 
 
 index.definition = {
     methods: ['get','head'],
-    url: '\/horizon\/api\/batches',
+    url: '/horizon/api/batches',
 }
 
 /**
- * @see \Laravel\Horizon\Http\Controllers\BatchesController::index
- * @see vendor/laravel/horizon/src/Http/Controllers/BatchesController.php:39
- * @route /horizon/api/batches
- */
+* @see \Laravel\Horizon\Http\Controllers\BatchesController::index
+* @see vendor/laravel/horizon/src/Http/Controllers/BatchesController.php:39
+* @route '/horizon/api/batches'
+*/
 index.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
     return index.definition.url + queryParams(options)
 }
 
 /**
- * @see \Laravel\Horizon\Http\Controllers\BatchesController::index
- * @see vendor/laravel/horizon/src/Http/Controllers/BatchesController.php:39
- * @route /horizon/api/batches
- */
+* @see \Laravel\Horizon\Http\Controllers\BatchesController::index
+* @see vendor/laravel/horizon/src/Http/Controllers/BatchesController.php:39
+* @route '/horizon/api/batches'
+*/
 index.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
     method: 'get',
@@ -41,10 +41,10 @@ index.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 })
 
 /**
- * @see \Laravel\Horizon\Http\Controllers\BatchesController::index
- * @see vendor/laravel/horizon/src/Http/Controllers/BatchesController.php:39
- * @route /horizon/api/batches
- */
+* @see \Laravel\Horizon\Http\Controllers\BatchesController::index
+* @see vendor/laravel/horizon/src/Http/Controllers/BatchesController.php:39
+* @route '/horizon/api/batches'
+*/
 index.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
     method: 'head',
@@ -54,11 +54,11 @@ index.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 })
 
 /**
- * @see \Laravel\Horizon\Http\Controllers\BatchesController::show
- * @see vendor/laravel/horizon/src/Http/Controllers/BatchesController.php:58
- * @route /horizon/api/batches/{id}
- */
-export const show = (args: { id: string | number } | [id: string | number] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
+* @see \Laravel\Horizon\Http\Controllers\BatchesController::show
+* @see vendor/laravel/horizon/src/Http/Controllers/BatchesController.php:58
+* @route '/horizon/api/batches/{id}'
+*/
+export const show = (args: { id: string | number } | [id: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
     method: 'get',
 } => ({
@@ -68,15 +68,15 @@ export const show = (args: { id: string | number } | [id: string | number] | str
 
 show.definition = {
     methods: ['get','head'],
-    url: '\/horizon\/api\/batches\/{id}',
+    url: '/horizon/api/batches/{id}',
 }
 
 /**
- * @see \Laravel\Horizon\Http\Controllers\BatchesController::show
- * @see vendor/laravel/horizon/src/Http/Controllers/BatchesController.php:58
- * @route /horizon/api/batches/{id}
- */
-show.url = (args: { id: string | number } | [id: string | number] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+* @see \Laravel\Horizon\Http\Controllers\BatchesController::show
+* @see vendor/laravel/horizon/src/Http/Controllers/BatchesController.php:58
+* @route '/horizon/api/batches/{id}'
+*/
+show.url = (args: { id: string | number } | [id: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { id: args }
     }
@@ -97,11 +97,11 @@ show.url = (args: { id: string | number } | [id: string | number] | string | num
 }
 
 /**
- * @see \Laravel\Horizon\Http\Controllers\BatchesController::show
- * @see vendor/laravel/horizon/src/Http/Controllers/BatchesController.php:58
- * @route /horizon/api/batches/{id}
- */
-show.get = (args: { id: string | number } | [id: string | number] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
+* @see \Laravel\Horizon\Http\Controllers\BatchesController::show
+* @see vendor/laravel/horizon/src/Http/Controllers/BatchesController.php:58
+* @route '/horizon/api/batches/{id}'
+*/
+show.get = (args: { id: string | number } | [id: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
     method: 'get',
 } => ({
@@ -110,11 +110,11 @@ show.get = (args: { id: string | number } | [id: string | number] | string | num
 })
 
 /**
- * @see \Laravel\Horizon\Http\Controllers\BatchesController::show
- * @see vendor/laravel/horizon/src/Http/Controllers/BatchesController.php:58
- * @route /horizon/api/batches/{id}
- */
-show.head = (args: { id: string | number } | [id: string | number] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
+* @see \Laravel\Horizon\Http\Controllers\BatchesController::show
+* @see vendor/laravel/horizon/src/Http/Controllers/BatchesController.php:58
+* @route '/horizon/api/batches/{id}'
+*/
+show.head = (args: { id: string | number } | [id: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
     method: 'head',
 } => ({
@@ -123,11 +123,11 @@ show.head = (args: { id: string | number } | [id: string | number] | string | nu
 })
 
 /**
- * @see \Laravel\Horizon\Http\Controllers\BatchesController::retry
- * @see vendor/laravel/horizon/src/Http/Controllers/BatchesController.php:79
- * @route /horizon/api/batches/retry/{id}
- */
-export const retry = (args: { id: string | number } | [id: string | number] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
+* @see \Laravel\Horizon\Http\Controllers\BatchesController::retry
+* @see vendor/laravel/horizon/src/Http/Controllers/BatchesController.php:79
+* @route '/horizon/api/batches/retry/{id}'
+*/
+export const retry = (args: { id: string | number } | [id: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
     method: 'post',
 } => ({
@@ -137,15 +137,15 @@ export const retry = (args: { id: string | number } | [id: string | number] | st
 
 retry.definition = {
     methods: ['post'],
-    url: '\/horizon\/api\/batches\/retry\/{id}',
+    url: '/horizon/api/batches/retry/{id}',
 }
 
 /**
- * @see \Laravel\Horizon\Http\Controllers\BatchesController::retry
- * @see vendor/laravel/horizon/src/Http/Controllers/BatchesController.php:79
- * @route /horizon/api/batches/retry/{id}
- */
-retry.url = (args: { id: string | number } | [id: string | number] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+* @see \Laravel\Horizon\Http\Controllers\BatchesController::retry
+* @see vendor/laravel/horizon/src/Http/Controllers/BatchesController.php:79
+* @route '/horizon/api/batches/retry/{id}'
+*/
+retry.url = (args: { id: string | number } | [id: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { id: args }
     }
@@ -166,11 +166,11 @@ retry.url = (args: { id: string | number } | [id: string | number] | string | nu
 }
 
 /**
- * @see \Laravel\Horizon\Http\Controllers\BatchesController::retry
- * @see vendor/laravel/horizon/src/Http/Controllers/BatchesController.php:79
- * @route /horizon/api/batches/retry/{id}
- */
-retry.post = (args: { id: string | number } | [id: string | number] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
+* @see \Laravel\Horizon\Http\Controllers\BatchesController::retry
+* @see vendor/laravel/horizon/src/Http/Controllers/BatchesController.php:79
+* @route '/horizon/api/batches/retry/{id}'
+*/
+retry.post = (args: { id: string | number } | [id: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
     method: 'post',
 } => ({

@@ -14,19 +14,19 @@ import JobsController from './JobsController'
 import HomeController from './HomeController'
 
 const Controllers = {
-    DashboardStatsController, 
-    WorkloadController, 
-    MasterSupervisorController, 
-    MonitoringController, 
-    JobMetricsController, 
-    QueueMetricsController, 
-    BatchesController, 
-    PendingJobsController, 
-    CompletedJobsController, 
-    SilencedJobsController, 
-    FailedJobsController, 
-    RetryController, 
-    JobsController, 
+    DashboardStatsController,
+    WorkloadController,
+    MasterSupervisorController,
+    MonitoringController,
+    JobMetricsController,
+    QueueMetricsController,
+    BatchesController,
+    PendingJobsController,
+    CompletedJobsController,
+    SilencedJobsController,
+    FailedJobsController,
+    RetryController,
+    JobsController,
     HomeController,
 }
 

@@ -5,10 +5,10 @@ import ServicesController from './ServicesController'
 import PropertiesController from './PropertiesController'
 
 const Controllers = {
-    HomeController, 
-    AboutController, 
-    ContactController, 
-    ServicesController, 
+    HomeController,
+    AboutController,
+    ContactController,
+    ServicesController,
     PropertiesController,
 }
 
