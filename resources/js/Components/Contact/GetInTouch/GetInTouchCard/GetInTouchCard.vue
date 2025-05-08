@@ -19,7 +19,7 @@
     </a>
 </template>
 <script setup lang="ts">
-import LinkArrowIcon from '@/Components/Contact/GetInTouch/Icons/LinkArrowIcon.vue';
+import LinkArrowIcon from '@/Components/Contact/GetInTouch/GetInTouchCard/Icons/LinkArrowIcon.vue';
 import { GetInTouchCardInterface } from '@/Types/App/Interfaces';
 import { type Component, defineAsyncComponent } from 'vue';
 

@@ -33,7 +33,7 @@
                         }"
                         @click="previousSlide"
                     >
-                        <PreviousArrowIcon />
+                        <PreviousSliderArrowIcon />
                     </button>
                     <button
                         class="rounded-lg bg-gray-800 p-2 transition-colors hover:bg-gray-700"
@@ -44,7 +44,7 @@
                         }"
                         @click="nextSlide"
                     >
-                        <NextArrowIcon />
+                        <NextSliderArrowIcon />
                     </button>
                 </div>
             </div>
@@ -54,8 +54,8 @@
 
 <script setup lang="ts">
 import ClientCard from '@/Components/About/Clients/ClientCard/ClientCard.vue';
-import NextArrowIcon from '@/Components/About/Clients/Icons/NextArrowIcon.vue';
-import PreviousArrowIcon from '@/Components/About/Clients/Icons/PreviousArrowIcon.vue';
+import NextSliderArrowIcon from '@/Components/Shared/SliderArrows/NextSliderArrowIcon.vue';
+import PreviousSliderArrowIcon from '@/Components/Shared/SliderArrows/PreviousSliderArrowIcon.vue';
 import ThreeStars from '@/Components/Shared/ThreeStars/ThreeStars.vue';
 import { ClientCardInterface } from '@/Types/App/Interfaces';
 import { computed, ComputedRef, Ref, ref } from 'vue';

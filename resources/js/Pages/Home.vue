@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-import ClientTestimonials from '@/Components/Home/ClientTestimonials.vue';
+import ClientTestimonials from '@/Components/Home/ClientTestimonials/ClientTestimonials.vue';
 import Faq from '@/Components/Home/Faq.vue';
 import FeaturedProperties from '@/Components/Home/FeaturedProperties.vue';
 import HeroSection from '@/Components/Home/HeroSection.vue';

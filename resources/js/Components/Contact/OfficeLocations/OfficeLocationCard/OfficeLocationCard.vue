@@ -43,9 +43,9 @@
 </template>
 
 <script setup lang="ts">
-import EmailIcon from '@/Components/Contact/OfficeLocations/Icons/EmailIcon.vue';
-import LocationIcon from '@/Components/Contact/OfficeLocations/Icons/LocationIcon.vue';
-import PhoneIcon from '@/Components/Contact/OfficeLocations/Icons/PhoneIcon.vue';
+import EmailIcon from '@/Components/Contact/OfficeLocations/OfficeLocationCard/Icons/EmailIcon.vue';
+import LocationIcon from '@/Components/Contact/OfficeLocations/OfficeLocationCard/Icons/LocationIcon.vue';
+import PhoneIcon from '@/Components/Contact/OfficeLocations/OfficeLocationCard/Icons/PhoneIcon.vue';
 import { OfficeLocationCardInterface } from '@/Types/App/Interfaces';
 
 const { card }: { card: OfficeLocationCardInterface } = defineProps<{

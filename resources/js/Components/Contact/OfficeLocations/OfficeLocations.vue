@@ -60,7 +60,7 @@
                     class="absolute left-0 top-1/2 z-10 -translate-y-1/2 transform rounded-full bg-neutral-800 p-2 text-white opacity-75 transition-opacity hover:opacity-100 focus:outline-none md:-left-12"
                     aria-label="Previous slide"
                 >
-                    <PreviousSlideArrowIcon />
+                    <PreviousSliderArrowIcon />
                 </button>
 
                 <button
@@ -69,14 +69,14 @@
                     class="absolute right-0 top-1/2 z-10 -translate-y-1/2 transform rounded-full bg-neutral-800 p-2 text-white opacity-75 transition-opacity hover:opacity-100 focus:outline-none md:-right-12"
                     aria-label="Next slide"
                 >
-                    <NextSlideArrowIcon />
+                    <NextSliderArrowIcon />
                 </button>
 
                 <div class="overflow-hidden">
                     <div
                         class="flex transition-transform duration-300 ease-in-out"
                         :style="{
-                            transform: `translateX(-${multiplyCurrentSlideBy(100)}%)`,
+                            transform: `translateX(-${currentSlide * 100}%)`,
                         }"
                     >
                         <div
@@ -116,9 +116,9 @@
 </template>
 
 <script setup lang="ts">
-import NextSlideArrowIcon from '@/Components/Contact/OfficeLocations/Icons/NextSlideArrowIcon.vue';
-import PreviousSlideArrowIcon from '@/Components/Contact/OfficeLocations/Icons/PreviousSlideArrowIcon.vue';
-import OfficeLocationCard from '@/Components/Contact/OfficeLocations/OfficeLocationCard.vue';
+import OfficeLocationCard from '@/Components/Contact/OfficeLocations/OfficeLocationCard/OfficeLocationCard.vue';
+import NextSliderArrowIcon from '@/Components/Shared/SliderArrows/NextSliderArrowIcon.vue';
+import PreviousSliderArrowIcon from '@/Components/Shared/SliderArrows/PreviousSliderArrowIcon.vue';
 import { LocationTypeEnum } from '@/Types/App/Enums';
 import { OfficeLocationCardInterface } from '@/Types/App/Interfaces';
 import { computed, ComputedRef, Ref, ref, watch } from 'vue';
@@ -192,9 +192,6 @@ const incrementCurrentSlide = (): void => {
 const decrementCurrentSlide = (): void => {
     currentSlide.value--;
 };
-
-const multiplyCurrentSlideBy = (multiplier: number): number =>
-    currentSlide.value * multiplier;
 
 const filteredCards: ComputedRef<OfficeLocationCardInterface[]> = computed(
     (): OfficeLocationCardInterface[] =>

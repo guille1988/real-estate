@@ -26,7 +26,7 @@
     </section>
 </template>
 <script setup lang="ts">
-import GetInTouchCard from '@/Components/Contact/GetInTouch/GetInTouchCard.vue';
+import GetInTouchCard from '@/Components/Contact/GetInTouch/GetInTouchCard/GetInTouchCard.vue';
 import { GetInTouchCardInterface } from '@/Types/App/Interfaces';
 
 const cards: GetInTouchCardInterface[] = [
