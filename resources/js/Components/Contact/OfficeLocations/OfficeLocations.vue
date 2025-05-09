@@ -162,8 +162,8 @@ const cards: OfficeLocationCardInterface[] = [
     },
 ];
 
-const activeTab: Ref<string> = ref(LocationTypeEnum.ALL);
-const currentSlide: Ref<number> = ref(0);
+const activeTab: Ref<string> = ref<LocationTypeEnum>(LocationTypeEnum.ALL);
+const currentSlide: Ref<number> = ref<number>(0);
 
 const activeTabEqualsTo = (tab: LocationTypeEnum): boolean =>
     activeTab.value === tab;

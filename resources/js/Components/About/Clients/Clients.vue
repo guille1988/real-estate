@@ -103,7 +103,7 @@ const cards: ClientCardInterface[] = [
     },
 ];
 
-const currentIndex: Ref<number> = ref(0);
+const currentIndex: Ref<number> = ref<number>(0);
 
 const visibleCards: ComputedRef<Array<ClientCardInterface>> = computed(
     (): Array<ClientCardInterface> => {
