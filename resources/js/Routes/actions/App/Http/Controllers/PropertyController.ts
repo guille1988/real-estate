@@ -1,8 +1,8 @@
 import { queryParams, type QueryParams } from './../../../../wayfinder'
 
 /**
-* @see \App\Http\Controllers\PropertiesController::index
-* @see app/Http/Controllers/PropertiesController.php:12
+* @see \App\Http\Controllers\PropertyController::index
+* @see app/Http/Controllers/PropertyController.php:12
 * @route '/properties'
 */
 export const index = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -19,8 +19,8 @@ index.definition = {
 }
 
 /**
-* @see \App\Http\Controllers\PropertiesController::index
-* @see app/Http/Controllers/PropertiesController.php:12
+* @see \App\Http\Controllers\PropertyController::index
+* @see app/Http/Controllers/PropertyController.php:12
 * @route '/properties'
 */
 index.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -28,8 +28,8 @@ index.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
 }
 
 /**
-* @see \App\Http\Controllers\PropertiesController::index
-* @see app/Http/Controllers/PropertiesController.php:12
+* @see \App\Http\Controllers\PropertyController::index
+* @see app/Http/Controllers/PropertyController.php:12
 * @route '/properties'
 */
 index.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -41,8 +41,8 @@ index.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 })
 
 /**
-* @see \App\Http\Controllers\PropertiesController::index
-* @see app/Http/Controllers/PropertiesController.php:12
+* @see \App\Http\Controllers\PropertyController::index
+* @see app/Http/Controllers/PropertyController.php:12
 * @route '/properties'
 */
 index.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -54,8 +54,8 @@ index.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 })
 
 /**
-* @see \App\Http\Controllers\PropertiesController::show
-* @see app/Http/Controllers/PropertiesController.php:17
+* @see \App\Http\Controllers\PropertyController::show
+* @see app/Http/Controllers/PropertyController.php:17
 * @route '/properties/{property}'
 */
 export const show = (args: { property: string | number } | [property: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -72,8 +72,8 @@ show.definition = {
 }
 
 /**
-* @see \App\Http\Controllers\PropertiesController::show
-* @see app/Http/Controllers/PropertiesController.php:17
+* @see \App\Http\Controllers\PropertyController::show
+* @see app/Http/Controllers/PropertyController.php:17
 * @route '/properties/{property}'
 */
 show.url = (args: { property: string | number } | [property: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -97,8 +97,8 @@ show.url = (args: { property: string | number } | [property: string | number ] |
 }
 
 /**
-* @see \App\Http\Controllers\PropertiesController::show
-* @see app/Http/Controllers/PropertiesController.php:17
+* @see \App\Http\Controllers\PropertyController::show
+* @see app/Http/Controllers/PropertyController.php:17
 * @route '/properties/{property}'
 */
 show.get = (args: { property: string | number } | [property: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -110,8 +110,8 @@ show.get = (args: { property: string | number } | [property: string | number ] |
 })
 
 /**
-* @see \App\Http\Controllers\PropertiesController::show
-* @see app/Http/Controllers/PropertiesController.php:17
+* @see \App\Http\Controllers\PropertyController::show
+* @see app/Http/Controllers/PropertyController.php:17
 * @route '/properties/{property}'
 */
 show.head = (args: { property: string | number } | [property: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -122,6 +122,6 @@ show.head = (args: { property: string | number } | [property: string | number ] 
     method: 'head',
 })
 
-const PropertiesController = { index, show }
+const PropertyController = { index, show }
 
-export default PropertiesController
+export default PropertyController

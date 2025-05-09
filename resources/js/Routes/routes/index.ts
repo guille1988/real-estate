@@ -160,8 +160,8 @@ contact.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 })
 
 /**
-* @see \App\Http\Controllers\ServicesController::services
-* @see app/Http/Controllers/ServicesController.php:12
+* @see \App\Http\Controllers\ServiceController::services
+* @see app/Http/Controllers/ServiceController.php:12
 * @route '/services'
 */
 export const services = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -178,8 +178,8 @@ services.definition = {
 }
 
 /**
-* @see \App\Http\Controllers\ServicesController::services
-* @see app/Http/Controllers/ServicesController.php:12
+* @see \App\Http\Controllers\ServiceController::services
+* @see app/Http/Controllers/ServiceController.php:12
 * @route '/services'
 */
 services.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -187,8 +187,8 @@ services.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => 
 }
 
 /**
-* @see \App\Http\Controllers\ServicesController::services
-* @see app/Http/Controllers/ServicesController.php:12
+* @see \App\Http\Controllers\ServiceController::services
+* @see app/Http/Controllers/ServiceController.php:12
 * @route '/services'
 */
 services.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -200,8 +200,8 @@ services.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 })
 
 /**
-* @see \App\Http\Controllers\ServicesController::services
-* @see app/Http/Controllers/ServicesController.php:12
+* @see \App\Http\Controllers\ServiceController::services
+* @see app/Http/Controllers/ServiceController.php:12
 * @route '/services'
 */
 services.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {

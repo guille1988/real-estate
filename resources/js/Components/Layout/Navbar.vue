@@ -40,7 +40,7 @@
                     </li>
                     <li>
                         <Link
-                            :href="PropertiesController.index().url"
+                            :href="PropertyController.index().url"
                             class="rounded px-3 py-2 transition-colors hover:text-purple-400"
                             :class="{
                                 'border-b-2 border-purple-600 bg-black shadow-[0_0_10px_rgba(0,0,0,0.5)]':
@@ -52,7 +52,7 @@
                     </li>
                     <li>
                         <Link
-                            :href="ServicesController().url"
+                            :href="ServiceController().url"
                             class="rounded px-3 py-2 transition-colors hover:text-purple-400"
                             :class="{
                                 'border-b-2 border-purple-600 bg-black shadow-[0_0_10px_rgba(0,0,0,0.5)]':
@@ -87,8 +87,8 @@ import realStateLogo from '@/Assets/Images/real_state_logo.jpg';
 import AboutController from '@/Routes/actions/App/Http/Controllers/AboutController';
 import ContactController from '@/Routes/actions/App/Http/Controllers/ContactController';
 import HomeController from '@/Routes/actions/App/Http/Controllers/HomeController';
-import PropertiesController from '@/Routes/actions/App/Http/Controllers/PropertiesController';
-import ServicesController from '@/Routes/actions/App/Http/Controllers/ServicesController';
+import PropertyController from '@/Routes/actions/App/Http/Controllers/PropertyController';
+import ServiceController from '@/Routes/actions/App/Http/Controllers/ServiceController';
 import { PagesEnum } from '@/Types/App/Enums';
 import { Link, usePage } from '@inertiajs/vue3';
 

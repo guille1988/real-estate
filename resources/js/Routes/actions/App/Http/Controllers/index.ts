@@ -1,15 +1,15 @@
 import HomeController from './HomeController'
 import AboutController from './AboutController'
 import ContactController from './ContactController'
-import ServicesController from './ServicesController'
-import PropertiesController from './PropertiesController'
+import ServiceController from './ServiceController'
+import PropertyController from './PropertyController'
 
 const Controllers = {
     HomeController,
     AboutController,
     ContactController,
-    ServicesController,
-    PropertiesController,
+    ServiceController,
+    PropertyController,
 }
 
 export default Controllers

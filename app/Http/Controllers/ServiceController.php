@@ -7,7 +7,7 @@ namespace App\Http\Controllers;
 use Inertia\Inertia;
 use Inertia\Response;
 
-final class ServicesController
+final class ServiceController
 {
     public function __invoke(): Response
     {
