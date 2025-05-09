@@ -11,3 +11,9 @@ export enum LocationTypeEnum {
     REGIONAL = 'regional',
     INTERNATIONAL = 'international',
 }
+
+export enum ScreenSizeEnum {
+    MOBILE = 'mobile',
+    TABLET = 'tablet',
+    DESKTOP = 'desktop',
+}

@@ -1,4 +1,4 @@
-import { LocationTypeEnum } from '@/Types/App/Enums';
+import { LocationTypeEnum, ScreenSizeEnum } from '@/Types/App/Enums';
 
 export interface ClientCardInterface {
     id: number;
@@ -93,4 +93,9 @@ export interface ClientTestimonialCardInterface {
     name: string;
     location: string;
     thumbnail: string;
+}
+
+export interface ScreenSizeConfigInterface {
+    max: number;
+    type: ScreenSizeEnum;
 }
