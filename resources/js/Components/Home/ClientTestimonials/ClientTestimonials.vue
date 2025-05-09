@@ -51,6 +51,9 @@
     </section>
 </template>
 <script setup lang="ts">
+import EmelieThompson from '@/Assets/Images/emelie_thmpson.jpg';
+import JohnMans from '@/Assets/Images/john_mans.jpg';
+import WadeWarren from '@/Assets/Images/wade_warren.jpg';
 import ClientTestimonialCard from '@/Components/Home/ClientTestimonials/ClientTestimonialCard/ClientTestimonialCard.vue';
 import NextSliderArrowIcon from '@/Components/Shared/SliderArrows/NextSliderArrowIcon.vue';
 import PreviousSliderArrowIcon from '@/Components/Shared/SliderArrows/PreviousSliderArrowIcon.vue';
@@ -65,8 +68,7 @@ const cards: ClientTestimonialCardInterface[] = [
             "Our experience with Real estate was outstanding. Their team's dedication and professionalism made finding our dream home a breeze. Highly recommended!",
         name: 'Wade Warren',
         location: 'USA, California',
-        thumbnail:
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLA994hpL3PMmq0scCuWOu0LGsjef49dyXVg&s',
+        thumbnail: WadeWarren,
     },
     {
         id: 2,
@@ -75,8 +77,7 @@ const cards: ClientTestimonialCardInterface[] = [
             "Real estate provided us with top-notch service. They helped us sell our property quickly and at a great price. We couldn't be happier with the results.",
         name: 'Emelie Thompson',
         location: 'USA, Florida',
-        thumbnail:
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLA994hpL3PMmq0scCuWOu0LGsjef49dyXVg&s',
+        thumbnail: EmelieThompson,
     },
     {
         id: 3,
@@ -85,8 +86,7 @@ const cards: ClientTestimonialCardInterface[] = [
             'The Real estate team guided us through the entire buying process. Their knowledge and commitment to our needs were impressive. Thank you for your support!',
         name: 'John Mans',
         location: 'USA, Nevada',
-        thumbnail:
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLA994hpL3PMmq0scCuWOu0LGsjef49dyXVg&s',
+        thumbnail: JohnMans,
     },
 ];
 </script>
