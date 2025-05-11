@@ -57,7 +57,9 @@
                 <button
                     v-if="shouldShowArrows"
                     @click="prevSlide"
-                    class="absolute left-0 top-1/2 z-10 -translate-y-1/2 transform rounded-full bg-neutral-800 p-2 text-white opacity-75 transition-opacity hover:opacity-100 focus:outline-none md:-left-12"
+                    class="absolute left-0 top-1/2 z-10 hidden -translate-y-1/2 transform rounded-full bg-neutral-800 p-2 text-white opacity-75 transition-opacity hover:opacity-100 focus:outline-none md:-left-12 md:block"
+                    :class="{ 'cursor-not-allowed opacity-50': !canGoBack }"
+                    :disabled="!canGoBack"
                     aria-label="Previous slide"
                 >
                     <PreviousSliderArrowIcon />
@@ -66,7 +68,9 @@
                 <button
                     v-if="shouldShowArrows"
                     @click="nextSlide"
-                    class="absolute right-0 top-1/2 z-10 -translate-y-1/2 transform rounded-full bg-neutral-800 p-2 text-white opacity-75 transition-opacity hover:opacity-100 focus:outline-none md:-right-12"
+                    class="absolute right-0 top-1/2 z-10 hidden -translate-y-1/2 transform rounded-full bg-neutral-800 p-2 text-white opacity-75 transition-opacity hover:opacity-100 focus:outline-none md:-right-12 md:block"
+                    :class="{ 'cursor-not-allowed opacity-50': !canGoForward }"
+                    :disabled="!canGoForward"
                     aria-label="Next slide"
                 >
                     <NextSliderArrowIcon />
@@ -74,23 +78,50 @@
 
                 <div class="overflow-hidden">
                     <div
+                        ref="sliderTrack"
                         class="flex transition-transform duration-300 ease-in-out"
-                        :style="{
-                            transform: `translateX(-${currentSlide * 100}%)`,
-                        }"
+                        :style="{ transform: `translateX(-${translateX}px)` }"
                     >
                         <div
-                            v-for="(slideCards, index) in slides"
-                            :key="index"
-                            class="flex w-full flex-shrink-0 flex-col gap-8 md:grid md:grid-cols-2"
+                            v-for="card in filteredCards"
+                            :key="card.id"
+                            class="flex-shrink-0 pr-6"
+                            :class="{
+                                'w-full': screenSize === ScreenSizeEnum.MOBILE,
+                                'w-1/2':
+                                    screenSize === ScreenSizeEnum.TABLET ||
+                                    screenSize === ScreenSizeEnum.DESKTOP,
+                            }"
+                            ref="slideItems"
                         >
-                            <OfficeLocationCard
-                                v-for="card in slideCards"
-                                :key="card.id"
-                                :card="card"
-                            />
+                            <OfficeLocationCard :card="card" />
                         </div>
                     </div>
+                </div>
+
+                <div class="mt-6 flex justify-between md:hidden">
+                    <button
+                        v-if="shouldShowArrows"
+                        @click="prevSlide"
+                        class="rounded-full bg-neutral-800 p-2 text-white opacity-75 transition-opacity hover:opacity-100 focus:outline-none"
+                        :class="{ 'cursor-not-allowed opacity-50': !canGoBack }"
+                        :disabled="!canGoBack"
+                        aria-label="Previous slide"
+                    >
+                        <PreviousSliderArrowIcon />
+                    </button>
+                    <button
+                        v-if="shouldShowArrows"
+                        @click="nextSlide"
+                        class="rounded-full bg-neutral-800 p-2 text-white opacity-75 transition-opacity hover:opacity-100 focus:outline-none"
+                        :class="{
+                            'cursor-not-allowed opacity-50': !canGoForward,
+                        }"
+                        :disabled="!canGoForward"
+                        aria-label="Next slide"
+                    >
+                        <NextSliderArrowIcon />
+                    </button>
                 </div>
 
                 <div
@@ -98,16 +129,16 @@
                     class="mt-6 flex justify-center gap-2"
                 >
                     <button
-                        v-for="slide in totalSlides"
-                        :key="slide - 1"
-                        @click="setCurrentSlide(slide - 1)"
+                        v-for="index in maxIndex + 1"
+                        :key="index - 1"
+                        @click="setCurrentSlide(index - 1)"
                         :class="[
                             'h-2 w-2 rounded-full transition-all',
-                            currentSlideEqualsTo(slide - 1)
+                            currentIndex === index - 1
                                 ? 'w-4 bg-purple-600'
                                 : 'bg-neutral-700 hover:bg-neutral-500',
                         ]"
-                        :aria-label="`Go to slide ${slide}`"
+                        :aria-label="`Go to slide ${index}`"
                     ></button>
                 </div>
             </div>
@@ -119,9 +150,21 @@
 import OfficeLocationCard from '@/Components/Contact/OfficeLocations/OfficeLocationCard/OfficeLocationCard.vue';
 import NextSliderArrowIcon from '@/Components/Shared/SliderArrows/NextSliderArrowIcon.vue';
 import PreviousSliderArrowIcon from '@/Components/Shared/SliderArrows/PreviousSliderArrowIcon.vue';
-import { LocationTypeEnum } from '@/Types/App/Enums';
-import { OfficeLocationCardInterface } from '@/Types/App/Interfaces';
-import { computed, ComputedRef, Ref, ref, watch } from 'vue';
+import { LocationTypeEnum, ScreenSizeEnum } from '@/Types/App/Enums';
+import {
+    OfficeLocationCardInterface,
+    ScreenSizeConfigInterface,
+} from '@/Types/App/Interfaces';
+import {
+    computed,
+    ComputedRef,
+    nextTick,
+    onMounted,
+    onUnmounted,
+    Ref,
+    ref,
+    watch,
+} from 'vue';
 
 const cards: OfficeLocationCardInterface[] = [
     {
@@ -163,34 +206,19 @@ const cards: OfficeLocationCardInterface[] = [
 ];
 
 const activeTab: Ref<string> = ref<LocationTypeEnum>(LocationTypeEnum.ALL);
-const currentSlide: Ref<number> = ref<number>(0);
+
+const sliderTrack: Ref<HTMLElement | null> = ref(null);
+const slideItems: Ref<HTMLElement[]> = ref([]);
+const currentIndex: Ref<number> = ref(0);
+const translateX: Ref<number> = ref(0);
+const screenSize: Ref<ScreenSizeEnum> = ref(ScreenSizeEnum.DESKTOP);
+const resizeTimeout: Ref<number | null> = ref(null);
 
 const activeTabEqualsTo = (tab: LocationTypeEnum): boolean =>
     activeTab.value === tab;
 
 const setActiveTab = (tab: LocationTypeEnum): void => {
     activeTab.value = tab;
-};
-
-const currentSlideEqualsTo = (slide: number): boolean =>
-    currentSlide.value === slide;
-
-const currentSlideIsGreaterThan = (slide: number): boolean =>
-    currentSlide.value > slide;
-
-const currentSlideIsLessThan = (slide: number): boolean =>
-    currentSlide.value < slide;
-
-const setCurrentSlide = (slide: number): void => {
-    currentSlide.value = slide;
-};
-
-const incrementCurrentSlide = (): void => {
-    currentSlide.value++;
-};
-
-const decrementCurrentSlide = (): void => {
-    currentSlide.value--;
 };
 
 const filteredCards: ComputedRef<OfficeLocationCardInterface[]> = computed(
@@ -202,46 +230,130 @@ const filteredCards: ComputedRef<OfficeLocationCardInterface[]> = computed(
               ),
 );
 
-const filteredCardsAreGreaterThan = (quantity: number): boolean =>
-    filteredCards.value.length > quantity;
+const visibleCards: ComputedRef<number> = computed((): number => {
+    const cards: Record<ScreenSizeEnum, number> = {
+        [ScreenSizeEnum.MOBILE]: 1,
+        [ScreenSizeEnum.TABLET]: 2,
+        [ScreenSizeEnum.DESKTOP]: 2,
+    };
 
-const slides: ComputedRef<OfficeLocationCardInterface[][]> = computed(
-    (): OfficeLocationCardInterface[][] => {
-        const result = [];
-        const filtered: OfficeLocationCardInterface[] = filteredCards.value;
+    return cards[screenSize.value] ?? 2;
+});
 
-        for (let i = 0; i < filtered.length; i += 2) {
-            result.push(filtered.slice(i, i + 2));
-        }
-
-        return result;
-    },
+const maxIndex: ComputedRef<number> = computed((): number =>
+    Math.max(0, filteredCards.value.length - visibleCards.value),
 );
 
-const totalSlides: ComputedRef<number> = computed(
-    (): number => slides.value.length,
+const canGoBack: ComputedRef<boolean> = computed(
+    (): boolean => currentIndex.value > 0,
 );
 
-const totalSlidesAreGreaterThan = (slide: number): boolean =>
-    totalSlides.value > slide;
-
-const shouldShowArrows: ComputedRef<boolean> = computed((): boolean =>
-    filteredCardsAreGreaterThan(2),
+const canGoForward: ComputedRef<boolean> = computed(
+    (): boolean => currentIndex.value < maxIndex.value,
 );
+
+const setCurrentSlide = (slide: number): void => {
+    currentIndex.value = Math.min(Math.max(0, slide), maxIndex.value);
+    updateTranslateX();
+};
 
 const nextSlide = (): void => {
-    currentSlideIsLessThan(totalSlides.value - 1)
-        ? incrementCurrentSlide()
-        : setCurrentSlide(0);
+    if (!canGoForward.value) return;
+    currentIndex.value = Math.min(currentIndex.value + 1, maxIndex.value);
+    updateTranslateX();
 };
 
 const prevSlide = (): void => {
-    currentSlideIsGreaterThan(0)
-        ? decrementCurrentSlide()
-        : setCurrentSlide(totalSlides.value - 1);
+    if (!canGoBack.value) return;
+    currentIndex.value = Math.max(currentIndex.value - 1, 0);
+    updateTranslateX();
 };
 
+const totalSlidesAreGreaterThan = (slide: number): boolean =>
+    maxIndex.value >= slide;
+
+const filteredCardsAreGreaterThan = (quantity: number): boolean =>
+    filteredCards.value.length > quantity;
+
+const shouldShowArrows: ComputedRef<boolean> = computed((): boolean =>
+    filteredCardsAreGreaterThan(visibleCards.value),
+);
+
+const updateTranslateX = (): void => {
+    if (!sliderTrack.value || !slideItems.value.length) return;
+
+    if (currentIndex.value === 0) {
+        translateX.value = 0;
+        return;
+    }
+
+    const containerWidth: number =
+        sliderTrack.value.parentElement?.clientWidth || 0;
+    const cardWidth: number = containerWidth / visibleCards.value;
+
+    translateX.value = cardWidth * currentIndex.value;
+};
+
+const updateScreenSize = (): void => {
+    const screenSizes: ScreenSizeConfigInterface[] = [
+        { max: 768, type: ScreenSizeEnum.MOBILE },
+        { max: 1024, type: ScreenSizeEnum.TABLET },
+    ];
+
+    const width: number = window.innerWidth;
+    const match: ScreenSizeConfigInterface | undefined = screenSizes.find(
+        (screenSizeConfig: ScreenSizeConfigInterface) =>
+            width < screenSizeConfig.max,
+    );
+
+    screenSize.value =
+        match === undefined ? ScreenSizeEnum.DESKTOP : match.type;
+
+    currentIndex.value = Math.min(currentIndex.value, maxIndex.value);
+
+    nextTick((): void => {
+        updateTranslateX();
+    });
+};
+
+const handleResize = (): void => {
+    if (resizeTimeout.value !== null) {
+        window.clearTimeout(resizeTimeout.value);
+    }
+
+    resizeTimeout.value = window.setTimeout((): void => {
+        updateScreenSize();
+    }, 200);
+};
+
+watch(screenSize, (): void => {
+    updateTranslateX();
+});
+
 watch(activeTab, (): void => {
-    setCurrentSlide(0);
+    currentIndex.value = 0;
+    nextTick(() => {
+        updateTranslateX();
+    });
+});
+
+watch(filteredCards, (): void => {
+    currentIndex.value = Math.min(currentIndex.value, maxIndex.value);
+    nextTick((): void => {
+        updateTranslateX();
+    });
+});
+
+onMounted((): void => {
+    updateScreenSize();
+    window.addEventListener('resize', handleResize);
+});
+
+onUnmounted(() => {
+    if (resizeTimeout.value !== null) {
+        window.clearTimeout(resizeTimeout.value);
+    }
+
+    window.removeEventListener('resize', handleResize);
 });
 </script>
