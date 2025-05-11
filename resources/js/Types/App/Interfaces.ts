@@ -1,12 +1,16 @@
-import { LocationTypeEnum, ScreenSizeEnum } from '@/Types/App/Enums';
+import { LocationTypeEnum, PagesEnum, ScreenSizeEnum } from '@/Types/App/Enums';
 
-export interface User {
+export interface UserInterface {
     id: number;
     name: string;
     email: string;
-    email_verified_at?: string | null;
-    created_at: string;
-    updated_at: string;
+    email_verified_at: string | null;
+}
+
+export interface NavigationPagesInterface {
+    name: string;
+    url: string;
+    page: PagesEnum;
 }
 
 export interface ClientCardInterface {
