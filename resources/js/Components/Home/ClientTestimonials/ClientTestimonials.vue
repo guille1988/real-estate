@@ -203,7 +203,7 @@ const updateScreenSize = (): void => {
 
     currentIndex.value = Math.min(currentIndex.value, maxIndex.value);
 
-    nextTick(() => {
+    nextTick((): void => {
         updateTranslateX();
     });
 };
@@ -218,16 +218,16 @@ const handleResize = () => {
     }, 200);
 };
 
-watch(screenSize, () => {
+watch(screenSize, (): void => {
     updateTranslateX();
 });
 
-onMounted(() => {
+onMounted((): void => {
     updateScreenSize();
     window.addEventListener('resize', handleResize);
 });
 
-onUnmounted(() => {
+onUnmounted((): void => {
     if (resizeTimeout.value !== null) {
         window.clearTimeout(resizeTimeout.value);
     }
