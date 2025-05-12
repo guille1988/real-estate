@@ -1,41 +1,48 @@
 <template>
-    <section class="w-full bg-black py-16" id="explore-real-state">
+    <section class="w-full bg-black pb-8 pt-16" id="explore-real-state">
         <div class="container mx-auto px-6">
-            <div class="grid grid-cols-2 gap-4">
+            <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
                 <ExploreCard
                     v-for="card in filterCardsById([1, 2, 3])"
                     :key="card.id"
                     :card="card"
+                    class="mb-4 md:mb-0"
                 />
-
-                <div class="flex h-64 space-x-4 sm:h-72">
+                <div
+                    class="flex h-auto flex-col space-x-0 space-y-4 md:h-64 md:flex-row md:space-x-4 md:space-y-0"
+                >
                     <ExploreCard
                         v-for="card in filterCardsById([4, 5])"
                         :key="card.id"
                         :card="card"
                     />
                 </div>
-
-                <div class="mt-8 flex h-64 flex-col sm:h-72">
+                <ExploreCard
+                    v-for="card in filterCardsById(6)"
+                    :key="card.id"
+                    :card="card"
+                    class="order-3 md:order-4"
+                />
+                <div
+                    class="order-4 mt-8 flex h-auto flex-col md:order-3 md:h-64"
+                >
                     <ThreeStars />
 
-                    <h2 class="mt-8 text-5xl font-medium text-white">
+                    <h2
+                        class="mt-8 text-3xl font-medium text-white md:text-5xl"
+                    >
                         Explore Real estate's World
                     </h2>
 
-                    <p class="mt-8 text-lg leading-relaxed text-gray-400">
+                    <p
+                        class="mt-8 text-base leading-relaxed text-gray-400 md:text-lg"
+                    >
                         Step inside the world of Real estate, where
                         professionalism meets warmth, and expertise meets
                         passion. Our gallery offers a glimpse into our team and
                         workspaces, inviting you to get to know us better.
                     </p>
                 </div>
-
-                <ExploreCard
-                    v-for="card in filterCardsById(6)"
-                    :key="card.id"
-                    :card="card"
-                />
             </div>
         </div>
     </section>
