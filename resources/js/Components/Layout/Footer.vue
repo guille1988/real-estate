@@ -49,7 +49,7 @@
                     </div>
 
                     <div
-                        class="relative w-full pt-2 md:w-[150%] md:max-w-[calc(100%+2rem)] md:overflow-hidden"
+                        class="relative w-full md:w-[150%] md:max-w-[calc(100%+2rem)]"
                     >
                         <input
                             type="email"
@@ -107,7 +107,7 @@
 
                 <div class="md:col-span-9 md:flex md:justify-end">
                     <div
-                        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md:gap-6 lg:grid-cols-5 lg:gap-8"
+                        class="grid grid-cols-1 gap-8 md:grid-cols-3 lg:grid-cols-5"
                     >
                         <div
                             v-for="(category, index) in footerLinks"
@@ -125,9 +125,8 @@
                                     <a
                                         :href="link.url"
                                         class="hover:text-white"
+                                        >{{ link.text }}</a
                                     >
-                                        {{ link.text }}
-                                    </a>
                                 </li>
                             </ul>
                         </div>
@@ -138,13 +137,13 @@
             <div
                 class="flex flex-col items-center justify-between border-t border-gray-800 pt-6 md:flex-row"
             >
-                <div class="flex flex-col items-center sm:flex-row">
-                    <p class="mb-4 text-sm text-gray-400 sm:mr-4 md:mb-0">
+                <div class="flex flex-col items-center md:items-start">
+                    <p class="mb-4 text-sm text-gray-400 md:mb-0">
                         ©2023 Real estate. All Rights Reserved
                     </p>
                     <a
                         href="#"
-                        class="mb-4 text-sm text-gray-400 hover:text-white sm:mb-0"
+                        class="mb-4 text-sm text-gray-400 hover:text-white md:mb-0"
                         >Terms & Conditions</a
                     >
                 </div>
