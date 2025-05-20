@@ -1,5 +1,4 @@
 import { queryParams, type QueryParams } from './../../../../../wayfinder'
-
 /**
 * @see \Laravel\Horizon\Http\Controllers\BatchesController::index
 * @see vendor/laravel/horizon/src/Http/Controllers/BatchesController.php:39

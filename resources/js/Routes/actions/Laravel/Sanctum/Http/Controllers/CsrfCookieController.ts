@@ -1,5 +1,4 @@
 import { queryParams, type QueryParams } from './../../../../../wayfinder'
-
 /**
 * @see \Laravel\Sanctum\Http\Controllers\CsrfCookieController::show
 * @see vendor/laravel/sanctum/src/Http/Controllers/CsrfCookieController.php:17

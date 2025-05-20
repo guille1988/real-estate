@@ -1,5 +1,4 @@
 import { queryParams, type QueryParams, validateParameters } from './../../../../../wayfinder'
-
 /**
 * @see \Laravel\Horizon\Http\Controllers\HomeController::index
 * @see vendor/laravel/horizon/src/Http/Controllers/HomeController.php:14

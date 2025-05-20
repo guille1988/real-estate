@@ -1,5 +1,4 @@
 import { queryParams, type QueryParams } from './../../../wayfinder'
-
 /**
 * @see \Laravel\Horizon\Http\Controllers\WorkloadController::index
 * @see vendor/laravel/horizon/src/Http/Controllers/WorkloadController.php:15

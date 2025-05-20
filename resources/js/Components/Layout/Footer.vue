@@ -109,137 +109,25 @@
                     <div
                         class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 md:gap-6 lg:grid-cols-5 lg:gap-8"
                     >
-                        <div class="mt-4 md:mt-0">
+                        <div
+                            v-for="(category, index) in footerLinks"
+                            :key="index"
+                            class="mt-4 md:mt-0"
+                        >
                             <h3 class="mb-4 text-sm font-semibold text-white">
-                                Home
+                                {{ category.title }}
                             </h3>
                             <ul class="space-y-2 text-sm text-gray-400">
-                                <li>
-                                    <a href="#" class="hover:text-white"
-                                        >Hero Section</a
+                                <li
+                                    v-for="(link, linkIndex) in category.links"
+                                    :key="linkIndex"
+                                >
+                                    <a
+                                        :href="link.url"
+                                        class="hover:text-white"
                                     >
-                                </li>
-                                <li>
-                                    <a href="#" class="hover:text-white"
-                                        >Features</a
-                                    >
-                                </li>
-                                <li>
-                                    <a href="#" class="hover:text-white"
-                                        >Properties</a
-                                    >
-                                </li>
-                                <li>
-                                    <a href="#" class="hover:text-white"
-                                        >Testimonials</a
-                                    >
-                                </li>
-                                <li>
-                                    <a href="#" class="hover:text-white"
-                                        >FAQ's</a
-                                    >
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="mt-4 md:mt-0">
-                            <h3 class="mb-4 text-sm font-semibold text-white">
-                                About Us
-                            </h3>
-                            <ul class="space-y-2 text-sm text-gray-400">
-                                <li>
-                                    <a href="#" class="hover:text-white"
-                                        >Our Story</a
-                                    >
-                                </li>
-                                <li>
-                                    <a href="#" class="hover:text-white"
-                                        >Our Works</a
-                                    >
-                                </li>
-                                <li>
-                                    <a href="#" class="hover:text-white"
-                                        >How It Works</a
-                                    >
-                                </li>
-                                <li>
-                                    <a href="#" class="hover:text-white"
-                                        >Our Team</a
-                                    >
-                                </li>
-                                <li>
-                                    <a href="#" class="hover:text-white"
-                                        >Our Clients</a
-                                    >
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="mt-4 md:mt-0">
-                            <h3 class="mb-4 text-sm font-semibold text-white">
-                                Properties
-                            </h3>
-                            <ul class="space-y-2 text-sm text-gray-400">
-                                <li>
-                                    <a href="#" class="hover:text-white"
-                                        >Portfolio</a
-                                    >
-                                </li>
-                                <li>
-                                    <a href="#" class="hover:text-white"
-                                        >Categories</a
-                                    >
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="mt-4 md:mt-0">
-                            <h3 class="mb-4 text-sm font-semibold text-white">
-                                Services
-                            </h3>
-                            <ul class="space-y-2 text-sm text-gray-400">
-                                <li>
-                                    <a href="#" class="hover:text-white"
-                                        >Valuation Mastery</a
-                                    >
-                                </li>
-                                <li>
-                                    <a href="#" class="hover:text-white"
-                                        >Strategic Marketing</a
-                                    >
-                                </li>
-                                <li>
-                                    <a href="#" class="hover:text-white"
-                                        >Negotiation Wizardry</a
-                                    >
-                                </li>
-                                <li>
-                                    <a href="#" class="hover:text-white"
-                                        >Closing Success</a
-                                    >
-                                </li>
-                                <li>
-                                    <a href="#" class="hover:text-white"
-                                        >Property Management</a
-                                    >
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="mt-4 md:mt-0">
-                            <h3 class="mb-4 text-sm font-semibold text-white">
-                                Contact Us
-                            </h3>
-                            <ul class="space-y-2 text-sm text-gray-400">
-                                <li>
-                                    <a href="#" class="hover:text-white"
-                                        >Contact Form</a
-                                    >
-                                </li>
-                                <li>
-                                    <a href="#" class="hover:text-white"
-                                        >Our Offices</a
-                                    >
+                                        {{ link.text }}
+                                    </a>
                                 </li>
                             </ul>
                         </div>
@@ -262,7 +150,12 @@
                 </div>
 
                 <div class="flex space-x-4">
-                    <a href="#" class="text-gray-400 hover:text-white">
+                    <a
+                        v-for="(social, index) in socialLinks"
+                        :key="index"
+                        href="#"
+                        class="text-gray-400 hover:text-white"
+                    >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="18"
@@ -273,68 +166,29 @@
                             stroke-width="2"
                             stroke-linecap="round"
                             stroke-linejoin="round"
-                            class="lucide lucide-facebook"
+                            :class="`lucide lucide-${social.icon}`"
                         >
                             <path
+                                v-if="social.icon === 'facebook'"
                                 d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
                             />
-                        </svg>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="18"
-                            height="18"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            class="lucide lucide-linkedin"
-                        >
+                            <template v-else-if="social.icon === 'linkedin'">
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+                                />
+                                <rect width="4" height="12" x="2" y="9" />
+                                <circle cx="4" cy="4" r="2" />
+                            </template>
                             <path
-                                d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
-                            />
-                            <rect width="4" height="12" x="2" y="9" />
-                            <circle cx="4" cy="4" r="2" />
-                        </svg>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="18"
-                            height="18"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            class="lucide lucide-twitter"
-                        >
-                            <path
+                                v-else-if="social.icon === 'twitter'"
                                 d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"
                             />
-                        </svg>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="18"
-                            height="18"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            class="lucide lucide-youtube"
-                        >
-                            <path
-                                d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"
-                            />
-                            <path d="m10 15 5-3-5-3z" />
+                            <template v-else-if="social.icon === 'youtube'">
+                                <path
+                                    d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"
+                                />
+                                <path d="m10 15 5-3-5-3z" />
+                            </template>
                         </svg>
                     </a>
                 </div>
@@ -342,6 +196,65 @@
         </div>
     </footer>
 </template>
+
 <script setup lang="ts">
 import realStateLogo from '@/Assets/Images/real_state_logo.jpg';
+import {
+    FooterCategoryInterface,
+    SocialLinkInterface,
+} from '@/Types/App/Interfaces';
+
+const footerLinks: FooterCategoryInterface[] = [
+    {
+        title: 'Home',
+        links: [
+            { text: 'Hero Section', url: '#' },
+            { text: 'Features', url: '#' },
+            { text: 'Properties', url: '#' },
+            { text: 'Testimonials', url: '#' },
+            { text: "FAQ's", url: '#' },
+        ],
+    },
+    {
+        title: 'About Us',
+        links: [
+            { text: 'Our Story', url: '#' },
+            { text: 'Our Works', url: '#' },
+            { text: 'How It Works', url: '#' },
+            { text: 'Our Team', url: '#' },
+            { text: 'Our Clients', url: '#' },
+        ],
+    },
+    {
+        title: 'Properties',
+        links: [
+            { text: 'Portfolio', url: '#' },
+            { text: 'Categories', url: '#' },
+        ],
+    },
+    {
+        title: 'Services',
+        links: [
+            { text: 'Valuation Mastery', url: '#' },
+            { text: 'Strategic Marketing', url: '#' },
+            { text: 'Negotiation Wizardry', url: '#' },
+            { text: 'Closing Success', url: '#' },
+            { text: 'Property Management', url: '#' },
+        ],
+    },
+    {
+        title: 'Contact Us',
+        links: [
+            { text: 'Contact Form', url: '#' },
+            { text: 'Our Offices', url: '#' },
+        ],
+    },
+];
+
+const socialLinks: SocialLinkInterface[] = [
+    { icon: 'facebook', url: '#' },
+    { icon: 'linkedin', url: '#' },
+    { icon: 'twitter', url: '#' },
+    { icon: 'youtube', url: '#' },
+];
 </script>

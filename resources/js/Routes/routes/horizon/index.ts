@@ -1,3 +1,4 @@
+import { queryParams, type QueryParams, validateParameters } from './../../wayfinder'
 import stats from './stats'
 import workload from './workload'
 import masters from './masters'
@@ -12,8 +13,6 @@ import silencedJobs from './silenced-jobs'
 import failedJobs from './failed-jobs'
 import retryJobs from './retry-jobs'
 import jobs from './jobs'
-import { queryParams, type QueryParams, validateParameters } from './../../wayfinder'
-
 /**
 * @see \Laravel\Horizon\Http\Controllers\HomeController::index
 * @see vendor/laravel/horizon/src/Http/Controllers/HomeController.php:14

@@ -1,5 +1,4 @@
 import { queryParams, type QueryParams } from './../../../../../wayfinder'
-
 /**
 * @see \Laravel\Horizon\Http\Controllers\MasterSupervisorController::index
 * @see vendor/laravel/horizon/src/Http/Controllers/MasterSupervisorController.php:18

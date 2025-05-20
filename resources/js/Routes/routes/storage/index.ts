@@ -1,5 +1,4 @@
 import { queryParams, type QueryParams } from './../../wayfinder'
-
 /**
 * @see vendor/laravel/framework/src/Illuminate/Filesystem/FilesystemServiceProvider.php:98
 * @route '/storage/{path}'

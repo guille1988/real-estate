@@ -1,5 +1,4 @@
 import { queryParams, type QueryParams } from './../../../../wayfinder'
-
 /**
 * @see \App\Http\Controllers\ServiceController::__invoke
 * @see app/Http/Controllers/ServiceController.php:12

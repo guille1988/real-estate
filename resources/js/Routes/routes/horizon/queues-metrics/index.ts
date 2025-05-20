@@ -1,5 +1,4 @@
 import { queryParams, type QueryParams } from './../../../wayfinder'
-
 /**
 * @see \Laravel\Horizon\Http\Controllers\QueueMetricsController::index
 * @see vendor/laravel/horizon/src/Http/Controllers/QueueMetricsController.php:34

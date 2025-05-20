@@ -1,5 +1,4 @@
 import { queryParams, type QueryParams } from './../../../wayfinder'
-
 /**
 * @see \Laravel\Horizon\Http\Controllers\RetryController::show
 * @see vendor/laravel/horizon/src/Http/Controllers/RetryController.php:15

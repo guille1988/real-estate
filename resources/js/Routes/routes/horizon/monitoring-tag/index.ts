@@ -1,5 +1,4 @@
 import { queryParams, type QueryParams } from './../../../wayfinder'
-
 /**
 * @see \Laravel\Horizon\Http\Controllers\MonitoringController::paginate
 * @see vendor/laravel/horizon/src/Http/Controllers/MonitoringController.php:63

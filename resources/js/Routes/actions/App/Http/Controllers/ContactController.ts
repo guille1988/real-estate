@@ -1,5 +1,4 @@
 import { queryParams, type QueryParams } from './../../../../wayfinder'
-
 /**
 * @see \App\Http\Controllers\ContactController::__invoke
 * @see app/Http/Controllers/ContactController.php:12

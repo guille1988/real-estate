@@ -112,3 +112,18 @@ export interface ScreenSizeConfigInterface {
     max: number;
     type: ScreenSizeEnum;
 }
+
+export interface FooterCategoryInterface {
+    title: string;
+    links: FooterLinkInterface[];
+}
+
+interface FooterLinkInterface {
+    text: string;
+    url: string;
+}
+
+export interface SocialLinkInterface {
+    icon: string;
+    url: string;
+}

@@ -1,5 +1,4 @@
 import { queryParams, type QueryParams } from './../../../../../wayfinder'
-
 /**
 * @see \Laravel\Horizon\Http\Controllers\DashboardStatsController::index
 * @see vendor/laravel/horizon/src/Http/Controllers/DashboardStatsController.php:18

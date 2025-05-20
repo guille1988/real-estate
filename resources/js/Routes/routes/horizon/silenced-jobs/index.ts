@@ -1,5 +1,4 @@
 import { queryParams, type QueryParams } from './../../../wayfinder'
-
 /**
 * @see \Laravel\Horizon\Http\Controllers\SilencedJobsController::index
 * @see vendor/laravel/horizon/src/Http/Controllers/SilencedJobsController.php:36
