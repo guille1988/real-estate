@@ -35,13 +35,7 @@
                 <div class="flex flex-col space-y-8 md:col-span-3 md:pr-4">
                     <div class="flex items-center">
                         <div class="mr-2 h-8 w-8 rounded-md">
-                            <img
-                                :src="realStateLogo"
-                                width="48"
-                                height="48"
-                                alt="Real estate logo"
-                                class="object-contain"
-                            />
+                            <RealStateIcon />
                         </div>
                         <span class="text-xl font-bold text-white"
                             >Real estate</span
@@ -60,48 +54,12 @@
                         <span
                             class="absolute left-2 top-1/2 -translate-y-1/2 text-gray-400"
                         >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="16"
-                                height="16"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                class="lucide lucide-mail"
-                            >
-                                <rect
-                                    width="20"
-                                    height="16"
-                                    x="2"
-                                    y="4"
-                                    rx="2"
-                                />
-                                <path
-                                    d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"
-                                />
-                            </svg>
+                            <EmailIcon />
                         </span>
                         <button
                             class="absolute right-2 top-1/2 -translate-y-1/2 text-white"
                         >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="16"
-                                height="16"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                class="lucide lucide-send"
-                            >
-                                <path d="m22 2-7 20-4-9-9-4Z" />
-                                <path d="M22 2 11 13" />
-                            </svg>
+                            <SendIcon />
                         </button>
                     </div>
                 </div>
@@ -198,7 +156,9 @@
 </template>
 
 <script setup lang="ts">
-import realStateLogo from '@/Assets/Images/real_state_logo.jpg';
+import EmailIcon from '@/Components/Layout/Footer/Icons/EmailIcon.vue';
+import SendIcon from '@/Components/Layout/Footer/Icons/SendIcon.vue';
+import RealStateIcon from '@/Components/Layout/RealStateIcon.vue';
 import {
     FooterCategoryInterface,
     SocialLinkInterface,

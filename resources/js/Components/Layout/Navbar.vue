@@ -2,13 +2,7 @@
     <header class="bg-black py-6 text-white">
         <div class="container mx-auto flex items-center justify-between px-4">
             <div class="flex items-center">
-                <img
-                    :src="realStateLogo"
-                    width="48"
-                    height="48"
-                    alt="Real estate logo"
-                    class="object-contain"
-                />
+                <RealStateIcon />
                 <span class="ml-4 text-xl font-bold">Real estate</span>
             </div>
 
@@ -121,7 +115,7 @@
 </template>
 
 <script setup lang="ts">
-import realStateLogo from '@/Assets/Images/real_state_logo.jpg';
+import RealStateIcon from '@/Components/Layout/RealStateIcon.vue';
 import AboutController from '@/Routes/actions/App/Http/Controllers/AboutController';
 import ContactController from '@/Routes/actions/App/Http/Controllers/ContactController';
 import HomeController from '@/Routes/actions/App/Http/Controllers/HomeController';
