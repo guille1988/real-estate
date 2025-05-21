@@ -68,27 +68,11 @@
                     <div
                         class="grid grid-cols-1 gap-8 md:grid-cols-3 lg:grid-cols-5"
                     >
-                        <div
-                            v-for="(category, index) in footerLinks"
-                            :key="index"
-                            class="mt-4 md:mt-0"
-                        >
-                            <h3 class="mb-4 text-sm font-semibold text-white">
-                                {{ category.title }}
-                            </h3>
-                            <ul class="space-y-2 text-sm text-gray-400">
-                                <li
-                                    v-for="(link, linkIndex) in category.links"
-                                    :key="linkIndex"
-                                >
-                                    <a
-                                        :href="link.url"
-                                        class="hover:text-white"
-                                        >{{ link.text }}</a
-                                    >
-                                </li>
-                            </ul>
-                        </div>
+                        <FooterCategory
+                            v-for="footerCategory in footerCategories"
+                            :key="footerCategory.id"
+                            :category="footerCategory"
+                        />
                     </div>
                 </div>
             </div>
@@ -108,47 +92,11 @@
                 </div>
 
                 <div class="mt-4 flex space-x-4 md:mt-0">
-                    <a
-                        v-for="(social, index) in socialLinks"
-                        :key="index"
-                        href="#"
-                        class="text-gray-400 hover:text-white"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="18"
-                            height="18"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            :class="`lucide lucide-${social.icon}`"
-                        >
-                            <path
-                                v-if="social.icon === 'facebook'"
-                                d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
-                            />
-                            <template v-else-if="social.icon === 'linkedin'">
-                                <path
-                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
-                                />
-                                <rect width="4" height="12" x="2" y="9" />
-                                <circle cx="4" cy="4" r="2" />
-                            </template>
-                            <path
-                                v-else-if="social.icon === 'twitter'"
-                                d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"
-                            />
-                            <template v-else-if="social.icon === 'youtube'">
-                                <path
-                                    d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"
-                                />
-                                <path d="m10 15 5-3-5-3z" />
-                            </template>
-                        </svg>
-                    </a>
+                    <FooterSocialLink
+                        v-for="socialLink in socialLinks"
+                        :key="socialLink.id"
+                        :social-link="socialLink"
+                    />
                 </div>
             </div>
         </div>
@@ -156,65 +104,73 @@
 </template>
 
 <script setup lang="ts">
+import FooterCategory from '@/Components/Layout/Footer/FooterCategory.vue';
+import FooterSocialLink from '@/Components/Layout/Footer/FooterSocialLink/FooterSocialLink.vue';
 import EmailIcon from '@/Components/Layout/Footer/Icons/EmailIcon.vue';
 import SendIcon from '@/Components/Layout/Footer/Icons/SendIcon.vue';
 import RealStateIcon from '@/Components/Layout/RealStateIcon.vue';
+import { SocialLinkIconEnum } from '@/Types/App/Enums';
 import {
     FooterCategoryInterface,
     SocialLinkInterface,
 } from '@/Types/App/Interfaces';
 
-const footerLinks: FooterCategoryInterface[] = [
+const footerCategories: FooterCategoryInterface[] = [
     {
+        id: 1,
         title: 'Home',
         links: [
-            { text: 'Hero Section', url: '#' },
-            { text: 'Features', url: '#' },
-            { text: 'Properties', url: '#' },
-            { text: 'Testimonials', url: '#' },
-            { text: "FAQ's", url: '#' },
+            { id: 1, text: 'Hero Section', url: '#' },
+            { id: 2, text: 'Features', url: '#' },
+            { id: 3, text: 'Properties', url: '#' },
+            { id: 4, text: 'Testimonials', url: '#' },
+            { id: 5, text: "FAQ's", url: '#' },
         ],
     },
     {
+        id: 2,
         title: 'About Us',
         links: [
-            { text: 'Our Story', url: '#' },
-            { text: 'Our Works', url: '#' },
-            { text: 'How It Works', url: '#' },
-            { text: 'Our Team', url: '#' },
-            { text: 'Our Clients', url: '#' },
+            { id: 1, text: 'Our Story', url: '#' },
+            { id: 2, text: 'Our Works', url: '#' },
+            { id: 3, text: 'How It Works', url: '#' },
+            { id: 4, text: 'Our Team', url: '#' },
+            { id: 5, text: 'Our Clients', url: '#' },
         ],
     },
     {
+        id: 3,
         title: 'Properties',
         links: [
-            { text: 'Portfolio', url: '#' },
-            { text: 'Categories', url: '#' },
+            { id: 1, text: 'Portfolio', url: '#' },
+            { id: 2, text: 'Categories', url: '#' },
         ],
     },
     {
+        id: 4,
         title: 'Services',
         links: [
-            { text: 'Valuation Mastery', url: '#' },
-            { text: 'Strategic Marketing', url: '#' },
-            { text: 'Negotiation Wizardry', url: '#' },
-            { text: 'Closing Success', url: '#' },
-            { text: 'Property Management', url: '#' },
+            { id: 1, text: 'Valuation Mastery', url: '#' },
+            { id: 2, text: 'Strategic Marketing', url: '#' },
+            { id: 3, text: 'Negotiation Wizardry', url: '#' },
+            { id: 4, text: 'Closing Success', url: '#' },
+            { id: 5, text: 'Property Management', url: '#' },
         ],
     },
     {
+        id: 5,
         title: 'Contact Us',
         links: [
-            { text: 'Contact Form', url: '#' },
-            { text: 'Our Offices', url: '#' },
+            { id: 1, text: 'Contact Form', url: '#' },
+            { id: 2, text: 'Our Offices', url: '#' },
         ],
     },
 ];
 
 const socialLinks: SocialLinkInterface[] = [
-    { icon: 'facebook', url: '#' },
-    { icon: 'linkedin', url: '#' },
-    { icon: 'twitter', url: '#' },
-    { icon: 'youtube', url: '#' },
+    { id: 1, icon: SocialLinkIconEnum.FACEBOOK, url: '#' },
+    { id: 2, icon: SocialLinkIconEnum.LINKEDIN, url: '#' },
+    { id: 3, icon: SocialLinkIconEnum.TWITTER, url: '#' },
+    { id: 4, icon: SocialLinkIconEnum.YOUTUBE, url: '#' },
 ];
 </script>

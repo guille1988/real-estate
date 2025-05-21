@@ -1,4 +1,9 @@
-import { LocationTypeEnum, PagesEnum, ScreenSizeEnum } from '@/Types/App/Enums';
+import {
+    LocationTypeEnum,
+    PagesEnum,
+    ScreenSizeEnum,
+    SocialLinkIconEnum,
+} from '@/Types/App/Enums';
 
 export interface UserInterface {
     id: number;
@@ -114,16 +119,19 @@ export interface ScreenSizeConfigInterface {
 }
 
 export interface FooterCategoryInterface {
+    id: number;
     title: string;
     links: FooterLinkInterface[];
 }
 
 interface FooterLinkInterface {
+    id: number;
     text: string;
     url: string;
 }
 
 export interface SocialLinkInterface {
-    icon: string;
+    id: number;
+    icon: SocialLinkIconEnum;
     url: string;
 }
