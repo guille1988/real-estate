@@ -43,12 +43,12 @@
                     </div>
 
                     <div
-                        class="relative w-full md:w-[150%] md:max-w-[calc(100%+2rem)]"
+                        class="relative w-full md:w-[150%] md:max-w-[calc(100%+2rem)] md:pr-4"
                     >
                         <input
                             type="email"
                             placeholder="Enter Your Email"
-                            class="w-full rounded border border-gray-700 bg-transparent py-2 pl-8 pr-10 text-sm text-white placeholder:text-ellipsis placeholder:text-gray-400 sm:text-xs md:text-sm"
+                            class="w-full rounded border border-gray-700 bg-transparent py-2 pl-8 pr-12 text-sm text-white placeholder:text-ellipsis placeholder:text-gray-400 sm:text-xs md:text-sm"
                             aria-label="Enter Your Email"
                         />
                         <span
@@ -57,7 +57,7 @@
                             <EmailIcon />
                         </span>
                         <button
-                            class="absolute right-2 top-1/2 -translate-y-1/2 text-white"
+                            class="absolute right-2 top-1/2 -translate-y-1/2 text-white md:pr-4"
                         >
                             <SendIcon />
                         </button>
