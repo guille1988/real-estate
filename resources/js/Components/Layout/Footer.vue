@@ -138,18 +138,18 @@
             <div
                 class="flex flex-col items-center justify-between border-t border-gray-800 pt-6 md:flex-row"
             >
-                <div class="flex flex-col items-center md:items-start">
-                    <p class="mb-4 text-sm text-gray-400 md:mb-0">
+                <div
+                    class="flex flex-col items-center space-y-2 md:flex-row md:items-start md:space-x-4 md:space-y-0"
+                >
+                    <p class="text-sm text-gray-400">
                         ©2023 Real estate. All Rights Reserved
                     </p>
-                    <a
-                        href="#"
-                        class="mb-4 text-sm text-gray-400 hover:text-white md:mb-0"
-                        >Terms & Conditions</a
-                    >
+                    <a href="#" class="text-sm text-gray-400 hover:text-white">
+                        Terms & Conditions
+                    </a>
                 </div>
 
-                <div class="flex space-x-4">
+                <div class="mt-4 flex space-x-4 md:mt-0">
                     <a
                         v-for="(social, index) in socialLinks"
                         :key="index"
