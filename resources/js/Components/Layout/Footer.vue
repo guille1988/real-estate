@@ -54,7 +54,8 @@
                         <input
                             type="email"
                             placeholder="Enter Your Email"
-                            class="w-full rounded border border-gray-700 bg-transparent py-2 pl-8 pr-10 text-sm text-white"
+                            class="w-full rounded border border-gray-700 bg-transparent py-2 pl-8 pr-10 text-sm text-white placeholder:text-ellipsis placeholder:text-gray-400 sm:text-xs md:text-sm"
+                            aria-label="Enter Your Email"
                         />
                         <span
                             class="absolute left-2 top-1/2 -translate-y-1/2 text-gray-400"
