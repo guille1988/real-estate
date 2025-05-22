@@ -1,5 +1,5 @@
 <template>
-    <section class="w-full bg-black pb-8 pt-16" id="explore-real-state">
+    <section class="w-full bg-black pb-12 pt-16" id="explore-real-state">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
                 <ExploreCard

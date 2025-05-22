@@ -1,6 +1,6 @@
 <template>
     <section class="bg-black py-8">
-        <div class="container mx-auto px-8">
+        <div class="container mx-auto px-8 pt-8">
             <div
                 class="flex flex-col items-start justify-between space-y-6 lg:flex-row lg:items-center lg:space-y-0"
             >
