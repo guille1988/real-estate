@@ -168,9 +168,25 @@ const footerCategories: FooterCategoryInterface[] = [
 ];
 
 const socialLinks: SocialLinkInterface[] = [
-    { id: 1, icon: SocialLinkIconEnum.FACEBOOK, url: '#' },
-    { id: 2, icon: SocialLinkIconEnum.LINKEDIN, url: '#' },
-    { id: 3, icon: SocialLinkIconEnum.TWITTER, url: '#' },
-    { id: 4, icon: SocialLinkIconEnum.YOUTUBE, url: '#' },
+    {
+        id: 1,
+        icon: SocialLinkIconEnum.FACEBOOK,
+        url: 'https://www.facebook.com',
+    },
+    {
+        id: 2,
+        icon: SocialLinkIconEnum.LINKEDIN,
+        url: 'https://www.linkedin.com',
+    },
+    {
+        id: 3,
+        icon: SocialLinkIconEnum.TWITTER,
+        url: 'https://www.twitter.com',
+    },
+    {
+        id: 4,
+        icon: SocialLinkIconEnum.YOUTUBE,
+        url: 'https://www.youtube.com',
+    },
 ];
 </script>
