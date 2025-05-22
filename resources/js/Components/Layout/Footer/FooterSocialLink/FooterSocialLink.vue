@@ -1,5 +1,10 @@
 <template>
-    <a class="text-gray-400 hover:text-white">
+    <a
+        :href="socialLink.url"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-gray-400 hover:text-white"
+    >
         <svg
             xmlns="http://www.w3.org/2000/svg"
             width="18"
@@ -29,19 +34,19 @@ const { socialLink }: { socialLink: SocialLinkInterface } = defineProps<{
     socialLink: SocialLinkInterface;
 }>();
 
-type SocialPathComponent =
+type PathComponent =
     | typeof FacebookPath
     | typeof LinkedinPath
     | typeof TwitterPath
     | typeof YoutubePath;
 
-const pathComponents: Record<SocialLinkIconEnum, SocialPathComponent> = {
+const pathComponents: Record<SocialLinkIconEnum, PathComponent> = {
     [SocialLinkIconEnum.FACEBOOK]: FacebookPath,
     [SocialLinkIconEnum.LINKEDIN]: LinkedinPath,
     [SocialLinkIconEnum.TWITTER]: TwitterPath,
     [SocialLinkIconEnum.YOUTUBE]: YoutubePath,
 };
 
-const getPathComponent = (icon: SocialLinkIconEnum): SocialPathComponent =>
+const getPathComponent = (icon: SocialLinkIconEnum): PathComponent =>
     pathComponents[icon];
 </script>
