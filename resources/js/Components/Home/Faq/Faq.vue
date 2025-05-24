@@ -5,10 +5,11 @@
                 class="mb-16 flex flex-col items-start justify-between md:flex-row md:items-center"
             >
                 <div class="max-w-4xl">
-                    <h1 class="mb-4 text-5xl font-bold text-white">
+                    <ThreeStars />
+                    <h1 class="mb-4 text-2xl font-bold text-white md:text-3xl">
                         Frequently Asked Questions
                     </h1>
-                    <p class="text-lg text-gray-400">
+                    <p class="text-sm text-gray-400">
                         Find answers to common questions about Real estate's
                         services, property listings, and the real estate
                         process. We're here to provide clarity and assist you
@@ -122,3 +123,6 @@
         </div>
     </div>
 </template>
+<script setup lang="ts">
+import ThreeStars from '@/Components/Shared/ThreeStars/ThreeStars.vue';
+</script>

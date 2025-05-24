@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 import ClientTestimonials from '@/Components/Home/ClientTestimonials/ClientTestimonials.vue';
-import Faq from '@/Components/Home/Faq.vue';
+import Faq from '@/Components/Home/Faq/Faq.vue';
 import FeaturedProperties from '@/Components/Home/FeaturedProperties.vue';
 import HeroSection from '@/Components/Home/HeroSection.vue';
 import Layout from '@/Components/Layout/Layout.vue';
