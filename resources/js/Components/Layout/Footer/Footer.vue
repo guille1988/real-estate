@@ -41,7 +41,8 @@
                         <div class="mr-2 h-8 w-8 rounded-md">
                             <RealStateIcon />
                         </div>
-                        <span class="text-xl font-bold text-white"
+                        <span
+                            class="whitespace-nowrap text-xl font-bold text-white"
                             >Real estate</span
                         >
                     </a>
