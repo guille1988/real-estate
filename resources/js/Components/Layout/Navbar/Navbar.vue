@@ -2,8 +2,14 @@
     <header class="bg-black py-6 text-white">
         <div class="container mx-auto flex items-center justify-between px-4">
             <div class="flex items-center">
-                <RealStateIcon />
-                <span class="ml-4 text-xl font-bold">Real estate</span>
+                <a
+                    :href="HomeController().url"
+                    target="_self"
+                    class="flex items-center"
+                >
+                    <RealStateIcon />
+                    <span class="ml-4 text-xl font-bold">Real estate</span>
+                </a>
             </div>
 
             <button

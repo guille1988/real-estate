@@ -33,14 +33,18 @@
         <div class="container mx-auto px-8">
             <div class="mb-12 grid grid-cols-1 gap-8 md:grid-cols-12">
                 <div class="flex flex-col space-y-8 md:col-span-3 md:pr-4">
-                    <div class="flex items-center">
+                    <a
+                        :href="HomeController().url"
+                        target="_self"
+                        class="flex items-center"
+                    >
                         <div class="mr-2 h-8 w-8 rounded-md">
                             <RealStateIcon />
                         </div>
                         <span class="text-xl font-bold text-white"
                             >Real estate</span
                         >
-                    </div>
+                    </a>
 
                     <div
                         class="relative w-full md:w-[150%] md:max-w-[calc(100%+2rem)] md:pr-4"
@@ -109,6 +113,7 @@ import FooterSocialLink from '@/Components/Layout/Footer/FooterSocialLink/Footer
 import EmailIcon from '@/Components/Layout/Footer/Icons/EmailIcon.vue';
 import SendIcon from '@/Components/Layout/Footer/Icons/SendIcon.vue';
 import RealStateIcon from '@/Components/Layout/RealStateIcon.vue';
+import HomeController from '@/Routes/actions/App/Http/Controllers/HomeController';
 import { SocialLinkIconEnum } from '@/Types/App/Enums';
 import {
     FooterCategoryInterface,
