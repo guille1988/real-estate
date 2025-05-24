@@ -17,36 +17,7 @@
                 class="focus:outline-none lg:hidden"
                 aria-label="Toggle menu"
             >
-                <svg
-                    v-if="!mobileMenuOpen"
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M4 6h16M4 12h16M4 18h16"
-                    />
-                </svg>
-                <svg
-                    v-else
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M6 18L18 6M6 6l12 12"
-                    />
-                </svg>
+                <TurtleIcon :mobile_menu_opened="mobileMenuOpened" />
             </button>
 
             <nav class="hidden lg:block">
@@ -74,7 +45,7 @@
                     :href="ContactController().url"
                     class="rounded-md bg-purple-600 px-6 py-2 text-sm font-medium text-white transition-colors hover:text-black"
                     :class="{
-                        'pointer-events-none opacity-0': !isNotPage(
+                        'pointer-events-none opacity-0': isPage(
                             PagesEnum.CONTACT,
                         ),
                     }"
@@ -84,7 +55,7 @@
             </div>
         </div>
 
-        <div v-show="mobileMenuOpen" class="lg:hidden">
+        <div v-show="mobileMenuOpened" class="lg:hidden">
             <div
                 class="container mx-auto bg-neutral-900 px-4 py-4 transition-all duration-300 ease-in-out"
             >
@@ -121,6 +92,7 @@
 </template>
 
 <script setup lang="ts">
+import TurtleIcon from '@/Components/Layout/Navbar/TurtleIcon.vue';
 import RealStateIcon from '@/Components/Layout/RealStateIcon.vue';
 import AboutController from '@/Routes/actions/App/Http/Controllers/AboutController';
 import ContactController from '@/Routes/actions/App/Http/Controllers/ContactController';
@@ -135,14 +107,14 @@ import { Ref, ref } from 'vue';
 const isPage = (page: PagesEnum): boolean => usePage().component === page;
 const isNotPage = (page: PagesEnum): boolean => !isPage(page);
 
-const mobileMenuOpen: Ref<boolean> = ref<boolean>(false);
+const mobileMenuOpened: Ref<boolean> = ref<boolean>(false);
 
 const toggleMobileMenu = (): void => {
-    mobileMenuOpen.value = !mobileMenuOpen.value;
+    mobileMenuOpened.value = !mobileMenuOpened.value;
 };
 
 const closeMobileMenu = (): void => {
-    mobileMenuOpen.value = false;
+    mobileMenuOpened.value = false;
 };
 
 const navigationPages: NavigationPagesInterface[] = [
