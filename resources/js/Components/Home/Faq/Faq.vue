@@ -1,6 +1,6 @@
 <template>
-    <div class="w-full bg-black">
-        <div class="mx-auto max-w-[1920px] px-[112px] py-12">
+    <section class="bg-black py-10 text-white md:py-16">
+        <div class="container mx-auto px-4">
             <div
                 class="mb-16 flex flex-col items-start justify-between md:flex-row md:items-center"
             >
@@ -16,113 +16,222 @@
                         every step of the way.
                     </p>
                 </div>
-                <button
-                    class="mt-6 rounded-md border border-gray-800 bg-black px-6 py-2 text-white transition-colors hover:bg-gray-900 md:mt-0"
-                >
-                    View All FAQ's
-                </button>
             </div>
 
-            <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <div class="mb-8 overflow-hidden">
                 <div
-                    class="flex h-full flex-col rounded-lg border border-gray-800 bg-[#0A0A0A] p-8"
+                    ref="sliderTrack"
+                    class="flex transition-transform duration-500 ease-in-out"
+                    :style="{ transform: `translateX(-${translateX}px)` }"
                 >
-                    <h2 class="mb-6 text-2xl font-bold text-white">
-                        How do I search for properties on Real estate?
-                    </h2>
-                    <p class="mb-8 flex-grow text-gray-400">
-                        Learn how to use our user-friendly search tools to find
-                        properties that match your criteria.
-                    </p>
-                    <button
-                        class="self-start rounded-md border border-gray-800 bg-black px-6 py-3 text-white transition-colors hover:bg-gray-900"
+                    <div
+                        v-for="card in cards"
+                        :key="card.id"
+                        class="flex-shrink-0 pr-4 md:pr-6"
+                        :class="{
+                            'w-full': screenSize === ScreenSizeEnum.MOBILE,
+                            'w-1/2': screenSize === ScreenSizeEnum.TABLET,
+                            'w-1/3': screenSize === ScreenSizeEnum.DESKTOP,
+                        }"
+                        ref="slideItems"
                     >
-                        Read More
-                    </button>
-                </div>
-
-                <div
-                    class="flex h-full flex-col rounded-lg border border-gray-800 bg-[#0A0A0A] p-8"
-                >
-                    <h2 class="mb-6 text-2xl font-bold text-white">
-                        What documents do I need to sell my property through
-                        Real estate?
-                    </h2>
-                    <p class="mb-8 flex-grow text-gray-400">
-                        Find out about the necessary documentation for listing
-                        your property with us.
-                    </p>
-                    <button
-                        class="self-start rounded-md border border-gray-800 bg-black px-6 py-3 text-white transition-colors hover:bg-gray-900"
-                    >
-                        Read More
-                    </button>
-                </div>
-
-                <div
-                    class="flex h-full flex-col rounded-lg border border-gray-800 bg-[#0A0A0A] p-8"
-                >
-                    <h2 class="mb-6 text-2xl font-bold text-white">
-                        How can I contact an Real estate agent?
-                    </h2>
-                    <p class="mb-8 flex-grow text-gray-400">
-                        Discover the different ways you can get in touch with
-                        our experienced agents.
-                    </p>
-                    <button
-                        class="self-start rounded-md border border-gray-800 bg-black px-6 py-3 text-white transition-colors hover:bg-gray-900"
-                    >
-                        Read More
-                    </button>
+                        <FaqCard :card="card" />
+                    </div>
                 </div>
             </div>
 
-            <div class="mt-16 flex items-center justify-between">
-                <div class="text-lg text-white">
-                    <span class="font-medium">01</span> of <span>10</span>
-                </div>
-                <div class="flex gap-4">
+            <div class="flex justify-end">
+                <div class="flex gap-2">
                     <button
-                        class="rounded-md border border-gray-800 bg-black p-2 transition-colors hover:bg-gray-900"
+                        class="border border-gray-800 p-1.5 transition-colors duration-300 md:p-2"
+                        :class="{
+                            'hover:bg-gray-800': canGoBack,
+                            'cursor-not-allowed opacity-50': !canGoBack,
+                        }"
+                        @click="prevSlide"
+                        :disabled="!canGoBack"
+                        aria-label="Previous slide"
                     >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="h-6 w-6 text-white"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M15 19l-7-7 7-7"
-                            />
-                        </svg>
+                        <PreviousSliderArrowIcon />
                     </button>
                     <button
-                        class="rounded-md border border-gray-800 bg-black p-2 transition-colors hover:bg-gray-900"
+                        class="border border-gray-800 p-1.5 transition-colors duration-300 md:p-2"
+                        :class="{
+                            'hover:bg-gray-800': canGoForward,
+                            'cursor-not-allowed opacity-50': !canGoForward,
+                        }"
+                        @click="nextSlide"
+                        :disabled="!canGoForward"
+                        aria-label="Next slide"
                     >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="h-6 w-6 text-white"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M9 5l7 7-7 7"
-                            />
-                        </svg>
+                        <NextSliderArrowIcon />
                     </button>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 </template>
 <script setup lang="ts">
+import FaqCard from '@/Components/Home/Faq/FaqCard.vue';
+import NextSliderArrowIcon from '@/Components/Shared/SliderArrows/NextSliderArrowIcon.vue';
+import PreviousSliderArrowIcon from '@/Components/Shared/SliderArrows/PreviousSliderArrowIcon.vue';
 import ThreeStars from '@/Components/Shared/ThreeStars/ThreeStars.vue';
+import { ScreenSizeEnum } from '@/Types/App/Enums';
+import { ScreenSizeConfigInterface } from '@/Types/App/Interfaces';
+import {
+    computed,
+    ComputedRef,
+    nextTick,
+    onMounted,
+    onUnmounted,
+    Ref,
+    ref,
+    watch,
+} from 'vue';
+
+import { FaqCardInterface } from '@/Types/App/Interfaces';
+
+const cards: FaqCardInterface[] = [
+    {
+        id: 1,
+        title: 'How do I search for properties on Real estate?',
+        description:
+            'Learn how to use our user-friendly search tools to find properties that match your criteria.',
+    },
+    {
+        id: 2,
+        title: 'What documents do I need to sell my property through Real estate?',
+        description:
+            'Find out about the necessary documentation for listing your property with us.',
+    },
+    {
+        id: 3,
+        title: 'How can I contact an Real estate agent?',
+        description:
+            'Discover the different ways you can get in touch with our experienced agents.',
+    },
+    {
+        id: 4,
+        title: 'What are the benefits of working with Real estate?',
+        description:
+            'Learn about the advantages of choosing our agency for your real estate needs.',
+    },
+    {
+        id: 5,
+        title: 'How does the property buying process work?',
+        description:
+            'Get a step-by-step overview of the property buying journey with Real estate.',
+    },
+    {
+        id: 6,
+        title: 'What financing options are available for buyers?',
+        description:
+            'Explore the various financing solutions we can help you access for your property purchase.',
+    },
+];
+
+const sliderTrack: Ref<HTMLElement | null> = ref(null);
+const slideItems: Ref<HTMLElement[]> = ref([]);
+
+const currentIndex: Ref<number> = ref(0);
+const translateX: Ref<number> = ref(0);
+const screenSize: Ref<ScreenSizeEnum> = ref(ScreenSizeEnum.DESKTOP);
+const resizeTimeout: Ref<number | null> = ref(null);
+
+const visibleCards: ComputedRef<number> = computed((): number => {
+    const cards: Record<ScreenSizeEnum, number> = {
+        [ScreenSizeEnum.MOBILE]: 1,
+        [ScreenSizeEnum.TABLET]: 2,
+        [ScreenSizeEnum.DESKTOP]: 3,
+    };
+
+    return cards[screenSize.value] ?? 3;
+});
+
+const maxIndex: ComputedRef<number> = computed((): number =>
+    Math.max(0, cards.length - visibleCards.value),
+);
+
+const canGoBack: ComputedRef<boolean> = computed(
+    (): boolean => currentIndex.value > 0,
+);
+const canGoForward: ComputedRef<boolean> = computed(
+    (): boolean => currentIndex.value < maxIndex.value,
+);
+
+const nextSlide = (): void => {
+    if (!canGoForward.value) return;
+    currentIndex.value = Math.min(currentIndex.value + 1, maxIndex.value);
+    updateTranslateX();
+};
+
+const prevSlide = (): void => {
+    if (!canGoBack.value) return;
+    currentIndex.value = Math.max(currentIndex.value - 1, 0);
+    updateTranslateX();
+};
+
+const updateTranslateX = (): void => {
+    if (!sliderTrack.value || !slideItems.value.length) return;
+
+    if (currentIndex.value === 0) {
+        translateX.value = 0;
+        return;
+    }
+
+    const containerWidth: number =
+        sliderTrack.value.parentElement?.clientWidth || 0;
+    const cardWidth: number = containerWidth / visibleCards.value;
+
+    translateX.value = cardWidth * currentIndex.value;
+};
+
+const updateScreenSize = (): void => {
+    const screenSizes: ScreenSizeConfigInterface[] = [
+        { max: 768, type: ScreenSizeEnum.MOBILE },
+        { max: 1024, type: ScreenSizeEnum.TABLET },
+    ];
+
+    const width: number = window.innerWidth;
+    const match: ScreenSizeConfigInterface | undefined = screenSizes.find(
+        (screenSizeConfig: ScreenSizeConfigInterface) =>
+            width < screenSizeConfig.max,
+    );
+
+    screenSize.value =
+        match === undefined ? ScreenSizeEnum.DESKTOP : match.type;
+
+    currentIndex.value = Math.min(currentIndex.value, maxIndex.value);
+
+    nextTick((): void => {
+        updateTranslateX();
+    });
+};
+
+const handleResize = () => {
+    if (resizeTimeout.value !== null) {
+        window.clearTimeout(resizeTimeout.value);
+    }
+
+    resizeTimeout.value = window.setTimeout((): void => {
+        updateScreenSize();
+    }, 200);
+};
+
+watch(screenSize, (): void => {
+    updateTranslateX();
+});
+
+onMounted((): void => {
+    updateScreenSize();
+    window.addEventListener('resize', handleResize);
+});
+
+onUnmounted((): void => {
+    if (resizeTimeout.value !== null) {
+        window.clearTimeout(resizeTimeout.value);
+    }
+
+    window.removeEventListener('resize', handleResize);
+});
 </script>

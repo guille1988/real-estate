@@ -135,3 +135,9 @@ export interface SocialLinkInterface {
     icon: SocialLinkIconEnum;
     url: string;
 }
+
+export interface FaqCardInterface {
+    id: number;
+    title: string;
+    description: string;
+}
