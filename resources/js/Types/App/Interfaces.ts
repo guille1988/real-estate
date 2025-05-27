@@ -147,3 +147,9 @@ export interface StatCardInterface {
     stat: string;
     description: string;
 }
+
+export interface HeroSectionCardInterface {
+    id: number;
+    icon: string;
+    description: string;
+}
