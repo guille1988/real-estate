@@ -141,3 +141,9 @@ export interface FaqCardInterface {
     title: string;
     description: string;
 }
+
+export interface StatCardInterface {
+    id: number;
+    stat: string;
+    description: string;
+}

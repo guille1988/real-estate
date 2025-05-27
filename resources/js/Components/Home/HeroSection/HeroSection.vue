@@ -28,18 +28,11 @@
                     </div>
 
                     <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
-                        <div class="rounded-lg bg-gray-900/60 p-6">
-                            <h3 class="text-3xl font-bold">200+</h3>
-                            <p class="text-gray-400">Happy Customers</p>
-                        </div>
-                        <div class="rounded-lg bg-gray-900/60 p-6">
-                            <h3 class="text-3xl font-bold">10k+</h3>
-                            <p class="text-gray-400">Properties For Clients</p>
-                        </div>
-                        <div class="rounded-lg bg-gray-900/60 p-6">
-                            <h3 class="text-3xl font-bold">16+</h3>
-                            <p class="text-gray-400">Years of Experience</p>
-                        </div>
+                        <StatsCard
+                            v-for="statCard in statCards"
+                            :card="statCard"
+                            :key="statCard.id"
+                        />
                     </div>
                 </div>
 
@@ -215,4 +208,24 @@
 
 <script setup lang="ts">
 import blueBuilding from '@/Assets/Images/blue_building.png';
+import StatsCard from '@/Components/Home/HeroSection/StatsCard.vue';
+import { StatCardInterface } from '@/Types/App/Interfaces';
+
+const statCards: StatCardInterface[] = [
+    {
+        id: 1,
+        stat: '100+',
+        description: 'Happy Customers',
+    },
+    {
+        id: 2,
+        stat: '10k+',
+        description: 'Properties For Clients',
+    },
+    {
+        id: 3,
+        stat: '16+',
+        description: 'Years Of Experience',
+    },
+];
 </script>
