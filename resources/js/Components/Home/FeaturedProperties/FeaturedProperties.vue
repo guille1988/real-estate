@@ -5,21 +5,8 @@
                 class="mb-8 flex flex-col gap-6 md:mb-12 md:flex-row md:items-start md:justify-between"
             >
                 <div class="max-w-2xl">
+                    <ThreeStars />
                     <div class="mb-4 flex items-center gap-2">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="h-6 w-6 text-gray-400"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="1.5"
-                                d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z"
-                            />
-                        </svg>
                         <h2 class="text-2xl font-bold md:text-3xl">
                             Featured Properties
                         </h2>
@@ -32,6 +19,7 @@
                     </p>
                 </div>
                 <button
+                    @click="visit(PropertyController.index().url)"
                     class="self-start whitespace-nowrap rounded-md border border-gray-800 bg-transparent px-4 py-2 text-sm transition hover:bg-gray-800 md:px-6 md:py-3 md:text-base"
                 >
                     View All Properties
@@ -142,11 +130,16 @@
                             <div>
                                 <p class="text-xs text-gray-400">Price</p>
                                 <p class="text-lg font-semibold md:text-xl">
-                                    ${{ formatPrice(property.price) }}
+                                    {{ property.price }}
                                 </p>
                             </div>
                             <button
-                                @click="openDetails(property.id)"
+                                @click="
+                                    visit(
+                                        PropertyController.show(property.id)
+                                            .url,
+                                    )
+                                "
                                 class="w-full rounded-md bg-purple-600 px-4 py-2 text-xs transition-colors duration-300 hover:bg-purple-500 sm:w-auto md:px-6 md:py-3 md:text-sm"
                             >
                                 View Property Details
@@ -202,6 +195,8 @@
 </template>
 
 <script setup lang="ts">
+import ThreeStars from '@/Components/Shared/ThreeStars/ThreeStars.vue';
+import PropertyController from '@/Routes/actions/App/Http/Controllers/PropertyController';
 import { router } from '@inertiajs/vue3';
 
 const properties = [
@@ -212,7 +207,7 @@ const properties = [
         title: 'Seaside Serenity Villa',
         description:
             'Wake up to the soothing melody of waves. This beachfront villa offers...',
-        price: 1250000,
+        price: '$1.250.000',
     },
     {
         id: 2,
@@ -221,7 +216,7 @@ const properties = [
         title: 'Metropolitan Haven',
         description:
             'Immerse yourself in the energy of the city. This modern apartment in the heart...',
-        price: 650000,
+        price: '$650.000',
     },
     {
         id: 3,
@@ -230,15 +225,11 @@ const properties = [
         title: 'Rustic Retreat Cottage',
         description:
             'Find tranquility in the countryside. This charming cottage is nestled amidst rolling hills...',
-        price: 350000,
+        price: '$350.000',
     },
 ];
 
-const formatPrice = (price: number): string => {
-    return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-};
-
-const openDetails = (id: number): void => {
-    router.visit(route('properties.show', { property: id }));
+const visit = (url: string): void => {
+    router.visit(url);
 };
 </script>
