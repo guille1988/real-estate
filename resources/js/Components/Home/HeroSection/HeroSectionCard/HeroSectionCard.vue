@@ -1,5 +1,7 @@
 <template>
-    <div class="relative rounded-lg bg-gray-900/60 p-6">
+    <div
+        class="relative rounded-lg border border-transparent bg-gray-900/60 p-6 transition-all duration-1000 hover:border-purple-600"
+    >
         <div class="mb-12 flex items-start justify-between">
             <div
                 class="flex h-12 w-12 items-center justify-center rounded-full border border-purple-600 bg-black/60"
