@@ -69,6 +69,9 @@ import {
     StatCardInterface,
 } from '@/Types/App/Interfaces';
 
+const getServiceSection = (section: string) =>
+    ServiceController().url + section;
+
 const statCards: StatCardInterface[] = [
     {
         id: 1,
@@ -96,19 +99,19 @@ const heroCards: HeroSectionCardInterface[] = [
     },
     {
         id: 2,
-        url: ServiceController().url,
+        url: getServiceSection('#unlock-property-value'),
         icon: 'ScaleIcon',
         description: 'Unlock Property Value',
     },
     {
         id: 3,
-        url: ServiceController().url,
+        url: getServiceSection('#effortless-property-management'),
         icon: 'BuildingIcon',
         description: 'Effortless Property Management',
     },
     {
         id: 4,
-        url: ServiceController().url,
+        url: getServiceSection('#smart-investments'),
         icon: 'LampIcon',
         description: 'Smart Investments, Informed Decisions',
     },
