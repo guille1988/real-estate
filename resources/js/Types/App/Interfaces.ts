@@ -153,3 +153,12 @@ export interface HeroSectionCardInterface {
     icon: string;
     description: string;
 }
+
+export interface FeaturedPropertyCardInterface {
+    id: number;
+    image: string;
+    category: string;
+    title: string;
+    description: string;
+    price: string;
+}
