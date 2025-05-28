@@ -62,6 +62,8 @@
 import BlueBuilding from '@/Assets/Images/blue_building.png';
 import HeroSectionCard from '@/Components/Home/HeroSection/HeroSectionCard/HeroSectionCard.vue';
 import StatsCard from '@/Components/Home/HeroSection/StatsCard.vue';
+import PropertyController from '@/Routes/actions/App/Http/Controllers/PropertyController';
+import ServiceController from '@/Routes/actions/App/Http/Controllers/ServiceController';
 import {
     HeroSectionCardInterface,
     StatCardInterface,
@@ -88,21 +90,25 @@ const statCards: StatCardInterface[] = [
 const heroCards: HeroSectionCardInterface[] = [
     {
         id: 1,
+        url: PropertyController.index().url,
         icon: 'HouseIcon',
         description: 'Find Your Dream Home',
     },
     {
         id: 2,
+        url: ServiceController().url,
         icon: 'ScaleIcon',
         description: 'Unlock Property Value',
     },
     {
         id: 3,
+        url: ServiceController().url,
         icon: 'BuildingIcon',
         description: 'Effortless Property Management',
     },
     {
         id: 4,
+        url: ServiceController().url,
         icon: 'LampIcon',
         description: 'Smart Investments, Informed Decisions',
     },
