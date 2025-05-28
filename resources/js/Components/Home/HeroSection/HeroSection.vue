@@ -38,7 +38,7 @@
 
                 <div class="relative hidden lg:block">
                     <img
-                        :src="blueBuilding"
+                        :src="BlueBuilding"
                         alt="Modern blue building"
                         class="h-auto w-full object-contain"
                     />
@@ -59,7 +59,7 @@
 </template>
 
 <script setup lang="ts">
-import blueBuilding from '@/Assets/Images/blue_building.png';
+import BlueBuilding from '@/Assets/Images/blue_building.png';
 import HeroSectionCard from '@/Components/Home/HeroSection/HeroSectionCard/HeroSectionCard.vue';
 import StatsCard from '@/Components/Home/HeroSection/StatsCard.vue';
 import {

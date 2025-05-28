@@ -56,18 +56,24 @@
 </template>
 
 <script setup lang="ts">
+import Villa from '@/Assets/Images/villa.jpg';
 import FeaturedPropertyCard from '@/Components/Home/FeaturedProperties/FeaturedPropertyCard/FeaturedPropertyCard.vue';
 import NextSliderArrowIcon from '@/Components/Shared/SliderArrows/NextSliderArrowIcon.vue';
 import PreviousSliderArrowIcon from '@/Components/Shared/SliderArrows/PreviousSliderArrowIcon.vue';
 import ThreeStars from '@/Components/Shared/ThreeStars/ThreeStars.vue';
 import { index } from '@/Routes/actions/App/Http/Controllers/PropertyController';
+import { FeaturedPropertyEnum } from '@/Types/App/Enums';
+import { FeaturedPropertyCardInterface } from '@/Types/App/Interfaces';
 import { router } from '@inertiajs/vue3';
 
-const cards = [
+const cards: FeaturedPropertyCardInterface[] = [
     {
         id: 1,
-        image: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmVhdXRpZnVsJTIwaG91c2V8ZW58MHx8MHx8fDA%3D',
-        category: 'Coastal Escapes - Where Waves Beckon',
+        bedroom_count: 4,
+        bathroom_count: 3,
+        category: FeaturedPropertyEnum.VILLA,
+        image: Villa,
+        caption: 'Coastal Escapes - Where Waves Beckon',
         title: 'Seaside Serenity Villa',
         description:
             'Wake up to the soothing melody of waves. This beachfront villa offers...',
@@ -75,8 +81,11 @@ const cards = [
     },
     {
         id: 2,
-        image: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmVhdXRpZnVsJTIwaG91c2V8ZW58MHx8MHx8fDA%3D',
-        category: 'Urban Oasis - Life in the Heart of the City',
+        bedroom_count: 4,
+        bathroom_count: 3,
+        category: FeaturedPropertyEnum.VILLA,
+        image: Villa,
+        caption: 'Urban Oasis - Life in the Heart of the City',
         title: 'Metropolitan Haven',
         description:
             'Immerse yourself in the energy of the city. This modern apartment in the heart...',
@@ -84,8 +93,11 @@ const cards = [
     },
     {
         id: 3,
-        image: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmVhdXRpZnVsJTIwaG91c2V8ZW58MHx8MHx8fDA%3D',
-        category: "Countryside Charm - Escape to Nature's Embrace",
+        bedroom_count: 4,
+        bathroom_count: 3,
+        category: FeaturedPropertyEnum.VILLA,
+        image: Villa,
+        caption: "Countryside Charm - Escape to Nature's Embrace",
         title: 'Rustic Retreat Cottage',
         description:
             'Find tranquility in the countryside. This charming cottage is nestled amidst rolling hills...',

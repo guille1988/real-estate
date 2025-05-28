@@ -13,7 +13,7 @@
                 class="absolute bottom-0 left-0 right-0 bg-black/70 p-2 text-xs"
             >
                 <p class="text-purple-400">
-                    {{ card.category }}
+                    {{ card.caption }}
                 </p>
             </div>
         </div>
@@ -36,18 +36,20 @@
                 <div class="flex items-center gap-1 md:gap-2">
                     <HomeIcon />
                     <span class="text-xs text-gray-400 md:text-sm"
-                        >4-Bedroom</span
+                        >{{ card.bedroom_count }}-Bedroom</span
                     >
                 </div>
                 <div class="flex items-center gap-1 md:gap-2">
                     <BathroomIcon />
                     <span class="text-xs text-gray-400 md:text-sm"
-                        >3-Bathroom</span
+                        >{{ card.bathroom_count }}-Bathroom</span
                     >
                 </div>
                 <div class="flex items-center gap-1 md:gap-2">
                     <BuildingIcon />
-                    <span class="text-xs text-gray-400 md:text-sm">Villa</span>
+                    <span class="text-xs text-gray-400 md:text-sm">{{
+                        capitalizeFirstLetter(card.category)
+                    }}</span>
                 </div>
             </div>
 
@@ -82,6 +84,9 @@ import { router } from '@inertiajs/vue3';
 const { card }: { card: FeaturedPropertyCardInterface } = defineProps<{
     card: FeaturedPropertyCardInterface;
 }>();
+
+const capitalizeFirstLetter = (word: string): string =>
+    word.charAt(0).toUpperCase() + word.slice(1);
 
 const visit = (url: string): void => {
     router.visit(url);

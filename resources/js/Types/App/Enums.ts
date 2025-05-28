@@ -1,9 +1,9 @@
 export enum PagesEnum {
-    ABOUT = 'About',
-    CONTACT = 'Contact',
-    HOME = 'Home',
-    PROPERTIES = 'Properties',
-    SERVICES = 'Services',
+    ABOUT = 'about',
+    CONTACT = 'contact',
+    HOME = 'home',
+    PROPERTIES = 'properties',
+    SERVICES = 'services',
 }
 
 export enum LocationTypeEnum {
@@ -23,4 +23,11 @@ export enum SocialLinkIconEnum {
     LINKEDIN = 'linkedin',
     TWITTER = 'twitter',
     YOUTUBE = 'youtube',
+}
+
+export enum FeaturedPropertyEnum {
+    APARTMENT = 'apartment',
+    HOUSE = 'house',
+    LOFT = 'loft',
+    VILLA = 'villa',
 }

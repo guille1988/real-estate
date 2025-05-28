@@ -1,4 +1,5 @@
 import {
+    FeaturedPropertyEnum,
     LocationTypeEnum,
     PagesEnum,
     ScreenSizeEnum,
@@ -156,8 +157,11 @@ export interface HeroSectionCardInterface {
 
 export interface FeaturedPropertyCardInterface {
     id: number;
+    bedroom_count: number;
+    bathroom_count: number;
+    category: FeaturedPropertyEnum;
     image: string;
-    category: string;
+    caption: string;
     title: string;
     description: string;
     price: string;

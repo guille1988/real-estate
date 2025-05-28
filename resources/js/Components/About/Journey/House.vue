@@ -4,7 +4,7 @@
             class="flex h-full w-full items-center justify-center lg:justify-end"
         >
             <img
-                :src="house"
+                :src="House"
                 alt="Hand holding a model house"
                 class="mx-auto h-auto w-11/12 object-contain"
             />
@@ -12,5 +12,5 @@
     </div>
 </template>
 <script setup lang="ts">
-import house from '@/Assets/Images/house.png';
+import House from '@/Assets/Images/house.png';
 </script>
