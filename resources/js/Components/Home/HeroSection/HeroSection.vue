@@ -22,6 +22,7 @@
                         </button>
                         <button
                             class="rounded-md bg-purple-600 px-6 py-3 transition hover:bg-purple-700"
+                            @click="visit(PropertyController.index().url)"
                         >
                             Browse Properties
                         </button>
@@ -68,6 +69,11 @@ import {
     HeroSectionCardInterface,
     StatCardInterface,
 } from '@/Types/App/Interfaces';
+import { router } from '@inertiajs/vue3';
+
+const visit = (url: string): void => {
+    router.visit(url);
+};
 
 const getServiceSection = (section: string) =>
     ServiceController().url + section;
