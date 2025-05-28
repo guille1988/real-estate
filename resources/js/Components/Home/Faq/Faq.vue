@@ -1,8 +1,8 @@
 <template>
-    <section class="bg-black py-10 text-white md:py-16">
+    <section class="bg-black py-8 pb-2 text-white md:py-8 md:pb-2">
         <div class="container mx-auto px-4">
             <div
-                class="mb-16 flex flex-col items-start justify-between md:flex-row md:items-center"
+                class="mb-8 flex flex-col items-start justify-between md:mb-12 md:flex-row md:items-center"
             >
                 <div class="max-w-4xl">
                     <ThreeStars />
