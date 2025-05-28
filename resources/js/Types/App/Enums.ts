@@ -26,7 +26,6 @@ export enum SocialLinkIconEnum {
 }
 
 export enum FeaturedPropertyEnum {
-    APARTMENT = 'apartment',
     HOUSE = 'house',
     LOFT = 'loft',
     VILLA = 'villa',

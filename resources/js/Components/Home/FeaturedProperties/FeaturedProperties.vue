@@ -56,6 +56,8 @@
 </template>
 
 <script setup lang="ts">
+import House from '@/Assets/Images/house.jpg';
+import Loft from '@/Assets/Images/loft.jpg';
 import Villa from '@/Assets/Images/villa.jpg';
 import FeaturedPropertyCard from '@/Components/Home/FeaturedProperties/FeaturedPropertyCard/FeaturedPropertyCard.vue';
 import NextSliderArrowIcon from '@/Components/Shared/SliderArrows/NextSliderArrowIcon.vue';
@@ -83,20 +85,20 @@ const cards: FeaturedPropertyCardInterface[] = [
         id: 2,
         bedroom_count: 4,
         bathroom_count: 3,
-        category: FeaturedPropertyEnum.VILLA,
-        image: Villa,
+        category: FeaturedPropertyEnum.LOFT,
+        image: Loft,
         caption: 'Urban Oasis - Life in the Heart of the City',
         title: 'Metropolitan Haven',
         description:
-            'Immerse yourself in the energy of the city. This modern apartment in the heart...',
+            'Immerse yourself in the energy of the city. This modern loft in the heart...',
         price: '$650.000',
     },
     {
         id: 3,
         bedroom_count: 4,
         bathroom_count: 3,
-        category: FeaturedPropertyEnum.VILLA,
-        image: Villa,
+        category: FeaturedPropertyEnum.HOUSE,
+        image: House,
         caption: "Countryside Charm - Escape to Nature's Embrace",
         title: 'Rustic Retreat Cottage',
         description:
