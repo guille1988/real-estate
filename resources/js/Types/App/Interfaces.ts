@@ -167,3 +167,9 @@ export interface FeaturedPropertyCardInterface {
     description: string;
     price: string;
 }
+
+export interface SearchCardInterface {
+    id: number;
+    icon: string;
+    label: string;
+}
