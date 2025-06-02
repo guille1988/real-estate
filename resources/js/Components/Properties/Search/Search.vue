@@ -79,12 +79,24 @@ import SearchCard from '@/Components/Properties/Search/SearchCard.vue';
 import SearchFilterCard from '@/Components/Properties/Search/SearchFilterCard.vue';
 import NextSliderArrowIcon from '@/Components/Shared/SliderArrows/NextSliderArrowIcon.vue';
 import PreviousSliderArrowIcon from '@/Components/Shared/SliderArrows/PreviousSliderArrowIcon.vue';
+import { PropertyTypeEnum } from '@/Types/App/Enums';
 import {
     SearchCardInterface,
     SearchFilterCardInterface,
     SearchFilterOptionInterface,
 } from '@/Types/App/Interfaces';
 import { ref } from 'vue';
+
+const capitalizeFirstLetter = (word: string): string =>
+    word.charAt(0).toUpperCase() + word.slice(1);
+
+const propertyTypes = Object.values(PropertyTypeEnum).map(
+    (value: PropertyTypeEnum, index: number) => ({
+        id: index + 1,
+        label: capitalizeFirstLetter(value),
+        value: value,
+    }),
+);
 
 const selectedFilters = ref<Record<number, SearchFilterOptionInterface>>({});
 
@@ -112,14 +124,8 @@ const filterCards: SearchFilterCardInterface[] = [
     {
         id: 2,
         icon: 'HouseIcon',
-        label: 'Property Category',
-        options: [
-            { id: 1, label: 'House', value: 'house' },
-            { id: 2, label: 'Apartment', value: 'apartment' },
-            { id: 3, label: 'Villa', value: 'villa' },
-            { id: 4, label: 'Condo', value: 'condo' },
-            { id: 5, label: 'Loft', value: 'loft' },
-        ],
+        label: 'Property Type',
+        options: propertyTypes,
     },
     {
         id: 3,

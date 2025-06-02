@@ -1,7 +1,7 @@
 import {
     LocationTypeEnum,
     PagesEnum,
-    PropertyCategoryEnum,
+    PropertyTypeEnum,
     ScreenSizeEnum,
     SocialLinkIconEnum,
 } from '@/Types/App/Enums';
@@ -160,7 +160,7 @@ export interface FeaturedPropertyCardInterface {
     id: number;
     bedroom_count: number;
     bathroom_count: number;
-    category: PropertyCategoryEnum;
+    type: PropertyTypeEnum;
     image: string;
     caption: string;
     title: string;
