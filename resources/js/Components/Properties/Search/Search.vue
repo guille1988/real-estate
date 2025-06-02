@@ -1,8 +1,8 @@
 <template>
     <section class="bg-black px-4 py-8">
         <div class="container mx-auto">
-            <div class="mb-12 pl-4 md:pl-36 text-left">
-                <h1 class="mb-4 text-3xl md:text-4xl font-bold text-white">
+            <div class="mb-12 pl-4 text-left md:pl-36">
+                <h1 class="mb-4 text-3xl font-bold text-white md:text-4xl">
                     Find Your Dream Property
                 </h1>
                 <p class="ml-0 max-w-6xl text-gray-400">
