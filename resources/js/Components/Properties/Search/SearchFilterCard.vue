@@ -60,13 +60,15 @@ const { card }: { card: SearchFilterCardInterface } = defineProps<{
     card: SearchFilterCardInterface;
 }>();
 
-const emit = defineEmits<{
-    (
-        e: 'optionSelected',
-        cardId: number,
-        option: SearchFilterOptionInterface,
-    ): void;
-}>();
+type EmitEvents = {
+    optionSelected: [cardId: number, option: SearchFilterOptionInterface];
+};
+
+type EmitFunction = {
+    <T extends keyof EmitEvents>(event: T, ...args: EmitEvents[T]): void;
+};
+
+const emit: EmitFunction = defineEmits<EmitEvents>();
 
 const isOpen: Ref<boolean> = ref<boolean>(false);
 const selectedOption: Ref<SearchFilterOptionInterface | null> =
