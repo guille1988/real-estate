@@ -7,7 +7,7 @@
                 </h1>
                 <p class="max-w-2xl text-gray-400">
                     Ready to take the first step toward your dream property?
-                    Fill out the form below, and our real estate wizards will
+                    Fill out the form below, and our Real Estate wizards will
                     work their magic to find your perfect match. Don't wait,
                     let's embark on this exciting journey together.
                 </p>

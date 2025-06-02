@@ -37,7 +37,7 @@
             </div>
 
             <div class="flex items-center justify-between">
-                <p class="text-xs text-gray-400 md:text-sm">01 of 60</p>
+                <p class="text-xs text-gray-400 md:text-sm">03 of 60</p>
                 <div class="flex gap-2">
                     <button
                         class="rounded-full border border-gray-800 p-1.5 transition-colors duration-300 hover:bg-gray-800 md:p-2"

@@ -168,8 +168,17 @@ export interface FeaturedPropertyCardInterface {
     price: string;
 }
 
-export interface SearchCardInterface {
+export interface SearchFilterCardInterface {
     id: number;
     icon: string;
     label: string;
+}
+
+export interface SearchCardInterface {
+    id: number;
+    image: string;
+    caption: string;
+    title: string;
+    description: string;
+    price: string;
 }

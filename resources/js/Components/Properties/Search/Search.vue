@@ -32,7 +32,37 @@
             <div
                 class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5"
             >
-                <SearchCard v-for="card in cards" :key="card.id" :card="card" />
+                <SearchFilterCard
+                    v-for="filterCard in filterCards"
+                    :key="filterCard.id"
+                    :card="filterCard"
+                />
+            </div>
+
+            <div
+                class="grid grid-cols-1 gap-6 pt-16 md:grid-cols-2 lg:grid-cols-3"
+            >
+                <SearchCard
+                    v-for="searchCard in searchCards"
+                    :key="searchCard.id"
+                    :card="searchCard"
+                />
+            </div>
+
+            <div class="mt-8 flex items-center justify-between">
+                <span class="text-sm text-gray-400">03 of 60</span>
+                <div class="flex gap-2">
+                    <button
+                        class="rounded-lg border border-gray-800 p-2 text-gray-400 hover:bg-gray-800"
+                    >
+                        <PreviousSliderArrowIcon />
+                    </button>
+                    <button
+                        class="rounded-lg border border-gray-800 p-2 text-gray-400 hover:bg-gray-800"
+                    >
+                        <NextSliderArrowIcon />
+                    </button>
+                </div>
             </div>
         </div>
     </section>
@@ -40,9 +70,15 @@
 
 <script setup lang="ts">
 import SearchCard from '@/Components/Properties/Search/SearchCard.vue';
-import { SearchCardInterface } from '@/Types/App/Interfaces';
+import SearchFilterCard from '@/Components/Properties/Search/SearchFilterCard.vue';
+import NextSliderArrowIcon from '@/Components/Shared/SliderArrows/NextSliderArrowIcon.vue';
+import PreviousSliderArrowIcon from '@/Components/Shared/SliderArrows/PreviousSliderArrowIcon.vue';
+import {
+    SearchCardInterface,
+    SearchFilterCardInterface,
+} from '@/Types/App/Interfaces';
 
-const cards: SearchCardInterface[] = [
+const filterCards: SearchFilterCardInterface[] = [
     {
         id: 1,
         icon: 'LocationIcon',
@@ -67,6 +103,36 @@ const cards: SearchCardInterface[] = [
         id: 4,
         icon: 'CalendarIcon',
         label: 'Build Year',
+    },
+];
+
+const searchCards: SearchCardInterface[] = [
+    {
+        id: 1,
+        image: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmVhdXRpZnVsJTIwaG91c2V8ZW58MHx8MHx8fDA%3D',
+        caption: 'Coastal Escapes - Where Waves Beckon',
+        title: 'Seaside Serenity Villa',
+        description:
+            'Wake up to the soothing melody of waves. This beachfront villa offers...',
+        price: '$1.250.000',
+    },
+    {
+        id: 2,
+        image: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmVhdXRpZnVsJTIwaG91c2V8ZW58MHx8MHx8fDA%3D',
+        caption: 'Urban Oasis - Life in the Heart of the City',
+        title: 'Metropolitan Haven',
+        description:
+            'Immerse yourself in the energy of the city. This modern apartment in the heart...',
+        price: '$650.000',
+    },
+    {
+        id: 3,
+        image: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmVhdXRpZnVsJTIwaG91c2V8ZW58MHx8MHx8fDA%3D',
+        caption: "Countryside Charm - Escape to Nature's Embrace",
+        title: 'Rustic Retreat Cottage',
+        description:
+            'Find tranquility in the countryside. This charming cottage is nestled amidst rolling hills...',
+        price: '$350.000',
     },
 ];
 </script>
