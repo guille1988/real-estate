@@ -25,7 +25,7 @@ export enum SocialLinkIconEnum {
     YOUTUBE = 'youtube',
 }
 
-export enum FeaturedPropertyEnum {
+export enum PropertyCategoryEnum {
     HOUSE = 'house',
     LOFT = 'loft',
     VILLA = 'villa',

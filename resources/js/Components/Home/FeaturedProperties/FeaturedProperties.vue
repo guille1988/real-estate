@@ -64,7 +64,7 @@ import NextSliderArrowIcon from '@/Components/Shared/SliderArrows/NextSliderArro
 import PreviousSliderArrowIcon from '@/Components/Shared/SliderArrows/PreviousSliderArrowIcon.vue';
 import ThreeStars from '@/Components/Shared/ThreeStars/ThreeStars.vue';
 import { index } from '@/Routes/actions/App/Http/Controllers/PropertyController';
-import { FeaturedPropertyEnum } from '@/Types/App/Enums';
+import { PropertyCategoryEnum } from '@/Types/App/Enums';
 import { FeaturedPropertyCardInterface } from '@/Types/App/Interfaces';
 import { router } from '@inertiajs/vue3';
 
@@ -73,7 +73,7 @@ const cards: FeaturedPropertyCardInterface[] = [
         id: 1,
         bedroom_count: 4,
         bathroom_count: 3,
-        category: FeaturedPropertyEnum.VILLA,
+        category: PropertyCategoryEnum.VILLA,
         image: Villa,
         caption: 'Coastal Escapes - Where Waves Beckon',
         title: 'Seaside Serenity Villa',
@@ -85,7 +85,7 @@ const cards: FeaturedPropertyCardInterface[] = [
         id: 2,
         bedroom_count: 4,
         bathroom_count: 3,
-        category: FeaturedPropertyEnum.LOFT,
+        category: PropertyCategoryEnum.LOFT,
         image: Loft,
         caption: 'Urban Oasis - Life in the Heart of the City',
         title: 'Metropolitan Haven',
@@ -97,7 +97,7 @@ const cards: FeaturedPropertyCardInterface[] = [
         id: 3,
         bedroom_count: 4,
         bathroom_count: 3,
-        category: FeaturedPropertyEnum.HOUSE,
+        category: PropertyCategoryEnum.HOUSE,
         image: House,
         caption: "Countryside Charm - Escape to Nature's Embrace",
         title: 'Rustic Retreat Cottage',

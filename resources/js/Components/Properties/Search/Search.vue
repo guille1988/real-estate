@@ -37,6 +37,7 @@
                     v-for="filterCard in filterCards"
                     :key="filterCard.id"
                     :card="filterCard"
+                    @option-selected="handleOptionSelected"
                 />
             </div>
 
@@ -81,33 +82,80 @@ import PreviousSliderArrowIcon from '@/Components/Shared/SliderArrows/PreviousSl
 import {
     SearchCardInterface,
     SearchFilterCardInterface,
+    SearchFilterOptionInterface,
 } from '@/Types/App/Interfaces';
+import { ref } from 'vue';
+
+const selectedFilters = ref<Record<number, SearchFilterOptionInterface>>({});
+
+const handleOptionSelected = (
+    cardId: number,
+    option: SearchFilterOptionInterface,
+) => {
+    selectedFilters.value[cardId] = option;
+    console.log('Selected filters:', selectedFilters.value);
+};
 
 const filterCards: SearchFilterCardInterface[] = [
     {
         id: 1,
         icon: 'LocationIcon',
         label: 'Location',
+        options: [
+            { id: 1, label: 'New York', value: 'new_york' },
+            { id: 2, label: 'Los Angeles', value: 'los_angeles' },
+            { id: 3, label: 'Chicago', value: 'chicago' },
+            { id: 4, label: 'Miami', value: 'miami' },
+            { id: 5, label: 'San Francisco', value: 'san_francisco' },
+        ],
     },
     {
         id: 2,
         icon: 'HouseIcon',
-        label: 'Property Type',
+        label: 'Property Category',
+        options: [
+            { id: 1, label: 'House', value: 'house' },
+            { id: 2, label: 'Apartment', value: 'apartment' },
+            { id: 3, label: 'Villa', value: 'villa' },
+            { id: 4, label: 'Condo', value: 'condo' },
+            { id: 5, label: 'Loft', value: 'loft' },
+        ],
     },
     {
         id: 3,
         icon: 'MoneyIcon',
         label: 'Pricing Range',
+        options: [
+            { id: 1, label: '$100,000 - $300,000', value: '100000-300000' },
+            { id: 2, label: '$300,000 - $500,000', value: '300000-500000' },
+            { id: 3, label: '$500,000 - $800,000', value: '500000-800000' },
+            { id: 4, label: '$800,000 - $1,200,000', value: '800000-1200000' },
+            { id: 5, label: '$1,200,000+', value: '1200000-plus' },
+        ],
     },
     {
         id: 4,
         icon: 'ChartIcon',
         label: 'Property Size',
+        options: [
+            { id: 1, label: '500 - 1,000 sq ft', value: '500-1000' },
+            { id: 2, label: '1,000 - 1,500 sq ft', value: '1000-1500' },
+            { id: 3, label: '1,500 - 2,000 sq ft', value: '1500-2000' },
+            { id: 4, label: '2,000 - 3,000 sq ft', value: '2000-3000' },
+            { id: 5, label: '3,000+ sq ft', value: '3000-plus' },
+        ],
     },
     {
-        id: 4,
+        id: 5,
         icon: 'CalendarIcon',
         label: 'Build Year',
+        options: [
+            { id: 1, label: 'Before 1990', value: 'before-1990' },
+            { id: 2, label: '1990 - 2000', value: '1990-2000' },
+            { id: 3, label: '2000 - 2010', value: '2000-2010' },
+            { id: 4, label: '2010 - 2020', value: '2010-2020' },
+            { id: 5, label: '2020 and newer', value: '2020-plus' },
+        ],
     },
 ];
 
