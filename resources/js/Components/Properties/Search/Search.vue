@@ -1,11 +1,11 @@
 <template>
-    <section class="bg-black px-4 py-20">
+    <section class="bg-black px-4 py-8">
         <div class="container mx-auto">
-            <div class="mb-12 text-center">
-                <h1 class="mb-4 text-4xl font-bold text-white md:text-5xl">
+            <div class="mb-12 pl-36 text-left">
+                <h1 class="mb-4 text-4xl font-bold text-white">
                     Find Your Dream Property
                 </h1>
-                <p class="mx-auto max-w-3xl text-gray-400">
+                <p class="ml-0 max-w-6xl text-gray-400">
                     Welcome to Real estate, where your dream property awaits in
                     every corner of our beautiful world. Explore our curated
                     selection of properties, each offering a unique story and a
@@ -14,17 +14,18 @@
                 </p>
             </div>
 
-            <div class="mx-auto mb-6 max-w-3xl">
+            <div class="mx-auto mb-6 max-w-4xl py-8">
                 <div class="relative">
                     <input
                         type="text"
                         placeholder="Search For A Property"
-                        class="w-full rounded-lg bg-[#111] px-4 py-3 pr-32 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-600"
+                        class="w-full rounded-lg bg-[#111] px-4 py-4 pr-40 text-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-600"
                     />
                     <button
-                        class="absolute right-2 top-1/2 -translate-y-1/2 rounded-lg bg-purple-600 px-6 py-2 text-sm font-medium text-white hover:bg-purple-700"
+                        class="absolute right-2 top-1/2 flex -translate-y-1/2 items-center gap-2 rounded-lg bg-purple-600 px-6 py-3 text-sm font-medium text-white hover:bg-purple-700"
                     >
-                        Find Property
+                        <SearchIcon />
+                        <span>Find Property</span>
                     </button>
                 </div>
             </div>
@@ -69,6 +70,10 @@
 </template>
 
 <script setup lang="ts">
+import House from '@/Assets/Images/house.jpg';
+import Loft from '@/Assets/Images/loft.jpg';
+import Villa from '@/Assets/Images/villa.jpg';
+import SearchIcon from '@/Components/Properties/Search/Icons/SearchIcon.vue';
 import SearchCard from '@/Components/Properties/Search/SearchCard.vue';
 import SearchFilterCard from '@/Components/Properties/Search/SearchFilterCard.vue';
 import NextSliderArrowIcon from '@/Components/Shared/SliderArrows/NextSliderArrowIcon.vue';
@@ -109,7 +114,7 @@ const filterCards: SearchFilterCardInterface[] = [
 const searchCards: SearchCardInterface[] = [
     {
         id: 1,
-        image: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmVhdXRpZnVsJTIwaG91c2V8ZW58MHx8MHx8fDA%3D',
+        image: Villa,
         caption: 'Coastal Escapes - Where Waves Beckon',
         title: 'Seaside Serenity Villa',
         description:
@@ -118,16 +123,16 @@ const searchCards: SearchCardInterface[] = [
     },
     {
         id: 2,
-        image: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmVhdXRpZnVsJTIwaG91c2V8ZW58MHx8MHx8fDA%3D',
+        image: Loft,
         caption: 'Urban Oasis - Life in the Heart of the City',
         title: 'Metropolitan Haven',
         description:
-            'Immerse yourself in the energy of the city. This modern apartment in the heart...',
+            'Immerse yourself in the energy of the city. This modern loft in the heart...',
         price: '$650.000',
     },
     {
         id: 3,
-        image: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmVhdXRpZnVsJTIwaG91c2V8ZW58MHx8MHx8fDA%3D',
+        image: House,
         caption: "Countryside Charm - Escape to Nature's Embrace",
         title: 'Rustic Retreat Cottage',
         description:
