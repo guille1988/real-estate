@@ -90,8 +90,10 @@ import { ref } from 'vue';
 const capitalizeFirstLetter = (word: string): string =>
     word.charAt(0).toUpperCase() + word.slice(1);
 
-const propertyTypes = Object.values(PropertyTypeEnum).map(
-    (value: PropertyTypeEnum, index: number) => ({
+const propertyTypes: SearchFilterOptionInterface[] = Object.values(
+    PropertyTypeEnum,
+).map(
+    (value: PropertyTypeEnum, index: number): SearchFilterOptionInterface => ({
         id: index + 1,
         label: capitalizeFirstLetter(value),
         value: value,
@@ -103,7 +105,7 @@ const selectedFilters = ref<Record<number, SearchFilterOptionInterface>>({});
 const handleOptionSelected = (
     cardId: number,
     option: SearchFilterOptionInterface,
-) => {
+): void => {
     selectedFilters.value[cardId] = option;
     console.log('Selected filters:', selectedFilters.value);
 };

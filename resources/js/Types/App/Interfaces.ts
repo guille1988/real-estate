@@ -172,7 +172,7 @@ export interface SearchFilterCardInterface {
     id: number;
     icon: string;
     label: string;
-    options?: SearchFilterOptionInterface[] | null;
+    options: SearchFilterOptionInterface[];
 }
 
 export interface SearchFilterOptionInterface {
