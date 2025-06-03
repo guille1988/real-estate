@@ -107,7 +107,6 @@ const handleOptionSelected = (
     option: SearchFilterOptionInterface,
 ): void => {
     selectedFilters.value[cardId] = option;
-    console.log('Selected filters:', selectedFilters.value);
 };
 
 const filterCards: SearchFilterCardInterface[] = [
