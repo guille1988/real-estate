@@ -1,9 +1,9 @@
 <template>
     <Layout>
-        <ElevateExperience></ElevateExperience>
-        <UnlockPropertyValue></UnlockPropertyValue>
-        <EffortlessPropertyManagement></EffortlessPropertyManagement>
-        <SmartInvestments></SmartInvestments>
+        <ElevateExperience />
+        <UnlockPropertyValue />
+        <EffortlessPropertyManagement />
+        <SmartInvestments />
     </Layout>
 </template>
 

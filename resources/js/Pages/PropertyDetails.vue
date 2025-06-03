@@ -1,9 +1,9 @@
 <template>
     <Layout>
-        <Gallery></Gallery>
-        <Inquire></Inquire>
-        <Pricing></Pricing>
-        <Faq></Faq>
+        <Gallery />
+        <Inquire />
+        <Pricing />
+        <Faq />
     </Layout>
 </template>
 <script setup lang="ts">

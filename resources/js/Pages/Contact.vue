@@ -1,9 +1,9 @@
 <template>
     <Layout>
-        <GetInTouch></GetInTouch>
-        <LetsConnect></LetsConnect>
-        <OfficeLocations></OfficeLocations>
-        <Explore></Explore>
+        <GetInTouch />
+        <LetsConnect />
+        <OfficeLocations />
+        <Explore />
     </Layout>
 </template>
 

@@ -1,8 +1,8 @@
 <template>
     <Layout>
-        <HeroSection></HeroSection>
-        <FeaturedProperties></FeaturedProperties>
-        <ClientTestimonials></ClientTestimonials>
+        <HeroSection />
+        <FeaturedProperties />
+        <ClientTestimonials />
         <Faq></Faq>
     </Layout>
 </template>

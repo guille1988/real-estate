@@ -1,11 +1,11 @@
 <template>
     <Layout>
-        <Journey></Journey>
-        <Values></Values>
-        <Achievements></Achievements>
-        <NavigatingExperience></NavigatingExperience>
-        <MeetTeam></MeetTeam>
-        <Clients></Clients>
+        <Journey />
+        <Values />
+        <Achievements />
+        <NavigatingExperience />
+        <MeetTeam />
+        <Clients />
     </Layout>
 </template>
 
