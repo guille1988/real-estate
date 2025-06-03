@@ -23,7 +23,7 @@
         </button>
 
         <div
-            v-if="isOpen && card.options && card.options.length > 0"
+            v-if="isOpenDropdown()"
             class="absolute left-0 right-0 z-10 mt-1 max-h-60 overflow-auto rounded-lg border border-gray-800 bg-[#111] shadow-lg"
         >
             <ul class="py-1">
@@ -34,12 +34,12 @@
                     class="flex cursor-pointer items-center px-4 py-2 text-gray-400 transition-colors duration-150 hover:bg-[#1a1a1a] hover:text-purple-500"
                     :class="{
                         'bg-[#1a1a1a] text-purple-500':
-                            selectedOption && selectedOption.id === option.id,
+                            isOptionSelected(option),
                     }"
                 >
                     <span
                         class="mr-2 h-1 w-1 rounded-full bg-purple-500"
-                        v-if="selectedOption && selectedOption.id === option.id"
+                        v-if="isOptionSelected(option)"
                     ></span>
                     {{ option.label }}
                 </li>
@@ -54,6 +54,7 @@ import {
     SearchFilterCardInterface,
     SearchFilterOptionInterface,
 } from '@/Types/App/Interfaces';
+import { EmitEvents, EmitFunction } from '@/Types/App/Types';
 import {
     type Component,
     type Ref,
@@ -66,14 +67,6 @@ import {
 const { card }: { card: SearchFilterCardInterface } = defineProps<{
     card: SearchFilterCardInterface;
 }>();
-
-type EmitEvents = {
-    optionSelected: [cardId: number, option: SearchFilterOptionInterface];
-};
-
-type EmitFunction = {
-    <T extends keyof EmitEvents>(event: T, ...args: EmitEvents[T]): void;
-};
 
 const emit: EmitFunction = defineEmits<EmitEvents>();
 
@@ -110,6 +103,16 @@ const handleClickOutside = (event: MouseEvent): void => {
     if (shouldCloseDropdown(event)) {
         isOpen.value = false;
     }
+};
+
+const isOpenDropdown = (): boolean => {
+    return isOpen.value && card.options && card.options.length > 0;
+};
+
+const isOptionSelected = (
+    option: SearchFilterOptionInterface,
+): boolean | null => {
+    return selectedOption.value && selectedOption.value.id === option.id;
 };
 
 onMounted((): void => {

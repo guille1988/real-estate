@@ -29,16 +29,11 @@ import TwitterPath from '@/Components/Layout/Footer/FooterSocialLink/Paths/Twitt
 import YoutubePath from '@/Components/Layout/Footer/FooterSocialLink/Paths/YoutubePath.vue';
 import { SocialLinkIconEnum } from '@/Types/App/Enums';
 import { SocialLinkInterface } from '@/Types/App/Interfaces';
+import { PathComponent } from '@/Types/App/Types';
 
 const { socialLink }: { socialLink: SocialLinkInterface } = defineProps<{
     socialLink: SocialLinkInterface;
 }>();
-
-type PathComponent =
-    | typeof FacebookPath
-    | typeof LinkedinPath
-    | typeof TwitterPath
-    | typeof YoutubePath;
 
 const pathComponents: Record<SocialLinkIconEnum, PathComponent> = {
     [SocialLinkIconEnum.FACEBOOK]: FacebookPath,
