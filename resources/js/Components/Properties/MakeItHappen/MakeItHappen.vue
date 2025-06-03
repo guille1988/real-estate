@@ -1,6 +1,6 @@
 <template>
     <div class="bg-black text-white">
-        <div class="max-w-8xl mx-20">
+        <div class="container mx-auto px-4">
             <div class="mb-10">
                 <h1 class="mb-4 text-3xl font-bold md:text-4xl">
                     Let's Make it Happen
