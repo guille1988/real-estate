@@ -5,14 +5,21 @@
             class="flex w-full items-center justify-between rounded-lg bg-[#111] px-4 py-3 text-left hover:bg-[#1a1a1a]"
             :class="{ 'bg-[#1a1a1a]': isOpen }"
         >
-            <div class="flex items-center gap-2">
-                <component :is="icon" />
-                <span class="text-gray-400">{{ card.label }}</span>
-                <span v-if="selectedOption" class="ml-2 text-purple-500"
+            <div class="flex min-w-0 flex-grow items-center gap-2">
+                <component :is="icon" class="flex-shrink-0" />
+                <span class="flex-shrink-0 whitespace-nowrap text-gray-400">{{
+                    card.label
+                }}</span>
+                <span
+                    v-if="selectedOption"
+                    class="ml-2 min-w-0 max-w-full flex-grow overflow-hidden text-ellipsis whitespace-nowrap pr-2 text-purple-500"
                     >: {{ selectedOption.label }}</span
                 >
             </div>
-            <DropdownArrowIcon :class="{ 'rotate-180': isOpen }" />
+            <DropdownArrowIcon
+                :class="{ 'rotate-180': isOpen }"
+                class="flex-shrink-0"
+            />
         </button>
 
         <div
