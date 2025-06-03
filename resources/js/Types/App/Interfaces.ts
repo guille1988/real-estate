@@ -191,15 +191,14 @@ export interface SearchCardInterface {
 }
 
 export interface MakeItHappenFormInterface {
-    [key: string]: string | number | boolean;
     first_name: string;
     last_name: string;
     email: string;
     phone: string;
     location: string;
-    property_type: string;
-    bathrooms: string | number;
-    bedrooms: string | number;
+    property_type: PropertyTypeEnum | null;
+    bathroom_count: number | null;
+    bedroom_count: number | null;
     budget: string;
     contact_method: string;
     message: string;
@@ -225,7 +224,7 @@ export interface MakeItHappenTextInputInterface {
 export interface MakeItHappenDropdownInputInterface {
     id: string;
     label: string;
-    model_value: string | number;
+    model_value: string | number | null;
     placeholder?: string;
     options: Array<
         { value?: string | number; label?: string } | string | number

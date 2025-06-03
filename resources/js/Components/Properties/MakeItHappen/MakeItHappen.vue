@@ -70,14 +70,14 @@
                         <DropdownInput
                             id="bathrooms"
                             label="No. of Bathrooms"
-                            v-model:model_value="formData.bathrooms"
+                            v-model:model_value="formData.bathroom_count"
                             placeholder="Select no. of bathrooms"
                             :options="options.bathrooms"
                         />
                         <DropdownInput
                             id="bedrooms"
                             label="No. of Bedrooms"
-                            v-model:model_value="formData.bedrooms"
+                            v-model:model_value="formData.bedroom_count"
                             placeholder="Select no. of bedrooms"
                             :options="options.bedrooms"
                         />
@@ -148,11 +148,11 @@ const formData = ref<MakeItHappenFormInterface>({
     email: '',
     phone: '',
     location: '',
-    property_type: '',
-    bathrooms: '',
-    bedrooms: '',
+    property_type: null,
+    bathroom_count: null,
+    bedroom_count: null,
     budget: '',
-    contact_method: 'phone',
+    contact_method: '',
     message: '',
     terms_agreed: false,
 });
