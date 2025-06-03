@@ -3,10 +3,10 @@
         <label :for="id" class="mb-2 block text-sm">{{ label }}</label>
         <textarea
             :id="id"
-            :value="modelValue"
+            :value="model_value"
             @input="
                 $emit(
-                    'update:modelValue',
+                    'update:model_value',
                     ($event.target as HTMLTextAreaElement).value,
                 )
             "
@@ -18,28 +18,9 @@
 </template>
 
 <script setup lang="ts">
-defineProps({
-    id: {
-        type: String,
-        required: true,
-    },
-    label: {
-        type: String,
-        required: true,
-    },
-    modelValue: {
-        type: String,
-        required: true,
-    },
-    rows: {
-        type: Number,
-        default: 5,
-    },
-    placeholder: {
-        type: String,
-        default: '',
-    },
-});
+import { MakeItHappenTextareaInputInterface } from '@/Types/App/Interfaces';
 
-defineEmits(['update:modelValue']);
+defineProps<MakeItHappenTextareaInputInterface>();
+
+defineEmits(['update:model_value']);
 </script>

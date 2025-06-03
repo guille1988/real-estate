@@ -3,10 +3,10 @@
         <label :for="id" class="mb-2 block text-sm">{{ label }}</label>
         <input
             :id="id"
-            :value="modelValue"
+            :value="model_value"
             @input="
                 $emit(
-                    'update:modelValue',
+                    'update:model_value',
                     ($event.target as HTMLInputElement).value,
                 )
             "
@@ -18,28 +18,9 @@
 </template>
 
 <script setup lang="ts">
-defineProps({
-    id: {
-        type: String,
-        required: true,
-    },
-    label: {
-        type: String,
-        required: true,
-    },
-    modelValue: {
-        type: String,
-        required: true,
-    },
-    type: {
-        type: String,
-        default: 'text',
-    },
-    placeholder: {
-        type: String,
-        default: '',
-    },
-});
+import { MakeItHappenTextInputInterface } from '@/Types/App/Interfaces';
 
-defineEmits(['update:modelValue']);
+defineProps<MakeItHappenTextInputInterface>();
+
+defineEmits(['update:model_value']);
 </script>

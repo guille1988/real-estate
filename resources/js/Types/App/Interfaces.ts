@@ -189,3 +189,60 @@ export interface SearchCardInterface {
     description: string;
     price: string;
 }
+
+export interface MakeItHappenFormInterface {
+    [key: string]: string | number | boolean;
+    first_name: string;
+    last_name: string;
+    email: string;
+    phone: string;
+    location: string;
+    property_type: string;
+    bathrooms: string | number;
+    bedrooms: string | number;
+    budget: string;
+    contact_method: string;
+    message: string;
+    terms_agreed: boolean;
+}
+
+export interface MakeItHappenOptionsInterface {
+    locations: string[];
+    property_types: string[];
+    budget_ranges: string[];
+    bathrooms: number[];
+    bedrooms: number[];
+}
+
+export interface MakeItHappenTextInputInterface {
+    id: string;
+    label: string;
+    model_value: string;
+    type?: string;
+    placeholder?: string;
+}
+
+export interface MakeItHappenDropdownInputInterface {
+    id: string;
+    label: string;
+    model_value: string | number;
+    placeholder?: string;
+    options: Array<
+        { value?: string | number; label?: string } | string | number
+    >;
+}
+
+export interface MakeItHappenTextareaInputInterface {
+    id: string;
+    label: string;
+    model_value: string;
+    rows?: number;
+    placeholder?: string;
+}
+
+export interface MakeItHappenCheckboxInputInterface {
+    id: string;
+    label: string;
+    model_value: boolean;
+    text_class?: string;
+}

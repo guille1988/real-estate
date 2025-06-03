@@ -4,10 +4,10 @@
         <div class="relative">
             <select
                 :id="id"
-                :value="modelValue"
+                :value="model_value"
                 @input="
                     $emit(
-                        'update:modelValue',
+                        'update:model_value',
                         ($event.target as HTMLSelectElement).value,
                     )
                 "
@@ -57,32 +57,9 @@
 </template>
 
 <script setup lang="ts">
-import { PropType } from 'vue';
+import { MakeItHappenDropdownInputInterface } from '@/Types/App/Interfaces';
 
-defineProps({
-    id: {
-        type: String,
-        required: true,
-    },
-    label: {
-        type: String,
-        required: true,
-    },
-    modelValue: {
-        type: [String, Number],
-        required: true,
-    },
-    placeholder: {
-        type: String,
-        default: 'Select an option',
-    },
-    options: {
-        type: Array as PropType<
-            Array<{ value?: string | number; label?: string } | string | number>
-        >,
-        required: true,
-    },
-});
+defineProps<MakeItHappenDropdownInputInterface>();
 
-defineEmits(['update:modelValue']);
+defineEmits(['update:model_value']);
 </script>

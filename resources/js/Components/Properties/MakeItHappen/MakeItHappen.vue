@@ -23,28 +23,28 @@
                         <TextInput
                             id="firstName"
                             label="First Name"
-                            v-model="formData.firstName"
+                            v-model:model_value="formData.first_name"
                             type="text"
                             placeholder="Enter First Name"
                         />
                         <TextInput
                             id="lastName"
                             label="Last Name"
-                            v-model="formData.lastName"
+                            v-model:model_value="formData.last_name"
                             type="text"
                             placeholder="Enter Last Name"
                         />
                         <TextInput
                             id="email"
                             label="Email"
-                            v-model="formData.email"
+                            v-model:model_value="formData.email"
                             type="email"
                             placeholder="Enter your Email"
                         />
                         <TextInput
                             id="phone"
                             label="Phone"
-                            v-model="formData.phone"
+                            v-model:model_value="formData.phone"
                             type="tel"
                             placeholder="Enter Phone Number"
                         />
@@ -56,30 +56,30 @@
                         <DropdownInput
                             id="location"
                             label="Preferred Location"
-                            v-model="formData.location"
+                            v-model:model_value="formData.location"
                             placeholder="Select Location"
-                            :options="locations"
+                            :options="options.locations"
                         />
                         <DropdownInput
                             id="propertyType"
                             label="Property Type"
-                            v-model="formData.propertyType"
+                            v-model:model_value="formData.property_type"
                             placeholder="Select Property Type"
-                            :options="propertyTypes"
+                            :options="options.property_types"
                         />
                         <DropdownInput
                             id="bathrooms"
                             label="No. of Bathrooms"
-                            v-model="formData.bathrooms"
+                            v-model:model_value="formData.bathrooms"
                             placeholder="Select no. of bathrooms"
-                            :options="[1, 2, 3, 4, 5]"
+                            :options="options.bathrooms"
                         />
                         <DropdownInput
                             id="bedrooms"
                             label="No. of Bedrooms"
-                            v-model="formData.bedrooms"
+                            v-model:model_value="formData.bedrooms"
                             placeholder="Select no. of bedrooms"
-                            :options="[1, 2, 3, 4, 5]"
+                            :options="options.bedrooms"
                         />
                     </div>
 
@@ -87,9 +87,9 @@
                         <DropdownInput
                             id="budget"
                             label="Budget"
-                            v-model="formData.budget"
+                            v-model:model_value="formData.budget"
                             placeholder="Select Budget"
-                            :options="budgetRanges"
+                            :options="options.budget_ranges"
                         />
                     </div>
 
@@ -97,7 +97,7 @@
                         <TextareaInput
                             id="message"
                             label="Message"
-                            v-model="formData.message"
+                            v-model:model_value="formData.message"
                             :rows="5"
                             placeholder="Enter your Message here."
                         />
@@ -110,16 +110,16 @@
                             <CheckboxInput
                                 id="termsAgreed"
                                 label="I agree with Terms of Use and Privacy Policy"
-                                v-model="formData.termsAgreed"
+                                v-model:model_value="formData.terms_agreed"
                             />
                         </div>
                         <button
                             type="submit"
                             class="rounded bg-purple-600 px-6 py-3 text-white transition duration-300 hover:bg-purple-700"
-                            :disabled="!formData.termsAgreed"
+                            :disabled="!formData.terms_agreed"
                             :class="{
                                 'cursor-not-allowed opacity-50':
-                                    !formData.termsAgreed,
+                                    !formData.terms_agreed,
                             }"
                         >
                             Send Your Message
@@ -132,60 +132,68 @@
 </template>
 
 <script setup lang="ts">
+import {
+    MakeItHappenFormInterface,
+    MakeItHappenOptionsInterface,
+} from '@/Types/App/Interfaces';
 import { ref } from 'vue';
 import CheckboxInput from './Inputs/CheckboxInput.vue';
 import DropdownInput from './Inputs/DropdownInput.vue';
 import TextareaInput from './Inputs/TextareaInput.vue';
 import TextInput from './Inputs/TextInput.vue';
 
-const formData = ref({
-    firstName: '',
-    lastName: '',
+const formData = ref<MakeItHappenFormInterface>({
+    first_name: '',
+    last_name: '',
     email: '',
     phone: '',
     location: '',
-    propertyType: '',
+    property_type: '',
     bathrooms: '',
     bedrooms: '',
     budget: '',
-    contactMethod: 'phone',
+    contact_method: 'phone',
     message: '',
-    termsAgreed: false,
+    terms_agreed: false,
 });
 
-const locations = [
-    'New York',
-    'Los Angeles',
-    'Chicago',
-    'Miami',
-    'San Francisco',
-    'Seattle',
-    'Austin',
-    'Denver',
-];
-
-const propertyTypes = [
-    'Apartment',
-    'House',
-    'Condo',
-    'Townhouse',
-    'Villa',
-    'Land',
-];
-
-const budgetRanges = [
-    'Under $100,000',
-    '$100,000 - $250,000',
-    '$250,000 - $500,000',
-    '$500,000 - $750,000',
-    '$750,000 - $1,000,000',
-    'Over $1,000,000',
-];
+const options = ref<MakeItHappenOptionsInterface>({
+    locations: [
+        'New York',
+        'Los Angeles',
+        'Chicago',
+        'Miami',
+        'San Francisco',
+        'Seattle',
+        'Austin',
+        'Denver',
+    ],
+    property_types: [
+        'Apartment',
+        'House',
+        'Condo',
+        'Townhouse',
+        'Villa',
+        'Land',
+    ],
+    budget_ranges: [
+        'Under $100,000',
+        '$100,000 - $250,000',
+        '$250,000 - $500,000',
+        '$500,000 - $750,000',
+        '$750,000 - $1,000,000',
+        'Over $1,000,000',
+    ],
+    bathrooms: [1, 2, 3, 4, 5],
+    bedrooms: [1, 2, 3, 4, 5],
+});
 
 const submitForm = (): void => {
-    if (!formData.value.termsAgreed) {
+    if (!formData.value.terms_agreed) {
         alert('Please agree to the Terms of Use and Privacy Policy');
         return;
     }
+
+    console.log(formData.value);
 };
 </script>
