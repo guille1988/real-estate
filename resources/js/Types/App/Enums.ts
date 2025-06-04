@@ -30,3 +30,8 @@ export enum PropertyTypeEnum {
     LOFT = 'loft',
     VILLA = 'villa',
 }
+
+export enum DropdownInputOptionsTypeEnum {
+    ENUM = 'enum',
+    ARRAY = 'array',
+}

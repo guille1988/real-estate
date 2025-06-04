@@ -1,9 +1,10 @@
 import {
+    DropdownInputOptionsTypeEnum,
     LocationTypeEnum,
     PagesEnum,
     PropertyTypeEnum,
     ScreenSizeEnum,
-    SocialLinkIconEnum,
+    SocialLinkIconEnum
 } from '@/Types/App/Enums';
 
 export interface UserInterface {
@@ -217,6 +218,7 @@ export interface MakeItHappenDropdownInputInterface {
     label: string;
     model_value: string | number | null;
     placeholder: string;
+    options_type: DropdownInputOptionsTypeEnum;
     options: Array<
         { value?: string | number; label?: string } | string | number
     >;

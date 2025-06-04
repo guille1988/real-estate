@@ -58,6 +58,7 @@
                             label="Preferred Location"
                             v-model:model_value="formData.location"
                             placeholder="Select Location"
+                            :options_type="DropdownInputOptionsTypeEnum.ARRAY"
                             :options="locations"
                         />
                         <DropdownInput
@@ -65,6 +66,7 @@
                             label="Property Type"
                             v-model:model_value="formData.property_type"
                             placeholder="Select Property Type"
+                            :options_type="DropdownInputOptionsTypeEnum.ENUM"
                             :options="propertyTypes"
                         />
                         <DropdownInput
@@ -72,6 +74,7 @@
                             label="No. of Bathrooms"
                             v-model:model_value="formData.bathroom_count"
                             placeholder="Select no. of bathrooms"
+                            :options_type="DropdownInputOptionsTypeEnum.ARRAY"
                             :options="[1, 2, 3, 4, 5]"
                         />
                         <DropdownInput
@@ -79,6 +82,7 @@
                             label="No. of Bedrooms"
                             v-model:model_value="formData.bedroom_count"
                             placeholder="Select no. of bedrooms"
+                            :options_type="DropdownInputOptionsTypeEnum.ARRAY"
                             :options="[1, 2, 3, 4, 5]"
                         />
                     </div>
@@ -89,6 +93,7 @@
                             label="Budget"
                             v-model:model_value="formData.budget"
                             placeholder="Select Budget"
+                            :options_type="DropdownInputOptionsTypeEnum.ARRAY"
                             :options="budgetRanges"
                         />
                     </div>
@@ -132,7 +137,10 @@
 </template>
 
 <script setup lang="ts">
-import { PropertyTypeEnum } from '@/Types/App/Enums';
+import {
+    DropdownInputOptionsTypeEnum,
+    PropertyTypeEnum,
+} from '@/Types/App/Enums';
 import { MakeItHappenFormInterface } from '@/Types/App/Interfaces';
 import { ref } from 'vue';
 import CheckboxInput from './Inputs/CheckboxInput.vue';
