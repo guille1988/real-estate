@@ -54,7 +54,10 @@ import {
     SearchFilterCardInterface,
     SearchFilterOptionInterface,
 } from '@/Types/App/Interfaces';
-import { EmitEvents, EmitFunction } from '@/Types/App/Types';
+import {
+    EmitSearchFilterEvents,
+    EmitSearchFilterFunction,
+} from '@/Types/App/Types';
 import {
     type Component,
     type Ref,
@@ -68,7 +71,7 @@ const { card }: { card: SearchFilterCardInterface } = defineProps<{
     card: SearchFilterCardInterface;
 }>();
 
-const emit: EmitFunction = defineEmits<EmitEvents>();
+const emit: EmitSearchFilterFunction = defineEmits<EmitSearchFilterEvents>();
 
 const isOpen: Ref<boolean> = ref<boolean>(false);
 const selectedOption: Ref<SearchFilterOptionInterface | null> =

@@ -10,10 +10,17 @@ export type PathComponent =
     | typeof TwitterPath
     | typeof YoutubePath;
 
-export type EmitEvents = {
+export type EmitSearchFilterEvents = {
     optionSelected: [cardId: number, option: SearchFilterOptionInterface];
 };
 
-export type EmitFunction = {
-    <T extends keyof EmitEvents>(event: T, ...args: EmitEvents[T]): void;
+export type EmitSearchFilterFunction = {
+    <T extends keyof EmitSearchFilterEvents>(
+        event: T,
+        ...args: EmitSearchFilterEvents[T]
+    ): void;
+};
+
+export type EmitInputFunction = {
+    (event: 'update:model_value', value: string | number | null): void;
 };

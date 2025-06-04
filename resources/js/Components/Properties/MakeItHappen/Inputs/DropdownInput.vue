@@ -23,12 +23,15 @@
 
 <script setup lang="ts">
 import { MakeItHappenDropdownInputInterface } from '@/Types/App/Interfaces';
+import { EmitInputFunction } from '@/Types/App/Types';
 
-const properties = defineProps<MakeItHappenDropdownInputInterface>();
-const emit = defineEmits(['update:model_value']);
+const dropdown: MakeItHappenDropdownInputInterface =
+    defineProps<MakeItHappenDropdownInputInterface>();
+
+const emit: EmitInputFunction = defineEmits<EmitInputFunction>();
 
 const getDisplayValue = (): string => {
-    return !properties.model_value ? '' : properties.model_value.toString();
+    return !dropdown.model_value ? '' : dropdown.model_value.toString();
 };
 
 const handleInput = (event: Event) => {
