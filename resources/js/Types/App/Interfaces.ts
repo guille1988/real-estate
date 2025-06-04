@@ -200,32 +200,23 @@ export interface MakeItHappenFormInterface {
     bathroom_count: number | null;
     bedroom_count: number | null;
     budget: string;
-    contact_method: string;
     message: string;
     terms_agreed: boolean;
-}
-
-export interface MakeItHappenOptionsInterface {
-    locations: string[];
-    property_types: string[];
-    budget_ranges: string[];
-    bathrooms: number[];
-    bedrooms: number[];
 }
 
 export interface MakeItHappenTextInputInterface {
     id: string;
     label: string;
     model_value: string;
-    type?: string;
-    placeholder?: string;
+    type: string;
+    placeholder: string;
 }
 
 export interface MakeItHappenDropdownInputInterface {
     id: string;
     label: string;
     model_value: string | number | null;
-    placeholder?: string;
+    placeholder: string;
     options: Array<
         { value?: string | number; label?: string } | string | number
     >;
@@ -235,8 +226,8 @@ export interface MakeItHappenTextareaInputInterface {
     id: string;
     label: string;
     model_value: string;
-    rows?: number;
-    placeholder?: string;
+    rows: number;
+    placeholder: string;
 }
 
 export interface MakeItHappenCheckboxInputInterface {

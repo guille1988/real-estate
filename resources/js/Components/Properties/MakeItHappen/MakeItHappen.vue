@@ -21,14 +21,14 @@
                         class="mb-6 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4"
                     >
                         <TextInput
-                            id="firstName"
+                            id="first_name"
                             label="First Name"
                             v-model:model_value="formData.first_name"
                             type="text"
                             placeholder="Enter First Name"
                         />
                         <TextInput
-                            id="lastName"
+                            id="last_name"
                             label="Last Name"
                             v-model:model_value="formData.last_name"
                             type="text"
@@ -58,28 +58,28 @@
                             label="Preferred Location"
                             v-model:model_value="formData.location"
                             placeholder="Select Location"
-                            :options="options.locations"
+                            :options="locations"
                         />
                         <DropdownInput
-                            id="propertyType"
+                            id="property_type"
                             label="Property Type"
                             v-model:model_value="formData.property_type"
                             placeholder="Select Property Type"
-                            :options="options.property_types"
+                            :options="propertyTypes"
                         />
                         <DropdownInput
-                            id="bathrooms"
+                            id="bathroom_count"
                             label="No. of Bathrooms"
                             v-model:model_value="formData.bathroom_count"
                             placeholder="Select no. of bathrooms"
-                            :options="options.bathrooms"
+                            :options="[1, 2, 3, 4, 5]"
                         />
                         <DropdownInput
-                            id="bedrooms"
+                            id="bedroom_count"
                             label="No. of Bedrooms"
                             v-model:model_value="formData.bedroom_count"
                             placeholder="Select no. of bedrooms"
-                            :options="options.bedrooms"
+                            :options="[1, 2, 3, 4, 5]"
                         />
                     </div>
 
@@ -89,7 +89,7 @@
                             label="Budget"
                             v-model:model_value="formData.budget"
                             placeholder="Select Budget"
-                            :options="options.budget_ranges"
+                            :options="budgetRanges"
                         />
                     </div>
 
@@ -108,7 +108,7 @@
                     >
                         <div class="mb-4 md:mb-0">
                             <CheckboxInput
-                                id="termsAgreed"
+                                id="terms_agreed"
                                 label="I agree with Terms of Use and Privacy Policy"
                                 v-model:model_value="formData.terms_agreed"
                             />
@@ -132,10 +132,8 @@
 </template>
 
 <script setup lang="ts">
-import {
-    MakeItHappenFormInterface,
-    MakeItHappenOptionsInterface,
-} from '@/Types/App/Interfaces';
+import { PropertyTypeEnum } from '@/Types/App/Enums';
+import { MakeItHappenFormInterface } from '@/Types/App/Interfaces';
 import { ref } from 'vue';
 import CheckboxInput from './Inputs/CheckboxInput.vue';
 import DropdownInput from './Inputs/DropdownInput.vue';
@@ -152,41 +150,31 @@ const formData = ref<MakeItHappenFormInterface>({
     bathroom_count: null,
     bedroom_count: null,
     budget: '',
-    contact_method: '',
     message: '',
     terms_agreed: false,
 });
 
-const options = ref<MakeItHappenOptionsInterface>({
-    locations: [
-        'New York',
-        'Los Angeles',
-        'Chicago',
-        'Miami',
-        'San Francisco',
-        'Seattle',
-        'Austin',
-        'Denver',
-    ],
-    property_types: [
-        'Apartment',
-        'House',
-        'Condo',
-        'Townhouse',
-        'Villa',
-        'Land',
-    ],
-    budget_ranges: [
-        'Under $100,000',
-        '$100,000 - $250,000',
-        '$250,000 - $500,000',
-        '$500,000 - $750,000',
-        '$750,000 - $1,000,000',
-        'Over $1,000,000',
-    ],
-    bathrooms: [1, 2, 3, 4, 5],
-    bedrooms: [1, 2, 3, 4, 5],
-});
+const locations: string[] = [
+    'New York',
+    'Los Angeles',
+    'Chicago',
+    'Miami',
+    'San Francisco',
+    'Seattle',
+    'Austin',
+    'Denver',
+];
+
+const budgetRanges: string[] = [
+    'Under $100,000',
+    '$100,000 - $250,000',
+    '$250,000 - $500,000',
+    '$500,000 - $750,000',
+    '$750,000 - $1,000,000',
+    'Over $1,000,000',
+];
+
+const propertyTypes: string[] = Object.values(PropertyTypeEnum);
 
 const submitForm = (): void => {
     if (!formData.value.terms_agreed) {

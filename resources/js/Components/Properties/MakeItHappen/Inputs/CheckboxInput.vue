@@ -22,6 +22,5 @@
 import { MakeItHappenCheckboxInputInterface } from '@/Types/App/Interfaces';
 
 defineProps<MakeItHappenCheckboxInputInterface>();
-
 defineEmits(['update:model_value']);
 </script>

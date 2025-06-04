@@ -21,6 +21,5 @@
 import { MakeItHappenTextInputInterface } from '@/Types/App/Interfaces';
 
 defineProps<MakeItHappenTextInputInterface>();
-
 defineEmits(['update:model_value']);
 </script>
