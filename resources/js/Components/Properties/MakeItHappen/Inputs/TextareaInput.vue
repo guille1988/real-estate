@@ -4,12 +4,7 @@
         <textarea
             :id="id"
             :value="model_value"
-            @input="
-                $emit(
-                    'update:model_value',
-                    ($event.target as HTMLTextAreaElement).value,
-                )
-            "
+            @input="handleInput($event)"
             :rows="rows"
             :placeholder="placeholder"
             class="w-full rounded border border-gray-700 bg-black/70 p-3 text-sm focus:border-purple-500 focus:outline-none"
@@ -19,7 +14,13 @@
 
 <script setup lang="ts">
 import { MakeItHappenTextareaInputInterface } from '@/Types/App/Interfaces';
+import { EmitInputFunction } from '@/Types/App/Types';
 
 defineProps<MakeItHappenTextareaInputInterface>();
-defineEmits(['update:model_value']);
+
+const emit: EmitInputFunction = defineEmits<EmitInputFunction>();
+
+const handleInput = (event: Event) => {
+    emit('update:model_value', (event.target as HTMLTextAreaElement).value);
+};
 </script>

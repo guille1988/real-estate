@@ -5,12 +5,7 @@
                 :id="id"
                 type="checkbox"
                 :checked="model_value"
-                @input="
-                    $emit(
-                        'update:model_value',
-                        ($event.target as HTMLInputElement).checked,
-                    )
-                "
+                @input="handleInput($event)"
                 class="mr-2 h-4 w-4 accent-purple-600"
             />
             <span class="text-sm" :class="text_class">{{ label }}</span>
@@ -20,7 +15,13 @@
 
 <script setup lang="ts">
 import { MakeItHappenCheckboxInputInterface } from '@/Types/App/Interfaces';
+import { EmitInputFunction } from '@/Types/App/Types';
 
 defineProps<MakeItHappenCheckboxInputInterface>();
-defineEmits(['update:model_value']);
+
+const emit: EmitInputFunction = defineEmits<EmitInputFunction>();
+
+const handleInput = (event: Event) => {
+    emit('update:model_value', (event.target as HTMLInputElement).checked);
+};
 </script>

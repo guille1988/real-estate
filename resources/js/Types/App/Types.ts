@@ -22,5 +22,5 @@ export type EmitSearchFilterFunction = {
 };
 
 export type EmitInputFunction = {
-    (event: 'update:model_value', value: string | number | null): void;
+    (event: 'update:model_value', value: string | boolean): void;
 };
