@@ -58,7 +58,6 @@
                             label="Preferred Location"
                             v-model:model_value="formData.location"
                             placeholder="Select Location"
-                            :options_type="DropdownInputOptionsTypeEnum.ARRAY"
                             :options="locations"
                         />
                         <DropdownInput
@@ -66,7 +65,6 @@
                             label="Property Type"
                             v-model:model_value="formData.property_type"
                             placeholder="Select Property Type"
-                            :options_type="DropdownInputOptionsTypeEnum.ENUM"
                             :options="propertyTypes"
                         />
                         <DropdownInput
@@ -74,16 +72,14 @@
                             label="No. of Bathrooms"
                             v-model:model_value="formData.bathroom_count"
                             placeholder="Select no. of bathrooms"
-                            :options_type="DropdownInputOptionsTypeEnum.ARRAY"
-                            :options="[1, 2, 3, 4, 5]"
+                            :options="bathroomCountOptions"
                         />
                         <DropdownInput
                             id="bedroom_count"
                             label="No. of Bedrooms"
                             v-model:model_value="formData.bedroom_count"
                             placeholder="Select no. of bedrooms"
-                            :options_type="DropdownInputOptionsTypeEnum.ARRAY"
-                            :options="[1, 2, 3, 4, 5]"
+                            :options="bedroomCountOptions"
                         />
                     </div>
 
@@ -93,7 +89,6 @@
                             label="Budget"
                             v-model:model_value="formData.budget"
                             placeholder="Select Budget"
-                            :options_type="DropdownInputOptionsTypeEnum.ARRAY"
                             :options="budgetRanges"
                         />
                     </div>
@@ -137,10 +132,7 @@
 </template>
 
 <script setup lang="ts">
-import {
-    DropdownInputOptionsTypeEnum,
-    PropertyTypeEnum,
-} from '@/Types/App/Enums';
+import { PropertyTypeEnum } from '@/Types/App/Enums';
 import { MakeItHappenFormInterface } from '@/Types/App/Interfaces';
 import { ref } from 'vue';
 import CheckboxInput from './Inputs/CheckboxInput.vue';
@@ -162,27 +154,49 @@ const formData = ref<MakeItHappenFormInterface>({
     terms_agreed: false,
 });
 
-const locations: string[] = [
-    'New York',
-    'Los Angeles',
-    'Chicago',
-    'Miami',
-    'San Francisco',
-    'Seattle',
-    'Austin',
-    'Denver',
-];
+const locations: Record<string, string> = {
+    '0': 'New York',
+    '1': 'Los Angeles',
+    '2': 'Chicago',
+    '3': 'Miami',
+    '4': 'San Francisco',
+    '5': 'Seattle',
+    '6': 'Austin',
+    '7': 'Denver',
+};
 
-const budgetRanges: string[] = [
-    'Under $100,000',
-    '$100,000 - $250,000',
-    '$250,000 - $500,000',
-    '$500,000 - $750,000',
-    '$750,000 - $1,000,000',
-    'Over $1,000,000',
-];
+const budgetRanges: Record<string, string> = {
+    '0': 'Under $100,000',
+    '1': '$100,000 - $250,000',
+    '2': '$250,000 - $500,000',
+    '3': '$500,000 - $750,000',
+    '4': '$750,000 - $1,000,000',
+    '5': 'Over $1,000,000',
+};
 
-const propertyTypes: string[] = Object.values(PropertyTypeEnum);
+const capitalizeFirstLetter = (word: string): string =>
+    word.charAt(0).toUpperCase() + word.slice(1);
+
+const propertyTypes: Record<string, string> = Object.values(
+    PropertyTypeEnum,
+).reduce(
+    (accumulator: Record<string, string>, propertyType: PropertyTypeEnum) => {
+        accumulator[propertyType] = capitalizeFirstLetter(propertyType);
+        return accumulator;
+    },
+    {} as Record<string, string>,
+);
+
+const generateRoomCount = (max: number): Record<number, string> =>
+    Array.from({ length: max }, (_, key: number) => key + 1).reduce<
+        Record<number, string>
+    >((accumulator: Record<number, string>, key: number) => {
+        accumulator[key] = key.toString();
+        return accumulator;
+    }, {});
+
+const bathroomCountOptions = generateRoomCount(5);
+const bedroomCountOptions = generateRoomCount(5);
 
 const submitForm = (): void => {
     if (!formData.value.terms_agreed) {

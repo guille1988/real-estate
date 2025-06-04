@@ -1,10 +1,9 @@
 import {
-    DropdownInputOptionsTypeEnum,
     LocationTypeEnum,
     PagesEnum,
     PropertyTypeEnum,
     ScreenSizeEnum,
-    SocialLinkIconEnum
+    SocialLinkIconEnum,
 } from '@/Types/App/Enums';
 
 export interface UserInterface {
@@ -197,7 +196,7 @@ export interface MakeItHappenFormInterface {
     email: string;
     phone: string;
     location: string;
-    property_type: PropertyTypeEnum | null;
+    property_type: string | null;
     bathroom_count: number | null;
     bedroom_count: number | null;
     budget: string;
@@ -218,10 +217,7 @@ export interface MakeItHappenDropdownInputInterface {
     label: string;
     model_value: string | number | null;
     placeholder: string;
-    options_type: DropdownInputOptionsTypeEnum;
-    options: Array<
-        { value?: string | number; label?: string } | string | number
-    >;
+    options: Record<string | number, string>;
 }
 
 export interface MakeItHappenTextareaInputInterface {
