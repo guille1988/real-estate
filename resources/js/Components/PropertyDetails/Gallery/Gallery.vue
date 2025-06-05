@@ -9,25 +9,7 @@
                         Seaside Serenity Villa
                     </h1>
                     <div class="flex items-center text-sm text-gray-400">
-                        <svg
-                            class="mr-1 h-4 w-4"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                            />
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                            />
-                        </svg>
+                        <LocalizationIcon />
                         Malibu, California
                     </div>
                 </div>
@@ -72,19 +54,7 @@
                     class="rounded-full bg-gray-800 p-2 transition-colors hover:bg-gray-700"
                     @click="prevImage"
                 >
-                    <svg
-                        class="h-5 w-5"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                    >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M15 19l-7-7 7-7"
-                        />
-                    </svg>
+                    <PreviousSliderArrowIcon />
                 </button>
 
                 <div
@@ -105,19 +75,7 @@
                     class="rounded-full bg-gray-800 p-2 transition-colors hover:bg-gray-700"
                     @click="nextImage"
                 >
-                    <svg
-                        class="h-5 w-5"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                    >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M9 5l7 7-7 7"
-                        />
-                    </svg>
+                    <NextSliderArrowIcon />
                 </button>
             </div>
 
@@ -136,57 +94,21 @@
                     <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
                         <div class="rounded-lg bg-gray-900/50 p-4 text-center">
                             <div class="mb-2 flex items-center justify-center">
-                                <svg
-                                    class="h-6 w-6"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                >
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                                    />
-                                </svg>
+                                <BedroomIcon />
                             </div>
                             <div class="text-sm text-gray-400">Bedrooms</div>
                             <div class="font-semibold">04</div>
                         </div>
                         <div class="rounded-lg bg-gray-900/50 p-4 text-center">
                             <div class="mb-2 flex items-center justify-center">
-                                <svg
-                                    class="h-6 w-6"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                >
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                                    />
-                                </svg>
+                                <BathroomIcon />
                             </div>
                             <div class="text-sm text-gray-400">Bathrooms</div>
                             <div class="font-semibold">03</div>
                         </div>
                         <div class="rounded-lg bg-gray-900/50 p-4 text-center">
                             <div class="mb-2 flex items-center justify-center">
-                                <svg
-                                    class="h-6 w-6"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                >
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                                    />
-                                </svg>
+                                <HouseIcon />
                             </div>
                             <div class="text-sm text-gray-400">Area</div>
                             <div class="font-semibold">2,500 Square Feet</div>
@@ -204,15 +126,7 @@
                                 class="absolute bottom-0 left-0 top-0 w-1 bg-purple-600"
                             ></div>
                             <div class="flex items-center gap-4">
-                                <svg
-                                    class="h-6 w-6 text-white"
-                                    viewBox="0 0 24 24"
-                                    fill="currentColor"
-                                >
-                                    <path
-                                        d="M3.7 13.5l7.5-12 1.2 7.2h7.8l-7.5 12-1.2-7.2H3.7z"
-                                    />
-                                </svg>
+                                <ThunderIcon />
                                 <span class="text-lg text-gray-400"
                                     >Expansive oceanfront terrace for outdoor
                                     entertaining</span
@@ -224,15 +138,7 @@
                                 class="absolute bottom-0 left-0 top-0 w-1 bg-purple-600"
                             ></div>
                             <div class="flex items-center gap-4">
-                                <svg
-                                    class="h-6 w-6 text-white"
-                                    viewBox="0 0 24 24"
-                                    fill="currentColor"
-                                >
-                                    <path
-                                        d="M3.7 13.5l7.5-12 1.2 7.2h7.8l-7.5 12-1.2-7.2H3.7z"
-                                    />
-                                </svg>
+                                <ThunderIcon />
                                 <span class="text-lg text-gray-400"
                                     >Gourmet kitchen with top-of-the-line
                                     appliances</span
@@ -244,15 +150,7 @@
                                 class="absolute bottom-0 left-0 top-0 w-1 bg-purple-600"
                             ></div>
                             <div class="flex items-center gap-4">
-                                <svg
-                                    class="h-6 w-6 text-white"
-                                    viewBox="0 0 24 24"
-                                    fill="currentColor"
-                                >
-                                    <path
-                                        d="M3.7 13.5l7.5-12 1.2 7.2h7.8l-7.5 12-1.2-7.2H3.7z"
-                                    />
-                                </svg>
+                                <ThunderIcon />
                                 <span class="text-lg text-gray-400"
                                     >Private beach access for morning strolls
                                     and sunset views</span
@@ -264,15 +162,7 @@
                                 class="absolute bottom-0 left-0 top-0 w-1 bg-purple-600"
                             ></div>
                             <div class="flex items-center gap-4">
-                                <svg
-                                    class="h-6 w-6 text-white"
-                                    viewBox="0 0 24 24"
-                                    fill="currentColor"
-                                >
-                                    <path
-                                        d="M3.7 13.5l7.5-12 1.2 7.2h7.8l-7.5 12-1.2-7.2H3.7z"
-                                    />
-                                </svg>
+                                <ThunderIcon />
                                 <span class="text-lg text-gray-400"
                                     >Master suite with a spa-inspired bathroom
                                     and ocean-facing balcony</span
@@ -284,15 +174,7 @@
                                 class="absolute bottom-0 left-0 top-0 w-1 bg-purple-600"
                             ></div>
                             <div class="flex items-center gap-4">
-                                <svg
-                                    class="h-6 w-6 text-white"
-                                    viewBox="0 0 24 24"
-                                    fill="currentColor"
-                                >
-                                    <path
-                                        d="M3.7 13.5l7.5-12 1.2 7.2h7.8l-7.5 12-1.2-7.2H3.7z"
-                                    />
-                                </svg>
+                                <ThunderIcon />
                                 <span class="text-lg text-gray-400"
                                     >Private garage and ample storage
                                     space</span
@@ -307,10 +189,17 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import BathroomIcon from '@/Components/PropertyDetails/Gallery/Icons/BathroomIcon.vue';
+import BedroomIcon from '@/Components/PropertyDetails/Gallery/Icons/BedroomIcon.vue';
+import HouseIcon from '@/Components/PropertyDetails/Gallery/Icons/HouseIcon.vue';
+import LocalizationIcon from '@/Components/PropertyDetails/Gallery/Icons/LocalizationIcon.vue';
+import ThunderIcon from '@/Components/PropertyDetails/Gallery/Icons/ThunderIcon.vue';
+import NextSliderArrowIcon from '@/Components/Shared/SliderArrows/NextSliderArrowIcon.vue';
+import PreviousSliderArrowIcon from '@/Components/Shared/SliderArrows/PreviousSliderArrowIcon.vue';
+import { type Ref, ref } from 'vue';
 
-const currentImage = ref(1);
-const totalImages = 9;
+const currentImage: Ref<number> = ref<number>(1);
+const totalImages: number = 9;
 
 const nextImage = (): void => {
     currentImage.value =
