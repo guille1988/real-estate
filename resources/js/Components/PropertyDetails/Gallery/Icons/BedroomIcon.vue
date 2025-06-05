@@ -1,10 +1,44 @@
 <template>
     <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-        <path
+        <rect
+            x="4"
+            y="4"
+            width="16"
+            height="16"
+            rx="1"
+            stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"
-            stroke-width="2"
-            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+        />
+        <rect
+            x="6"
+            y="6"
+            width="12"
+            height="12"
+            rx="1"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+        />
+        <rect
+            x="7"
+            y="8"
+            width="4"
+            height="3"
+            rx="1"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+        />
+        <rect
+            x="13"
+            y="8"
+            width="4"
+            height="3"
+            rx="1"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
         />
     </svg>
 </template>
