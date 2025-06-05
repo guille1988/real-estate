@@ -72,7 +72,6 @@
     </section>
 </template>
 <script setup lang="ts">
-import FaqCard from '@/Components/Home/Faq/FaqCard.vue';
 import NextSliderArrowIcon from '@/Components/Shared/SliderArrows/NextSliderArrowIcon.vue';
 import PreviousSliderArrowIcon from '@/Components/Shared/SliderArrows/PreviousSliderArrowIcon.vue';
 import ThreeStars from '@/Components/Shared/ThreeStars/ThreeStars.vue';
@@ -89,6 +88,7 @@ import {
     watch,
 } from 'vue';
 
+import FaqCard from '@/Components/Shared/Faq/FaqCard.vue';
 import { FaqCardInterface } from '@/Types/App/Interfaces';
 
 const cards: FaqCardInterface[] = [

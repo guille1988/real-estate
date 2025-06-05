@@ -3,14 +3,14 @@
         <HeroSection />
         <FeaturedProperties />
         <ClientTestimonials />
-        <Faq></Faq>
+        <Faq />
     </Layout>
 </template>
 
 <script setup lang="ts">
 import ClientTestimonials from '@/Components/Home/ClientTestimonials/ClientTestimonials.vue';
-import Faq from '@/Components/Home/Faq/Faq.vue';
 import FeaturedProperties from '@/Components/Home/FeaturedProperties/FeaturedProperties.vue';
 import HeroSection from '@/Components/Home/HeroSection/HeroSection.vue';
 import Layout from '@/Components/Layout/Layout.vue';
+import Faq from '@/Components/Shared/Faq/Faq.vue';
 </script>
