@@ -234,3 +234,15 @@ export interface MakeItHappenCheckboxInputInterface {
     model_value: boolean;
     text_class?: string;
 }
+
+export interface DescriptionInterface {
+    id: number;
+    icon: string;
+    title: string;
+    description: string;
+}
+
+export interface AmenitiesInterface {
+    id: number;
+    description: string;
+}

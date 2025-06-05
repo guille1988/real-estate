@@ -92,27 +92,11 @@
                         coastal living.
                     </p>
                     <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
-                        <div class="rounded-lg bg-gray-900/50 p-4 text-center">
-                            <div class="mb-2 flex items-center justify-center">
-                                <BedroomIcon />
-                            </div>
-                            <div class="text-sm text-gray-400">Bedrooms</div>
-                            <div class="font-semibold">04</div>
-                        </div>
-                        <div class="rounded-lg bg-gray-900/50 p-4 text-center">
-                            <div class="mb-2 flex items-center justify-center">
-                                <BathroomIcon />
-                            </div>
-                            <div class="text-sm text-gray-400">Bathrooms</div>
-                            <div class="font-semibold">03</div>
-                        </div>
-                        <div class="rounded-lg bg-gray-900/50 p-4 text-center">
-                            <div class="mb-2 flex items-center justify-center">
-                                <HouseIcon />
-                            </div>
-                            <div class="text-sm text-gray-400">Area</div>
-                            <div class="font-semibold">2,500 Square Feet</div>
-                        </div>
+                        <Description
+                            v-for="descriptionCard in descriptionCards"
+                            :key="descriptionCard.id"
+                            :card="descriptionCard"
+                        />
                     </div>
                 </div>
 
@@ -121,66 +105,11 @@
                         Key Features and Amenities
                     </h2>
                     <ul class="space-y-6">
-                        <li class="relative bg-gray-900/40 py-3 pl-12">
-                            <div
-                                class="absolute bottom-0 left-0 top-0 w-1 bg-purple-600"
-                            ></div>
-                            <div class="flex items-center gap-4">
-                                <ThunderIcon />
-                                <span class="text-lg text-gray-400"
-                                    >Expansive oceanfront terrace for outdoor
-                                    entertaining</span
-                                >
-                            </div>
-                        </li>
-                        <li class="relative bg-gray-900/40 py-3 pl-12">
-                            <div
-                                class="absolute bottom-0 left-0 top-0 w-1 bg-purple-600"
-                            ></div>
-                            <div class="flex items-center gap-4">
-                                <ThunderIcon />
-                                <span class="text-lg text-gray-400"
-                                    >Gourmet kitchen with top-of-the-line
-                                    appliances</span
-                                >
-                            </div>
-                        </li>
-                        <li class="relative bg-gray-900/40 py-3 pl-12">
-                            <div
-                                class="absolute bottom-0 left-0 top-0 w-1 bg-purple-600"
-                            ></div>
-                            <div class="flex items-center gap-4">
-                                <ThunderIcon />
-                                <span class="text-lg text-gray-400"
-                                    >Private beach access for morning strolls
-                                    and sunset views</span
-                                >
-                            </div>
-                        </li>
-                        <li class="relative bg-gray-900/40 py-3 pl-12">
-                            <div
-                                class="absolute bottom-0 left-0 top-0 w-1 bg-purple-600"
-                            ></div>
-                            <div class="flex items-center gap-4">
-                                <ThunderIcon />
-                                <span class="text-lg text-gray-400"
-                                    >Master suite with a spa-inspired bathroom
-                                    and ocean-facing balcony</span
-                                >
-                            </div>
-                        </li>
-                        <li class="relative bg-gray-900/40 py-3 pl-12">
-                            <div
-                                class="absolute bottom-0 left-0 top-0 w-1 bg-purple-600"
-                            ></div>
-                            <div class="flex items-center gap-4">
-                                <ThunderIcon />
-                                <span class="text-lg text-gray-400"
-                                    >Private garage and ample storage
-                                    space</span
-                                >
-                            </div>
-                        </li>
+                        <Amenities
+                            v-for="amenitiesCard in amenitiesCards"
+                            :key="amenitiesCard.id"
+                            :card="amenitiesCard"
+                        />
                     </ul>
                 </div>
             </div>
@@ -189,14 +118,62 @@
 </template>
 
 <script setup lang="ts">
-import BathroomIcon from '@/Components/PropertyDetails/Gallery/Icons/BathroomIcon.vue';
-import BedroomIcon from '@/Components/PropertyDetails/Gallery/Icons/BedroomIcon.vue';
-import HouseIcon from '@/Components/PropertyDetails/Gallery/Icons/HouseIcon.vue';
-import LocalizationIcon from '@/Components/PropertyDetails/Gallery/Icons/LocalizationIcon.vue';
-import ThunderIcon from '@/Components/PropertyDetails/Gallery/Icons/ThunderIcon.vue';
+import Amenities from '@/Components/PropertyDetails/Gallery/Amenities/Amenities.vue';
+import Description from '@/Components/PropertyDetails/Gallery/Description/Description.vue';
+import LocalizationIcon from '@/Components/PropertyDetails/Gallery/LocalizationIcon.vue';
 import NextSliderArrowIcon from '@/Components/Shared/SliderArrows/NextSliderArrowIcon.vue';
 import PreviousSliderArrowIcon from '@/Components/Shared/SliderArrows/PreviousSliderArrowIcon.vue';
+import {
+    AmenitiesInterface,
+    DescriptionInterface,
+} from '@/Types/App/Interfaces';
 import { type Ref, ref } from 'vue';
+
+const descriptionCards: DescriptionInterface[] = [
+    {
+        id: 1,
+        icon: 'BedroomIcon',
+        title: 'Bedrooms',
+        description: '04',
+    },
+    {
+        id: 2,
+        icon: 'BathroomIcon',
+        title: 'Bathrooms',
+        description: '03',
+    },
+    {
+        id: 3,
+        icon: 'HouseIcon',
+        title: 'Area',
+        description: '2.500 Square Feet',
+    },
+];
+
+const amenitiesCards: AmenitiesInterface[] = [
+    {
+        id: 1,
+        description: 'Expansive oceanfront terrace for outdoor entertaining',
+    },
+    {
+        id: 2,
+        description: 'Gourmet kitchen with top-of-the-line appliances',
+    },
+    {
+        id: 3,
+        description:
+            'Private beach access for morning strolls and sunset views',
+    },
+    {
+        id: 4,
+        description:
+            'Master suite with a spa-inspired bathroom and ocean-facing balcony',
+    },
+    {
+        id: 5,
+        description: 'Private garage and ample storage space',
+    },
+];
 
 const currentImage: Ref<number> = ref<number>(1);
 const totalImages: number = 9;
