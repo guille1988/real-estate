@@ -2,6 +2,7 @@
     <div class="bg-black text-white">
         <div class="container mx-auto px-4">
             <div class="mb-10">
+                <ThreeStars />
                 <h1 class="mb-4 text-3xl font-bold md:text-4xl">
                     Let's Make it Happen
                 </h1>
@@ -132,6 +133,7 @@
 </template>
 
 <script setup lang="ts">
+import ThreeStars from '@/Components/Shared/ThreeStars/ThreeStars.vue';
 import { PropertyTypeEnum } from '@/Types/App/Enums';
 import { MakeItHappenFormInterface } from '@/Types/App/Interfaces';
 import { ref } from 'vue';

@@ -2,6 +2,7 @@
     <section class="w-full bg-black py-16 text-white" id="get-in-touch">
         <div class="container mx-auto px-4 md:px-6 lg:px-8">
             <div class="mb-12 max-w-3xl">
+                <ThreeStars />
                 <h2 class="mb-4 text-3xl font-medium">
                     Get in Touch with Real estate
                 </h2>
@@ -27,6 +28,7 @@
 </template>
 <script setup lang="ts">
 import GetInTouchCard from '@/Components/Contact/GetInTouch/GetInTouchCard/GetInTouchCard.vue';
+import ThreeStars from '@/Components/Shared/ThreeStars/ThreeStars.vue';
 import { GetInTouchCardInterface } from '@/Types/App/Interfaces';
 
 const cards: GetInTouchCardInterface[] = [

@@ -5,6 +5,7 @@
     >
         <div class="container mx-auto px-4 md:px-6 lg:px-8">
             <div class="mb-16 max-w-3xl">
+                <ThreeStars />
                 <h2 class="mb-4 text-3xl font-medium">Unlock Property Value</h2>
                 <p class="leading-relaxed text-gray-400">
                     Selling your property should be a rewarding experience, and
@@ -153,3 +154,6 @@
         </div>
     </section>
 </template>
+<script setup lang="ts">
+import ThreeStars from '@/Components/Shared/ThreeStars/ThreeStars.vue';
+</script>

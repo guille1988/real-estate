@@ -4,6 +4,7 @@
             <div class="grid gap-8 lg:grid-cols-3">
                 <div class="lg:col-span-1">
                     <div class="mb-8">
+                        <ThreeStars />
                         <h2 class="mb-4 text-3xl font-medium">
                             Smart Investments,<br />
                             Informed Decisions
@@ -150,3 +151,6 @@
         </div>
     </section>
 </template>
+<script setup lang="ts">
+import ThreeStars from '@/Components/Shared/ThreeStars/ThreeStars.vue';
+</script>

@@ -3,6 +3,7 @@
         <div class="container mx-auto px-4 md:px-6 lg:px-8">
             <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
                 <div class="md:col-span-1">
+                    <ThreeStars />
                     <h2 class="mb-4 text-3xl font-medium">
                         Inquire About Seaside<br />Serenity Villa
                     </h2>
@@ -154,6 +155,7 @@
 </template>
 
 <script setup lang="ts">
+import ThreeStars from '@/Components/Shared/ThreeStars/ThreeStars.vue';
 import { ref } from 'vue';
 
 const form = ref({

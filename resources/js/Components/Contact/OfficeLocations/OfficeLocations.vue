@@ -2,6 +2,7 @@
     <section class="w-full bg-black py-8 text-white" id="office-locations">
         <div class="container mx-auto px-4 md:px-6 lg:px-8">
             <div class="mb-12">
+                <ThreeStars />
                 <h2 class="mb-4 text-3xl font-medium">
                     Discover Our Office Locations
                 </h2>
@@ -150,6 +151,7 @@
 import OfficeLocationCard from '@/Components/Contact/OfficeLocations/OfficeLocationCard/OfficeLocationCard.vue';
 import NextSliderArrowIcon from '@/Components/Shared/SliderArrows/NextSliderArrowIcon.vue';
 import PreviousSliderArrowIcon from '@/Components/Shared/SliderArrows/PreviousSliderArrowIcon.vue';
+import ThreeStars from '@/Components/Shared/ThreeStars/ThreeStars.vue';
 import { LocationTypeEnum, ScreenSizeEnum } from '@/Types/App/Enums';
 import {
     OfficeLocationCardInterface,
