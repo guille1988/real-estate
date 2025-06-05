@@ -20,18 +20,18 @@
                 <div class="-mx-4 overflow-x-auto">
                     <div class="flex min-w-max gap-2 px-4 pb-2 pt-3">
                         <div
-                            v-for="i in 9"
-                            :key="i"
+                            v-for="image in images"
+                            :key="image.id"
                             class="h-14 w-20 flex-shrink-0 cursor-pointer overflow-hidden rounded-lg transition-all duration-200 sm:h-16 sm:w-24"
                             :class="{
                                 'ring-2 ring-white ring-offset-2 ring-offset-black':
-                                    currentImage === i,
+                                    currentImage === image.id,
                             }"
-                            @click="currentImage = i"
+                            @click="currentImage = image.id"
                         >
                             <img
-                                src="https://wallpapercat.com/w/full/6/8/e/743660-3840x2160-desktop-4k-house-wallpaper-photo.jpg"
-                                :alt="`Property view ${i}`"
+                                :src="image.url"
+                                :alt="image.alt"
                                 class="h-full w-full object-cover transition-opacity hover:opacity-75"
                             />
                         </div>
@@ -42,8 +42,8 @@
             <div class="py-4">
                 <div class="mx-auto overflow-hidden rounded-lg">
                     <img
-                        src="https://wallpapercat.com/w/full/6/8/e/743660-3840x2160-desktop-4k-house-wallpaper-photo.jpg"
-                        :alt="`Property view ${currentImage}`"
+                        :src="getCurrentImage.url"
+                        :alt="getCurrentImage.alt"
                         class="h-[300px] w-full object-cover sm:h-[400px] md:h-[500px]"
                     />
                 </div>
@@ -52,7 +52,7 @@
             <div class="flex items-center justify-center gap-4 py-4">
                 <button
                     class="rounded-full bg-gray-800 p-2 transition-colors hover:bg-gray-700"
-                    @click="prevImage"
+                    @click="previousImage"
                 >
                     <PreviousSliderArrowIcon />
                 </button>
@@ -61,14 +61,14 @@
                     class="flex max-w-[60vw] justify-center gap-1 overflow-x-auto py-1"
                 >
                     <button
-                        v-for="i in 9"
-                        :key="i"
+                        v-for="image in images"
+                        :key="image.id"
                         class="h-2 w-2 flex-shrink-0 rounded-full"
                         :class="{
-                            'bg-white': currentImage === i,
-                            'bg-gray-600': currentImage !== i,
+                            'bg-white': currentImage === image.id,
+                            'bg-gray-600': currentImage !== image.id,
                         }"
-                        @click="currentImage = i"
+                        @click="currentImage = image.id"
                     ></button>
                 </div>
                 <button
@@ -126,8 +126,9 @@ import PreviousSliderArrowIcon from '@/Components/Shared/SliderArrows/PreviousSl
 import {
     AmenitiesInterface,
     DescriptionInterface,
+    GalleryImageInterface,
 } from '@/Types/App/Interfaces';
-import { type Ref, ref } from 'vue';
+import { computed, ComputedRef, type Ref, ref } from 'vue';
 
 const descriptionCards: DescriptionInterface[] = [
     {
@@ -175,16 +176,75 @@ const amenitiesCards: AmenitiesInterface[] = [
     },
 ];
 
+const images: GalleryImageInterface[] = [
+    {
+        id: 1,
+        url: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1200&q=80',
+        alt: 'Modern luxury house with swimming pool',
+    },
+    {
+        id: 2,
+        url: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
+        alt: 'Contemporary home with large windows',
+    },
+    {
+        id: 3,
+        url: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80',
+        alt: 'Elegant kitchen with island',
+    },
+    {
+        id: 4,
+        url: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1200&q=80',
+        alt: 'Spacious living room with fireplace',
+    },
+    {
+        id: 5,
+        url: 'https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=1200&q=80',
+        alt: 'Master bedroom with ocean view',
+    },
+    {
+        id: 6,
+        url: 'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=1200&q=80',
+        alt: 'Outdoor patio with dining area',
+    },
+    {
+        id: 7,
+        url: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80',
+        alt: 'Home office with natural light',
+    },
+    {
+        id: 8,
+        url: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=80',
+        alt: 'Aerial view of property and surroundings',
+    },
+];
+
 const currentImage: Ref<number> = ref<number>(1);
-const totalImages: number = 9;
+
+const getCurrentImage: ComputedRef<GalleryImageInterface> =
+    computed<GalleryImageInterface>(() => {
+        return (
+            images.find(
+                (image: GalleryImageInterface) =>
+                    image.id === currentImage.value,
+            ) || images[0]
+        );
+    });
 
 const nextImage = (): void => {
-    currentImage.value =
-        currentImage.value === totalImages ? 1 : currentImage.value + 1;
+    const currentIndex: number = images.findIndex(
+        (image: GalleryImageInterface) => image.id === currentImage.value,
+    );
+    const nextIndex: number = (currentIndex + 1) % images.length;
+    currentImage.value = images[nextIndex].id;
 };
 
-const prevImage = (): void => {
-    currentImage.value =
-        currentImage.value === 1 ? totalImages : currentImage.value - 1;
+const previousImage = (): void => {
+    const currentIndex: number = images.findIndex(
+        (image: GalleryImageInterface) => image.id === currentImage.value,
+    );
+    const prevIndex: number =
+        (currentIndex - 1 + images.length) % images.length;
+    currentImage.value = images[prevIndex].id;
 };
 </script>

@@ -246,3 +246,9 @@ export interface AmenitiesInterface {
     id: number;
     description: string;
 }
+
+export interface GalleryImageInterface {
+    id: number;
+    url: string;
+    alt: string;
+}
