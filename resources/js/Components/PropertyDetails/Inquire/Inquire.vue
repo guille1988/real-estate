@@ -100,8 +100,8 @@ import ThreeStars from '@/Components/Shared/ThreeStars/ThreeStars.vue';
 import { InquireFormInterface } from '@/Types/App/Interfaces';
 import { usePage } from '@inertiajs/vue3';
 import { ref, Ref } from 'vue';
-const uuid: string = (usePage().props.id as string) || '';
 
+const uuid: string = (usePage().props.id as string) || '';
 const form: Ref<InquireFormInterface> = ref<InquireFormInterface>({
     uuid: uuid,
     first_name: '',
