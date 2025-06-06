@@ -17,7 +17,7 @@
 
                 <div class="md:col-span-2">
                     <form
-                        @submit.prevent="handleSubmit"
+                        @submit.prevent="submit"
                         class="rounded-lg border border-gray-800 bg-black p-6 shadow-lg"
                     >
                         <div class="mb-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -112,7 +112,7 @@ const form: Ref<InquireFormInterface> = ref<InquireFormInterface>({
     terms_agreed: false,
 });
 
-const handleSubmit = (): void => {
+const submit = (): void => {
     if (!form.value.terms_agreed) {
         alert('Please agree to the Terms of Use and Privacy Policy');
         return;

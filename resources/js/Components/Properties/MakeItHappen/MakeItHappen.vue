@@ -17,7 +17,7 @@
             <div
                 class="rounded-lg border border-gray-800 bg-black/50 p-6 md:p-10"
             >
-                <form @submit.prevent="submitForm">
+                <form @submit.prevent="submit">
                     <div
                         class="mb-6 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4"
                     >
@@ -200,7 +200,7 @@ const generateRoomCount = (max: number): Record<number, string> =>
 const bathroomCountOptions = generateRoomCount(5);
 const bedroomCountOptions = generateRoomCount(5);
 
-const submitForm = (): void => {
+const submit = (): void => {
     if (!form.value.terms_agreed) {
         alert('Please agree to the Terms of Use and Privacy Policy');
         return;
