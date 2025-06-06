@@ -22,11 +22,10 @@
 </template>
 
 <script setup lang="ts">
-import { MakeItHappenDropdownInputInterface } from '@/Types/App/Interfaces';
+import { DropdownInputInterface } from '@/Types/App/Interfaces';
 import { EmitInputFunction } from '@/Types/App/Types';
 
-const dropdown: MakeItHappenDropdownInputInterface =
-    defineProps<MakeItHappenDropdownInputInterface>();
+const dropdown: DropdownInputInterface = defineProps<DropdownInputInterface>();
 
 const emit: EmitInputFunction = defineEmits<EmitInputFunction>();
 

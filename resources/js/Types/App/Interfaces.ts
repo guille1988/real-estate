@@ -204,7 +204,7 @@ export interface MakeItHappenFormInterface {
     terms_agreed: boolean;
 }
 
-export interface MakeItHappenTextInputInterface {
+export interface TextInputInterface {
     id: string;
     label: string;
     model_value: string;
@@ -212,7 +212,7 @@ export interface MakeItHappenTextInputInterface {
     placeholder: string;
 }
 
-export interface MakeItHappenDropdownInputInterface {
+export interface DropdownInputInterface {
     id: string;
     label: string;
     model_value: string | number | null;
@@ -220,7 +220,7 @@ export interface MakeItHappenDropdownInputInterface {
     options: Record<string | number, string>;
 }
 
-export interface MakeItHappenTextareaInputInterface {
+export interface TextareaInputInterface {
     id: string;
     label: string;
     model_value: string;
@@ -228,11 +228,21 @@ export interface MakeItHappenTextareaInputInterface {
     placeholder: string;
 }
 
-export interface MakeItHappenCheckboxInputInterface {
+export interface CheckboxInputInterface {
     id: string;
     label: string;
     model_value: boolean;
     text_class?: string;
+}
+
+export interface InquireFormInterface {
+    uuid: string;
+    first_name: string;
+    last_name: string;
+    email: string;
+    phone: string;
+    message: string;
+    terms_agreed: boolean;
 }
 
 export interface DescriptionInterface {

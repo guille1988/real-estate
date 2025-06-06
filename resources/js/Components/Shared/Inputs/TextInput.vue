@@ -1,26 +1,26 @@
 <template>
     <div>
         <label :for="id" class="mb-2 block text-sm">{{ label }}</label>
-        <textarea
+        <input
             :id="id"
             :value="model_value"
             @input="handleInput($event)"
-            :rows="rows"
+            :type="type"
             :placeholder="placeholder"
             class="w-full rounded border border-gray-700 bg-black/70 p-3 text-sm focus:border-purple-500 focus:outline-none"
-        ></textarea>
+        />
     </div>
 </template>
 
 <script setup lang="ts">
-import { MakeItHappenTextareaInputInterface } from '@/Types/App/Interfaces';
+import { TextInputInterface } from '@/Types/App/Interfaces';
 import { EmitInputFunction } from '@/Types/App/Types';
 
-defineProps<MakeItHappenTextareaInputInterface>();
+defineProps<TextInputInterface>();
 
 const emit: EmitInputFunction = defineEmits<EmitInputFunction>();
 
 const handleInput = (event: Event) => {
-    emit('update:model_value', (event.target as HTMLTextAreaElement).value);
+    emit('update:model_value', (event.target as HTMLInputElement).value);
 };
 </script>

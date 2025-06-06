@@ -1,5 +1,5 @@
 <template>
-    <section class="w-full bg-black py-16 text-white">
+    <section class="w-full bg-black py-8 text-white">
         <div class="container mx-auto px-4 md:px-6 lg:px-8">
             <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
                 <div class="md:col-span-1">
@@ -21,90 +21,66 @@
                         class="rounded-lg border border-gray-800 bg-black p-6 shadow-lg"
                     >
                         <div class="mb-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
-                            <div>
-                                <label class="mb-2 block text-sm"
-                                    >First Name</label
-                                >
-                                <input
-                                    type="text"
-                                    v-model="form.firstName"
-                                    placeholder="Enter First Name"
-                                    class="w-full rounded-lg border border-gray-800 bg-black px-4 py-3 text-white placeholder-gray-500 focus:border-purple-500 focus:outline-none"
-                                />
-                            </div>
-                            <div>
-                                <label class="mb-2 block text-sm"
-                                    >Last Name</label
-                                >
-                                <input
-                                    type="text"
-                                    v-model="form.lastName"
-                                    placeholder="Enter Last Name"
-                                    class="w-full rounded-lg border border-gray-800 bg-black px-4 py-3 text-white placeholder-gray-500 focus:border-purple-500 focus:outline-none"
-                                />
-                            </div>
+                            <TextInput
+                                id="first_name"
+                                label="First Name"
+                                v-model:model_value="form.first_name"
+                                type="text"
+                                placeholder="Enter First Name"
+                            />
+                            <TextInput
+                                id="last_name"
+                                label="Last Name"
+                                v-model:model_value="form.last_name"
+                                type="text"
+                                placeholder="Enter Last Name"
+                            />
                         </div>
 
                         <div class="mb-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
-                            <div>
-                                <label class="mb-2 block text-sm">Email</label>
-                                <input
-                                    type="email"
-                                    v-model="form.email"
-                                    placeholder="Enter your Email"
-                                    class="w-full rounded-lg border border-gray-800 bg-black px-4 py-3 text-white placeholder-gray-500 focus:border-purple-500 focus:outline-none"
-                                />
-                            </div>
-                            <div>
-                                <label class="mb-2 block text-sm">Phone</label>
-                                <input
-                                    type="tel"
-                                    v-model="form.phone"
-                                    placeholder="Enter Phone Number"
-                                    class="w-full rounded-lg border border-gray-800 bg-black px-4 py-3 text-white placeholder-gray-500 focus:border-purple-500 focus:outline-none"
-                                />
-                            </div>
+                            <TextInput
+                                id="email"
+                                label="Email"
+                                v-model:model_value="form.email"
+                                type="email"
+                                placeholder="Enter your Email"
+                            />
+                            <TextInput
+                                id="phone"
+                                label="Phone"
+                                v-model:model_value="form.phone"
+                                type="tel"
+                                placeholder="Enter Phone Number"
+                            />
                         </div>
                         <div class="mb-6">
-                            <label class="mb-2 block text-sm">Message</label>
-                            <textarea
-                                v-model="form.message"
-                                rows="4"
+                            <TextareaInput
+                                id="message"
+                                label="Message"
+                                v-model:model_value="form.message"
+                                :rows="4"
                                 placeholder="Enter your Message here"
-                                class="w-full resize-none rounded-lg border border-gray-800 bg-black px-4 py-3 text-white placeholder-gray-500 focus:border-purple-500 focus:outline-none"
-                            ></textarea>
+                            />
                         </div>
 
-                        <div class="mb-6 flex items-center">
-                            <input
-                                type="checkbox"
-                                v-model="form.terms"
-                                id="terms"
-                                class="h-4 w-4 rounded border-gray-800 bg-black focus:ring-purple-500 focus:ring-offset-black"
+                        <div class="mb-6">
+                            <CheckboxInput
+                                id="terms_agreed"
+                                label="I agree with Terms of Use and Privacy Policy"
+                                v-model:model_value="form.terms_agreed"
+                                text_class="text-gray-400"
                             />
-                            <label
-                                for="terms"
-                                class="ml-2 text-sm text-gray-400"
-                            >
-                                I agree with
-                                <a
-                                    href="#"
-                                    class="text-white hover:text-purple-500"
-                                    >Terms of Use</a
-                                >
-                                and
-                                <a
-                                    href="#"
-                                    class="text-white hover:text-purple-500"
-                                    >Privacy Policy</a
-                                >
-                            </label>
                         </div>
 
                         <div class="flex justify-end">
                             <button
                                 type="submit"
                                 class="rounded-lg bg-purple-600 px-6 py-3 text-white transition-colors duration-200 hover:bg-purple-700"
+                                :disabled="!form.terms_agreed"
+                                :class="{
+                                    'cursor-not-allowed opacity-50':
+                                        !form.terms_agreed,
+                                }"
                             >
                                 Send Your Message
                             </button>
@@ -117,20 +93,31 @@
 </template>
 
 <script setup lang="ts">
+import CheckboxInput from '@/Components/Shared/Inputs/CheckboxInput.vue';
+import TextInput from '@/Components/Shared/Inputs/TextInput.vue';
+import TextareaInput from '@/Components/Shared/Inputs/TextareaInput.vue';
 import ThreeStars from '@/Components/Shared/ThreeStars/ThreeStars.vue';
-import { ref } from 'vue';
+import { InquireFormInterface } from '@/Types/App/Interfaces';
+import { usePage } from '@inertiajs/vue3';
+import { ref, Ref } from 'vue';
+const uuid: string = (usePage().props.id as string) || '';
 
-const form = ref({
-    firstName: '',
-    lastName: '',
+const form: Ref<InquireFormInterface> = ref<InquireFormInterface>({
+    uuid: uuid,
+    first_name: '',
+    last_name: '',
     email: '',
     phone: '',
-    property: 'Seaside Serenity Villa, Malibu, California',
     message: '',
-    terms: false,
+    terms_agreed: false,
 });
 
 const handleSubmit = (): void => {
-    console.log('Form submitted:', form.value);
+    if (!form.value.terms_agreed) {
+        alert('Please agree to the Terms of Use and Privacy Policy');
+        return;
+    }
+
+    console.log(form.value);
 };
 </script>

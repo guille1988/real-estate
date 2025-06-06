@@ -14,10 +14,10 @@
 </template>
 
 <script setup lang="ts">
-import { MakeItHappenCheckboxInputInterface } from '@/Types/App/Interfaces';
+import { CheckboxInputInterface } from '@/Types/App/Interfaces';
 import { EmitInputFunction } from '@/Types/App/Types';
 
-defineProps<MakeItHappenCheckboxInputInterface>();
+defineProps<CheckboxInputInterface>();
 
 const emit: EmitInputFunction = defineEmits<EmitInputFunction>();
 

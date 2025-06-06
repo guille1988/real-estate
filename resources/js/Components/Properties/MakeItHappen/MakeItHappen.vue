@@ -24,28 +24,28 @@
                         <TextInput
                             id="first_name"
                             label="First Name"
-                            v-model:model_value="formData.first_name"
+                            v-model:model_value="form.first_name"
                             type="text"
                             placeholder="Enter First Name"
                         />
                         <TextInput
                             id="last_name"
                             label="Last Name"
-                            v-model:model_value="formData.last_name"
+                            v-model:model_value="form.last_name"
                             type="text"
                             placeholder="Enter Last Name"
                         />
                         <TextInput
                             id="email"
                             label="Email"
-                            v-model:model_value="formData.email"
+                            v-model:model_value="form.email"
                             type="email"
                             placeholder="Enter your Email"
                         />
                         <TextInput
                             id="phone"
                             label="Phone"
-                            v-model:model_value="formData.phone"
+                            v-model:model_value="form.phone"
                             type="tel"
                             placeholder="Enter Phone Number"
                         />
@@ -57,28 +57,28 @@
                         <DropdownInput
                             id="location"
                             label="Preferred Location"
-                            v-model:model_value="formData.location"
+                            v-model:model_value="form.location"
                             placeholder="Select Location"
                             :options="locations"
                         />
                         <DropdownInput
                             id="property_type"
                             label="Property Type"
-                            v-model:model_value="formData.property_type"
+                            v-model:model_value="form.property_type"
                             placeholder="Select Property Type"
                             :options="propertyTypes"
                         />
                         <DropdownInput
                             id="bathroom_count"
                             label="No. of Bathrooms"
-                            v-model:model_value="formData.bathroom_count"
+                            v-model:model_value="form.bathroom_count"
                             placeholder="Select no. of bathrooms"
                             :options="bathroomCountOptions"
                         />
                         <DropdownInput
                             id="bedroom_count"
                             label="No. of Bedrooms"
-                            v-model:model_value="formData.bedroom_count"
+                            v-model:model_value="form.bedroom_count"
                             placeholder="Select no. of bedrooms"
                             :options="bedroomCountOptions"
                         />
@@ -88,7 +88,7 @@
                         <DropdownInput
                             id="budget"
                             label="Budget"
-                            v-model:model_value="formData.budget"
+                            v-model:model_value="form.budget"
                             placeholder="Select Budget"
                             :options="budgetRanges"
                         />
@@ -98,7 +98,7 @@
                         <TextareaInput
                             id="message"
                             label="Message"
-                            v-model:model_value="formData.message"
+                            v-model:model_value="form.message"
                             :rows="5"
                             placeholder="Enter your Message here."
                         />
@@ -111,16 +111,16 @@
                             <CheckboxInput
                                 id="terms_agreed"
                                 label="I agree with Terms of Use and Privacy Policy"
-                                v-model:model_value="formData.terms_agreed"
+                                v-model:model_value="form.terms_agreed"
                             />
                         </div>
                         <button
                             type="submit"
                             class="rounded bg-purple-600 px-6 py-3 text-white transition duration-300 hover:bg-purple-700"
-                            :disabled="!formData.terms_agreed"
+                            :disabled="!form.terms_agreed"
                             :class="{
                                 'cursor-not-allowed opacity-50':
-                                    !formData.terms_agreed,
+                                    !form.terms_agreed,
                             }"
                         >
                             Send Your Message
@@ -133,16 +133,16 @@
 </template>
 
 <script setup lang="ts">
+import CheckboxInput from '@/Components/Shared/Inputs/CheckboxInput.vue';
+import DropdownInput from '@/Components/Shared/Inputs/DropdownInput.vue';
+import TextareaInput from '@/Components/Shared/Inputs/TextareaInput.vue';
+import TextInput from '@/Components/Shared/Inputs/TextInput.vue';
 import ThreeStars from '@/Components/Shared/ThreeStars/ThreeStars.vue';
 import { PropertyTypeEnum } from '@/Types/App/Enums';
 import { MakeItHappenFormInterface } from '@/Types/App/Interfaces';
-import { ref } from 'vue';
-import CheckboxInput from './Inputs/CheckboxInput.vue';
-import DropdownInput from './Inputs/DropdownInput.vue';
-import TextareaInput from './Inputs/TextareaInput.vue';
-import TextInput from './Inputs/TextInput.vue';
+import { type Ref, ref } from 'vue';
 
-const formData = ref<MakeItHappenFormInterface>({
+const form: Ref<MakeItHappenFormInterface> = ref<MakeItHappenFormInterface>({
     first_name: '',
     last_name: '',
     email: '',
@@ -201,11 +201,11 @@ const bathroomCountOptions = generateRoomCount(5);
 const bedroomCountOptions = generateRoomCount(5);
 
 const submitForm = (): void => {
-    if (!formData.value.terms_agreed) {
+    if (!form.value.terms_agreed) {
         alert('Please agree to the Terms of Use and Privacy Policy');
         return;
     }
 
-    console.log(formData.value);
+    console.log(form.value);
 };
 </script>
