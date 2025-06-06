@@ -9,8 +9,8 @@
 
 <script setup lang="ts">
 import Layout from '@/Components/Layout/Layout.vue';
-import EffortlessPropertyManagement from '@/Components/Services/EffortlessPropertyManagement.vue';
-import ElevateExperience from '@/Components/Services/ElevateExperience.vue';
-import SmartInvestments from '@/Components/Services/SmartInvestments.vue';
-import UnlockPropertyValue from '@/Components/Services/UnlockPropertyValue.vue';
+import EffortlessPropertyManagement from '@/Components/Services/EffortlessPropertyManagement/EffortlessPropertyManagement.vue';
+import ElevateExperience from '@/Components/Services/ElevateExperience/ElevateExperience.vue';
+import SmartInvestments from '@/Components/Services/SmartInvestments/SmartInvestments.vue';
+import UnlockPropertyValue from '@/Components/Services/UnlockPropertyValue/UnlockPropertyValue.vue';
 </script>
