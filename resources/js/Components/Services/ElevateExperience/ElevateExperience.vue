@@ -184,4 +184,37 @@
 </template>
 <script setup lang="ts">
 import ThreeStars from '@/Components/Shared/ThreeStars/ThreeStars.vue';
+import PropertyController from '@/Routes/actions/App/Http/Controllers/PropertyController';
+import ServiceController from '@/Routes/actions/App/Http/Controllers/ServiceController';
+import { HeroSectionCardInterface } from '@/Types/App/Interfaces';
+
+const getServiceSection = (section: string) =>
+    ServiceController().url + section;
+
+const cards: HeroSectionCardInterface[] = [
+    {
+        id: 1,
+        url: PropertyController.index().url,
+        icon: 'HouseIcon',
+        description: 'Find Your Dream Home',
+    },
+    {
+        id: 2,
+        url: getServiceSection('#unlock-property-value'),
+        icon: 'ScaleIcon',
+        description: 'Unlock Property Value',
+    },
+    {
+        id: 3,
+        url: getServiceSection('#effortless-property-management'),
+        icon: 'BuildingIcon',
+        description: 'Effortless Property Management',
+    },
+    {
+        id: 4,
+        url: getServiceSection('#smart-investments'),
+        icon: 'LampIcon',
+        description: 'Smart Investments, Informed Decisions',
+    },
+];
 </script>
