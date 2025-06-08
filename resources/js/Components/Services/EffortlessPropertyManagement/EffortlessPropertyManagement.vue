@@ -22,14 +22,14 @@
                 class="mb-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
             >
                 <EffortlessPropertyCard
-                    v-for="card in cards"
+                    v-for="card in getFirstThreeCards()"
                     :key="card.id"
                     :card="card"
                 />
             </div>
 
             <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
-                <EffortlessPropertyCard :card="closingCard" />
+                <EffortlessPropertyCard :card="getLastCard()" />
 
                 <div
                     class="border border-neutral-800 bg-neutral-900 p-6 md:col-span-2"
@@ -87,13 +87,17 @@ const cards: EffortlessPropertyCardInterface[] = [
         description:
             'Managing property finances can be complex. Our financial experts take care of rent collection.',
     },
+    {
+        id: 4,
+        icon: 'ShieldIcon',
+        title: 'Legal Guardian',
+        description:
+            'Stay compliant with property laws and regulations effortlessly.',
+    },
 ];
 
-const closingCard: EffortlessPropertyCardInterface = {
-    id: 4,
-    icon: 'ShieldIcon',
-    title: 'Legal Guardian',
-    description:
-        'Stay compliant with property laws and regulations effortlessly.',
-};
+const getFirstThreeCards = (): EffortlessPropertyCardInterface[] =>
+    cards.slice(0, 3);
+const getLastCard = (): EffortlessPropertyCardInterface =>
+    cards[cards.length - 1];
 </script>

@@ -18,14 +18,14 @@
                 class="mb-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
             >
                 <UnlockPropertyCard
-                    v-for="card in cards"
+                    v-for="card in getFirstThreeCards()"
                     :key="card.id"
                     :card="card"
                 />
             </div>
 
             <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
-                <UnlockPropertyCard :card="closingCard" />
+                <UnlockPropertyCard :card="getLastCard()" />
 
                 <div
                     class="border border-neutral-800 bg-neutral-900 p-6 md:col-span-2"
@@ -83,13 +83,16 @@ const cards: UnlockPropertyCardInterface[] = [
         description:
             'Negotiating the best deal is an art, and our negotiation experts are masters of it.',
     },
+    {
+        id: 4,
+        icon: 'BookIcon',
+        title: 'Closing Success',
+        description:
+            'A successful sale is not complete until the closing. We guide you through the intricate closing process.',
+    },
 ];
 
-const closingCard: UnlockPropertyCardInterface = {
-    id: 4,
-    icon: 'BookIcon',
-    title: 'Closing Success',
-    description:
-        'A successful sale is not complete until the closing. We guide you through the intricate closing process.',
-};
+const getFirstThreeCards = (): UnlockPropertyCardInterface[] =>
+    cards.slice(0, 3);
+const getLastCard = (): UnlockPropertyCardInterface => cards[cards.length - 1];
 </script>
