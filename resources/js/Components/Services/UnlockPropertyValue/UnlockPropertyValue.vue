@@ -1,8 +1,5 @@
 <template>
-    <section
-        class="w-full bg-black py-16 text-white"
-        id="unlock-property-value"
-    >
+    <section class="w-full bg-black py-8 text-white" id="unlock-property-value">
         <div class="container mx-auto px-4 md:px-6 lg:px-8">
             <div class="mb-16 max-w-3xl">
                 <ThreeStars />

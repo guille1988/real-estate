@@ -1,6 +1,6 @@
 <template>
     <section
-        class="w-full bg-black py-16 text-white"
+        class="w-full bg-black py-8 text-white"
         id="effortless-property-management"
     >
         <div class="container mx-auto px-4 md:px-6 lg:px-8">
