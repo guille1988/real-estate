@@ -283,3 +283,17 @@ export interface UnlockPropertyCardInterface {
     title: string;
     description: string;
 }
+
+export interface EffortlessPropertyCardInterface {
+    id: number;
+    icon: string;
+    title: string;
+    description: string;
+}
+
+export interface SmartInvestmentsCardInterface {
+    id: number;
+    icon: string;
+    title: string;
+    description: string;
+}
