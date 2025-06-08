@@ -34,9 +34,7 @@ const { card }: { card: HeroSectionCardInterface } = defineProps<{
 
 const icon: Component = defineAsyncComponent(
     (): Promise<Component> =>
-        import(
-            `./../../../Shared/Icons/${card.icon}.vue`
-        ) as Promise<Component>,
+        import(`./../../Shared/Icons/${card.icon}.vue`) as Promise<Component>,
 );
 
 const visit = (url: string): void => {

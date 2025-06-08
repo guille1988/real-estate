@@ -25,7 +25,7 @@
     </section>
 </template>
 <script setup lang="ts">
-import ElevateExperienceCard from '@/Components/Services/ElevateExperience/ElevateExperienceCard/ElevateExperienceCard.vue';
+import ElevateExperienceCard from '@/Components/Services/ElevateExperience/ElevateExperienceCard.vue';
 import ThreeStars from '@/Components/Shared/ThreeStars/ThreeStars.vue';
 import PropertyController from '@/Routes/actions/App/Http/Controllers/PropertyController';
 import ServiceController from '@/Routes/actions/App/Http/Controllers/ServiceController';
