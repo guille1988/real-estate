@@ -262,3 +262,17 @@ export interface GalleryImageInterface {
     url: string;
     alt: string;
 }
+
+export interface PricingDetailInterface {
+    id: number;
+    name: string;
+    description: string;
+    price: string;
+}
+
+export interface PricingCardInterface {
+    id: number;
+    subject: string;
+    link: string;
+    details: PricingDetailInterface[];
+}
