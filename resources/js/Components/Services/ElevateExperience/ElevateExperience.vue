@@ -44,7 +44,7 @@ const cards: HeroSectionCardInterface[] = [
     {
         id: 2,
         url: getServiceSection('#unlock-property-value'),
-        icon: 'ScaleIcon',
+        icon: 'DollarSignIcon',
         description: 'Unlock Property Value',
     },
     {
