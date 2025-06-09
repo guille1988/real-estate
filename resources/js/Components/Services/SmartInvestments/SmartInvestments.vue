@@ -64,7 +64,7 @@ const cards: SmartInvestmentsCardInterface[] = [
     },
     {
         id: 2,
-        icon: 'InfoIcon',
+        icon: 'FlameIcon',
         title: 'ROI Assessment',
         description:
             'Make investment decisions with confidence. Our ROI Assessment services evaluate the potential returns on your investments.',
@@ -78,7 +78,7 @@ const cards: SmartInvestmentsCardInterface[] = [
     },
     {
         id: 4,
-        icon: 'FocusIcon',
+        icon: 'SunIcon',
         title: 'Diversification Mastery',
         description:
             'Diversify your real estate portfolio effectively. Our experts guide you in spreading your investments across various property types and locations.',
