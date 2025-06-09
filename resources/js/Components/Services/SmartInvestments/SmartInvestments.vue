@@ -71,7 +71,7 @@ const cards: SmartInvestmentsCardInterface[] = [
     },
     {
         id: 3,
-        icon: 'LocationIcon',
+        icon: 'LightBulbIcon',
         title: 'Customized Strategies',
         description:
             'Every investor is unique and so are their goals. We develop Customized Investment Strategies tailored to your specific needs.',
