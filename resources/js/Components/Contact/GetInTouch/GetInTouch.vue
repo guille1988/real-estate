@@ -34,9 +34,9 @@ import { GetInTouchCardInterface } from '@/Types/App/Interfaces';
 const cards: GetInTouchCardInterface[] = [
     {
         id: 1,
-        link: 'mailto:info@estatein.com',
+        link: 'mailto:info@realestate.com',
         icon: 'EmailIcon',
-        label: 'info@estatein.com',
+        label: 'info@realestate.com',
     },
     {
         id: 2,
