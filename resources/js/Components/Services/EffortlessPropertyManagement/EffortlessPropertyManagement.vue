@@ -89,7 +89,7 @@ const cards: EffortlessPropertyCardInterface[] = [
     },
     {
         id: 4,
-        icon: 'ShieldIcon',
+        icon: 'SunIcon',
         title: 'Legal Guardian',
         description:
             'Stay compliant with property laws and regulations effortlessly.',
