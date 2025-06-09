@@ -78,7 +78,7 @@ const cards: UnlockPropertyCardInterface[] = [
     },
     {
         id: 3,
-        icon: 'DotsIcon',
+        icon: 'StackedPlatesIcon',
         title: 'Negotiation Wizardry',
         description:
             'Negotiating the best deal is an art, and our negotiation experts are masters of it.',
