@@ -85,7 +85,7 @@ const cards: UnlockPropertyCardInterface[] = [
     },
     {
         id: 4,
-        icon: 'BookIcon',
+        icon: 'HornIcon',
         title: 'Closing Success',
         description:
             'A successful sale is not complete until the closing. We guide you through the intricate closing process.',

@@ -4,9 +4,9 @@
     >
         <div class="mb-4 flex items-center">
             <div
-                class="mr-4 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-purple-500/10"
+                class="mr-4 flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-purple-500/10"
             >
-                <component :is="icon" class="h-6 w-6 text-purple-500" />
+                <component :is="icon" class="h-8 w-8 text-purple-500" />
             </div>
             <h3 class="text-xl font-medium">{{ card.title }}</h3>
         </div>
