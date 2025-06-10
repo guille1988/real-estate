@@ -34,7 +34,7 @@
 
             <div class="mb-4 flex flex-wrap gap-2 md:mb-6 md:gap-4">
                 <div class="flex items-center gap-1 md:gap-2">
-                    <HomeIcon />
+                    <BedroomIcon />
                     <span class="text-xs text-gray-400 md:text-sm"
                         >{{ card.bedroom_count }}-Bedroom</span
                     >
@@ -75,8 +75,8 @@
 
 <script setup lang="ts">
 import BathroomIcon from '@/Components/Home/FeaturedProperties/FeaturedPropertyCard/Icons/BathroomIcon.vue';
+import BedroomIcon from '@/Components/Home/FeaturedProperties/FeaturedPropertyCard/Icons/BedroomIcon.vue';
 import BuildingIcon from '@/Components/Home/FeaturedProperties/FeaturedPropertyCard/Icons/BuildingIcon.vue';
-import HomeIcon from '@/Components/Home/FeaturedProperties/FeaturedPropertyCard/Icons/HomeIcon.vue';
 import { show } from '@/Routes/actions/App/Http/Controllers/PropertyController';
 import { FeaturedPropertyCardInterface } from '@/Types/App/Interfaces';
 import { router } from '@inertiajs/vue3';
