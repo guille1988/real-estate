@@ -42,9 +42,9 @@
     </div>
 </template>
 <script setup lang="ts">
-import FaceIcon from '@/Components/About/Clients/ClientCard/Icons/FaceIcon.vue';
-import GridIcon from '@/Components/About/Clients/ClientCard/Icons/GridIcon.vue';
-import ThunderIcon from '@/Components/About/Clients/ClientCard/Icons/ThunderIcon.vue';
+import FaceIcon from '@/Components/Icons/FaceIcon.vue';
+import ThunderIcon from '@/Components/PropertyDetails/Gallery/Amenities/ThunderIcon.vue';
+import GridIcon from '@/Components/Services/EffortlessPropertyManagement/EffortlessPropertyCard/Icons/GridIcon.vue';
 import { ClientCardInterface } from '@/Types/App/Interfaces';
 
 const { card }: { card: ClientCardInterface } = defineProps<{
