@@ -34,7 +34,7 @@
 <script setup lang="ts">
 import ThreeStars from '@/Components/Shared/ThreeStars/ThreeStars.vue';
 import { ValueCardInterface } from '@/Types/App/Interfaces';
-import ValueCard from './ValueCard/ValueCard.vue';
+import ValueCard from './ValueCard.vue';
 const cards: ValueCardInterface[] = [
     {
         id: 1,
