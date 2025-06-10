@@ -74,9 +74,9 @@
 </template>
 
 <script setup lang="ts">
-import BathroomIcon from '@/Components/Shared/Icons/BathroomIcon.vue';
-import BedroomIcon from '@/Components/Shared/Icons/BedroomIcon.vue';
-import WhiteBuildingIcon from '@/Components/Shared/Icons/WhiteBuildingIcon.vue';
+import BathroomIcon from '@/Components/Icons/BathroomIcon.vue';
+import BedroomIcon from '@/Components/Icons/BedroomIcon.vue';
+import WhiteBuildingIcon from '@/Components/Icons/WhiteBuildingIcon.vue';
 import { show } from '@/Routes/actions/App/Http/Controllers/PropertyController';
 import { FeaturedPropertyCardInterface } from '@/Types/App/Interfaces';
 import { router } from '@inertiajs/vue3';

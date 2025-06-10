@@ -16,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import RightArrowIcon from '@/Components/Shared/Icons/RightArrowIcon.vue';
+import RightArrowIcon from '@/Components/Icons/RightArrowIcon.vue';
 import { HeroSectionCardInterface } from '@/Types/App/Interfaces';
 import { router } from '@inertiajs/vue3';
 import { defineAsyncComponent, type Component } from 'vue';
@@ -27,9 +27,7 @@ const { card }: { card: HeroSectionCardInterface } = defineProps<{
 
 const icon: Component = defineAsyncComponent(
     (): Promise<Component> =>
-        import(
-            `./../../../Shared/Icons/${card.icon}.vue`
-        ) as Promise<Component>,
+        import(`./../../../Icons/${card.icon}.vue`) as Promise<Component>,
 );
 
 const visit = (url: string): void => {

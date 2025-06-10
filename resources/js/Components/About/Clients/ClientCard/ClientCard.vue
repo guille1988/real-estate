@@ -16,14 +16,14 @@
         <div class="mb-8 grid grid-cols-2 gap-8">
             <div>
                 <div class="mb-2 flex items-center gap-2 text-gray-400">
-                    <DomainIcon />
+                    <GridIcon />
                     {{ card.domain }}
                 </div>
                 <p class="text-white">Commercial Real Estate</p>
             </div>
             <div>
                 <div class="mb-2 flex items-center gap-2 text-gray-400">
-                    <CategoryIcon />
+                    <ThunderIcon />
                     {{ card.category }}
                 </div>
                 <p class="text-white">{{ card.company }}</p>
@@ -42,9 +42,9 @@
     </div>
 </template>
 <script setup lang="ts">
-import CategoryIcon from '@/Components/About/Clients/ClientCard/Icons/CategoryIcon.vue';
-import DomainIcon from '@/Components/About/Clients/ClientCard/Icons/DomainIcon.vue';
 import FaceIcon from '@/Components/About/Clients/ClientCard/Icons/FaceIcon.vue';
+import GridIcon from '@/Components/About/Clients/ClientCard/Icons/GridIcon.vue';
+import ThunderIcon from '@/Components/About/Clients/ClientCard/Icons/ThunderIcon.vue';
 import { ClientCardInterface } from '@/Types/App/Interfaces';
 
 const { card }: { card: ClientCardInterface } = defineProps<{
