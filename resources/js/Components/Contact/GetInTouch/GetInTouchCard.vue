@@ -19,7 +19,7 @@
     </a>
 </template>
 <script setup lang="ts">
-import LinkArrowIcon from '@/Components/Contact/GetInTouch/GetInTouchCard/Icons/LinkArrowIcon.vue';
+import LinkArrowIcon from '@/Components/Icons/LinkArrowIcon.vue';
 import { GetInTouchCardInterface } from '@/Types/App/Interfaces';
 import { type Component, defineAsyncComponent } from 'vue';
 
@@ -29,6 +29,6 @@ const { card }: { card: GetInTouchCardInterface } = defineProps<{
 
 const icon: Component = defineAsyncComponent(
     (): Promise<Component> =>
-        import(`./Icons/${card.icon}.vue`) as Promise<Component>,
+        import(`./../../Icons/${card.icon}.vue`) as Promise<Component>,
 );
 </script>
