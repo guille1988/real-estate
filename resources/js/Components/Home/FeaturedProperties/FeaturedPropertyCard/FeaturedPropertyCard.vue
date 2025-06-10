@@ -46,7 +46,7 @@
                     >
                 </div>
                 <div class="flex items-center gap-1 md:gap-2">
-                    <BuildingIcon />
+                    <WhiteBuildingIcon />
                     <span class="text-xs text-gray-400 md:text-sm">{{
                         capitalizeFirstLetter(card.type)
                     }}</span>
@@ -74,9 +74,9 @@
 </template>
 
 <script setup lang="ts">
-import BathroomIcon from '@/Components/Home/FeaturedProperties/FeaturedPropertyCard/Icons/BathroomIcon.vue';
-import BedroomIcon from '@/Components/Home/FeaturedProperties/FeaturedPropertyCard/Icons/BedroomIcon.vue';
-import BuildingIcon from '@/Components/Home/FeaturedProperties/FeaturedPropertyCard/Icons/BuildingIcon.vue';
+import BathroomIcon from '@/Components/Shared/Icons/BathroomIcon.vue';
+import BedroomIcon from '@/Components/Shared/Icons/BedroomIcon.vue';
+import WhiteBuildingIcon from '@/Components/Shared/Icons/WhiteBuildingIcon.vue';
 import { show } from '@/Routes/actions/App/Http/Controllers/PropertyController';
 import { FeaturedPropertyCardInterface } from '@/Types/App/Interfaces';
 import { router } from '@inertiajs/vue3';
