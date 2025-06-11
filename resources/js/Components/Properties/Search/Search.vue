@@ -74,7 +74,7 @@
 import House from '@/Assets/Images/house.jpg';
 import Loft from '@/Assets/Images/loft.jpg';
 import Villa from '@/Assets/Images/villa.jpg';
-import SearchIcon from '@/Components/Properties/Search/Icons/SearchIcon.vue';
+import SearchIcon from '@/Components/Icons/SearchIcon.vue';
 import SearchCard from '@/Components/Properties/Search/SearchCard.vue';
 import SearchFilterCard from '@/Components/Properties/Search/SearchFilterCard.vue';
 import NextSliderArrowIcon from '@/Components/Shared/SliderArrows/NextSliderArrowIcon.vue';
@@ -112,7 +112,7 @@ const handleOptionSelected = (
 const filterCards: SearchFilterCardInterface[] = [
     {
         id: 1,
-        icon: 'LocationIcon',
+        icon: 'LocalizationIcon',
         label: 'Location',
         options: [
             { id: 1, label: 'New York', value: 'new_york' },

@@ -6,7 +6,16 @@
             :class="{ 'bg-[#1a1a1a]': isOpen }"
         >
             <div class="flex min-w-0 flex-grow items-center gap-2">
-                <component :is="icon" class="flex-shrink-0" />
+                <component
+                    :is="icon"
+                    class="flex-shrink-0"
+                    :classes="{
+                        'h-6 w-6 text-gray-500': [
+                            'HouseIcon',
+                            'LocalizationIcon',
+                        ].includes(card.icon),
+                    }"
+                />
                 <span class="flex-shrink-0 whitespace-nowrap text-gray-400">{{
                     card.label
                 }}</span>
@@ -49,7 +58,7 @@
 </template>
 
 <script setup lang="ts">
-import DropdownArrowIcon from '@/Components/Properties/Search/Icons/DropdownArrowIcon.vue';
+import DropdownArrowIcon from '@/Components/Icons/DropdownArrowIcon.vue';
 import {
     SearchFilterCardInterface,
     SearchFilterOptionInterface,
@@ -79,7 +88,7 @@ const selectedOption: Ref<SearchFilterOptionInterface | null> =
 
 const icon: Component = defineAsyncComponent(
     (): Promise<Component> =>
-        import(`./Icons/${card.icon}.vue`) as Promise<Component>,
+        import(`./../../Icons/${card.icon}.vue`) as Promise<Component>,
 );
 
 const toggleDropdown = (): void => {
