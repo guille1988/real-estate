@@ -9,7 +9,10 @@
             >
                 <component
                     :is="icon"
-                    :color="{ 'text-purple-500': card.icon === 'BuildingIcon' }"
+                    :classes="{
+                        'h-6 w-6 text-gray-800 text-purple-500':
+                            card.icon === 'BuildingIcon',
+                    }"
                 />
             </div>
             <RightArrowIcon />
@@ -30,7 +33,7 @@ const { card }: { card: HeroSectionCardInterface } = defineProps<{
 
 const icon: Component = defineAsyncComponent(
     (): Promise<Component> =>
-        import(`./../../../Icons/${card.icon}.vue`) as Promise<Component>,
+        import(`./../../Icons/${card.icon}.vue`) as Promise<Component>,
 );
 
 const visit = (url: string): void => {

@@ -15,7 +15,10 @@
             >
                 <component
                     :is="icon"
-                    :color="{ 'text-purple-500': card.icon === 'BuildingIcon' }"
+                    :classes="{
+                        'h-6 w-6 text-gray-800 text-purple-500':
+                            card.icon === 'BuildingIcon',
+                    }"
                 />
             </div>
             <h3 class="text-center text-lg font-medium">

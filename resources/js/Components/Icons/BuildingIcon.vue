@@ -1,6 +1,6 @@
 <template>
     <svg
-        :class="['h-6 w-6 text-gray-800', color]"
+        :class="classes"
         aria-hidden="true"
         xmlns="http://www.w3.org/2000/svg"
         width="16"
@@ -17,6 +17,6 @@
 </template>
 <script setup lang="ts">
 defineProps<{
-    color: string;
+    classes: string | object;
 }>();
 </script>

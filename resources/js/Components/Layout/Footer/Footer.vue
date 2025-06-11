@@ -59,7 +59,7 @@
                         <span
                             class="absolute left-2 top-1/2 -translate-y-1/2 text-gray-400"
                         >
-                            <EmailIcon />
+                            <EmailIcon classes="mr-2 h-4 w-4 text-white" />
                         </span>
                         <button
                             class="absolute right-2 top-1/2 -translate-y-1/2 text-white md:pr-4"
@@ -109,10 +109,10 @@
 </template>
 
 <script setup lang="ts">
+import EmailIcon from '@/Components/Icons/EmailIcon.vue';
 import RealStateIcon from '@/Components/Icons/RealStateIcon.vue';
 import FooterCategory from '@/Components/Layout/Footer/FooterCategory.vue';
 import FooterSocialLink from '@/Components/Layout/Footer/FooterSocialLink/FooterSocialLink.vue';
-import EmailIcon from '@/Components/Layout/Footer/Icons/EmailIcon.vue';
 import SendIcon from '@/Components/Layout/Footer/Icons/SendIcon.vue';
 import HomeController from '@/Routes/actions/App/Http/Controllers/HomeController';
 import { SocialLinkIconEnum } from '@/Types/App/Enums';

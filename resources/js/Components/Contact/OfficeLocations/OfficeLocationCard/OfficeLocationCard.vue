@@ -16,7 +16,7 @@
                 <div
                     class="flex items-center rounded-full bg-neutral-800 px-4 py-2"
                 >
-                    <EmailIcon />
+                    <EmailIcon classes="mr-2 h-4 w-4 text-white" />
                     <span class="text-sm text-white">{{ card.email }}</span>
                 </div>
                 <div
@@ -43,9 +43,9 @@
 </template>
 
 <script setup lang="ts">
-import EmailIcon from '@/Components/Contact/OfficeLocations/OfficeLocationCard/Icons/EmailIcon.vue';
 import LocationIcon from '@/Components/Contact/OfficeLocations/OfficeLocationCard/Icons/LocationIcon.vue';
 import PhoneIcon from '@/Components/Contact/OfficeLocations/OfficeLocationCard/Icons/PhoneIcon.vue';
+import EmailIcon from '@/Components/Icons/EmailIcon.vue';
 import { OfficeLocationCardInterface } from '@/Types/App/Interfaces';
 
 const { card }: { card: OfficeLocationCardInterface } = defineProps<{
