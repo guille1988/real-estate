@@ -26,6 +26,6 @@ const { card }: { card: EffortlessPropertyCardInterface } = defineProps<{
 
 const icon: Component = defineAsyncComponent(
     (): Promise<Component> =>
-        import(`./Icons/${card.icon}.vue`) as Promise<Component>,
+        import(`./../../Icons/${card.icon}.vue`) as Promise<Component>,
 );
 </script>

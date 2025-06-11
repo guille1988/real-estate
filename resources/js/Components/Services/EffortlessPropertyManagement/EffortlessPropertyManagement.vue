@@ -21,7 +21,7 @@
             <div
                 class="mb-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
             >
-                <EffortlessPropertyCard
+                <EffortlessPropertyManagementCard
                     v-for="card in getFirstThreeCards()"
                     :key="card.id"
                     :card="card"
@@ -29,7 +29,7 @@
             </div>
 
             <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
-                <EffortlessPropertyCard :card="getLastCard()" />
+                <EffortlessPropertyManagementCard :card="getLastCard()" />
 
                 <div
                     class="border border-neutral-800 bg-neutral-900 p-6 md:col-span-2"
@@ -61,7 +61,7 @@
     </section>
 </template>
 <script setup lang="ts">
-import EffortlessPropertyCard from '@/Components/Services/EffortlessPropertyManagement/EffortlessPropertyCard/EffortlessPropertyCard.vue';
+import EffortlessPropertyManagementCard from '@/Components/Services/EffortlessPropertyManagement/EffortlessPropertyManagementCard.vue';
 import ThreeStars from '@/Components/Shared/ThreeStars/ThreeStars.vue';
 import { EffortlessPropertyCardInterface } from '@/Types/App/Interfaces';
 
