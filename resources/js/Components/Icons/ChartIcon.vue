@@ -9,7 +9,7 @@
         stroke-width="2"
         stroke-linecap="round"
         stroke-linejoin="round"
-        class="text-gray-500"
+        :class="classes"
     >
         <path d="M3 3v18h18" />
         <path d="M7 17v-4h4" />
@@ -17,3 +17,8 @@
         <path d="M13 17v-6h4" />
     </svg>
 </template>
+<script setup lang="ts">
+defineProps<{
+    classes: string | object;
+}>();
+</script>

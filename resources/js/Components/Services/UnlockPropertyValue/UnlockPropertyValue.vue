@@ -57,7 +57,7 @@
     </section>
 </template>
 <script setup lang="ts">
-import UnlockPropertyCard from '@/Components/Services/UnlockPropertyValue/UnlockPropertyCard/UnlockPropertyCard.vue';
+import UnlockPropertyCard from '@/Components/Services/UnlockPropertyValue/UnlockPropertyCard.vue';
 import ThreeStars from '@/Components/Shared/ThreeStars/ThreeStars.vue';
 import { UnlockPropertyCardInterface } from '@/Types/App/Interfaces';
 

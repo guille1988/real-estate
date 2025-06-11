@@ -13,6 +13,7 @@
                         'h-6 w-6 text-gray-500': [
                             'HouseIcon',
                             'LocalizationIcon',
+                            'ChartIcon',
                         ].includes(card.icon),
                     }"
                 />
