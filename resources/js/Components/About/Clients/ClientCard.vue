@@ -23,7 +23,7 @@
             </div>
             <div>
                 <div class="mb-2 flex items-center gap-2 text-gray-400">
-                    <ThunderIcon />
+                    <ThunderIcon classes="h-5 w-5" fill="none" />
                     {{ card.category }}
                 </div>
                 <p class="text-white">{{ card.company }}</p>
@@ -43,8 +43,8 @@
 </template>
 <script setup lang="ts">
 import FaceIcon from '@/Components/Icons/FaceIcon.vue';
-import ThunderIcon from '@/Components/PropertyDetails/Gallery/Amenities/ThunderIcon.vue';
-import GridIcon from '@/Components/Services/EffortlessPropertyManagement/EffortlessPropertyCard/Icons/GridIcon.vue';
+import GridIcon from '@/Components/Icons/GridIcon.vue';
+import ThunderIcon from '@/Components/Icons/ThunderIcon.vue';
 import { ClientCardInterface } from '@/Types/App/Interfaces';
 
 const { card }: { card: ClientCardInterface } = defineProps<{

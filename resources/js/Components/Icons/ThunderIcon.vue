@@ -1,8 +1,8 @@
 <template>
     <svg
-        class="h-5 w-5"
+        :class="classes"
         viewBox="0 0 24 24"
-        fill="none"
+        :fill="fill"
         xmlns="http://www.w3.org/2000/svg"
     >
         <path
@@ -14,3 +14,10 @@
         />
     </svg>
 </template>
+
+<script setup lang="ts">
+defineProps<{
+    classes: string | object;
+    fill: string;
+}>();
+</script>

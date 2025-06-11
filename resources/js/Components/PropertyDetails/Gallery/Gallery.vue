@@ -9,7 +9,7 @@
                         Seaside Serenity Villa
                     </h1>
                     <div class="flex items-center text-sm text-gray-400">
-                        <LocalizationIcon />
+                        <LocalizationIcon classes="mr-1 h-4 w-4" />
                         Malibu, California
                     </div>
                 </div>
@@ -118,9 +118,9 @@
 </template>
 
 <script setup lang="ts">
-import Amenities from '@/Components/PropertyDetails/Gallery/Amenities/Amenities.vue';
-import Description from '@/Components/PropertyDetails/Gallery/Description/Description.vue';
-import LocalizationIcon from '@/Components/PropertyDetails/Gallery/LocalizationIcon.vue';
+import LocalizationIcon from '@/Components/Icons/LocalizationIcon.vue';
+import Amenities from '@/Components/PropertyDetails/Gallery/Amenities.vue';
+import Description from '@/Components/PropertyDetails/Gallery/Description.vue';
 import NextSliderArrowIcon from '@/Components/Shared/SliderArrows/NextSliderArrowIcon.vue';
 import PreviousSliderArrowIcon from '@/Components/Shared/SliderArrows/PreviousSliderArrowIcon.vue';
 import {
