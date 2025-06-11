@@ -1,6 +1,6 @@
 <template>
     <svg
-        class="h-6 w-6 text-purple-500"
+        :class="classes"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
@@ -12,3 +12,8 @@
         <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
     </svg>
 </template>
+<script setup lang="ts">
+defineProps<{
+    classes: string | object;
+}>();
+</script>

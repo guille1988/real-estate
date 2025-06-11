@@ -13,7 +13,10 @@
                 <component
                     :is="icon"
                     :classes="{
-                        'h-6 w-6 text-purple-500': card.icon === 'EmailIcon',
+                        'h-6 w-6 text-purple-500': [
+                            'EmailIcon',
+                            'LocalizationIcon',
+                        ].includes(card.icon),
                     }"
                 />
             </div>
