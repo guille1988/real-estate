@@ -13,7 +13,10 @@
             <div
                 class="mb-8 flex h-14 w-14 items-center justify-center rounded-full bg-purple-500/10"
             >
-                <component :is="icon" class="h-8 w-8 text-purple-500" />
+                <component
+                    :is="icon"
+                    :color="{ 'text-purple-500': card.icon === 'BuildingIcon' }"
+                />
             </div>
             <h3 class="text-center text-lg font-medium">
                 {{ card.description }}

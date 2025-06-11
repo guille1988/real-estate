@@ -50,7 +50,7 @@ const cards: HeroSectionCardInterface[] = [
     {
         id: 3,
         url: getServiceSection('#effortless-property-management'),
-        icon: 'PurpleBuildingIcon',
+        icon: 'BuildingIcon',
         description: 'Effortless Property Management',
     },
     {

@@ -109,11 +109,11 @@
 </template>
 
 <script setup lang="ts">
+import RealStateIcon from '@/Components/Icons/RealStateIcon.vue';
 import FooterCategory from '@/Components/Layout/Footer/FooterCategory.vue';
 import FooterSocialLink from '@/Components/Layout/Footer/FooterSocialLink/FooterSocialLink.vue';
 import EmailIcon from '@/Components/Layout/Footer/Icons/EmailIcon.vue';
 import SendIcon from '@/Components/Layout/Footer/Icons/SendIcon.vue';
-import RealStateIcon from '@/Components/Layout/RealStateIcon.vue';
 import HomeController from '@/Routes/actions/App/Http/Controllers/HomeController';
 import { SocialLinkIconEnum } from '@/Types/App/Enums';
 import {

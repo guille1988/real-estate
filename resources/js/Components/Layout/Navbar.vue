@@ -92,8 +92,8 @@
 </template>
 
 <script setup lang="ts">
-import TurtleIcon from '@/Components/Layout/Navbar/TurtleIcon.vue';
-import RealStateIcon from '@/Components/Layout/RealStateIcon.vue';
+import RealStateIcon from '@/Components/Icons/RealStateIcon.vue';
+import TurtleIcon from '@/Components/Icons/TurtleIcon.vue';
 import AboutController from '@/Routes/actions/App/Http/Controllers/AboutController';
 import ContactController from '@/Routes/actions/App/Http/Controllers/ContactController';
 import HomeController from '@/Routes/actions/App/Http/Controllers/HomeController';

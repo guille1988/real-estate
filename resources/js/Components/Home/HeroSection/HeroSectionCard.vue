@@ -7,7 +7,10 @@
             <div
                 class="flex h-12 w-12 items-center justify-center rounded-full border border-purple-600 bg-black/60"
             >
-                <component :is="icon" />
+                <component
+                    :is="icon"
+                    :color="{ 'text-purple-500': card.icon === 'BuildingIcon' }"
+                />
             </div>
             <RightArrowIcon />
         </div>

@@ -61,7 +61,7 @@
 
 <script setup lang="ts">
 import BlueBuilding from '@/Assets/Images/blue_building.png';
-import HeroSectionCard from '@/Components/Home/HeroSection/HeroSectionCard/HeroSectionCard.vue';
+import HeroSectionCard from '@/Components/Home/HeroSection/HeroSectionCard.vue';
 import StatsCard from '@/Components/Home/HeroSection/StatsCard.vue';
 import PropertyController from '@/Routes/actions/App/Http/Controllers/PropertyController';
 import ServiceController from '@/Routes/actions/App/Http/Controllers/ServiceController';
@@ -112,7 +112,7 @@ const heroCards: HeroSectionCardInterface[] = [
     {
         id: 3,
         url: getServiceSection('#effortless-property-management'),
-        icon: 'PurpleBuildingIcon',
+        icon: 'BuildingIcon',
         description: 'Effortless Property Management',
     },
     {

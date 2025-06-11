@@ -25,7 +25,7 @@
     </div>
 </template>
 <script setup lang="ts">
-import FiveStarsIcon from '@/Components/Home/ClientTestimonials/ClientTestimonialCard/FiveStarsIcon.vue';
+import FiveStarsIcon from '@/Components/Icons/FiveStarsIcon.vue';
 import { ClientTestimonialCardInterface } from '@/Types/App/Interfaces';
 
 const { card }: { card: ClientTestimonialCardInterface } = defineProps<{
