@@ -16,6 +16,7 @@
                         'h-6 w-6 text-purple-500': [
                             'EmailIcon',
                             'LocalizationIcon',
+                            'PhoneIcon',
                         ].includes(card.icon),
                     }"
                 />

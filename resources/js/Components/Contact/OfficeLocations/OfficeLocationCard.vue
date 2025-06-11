@@ -22,7 +22,7 @@
                 <div
                     class="flex items-center rounded-full bg-neutral-800 px-4 py-2"
                 >
-                    <PhoneIcon />
+                    <PhoneIcon classes="mr-2 h-4 w-4 text-white" />
                     <span class="text-sm text-white">{{ card.phone }}</span>
                 </div>
                 <div
@@ -43,8 +43,8 @@
 </template>
 
 <script setup lang="ts">
-import PhoneIcon from '@/Components/Contact/OfficeLocations/OfficeLocationCard/Icons/PhoneIcon.vue';
 import EmailIcon from '@/Components/Icons/EmailIcon.vue';
+import PhoneIcon from '@/Components/Icons/PhoneIcon.vue';
 import LocalizationIcon from '@/Components/PropertyDetails/Gallery/LocalizationIcon.vue';
 import { OfficeLocationCardInterface } from '@/Types/App/Interfaces';
 

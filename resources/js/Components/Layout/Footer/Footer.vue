@@ -111,9 +111,9 @@
 <script setup lang="ts">
 import EmailIcon from '@/Components/Icons/EmailIcon.vue';
 import RealStateIcon from '@/Components/Icons/RealStateIcon.vue';
+import SendIcon from '@/Components/Icons/SendIcon.vue';
 import FooterCategory from '@/Components/Layout/Footer/FooterCategory.vue';
 import FooterSocialLink from '@/Components/Layout/Footer/FooterSocialLink/FooterSocialLink.vue';
-import SendIcon from '@/Components/Layout/Footer/Icons/SendIcon.vue';
 import HomeController from '@/Routes/actions/App/Http/Controllers/HomeController';
 import { SocialLinkIconEnum } from '@/Types/App/Enums';
 import {
