@@ -12,7 +12,10 @@
                     :classes="{
                         'h-6 w-6 text-gray-800 text-purple-500':
                             card.icon === 'BuildingIcon',
-                        'h-6 w-6 text-purple-500': card.icon === 'HouseIcon',
+                        'h-6 w-6 text-purple-500': [
+                            'HouseIcon',
+                            'LampIcon',
+                        ].includes(card.icon),
                     }"
                 />
             </div>

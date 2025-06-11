@@ -1,6 +1,6 @@
 <template>
     <svg
-        class="h-6 w-6"
+        class="h-8 w-8 text-purple-500"
         viewBox="0 0 24 24"
         fill="currentColor"
         xmlns="http://www.w3.org/2000/svg"
@@ -10,3 +10,4 @@
         />
     </svg>
 </template>
+<script setup lang="ts"></script>

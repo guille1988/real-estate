@@ -6,7 +6,15 @@
             <div
                 class="mr-4 flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-purple-500/10"
             >
-                <component :is="icon" class="h-8 w-8 text-purple-500" />
+                <component
+                    :is="icon"
+                    :classes="{
+                        'h-8 w-8 text-purple-500': [
+                            'ChartIcon',
+                            'LampIcon',
+                        ].includes(card.icon),
+                    }"
+                />
             </div>
             <h3 class="text-xl font-medium">{{ card.title }}</h3>
         </div>
@@ -26,6 +34,6 @@ const { card }: { card: SmartInvestmentsCardInterface } = defineProps<{
 
 const icon: Component = defineAsyncComponent(
     (): Promise<Component> =>
-        import(`./Icons/${card.icon}.vue`) as Promise<Component>,
+        import(`./../../Icons/${card.icon}.vue`) as Promise<Component>,
 );
 </script>

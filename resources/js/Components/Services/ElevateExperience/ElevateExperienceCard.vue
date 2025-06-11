@@ -16,9 +16,12 @@
                 <component
                     :is="icon"
                     :classes="{
-                        'h-6 w-6 text-gray-800 text-purple-500':
+                        'h-8 w-8 text-gray-800 text-purple-500':
                             card.icon === 'BuildingIcon',
-                        'h-6 w-6 text-purple-500': card.icon === 'HouseIcon',
+                        'h-8 w-8 text-purple-500': [
+                            'HouseIcon',
+                            'LampIcon',
+                        ].includes(card.icon),
                     }"
                 />
             </div>

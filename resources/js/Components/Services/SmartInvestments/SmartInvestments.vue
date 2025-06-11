@@ -50,7 +50,7 @@
     </section>
 </template>
 <script setup lang="ts">
-import SmartInvestmentsCard from '@/Components/Services/SmartInvestments/SmartInvestmentsCard/SmartInvestmentsCard.vue';
+import SmartInvestmentsCard from '@/Components/Services/SmartInvestments/SmartInvestmentsCard.vue';
 import ThreeStars from '@/Components/Shared/ThreeStars/ThreeStars.vue';
 import { SmartInvestmentsCardInterface } from '@/Types/App/Interfaces';
 
@@ -71,7 +71,7 @@ const cards: SmartInvestmentsCardInterface[] = [
     },
     {
         id: 3,
-        icon: 'LightBulbIcon',
+        icon: 'LampIcon',
         title: 'Customized Strategies',
         description:
             'Every investor is unique and so are their goals. We develop Customized Investment Strategies tailored to your specific needs.',
