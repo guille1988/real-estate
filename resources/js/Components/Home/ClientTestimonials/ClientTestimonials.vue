@@ -83,7 +83,7 @@ import WadeWarren from '@/Assets/Images/wade_warren.jpg';
 import ClientTestimonialCard from '@/Components/Home/ClientTestimonials/ClientTestimonialCard.vue';
 import NextSliderArrowIcon from '@/Components/Icons/NextSliderArrowIcon.vue';
 import PreviousSliderArrowIcon from '@/Components/Icons/PreviousSliderArrowIcon.vue';
-import ThreeStars from '@/Components/Shared/ThreeStars/ThreeStars.vue';
+import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
 import { ScreenSizeEnum } from '@/Types/App/Enums';
 import {
     ClientTestimonialCardInterface,

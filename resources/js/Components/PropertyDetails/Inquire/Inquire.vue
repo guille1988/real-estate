@@ -93,10 +93,10 @@
 </template>
 
 <script setup lang="ts">
+import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
 import CheckboxInput from '@/Components/Shared/Inputs/CheckboxInput.vue';
 import TextInput from '@/Components/Shared/Inputs/TextInput.vue';
 import TextareaInput from '@/Components/Shared/Inputs/TextareaInput.vue';
-import ThreeStars from '@/Components/Shared/ThreeStars/ThreeStars.vue';
 import { InquireFormInterface } from '@/Types/App/Interfaces';
 import { usePage } from '@inertiajs/vue3';
 import { ref, Ref } from 'vue';

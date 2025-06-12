@@ -56,7 +56,7 @@ import TeamManPortrait from '@/Assets/Images/team_man_portrait.png';
 import TeamWomanPortrait from '@/Assets/Images/team_woman_portrait.png';
 import WorkingTeam from '@/Assets/Images/working_team.png';
 import ExploreCard from '@/Components/Contact/Explore/ExploreCard.vue';
-import ThreeStars from '@/Components/Shared/ThreeStars/ThreeStars.vue';
+import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
 import { ExploreCardInterface } from '@/Types/App/Interfaces';
 
 const cards: ExploreCardInterface[] = [

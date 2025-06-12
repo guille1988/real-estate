@@ -61,8 +61,8 @@
     </section>
 </template>
 <script setup lang="ts">
+import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
 import EffortlessPropertyManagementCard from '@/Components/Services/EffortlessPropertyManagement/EffortlessPropertyManagementCard.vue';
-import ThreeStars from '@/Components/Shared/ThreeStars/ThreeStars.vue';
 import { EffortlessPropertyCardInterface } from '@/Types/App/Interfaces';
 
 const cards: EffortlessPropertyCardInterface[] = [

@@ -25,8 +25,8 @@
     </section>
 </template>
 <script setup lang="ts">
+import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
 import ElevateExperienceCard from '@/Components/Services/ElevateExperience/ElevateExperienceCard.vue';
-import ThreeStars from '@/Components/Shared/ThreeStars/ThreeStars.vue';
 import PropertyController from '@/Routes/actions/App/Http/Controllers/PropertyController';
 import ServiceController from '@/Routes/actions/App/Http/Controllers/ServiceController';
 import { HeroSectionCardInterface } from '@/Types/App/Interfaces';

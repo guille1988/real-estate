@@ -28,7 +28,7 @@
 
 <script setup lang="ts">
 import NavigatingExperienceCard from '@/Components/About/NavigatingExperience/NavigatingExperienceCard.vue';
-import ThreeStars from '@/Components/Shared/ThreeStars/ThreeStars.vue';
+import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
 import { NavigatingExperienceCardInterface } from '@/Types/App/Interfaces';
 
 const cards: NavigatingExperienceCardInterface[] = [

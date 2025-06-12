@@ -62,7 +62,7 @@ import Villa from '@/Assets/Images/villa.jpg';
 import FeaturedPropertyCard from '@/Components/Home/FeaturedProperties/FeaturedPropertyCard.vue';
 import NextSliderArrowIcon from '@/Components/Icons/NextSliderArrowIcon.vue';
 import PreviousSliderArrowIcon from '@/Components/Icons/PreviousSliderArrowIcon.vue';
-import ThreeStars from '@/Components/Shared/ThreeStars/ThreeStars.vue';
+import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
 import { index } from '@/Routes/actions/App/Http/Controllers/PropertyController';
 import { PropertyTypeEnum } from '@/Types/App/Enums';
 import { FeaturedPropertyCardInterface } from '@/Types/App/Interfaces';

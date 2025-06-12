@@ -50,8 +50,8 @@
     </section>
 </template>
 <script setup lang="ts">
+import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
 import SmartInvestmentsCard from '@/Components/Services/SmartInvestments/SmartInvestmentsCard.vue';
-import ThreeStars from '@/Components/Shared/ThreeStars/ThreeStars.vue';
 import { SmartInvestmentsCardInterface } from '@/Types/App/Interfaces';
 
 const cards: SmartInvestmentsCardInterface[] = [

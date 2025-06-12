@@ -133,11 +133,11 @@
 </template>
 
 <script setup lang="ts">
+import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
 import CheckboxInput from '@/Components/Shared/Inputs/CheckboxInput.vue';
 import DropdownInput from '@/Components/Shared/Inputs/DropdownInput.vue';
 import TextareaInput from '@/Components/Shared/Inputs/TextareaInput.vue';
 import TextInput from '@/Components/Shared/Inputs/TextInput.vue';
-import ThreeStars from '@/Components/Shared/ThreeStars/ThreeStars.vue';
 import { PropertyTypeEnum } from '@/Types/App/Enums';
 import { MakeItHappenFormInterface } from '@/Types/App/Interfaces';
 import { type Ref, ref } from 'vue';

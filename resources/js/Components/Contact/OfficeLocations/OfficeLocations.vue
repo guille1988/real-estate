@@ -151,7 +151,7 @@
 import OfficeLocationCard from '@/Components/Contact/OfficeLocations/OfficeLocationCard.vue';
 import NextSliderArrowIcon from '@/Components/Icons/NextSliderArrowIcon.vue';
 import PreviousSliderArrowIcon from '@/Components/Icons/PreviousSliderArrowIcon.vue';
-import ThreeStars from '@/Components/Shared/ThreeStars/ThreeStars.vue';
+import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
 import { LocationTypeEnum, ScreenSizeEnum } from '@/Types/App/Enums';
 import {
     OfficeLocationCardInterface,

@@ -46,7 +46,7 @@
     </section>
 </template>
 <script setup lang="ts">
-import ThreeStars from '@/Components/Shared/ThreeStars/ThreeStars.vue';
+import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
 import { PricingCardInterface } from '@/Types/App/Interfaces';
 import PricingCard from './PricingCard.vue';
 

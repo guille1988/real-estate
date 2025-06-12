@@ -28,7 +28,7 @@
 
 <script setup lang="ts">
 import AchievementCard from '@/Components/About/Achievements/AchievementCard.vue';
-import ThreeStars from '@/Components/Shared/ThreeStars/ThreeStars.vue';
+import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
 import { AchievementCardInterface } from '@/Types/App/Interfaces';
 
 const cards: AchievementCardInterface[] = [

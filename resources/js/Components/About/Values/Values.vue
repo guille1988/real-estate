@@ -32,7 +32,7 @@
 </template>
 
 <script setup lang="ts">
-import ThreeStars from '@/Components/Shared/ThreeStars/ThreeStars.vue';
+import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
 import { ValueCardInterface } from '@/Types/App/Interfaces';
 import ValueCard from './ValueCard.vue';
 const cards: ValueCardInterface[] = [

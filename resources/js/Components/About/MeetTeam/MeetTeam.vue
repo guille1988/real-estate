@@ -26,7 +26,7 @@ import MaxMitchell from '@/Assets/Images/max_mitchell.jpg';
 import MichaelTurner from '@/Assets/Images/michael_turner.jpg';
 import SarahJohnson from '@/Assets/Images/sarah_johnson.jpg';
 import MemberCard from '@/Components/About/MeetTeam/MemberCard.vue';
-import ThreeStars from '@/Components/Shared/ThreeStars/ThreeStars.vue';
+import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
 import { MemberCardInterface } from '@/Types/App/Interfaces';
 
 const cards: MemberCardInterface[] = [

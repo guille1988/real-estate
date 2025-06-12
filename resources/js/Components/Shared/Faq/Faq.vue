@@ -72,7 +72,7 @@
     </section>
 </template>
 <script setup lang="ts">
-import ThreeStars from '@/Components/Shared/ThreeStars/ThreeStars.vue';
+import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
 import { ScreenSizeEnum } from '@/Types/App/Enums';
 import { ScreenSizeConfigInterface } from '@/Types/App/Interfaces';
 import {
