@@ -44,8 +44,8 @@
 
 <script setup lang="ts">
 import EmailIcon from '@/Components/Icons/EmailIcon.vue';
+import LocalizationIcon from '@/Components/Icons/LocalizationIcon.vue';
 import PhoneIcon from '@/Components/Icons/PhoneIcon.vue';
-import LocalizationIcon from '@/Components/PropertyDetails/Gallery/LocalizationIcon.vue';
 import { OfficeLocationCardInterface } from '@/Types/App/Interfaces';
 
 const { card }: { card: OfficeLocationCardInterface } = defineProps<{

@@ -81,8 +81,8 @@ import EmelieThompson from '@/Assets/Images/emelie_thmpson.jpg';
 import JohnMans from '@/Assets/Images/john_mans.jpg';
 import WadeWarren from '@/Assets/Images/wade_warren.jpg';
 import ClientTestimonialCard from '@/Components/Home/ClientTestimonials/ClientTestimonialCard.vue';
-import NextSliderArrowIcon from '@/Components/Shared/SliderArrows/NextSliderArrowIcon.vue';
-import PreviousSliderArrowIcon from '@/Components/Shared/SliderArrows/PreviousSliderArrowIcon.vue';
+import NextSliderArrowIcon from '@/Components/Icons/NextSliderArrowIcon.vue';
+import PreviousSliderArrowIcon from '@/Components/Icons/PreviousSliderArrowIcon.vue';
 import ThreeStars from '@/Components/Shared/ThreeStars/ThreeStars.vue';
 import { ScreenSizeEnum } from '@/Types/App/Enums';
 import {

@@ -74,11 +74,11 @@
 import House from '@/Assets/Images/house.jpg';
 import Loft from '@/Assets/Images/loft.jpg';
 import Villa from '@/Assets/Images/villa.jpg';
+import NextSliderArrowIcon from '@/Components/Icons/NextSliderArrowIcon.vue';
+import PreviousSliderArrowIcon from '@/Components/Icons/PreviousSliderArrowIcon.vue';
 import SearchIcon from '@/Components/Icons/SearchIcon.vue';
 import SearchCard from '@/Components/Properties/Search/SearchCard.vue';
 import SearchFilterCard from '@/Components/Properties/Search/SearchFilterCard.vue';
-import NextSliderArrowIcon from '@/Components/Shared/SliderArrows/NextSliderArrowIcon.vue';
-import PreviousSliderArrowIcon from '@/Components/Shared/SliderArrows/PreviousSliderArrowIcon.vue';
 import { PropertyTypeEnum } from '@/Types/App/Enums';
 import {
     SearchCardInterface,

@@ -119,10 +119,10 @@
 
 <script setup lang="ts">
 import LocalizationIcon from '@/Components/Icons/LocalizationIcon.vue';
+import NextSliderArrowIcon from '@/Components/Icons/NextSliderArrowIcon.vue';
+import PreviousSliderArrowIcon from '@/Components/Icons/PreviousSliderArrowIcon.vue';
 import Amenities from '@/Components/PropertyDetails/Gallery/Amenities.vue';
 import Description from '@/Components/PropertyDetails/Gallery/Description.vue';
-import NextSliderArrowIcon from '@/Components/Shared/SliderArrows/NextSliderArrowIcon.vue';
-import PreviousSliderArrowIcon from '@/Components/Shared/SliderArrows/PreviousSliderArrowIcon.vue';
 import {
     AmenitiesInterface,
     DescriptionInterface,

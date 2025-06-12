@@ -68,8 +68,8 @@
 
 <script setup lang="ts">
 import ClientCard from '@/Components/About/Clients/ClientCard.vue';
-import NextSliderArrowIcon from '@/Components/Shared/SliderArrows/NextSliderArrowIcon.vue';
-import PreviousSliderArrowIcon from '@/Components/Shared/SliderArrows/PreviousSliderArrowIcon.vue';
+import NextSliderArrowIcon from '@/Components/Icons/NextSliderArrowIcon.vue';
+import PreviousSliderArrowIcon from '@/Components/Icons/PreviousSliderArrowIcon.vue';
 import ThreeStars from '@/Components/Shared/ThreeStars/ThreeStars.vue';
 import { ScreenSizeEnum } from '@/Types/App/Enums';
 import {
