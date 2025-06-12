@@ -7,17 +7,7 @@
             <div
                 class="flex h-12 w-12 items-center justify-center rounded-full border border-purple-600 bg-black/60"
             >
-                <component
-                    :is="icon"
-                    :classes="{
-                        'h-6 w-6 text-gray-800 text-purple-500':
-                            card.icon === 'BuildingIcon',
-                        'h-6 w-6 text-purple-500': [
-                            'HouseIcon',
-                            'LampIcon',
-                        ].includes(card.icon),
-                    }"
-                />
+                <component :is="icon" :classes="classes" />
             </div>
             <RightArrowIcon />
         </div>
@@ -29,7 +19,12 @@
 import RightArrowIcon from '@/Components/Icons/RightArrowIcon.vue';
 import { HeroSectionCardInterface } from '@/Types/App/Interfaces';
 import { router } from '@inertiajs/vue3';
-import { defineAsyncComponent, type Component } from 'vue';
+import {
+    computed,
+    ComputedRef,
+    defineAsyncComponent,
+    type Component,
+} from 'vue';
 
 const { card }: { card: HeroSectionCardInterface } = defineProps<{
     card: HeroSectionCardInterface;
@@ -39,6 +34,16 @@ const icon: Component = defineAsyncComponent(
     (): Promise<Component> =>
         import(`./../../Icons/${card.icon}.vue`) as Promise<Component>,
 );
+
+const classes: ComputedRef<string> = computed((): string => {
+    const icons: Record<string, string> = {
+        BuildingIcon: 'h-6 w-6 text-gray-800 text-purple-500',
+        HouseIcon: 'h-6 w-6 text-purple-500',
+        LampIcon: 'h-6 w-6 text-purple-500',
+    };
+
+    return icons[card.icon] ?? 'h-6 w-6';
+});
 
 const visit = (url: string): void => {
     router.visit(url);
