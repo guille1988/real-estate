@@ -19,10 +19,7 @@
                     >: {{ selectedOption.label }}</span
                 >
             </div>
-            <DropdownArrowIcon
-                :class="{ 'rotate-180': isOpen }"
-                class="flex-shrink-0"
-            />
+            <DropdownArrowIcon :class="{ 'rotate-180': isOpen }" />
         </button>
 
         <div
