@@ -14,7 +14,7 @@ final class PropertyController
         return Inertia::render('Properties');
     }
 
-    public function show($id): Response
+    public function show(int $id): Response
     {
         return Inertia::render('PropertyDetails', compact('id'));
     }
