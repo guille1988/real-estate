@@ -1,8 +1,16 @@
-import { type Component, defineAsyncComponent } from 'vue';
+import { defineAsyncComponent, defineComponent, h } from 'vue';
 
-export function useIcon(icon: string): Component {
-    return defineAsyncComponent(
-        (): Promise<Component> =>
-            import(`./../Components/Icons/${icon}.vue`) as Promise<Component>,
+export function useIcon(icon: string) {
+    const AsyncIcon = defineAsyncComponent(
+        () => import(`./../Components/Icons/${icon}.vue`),
     );
+
+    return defineComponent({
+        name: `${icon}`,
+        inheritAttrs: false,
+
+        setup(_, { attrs }) {
+            return () => h(AsyncIcon, attrs);
+        },
+    });
 }

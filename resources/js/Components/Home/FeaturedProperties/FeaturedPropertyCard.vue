@@ -47,7 +47,7 @@
                 </div>
                 <div class="flex items-center gap-1 md:gap-2">
                     <BuildingIcon
-                        classes="h-6 w-6 text-gray-800 dark:text-white"
+                        class="h-6 w-6 text-gray-800 dark:text-white"
                     />
                     <span class="text-xs text-gray-400 md:text-sm">{{
                         capitalizeFirstLetter(card.type)
