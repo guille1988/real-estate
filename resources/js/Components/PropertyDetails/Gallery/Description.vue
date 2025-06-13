@@ -13,15 +13,13 @@
     </div>
 </template>
 <script setup lang="ts">
+import { useIcon } from '@/Composables/useIcon';
 import { DescriptionInterface } from '@/Types/App/Interfaces';
-import { type Component, defineAsyncComponent } from 'vue';
+import { type Component } from 'vue';
 
 const { card }: { card: DescriptionInterface } = defineProps<{
     card: DescriptionInterface;
 }>();
 
-const icon: Component = defineAsyncComponent(
-    (): Promise<Component> =>
-        import(`./../../Icons/${card.icon}.vue`) as Promise<Component>,
-);
+const icon: Component = useIcon(card.icon);
 </script>
