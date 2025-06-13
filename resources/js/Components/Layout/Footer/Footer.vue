@@ -59,7 +59,7 @@
                         <span
                             class="absolute left-2 top-1/2 -translate-y-1/2 text-gray-400"
                         >
-                            <EmailIcon classes="mr-2 h-4 w-4 text-white" />
+                            <EmailIcon class="mr-2 h-4 w-4 text-white" />
                         </span>
                         <button
                             class="absolute right-2 top-1/2 -translate-y-1/2 text-white md:pr-4"

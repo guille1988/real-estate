@@ -10,16 +10,7 @@
             <div
                 class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-purple-500/10"
             >
-                <component
-                    :is="icon"
-                    :classes="{
-                        'h-6 w-6 text-purple-500': [
-                            'EmailIcon',
-                            'LocalizationIcon',
-                            'PhoneIcon',
-                        ].includes(card.icon),
-                    }"
-                />
+                <component :is="icon" class="h-6 w-6 text-purple-500" />
             </div>
             <span class="text-gray-400 group-hover:text-white">{{
                 card.label
