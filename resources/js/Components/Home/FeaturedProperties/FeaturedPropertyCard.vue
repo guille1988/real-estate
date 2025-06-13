@@ -34,20 +34,22 @@
 
             <div class="mb-4 flex flex-wrap gap-2 md:mb-6 md:gap-4">
                 <div class="flex items-center gap-1 md:gap-2">
-                    <BedroomIcon />
+                    <BedroomIcon
+                        class="h-4 w-4 text-gray-800 dark:text-white"
+                    />
                     <span class="text-xs text-gray-400 md:text-sm"
                         >{{ card.bedroom_count }}-Bedroom</span
                     >
                 </div>
                 <div class="flex items-center gap-1 md:gap-2">
-                    <BathroomIcon />
+                    <BathroomIcon class="h-4 w-4 text-white" />
                     <span class="text-xs text-gray-400 md:text-sm"
                         >{{ card.bathroom_count }}-Bathroom</span
                     >
                 </div>
                 <div class="flex items-center gap-1 md:gap-2">
                     <BuildingIcon
-                        class="h-6 w-6 text-gray-800 dark:text-white"
+                        class="h-4 w-4 text-gray-800 dark:text-white"
                     />
                     <span class="text-xs text-gray-400 md:text-sm">{{
                         capitalizeFirstLetter(card.type)
