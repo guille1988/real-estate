@@ -20,15 +20,13 @@
 </template>
 <script setup lang="ts">
 import LinkArrowIcon from '@/Components/Icons/LinkArrowIcon.vue';
+import { useIcon } from '@/Composables/useIcon';
 import { GetInTouchCardInterface } from '@/Types/App/Interfaces';
-import { type Component, defineAsyncComponent } from 'vue';
+import { type Component } from 'vue';
 
 const { card }: { card: GetInTouchCardInterface } = defineProps<{
     card: GetInTouchCardInterface;
 }>();
 
-const icon: Component = defineAsyncComponent(
-    (): Promise<Component> =>
-        import(`./../../Icons/${card.icon}.vue`) as Promise<Component>,
-);
+const icon: Component = useIcon(card.icon);
 </script>
