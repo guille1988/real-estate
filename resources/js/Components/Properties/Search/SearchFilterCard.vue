@@ -8,14 +8,7 @@
             <div class="flex min-w-0 flex-grow items-center gap-2">
                 <component
                     :is="icon"
-                    class="flex-shrink-0"
-                    :classes="{
-                        'h-6 w-6 text-gray-500': [
-                            'HouseIcon',
-                            'LocalizationIcon',
-                            'ChartIcon',
-                        ].includes(card.icon),
-                    }"
+                    class="h-6 w-6 flex-shrink-0 text-gray-500"
                 />
                 <span class="flex-shrink-0 whitespace-nowrap text-gray-400">{{
                     card.label
@@ -60,6 +53,7 @@
 
 <script setup lang="ts">
 import DropdownArrowIcon from '@/Components/Icons/DropdownArrowIcon.vue';
+import { useIcon } from '@/Composables/useIcon';
 import {
     SearchFilterCardInterface,
     SearchFilterOptionInterface,
@@ -68,14 +62,7 @@ import {
     EmitSearchFilterEvents,
     EmitSearchFilterFunction,
 } from '@/Types/App/Types';
-import {
-    type Component,
-    type Ref,
-    defineAsyncComponent,
-    onMounted,
-    onUnmounted,
-    ref,
-} from 'vue';
+import { type Component, type Ref, onMounted, onUnmounted, ref } from 'vue';
 
 const { card }: { card: SearchFilterCardInterface } = defineProps<{
     card: SearchFilterCardInterface;
@@ -87,10 +74,7 @@ const isOpen: Ref<boolean> = ref<boolean>(false);
 const selectedOption: Ref<SearchFilterOptionInterface | null> =
     ref<SearchFilterOptionInterface | null>(null);
 
-const icon: Component = defineAsyncComponent(
-    (): Promise<Component> =>
-        import(`./../../Icons/${card.icon}.vue`) as Promise<Component>,
-);
+const icon: Component = useIcon(card.icon);
 
 const toggleDropdown = (): void => {
     isOpen.value = !isOpen.value;
