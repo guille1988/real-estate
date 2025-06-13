@@ -17,15 +17,13 @@
 </template>
 
 <script setup lang="ts">
+import { useIcon } from '@/Composables/useIcon';
 import { EffortlessPropertyCardInterface } from '@/Types/App/Interfaces';
-import { defineAsyncComponent, type Component } from 'vue';
+import { type Component } from 'vue';
 
 const { card }: { card: EffortlessPropertyCardInterface } = defineProps<{
     card: EffortlessPropertyCardInterface;
 }>();
 
-const icon: Component = defineAsyncComponent(
-    (): Promise<Component> =>
-        import(`./../../Icons/${card.icon}.vue`) as Promise<Component>,
-);
+const icon: Component = useIcon(card.icon);
 </script>
