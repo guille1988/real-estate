@@ -16,7 +16,7 @@
         <div class="mb-8 grid grid-cols-2 gap-8">
             <div>
                 <div class="mb-2 flex items-center gap-2 text-gray-400">
-                    <GridIcon />
+                    <GridIcon class="h-5 w-5" />
                     {{ card.domain }}
                 </div>
                 <p class="text-white">Commercial Real Estate</p>
