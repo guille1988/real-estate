@@ -9,7 +9,7 @@
                         Seaside Serenity Villa
                     </h1>
                     <div class="flex items-center text-sm text-gray-400">
-                        <LocalizationIcon classes="mr-1 h-4 w-4" />
+                        <LocalizationIcon class="mr-1 h-4 w-4" />
                         Malibu, California
                     </div>
                 </div>
