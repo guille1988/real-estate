@@ -23,7 +23,7 @@
             </div>
             <div>
                 <div class="mb-2 flex items-center gap-2 text-gray-400">
-                    <ThunderIcon classes="h-5 w-5" fill="none" />
+                    <ThunderIcon class="h-5 w-5" fill="none" />
                     {{ card.category }}
                 </div>
                 <p class="text-white">{{ card.company }}</p>

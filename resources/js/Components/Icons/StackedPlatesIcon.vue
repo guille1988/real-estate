@@ -9,4 +9,3 @@
         <ellipse cx="12" cy="17" rx="8" ry="2" />
     </svg>
 </template>
-<script setup lang="ts"></script>

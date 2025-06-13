@@ -22,7 +22,7 @@
                 <div
                     class="flex items-center rounded-full bg-neutral-800 px-4 py-2"
                 >
-                    <PhoneIcon classes="mr-2 h-4 w-4 text-white" />
+                    <PhoneIcon class="mr-2 h-4 w-4 text-white" />
                     <span class="text-sm text-white">{{ card.phone }}</span>
                 </div>
                 <div
