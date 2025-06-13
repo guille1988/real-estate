@@ -24,7 +24,7 @@
                     <button
                         class="absolute right-2 top-1/2 flex -translate-y-1/2 items-center gap-2 rounded-lg bg-purple-600 px-6 py-3 text-sm font-medium text-white hover:bg-purple-700"
                     >
-                        <SearchIcon />
+                        <SearchIcon class="text-white" />
                         <span>Find Property</span>
                     </button>
                 </div>

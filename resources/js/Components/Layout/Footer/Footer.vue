@@ -64,7 +64,7 @@
                         <button
                             class="absolute right-2 top-1/2 -translate-y-1/2 text-white md:pr-4"
                         >
-                            <SendIcon />
+                            <SendIcon class="lucide lucide-send h-4 w-4" />
                         </button>
                     </div>
                 </div>
