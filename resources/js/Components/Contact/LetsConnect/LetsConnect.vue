@@ -179,27 +179,29 @@ const form: InertiaForm<LetsConnectFormInterface> =
 const capitalizeFirstLetter = (word: string): string =>
     word.charAt(0).toUpperCase() + word.slice(1);
 
-const inquiryTypes: ComputedRef<Record<string, string>> = computed(() => {
-    const options: Record<string, string> = {};
-    Object.values(InquiryTypeEnum).forEach(
-        (inquiryType: InquiryTypeEnum): void => {
-            const label = capitalizeFirstLetter(inquiryType);
-            options[inquiryType] =
-                inquiryType === InquiryTypeEnum.OTHER
-                    ? label
-                    : `Looking For ${label}`;
-        },
-    );
-    return options;
-});
+const inquiryTypes: ComputedRef<Record<string, string>> = computed(() =>
+    Object.fromEntries(
+        Object.values(InquiryTypeEnum).map(
+            (inquiryType: InquiryTypeEnum): string[] => {
+                const label = capitalizeFirstLetter(inquiryType);
+                return [
+                    inquiryType,
+                    inquiryType === InquiryTypeEnum.OTHER
+                        ? label
+                        : `Looking For ${label}`,
+                ];
+            },
+        ),
+    ),
+);
 
 const sources: ComputedRef<Record<string, string>> = computed(
-    (): Record<string, string> => {
-        const options: Record<string, string> = {};
-        Object.values(SourceEnum).forEach((source: SourceEnum): void => {
-            options[source] = capitalizeFirstLetter(source);
-        });
-        return options;
-    },
+    (): Record<string, string> =>
+        Object.fromEntries(
+            Object.values(SourceEnum).map((source: SourceEnum): string[] => [
+                source,
+                capitalizeFirstLetter(source),
+            ]),
+        ),
 );
 </script>
