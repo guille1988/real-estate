@@ -4,7 +4,7 @@
             <div
                 class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-indigo-600/20"
             >
-                <component :is="icon" />
+                <component :is="icon" class="h-6 w-6 text-indigo-500" />
             </div>
             <div class="flex flex-col">
                 <h3 class="text-xl font-semibold">{{ card.title }}</h3>
