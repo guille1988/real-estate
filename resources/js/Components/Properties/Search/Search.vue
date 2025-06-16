@@ -57,16 +57,12 @@
                     <button
                         class="rounded-lg border border-gray-800 p-2 text-gray-400 hover:bg-gray-800"
                     >
-                        <SliderArrowIcon
-                            :direction="SliderArrowDirectionEnum.LEFT"
-                        />
+                        <ChevronIcon :direction="ChevronDirectionEnum.LEFT" />
                     </button>
                     <button
                         class="rounded-lg border border-gray-800 p-2 text-gray-400 hover:bg-gray-800"
                     >
-                        <SliderArrowIcon
-                            :direction="SliderArrowDirectionEnum.RIGHT"
-                        />
+                        <ChevronIcon :direction="ChevronDirectionEnum.RIGHT" />
                     </button>
                 </div>
             </div>
@@ -78,13 +74,13 @@
 import House from '@/Assets/Images/house.jpg';
 import Loft from '@/Assets/Images/loft.jpg';
 import Villa from '@/Assets/Images/villa.jpg';
+import ChevronIcon from '@/Components/Icons/ChevronIcon.vue';
 import SearchIcon from '@/Components/Icons/SearchIcon.vue';
-import SliderArrowIcon from '@/Components/Icons/SliderArrowIcon.vue';
 import SearchCard from '@/Components/Properties/Search/SearchCard.vue';
 import SearchFilterCard from '@/Components/Properties/Search/SearchFilterCard.vue';
 import { capitalizeFirstLetter } from '@/Composables/useCapitalization';
+import { ChevronDirectionEnum } from '@/Types/App/Enums/ChevronDirectionEnum';
 import { PropertyTypeEnum } from '@/Types/App/Enums/PropertyTypeEnum';
-import { SliderArrowDirectionEnum } from '@/Types/App/Enums/SliderArrowDirectionEnum';
 import { SearchCardInterface } from '@/Types/App/Interfaces/SearchCardInterface';
 import { SearchFilterCardInterface } from '@/Types/App/Interfaces/SearchFilterCardInterface';
 import { SearchFilterOptionInterface } from '@/Types/App/Interfaces/SearchFilterOptionInterface';

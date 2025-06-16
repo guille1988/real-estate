@@ -56,9 +56,7 @@
                         :disabled="!canGoBack"
                         aria-label="Previous slide"
                     >
-                        <SliderArrowIcon
-                            :direction="SliderArrowDirectionEnum.LEFT"
-                        />
+                        <ChevronIcon :direction="ChevronDirectionEnum.LEFT" />
                     </button>
                     <button
                         class="border border-gray-800 p-1.5 transition-colors duration-300 md:p-2"
@@ -70,9 +68,7 @@
                         :disabled="!canGoForward"
                         aria-label="Next slide"
                     >
-                        <SliderArrowIcon
-                            :direction="SliderArrowDirectionEnum.RIGHT"
-                        />
+                        <ChevronIcon :direction="ChevronDirectionEnum.RIGHT" />
                     </button>
                 </div>
             </div>
@@ -85,10 +81,10 @@ import EmelieThompson from '@/Assets/Images/emelie_thmpson.jpg';
 import JohnMans from '@/Assets/Images/john_mans.jpg';
 import WadeWarren from '@/Assets/Images/wade_warren.jpg';
 import ClientTestimonialCard from '@/Components/Home/ClientTestimonials/ClientTestimonialCard.vue';
-import SliderArrowIcon from '@/Components/Icons/SliderArrowIcon.vue';
+import ChevronIcon from '@/Components/Icons/ChevronIcon.vue';
 import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
+import { ChevronDirectionEnum } from '@/Types/App/Enums/ChevronDirectionEnum';
 import { ScreenSizeEnum } from '@/Types/App/Enums/ScreenSizeEnum';
-import { SliderArrowDirectionEnum } from '@/Types/App/Enums/SliderArrowDirectionEnum';
 import { ClientTestimonialCardInterface } from '@/Types/App/Interfaces/ClientTestimonialCardInterface';
 import { ScreenSizeConfigInterface } from '@/Types/App/Interfaces/ScreenSizeConfigInterface';
 import {

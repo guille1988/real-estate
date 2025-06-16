@@ -1,4 +1,4 @@
-export enum SliderArrowDirectionEnum {
+export enum ChevronDirectionEnum {
     RIGHT = 'right',
     LEFT = 'left',
 }

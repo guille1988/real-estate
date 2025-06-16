@@ -63,9 +63,7 @@
                     :disabled="!canGoBack"
                     aria-label="Previous slide"
                 >
-                    <SliderArrowIcon
-                        :direction="SliderArrowDirectionEnum.LEFT"
-                    />
+                    <ChevronIcon :direction="ChevronDirectionEnum.LEFT" />
                 </button>
 
                 <button
@@ -76,9 +74,7 @@
                     :disabled="!canGoForward"
                     aria-label="Next slide"
                 >
-                    <SliderArrowIcon
-                        :direction="SliderArrowDirectionEnum.RIGHT"
-                    />
+                    <ChevronIcon :direction="ChevronDirectionEnum.RIGHT" />
                 </button>
 
                 <div class="overflow-hidden">
@@ -113,9 +109,7 @@
                         :disabled="!canGoBack"
                         aria-label="Previous slide"
                     >
-                        <SliderArrowIcon
-                            :direction="SliderArrowDirectionEnum.LEFT"
-                        />
+                        <ChevronIcon :direction="ChevronDirectionEnum.LEFT" />
                     </button>
                     <button
                         v-if="shouldShowArrows"
@@ -127,9 +121,7 @@
                         :disabled="!canGoForward"
                         aria-label="Next slide"
                     >
-                        <SliderArrowIcon
-                            :direction="SliderArrowDirectionEnum.RIGHT"
-                        />
+                        <ChevronIcon :direction="ChevronDirectionEnum.RIGHT" />
                     </button>
                 </div>
 
@@ -157,11 +149,11 @@
 
 <script setup lang="ts">
 import OfficeLocationCard from '@/Components/Contact/OfficeLocations/OfficeLocationCard.vue';
-import SliderArrowIcon from '@/Components/Icons/SliderArrowIcon.vue';
+import ChevronIcon from '@/Components/Icons/ChevronIcon.vue';
 import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
+import { ChevronDirectionEnum } from '@/Types/App/Enums/ChevronDirectionEnum';
 import { LocationTypeEnum } from '@/Types/App/Enums/LocationTypeEnum';
 import { ScreenSizeEnum } from '@/Types/App/Enums/ScreenSizeEnum';
-import { SliderArrowDirectionEnum } from '@/Types/App/Enums/SliderArrowDirectionEnum';
 import { OfficeLocationCardInterface } from '@/Types/App/Interfaces/OfficeLocationCardInterface';
 import { ScreenSizeConfigInterface } from '@/Types/App/Interfaces/ScreenSizeConfigInterface';
 import {

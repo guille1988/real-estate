@@ -16,16 +16,16 @@
 </template>
 
 <script setup lang="ts">
-import { SliderArrowDirectionEnum } from '@/Types/App/Enums/SliderArrowDirectionEnum';
+import { ChevronDirectionEnum } from '@/Types/App/Enums/ChevronDirectionEnum';
 
-const { direction }: { direction: SliderArrowDirectionEnum } = defineProps<{
-    direction: SliderArrowDirectionEnum;
+const { direction }: { direction: ChevronDirectionEnum } = defineProps<{
+    direction: ChevronDirectionEnum;
 }>();
 
 const getDirection = (): string => {
-    const directions: Record<SliderArrowDirectionEnum, string> = {
-        [SliderArrowDirectionEnum.RIGHT]: 'M9 18l6-6-6-6',
-        [SliderArrowDirectionEnum.LEFT]: 'M15 18l-6-6 6-6',
+    const directions: Record<ChevronDirectionEnum, string> = {
+        [ChevronDirectionEnum.RIGHT]: 'M9 18l6-6-6-6',
+        [ChevronDirectionEnum.LEFT]: 'M15 18l-6-6 6-6',
     };
 
     return directions[direction];

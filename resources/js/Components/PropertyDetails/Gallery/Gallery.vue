@@ -54,9 +54,7 @@
                     class="rounded-full bg-gray-800 p-2 transition-colors hover:bg-gray-700"
                     @click="previousImage"
                 >
-                    <SliderArrowIcon
-                        :direction="SliderArrowDirectionEnum.LEFT"
-                    />
+                    <ChevronIcon :direction="ChevronDirectionEnum.LEFT" />
                 </button>
 
                 <div
@@ -77,9 +75,7 @@
                     class="rounded-full bg-gray-800 p-2 transition-colors hover:bg-gray-700"
                     @click="nextImage"
                 >
-                    <SliderArrowIcon
-                        :direction="SliderArrowDirectionEnum.RIGHT"
-                    />
+                    <ChevronIcon :direction="ChevronDirectionEnum.RIGHT" />
                 </button>
             </div>
 
@@ -122,11 +118,11 @@
 </template>
 
 <script setup lang="ts">
+import ChevronIcon from '@/Components/Icons/ChevronIcon.vue';
 import LocalizationIcon from '@/Components/Icons/LocalizationIcon.vue';
-import SliderArrowIcon from '@/Components/Icons/SliderArrowIcon.vue';
 import Amenities from '@/Components/PropertyDetails/Gallery/Amenities.vue';
 import Description from '@/Components/PropertyDetails/Gallery/Description.vue';
-import { SliderArrowDirectionEnum } from '@/Types/App/Enums/SliderArrowDirectionEnum';
+import { ChevronDirectionEnum } from '@/Types/App/Enums/ChevronDirectionEnum';
 import { AmenitiesInterface } from '@/Types/App/Interfaces/AmenitiesInterface';
 import { DescriptionInterface } from '@/Types/App/Interfaces/DescriptionInterface';
 import { GalleryImageInterface } from '@/Types/App/Interfaces/GalleryImageInterface';

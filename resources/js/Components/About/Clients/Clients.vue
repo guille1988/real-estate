@@ -48,9 +48,7 @@
                         }"
                         @click="previousSlide"
                     >
-                        <SliderArrowIcon
-                            :direction="SliderArrowDirectionEnum.LEFT"
-                        />
+                        <ChevronIcon :direction="ChevronDirectionEnum.LEFT" />
                     </button>
                     <button
                         class="rounded-lg bg-gray-800 p-2 transition-colors hover:bg-gray-700"
@@ -60,9 +58,7 @@
                         }"
                         @click="nextSlide"
                     >
-                        <SliderArrowIcon
-                            :direction="SliderArrowDirectionEnum.RIGHT"
-                        />
+                        <ChevronIcon :direction="ChevronDirectionEnum.RIGHT" />
                     </button>
                 </div>
             </div>
@@ -72,10 +68,10 @@
 
 <script setup lang="ts">
 import ClientCard from '@/Components/About/Clients/ClientCard.vue';
-import SliderArrowIcon from '@/Components/Icons/SliderArrowIcon.vue';
+import ChevronIcon from '@/Components/Icons/ChevronIcon.vue';
 import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
+import { ChevronDirectionEnum } from '@/Types/App/Enums/ChevronDirectionEnum';
 import { ScreenSizeEnum } from '@/Types/App/Enums/ScreenSizeEnum';
-import { SliderArrowDirectionEnum } from '@/Types/App/Enums/SliderArrowDirectionEnum';
 import { ClientCardInterface } from '@/Types/App/Interfaces/ClientCardInterface';
 import { ScreenSizeConfigInterface } from '@/Types/App/Interfaces/ScreenSizeConfigInterface';
 import {

@@ -52,9 +52,7 @@
                         :disabled="!canGoBack"
                         aria-label="Previous slide"
                     >
-                        <SliderArrowIcon
-                            :direction="SliderArrowDirectionEnum.LEFT"
-                        />
+                        <ChevronIcon :direction="ChevronDirectionEnum.LEFT" />
                     </button>
                     <button
                         class="border border-gray-800 p-1.5 transition-colors duration-300 md:p-2"
@@ -66,9 +64,7 @@
                         :disabled="!canGoForward"
                         aria-label="Next slide"
                     >
-                        <SliderArrowIcon
-                            :direction="SliderArrowDirectionEnum.RIGHT"
-                        />
+                        <ChevronIcon :direction="ChevronDirectionEnum.RIGHT" />
                     </button>
                 </div>
             </div>
@@ -88,10 +84,10 @@ import {
     watch,
 } from 'vue';
 
-import SliderArrowIcon from '@/Components/Icons/SliderArrowIcon.vue';
+import ChevronIcon from '@/Components/Icons/ChevronIcon.vue';
 import FaqCard from '@/Components/Shared/Faq/FaqCard.vue';
+import { ChevronDirectionEnum } from '@/Types/App/Enums/ChevronDirectionEnum';
 import { ScreenSizeEnum } from '@/Types/App/Enums/ScreenSizeEnum';
-import { SliderArrowDirectionEnum } from '@/Types/App/Enums/SliderArrowDirectionEnum';
 import { FaqCardInterface } from '@/Types/App/Interfaces/FaqCardInterface';
 import { ScreenSizeConfigInterface } from '@/Types/App/Interfaces/ScreenSizeConfigInterface';
 
