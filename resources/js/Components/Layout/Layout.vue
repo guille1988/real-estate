@@ -1,8 +1,8 @@
 <template>
     <div class="flex min-h-screen flex-col bg-gray-900 text-white">
-        <Navbar></Navbar>
+        <Navbar />
         <slot />
-        <Footer></Footer>
+        <Footer />
     </div>
 </template>
 
