@@ -158,6 +158,7 @@ import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
 import DropdownInput from '@/Components/Shared/Inputs/DropdownInput.vue';
 import TextareaInput from '@/Components/Shared/Inputs/TextareaInput.vue';
 import TextInput from '@/Components/Shared/Inputs/TextInput.vue';
+import { capitalizeFirstLetter } from '@/Composables/useCapitalization';
 import { InquiryTypeEnum } from '@/Types/App/Enums/InquiryTypeEnum';
 import { SourceEnum } from '@/Types/App/Enums/SourceEnum';
 import { LetsConnectFormInterface } from '@/Types/App/Interfaces/LetsConnectFormInterface';
@@ -175,9 +176,6 @@ const form: InertiaForm<LetsConnectFormInterface> =
         message: '',
         accept_terms: false,
     });
-
-const capitalizeFirstLetter = (word: string): string =>
-    word.charAt(0).toUpperCase() + word.slice(1);
 
 const inquiryTypes: ComputedRef<Record<string, string>> = computed(() =>
     Object.fromEntries(

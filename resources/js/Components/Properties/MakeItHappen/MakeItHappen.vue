@@ -138,6 +138,7 @@ import CheckboxInput from '@/Components/Shared/Inputs/CheckboxInput.vue';
 import DropdownInput from '@/Components/Shared/Inputs/DropdownInput.vue';
 import TextareaInput from '@/Components/Shared/Inputs/TextareaInput.vue';
 import TextInput from '@/Components/Shared/Inputs/TextInput.vue';
+import { capitalizeFirstLetter } from '@/Composables/useCapitalization';
 import { PropertyTypeEnum } from '@/Types/App/Enums/PropertyTypeEnum';
 import { MakeItHappenFormInterface } from '@/Types/App/Interfaces/MakeItHappenFormInterface';
 import { type Ref, ref } from 'vue';
@@ -176,13 +177,13 @@ const budgetRanges: Record<string, string> = {
     '5': 'Over $1,000,000',
 };
 
-const capitalizeFirstLetter = (word: string): string =>
-    word.charAt(0).toUpperCase() + word.slice(1);
-
 const propertyTypes: Record<string, string> = Object.values(
     PropertyTypeEnum,
 ).reduce(
-    (accumulator: Record<string, string>, propertyType: PropertyTypeEnum) => {
+    (
+        accumulator: Record<string, string>,
+        propertyType: PropertyTypeEnum,
+    ): Record<string, string> => {
         accumulator[propertyType] = capitalizeFirstLetter(propertyType);
         return accumulator;
     },
@@ -192,10 +193,16 @@ const propertyTypes: Record<string, string> = Object.values(
 const generateRoomCount = (max: number): Record<number, string> =>
     Array.from({ length: max }, (_, key: number) => key + 1).reduce<
         Record<number, string>
-    >((accumulator: Record<number, string>, key: number) => {
-        accumulator[key] = key.toString();
-        return accumulator;
-    }, {});
+    >(
+        (
+            accumulator: Record<number, string>,
+            key: number,
+        ): Record<number, string> => {
+            accumulator[key] = key.toString();
+            return accumulator;
+        },
+        {},
+    );
 
 const bathroomCountOptions = generateRoomCount(5);
 const bedroomCountOptions = generateRoomCount(5);

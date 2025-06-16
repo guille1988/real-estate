@@ -81,6 +81,7 @@
 import BathroomIcon from '@/Components/Icons/BathroomIcon.vue';
 import BedroomIcon from '@/Components/Icons/BedroomIcon.vue';
 import BuildingIcon from '@/Components/Icons/BuildingIcon.vue';
+import { capitalizeFirstLetter } from '@/Composables/useCapitalization';
 import { show } from '@/Routes/actions/App/Http/Controllers/PropertyController';
 import { FeaturedPropertyCardInterface } from '@/Types/App/Interfaces/FeaturedPropertyCardInterface';
 import { router } from '@inertiajs/vue3';
@@ -88,9 +89,6 @@ import { router } from '@inertiajs/vue3';
 const { card }: { card: FeaturedPropertyCardInterface } = defineProps<{
     card: FeaturedPropertyCardInterface;
 }>();
-
-const capitalizeFirstLetter = (word: string): string =>
-    word.charAt(0).toUpperCase() + word.slice(1);
 
 const visit = (url: string): void => {
     router.visit(url);
