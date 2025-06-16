@@ -4,7 +4,10 @@
         class="group relative block cursor-pointer border border-neutral-800 bg-neutral-900/30 p-6 transition-all duration-300 hover:border-purple-500/50"
     >
         <div class="absolute right-4 top-4">
-            <LinkArrowIcon />
+            <ArrowIcon
+                :direction="ArrowDirectionEnum.UP_RIGHT"
+                class="h-4 w-4 text-gray-400 group-hover:text-purple-500"
+            />
         </div>
         <div class="flex flex-col items-center text-center">
             <div
@@ -19,8 +22,9 @@
     </a>
 </template>
 <script setup lang="ts">
-import LinkArrowIcon from '@/Components/Icons/LinkArrowIcon.vue';
+import ArrowIcon from '@/Components/Icons/ArrowIcon.vue';
 import { useIcon } from '@/Composables/useIcon';
+import { ArrowDirectionEnum } from '@/Types/App/Enums/ArrowDirectionEnum';
 import { GetInTouchCardInterface } from '@/Types/App/Interfaces/GetInTouchCardInterface';
 import { type Component } from 'vue';
 

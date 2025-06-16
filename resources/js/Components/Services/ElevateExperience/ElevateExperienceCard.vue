@@ -4,8 +4,9 @@
         @click="visit(card.url)"
     >
         <div class="absolute right-4 top-4">
-            <RightArrowIcon
+            <ArrowIcon
                 class="h-5 w-5 text-gray-600 transition-colors duration-300 group-hover:text-purple-500"
+                :direction="ArrowDirectionEnum.RIGHT"
             />
         </div>
 
@@ -23,8 +24,9 @@
 </template>
 
 <script setup lang="ts">
-import RightArrowIcon from '@/Components/Icons/RightArrowIcon.vue';
+import ArrowIcon from '@/Components/Icons/ArrowIcon.vue';
 import { useIcon } from '@/Composables/useIcon';
+import { ArrowDirectionEnum } from '@/Types/App/Enums/ArrowDirectionEnum';
 import { HeroSectionCardInterface } from '@/Types/App/Interfaces/HeroSectionCardInterface';
 import { router } from '@inertiajs/vue3';
 import { type Component } from 'vue';
