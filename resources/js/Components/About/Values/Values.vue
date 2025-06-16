@@ -6,7 +6,7 @@
             <div class="flex flex-col gap-8 lg:flex-row lg:gap-16">
                 <div class="lg:w-1/3">
                     <ThreeStars />
-                    <h2 class="mb-6 text-4xl font-bold md:text-5xl">
+                    <h2 class="mb-6 text-2xl font-bold md:text-3xl">
                         Our Values
                     </h2>
                     <p class="leading-relaxed text-gray-400">

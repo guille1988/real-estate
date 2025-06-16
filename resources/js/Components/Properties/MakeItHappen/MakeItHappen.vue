@@ -3,7 +3,7 @@
         <div class="container mx-auto px-4">
             <div class="mb-10">
                 <ThreeStars />
-                <h1 class="mb-4 text-3xl font-bold md:text-4xl">
+                <h1 class="mb-4 text-2xl font-bold md:text-3xl">
                     Let's Make it Happen
                 </h1>
                 <p class="max-w-2xl text-gray-400">

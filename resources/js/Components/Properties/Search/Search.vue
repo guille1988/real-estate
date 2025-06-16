@@ -2,7 +2,7 @@
     <section class="bg-black px-4 py-8">
         <div class="container mx-auto">
             <div class="mb-12 pl-4 text-left md:pl-36">
-                <h1 class="mb-4 text-3xl font-bold text-white md:text-4xl">
+                <h1 class="mb-4 text-2xl font-bold text-white md:text-3xl">
                     Find Your Dream Property
                 </h1>
                 <p class="ml-0 max-w-6xl text-gray-400">

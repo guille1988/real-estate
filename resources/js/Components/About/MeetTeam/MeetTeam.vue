@@ -5,7 +5,7 @@
         <div class="container mx-auto px-4 md:px-6 lg:px-8">
             <div class="mb-12 max-w-3xl md:mb-16">
                 <ThreeStars />
-                <h2 class="mb-6 text-4xl font-bold md:text-5xl">
+                <h2 class="mb-6 text-2xl font-bold md:text-3xl">
                     Meet the Real estate Team
                 </h2>
                 <p class="leading-relaxed text-gray-400">

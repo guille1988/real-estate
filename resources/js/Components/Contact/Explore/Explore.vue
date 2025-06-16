@@ -29,7 +29,7 @@
                     <ThreeStars />
 
                     <h2
-                        class="mt-2 text-3xl font-medium text-white md:text-5xl"
+                        class="mt-2 text-2xl font-medium text-white md:text-3xl"
                     >
                         Explore Real estate's World
                     </h2>

@@ -9,7 +9,7 @@
                         <div class="flex items-center">
                             <ThreeStars />
                         </div>
-                        <h2 class="mb-6 text-4xl font-bold md:text-5xl">
+                        <h2 class="mb-6 text-2xl font-bold md:text-3xl">
                             Our Journey
                         </h2>
                         <p class="leading-relaxed text-gray-400">
