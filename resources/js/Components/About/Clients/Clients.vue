@@ -48,7 +48,9 @@
                         }"
                         @click="previousSlide"
                     >
-                        <PreviousSliderArrowIcon />
+                        <SliderArrowIcon
+                            :direction="SliderArrowDirectionEnum.LEFT"
+                        />
                     </button>
                     <button
                         class="rounded-lg bg-gray-800 p-2 transition-colors hover:bg-gray-700"
@@ -58,7 +60,9 @@
                         }"
                         @click="nextSlide"
                     >
-                        <NextSliderArrowIcon />
+                        <SliderArrowIcon
+                            :direction="SliderArrowDirectionEnum.RIGHT"
+                        />
                     </button>
                 </div>
             </div>
@@ -68,10 +72,10 @@
 
 <script setup lang="ts">
 import ClientCard from '@/Components/About/Clients/ClientCard.vue';
-import NextSliderArrowIcon from '@/Components/Icons/NextSliderArrowIcon.vue';
-import PreviousSliderArrowIcon from '@/Components/Icons/PreviousSliderArrowIcon.vue';
+import SliderArrowIcon from '@/Components/Icons/SliderArrowIcon.vue';
 import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
 import { ScreenSizeEnum } from '@/Types/App/Enums/ScreenSizeEnum';
+import { SliderArrowDirectionEnum } from '@/Types/App/Enums/SliderArrowDirectionEnum';
 import { ClientCardInterface } from '@/Types/App/Interfaces/ClientCardInterface';
 import { ScreenSizeConfigInterface } from '@/Types/App/Interfaces/ScreenSizeConfigInterface';
 import {

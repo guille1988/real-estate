@@ -63,7 +63,9 @@
                     :disabled="!canGoBack"
                     aria-label="Previous slide"
                 >
-                    <PreviousSliderArrowIcon />
+                    <SliderArrowIcon
+                        :direction="SliderArrowDirectionEnum.LEFT"
+                    />
                 </button>
 
                 <button
@@ -74,7 +76,9 @@
                     :disabled="!canGoForward"
                     aria-label="Next slide"
                 >
-                    <NextSliderArrowIcon />
+                    <SliderArrowIcon
+                        :direction="SliderArrowDirectionEnum.RIGHT"
+                    />
                 </button>
 
                 <div class="overflow-hidden">
@@ -109,7 +113,9 @@
                         :disabled="!canGoBack"
                         aria-label="Previous slide"
                     >
-                        <PreviousSliderArrowIcon />
+                        <SliderArrowIcon
+                            :direction="SliderArrowDirectionEnum.LEFT"
+                        />
                     </button>
                     <button
                         v-if="shouldShowArrows"
@@ -121,7 +127,9 @@
                         :disabled="!canGoForward"
                         aria-label="Next slide"
                     >
-                        <NextSliderArrowIcon />
+                        <SliderArrowIcon
+                            :direction="SliderArrowDirectionEnum.RIGHT"
+                        />
                     </button>
                 </div>
 
@@ -149,11 +157,11 @@
 
 <script setup lang="ts">
 import OfficeLocationCard from '@/Components/Contact/OfficeLocations/OfficeLocationCard.vue';
-import NextSliderArrowIcon from '@/Components/Icons/NextSliderArrowIcon.vue';
-import PreviousSliderArrowIcon from '@/Components/Icons/PreviousSliderArrowIcon.vue';
+import SliderArrowIcon from '@/Components/Icons/SliderArrowIcon.vue';
 import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
 import { LocationTypeEnum } from '@/Types/App/Enums/LocationTypeEnum';
 import { ScreenSizeEnum } from '@/Types/App/Enums/ScreenSizeEnum';
+import { SliderArrowDirectionEnum } from '@/Types/App/Enums/SliderArrowDirectionEnum';
 import { OfficeLocationCardInterface } from '@/Types/App/Interfaces/OfficeLocationCardInterface';
 import { ScreenSizeConfigInterface } from '@/Types/App/Interfaces/ScreenSizeConfigInterface';
 import {

@@ -57,12 +57,16 @@
                     <button
                         class="rounded-lg border border-gray-800 p-2 text-gray-400 hover:bg-gray-800"
                     >
-                        <PreviousSliderArrowIcon />
+                        <SliderArrowIcon
+                            :direction="SliderArrowDirectionEnum.LEFT"
+                        />
                     </button>
                     <button
                         class="rounded-lg border border-gray-800 p-2 text-gray-400 hover:bg-gray-800"
                     >
-                        <NextSliderArrowIcon />
+                        <SliderArrowIcon
+                            :direction="SliderArrowDirectionEnum.RIGHT"
+                        />
                     </button>
                 </div>
             </div>
@@ -74,13 +78,13 @@
 import House from '@/Assets/Images/house.jpg';
 import Loft from '@/Assets/Images/loft.jpg';
 import Villa from '@/Assets/Images/villa.jpg';
-import NextSliderArrowIcon from '@/Components/Icons/NextSliderArrowIcon.vue';
-import PreviousSliderArrowIcon from '@/Components/Icons/PreviousSliderArrowIcon.vue';
 import SearchIcon from '@/Components/Icons/SearchIcon.vue';
+import SliderArrowIcon from '@/Components/Icons/SliderArrowIcon.vue';
 import SearchCard from '@/Components/Properties/Search/SearchCard.vue';
 import SearchFilterCard from '@/Components/Properties/Search/SearchFilterCard.vue';
 import { capitalizeFirstLetter } from '@/Composables/useCapitalization';
 import { PropertyTypeEnum } from '@/Types/App/Enums/PropertyTypeEnum';
+import { SliderArrowDirectionEnum } from '@/Types/App/Enums/SliderArrowDirectionEnum';
 import { SearchCardInterface } from '@/Types/App/Interfaces/SearchCardInterface';
 import { SearchFilterCardInterface } from '@/Types/App/Interfaces/SearchFilterCardInterface';
 import { SearchFilterOptionInterface } from '@/Types/App/Interfaces/SearchFilterOptionInterface';

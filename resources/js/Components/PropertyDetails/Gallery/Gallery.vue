@@ -54,7 +54,9 @@
                     class="rounded-full bg-gray-800 p-2 transition-colors hover:bg-gray-700"
                     @click="previousImage"
                 >
-                    <PreviousSliderArrowIcon />
+                    <SliderArrowIcon
+                        :direction="SliderArrowDirectionEnum.LEFT"
+                    />
                 </button>
 
                 <div
@@ -75,7 +77,9 @@
                     class="rounded-full bg-gray-800 p-2 transition-colors hover:bg-gray-700"
                     @click="nextImage"
                 >
-                    <NextSliderArrowIcon />
+                    <SliderArrowIcon
+                        :direction="SliderArrowDirectionEnum.RIGHT"
+                    />
                 </button>
             </div>
 
@@ -119,10 +123,10 @@
 
 <script setup lang="ts">
 import LocalizationIcon from '@/Components/Icons/LocalizationIcon.vue';
-import NextSliderArrowIcon from '@/Components/Icons/NextSliderArrowIcon.vue';
-import PreviousSliderArrowIcon from '@/Components/Icons/PreviousSliderArrowIcon.vue';
+import SliderArrowIcon from '@/Components/Icons/SliderArrowIcon.vue';
 import Amenities from '@/Components/PropertyDetails/Gallery/Amenities.vue';
 import Description from '@/Components/PropertyDetails/Gallery/Description.vue';
+import { SliderArrowDirectionEnum } from '@/Types/App/Enums/SliderArrowDirectionEnum';
 import { AmenitiesInterface } from '@/Types/App/Interfaces/AmenitiesInterface';
 import { DescriptionInterface } from '@/Types/App/Interfaces/DescriptionInterface';
 import { GalleryImageInterface } from '@/Types/App/Interfaces/GalleryImageInterface';

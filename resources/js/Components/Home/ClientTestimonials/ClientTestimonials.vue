@@ -56,7 +56,9 @@
                         :disabled="!canGoBack"
                         aria-label="Previous slide"
                     >
-                        <PreviousSliderArrowIcon />
+                        <SliderArrowIcon
+                            :direction="SliderArrowDirectionEnum.LEFT"
+                        />
                     </button>
                     <button
                         class="border border-gray-800 p-1.5 transition-colors duration-300 md:p-2"
@@ -68,7 +70,9 @@
                         :disabled="!canGoForward"
                         aria-label="Next slide"
                     >
-                        <NextSliderArrowIcon />
+                        <SliderArrowIcon
+                            :direction="SliderArrowDirectionEnum.RIGHT"
+                        />
                     </button>
                 </div>
             </div>
@@ -81,10 +85,10 @@ import EmelieThompson from '@/Assets/Images/emelie_thmpson.jpg';
 import JohnMans from '@/Assets/Images/john_mans.jpg';
 import WadeWarren from '@/Assets/Images/wade_warren.jpg';
 import ClientTestimonialCard from '@/Components/Home/ClientTestimonials/ClientTestimonialCard.vue';
-import NextSliderArrowIcon from '@/Components/Icons/NextSliderArrowIcon.vue';
-import PreviousSliderArrowIcon from '@/Components/Icons/PreviousSliderArrowIcon.vue';
+import SliderArrowIcon from '@/Components/Icons/SliderArrowIcon.vue';
 import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
 import { ScreenSizeEnum } from '@/Types/App/Enums/ScreenSizeEnum';
+import { SliderArrowDirectionEnum } from '@/Types/App/Enums/SliderArrowDirectionEnum';
 import { ClientTestimonialCardInterface } from '@/Types/App/Interfaces/ClientTestimonialCardInterface';
 import { ScreenSizeConfigInterface } from '@/Types/App/Interfaces/ScreenSizeConfigInterface';
 import {

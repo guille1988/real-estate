@@ -52,7 +52,9 @@
                         :disabled="!canGoBack"
                         aria-label="Previous slide"
                     >
-                        <PreviousSliderArrowIcon />
+                        <SliderArrowIcon
+                            :direction="SliderArrowDirectionEnum.LEFT"
+                        />
                     </button>
                     <button
                         class="border border-gray-800 p-1.5 transition-colors duration-300 md:p-2"
@@ -64,7 +66,9 @@
                         :disabled="!canGoForward"
                         aria-label="Next slide"
                     >
-                        <NextSliderArrowIcon />
+                        <SliderArrowIcon
+                            :direction="SliderArrowDirectionEnum.RIGHT"
+                        />
                     </button>
                 </div>
             </div>
@@ -84,10 +88,10 @@ import {
     watch,
 } from 'vue';
 
-import NextSliderArrowIcon from '@/Components/Icons/NextSliderArrowIcon.vue';
-import PreviousSliderArrowIcon from '@/Components/Icons/PreviousSliderArrowIcon.vue';
+import SliderArrowIcon from '@/Components/Icons/SliderArrowIcon.vue';
 import FaqCard from '@/Components/Shared/Faq/FaqCard.vue';
 import { ScreenSizeEnum } from '@/Types/App/Enums/ScreenSizeEnum';
+import { SliderArrowDirectionEnum } from '@/Types/App/Enums/SliderArrowDirectionEnum';
 import { FaqCardInterface } from '@/Types/App/Interfaces/FaqCardInterface';
 import { ScreenSizeConfigInterface } from '@/Types/App/Interfaces/ScreenSizeConfigInterface';
 

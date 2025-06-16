@@ -42,12 +42,16 @@
                     <button
                         class="rounded-full border border-gray-800 p-1.5 transition-colors duration-300 hover:bg-gray-800 md:p-2"
                     >
-                        <PreviousSliderArrowIcon />
+                        <SliderArrowIcon
+                            :direction="SliderArrowDirectionEnum.LEFT"
+                        />
                     </button>
                     <button
                         class="rounded-full border border-gray-800 p-1.5 transition-colors duration-300 hover:bg-gray-800 md:p-2"
                     >
-                        <NextSliderArrowIcon />
+                        <SliderArrowIcon
+                            :direction="SliderArrowDirectionEnum.RIGHT"
+                        />
                     </button>
                 </div>
             </div>
@@ -60,11 +64,11 @@ import House from '@/Assets/Images/house.jpg';
 import Loft from '@/Assets/Images/loft.jpg';
 import Villa from '@/Assets/Images/villa.jpg';
 import FeaturedPropertyCard from '@/Components/Home/FeaturedProperties/FeaturedPropertyCard.vue';
-import NextSliderArrowIcon from '@/Components/Icons/NextSliderArrowIcon.vue';
-import PreviousSliderArrowIcon from '@/Components/Icons/PreviousSliderArrowIcon.vue';
+import SliderArrowIcon from '@/Components/Icons/SliderArrowIcon.vue';
 import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
 import { index } from '@/Routes/actions/App/Http/Controllers/PropertyController';
 import { PropertyTypeEnum } from '@/Types/App/Enums/PropertyTypeEnum';
+import { SliderArrowDirectionEnum } from '@/Types/App/Enums/SliderArrowDirectionEnum';
 import { FeaturedPropertyCardInterface } from '@/Types/App/Interfaces/FeaturedPropertyCardInterface';
 import { router } from '@inertiajs/vue3';
 
