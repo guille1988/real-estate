@@ -89,7 +89,7 @@
                     class="flex flex-col items-center space-y-2 md:flex-row md:items-start md:space-x-4 md:space-y-0"
                 >
                     <p class="text-sm text-gray-400">
-                        ©2023 Real estate. All Rights Reserved
+                        ©2025 Real estate. All Rights Reserved
                     </p>
                     <a href="#" class="text-sm text-gray-400 hover:text-white">
                         Terms & Conditions
