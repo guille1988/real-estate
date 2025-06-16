@@ -8,7 +8,7 @@
             >
                 <component :is="icon" class="h-8 w-8 text-purple-500" />
             </div>
-            <h3 class="text-xl font-medium">{{ card.title }}</h3>
+            <h3 class="font-medium">{{ card.title }}</h3>
         </div>
         <p class="text-gray-400">
             {{ card.description }}

@@ -7,7 +7,7 @@
                 <component :is="icon" class="h-6 w-6 text-indigo-500" />
             </div>
             <div class="flex flex-col">
-                <h3 class="text-xl font-semibold">{{ card.title }}</h3>
+                <h3 class="font-semibold">{{ card.title }}</h3>
                 <p class="mt-2 text-gray-400">{{ card.description }}</p>
             </div>
         </div>

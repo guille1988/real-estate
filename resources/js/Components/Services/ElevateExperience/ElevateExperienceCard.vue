@@ -16,7 +16,7 @@
             >
                 <component :is="icon" class="h-8 w-8 text-purple-500" />
             </div>
-            <h3 class="text-center text-lg font-medium">
+            <h3 class="text-center font-medium">
                 {{ card.description }}
             </h3>
         </div>

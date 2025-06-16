@@ -3,7 +3,7 @@
         <div class="mb-6 flex items-start justify-between">
             <div>
                 <p class="mb-2 text-gray-400">{{ card.since }}</p>
-                <h3 class="mb-4 text-2xl font-bold">{{ card.company }}</h3>
+                <h3 class="mb-4 font-bold">{{ card.company }}</h3>
             </div>
             <button
                 class="rounded-lg bg-gray-800 px-4 py-2 text-white transition-colors hover:bg-gray-700"

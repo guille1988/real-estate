@@ -6,10 +6,10 @@
             class="h-64 w-full object-cover"
         />
         <div class="flex h-[120px] flex-col items-center justify-center px-0">
-            <h3 class="text-center text-xl font-bold">
+            <h3 class="text-center font-bold">
                 {{ card.name }}
             </h3>
-            <p class="text-center text-gray-400">
+            <p class="text-center text-sm text-gray-400">
                 {{ card.position }}
             </p>
         </div>
