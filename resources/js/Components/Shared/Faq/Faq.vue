@@ -73,8 +73,6 @@
 </template>
 <script setup lang="ts">
 import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
-import { ScreenSizeEnum } from '@/Types/App/Enums';
-import { ScreenSizeConfigInterface } from '@/Types/App/Interfaces';
 import {
     computed,
     ComputedRef,
@@ -89,7 +87,9 @@ import {
 import NextSliderArrowIcon from '@/Components/Icons/NextSliderArrowIcon.vue';
 import PreviousSliderArrowIcon from '@/Components/Icons/PreviousSliderArrowIcon.vue';
 import FaqCard from '@/Components/Shared/Faq/FaqCard.vue';
-import { FaqCardInterface } from '@/Types/App/Interfaces';
+import { ScreenSizeEnum } from '@/Types/App/Enums/ScreenSizeEnum';
+import { FaqCardInterface } from '@/Types/App/Interfaces/FaqCardInterface';
+import { ScreenSizeConfigInterface } from '@/Types/App/Interfaces/ScreenSizeConfigInterface';
 
 const cards: FaqCardInterface[] = [
     {

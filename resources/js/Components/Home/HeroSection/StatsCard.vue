@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-import { StatCardInterface } from '@/Types/App/Interfaces';
+import { StatCardInterface } from '@/Types/App/Interfaces/StatCardInterface';
 
 defineProps<{
     card: StatCardInterface;

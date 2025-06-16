@@ -64,8 +64,8 @@ import NextSliderArrowIcon from '@/Components/Icons/NextSliderArrowIcon.vue';
 import PreviousSliderArrowIcon from '@/Components/Icons/PreviousSliderArrowIcon.vue';
 import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
 import { index } from '@/Routes/actions/App/Http/Controllers/PropertyController';
-import { PropertyTypeEnum } from '@/Types/App/Enums';
-import { FeaturedPropertyCardInterface } from '@/Types/App/Interfaces';
+import { PropertyTypeEnum } from '@/Types/App/Enums/PropertyTypeEnum';
+import { FeaturedPropertyCardInterface } from '@/Types/App/Interfaces/FeaturedPropertyCardInterface';
 import { router } from '@inertiajs/vue3';
 
 const cards: FeaturedPropertyCardInterface[] = [

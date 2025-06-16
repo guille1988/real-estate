@@ -196,10 +196,8 @@
 
 <script setup lang="ts">
 import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
-import {
-    LetsConnectFormInterface,
-    LetsConnectOptionsInterface,
-} from '@/Types/App/Interfaces';
+import { LetsConnectFormInterface } from '@/Types/App/Interfaces/LetsConnectFormInterface';
+import { LetsConnectOptionsInterface } from '@/Types/App/Interfaces/LetsConnectOptionsInterface';
 import { InertiaForm, useForm } from '@inertiajs/vue3';
 
 const form: InertiaForm<LetsConnectFormInterface> =

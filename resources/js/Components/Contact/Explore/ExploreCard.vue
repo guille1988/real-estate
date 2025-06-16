@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import { ExploreCardInterface } from '@/Types/App/Interfaces';
+import { ExploreCardInterface } from '@/Types/App/Interfaces/ExploreCardInterface';
 
 const { card }: { card: ExploreCardInterface } = defineProps<{
     card: ExploreCardInterface;

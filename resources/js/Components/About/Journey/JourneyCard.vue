@@ -7,7 +7,7 @@
     </div>
 </template>
 <script setup lang="ts">
-import { JourneyCardInterface } from '@/Types/App/Interfaces';
+import { JourneyCardInterface } from '@/Types/App/Interfaces/JourneyCardInterface';
 
 defineProps<{
     card: JourneyCardInterface;

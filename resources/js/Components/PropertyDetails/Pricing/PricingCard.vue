@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import { PricingCardInterface } from '@/Types/App/Interfaces';
+import { PricingCardInterface } from '@/Types/App/Interfaces/PricingCardInterface';
 import PricingDetailCard from './PricingDetailCard.vue';
 
 const { card }: { card: PricingCardInterface } = defineProps<{

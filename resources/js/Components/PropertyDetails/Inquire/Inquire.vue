@@ -97,7 +97,7 @@ import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
 import CheckboxInput from '@/Components/Shared/Inputs/CheckboxInput.vue';
 import TextInput from '@/Components/Shared/Inputs/TextInput.vue';
 import TextareaInput from '@/Components/Shared/Inputs/TextareaInput.vue';
-import { InquireFormInterface } from '@/Types/App/Interfaces';
+import { InquireFormInterface } from '@/Types/App/Interfaces/InquireFormInterface';
 import { usePage } from '@inertiajs/vue3';
 import { ref, Ref } from 'vue';
 

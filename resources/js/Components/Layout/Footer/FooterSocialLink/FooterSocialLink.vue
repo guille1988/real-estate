@@ -27,9 +27,9 @@ import FacebookPath from '@/Components/Layout/Footer/FooterSocialLink/Paths/Face
 import LinkedinPath from '@/Components/Layout/Footer/FooterSocialLink/Paths/LinkedinPath.vue';
 import TwitterPath from '@/Components/Layout/Footer/FooterSocialLink/Paths/TwitterPath.vue';
 import YoutubePath from '@/Components/Layout/Footer/FooterSocialLink/Paths/YoutubePath.vue';
-import { SocialLinkIconEnum } from '@/Types/App/Enums';
-import { SocialLinkInterface } from '@/Types/App/Interfaces';
-import { PathComponent } from '@/Types/App/Types';
+import { SocialLinkIconEnum } from '@/Types/App/Enums/SocialLinkIconEnum';
+import { SocialLinkInterface } from '@/Types/App/Interfaces/SocialLinkInterface';
+import { PathComponent } from '@/Types/App/Types/PathComponent';
 
 const { socialLink }: { socialLink: SocialLinkInterface } = defineProps<{
     socialLink: SocialLinkInterface;

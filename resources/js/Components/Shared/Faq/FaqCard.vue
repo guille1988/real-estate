@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import { FaqCardInterface } from '@/Types/App/Interfaces';
+import { FaqCardInterface } from '@/Types/App/Interfaces/FaqCardInterface';
 
 defineProps<{
     card: FaqCardInterface;

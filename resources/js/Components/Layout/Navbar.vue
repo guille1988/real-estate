@@ -99,8 +99,8 @@ import ContactController from '@/Routes/actions/App/Http/Controllers/ContactCont
 import HomeController from '@/Routes/actions/App/Http/Controllers/HomeController';
 import PropertyController from '@/Routes/actions/App/Http/Controllers/PropertyController';
 import ServiceController from '@/Routes/actions/App/Http/Controllers/ServiceController';
-import { PagesEnum } from '@/Types/App/Enums';
-import { NavigationPagesInterface } from '@/Types/App/Interfaces';
+import { PagesEnum } from '@/Types/App/Enums/PagesEnum';
+import { NavigationPagesInterface } from '@/Types/App/Interfaces/NavigationPagesInterface';
 import { Link, usePage } from '@inertiajs/vue3';
 import { Ref, ref } from 'vue';
 

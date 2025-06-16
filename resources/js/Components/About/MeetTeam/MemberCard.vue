@@ -16,7 +16,7 @@
     </div>
 </template>
 <script setup lang="ts">
-import { MemberCardInterface } from '@/Types/App/Interfaces';
+import { MemberCardInterface } from '@/Types/App/Interfaces/MemberCardInterface';
 
 defineProps<{
     card: MemberCardInterface;

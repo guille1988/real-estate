@@ -152,11 +152,10 @@ import OfficeLocationCard from '@/Components/Contact/OfficeLocations/OfficeLocat
 import NextSliderArrowIcon from '@/Components/Icons/NextSliderArrowIcon.vue';
 import PreviousSliderArrowIcon from '@/Components/Icons/PreviousSliderArrowIcon.vue';
 import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
-import { LocationTypeEnum, ScreenSizeEnum } from '@/Types/App/Enums';
-import {
-    OfficeLocationCardInterface,
-    ScreenSizeConfigInterface,
-} from '@/Types/App/Interfaces';
+import { LocationTypeEnum } from '@/Types/App/Enums/LocationTypeEnum';
+import { ScreenSizeEnum } from '@/Types/App/Enums/ScreenSizeEnum';
+import { OfficeLocationCardInterface } from '@/Types/App/Interfaces/OfficeLocationCardInterface';
+import { ScreenSizeConfigInterface } from '@/Types/App/Interfaces/ScreenSizeConfigInterface';
 import {
     computed,
     ComputedRef,

@@ -14,8 +14,8 @@
 </template>
 
 <script setup lang="ts">
-import { CheckboxInputInterface } from '@/Types/App/Interfaces';
-import { EmitInputFunction } from '@/Types/App/Types';
+import { CheckboxInputInterface } from '@/Types/App/Interfaces/CheckboxInputInterface';
+import { EmitInputFunction } from '@/Types/App/Types/EmitInputFunction';
 
 defineProps<CheckboxInputInterface>();
 

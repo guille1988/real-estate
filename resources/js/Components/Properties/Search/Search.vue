@@ -79,12 +79,10 @@ import PreviousSliderArrowIcon from '@/Components/Icons/PreviousSliderArrowIcon.
 import SearchIcon from '@/Components/Icons/SearchIcon.vue';
 import SearchCard from '@/Components/Properties/Search/SearchCard.vue';
 import SearchFilterCard from '@/Components/Properties/Search/SearchFilterCard.vue';
-import { PropertyTypeEnum } from '@/Types/App/Enums';
-import {
-    SearchCardInterface,
-    SearchFilterCardInterface,
-    SearchFilterOptionInterface,
-} from '@/Types/App/Interfaces';
+import { PropertyTypeEnum } from '@/Types/App/Enums/PropertyTypeEnum';
+import { SearchCardInterface } from '@/Types/App/Interfaces/SearchCardInterface';
+import { SearchFilterCardInterface } from '@/Types/App/Interfaces/SearchFilterCardInterface';
+import { SearchFilterOptionInterface } from '@/Types/App/Interfaces/SearchFilterOptionInterface';
 import { ref } from 'vue';
 
 const capitalizeFirstLetter = (word: string): string =>

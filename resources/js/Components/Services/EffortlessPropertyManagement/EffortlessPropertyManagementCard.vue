@@ -18,7 +18,7 @@
 
 <script setup lang="ts">
 import { useIcon } from '@/Composables/useIcon';
-import { EffortlessPropertyCardInterface } from '@/Types/App/Interfaces';
+import { EffortlessPropertyCardInterface } from '@/Types/App/Interfaces/EffortlessPropertyCardInterface';
 import { type Component } from 'vue';
 
 const { card }: { card: EffortlessPropertyCardInterface } = defineProps<{

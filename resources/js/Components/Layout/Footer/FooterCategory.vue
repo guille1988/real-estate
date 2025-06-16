@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import { FooterCategoryInterface } from '@/Types/App/Interfaces';
+import { FooterCategoryInterface } from '@/Types/App/Interfaces/FooterCategoryInterface';
 
 const { category }: { category: FooterCategoryInterface } = defineProps<{
     category: FooterCategoryInterface;

@@ -45,7 +45,7 @@
 import FaceIcon from '@/Components/Icons/FaceIcon.vue';
 import GridIcon from '@/Components/Icons/GridIcon.vue';
 import ThunderIcon from '@/Components/Icons/ThunderIcon.vue';
-import { ClientCardInterface } from '@/Types/App/Interfaces';
+import { ClientCardInterface } from '@/Types/App/Interfaces/ClientCardInterface';
 
 const { card }: { card: ClientCardInterface } = defineProps<{
     card: ClientCardInterface;

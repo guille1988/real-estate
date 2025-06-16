@@ -29,7 +29,7 @@
 <script setup lang="ts">
 import NavigatingExperienceCard from '@/Components/About/NavigatingExperience/NavigatingExperienceCard.vue';
 import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
-import { NavigatingExperienceCardInterface } from '@/Types/App/Interfaces';
+import { NavigatingExperienceCardInterface } from '@/Types/App/Interfaces/NavigatingExperienceCardInterface';
 
 const cards: NavigatingExperienceCardInterface[] = [
     {

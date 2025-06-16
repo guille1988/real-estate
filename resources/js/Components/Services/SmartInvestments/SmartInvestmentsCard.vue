@@ -18,7 +18,7 @@
 
 <script setup lang="ts">
 import { useIcon } from '@/Composables/useIcon';
-import { SmartInvestmentsCardInterface } from '@/Types/App/Interfaces';
+import { SmartInvestmentsCardInterface } from '@/Types/App/Interfaces/SmartInvestmentsCardInterface';
 import { type Component } from 'vue';
 
 const { card }: { card: SmartInvestmentsCardInterface } = defineProps<{

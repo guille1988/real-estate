@@ -84,11 +84,9 @@ import ClientTestimonialCard from '@/Components/Home/ClientTestimonials/ClientTe
 import NextSliderArrowIcon from '@/Components/Icons/NextSliderArrowIcon.vue';
 import PreviousSliderArrowIcon from '@/Components/Icons/PreviousSliderArrowIcon.vue';
 import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
-import { ScreenSizeEnum } from '@/Types/App/Enums';
-import {
-    ClientTestimonialCardInterface,
-    ScreenSizeConfigInterface,
-} from '@/Types/App/Interfaces';
+import { ScreenSizeEnum } from '@/Types/App/Enums/ScreenSizeEnum';
+import { ClientTestimonialCardInterface } from '@/Types/App/Interfaces/ClientTestimonialCardInterface';
+import { ScreenSizeConfigInterface } from '@/Types/App/Interfaces/ScreenSizeConfigInterface';
 import {
     computed,
     ComputedRef,

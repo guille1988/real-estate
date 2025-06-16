@@ -18,7 +18,7 @@
 <script setup lang="ts">
 import RightArrowIcon from '@/Components/Icons/RightArrowIcon.vue';
 import { useIcon } from '@/Composables/useIcon';
-import { HeroSectionCardInterface } from '@/Types/App/Interfaces';
+import { HeroSectionCardInterface } from '@/Types/App/Interfaces/HeroSectionCardInterface';
 import { router } from '@inertiajs/vue3';
 import { type Component } from 'vue';
 

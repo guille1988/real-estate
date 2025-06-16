@@ -44,7 +44,7 @@
 
 <script setup lang="ts">
 import { show } from '@/Routes/actions/App/Http/Controllers/PropertyController';
-import { SearchCardInterface } from '@/Types/App/Interfaces';
+import { SearchCardInterface } from '@/Types/App/Interfaces/SearchCardInterface';
 import { router } from '@inertiajs/vue3';
 
 const { card }: { card: SearchCardInterface } = defineProps<{

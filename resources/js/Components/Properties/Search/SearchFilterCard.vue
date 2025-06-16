@@ -51,14 +51,10 @@
 <script setup lang="ts">
 import DropdownArrowIcon from '@/Components/Icons/DropdownArrowIcon.vue';
 import { useIcon } from '@/Composables/useIcon';
-import {
-    SearchFilterCardInterface,
-    SearchFilterOptionInterface,
-} from '@/Types/App/Interfaces';
-import {
-    EmitSearchFilterEvents,
-    EmitSearchFilterFunction,
-} from '@/Types/App/Types';
+import { SearchFilterCardInterface } from '@/Types/App/Interfaces/SearchFilterCardInterface';
+import { SearchFilterOptionInterface } from '@/Types/App/Interfaces/SearchFilterOptionInterface';
+import { EmitSearchFilterEvents } from '@/Types/App/Types/EmitSearchFilterEvents';
+import { EmitSearchFilterFunction } from '@/Types/App/Types/EmitSearchFilterFunction';
 import { type Component, type Ref, onMounted, onUnmounted, ref } from 'vue';
 
 const { card }: { card: SearchFilterCardInterface } = defineProps<{

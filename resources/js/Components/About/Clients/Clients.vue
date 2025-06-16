@@ -71,11 +71,9 @@ import ClientCard from '@/Components/About/Clients/ClientCard.vue';
 import NextSliderArrowIcon from '@/Components/Icons/NextSliderArrowIcon.vue';
 import PreviousSliderArrowIcon from '@/Components/Icons/PreviousSliderArrowIcon.vue';
 import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
-import { ScreenSizeEnum } from '@/Types/App/Enums';
-import {
-    ClientCardInterface,
-    ScreenSizeConfigInterface,
-} from '@/Types/App/Interfaces';
+import { ScreenSizeEnum } from '@/Types/App/Enums/ScreenSizeEnum';
+import { ClientCardInterface } from '@/Types/App/Interfaces/ClientCardInterface';
+import { ScreenSizeConfigInterface } from '@/Types/App/Interfaces/ScreenSizeConfigInterface';
 import {
     computed,
     ComputedRef,

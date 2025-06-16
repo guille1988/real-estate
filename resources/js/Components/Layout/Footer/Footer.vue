@@ -115,11 +115,9 @@ import SendIcon from '@/Components/Icons/SendIcon.vue';
 import FooterCategory from '@/Components/Layout/Footer/FooterCategory.vue';
 import FooterSocialLink from '@/Components/Layout/Footer/FooterSocialLink/FooterSocialLink.vue';
 import HomeController from '@/Routes/actions/App/Http/Controllers/HomeController';
-import { SocialLinkIconEnum } from '@/Types/App/Enums';
-import {
-    FooterCategoryInterface,
-    SocialLinkInterface,
-} from '@/Types/App/Interfaces';
+import { SocialLinkIconEnum } from '@/Types/App/Enums/SocialLinkIconEnum';
+import { FooterCategoryInterface } from '@/Types/App/Interfaces/FooterCategoryInterface';
+import { SocialLinkInterface } from '@/Types/App/Interfaces/SocialLinkInterface';
 
 const footerCategories: FooterCategoryInterface[] = [
     {

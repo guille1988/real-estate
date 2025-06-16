@@ -21,7 +21,7 @@
 <script setup lang="ts">
 import LinkArrowIcon from '@/Components/Icons/LinkArrowIcon.vue';
 import { useIcon } from '@/Composables/useIcon';
-import { GetInTouchCardInterface } from '@/Types/App/Interfaces';
+import { GetInTouchCardInterface } from '@/Types/App/Interfaces/GetInTouchCardInterface';
 import { type Component } from 'vue';
 
 const { card }: { card: GetInTouchCardInterface } = defineProps<{

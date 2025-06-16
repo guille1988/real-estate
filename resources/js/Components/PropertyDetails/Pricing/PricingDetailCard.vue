@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import { PricingDetailInterface } from '@/Types/App/Interfaces';
+import { PricingDetailInterface } from '@/Types/App/Interfaces/PricingDetailInterface';
 
 defineProps<{
     detail: PricingDetailInterface;

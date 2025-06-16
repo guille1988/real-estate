@@ -63,7 +63,7 @@
 <script setup lang="ts">
 import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
 import EffortlessPropertyManagementCard from '@/Components/Services/EffortlessPropertyManagement/EffortlessPropertyManagementCard.vue';
-import { EffortlessPropertyCardInterface } from '@/Types/App/Interfaces';
+import { EffortlessPropertyCardInterface } from '@/Types/App/Interfaces/EffortlessPropertyCardInterface';
 
 const cards: EffortlessPropertyCardInterface[] = [
     {

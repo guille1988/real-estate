@@ -13,8 +13,8 @@
 </template>
 
 <script setup lang="ts">
-import { TextInputInterface } from '@/Types/App/Interfaces';
-import { EmitInputFunction } from '@/Types/App/Types';
+import { TextInputInterface } from '@/Types/App/Interfaces/TextInputInterface';
+import { EmitInputFunction } from '@/Types/App/Types/EmitInputFunction';
 
 defineProps<TextInputInterface>();
 

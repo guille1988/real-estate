@@ -65,10 +65,8 @@ import HeroSectionCard from '@/Components/Home/HeroSection/HeroSectionCard.vue';
 import StatsCard from '@/Components/Home/HeroSection/StatsCard.vue';
 import PropertyController from '@/Routes/actions/App/Http/Controllers/PropertyController';
 import ServiceController from '@/Routes/actions/App/Http/Controllers/ServiceController';
-import {
-    HeroSectionCardInterface,
-    StatCardInterface,
-} from '@/Types/App/Interfaces';
+import { HeroSectionCardInterface } from '@/Types/App/Interfaces/HeroSectionCardInterface';
+import { StatCardInterface } from '@/Types/App/Interfaces/StatCardInterface';
 import { router } from '@inertiajs/vue3';
 
 const visit = (url: string): void => {

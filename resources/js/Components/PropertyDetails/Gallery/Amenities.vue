@@ -10,7 +10,7 @@
 
 <script setup lang="ts">
 import ThunderIcon from '@/Components/Icons/ThunderIcon.vue';
-import { AmenitiesInterface } from '@/Types/App/Interfaces';
+import { AmenitiesInterface } from '@/Types/App/Interfaces/AmenitiesInterface';
 
 const { card }: { card: AmenitiesInterface } = defineProps<{
     card: AmenitiesInterface;

@@ -22,8 +22,8 @@
 </template>
 
 <script setup lang="ts">
-import { DropdownInputInterface } from '@/Types/App/Interfaces';
-import { EmitInputFunction } from '@/Types/App/Types';
+import { DropdownInputInterface } from '@/Types/App/Interfaces/DropdownInputInterface';
+import { EmitInputFunction } from '@/Types/App/Types/EmitInputFunction';
 
 const dropdown: DropdownInputInterface = defineProps<DropdownInputInterface>();
 

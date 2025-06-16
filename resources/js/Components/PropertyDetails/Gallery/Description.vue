@@ -9,7 +9,7 @@
 </template>
 <script setup lang="ts">
 import { useIcon } from '@/Composables/useIcon';
-import { DescriptionInterface } from '@/Types/App/Interfaces';
+import { DescriptionInterface } from '@/Types/App/Interfaces/DescriptionInterface';
 import { type Component } from 'vue';
 
 const { card }: { card: DescriptionInterface } = defineProps<{

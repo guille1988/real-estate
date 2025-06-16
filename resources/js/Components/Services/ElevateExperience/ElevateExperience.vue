@@ -29,7 +29,7 @@ import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
 import ElevateExperienceCard from '@/Components/Services/ElevateExperience/ElevateExperienceCard.vue';
 import PropertyController from '@/Routes/actions/App/Http/Controllers/PropertyController';
 import ServiceController from '@/Routes/actions/App/Http/Controllers/ServiceController';
-import { HeroSectionCardInterface } from '@/Types/App/Interfaces';
+import { HeroSectionCardInterface } from '@/Types/App/Interfaces/HeroSectionCardInterface';
 
 const getServiceSection = (section: string) =>
     ServiceController().url + section;

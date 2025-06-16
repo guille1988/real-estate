@@ -123,11 +123,9 @@ import NextSliderArrowIcon from '@/Components/Icons/NextSliderArrowIcon.vue';
 import PreviousSliderArrowIcon from '@/Components/Icons/PreviousSliderArrowIcon.vue';
 import Amenities from '@/Components/PropertyDetails/Gallery/Amenities.vue';
 import Description from '@/Components/PropertyDetails/Gallery/Description.vue';
-import {
-    AmenitiesInterface,
-    DescriptionInterface,
-    GalleryImageInterface,
-} from '@/Types/App/Interfaces';
+import { AmenitiesInterface } from '@/Types/App/Interfaces/AmenitiesInterface';
+import { DescriptionInterface } from '@/Types/App/Interfaces/DescriptionInterface';
+import { GalleryImageInterface } from '@/Types/App/Interfaces/GalleryImageInterface';
 import { computed, ComputedRef, type Ref, ref } from 'vue';
 
 const descriptionCards: DescriptionInterface[] = [

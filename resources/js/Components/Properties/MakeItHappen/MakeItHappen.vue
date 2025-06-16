@@ -138,8 +138,8 @@ import CheckboxInput from '@/Components/Shared/Inputs/CheckboxInput.vue';
 import DropdownInput from '@/Components/Shared/Inputs/DropdownInput.vue';
 import TextareaInput from '@/Components/Shared/Inputs/TextareaInput.vue';
 import TextInput from '@/Components/Shared/Inputs/TextInput.vue';
-import { PropertyTypeEnum } from '@/Types/App/Enums';
-import { MakeItHappenFormInterface } from '@/Types/App/Interfaces';
+import { PropertyTypeEnum } from '@/Types/App/Enums/PropertyTypeEnum';
+import { MakeItHappenFormInterface } from '@/Types/App/Interfaces/MakeItHappenFormInterface';
 import { type Ref, ref } from 'vue';
 
 const form: Ref<MakeItHappenFormInterface> = ref<MakeItHappenFormInterface>({

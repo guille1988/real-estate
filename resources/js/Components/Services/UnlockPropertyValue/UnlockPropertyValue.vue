@@ -59,7 +59,7 @@
 <script setup lang="ts">
 import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
 import UnlockPropertyCard from '@/Components/Services/UnlockPropertyValue/UnlockPropertyCard.vue';
-import { UnlockPropertyCardInterface } from '@/Types/App/Interfaces';
+import { UnlockPropertyCardInterface } from '@/Types/App/Interfaces/UnlockPropertyCardInterface';
 
 const cards: UnlockPropertyCardInterface[] = [
     {

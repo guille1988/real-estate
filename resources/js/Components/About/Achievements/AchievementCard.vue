@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-import { AchievementCardInterface } from '@/Types/App/Interfaces';
+import { AchievementCardInterface } from '@/Types/App/Interfaces/AchievementCardInterface';
 
 defineProps<{
     card: AchievementCardInterface;

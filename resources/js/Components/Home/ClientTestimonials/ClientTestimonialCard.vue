@@ -26,7 +26,7 @@
 </template>
 <script setup lang="ts">
 import FiveStarsIcon from '@/Components/Icons/FiveStarsIcon.vue';
-import { ClientTestimonialCardInterface } from '@/Types/App/Interfaces';
+import { ClientTestimonialCardInterface } from '@/Types/App/Interfaces/ClientTestimonialCardInterface';
 
 const { card }: { card: ClientTestimonialCardInterface } = defineProps<{
     card: ClientTestimonialCardInterface;

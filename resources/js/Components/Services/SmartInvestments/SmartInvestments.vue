@@ -52,7 +52,7 @@
 <script setup lang="ts">
 import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
 import SmartInvestmentsCard from '@/Components/Services/SmartInvestments/SmartInvestmentsCard.vue';
-import { SmartInvestmentsCardInterface } from '@/Types/App/Interfaces';
+import { SmartInvestmentsCardInterface } from '@/Types/App/Interfaces/SmartInvestmentsCardInterface';
 
 const cards: SmartInvestmentsCardInterface[] = [
     {

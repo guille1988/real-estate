@@ -47,7 +47,7 @@
 </template>
 <script setup lang="ts">
 import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
-import { PricingCardInterface } from '@/Types/App/Interfaces';
+import { PricingCardInterface } from '@/Types/App/Interfaces/PricingCardInterface';
 import PricingCard from './PricingCard.vue';
 
 const listingPrice = '$1,250,000';

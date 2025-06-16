@@ -16,7 +16,7 @@
 
 <script setup lang="ts">
 import { useIcon } from '@/Composables/useIcon';
-import { ValueCardInterface } from '@/Types/App/Interfaces';
+import { ValueCardInterface } from '@/Types/App/Interfaces/ValueCardInterface';
 import { type Component } from 'vue';
 
 const { card }: { card: ValueCardInterface } = defineProps<{

@@ -18,7 +18,7 @@
 
 <script setup lang="ts">
 import { useIcon } from '@/Composables/useIcon';
-import { UnlockPropertyCardInterface } from '@/Types/App/Interfaces';
+import { UnlockPropertyCardInterface } from '@/Types/App/Interfaces/UnlockPropertyCardInterface';
 import { type Component } from 'vue';
 
 const { card }: { card: UnlockPropertyCardInterface } = defineProps<{

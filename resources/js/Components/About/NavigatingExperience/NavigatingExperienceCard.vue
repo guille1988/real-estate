@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import { NavigatingExperienceCardInterface } from '@/Types/App/Interfaces';
+import { NavigatingExperienceCardInterface } from '@/Types/App/Interfaces/NavigatingExperienceCardInterface';
 
 const { card }: { card: NavigatingExperienceCardInterface } = defineProps<{
     card: NavigatingExperienceCardInterface;
