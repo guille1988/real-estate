@@ -1,6 +1,6 @@
 export enum SocialLinkIconEnum {
     FACEBOOK = 'facebook',
     LINKEDIN = 'linkedin',
-    TWITTER = 'twitter',
+    X = 'x',
     YOUTUBE = 'youtube',
 }

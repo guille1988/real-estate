@@ -184,8 +184,8 @@ const socialLinks: SocialLinkInterface[] = [
     },
     {
         id: 3,
-        icon: SocialLinkIconEnum.TWITTER,
-        url: 'https://www.twitter.com',
+        icon: SocialLinkIconEnum.X,
+        url: 'https://www.x.com',
     },
     {
         id: 4,

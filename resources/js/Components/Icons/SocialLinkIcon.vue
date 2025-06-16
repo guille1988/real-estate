@@ -18,7 +18,7 @@
 <script setup lang="ts">
 import FacebookPath from '@/Components/Icons/Paths/FacebookPath.vue';
 import LinkedinPath from '@/Components/Icons/Paths/LinkedinPath.vue';
-import TwitterPath from '@/Components/Icons/Paths/TwitterPath.vue';
+import XPath from '@/Components/Icons/Paths/XPath.vue';
 import YoutubePath from '@/Components/Icons/Paths/YoutubePath.vue';
 import { SocialLinkIconEnum } from '@/Types/App/Enums/SocialLinkIconEnum';
 import { PathComponentType } from '@/Types/App/Types/PathComponentType';
@@ -31,7 +31,7 @@ const getComponent = (): PathComponentType => {
     const paths: Record<SocialLinkIconEnum, PathComponentType> = {
         [SocialLinkIconEnum.FACEBOOK]: FacebookPath,
         [SocialLinkIconEnum.LINKEDIN]: LinkedinPath,
-        [SocialLinkIconEnum.TWITTER]: TwitterPath,
+        [SocialLinkIconEnum.X]: XPath,
         [SocialLinkIconEnum.YOUTUBE]: YoutubePath,
     };
 
