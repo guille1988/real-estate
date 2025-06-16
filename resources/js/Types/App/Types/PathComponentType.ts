@@ -1,7 +1,7 @@
-import FacebookPath from '@/Components/Layout/Footer/FooterSocialLink/Paths/FacebookPath.vue';
-import LinkedinPath from '@/Components/Layout/Footer/FooterSocialLink/Paths/LinkedinPath.vue';
-import TwitterPath from '@/Components/Layout/Footer/FooterSocialLink/Paths/TwitterPath.vue';
-import YoutubePath from '@/Components/Layout/Footer/FooterSocialLink/Paths/YoutubePath.vue';
+import FacebookPath from '@/Components/Icons/Paths/FacebookPath.vue';
+import LinkedinPath from '@/Components/Icons/Paths/LinkedinPath.vue';
+import TwitterPath from '@/Components/Icons/Paths/TwitterPath.vue';
+import YoutubePath from '@/Components/Icons/Paths/YoutubePath.vue';
 
 export type PathComponentType =
     | typeof FacebookPath
