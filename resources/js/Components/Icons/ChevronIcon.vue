@@ -26,6 +26,7 @@ const getDirection = (): string => {
     const directions: Record<ChevronDirectionEnum, string> = {
         [ChevronDirectionEnum.RIGHT]: 'M9 18l6-6-6-6',
         [ChevronDirectionEnum.LEFT]: 'M15 18l-6-6 6-6',
+        [ChevronDirectionEnum.DOWN]: 'm6 9 6 6 6-6',
     };
 
     return directions[direction];

@@ -1,4 +1,5 @@
 export enum ChevronDirectionEnum {
-    RIGHT = 'right',
+    DOWN = 'down',
     LEFT = 'left',
+    RIGHT = 'right',
 }

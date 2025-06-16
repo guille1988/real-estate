@@ -19,7 +19,11 @@
                     >: {{ selectedOption.label }}</span
                 >
             </div>
-            <DropdownArrowIcon :class="{ 'rotate-180': isOpen }" />
+            <ChevronIcon
+                :class="{ 'rotate-180': isOpen }"
+                class="h-5 w-5 flex-shrink-0 text-gray-500"
+                :direction="ChevronDirectionEnum.DOWN"
+            />
         </button>
 
         <div
@@ -49,13 +53,14 @@
 </template>
 
 <script setup lang="ts">
-import DropdownArrowIcon from '@/Components/Icons/DropdownArrowIcon.vue';
+import ChevronIcon from '@/Components/Icons/ChevronIcon.vue';
 import { useIcon } from '@/Composables/useIcon';
+import { ChevronDirectionEnum } from '@/Types/App/Enums/ChevronDirectionEnum';
 import { SearchFilterCardInterface } from '@/Types/App/Interfaces/SearchFilterCardInterface';
 import { SearchFilterOptionInterface } from '@/Types/App/Interfaces/SearchFilterOptionInterface';
 import { EmitSearchFilterEventsType } from '@/Types/App/Types/EmitSearchFilterEventsType';
 import { EmitSearchFilterFunctionType } from '@/Types/App/Types/EmitSearchFilterFunctionType';
-import { type Component, type Ref, onMounted, onUnmounted, ref } from 'vue';
+import { type Component, onMounted, onUnmounted, type Ref, ref } from 'vue';
 
 const { card }: { card: SearchFilterCardInterface } = defineProps<{
     card: SearchFilterCardInterface;
