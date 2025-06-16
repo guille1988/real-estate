@@ -3,7 +3,7 @@ import LinkedinPath from '@/Components/Layout/Footer/FooterSocialLink/Paths/Link
 import TwitterPath from '@/Components/Layout/Footer/FooterSocialLink/Paths/TwitterPath.vue';
 import YoutubePath from '@/Components/Layout/Footer/FooterSocialLink/Paths/YoutubePath.vue';
 
-export type PathComponent =
+export type PathComponentType =
     | typeof FacebookPath
     | typeof LinkedinPath
     | typeof TwitterPath

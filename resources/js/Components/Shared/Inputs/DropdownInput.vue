@@ -23,11 +23,11 @@
 
 <script setup lang="ts">
 import { DropdownInputInterface } from '@/Types/App/Interfaces/DropdownInputInterface';
-import { EmitInputFunction } from '@/Types/App/Types/EmitInputFunction';
+import { EmitInputFunctionType } from '@/Types/App/Types/EmitInputFunctionType';
 
 const dropdown: DropdownInputInterface = defineProps<DropdownInputInterface>();
 
-const emit: EmitInputFunction = defineEmits<EmitInputFunction>();
+const emit: EmitInputFunctionType = defineEmits<EmitInputFunctionType>();
 
 const getDisplayValue = (): string => {
     return !dropdown.model_value ? '' : dropdown.model_value.toString();

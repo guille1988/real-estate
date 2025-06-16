@@ -14,11 +14,11 @@
 
 <script setup lang="ts">
 import { TextareaInputInterface } from '@/Types/App/Interfaces/TextareaInputInterface';
-import { EmitInputFunction } from '@/Types/App/Types/EmitInputFunction';
+import { EmitInputFunctionType } from '@/Types/App/Types/EmitInputFunctionType';
 
 defineProps<TextareaInputInterface>();
 
-const emit: EmitInputFunction = defineEmits<EmitInputFunction>();
+const emit: EmitInputFunctionType = defineEmits<EmitInputFunctionType>();
 
 const handleInput = (event: Event) => {
     emit('update:model_value', (event.target as HTMLTextAreaElement).value);

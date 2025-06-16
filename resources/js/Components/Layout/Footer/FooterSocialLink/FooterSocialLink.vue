@@ -29,19 +29,19 @@ import TwitterPath from '@/Components/Layout/Footer/FooterSocialLink/Paths/Twitt
 import YoutubePath from '@/Components/Layout/Footer/FooterSocialLink/Paths/YoutubePath.vue';
 import { SocialLinkIconEnum } from '@/Types/App/Enums/SocialLinkIconEnum';
 import { SocialLinkInterface } from '@/Types/App/Interfaces/SocialLinkInterface';
-import { PathComponent } from '@/Types/App/Types/PathComponent';
+import { PathComponentType } from '@/Types/App/Types/PathComponentType';
 
 const { socialLink }: { socialLink: SocialLinkInterface } = defineProps<{
     socialLink: SocialLinkInterface;
 }>();
 
-const pathComponents: Record<SocialLinkIconEnum, PathComponent> = {
+const pathComponents: Record<SocialLinkIconEnum, PathComponentType> = {
     [SocialLinkIconEnum.FACEBOOK]: FacebookPath,
     [SocialLinkIconEnum.LINKEDIN]: LinkedinPath,
     [SocialLinkIconEnum.TWITTER]: TwitterPath,
     [SocialLinkIconEnum.YOUTUBE]: YoutubePath,
 };
 
-const getPathComponent = (icon: SocialLinkIconEnum): PathComponent =>
+const getPathComponent = (icon: SocialLinkIconEnum): PathComponentType =>
     pathComponents[icon];
 </script>

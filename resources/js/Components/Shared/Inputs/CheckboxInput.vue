@@ -15,11 +15,11 @@
 
 <script setup lang="ts">
 import { CheckboxInputInterface } from '@/Types/App/Interfaces/CheckboxInputInterface';
-import { EmitInputFunction } from '@/Types/App/Types/EmitInputFunction';
+import { EmitInputFunctionType } from '@/Types/App/Types/EmitInputFunctionType';
 
 defineProps<CheckboxInputInterface>();
 
-const emit: EmitInputFunction = defineEmits<EmitInputFunction>();
+const emit: EmitInputFunctionType = defineEmits<EmitInputFunctionType>();
 
 const handleInput = (event: Event) => {
     emit('update:model_value', (event.target as HTMLInputElement).checked);

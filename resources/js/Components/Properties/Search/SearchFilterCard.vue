@@ -53,15 +53,16 @@ import DropdownArrowIcon from '@/Components/Icons/DropdownArrowIcon.vue';
 import { useIcon } from '@/Composables/useIcon';
 import { SearchFilterCardInterface } from '@/Types/App/Interfaces/SearchFilterCardInterface';
 import { SearchFilterOptionInterface } from '@/Types/App/Interfaces/SearchFilterOptionInterface';
-import { EmitSearchFilterEvents } from '@/Types/App/Types/EmitSearchFilterEvents';
-import { EmitSearchFilterFunction } from '@/Types/App/Types/EmitSearchFilterFunction';
+import { EmitSearchFilterEventsType } from '@/Types/App/Types/EmitSearchFilterEventsType';
+import { EmitSearchFilterFunctionType } from '@/Types/App/Types/EmitSearchFilterFunctionType';
 import { type Component, type Ref, onMounted, onUnmounted, ref } from 'vue';
 
 const { card }: { card: SearchFilterCardInterface } = defineProps<{
     card: SearchFilterCardInterface;
 }>();
 
-const emit: EmitSearchFilterFunction = defineEmits<EmitSearchFilterEvents>();
+const emit: EmitSearchFilterFunctionType =
+    defineEmits<EmitSearchFilterEventsType>();
 
 const isOpen: Ref<boolean> = ref<boolean>(false);
 const selectedOption: Ref<SearchFilterOptionInterface | null> =
