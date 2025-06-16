@@ -19,7 +19,7 @@
                     </p>
                 </div>
                 <button
-                    @click="visit(index().url)"
+                    @click="router.visit(index().url)"
                     class="self-start whitespace-nowrap rounded-md border border-gray-800 bg-transparent px-4 py-2 text-sm transition hover:bg-gray-800 md:px-6 md:py-3 md:text-base"
                 >
                     View All Properties
@@ -106,8 +106,4 @@ const cards: FeaturedPropertyCardInterface[] = [
         price: '$350.000',
     },
 ];
-
-const visit = (url: string): void => {
-    router.visit(url);
-};
 </script>

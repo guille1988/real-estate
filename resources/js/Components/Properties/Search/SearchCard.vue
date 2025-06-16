@@ -32,7 +32,7 @@
                     </p>
                 </div>
                 <button
-                    @click="visit(show(card.id).url)"
+                    @click="router.visit(show(card.id).url)"
                     class="rounded-lg bg-purple-600 px-4 py-2 text-sm font-medium text-white hover:bg-purple-700"
                 >
                     View Property Details
@@ -50,8 +50,4 @@ import { router } from '@inertiajs/vue3';
 const { card }: { card: SearchCardInterface } = defineProps<{
     card: SearchCardInterface;
 }>();
-
-const visit = (url: string): void => {
-    router.visit(url);
-};
 </script>

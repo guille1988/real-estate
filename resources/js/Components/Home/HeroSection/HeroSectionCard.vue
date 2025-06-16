@@ -1,7 +1,7 @@
 <template>
     <div
         class="relative cursor-pointer rounded-lg border border-transparent bg-gray-900/60 p-6 transition-all duration-300 hover:border-purple-600"
-        @click="visit(card.url)"
+        @click="router.visit(card.url)"
     >
         <div class="mb-12 flex items-start justify-between">
             <div
@@ -28,8 +28,4 @@ const { card }: { card: HeroSectionCardInterface } = defineProps<{
 }>();
 
 const icon: Component = useIcon(card.icon);
-
-const visit = (url: string): void => {
-    router.visit(url);
-};
 </script>

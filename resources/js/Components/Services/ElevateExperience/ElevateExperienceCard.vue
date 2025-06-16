@@ -1,7 +1,7 @@
 <template>
     <div
         class="group relative border border-neutral-800 bg-neutral-900/30 p-6 transition-colors duration-300 hover:border-purple-500/50"
-        @click="visit(card.url)"
+        @click="router.visit(card.url)"
     >
         <div class="absolute right-4 top-4">
             <ArrowIcon
@@ -36,8 +36,4 @@ const { card }: { card: HeroSectionCardInterface } = defineProps<{
 }>();
 
 const icon: Component = useIcon(card.icon);
-
-const visit = (url: string): void => {
-    router.visit(url);
-};
 </script>
