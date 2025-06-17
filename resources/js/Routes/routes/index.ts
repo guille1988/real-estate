@@ -211,3 +211,109 @@ services.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     method: 'head',
 })
 
+/**
+* @see \App\Http\Controllers\TermsOfUseController::termsOfUse
+* @see app/Http/Controllers/TermsOfUseController.php:12
+* @route '/terms-of-use'
+*/
+export const termsOfUse = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
+    url: string,
+    method: 'get',
+} => ({
+    url: termsOfUse.url(options),
+    method: 'get',
+})
+
+termsOfUse.definition = {
+    methods: ['get','head'],
+    url: '/terms-of-use',
+}
+
+/**
+* @see \App\Http\Controllers\TermsOfUseController::termsOfUse
+* @see app/Http/Controllers/TermsOfUseController.php:12
+* @route '/terms-of-use'
+*/
+termsOfUse.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+    return termsOfUse.definition.url + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\TermsOfUseController::termsOfUse
+* @see app/Http/Controllers/TermsOfUseController.php:12
+* @route '/terms-of-use'
+*/
+termsOfUse.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
+    url: string,
+    method: 'get',
+} => ({
+    url: termsOfUse.url(options),
+    method: 'get',
+})
+
+/**
+* @see \App\Http\Controllers\TermsOfUseController::termsOfUse
+* @see app/Http/Controllers/TermsOfUseController.php:12
+* @route '/terms-of-use'
+*/
+termsOfUse.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
+    url: string,
+    method: 'head',
+} => ({
+    url: termsOfUse.url(options),
+    method: 'head',
+})
+
+/**
+* @see \App\Http\Controllers\PrivacyPolicyController::privacyPolicy
+* @see app/Http/Controllers/PrivacyPolicyController.php:12
+* @route '/privacy-policy'
+*/
+export const privacyPolicy = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
+    url: string,
+    method: 'get',
+} => ({
+    url: privacyPolicy.url(options),
+    method: 'get',
+})
+
+privacyPolicy.definition = {
+    methods: ['get','head'],
+    url: '/privacy-policy',
+}
+
+/**
+* @see \App\Http\Controllers\PrivacyPolicyController::privacyPolicy
+* @see app/Http/Controllers/PrivacyPolicyController.php:12
+* @route '/privacy-policy'
+*/
+privacyPolicy.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+    return privacyPolicy.definition.url + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\PrivacyPolicyController::privacyPolicy
+* @see app/Http/Controllers/PrivacyPolicyController.php:12
+* @route '/privacy-policy'
+*/
+privacyPolicy.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
+    url: string,
+    method: 'get',
+} => ({
+    url: privacyPolicy.url(options),
+    method: 'get',
+})
+
+/**
+* @see \App\Http\Controllers\PrivacyPolicyController::privacyPolicy
+* @see app/Http/Controllers/PrivacyPolicyController.php:12
+* @route '/privacy-policy'
+*/
+privacyPolicy.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
+    url: string,
+    method: 'head',
+} => ({
+    url: privacyPolicy.url(options),
+    method: 'head',
+})
+
