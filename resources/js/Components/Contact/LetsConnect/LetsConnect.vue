@@ -115,7 +115,7 @@
                         <input
                             type="checkbox"
                             id="terms"
-                            v-model="form.accept_terms"
+                            v-model="form.terms_agreed"
                             class="mt-1 h-4 w-4 rounded border-neutral-800 bg-neutral-900/30 text-purple-500 focus:ring-purple-500"
                             required
                         />
@@ -140,9 +140,9 @@
                     <button
                         type="submit"
                         class="rounded-lg bg-purple-600 px-6 py-3 font-medium text-white hover:bg-purple-700"
-                        :disabled="!form.accept_terms"
+                        :disabled="!form.terms_agreed"
                         :class="{
-                            'cursor-not-allowed opacity-50': !form.accept_terms,
+                            'cursor-not-allowed opacity-50': !form.terms_agreed,
                         }"
                     >
                         Send Your Message
@@ -174,7 +174,7 @@ const form: InertiaForm<LetsConnectFormInterface> =
         inquiry_type: InquiryTypeEnum.OTHER,
         source: SourceEnum.OTHER,
         message: '',
-        accept_terms: false,
+        terms_agreed: false,
     });
 
 const inquiryTypes: ComputedRef<Record<string, string>> = computed(() =>

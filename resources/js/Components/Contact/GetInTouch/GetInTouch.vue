@@ -46,13 +46,13 @@ const cards: GetInTouchCardInterface[] = [
     },
     {
         id: 3,
-        link: 'https://www.google.com',
+        link: 'https://maps.app.goo.gl/WiF8c82wfXatGE7k8',
         icon: 'LocalizationIcon',
         label: 'Main Headquarters',
     },
     {
         id: 4,
-        link: 'https://www.google.com',
+        link: 'https://www.linkedin.com',
         icon: 'LinkedinIcon',
         label: 'LinkedIn',
     },

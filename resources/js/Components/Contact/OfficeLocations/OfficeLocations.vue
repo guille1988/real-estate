@@ -178,7 +178,7 @@ const cards: OfficeLocationCardInterface[] = [
         email: 'main@realestate.com',
         phone: '+1 123 456-7890',
         location: 'Metropolis',
-        url: 'https://www.google.com',
+        url: 'https://maps.app.goo.gl/WiF8c82wfXatGE7k8',
     },
     {
         id: 2,
@@ -190,7 +190,7 @@ const cards: OfficeLocationCardInterface[] = [
         email: 'regional@realestate.com',
         phone: '+1 123 456-7890',
         location: 'Metropolis',
-        url: 'https://www.google.com',
+        url: 'https://maps.app.goo.gl/WiF8c82wfXatGE7k8',
     },
     {
         id: 3,
@@ -202,7 +202,7 @@ const cards: OfficeLocationCardInterface[] = [
         email: 'international@realestate.com',
         phone: '+44 20 1234-5678',
         location: 'London',
-        url: 'https://www.google.com',
+        url: 'https://maps.app.goo.gl/WiF8c82wfXatGE7k8',
     },
 ];
 

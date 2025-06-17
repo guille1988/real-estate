@@ -10,5 +10,5 @@ export interface LetsConnectFormInterface {
     inquiry_type: InquiryTypeEnum;
     source: SourceEnum;
     message: string;
-    accept_terms: boolean;
+    terms_agreed: boolean;
 }

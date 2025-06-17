@@ -109,11 +109,32 @@
                             class="flex flex-col justify-between md:flex-row md:items-center"
                         >
                             <div class="mb-4 md:mb-0">
-                                <CheckboxInput
-                                    id="terms_agreed"
-                                    label="I agree with Terms of Use and Privacy Policy"
-                                    v-model:model_value="form.terms_agreed"
-                                />
+                                <div class="flex items-center">
+                                    <input
+                                        type="checkbox"
+                                        id="terms"
+                                        v-model="form.terms_agreed"
+                                        class="mt-1 h-4 w-4 rounded border-neutral-800 bg-neutral-900/30 text-purple-500 focus:ring-purple-500"
+                                        required
+                                    />
+                                    <label
+                                        for="terms"
+                                        class="ml-2 text-sm text-gray-400"
+                                    >
+                                        I agree with
+                                        <a
+                                            href="#"
+                                            class="text-purple-500 hover:text-purple-400"
+                                            >Terms of Use</a
+                                        >
+                                        and
+                                        <a
+                                            href="#"
+                                            class="text-purple-500 hover:text-purple-400"
+                                            >Privacy Policy</a
+                                        >
+                                    </label>
+                                </div>
                             </div>
                             <button
                                 type="submit"
@@ -136,7 +157,6 @@
 
 <script setup lang="ts">
 import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
-import CheckboxInput from '@/Components/Shared/Inputs/CheckboxInput.vue';
 import DropdownInput from '@/Components/Shared/Inputs/DropdownInput.vue';
 import TextareaInput from '@/Components/Shared/Inputs/TextareaInput.vue';
 import TextInput from '@/Components/Shared/Inputs/TextInput.vue';
