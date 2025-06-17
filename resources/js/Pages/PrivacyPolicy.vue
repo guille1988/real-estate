@@ -147,6 +147,15 @@
                         If you have any questions about this privacy policy or
                         our privacy practices, please contact us.
                     </p>
+
+                    <div class="mt-12 text-right">
+                        <button
+                            @click="router.visit(referrer)"
+                            class="rounded-md bg-purple-500 px-6 py-3 text-white transition duration-300 hover:bg-purple-600"
+                        >
+                            Back
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -155,4 +164,8 @@
 
 <script setup lang="ts">
 import Layout from '@/Components/Layout/Layout.vue';
+import { router } from '@inertiajs/vue3';
+import { ref, Ref } from 'vue';
+
+const referrer: Ref<string> = ref<string>(document.referrer || '/');
 </script>
