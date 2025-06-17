@@ -114,6 +114,7 @@ import RealStateIcon from '@/Components/Icons/RealStateIcon.vue';
 import SendIcon from '@/Components/Icons/SendIcon.vue';
 import FooterCategory from '@/Components/Layout/Footer/FooterCategory.vue';
 import FooterSocialLink from '@/Components/Layout/Footer/FooterSocialLink.vue';
+import { useSection } from '@/Composables/useSection';
 import HomeController from '@/Routes/actions/App/Http/Controllers/HomeController';
 import { SocialLinkIconEnum } from '@/Types/App/Enums/SocialLinkIconEnum';
 import { FooterCategoryInterface } from '@/Types/App/Interfaces/FooterCategoryInterface';
@@ -135,30 +136,73 @@ const footerCategories: FooterCategoryInterface[] = [
         id: 2,
         title: 'About Us',
         links: [
-            { id: 1, text: 'Our Story', url: '#' },
-            { id: 2, text: 'Our Works', url: '#' },
-            { id: 3, text: 'How It Works', url: '#' },
-            { id: 4, text: 'Our Team', url: '#' },
-            { id: 5, text: 'Our Clients', url: '#' },
+            {
+                id: 1,
+                text: 'Our Journey',
+                url: useSection('journey'),
+            },
+            {
+                id: 2,
+                text: 'Our Values',
+                url: useSection('values'),
+            },
+            {
+                id: 3,
+                text: 'Our Achievements',
+                url: useSection('achievements'),
+            },
+            {
+                id: 4,
+                text: 'Our Experience',
+                url: useSection('navigating-experience'),
+            },
+            {
+                id: 5,
+                text: 'Our Clients',
+                url: useSection('clients'),
+            },
         ],
     },
     {
         id: 3,
         title: 'Properties',
         links: [
-            { id: 1, text: 'Portfolio', url: '#' },
-            { id: 2, text: 'Categories', url: '#' },
+            {
+                id: 1,
+                text: 'Find Your Dream Property',
+                url: useSection('search-property'),
+            },
+            {
+                id: 2,
+                text: 'Make It Happen',
+                url: useSection('make-it-happen'),
+            },
         ],
     },
     {
         id: 4,
         title: 'Services',
         links: [
-            { id: 1, text: 'Valuation Mastery', url: '#' },
-            { id: 2, text: 'Strategic Marketing', url: '#' },
-            { id: 3, text: 'Negotiation Wizardry', url: '#' },
-            { id: 4, text: 'Closing Success', url: '#' },
-            { id: 5, text: 'Property Management', url: '#' },
+            {
+                id: 1,
+                text: 'Elevate Experience',
+                url: useSection('elevate-experience'),
+            },
+            {
+                id: 2,
+                text: 'Property Value',
+                url: useSection('unlock-property-value'),
+            },
+            {
+                id: 3,
+                text: 'Property Management',
+                url: useSection('effortless-property-management'),
+            },
+            {
+                id: 4,
+                text: 'Smart Investments',
+                url: useSection('smart-investments'),
+            },
         ],
     },
     {

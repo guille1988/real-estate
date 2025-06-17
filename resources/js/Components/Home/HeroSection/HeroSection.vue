@@ -65,14 +65,11 @@
 import BlueBuilding from '@/Assets/Images/blue_building.png';
 import HeroSectionCard from '@/Components/Home/HeroSection/HeroSectionCard.vue';
 import StatsCard from '@/Components/Home/HeroSection/StatsCard.vue';
+import { useSection } from '@/Composables/useSection';
 import PropertyController from '@/Routes/actions/App/Http/Controllers/PropertyController';
-import ServiceController from '@/Routes/actions/App/Http/Controllers/ServiceController';
 import { HeroSectionCardInterface } from '@/Types/App/Interfaces/HeroSectionCardInterface';
 import { StatCardInterface } from '@/Types/App/Interfaces/StatCardInterface';
 import { router } from '@inertiajs/vue3';
-
-const getServiceSection = (section: string) =>
-    ServiceController().url + section;
 
 const statCards: StatCardInterface[] = [
     {
@@ -95,25 +92,25 @@ const statCards: StatCardInterface[] = [
 const heroCards: HeroSectionCardInterface[] = [
     {
         id: 1,
-        url: PropertyController.index().url,
+        url: useSection('search-property'),
         icon: 'HouseIcon',
         description: 'Find Your Dream Home',
     },
     {
         id: 2,
-        url: getServiceSection('#unlock-property-value'),
+        url: useSection('unlock-property-value'),
         icon: 'DollarSignIcon',
         description: 'Unlock Property Value',
     },
     {
         id: 3,
-        url: getServiceSection('#effortless-property-management'),
+        url: useSection('effortless-property-management'),
         icon: 'BuildingIcon',
         description: 'Effortless Property Management',
     },
     {
         id: 4,
-        url: getServiceSection('#smart-investments'),
+        url: useSection('smart-investments'),
         icon: 'LampIcon',
         description: 'Smart Investments, Informed Decisions',
     },

@@ -1,5 +1,5 @@
 <template>
-    <section class="bg-black px-4 py-8">
+    <section class="bg-black px-4 py-8" id="search-property">
         <div class="container mx-auto">
             <div class="mb-12 pl-4 text-left md:pl-36">
                 <h1 class="mb-4 text-2xl font-bold text-white md:text-3xl">

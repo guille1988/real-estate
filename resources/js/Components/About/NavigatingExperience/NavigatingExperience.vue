@@ -1,6 +1,7 @@
 <template>
     <section
         class="w-full max-w-full overflow-x-hidden bg-black py-8 text-white"
+        id="navigating-experience"
     >
         <div class="container mx-auto px-4 md:px-6 lg:px-8">
             <div class="mb-12 max-w-3xl md:mb-16">
