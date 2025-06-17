@@ -5,7 +5,7 @@
                 <div class="mb-10">
                     <ThreeStars />
                     <h1 class="mb-4 text-2xl font-bold md:text-3xl">
-                        Let's Make it Happen
+                        Let's Make it Happe
                     </h1>
                     <p class="max-w-2xl text-gray-400">
                         Ready to take the first step toward your dream property?
