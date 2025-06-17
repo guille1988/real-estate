@@ -22,9 +22,7 @@
                         </button>
                         <button
                             class="rounded-md bg-purple-600 px-6 py-3 transition hover:bg-purple-700"
-                            @click="
-                                router.visit(PropertyController.index().url)
-                            "
+                            @click="router.visit(useSection('search-property'))"
                         >
                             Browse Properties
                         </button>
@@ -66,7 +64,6 @@ import BlueBuilding from '@/Assets/Images/blue_building.png';
 import HeroSectionCard from '@/Components/Home/HeroSection/HeroSectionCard.vue';
 import StatsCard from '@/Components/Home/HeroSection/StatsCard.vue';
 import { useSection } from '@/Composables/useSection';
-import PropertyController from '@/Routes/actions/App/Http/Controllers/PropertyController';
 import { HeroSectionCardInterface } from '@/Types/App/Interfaces/HeroSectionCardInterface';
 import { StatCardInterface } from '@/Types/App/Interfaces/StatCardInterface';
 import { router } from '@inertiajs/vue3';

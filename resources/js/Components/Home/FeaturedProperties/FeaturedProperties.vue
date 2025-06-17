@@ -19,7 +19,7 @@
                     </p>
                 </div>
                 <button
-                    @click="router.visit(index().url)"
+                    @click="router.visit(useSection('search-property'))"
                     class="self-start whitespace-nowrap rounded-md border border-gray-800 bg-transparent px-4 py-2 text-sm transition hover:bg-gray-800 md:px-6 md:py-3 md:text-base"
                 >
                     View All Properties
@@ -62,7 +62,7 @@ import Villa from '@/Assets/Images/villa.jpg';
 import FeaturedPropertyCard from '@/Components/Home/FeaturedProperties/FeaturedPropertyCard.vue';
 import ChevronIcon from '@/Components/Icons/ChevronIcon.vue';
 import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
-import { index } from '@/Routes/actions/App/Http/Controllers/PropertyController';
+import { useSection } from '@/Composables/useSection';
 import { ChevronDirectionEnum } from '@/Types/App/Enums/ChevronDirectionEnum';
 import { PropertyTypeEnum } from '@/Types/App/Enums/PropertyTypeEnum';
 import { FeaturedPropertyCardInterface } from '@/Types/App/Interfaces/FeaturedPropertyCardInterface';
