@@ -1,5 +1,8 @@
 <template>
-    <section class="bg-black py-8 pb-4 text-white md:py-8 md:pb-4">
+    <section
+        class="bg-black py-8 pb-4 text-white md:py-8 md:pb-4"
+        id="testimonials"
+    >
         <div class="container mx-auto px-4">
             <div
                 class="mb-8 flex flex-col gap-6 md:mb-12 md:flex-row md:items-start md:justify-between"

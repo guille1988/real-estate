@@ -125,11 +125,21 @@ const footerCategories: FooterCategoryInterface[] = [
         id: 1,
         title: 'Home',
         links: [
-            { id: 1, text: 'Hero Section', url: '#' },
-            { id: 2, text: 'Features', url: '#' },
-            { id: 3, text: 'Properties', url: '#' },
-            { id: 4, text: 'Testimonials', url: '#' },
-            { id: 5, text: "FAQ's", url: '#' },
+            {
+                id: 1,
+                text: 'Featured Properties',
+                url: useSection('featured-properties'),
+            },
+            {
+                id: 2,
+                text: 'Testimonials',
+                url: useSection('testimonials'),
+            },
+            {
+                id: 3,
+                text: "FAQ's",
+                url: useSection('faq'),
+            },
         ],
     },
     {
@@ -209,8 +219,16 @@ const footerCategories: FooterCategoryInterface[] = [
         id: 5,
         title: 'Contact Us',
         links: [
-            { id: 1, text: 'Contact Form', url: '#' },
-            { id: 2, text: 'Our Offices', url: '#' },
+            {
+                id: 1,
+                text: 'Contact Form',
+                url: useSection('lets-connect'),
+            },
+            {
+                id: 2,
+                text: 'Our Offices',
+                url: useSection('office-locations'),
+            },
         ],
     },
 ];

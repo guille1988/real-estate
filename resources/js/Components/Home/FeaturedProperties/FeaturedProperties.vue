@@ -1,5 +1,5 @@
 <template>
-    <section class="bg-black py-10 text-white md:py-8">
+    <section class="bg-black py-10 text-white md:py-8" id="featured-properties">
         <div class="container mx-auto px-4">
             <div
                 class="mb-8 flex flex-col gap-6 md:mb-12 md:flex-row md:items-start md:justify-between"
