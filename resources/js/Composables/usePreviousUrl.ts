@@ -1,12 +1,10 @@
-export function usePreviousUrl(baseUrl: string, fragment?: string): string {
+export function usePreviousUrl(baseUrl: string, fragment: string = ''): string {
     const url: URL = new URL(baseUrl, window.location.origin);
-    let currentUrl = window.location.href;
 
-    if (fragment) {
-        currentUrl = currentUrl + fragment;
-    }
+    // We take the current URL with no fragments to avoid overlapping.
+    const currentUrl: string = window.location.href.split('#')[0];
 
-    url.searchParams.set('previous_url', currentUrl);
+    url.searchParams.set('previous_url', currentUrl + fragment);
 
     return url.toString();
 }
