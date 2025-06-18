@@ -13,8 +13,7 @@ final class TermsOfUseController
     public function __invoke(Request $request): Response
     {
         return Inertia::render('TermsOfUse', [
-            'url' => $request->session()->previousUrl() ?? '/',
-            'fragment' => $request->query('fragment', ''),
+            'previous_url' => $request->query('previous_url', '/'),
         ]);
     }
 }

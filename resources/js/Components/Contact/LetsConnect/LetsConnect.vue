@@ -123,7 +123,7 @@
                             I agree with
                             <a
                                 :href="
-                                    useFragment(
+                                    usePreviousUrl(
                                         TermsOfUseController.url(),
                                         '#lets-connect',
                                     )
@@ -134,7 +134,7 @@
                             and
                             <a
                                 :href="
-                                    useFragment(
+                                    usePreviousUrl(
                                         PrivacyPolicyController.url(),
                                         '#lets-connect',
                                     )
@@ -169,7 +169,7 @@ import DropdownInput from '@/Components/Shared/Inputs/DropdownInput.vue';
 import TextareaInput from '@/Components/Shared/Inputs/TextareaInput.vue';
 import TextInput from '@/Components/Shared/Inputs/TextInput.vue';
 import { capitalizeFirstLetter } from '@/Composables/useCapitalization';
-import { useFragment } from '@/Composables/useFragment';
+import { usePreviousUrl } from '@/Composables/usePreviousUrl';
 import PrivacyPolicyController from '@/Routes/actions/App/Http/Controllers/PrivacyPolicyController';
 import TermsOfUseController from '@/Routes/actions/App/Http/Controllers/TermsOfUseController';
 import { InquiryTypeEnum } from '@/Types/App/Enums/InquiryTypeEnum';

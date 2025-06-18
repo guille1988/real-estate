@@ -13,8 +13,7 @@ final class PrivacyPolicyController
     public function __invoke(Request $request): Response
     {
         return Inertia::render('PrivacyPolicy', [
-            'url' => $request->session()->previousUrl() ?? '/',
-            'fragment' => $request->query('fragment', ''),
+            'previous_url' => $request->query('previous_url', '/'),
         ]);
     }
 }

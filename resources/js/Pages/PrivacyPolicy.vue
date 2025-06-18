@@ -150,7 +150,7 @@
 
                     <div class="mt-12 text-right">
                         <button
-                            @click="router.visit(backUrl)"
+                            @click="router.visit(previous_url)"
                             class="rounded-md bg-purple-500 px-6 py-3 text-white transition duration-300 hover:bg-purple-600"
                         >
                             Back
@@ -164,11 +164,7 @@
 
 <script setup lang="ts">
 import Layout from '@/Components/Layout/Layout.vue';
-import { useBackUrl } from '@/Composables/useBackUrl';
-import { BackUrlInterface } from '@/Types/App/Interfaces/BackUrlInterface';
 import { router } from '@inertiajs/vue3';
-import { ComputedRef } from 'vue';
 
-const properties = defineProps<BackUrlInterface>();
-const backUrl: ComputedRef<string> = useBackUrl(properties);
+defineProps<{ previous_url: string }>();
 </script>
