@@ -164,15 +164,11 @@
 
 <script setup lang="ts">
 import Layout from '@/Components/Layout/Layout.vue';
+import { useBackUrl } from '@/Composables/useBackUrl';
 import { BackUrlInterface } from '@/Types/App/Interfaces/BackUrlInterface';
 import { router } from '@inertiajs/vue3';
-import { computed, ComputedRef } from 'vue';
+import { ComputedRef } from 'vue';
 
-const { url, fragment }: BackUrlInterface = defineProps<BackUrlInterface>();
-
-const backUrl: ComputedRef<string> = computed((): string => {
-    return url && fragment
-        ? `${url}${fragment}`
-        : url || document.referrer || '/';
-});
+const properties = defineProps<BackUrlInterface>();
+const backUrl: ComputedRef<string> = useBackUrl(properties);
 </script>
