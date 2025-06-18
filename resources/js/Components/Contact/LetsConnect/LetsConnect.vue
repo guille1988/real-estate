@@ -122,13 +122,23 @@
                         <label for="terms" class="ml-2 text-sm text-gray-400">
                             I agree with
                             <a
-                                :href="TermsOfUseController.url()"
+                                :href="
+                                    useFragment(
+                                        TermsOfUseController.url(),
+                                        '#lets-connect',
+                                    )
+                                "
                                 class="text-purple-500 hover:text-purple-400"
                                 >Terms of Use</a
                             >
                             and
                             <a
-                                :href="PrivacyPolicyController.url()"
+                                :href="
+                                    useFragment(
+                                        PrivacyPolicyController.url(),
+                                        '#lets-connect',
+                                    )
+                                "
                                 class="text-purple-500 hover:text-purple-400"
                                 >Privacy Policy</a
                             >
@@ -159,6 +169,7 @@ import DropdownInput from '@/Components/Shared/Inputs/DropdownInput.vue';
 import TextareaInput from '@/Components/Shared/Inputs/TextareaInput.vue';
 import TextInput from '@/Components/Shared/Inputs/TextInput.vue';
 import { capitalizeFirstLetter } from '@/Composables/useCapitalization';
+import { useFragment } from '@/Composables/useFragment';
 import PrivacyPolicyController from '@/Routes/actions/App/Http/Controllers/PrivacyPolicyController';
 import TermsOfUseController from '@/Routes/actions/App/Http/Controllers/TermsOfUseController';
 import { InquiryTypeEnum } from '@/Types/App/Enums/InquiryTypeEnum';

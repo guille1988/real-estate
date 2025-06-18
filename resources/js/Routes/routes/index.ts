@@ -213,7 +213,7 @@ services.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 
 /**
 * @see \App\Http\Controllers\TermsOfUseController::termsOfUse
-* @see app/Http/Controllers/TermsOfUseController.php:12
+* @see app/Http/Controllers/TermsOfUseController.php:13
 * @route '/terms-of-use'
 */
 export const termsOfUse = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -231,7 +231,7 @@ termsOfUse.definition = {
 
 /**
 * @see \App\Http\Controllers\TermsOfUseController::termsOfUse
-* @see app/Http/Controllers/TermsOfUseController.php:12
+* @see app/Http/Controllers/TermsOfUseController.php:13
 * @route '/terms-of-use'
 */
 termsOfUse.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -240,7 +240,7 @@ termsOfUse.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) =
 
 /**
 * @see \App\Http\Controllers\TermsOfUseController::termsOfUse
-* @see app/Http/Controllers/TermsOfUseController.php:12
+* @see app/Http/Controllers/TermsOfUseController.php:13
 * @route '/terms-of-use'
 */
 termsOfUse.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -253,7 +253,7 @@ termsOfUse.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): 
 
 /**
 * @see \App\Http\Controllers\TermsOfUseController::termsOfUse
-* @see app/Http/Controllers/TermsOfUseController.php:12
+* @see app/Http/Controllers/TermsOfUseController.php:13
 * @route '/terms-of-use'
 */
 termsOfUse.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -266,7 +266,7 @@ termsOfUse.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }):
 
 /**
 * @see \App\Http\Controllers\PrivacyPolicyController::privacyPolicy
-* @see app/Http/Controllers/PrivacyPolicyController.php:12
+* @see app/Http/Controllers/PrivacyPolicyController.php:13
 * @route '/privacy-policy'
 */
 export const privacyPolicy = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -284,7 +284,7 @@ privacyPolicy.definition = {
 
 /**
 * @see \App\Http\Controllers\PrivacyPolicyController::privacyPolicy
-* @see app/Http/Controllers/PrivacyPolicyController.php:12
+* @see app/Http/Controllers/PrivacyPolicyController.php:13
 * @route '/privacy-policy'
 */
 privacyPolicy.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -293,7 +293,7 @@ privacyPolicy.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }
 
 /**
 * @see \App\Http\Controllers\PrivacyPolicyController::privacyPolicy
-* @see app/Http/Controllers/PrivacyPolicyController.php:12
+* @see app/Http/Controllers/PrivacyPolicyController.php:13
 * @route '/privacy-policy'
 */
 privacyPolicy.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -306,7 +306,7 @@ privacyPolicy.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }
 
 /**
 * @see \App\Http\Controllers\PrivacyPolicyController::privacyPolicy
-* @see app/Http/Controllers/PrivacyPolicyController.php:12
+* @see app/Http/Controllers/PrivacyPolicyController.php:13
 * @route '/privacy-policy'
 */
 privacyPolicy.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {

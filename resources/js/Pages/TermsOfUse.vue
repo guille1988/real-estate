@@ -129,7 +129,7 @@
 
                     <div class="mt-12 text-right">
                         <button
-                            @click="router.visit(referrer)"
+                            @click="router.visit(backUrl)"
                             class="rounded-md bg-purple-500 px-6 py-3 text-white transition duration-300 hover:bg-purple-600"
                         >
                             Back
@@ -143,8 +143,15 @@
 
 <script setup lang="ts">
 import Layout from '@/Components/Layout/Layout.vue';
+import { BackUrlInterface } from '@/Types/App/Interfaces/BackUrlInterface';
 import { router } from '@inertiajs/vue3';
-import { Ref, ref } from 'vue';
+import { computed, ComputedRef } from 'vue';
 
-const referrer: Ref<string> = ref<string>(document.referrer || '/');
+const { url, fragment }: BackUrlInterface = defineProps<BackUrlInterface>();
+
+const backUrl: ComputedRef<string> = computed((): string => {
+    return url && fragment
+        ? `${url}${fragment}`
+        : url || document.referrer || '/';
+});
 </script>

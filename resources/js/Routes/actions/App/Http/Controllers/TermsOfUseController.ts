@@ -1,7 +1,7 @@
 import { queryParams, type QueryParams } from './../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\TermsOfUseController::__invoke
-* @see app/Http/Controllers/TermsOfUseController.php:12
+* @see app/Http/Controllers/TermsOfUseController.php:13
 * @route '/terms-of-use'
 */
 const TermsOfUseController = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -19,7 +19,7 @@ TermsOfUseController.definition = {
 
 /**
 * @see \App\Http\Controllers\TermsOfUseController::__invoke
-* @see app/Http/Controllers/TermsOfUseController.php:12
+* @see app/Http/Controllers/TermsOfUseController.php:13
 * @route '/terms-of-use'
 */
 TermsOfUseController.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -28,7 +28,7 @@ TermsOfUseController.url = (options?: { query?: QueryParams, mergeQuery?: QueryP
 
 /**
 * @see \App\Http\Controllers\TermsOfUseController::__invoke
-* @see app/Http/Controllers/TermsOfUseController.php:12
+* @see app/Http/Controllers/TermsOfUseController.php:13
 * @route '/terms-of-use'
 */
 TermsOfUseController.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -41,7 +41,7 @@ TermsOfUseController.get = (options?: { query?: QueryParams, mergeQuery?: QueryP
 
 /**
 * @see \App\Http\Controllers\TermsOfUseController::__invoke
-* @see app/Http/Controllers/TermsOfUseController.php:12
+* @see app/Http/Controllers/TermsOfUseController.php:13
 * @route '/terms-of-use'
 */
 TermsOfUseController.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {

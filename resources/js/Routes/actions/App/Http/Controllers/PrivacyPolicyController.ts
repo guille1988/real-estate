@@ -1,7 +1,7 @@
 import { queryParams, type QueryParams } from './../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\PrivacyPolicyController::__invoke
-* @see app/Http/Controllers/PrivacyPolicyController.php:12
+* @see app/Http/Controllers/PrivacyPolicyController.php:13
 * @route '/privacy-policy'
 */
 const PrivacyPolicyController = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -19,7 +19,7 @@ PrivacyPolicyController.definition = {
 
 /**
 * @see \App\Http\Controllers\PrivacyPolicyController::__invoke
-* @see app/Http/Controllers/PrivacyPolicyController.php:12
+* @see app/Http/Controllers/PrivacyPolicyController.php:13
 * @route '/privacy-policy'
 */
 PrivacyPolicyController.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -28,7 +28,7 @@ PrivacyPolicyController.url = (options?: { query?: QueryParams, mergeQuery?: Que
 
 /**
 * @see \App\Http\Controllers\PrivacyPolicyController::__invoke
-* @see app/Http/Controllers/PrivacyPolicyController.php:12
+* @see app/Http/Controllers/PrivacyPolicyController.php:13
 * @route '/privacy-policy'
 */
 PrivacyPolicyController.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -41,7 +41,7 @@ PrivacyPolicyController.get = (options?: { query?: QueryParams, mergeQuery?: Que
 
 /**
 * @see \App\Http\Controllers\PrivacyPolicyController::__invoke
-* @see app/Http/Controllers/PrivacyPolicyController.php:12
+* @see app/Http/Controllers/PrivacyPolicyController.php:13
 * @route '/privacy-policy'
 */
 PrivacyPolicyController.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
