@@ -1,6 +1,8 @@
+import { LegalSectionItemInterface } from '@/Types/App/Interfaces/LegalSectionItemInterface';
+
 export interface LegalSectionInterface {
     id: number;
     title: string;
-    is_string: boolean;
-    content: string | string[];
+    section_items: LegalSectionItemInterface[];
+    previous_url: string;
 }

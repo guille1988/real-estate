@@ -1,27 +1,6 @@
 <template>
     <Layout>
-        <div class="w-full bg-black">
-            <div class="container mx-auto px-4 py-12">
-                <h1 class="mb-8 text-4xl font-bold">Terms of Use</h1>
-
-                <div class="prose prose-lg prose-invert max-w-none">
-                    <LegalSection
-                        v-for="section in sections"
-                        :key="section.id"
-                        :section="section"
-                    />
-
-                    <div class="mt-12 text-right">
-                        <button
-                            @click="router.visit(previous_url)"
-                            class="rounded-md bg-purple-500 px-6 py-3 text-white transition duration-300 hover:bg-purple-600"
-                        >
-                            Back
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <LegalSection :section="section" />
     </Layout>
 </template>
 
@@ -29,12 +8,15 @@
 import Layout from '@/Components/Layout/Layout.vue';
 
 import LegalSection from '@/Components/Shared/Legal/LegalSection.vue';
+import { LegalPagePropertiesInterface } from '@/Types/App/Interfaces/LegalPagePropertiesInterface';
 import { LegalSectionInterface } from '@/Types/App/Interfaces/LegalSectionInterface';
-import { router } from '@inertiajs/vue3';
+import { LegalSectionItemInterface } from '@/Types/App/Interfaces/LegalSectionItemInterface';
 
-defineProps<{ previous_url: string }>();
+const properties: LegalPagePropertiesInterface = defineProps<{
+    previous_url: string;
+}>();
 
-const sections: LegalSectionInterface[] = [
+const sectionItems: LegalSectionItemInterface[] = [
     {
         id: 1,
         title: '1. Acceptance of Terms',
@@ -98,4 +80,11 @@ const sections: LegalSectionInterface[] = [
             'These terms and conditions are governed by and construed in accordance with the laws and you irrevocably submit to the exclusive jurisdiction of the courts in that location.',
     },
 ];
+
+const section: LegalSectionInterface = {
+    id: 1,
+    title: 'Terms of Use',
+    section_items: sectionItems,
+    previous_url: properties.previous_url,
+};
 </script>
