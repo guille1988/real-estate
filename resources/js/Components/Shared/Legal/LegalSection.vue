@@ -3,7 +3,7 @@
         <h2 class="mb-4 mt-8 text-2xl font-semibold text-purple-500">
             {{ section.title }}
         </h2>
-        <p v-if="typeof section.content === 'string'">
+        <p v-if="section.is_string">
             {{ section.content }}
         </p>
         <ul v-else class="mb-4 list-disc pl-6">
@@ -15,9 +15,9 @@
 </template>
 
 <script setup lang="ts">
-import { PrivacyPolicyInterface } from '@/Types/App/Interfaces/PrivacyPolicyInterface';
+import { LegalSectionInterface } from '@/Types/App/Interfaces/LegalSectionInterface';
 
 defineProps<{
-    section: PrivacyPolicyInterface;
+    section: LegalSectionInterface;
 }>();
 </script>
