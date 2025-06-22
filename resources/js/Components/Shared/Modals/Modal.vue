@@ -1,31 +1,33 @@
 <template>
-    <Transition>
-        <div
-            v-if="modelValue"
-            class="fixed inset-0 z-50 flex items-center justify-center p-4"
-        >
+    <Teleport to="#modal">
+        <Transition>
             <div
-                class="fixed inset-0 bg-black opacity-75"
-                @click="closeModal"
-            ></div>
-
-            <div
-                class="relative max-h-[80vh] w-full max-w-5xl overflow-y-auto rounded-lg bg-black p-8 text-white shadow-xl"
+                v-if="modelValue"
+                class="fixed inset-0 z-50 flex items-center justify-center p-4"
             >
-                <button
+                <div
+                    class="fixed inset-0 bg-black opacity-75"
                     @click="closeModal"
-                    class="absolute right-4 top-4 text-white hover:text-purple-400"
-                    aria-label="Close modal"
-                >
-                    <CloseModalIcon />
-                </button>
+                ></div>
 
-                <div>
-                    <slot></slot>
+                <div
+                    class="relative max-h-[80vh] w-full max-w-5xl overflow-y-auto rounded-lg bg-black p-8 text-white shadow-xl"
+                >
+                    <button
+                        @click="closeModal"
+                        class="absolute right-4 top-4 text-white hover:text-purple-400"
+                        aria-label="Close modal"
+                    >
+                        <CloseModalIcon />
+                    </button>
+
+                    <div>
+                        <slot></slot>
+                    </div>
                 </div>
             </div>
-        </div>
-    </Transition>
+        </Transition>
+    </Teleport>
 </template>
 
 <script setup lang="ts">
@@ -46,7 +48,7 @@ const closeModal = (): void => {
 };
 </script>
 
-<style>
+<style scoped>
 .v-enter-active,
 .v-leave-active {
     transition: opacity 1s ease;
