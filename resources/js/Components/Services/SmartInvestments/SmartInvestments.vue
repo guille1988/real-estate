@@ -31,6 +31,7 @@
                         <div class="text-center">
                             <button
                                 class="rounded-md bg-black px-6 py-3 text-white transition-colors duration-300 hover:bg-neutral-800"
+                                @click="openModal()"
                             >
                                 Learn More
                             </button>
@@ -47,12 +48,21 @@
                 </div>
             </div>
         </div>
+
+        <SmartInvestmentsModal v-model="showModal" />
     </section>
 </template>
 <script setup lang="ts">
 import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
 import SmartInvestmentsCard from '@/Components/Services/SmartInvestments/SmartInvestmentsCard.vue';
+import SmartInvestmentsModal from '@/Components/Services/SmartInvestments/SmartInvestmentsModal/SmartInvestmentsModal.vue';
 import { SmartInvestmentsCardInterface } from '@/Types/App/Interfaces/SmartInvestmentsCardInterface';
+import { ref, Ref } from 'vue';
+
+const showModal: Ref<boolean> = ref<boolean>(false);
+const openModal = (): void => {
+    showModal.value = true;
+};
 
 const cards: SmartInvestmentsCardInterface[] = [
     {
