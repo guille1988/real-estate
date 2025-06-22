@@ -7,9 +7,8 @@ namespace App\Models;
 use App\Builders\UserBuilder;
 use Carbon\CarbonImmutable;
 use Database\Factories\UserFactory;
+use Illuminate\Database\Eloquent\Attributes\UseEloquentBuilder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Query\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -23,6 +22,7 @@ use Illuminate\Notifications\Notifiable;
  *  @property-read CarbonImmutable|null $created_at
  *  @property-read CarbonImmutable|null $updated_at
  */
+#[UseEloquentBuilder(UserBuilder::class)]
 final class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
@@ -62,15 +62,6 @@ final class User extends Authenticatable
             'password' => 'hashed',
             'is_admin' => 'boolean',
         ];
-    }
-
-    /**
-     * @param  Builder  $query
-     * @return UserBuilder<Model>
-     */
-    public function newEloquentBuilder($query): UserBuilder // @pest-ignore-type
-    {
-        return new UserBuilder($query);
     }
 
     /**
