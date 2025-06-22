@@ -1,4 +1,4 @@
-import { UserInterface } from '@/Types/App/Interfaces';
+import { UserInterface } from '@/Types/App/Interfaces/UserInterface';
 
 export type PageProps<
     T extends Record<string, unknown> = Record<string, unknown>,
