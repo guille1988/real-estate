@@ -122,27 +122,21 @@
                                         class="ml-2 text-sm text-gray-400"
                                     >
                                         I agree with
-                                        <a
-                                            :href="
-                                                usePreviousUrl(
-                                                    TermsOfUseController.url(),
-                                                    '#make-it-happen',
-                                                )
-                                            "
+                                        <button
+                                            type="button"
                                             class="text-purple-500 hover:text-purple-400"
-                                            >Terms of Use</a
+                                            @click="openTermsOfUseModal()"
                                         >
+                                            Terms of Use
+                                        </button>
                                         and
-                                        <a
-                                            :href="
-                                                usePreviousUrl(
-                                                    PrivacyPolicyController.url(),
-                                                    '#make-it-happen',
-                                                )
-                                            "
+                                        <button
+                                            type="button"
                                             class="text-purple-500 hover:text-purple-400"
-                                            >Privacy Policy</a
+                                            @click="openPrivacyPolicyModal()"
                                         >
+                                            Privacy Policy
+                                        </button>
                                     </label>
                                 </div>
                             </div>
@@ -163,6 +157,9 @@
             </div>
         </div>
     </section>
+
+    <TermsOfUseModal v-model="showTermsOfUseModal" />
+    <PrivacyPolicyModal v-model="showPrivacyPolicyModal" />
 </template>
 
 <script setup lang="ts">
@@ -170,13 +167,23 @@ import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
 import DropdownInput from '@/Components/Shared/Inputs/DropdownInput.vue';
 import TextareaInput from '@/Components/Shared/Inputs/TextareaInput.vue';
 import TextInput from '@/Components/Shared/Inputs/TextInput.vue';
+import PrivacyPolicyModal from '@/Components/Shared/Modals/PrivacyPolicyModal/PrivacyPolicyModal.vue';
+import TermsOfUseModal from '@/Components/Shared/Modals/TermsOfUseModal/TermsOfUseModal.vue';
 import { capitalizeFirstLetter } from '@/Composables/useCapitalization';
-import { usePreviousUrl } from '@/Composables/usePreviousUrl';
-import PrivacyPolicyController from '@/Routes/actions/App/Http/Controllers/PrivacyPolicyController';
-import TermsOfUseController from '@/Routes/actions/App/Http/Controllers/TermsOfUseController';
 import { PropertyTypeEnum } from '@/Types/App/Enums/PropertyTypeEnum';
 import { MakeItHappenFormInterface } from '@/Types/App/Interfaces/MakeItHappenFormInterface';
 import { type Ref, ref } from 'vue';
+
+const showTermsOfUseModal: Ref<boolean> = ref<boolean>(false);
+const showPrivacyPolicyModal: Ref<boolean> = ref<boolean>(false);
+
+const openTermsOfUseModal = (): void => {
+    showTermsOfUseModal.value = true;
+};
+
+const openPrivacyPolicyModal = (): void => {
+    showPrivacyPolicyModal.value = true;
+};
 
 const form: Ref<MakeItHappenFormInterface> = ref<MakeItHappenFormInterface>({
     first_name: '',

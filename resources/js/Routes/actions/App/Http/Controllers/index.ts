@@ -3,8 +3,6 @@ import AboutController from './AboutController'
 import ContactController from './ContactController'
 import ServiceController from './ServiceController'
 import PropertyController from './PropertyController'
-import TermsOfUseController from './TermsOfUseController'
-import PrivacyPolicyController from './PrivacyPolicyController'
 
 const Controllers = {
     HomeController,
@@ -12,8 +10,6 @@ const Controllers = {
     ContactController,
     ServiceController,
     PropertyController,
-    TermsOfUseController,
-    PrivacyPolicyController,
 }
 
 export default Controllers

@@ -64,12 +64,29 @@
                         </div>
 
                         <div class="mb-6">
-                            <CheckboxInput
-                                id="terms_agreed"
-                                label="I agree with Terms of Use and Privacy Policy"
-                                v-model:model_value="form.terms_agreed"
-                                text_class="text-gray-400"
-                            />
+                            <div class="flex items-center">
+                                <CheckboxInput
+                                    id="terms_agreed"
+                                    label="I agree with "
+                                    v-model:model_value="form.terms_agreed"
+                                    text_class="text-gray-400"
+                                />
+                                <button
+                                    type="button"
+                                    class="ml-1 text-purple-500 hover:text-purple-400"
+                                    @click="showTermsModal = true"
+                                >
+                                    Terms of Use
+                                </button>
+                                <span class="mx-1 text-gray-400">and</span>
+                                <button
+                                    type="button"
+                                    class="text-purple-500 hover:text-purple-400"
+                                    @click="showPrivacyModal = true"
+                                >
+                                    Privacy Policy
+                                </button>
+                            </div>
                         </div>
 
                         <div class="flex justify-end">
@@ -90,6 +107,9 @@
             </div>
         </div>
     </section>
+
+    <TermsOfUseModal v-model="showTermsModal" />
+    <PrivacyPolicyModal v-model="showPrivacyModal" />
 </template>
 
 <script setup lang="ts">
@@ -97,10 +117,14 @@ import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
 import CheckboxInput from '@/Components/Shared/Inputs/CheckboxInput.vue';
 import TextInput from '@/Components/Shared/Inputs/TextInput.vue';
 import TextareaInput from '@/Components/Shared/Inputs/TextareaInput.vue';
+import PrivacyPolicyModal from '@/Components/Shared/Modals/PrivacyPolicyModal/PrivacyPolicyModal.vue';
+import TermsOfUseModal from '@/Components/Shared/Modals/TermsOfUseModal/TermsOfUseModal.vue';
 import { InquireFormInterface } from '@/Types/App/Interfaces/InquireFormInterface';
 import { usePage } from '@inertiajs/vue3';
 import { ref, Ref } from 'vue';
 
+const showTermsModal = ref(false);
+const showPrivacyModal = ref(false);
 const uuid: string = (usePage().props.id as string) || '';
 const form: Ref<InquireFormInterface> = ref<InquireFormInterface>({
     uuid: uuid,
