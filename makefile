@@ -5,6 +5,7 @@ migrate-seed:
 clear:
 	@echo Clearing all types of cache...
 	@./vendor/bin/sail artisan clear:all
+	clear
 
 test:
 	@echo Running tests...
