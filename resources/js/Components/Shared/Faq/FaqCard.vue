@@ -10,16 +10,26 @@
         </p>
         <button
             class="self-start rounded-md border border-gray-800 bg-black px-6 py-3 text-white transition-colors hover:bg-gray-900"
+            @click="openModal()"
         >
             Read More
         </button>
     </div>
+
+    <FaqModal v-model="showModal" :card="card" />
 </template>
 
 <script setup lang="ts">
+import FaqModal from '@/Components/Shared/Faq/FaqModal/FaqModal.vue';
 import { FaqCardInterface } from '@/Types/App/Interfaces/FaqCardInterface';
+import { ref, Ref } from 'vue';
 
 defineProps<{
     card: FaqCardInterface;
 }>();
+
+const showModal: Ref<boolean> = ref<boolean>(false);
+const openModal = (): void => {
+    showModal.value = true;
+};
 </script>
