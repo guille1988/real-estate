@@ -92,9 +92,6 @@
                     <p class="text-sm text-gray-400">
                         ©2025 Real estate. All Rights Reserved
                     </p>
-                    <a href="#" class="text-sm text-gray-400 hover:text-white">
-                        Terms & Conditions
-                    </a>
                 </div>
 
                 <div class="mt-4 flex space-x-4 md:mt-0">
