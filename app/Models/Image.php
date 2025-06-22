@@ -1,15 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
-use Database\Factories\ImagesFactory;
+use Database\Factories\ImageFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Images extends Model
+final class Image extends Model
 {
-    /** @use HasFactory<ImagesFactory> */
+    /** @use HasFactory<ImageFactory> */
     use HasFactory, HasUuids;
 
     /**
