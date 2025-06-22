@@ -6,9 +6,9 @@
             </h2>
 
             <UnlockPropertyModalItem
-                v-for="modalItem in modalItems"
-                :key="modalItem.id"
-                :item="modalItem"
+                v-for="item in modalItems"
+                :key="item.id"
+                :item="item"
             />
         </div>
     </Modal>
@@ -17,7 +17,7 @@
 <script setup lang="ts">
 import Modal from '@/Components/Shared/Modals/Modal.vue';
 import { UnlockPropertyModalItemInterface } from '@/Types/App/Interfaces/UnlockPropertyModalItemInterface';
-import { computed, ComputedRef, EmitFn, ref } from 'vue';
+import { computed, ComputedRef, EmitFn } from 'vue';
 import UnlockPropertyModalItem from './UnlockPropertyModalItem.vue';
 
 const { modelValue }: { modelValue: boolean } = defineProps({
@@ -34,7 +34,7 @@ const isOpen: ComputedRef<boolean> = computed({
     set: (value: boolean): void => emit('update:modelValue', value),
 });
 
-const modalItems = ref<UnlockPropertyModalItemInterface[]>([
+const modalItems: UnlockPropertyModalItemInterface[] = [
     {
         id: 1,
         subtitle: "Maximizing Your Property's Potential",
@@ -96,25 +96,5 @@ const modalItems = ref<UnlockPropertyModalItemInterface[]>([
             '"Donec ullamcorper nulla non metus auctor fringilla. Nullam quis risus eget urna mollis ornare vel eu leo. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh."',
         ],
     },
-    {
-        id: 9,
-        subtitle: 'Frequently Asked Questions',
-        paragraphs: [
-            'How long does it typically take to sell a property?',
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis risus eget urna mollis ornare vel eu leo. Donec id elit non mi porta gravida at eget metus. Vestibulum id ligula porta felis euismod semper.',
-            'What makes your property valuation service different?',
-            'Cras mattis consectetur purus sit amet fermentum. Donec ullamcorper nulla non metus auctor fringilla. Nullam id dolor id nibh ultricies vehicula ut id elit. Etiam porta sem malesuada magna mollis euismod.',
-            'Do you handle international properties?',
-            'Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.',
-        ],
-    },
-    {
-        id: 10,
-        subtitle: 'Contact Information',
-        paragraphs: [
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis risus eget urna mollis ornare vel eu leo. Donec id elit non mi porta gravida at eget metus. Vestibulum id ligula porta felis euismod semper.',
-            'Email: info@realestate.com\nPhone: (123) 456-7890\nAddress: 123 Property Lane, Real Estate City, RE 12345',
-        ],
-    },
-]);
+];
 </script>
