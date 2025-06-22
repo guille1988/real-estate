@@ -26,3 +26,13 @@ it('matches with admin condition.', function (): void {
     expect(($user = User::inRandomOrder()->first())->isAdmin())
         ->toEqual($user->is_admin);
 });
+
+it('has the correct field to implement route model binding.', function (): void {
+    expect(User::inRandomOrder()->first()->getRouteKeyName())
+        ->toEqual('uuid');
+});
+
+it('has the correct fields to implement unique ids.', function (): void {
+    expect(User::inRandomOrder()->first()->uniqueIds())
+        ->toContain('uuid');
+});
