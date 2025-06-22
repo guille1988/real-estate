@@ -39,7 +39,8 @@
                             Unlock the Value of Your Property Today
                         </h2>
                         <button
-                            class="self-start bg-black px-6 py-3 text-white transition-colors duration-300 sm:self-center"
+                            class="self-start bg-black px-6 py-3 text-white transition-colors duration-300 hover:bg-purple-900 sm:self-center"
+                            @click="showModal = true"
                         >
                             Learn More
                         </button>
@@ -54,12 +55,18 @@
                 </div>
             </div>
         </div>
+
+        <UnlockPropertyModal v-model="showModal" />
     </section>
 </template>
 <script setup lang="ts">
 import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
 import UnlockPropertyCard from '@/Components/Services/UnlockPropertyValue/UnlockPropertyCard.vue';
+import UnlockPropertyModal from '@/Components/Services/UnlockPropertyValue/UnlockPropertyModal.vue';
 import { UnlockPropertyCardInterface } from '@/Types/App/Interfaces/UnlockPropertyCardInterface';
+import { Ref, ref } from 'vue';
+
+const showModal: Ref<boolean> = ref<boolean>(false);
 
 const cards: UnlockPropertyCardInterface[] = [
     {
