@@ -17,6 +17,7 @@
                     <div class="mb-10 flex flex-wrap gap-4">
                         <button
                             class="rounded-md border border-gray-600 px-6 py-3 transition hover:bg-gray-800"
+                            @click="openModal()"
                         >
                             Learn More
                         </button>
@@ -57,16 +58,25 @@
             </div>
         </div>
     </section>
+
+    <HeroSectionModal v-model="showModal" />
 </template>
 
 <script setup lang="ts">
 import BlueBuilding from '@/Assets/Images/blue_building.png';
 import HeroSectionCard from '@/Components/Home/HeroSection/HeroSectionCard.vue';
+import HeroSectionModal from '@/Components/Home/HeroSection/HeroSectionModal/HeroSectionModal.vue';
 import StatsCard from '@/Components/Home/HeroSection/StatsCard.vue';
 import { useSection } from '@/Composables/useSection';
 import { HeroSectionCardInterface } from '@/Types/App/Interfaces/HeroSectionCardInterface';
 import { StatCardInterface } from '@/Types/App/Interfaces/StatCardInterface';
 import { router } from '@inertiajs/vue3';
+import { ref, Ref } from 'vue';
+
+const showModal: Ref<boolean> = ref<boolean>(false);
+const openModal = (): void => {
+    showModal.value = true;
+};
 
 const statCards: StatCardInterface[] = [
     {
