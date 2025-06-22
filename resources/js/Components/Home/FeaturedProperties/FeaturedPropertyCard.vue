@@ -25,11 +25,6 @@
             </h3>
             <p class="mb-4 text-xs text-gray-400 md:text-sm">
                 {{ card.description }}
-                <button
-                    class="ml-1 text-purple-500 transition-colors duration-300 hover:text-purple-400"
-                >
-                    Read More
-                </button>
             </p>
 
             <div class="mb-4 flex flex-wrap gap-2 md:mb-6 md:gap-4">
