@@ -4,11 +4,21 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Carbon\CarbonImmutable;
 use Database\Factories\ImageFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ *  @property-read int $id
+ *  @property-read string $uuid
+ *  @property-read string $path
+ *  @property-read bool $is_default
+ *  @property-read int $property_id
+ *  @property-read CarbonImmutable|null $created_at
+ *  @property-read CarbonImmutable|null $updated_at
+ */
 final class Image extends Model
 {
     /** @use HasFactory<ImageFactory> */
@@ -46,6 +56,8 @@ final class Image extends Model
 
     /**
      * Get the fields which will be unique.
+     *
+     * @return list<string>
      */
     public function uniqueIds(): array
     {

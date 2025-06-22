@@ -12,6 +12,7 @@ it('contains all proper attributes', function (): void {
     expect(array_keys($user->toArray()))
         ->toEqual([
             'id',
+            'uuid',
             'name',
             'email',
             'email_verified_at',

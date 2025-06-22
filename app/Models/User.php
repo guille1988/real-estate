@@ -14,6 +14,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 /**
+ *  @property-read string $uuid
  *  @property-read string $name
  *  @property-read string $email
  *  @property-read CarbonImmutable|null $email_verified_at
@@ -75,6 +76,8 @@ final class User extends Authenticatable
 
     /**
      * Get the fields which will be unique.
+     *
+     * @return list<string>
      */
     public function uniqueIds(): array
     {

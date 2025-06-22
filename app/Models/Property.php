@@ -12,7 +12,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- *  @property-read string $name
+ *  @property-read int $id
+ *  @property-read string $uuid
+ *  @property-read string $caption
+ *  @property-read string $title
+ *  @property-read string $description
+ *  @property-read string $address
+ *  @property-read PropertyTypeEnum $type
+ *  @property-read int $bathrooms
+ *  @property-read int $bedrooms
+ *  @property-read int $area
+ *  @property-read int $price
+ *  @property-read bool $is_featured
  *  @property-read CarbonImmutable|null $created_at
  *  @property-read CarbonImmutable|null $updated_at
  */
@@ -56,6 +67,8 @@ final class Property extends Model
 
     /**
      * Get the fields which will be unique.
+     *
+     * @return list<string>
      */
     public function uniqueIds(): array
     {
