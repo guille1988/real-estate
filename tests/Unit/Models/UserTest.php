@@ -23,5 +23,6 @@ it('contains all proper attributes', function (): void {
 });
 
 it('matches with admin condition.', function (): void {
-    expect(($user = User::inRandomOrder()->first())->isAdmin())->toEqual($user->is_admin);
+    expect(($user = User::inRandomOrder()->first())->isAdmin())
+        ->toEqual($user->is_admin);
 });
