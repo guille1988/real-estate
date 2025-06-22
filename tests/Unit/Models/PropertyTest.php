@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use App\Models\Property;
 
-it('contains all proper attributes', function (): void {
+it('contains all proper attributes.', function (): void {
     $property = Property::factory()
         ->create()
         ->fresh();

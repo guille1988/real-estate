@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use App\Models\User;
 
-it('contains all proper attributes', function (): void {
+it('contains all proper attributes.', function (): void {
     $user = User::factory()
         ->create()
         ->fresh();

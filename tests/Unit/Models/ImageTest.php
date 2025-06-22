@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use App\Models\Image;
 
-it('contains all proper attributes', function (): void {
+it('contains all proper attributes.', function (): void {
     $image = Image::factory()
         ->create()
         ->fresh();
