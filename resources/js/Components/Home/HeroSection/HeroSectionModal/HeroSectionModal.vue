@@ -37,50 +37,63 @@ const isOpen: ComputedRef<boolean> = computed({
 const modalItems: HeroSectionModalItemInterface[] = [
     {
         id: 1,
-        subtitle: 'Find Your Perfect Home',
+        subtitle: 'Lorem ipsum dolor sit amet',
         paragraphs: [
-            "At Real Estate, we understand that finding the perfect home is more than just a transaction—it's about finding a place where you can build your future. Our dedicated team of real estate professionals is committed to helping you navigate the complex world of property buying with ease and confidence.",
-            "We offer a personalized approach to home buying, taking the time to understand your unique needs, preferences, and budget. Whether you're a first-time buyer or looking to upgrade to your dream home, we're here to guide you every step of the way.",
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor.',
         ],
     },
     {
         id: 2,
-        subtitle: 'Expert Guidance Throughout Your Journey',
+        subtitle: 'Consectetur adipiscing elit',
         paragraphs: [
-            'Our team of experienced real estate agents brings deep local market knowledge and industry expertise to help you make informed decisions. From initial property search to final closing, we provide comprehensive support and guidance.',
-            "We leverage cutting-edge technology and market analytics to ensure you have access to the latest listings and market trends, giving you a competitive edge in today's fast-paced real estate market.",
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.',
         ],
     },
     {
         id: 3,
-        subtitle: 'Tailored Property Solutions',
+        subtitle: 'Pellentesque ornare sem',
         paragraphs: [
-            "Every client has unique needs, which is why we offer tailored property solutions designed to meet your specific requirements. Whether you're looking for a family home, an investment property, or a luxury estate, we have the expertise to help you find exactly what you're looking for.",
-            "Our extensive network of industry connections allows us to provide access to exclusive listings and off-market opportunities that you won't find anywhere else.",
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum. Curabitur blandit tempus porttitor. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.',
         ],
     },
     {
         id: 4,
-        subtitle: 'Seamless Buying Experience',
+        subtitle: 'Tellus ac cursus commodo',
         paragraphs: [
-            'We strive to make the property buying process as smooth and stress-free as possible. Our streamlined approach eliminates unnecessary complications and ensures a transparent, efficient experience from start to finish.',
-            "Our team handles all the details, from coordinating property viewings and inspections to negotiating the best possible terms on your behalf. We're committed to protecting your interests and ensuring you get the best value for your investment.",
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor.',
+            'Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cras mattis consectetur purus sit amet fermentum. Curabitur blandit tempus porttitor. Etiam porta sem malesuada magna mollis euismod. Vestibulum id ligula porta felis euismod semper.',
         ],
     },
     {
         id: 5,
-        subtitle: 'Beyond the Purchase',
+        subtitle: 'Integer posuere erat',
         paragraphs: [
-            "Our relationship doesn't end when you get the keys to your new property. We offer ongoing support and resources to help you settle into your new home and community.",
-            "From recommending trusted contractors for renovations to providing information about local amenities and services, we're here to ensure your transition is seamless and your experience with your new property is exceptional.",
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum. Curabitur blandit tempus porttitor. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.',
         ],
     },
     {
         id: 6,
-        subtitle: 'Start Your Journey Today',
+        subtitle: 'Vestibulum id ligula porta',
         paragraphs: [
-            'Ready to find your dream property? Contact our team today to schedule a consultation and discover how we can help you navigate the exciting journey of property ownership.',
-            "With Real Estate as your partner, you're not just buying a property—you're investing in a future filled with possibilities and the peace of mind that comes from knowing you've made the right choice.",
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Nullam quis risus eget urna mollis ornare vel eu leo. Cras mattis consectetur purus sit amet fermentum. Donec id elit non mi porta gravida at eget metus. Donec ullamcorper nulla non metus auctor fringilla.',
+            'Vestibulum id ligula porta felis euismod semper. Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
+        ],
+    },
+    {
+        id: 7,
+        subtitle: 'Etiam porta sem malesuada',
+        paragraphs: [
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras mattis consectetur purus sit amet fermentum. Donec ullamcorper nulla non metus auctor fringilla. Nullam quis risus eget urna mollis ornare vel eu leo. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.',
+            'Etiam porta sem malesuada magna mollis euismod. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
+        ],
+    },
+    {
+        id: 8,
+        subtitle: 'Metus auctor fringilla',
+        paragraphs: [
+            '"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula ut id elit."',
+            '"Cras mattis consectetur purus sit amet fermentum. Donec id elit non mi porta gravida at eget metus. Vestibulum id ligula porta felis euismod semper. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui."',
+            '"Donec ullamcorper nulla non metus auctor fringilla. Nullam quis risus eget urna mollis ornare vel eu leo. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh."',
         ],
     },
 ];
