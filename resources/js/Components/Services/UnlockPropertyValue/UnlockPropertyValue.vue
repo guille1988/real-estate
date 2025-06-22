@@ -40,7 +40,7 @@
                         </h2>
                         <button
                             class="self-start bg-black px-6 py-3 text-white transition-colors duration-300 hover:bg-purple-900 sm:self-center"
-                            @click="showModal = true"
+                            @click="openModal()"
                         >
                             Learn More
                         </button>
@@ -67,6 +67,9 @@ import { UnlockPropertyCardInterface } from '@/Types/App/Interfaces/UnlockProper
 import { Ref, ref } from 'vue';
 
 const showModal: Ref<boolean> = ref<boolean>(false);
+const openModal = (): void => {
+    showModal.value = true;
+};
 
 const cards: UnlockPropertyCardInterface[] = [
     {
