@@ -1,0 +1,30 @@
+<template>
+    <div>
+        <h3 class="mt-6 text-xl font-semibold text-purple-400">
+            {{ item.subtitle }}
+        </h3>
+
+        <template v-for="(paragraph, index) in item.paragraphs" :key="index">
+            <p :class="{ 'mt-4': index > 0 }">
+                <span
+                    v-if="paragraph.includes('\n')"
+                    v-html="formatText(paragraph)"
+                ></span>
+                <span v-else>{{ paragraph }}</span>
+            </p>
+        </template>
+    </div>
+</template>
+
+<script setup lang="ts">
+import { EffortlessPropertyManagementModalItemInterface } from '@/Types/App/Interfaces/EffortlessPropertyManagementModalItemInterface';
+
+const { item }: { item: EffortlessPropertyManagementModalItemInterface } =
+    defineProps<{
+        item: EffortlessPropertyManagementModalItemInterface;
+    }>();
+
+const formatText = (text: string): string => {
+    return text.replace(/\n/g, '<br />');
+};
+</script>

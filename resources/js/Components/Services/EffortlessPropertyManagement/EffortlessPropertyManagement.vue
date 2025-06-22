@@ -44,6 +44,7 @@
                         </h2>
                         <button
                             class="self-start bg-black px-6 py-3 text-white transition-colors duration-300 sm:self-center"
+                            @click="showModal = true"
                         >
                             Learn More
                         </button>
@@ -58,12 +59,18 @@
                 </div>
             </div>
         </div>
+
+        <EffortlessPropertyManagementModal v-model="showModal" />
     </section>
 </template>
 <script setup lang="ts">
 import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
 import EffortlessPropertyManagementCard from '@/Components/Services/EffortlessPropertyManagement/EffortlessPropertyManagementCard.vue';
+import EffortlessPropertyManagementModal from '@/Components/Services/EffortlessPropertyManagement/EffortlessPropertyManagementModal/EffortlessPropertyManagementModal.vue';
 import { EffortlessPropertyCardInterface } from '@/Types/App/Interfaces/EffortlessPropertyCardInterface';
+import { ref, Ref } from 'vue';
+
+const showModal: Ref<boolean> = ref<boolean>(false);
 
 const cards: EffortlessPropertyCardInterface[] = [
     {
