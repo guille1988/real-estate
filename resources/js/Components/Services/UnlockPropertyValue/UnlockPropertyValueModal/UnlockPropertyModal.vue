@@ -200,7 +200,7 @@
 import Modal from '@/Components/Shared/Modals/Modal.vue';
 import { computed, ComputedRef, EmitFn } from 'vue';
 
-const props = defineProps({
+const { modelValue }: { modelValue: boolean } = defineProps({
     modelValue: {
         type: Boolean,
         required: true,
@@ -210,7 +210,7 @@ const props = defineProps({
 const emit: EmitFn<'update:modelValue'[]> = defineEmits(['update:modelValue']);
 
 const isOpen: ComputedRef<boolean> = computed({
-    get: (): boolean => props.modelValue,
+    get: (): boolean => modelValue,
     set: (value: boolean): void => emit('update:modelValue', value),
 });
 </script>

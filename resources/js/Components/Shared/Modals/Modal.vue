@@ -9,7 +9,7 @@
         ></div>
 
         <div
-            class="relative max-h-[95vh] w-full max-w-5xl overflow-y-auto rounded-lg bg-black p-8 text-white shadow-xl"
+            class="relative max-h-[80vh] w-full max-w-5xl overflow-y-auto rounded-lg bg-black p-8 text-white shadow-xl"
         >
             <button
                 @click="closeModal"

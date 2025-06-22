@@ -62,7 +62,7 @@
 <script setup lang="ts">
 import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
 import UnlockPropertyCard from '@/Components/Services/UnlockPropertyValue/UnlockPropertyCard.vue';
-import UnlockPropertyModal from '@/Components/Services/UnlockPropertyValue/UnlockPropertyModal.vue';
+import UnlockPropertyModal from '@/Components/Services/UnlockPropertyValue/UnlockPropertyValueModal/UnlockPropertyModal.vue';
 import { UnlockPropertyCardInterface } from '@/Types/App/Interfaces/UnlockPropertyCardInterface';
 import { Ref, ref } from 'vue';
 
