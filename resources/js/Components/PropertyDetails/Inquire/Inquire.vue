@@ -74,7 +74,7 @@
                                 <button
                                     type="button"
                                     class="ml-1 text-purple-500 hover:text-purple-400"
-                                    @click="showTermsModal = true"
+                                    @click="openTermsOfUseModal()"
                                 >
                                     Terms of Use
                                 </button>
@@ -82,7 +82,7 @@
                                 <button
                                     type="button"
                                     class="text-purple-500 hover:text-purple-400"
-                                    @click="showPrivacyModal = true"
+                                    @click="openPrivacyPolicyModal()"
                                 >
                                     Privacy Policy
                                 </button>
@@ -108,8 +108,8 @@
         </div>
     </section>
 
-    <TermsOfUseModal v-model="showTermsModal" />
-    <PrivacyPolicyModal v-model="showPrivacyModal" />
+    <TermsOfUseModal v-model="showTermsOfUseModal" />
+    <PrivacyPolicyModal v-model="showPrivacyPolicyModal" />
 </template>
 
 <script setup lang="ts">
@@ -123,8 +123,16 @@ import { InquireFormInterface } from '@/Types/App/Interfaces/InquireFormInterfac
 import { usePage } from '@inertiajs/vue3';
 import { ref, Ref } from 'vue';
 
-const showTermsModal = ref(false);
-const showPrivacyModal = ref(false);
+const showTermsOfUseModal: Ref<boolean> = ref<boolean>(false);
+const showPrivacyPolicyModal: Ref<boolean> = ref<boolean>(false);
+
+const openTermsOfUseModal = (): void => {
+    showTermsOfUseModal.value = true;
+};
+
+const openPrivacyPolicyModal = (): void => {
+    showPrivacyPolicyModal.value = true;
+};
 const uuid: string = (usePage().props.id as string) || '';
 const form: Ref<InquireFormInterface> = ref<InquireFormInterface>({
     uuid: uuid,
