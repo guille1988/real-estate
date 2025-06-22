@@ -17,13 +17,10 @@
 </template>
 
 <script setup lang="ts">
+import { formatText } from '@/Composables/useTextFormatting';
 import { UnlockPropertyModalItemInterface } from '@/Types/App/Interfaces/UnlockPropertyModalItemInterface';
 
 const { item }: { item: UnlockPropertyModalItemInterface } = defineProps<{
     item: UnlockPropertyModalItemInterface;
 }>();
-
-const formatText = (text: string): string => {
-    return text.replace(/\n/g, '<br />');
-};
 </script>

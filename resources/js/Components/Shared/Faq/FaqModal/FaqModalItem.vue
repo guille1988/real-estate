@@ -17,13 +17,10 @@
 </template>
 
 <script setup lang="ts">
+import { formatText } from '@/Composables/useTextFormatting';
 import { FaqModalItemInterface } from '@/Types/App/Interfaces/FaqModalItemInterface';
 
 const { item }: { item: FaqModalItemInterface } = defineProps<{
     item: FaqModalItemInterface;
 }>();
-
-const formatText = (text: string): string => {
-    return text.replace(/\n/g, '<br />');
-};
 </script>

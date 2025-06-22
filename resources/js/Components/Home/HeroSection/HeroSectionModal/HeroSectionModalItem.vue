@@ -17,13 +17,10 @@
 </template>
 
 <script setup lang="ts">
+import { formatText } from '@/Composables/useTextFormatting';
 import { HeroSectionModalItemInterface } from '@/Types/App/Interfaces/HeroSectionModalItemInterface';
 
 const { item }: { item: HeroSectionModalItemInterface } = defineProps<{
     item: HeroSectionModalItemInterface;
 }>();
-
-const formatText = (text: string): string => {
-    return text.replace(/\n/g, '<br />');
-};
 </script>

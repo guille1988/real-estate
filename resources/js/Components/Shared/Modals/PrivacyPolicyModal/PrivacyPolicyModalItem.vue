@@ -17,13 +17,10 @@
 </template>
 
 <script setup lang="ts">
+import { formatText } from '@/Composables/useTextFormatting';
 import { PrivacyPolicyModalItemInterface } from '@/Types/App/Interfaces/PrivacyPolicyModalItemInterface';
 
 const { item }: { item: PrivacyPolicyModalItemInterface } = defineProps<{
     item: PrivacyPolicyModalItemInterface;
 }>();
-
-const formatText = (text: string): string => {
-    return text.replace(/\n/g, '<br />');
-};
 </script>
