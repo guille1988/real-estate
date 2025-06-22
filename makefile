@@ -20,3 +20,8 @@ all: migrate-seed test clear
 
 whole: update all
 
+init:
+	@echo Initiating...
+	@./vendor/bin/sail up -d
+	make whole
+	@./vendor/bin/sail npm run dev
