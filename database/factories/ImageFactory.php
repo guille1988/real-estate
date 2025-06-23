@@ -23,7 +23,7 @@ final class ImageFactory extends Factory
         return [
             'path' => $this->faker->imageUrl(),
             'is_default' => $this->faker->boolean(),
-            'property_id' => Property::inRandomOrder()->first(),
+            'property_id' => Property::inRandomOrder()->first('id')?->id,
         ];
     }
 }
