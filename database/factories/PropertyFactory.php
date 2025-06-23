@@ -7,6 +7,7 @@ namespace Database\Factories;
 use App\Enums\PropertyTypeEnum;
 use App\Models\Property;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Random\RandomException;
 
 /**
  * @extends Factory<Property>
@@ -17,12 +18,14 @@ final class PropertyFactory extends Factory
      * Define the model's default state.
      *
      * @return array<string, mixed>
+     *
+     * @throws RandomException
      */
     public function definition(): array
     {
         return [
-            'caption' => $this->faker->word(),
-            'title' => $this->faker->title(),
+            'caption' => $this->faker->sentence(3),
+            'title' => $this->faker->sentence(2),
             'description' => $this->faker->sentence(),
             'address' => $this->faker->address(),
             'type' => $this->faker->randomElement(PropertyTypeEnum::cases()),
