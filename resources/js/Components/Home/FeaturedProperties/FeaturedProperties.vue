@@ -30,7 +30,7 @@
                 class="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3"
             >
                 <FeaturedPropertyCard
-                    v-for="card in cards"
+                    v-for="card in cards.slice(0, 3)"
                     :key="card.id"
                     :card="card"
                 />
@@ -103,6 +103,18 @@ const cards: FeaturedPropertyCardInterface[] = [
         title: 'Rustic Retreat Cottage',
         description:
             'Find tranquility in the countryside. This charming cottage is nestled amidst rolling hills...',
+        price: '$350.000',
+    },
+    {
+        id: 4,
+        bedroom_count: 1,
+        bathroom_count: 1,
+        type: PropertyTypeEnum.DEPARTMENT,
+        image: Loft,
+        caption: 'Amazing Cushion - Get use to the space.',
+        title: 'Metropolitan Rest',
+        description:
+            'Immerse yourself in the comfortable zone. You are going to get use to that...',
         price: '$350.000',
     },
 ];

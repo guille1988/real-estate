@@ -6,6 +6,7 @@ namespace App\Enums;
 
 enum PropertyTypeEnum: string
 {
+    case DEPARTMENT = 'department';
     case HOUSE = 'house';
     case LOFT = 'loft';
     case VILLA = 'villa';
