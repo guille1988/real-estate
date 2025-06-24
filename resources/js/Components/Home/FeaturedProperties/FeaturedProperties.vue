@@ -109,7 +109,7 @@ const cards: FeaturedPropertyCardInterface[] = [
         id: 4,
         bedroom_count: 1,
         bathroom_count: 1,
-        type: PropertyTypeEnum.DEPARTMENT,
+        type: PropertyTypeEnum.APARTMENT,
         image: Loft,
         caption: 'Amazing Cushion - Get use to the space.',
         title: 'Metropolitan Rest',
