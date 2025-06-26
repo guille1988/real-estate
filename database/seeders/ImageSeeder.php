@@ -26,6 +26,9 @@ final class ImageSeeder extends Seeder
 
         $propertyTypeDirectories = File::directories(storage_path('app/public/images'));
 
+        /**
+         * @var string $propertyTypeDirectory
+         */
         foreach ($propertyTypeDirectories as $propertyTypeDirectory) {
             $propertyTypeValue = str($propertyTypeDirectory)
                 ->afterLast('/')
@@ -35,6 +38,9 @@ final class ImageSeeder extends Seeder
             $propertyType = PropertyTypeEnum::from($propertyTypeValue);
             $imageDirectories = File::directories($propertyTypeDirectory);
 
+            /**
+             * @var string $imageDirectory
+             */
             foreach ($imageDirectories as $imageDirectory) {
                 $images = File::allFiles($imageDirectory);
                 $propertyId = Property::factory()
