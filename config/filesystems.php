@@ -39,13 +39,6 @@ return [
             'throw' => false,
         ],
 
-        'seeder_images' => [
-            'driver' => 'local',
-            'root' => storage_path('app/private/seeders/images'),
-            'serve' => true,
-            'throw' => false,
-        ],
-
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
