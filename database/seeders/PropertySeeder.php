@@ -9,35 +9,6 @@ use Illuminate\Database\Seeder;
 
 final class PropertySeeder extends Seeder
 {
-    private array $properties = [
-        [
-            'caption' => '',
-            'title' => '',
-            'description' => '',
-            'address' => '',
-            'type' => '',
-            'bathrooms' => '',
-            'bedrooms' => '',
-            'area' => '',
-            'price' => '',
-            'is_featured' => '',
-            'images' => '',
-        ],
-        [
-            'caption' => '',
-            'title' => '',
-            'description' => '',
-            'address' => '',
-            'type' => '',
-            'bathrooms' => '',
-            'bedrooms' => '',
-            'area' => '',
-            'price' => '',
-            'is_featured' => '',
-            'images' => '',
-        ],
-    ];
-
     /**
      * Run the database seeds.
      */
