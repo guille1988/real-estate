@@ -55,7 +55,7 @@ final class Image extends Model
     }
 
     /**
-     * Get the fields which will be unique.
+     * Get the fields from which will be unique.
      *
      * @return list<string>
      */

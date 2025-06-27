@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Models\Property;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,7 +16,7 @@ return new class extends Migration
             $table->uuid()->unique();
             $table->string('path');
             $table->boolean('is_default');
-            $table->foreignId('property_id')->constrained('properties');
+            $table->foreignIdFor(Property::class)->constrained();
             $table->timestamps();
         });
     }
