@@ -30,20 +30,14 @@ final class ImageSeeder extends Seeder
     {
         collect(File::directories(storage_path('app/public/images')))
             ->each(function (mixed $propertyTypeDirectory): void {
-
                 /**
                  * @var string $propertyTypeDirectory
                  */
-                $propertyType = str($propertyTypeDirectory)
-                    ->afterLast('/')
-                    ->singular()
-                    ->toString();
-
                 collect(File::directories($propertyTypeDirectory))
-                    ->each(function (mixed $imageDirectory) use ($propertyType): void {
+                    ->each(function (mixed $imageDirectory) use ($propertyTypeDirectory): void {
                         $propertyId = Property::factory()
                             ->create([
-                                'type' => PropertyTypeEnum::from($propertyType),
+                                'type' => $this->getPropertyType($propertyTypeDirectory),
                             ])->id;
 
                         /**
@@ -51,20 +45,34 @@ final class ImageSeeder extends Seeder
                          */
                         collect(File::allFiles($imageDirectory))
                             ->each(function (SplFileInfo $image) use ($propertyId): void {
-                                $path = str($image->getPathname())
-                                    ->remove(storage_path('app/public/images/'))
-                                    ->toString();
-
-                                Image::factory()
-                                    ->create([
-                                        'path' => $path,
-                                        'property_id' => $propertyId,
-                                        'is_default' => str($image->getFilename())
-                                            ->contains('default'),
-                                    ]);
+                                $this->createImages($image, $propertyId);
                             });
                     });
             });
+    }
+
+    private function getPropertyType(string $propertyTypeDirectory): PropertyTypeEnum
+    {
+        $propertyType = str($propertyTypeDirectory)
+            ->afterLast('/')
+            ->singular()
+            ->toString();
+
+        return PropertyTypeEnum::from($propertyType);
+    }
+
+    private function createImages(SplFileInfo $image, int $propertyId): void
+    {
+        $path = str($image->getPathname())
+            ->remove(storage_path('app/public/images/'))
+            ->toString();
+
+        Image::create([
+            'path' => $path,
+            'property_id' => $propertyId,
+            'is_default' => str($image->getFilename())
+                ->contains('default'),
+        ]);
     }
 
     /**
