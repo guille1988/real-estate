@@ -33,4 +33,9 @@ final class PropertyFactory extends Factory
             'is_featured' => $this->faker->boolean(),
         ];
     }
+
+    public function featured(): self
+    {
+        return $this->state(['is_featured' => true]);
+    }
 }

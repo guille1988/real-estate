@@ -13,11 +13,17 @@ use SplFileInfo;
 
 final class ImageSeeder extends Seeder
 {
+    /**
+     * Deletes all the current images of the storage.
+     */
     private function deleteCurrentImages(): void
     {
         File::deleteDirectory(storage_path('app/public/images'));
     }
 
+    /**
+     * Copies seeded images to storage.
+     */
     private function copyImagesToSeed(): void
     {
         File::copyDirectory(
@@ -26,6 +32,9 @@ final class ImageSeeder extends Seeder
         );
     }
 
+    /**
+     * Seeds all images to the database.
+     */
     private function seedImages(): void
     {
         collect(File::directories(storage_path('app/public/images')))
@@ -36,9 +45,8 @@ final class ImageSeeder extends Seeder
                 collect(File::directories($propertyTypeDirectory))
                     ->each(function (mixed $imageDirectory) use ($propertyTypeDirectory): void {
                         $propertyId = Property::factory()
-                            ->create([
-                                'type' => $this->getPropertyType($propertyTypeDirectory),
-                            ])->id;
+                            ->featured()
+                            ->create(['type' => $this->getPropertyType($propertyTypeDirectory)])->id;
 
                         /**
                          * @var string $imageDirectory
@@ -51,6 +59,9 @@ final class ImageSeeder extends Seeder
             });
     }
 
+    /**
+     * Gets the property type according to the storage directory.
+     */
     private function getPropertyType(string $propertyTypeDirectory): PropertyTypeEnum
     {
         $propertyType = str($propertyTypeDirectory)
@@ -61,6 +72,9 @@ final class ImageSeeder extends Seeder
         return PropertyTypeEnum::from($propertyType);
     }
 
+    /**
+     * Creates images according to the storage path.
+     */
     private function createImages(SplFileInfo $image, int $propertyId): void
     {
         $path = str($image->getPathname())
