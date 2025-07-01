@@ -86,7 +86,9 @@ final class FormatSeederImagesCommand extends Command
      */
     private function formatImages(Collection $images, ImageFormatEnum $format): void
     {
-        $bar = $this->output->createProgressBar($images->count());
+        $this->newLine();
+
+        $bar = $this->output->createProgressBar($count = $images->count());
         $bar->start();
 
         $images->each(function (SplFileInfo $file) use ($format, $bar): void {
@@ -96,7 +98,13 @@ final class FormatSeederImagesCommand extends Command
 
         $bar->finish();
 
-        $this->successMessage = "{$images->count()} images have been formatted successfully.";
+        $this->successMessage = "$count images have been formatted successfully.";
+    }
+
+    private function outputSuccessMessage(): void
+    {
+        $this->newLine(2);
+        $this->output->success($this->successMessage);
     }
 
     /*
@@ -113,6 +121,6 @@ final class FormatSeederImagesCommand extends Command
             $this->formatImages($images, $format);
         }
 
-        $this->output->success($this->successMessage);
+        $this->outputSuccessMessage();
     }
 }
