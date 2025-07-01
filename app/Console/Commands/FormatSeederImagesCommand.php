@@ -27,7 +27,7 @@ final class FormatSeederImagesCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'format:seeder-images {format='.ImageFormatEnum::JPEG->value.'}}';
+    protected $signature = 'format:seeder-images {format='.ImageFormatEnum::JPEG->value.'}';
 
     /**
      * The console command description.
