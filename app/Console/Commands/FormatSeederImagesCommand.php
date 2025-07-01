@@ -9,7 +9,7 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Laravel\Facades\Image;
-use SplFileInfo;
+use Symfony\Component\Finder\SplFileInfo;
 
 final class FormatSeederImagesCommand extends Command
 {
@@ -54,22 +54,21 @@ final class FormatSeederImagesCommand extends Command
      */
     private function formatImage(string $pathName, ImageFormatEnum $format): void
     {
-        $formattedImagePath = str($pathName)
+        $path = str($pathName)
             ->beforeLast('.')
             ->append($format->getExtension())
             ->toString();
 
-        $encode = $format->getEncodeMethod();
-
-        Image::read($pathName)
-            ->$encode()
-            ->save($formattedImagePath);
+        $format->getEncodeMethod(Image::read($pathName))
+            ->save($path);
 
         File::delete($pathName);
     }
 
-    /*
+    /**
      * Filter the unformatted images.
+     *
+     * @return Collection<int, SplFileInfo>
      */
     private function filterUnformattedImages(string $folderPath, ImageFormatEnum $format): Collection
     {
@@ -80,8 +79,10 @@ final class FormatSeederImagesCommand extends Command
             });
     }
 
-    /*
+    /**
      * Format all the images according to the desired format.
+     *
+     * @param  Collection<int, SplFileInfo>  $images
      */
     private function formatImages(Collection $images, ImageFormatEnum $format): void
     {
@@ -96,7 +97,7 @@ final class FormatSeederImagesCommand extends Command
         $bar->finish();
 
         $this->successMessage = str(' images have been formatted successfully.')
-            ->prepend($images->count())
+            ->prepend((string) $images->count())
             ->toString();
     }
 

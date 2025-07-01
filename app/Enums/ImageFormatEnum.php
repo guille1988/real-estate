@@ -5,11 +5,12 @@ declare(strict_types=1);
 namespace App\Enums;
 
 use Illuminate\Support\Stringable;
+use Intervention\Image\Interfaces\EncodedImageInterface;
+use Intervention\Image\Interfaces\ImageInterface;
 
 enum ImageFormatEnum: string
 {
     case AVIF = 'avif';
-    case BMP = 'bmp';
     case JPG = 'jpg';
     case JPEG = 'jpeg';
     case PNG = 'png';
@@ -30,16 +31,14 @@ enum ImageFormatEnum: string
         return ! $this->equalsTo($format);
     }
 
-    public function getEncodeMethod(): string
+    public function getEncodeMethod(ImageInterface $image): EncodedImageInterface
     {
-        return str($this->value)
-            ->when(
-                $this->isJpg(),
-                fn (): Stringable => str(self::JPEG->value)
-            )
-            ->ucfirst()
-            ->prepend('to')
-            ->toString();
+        return match ($this) {
+            self::AVIF => $image->toAvif(),
+            self::JPG, self::JPEG => $image->toJpeg(),
+            self::PNG => $image->toPng(),
+            self::WEBP => $image->toWebp(),
+        };
     }
 
     public function getExtension(): string
