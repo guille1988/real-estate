@@ -96,9 +96,7 @@ final class FormatSeederImagesCommand extends Command
 
         $bar->finish();
 
-        $this->successMessage = str(' images have been formatted successfully.')
-            ->prepend((string) $images->count())
-            ->toString();
+        $this->successMessage = "{$images->count()} images have been formatted successfully.";
     }
 
     /*
