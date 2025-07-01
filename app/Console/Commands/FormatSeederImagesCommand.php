@@ -37,6 +37,9 @@ final class FormatSeederImagesCommand extends Command
     protected $description = 'This command formats seeder images to the desired format. 
                               The default format is '.ImageFormatEnum::JPEG->value.'.';
 
+    /*
+     * Get the image format according to the file name.
+     */
     private function getImageFormat(string $fileName): ImageFormatEnum
     {
         $fileFormat = str($fileName)
@@ -46,6 +49,9 @@ final class FormatSeederImagesCommand extends Command
         return ImageFormatEnum::from($fileFormat);
     }
 
+    /*
+     * Format the image according to the desired format.
+     */
     private function formatImage(string $pathName, ImageFormatEnum $format): void
     {
         $formattedImagePath = str($pathName)
@@ -53,13 +59,18 @@ final class FormatSeederImagesCommand extends Command
             ->append($format->getExtension())
             ->toString();
 
+        $encode = $format->getEncodeMethod();
+
         Image::read($pathName)
-            ->{$format->getEncodeMethod()}()
+            ->$encode()
             ->save($formattedImagePath);
 
         File::delete($pathName);
     }
 
+    /*
+     * Filter the unformatted images.
+     */
     private function filterUnformattedImages(string $folderPath, ImageFormatEnum $format): Collection
     {
         return collect(File::allFiles($folderPath))
@@ -69,6 +80,9 @@ final class FormatSeederImagesCommand extends Command
             });
     }
 
+    /*
+     * Format all the images according to the desired format.
+     */
     private function formatImages(Collection $images, ImageFormatEnum $format): void
     {
         $bar = $this->output->createProgressBar($images->count());
@@ -86,7 +100,7 @@ final class FormatSeederImagesCommand extends Command
             ->toString();
     }
 
-    /**
+    /*
      * Execute the console command.
      */
     public function handle(): void
