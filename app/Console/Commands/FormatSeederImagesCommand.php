@@ -40,13 +40,13 @@ final class FormatSeederImagesCommand extends Command
     /*
      * Get the image format according to the file name.
      */
-    private function getImageFormat(string $fileName): ImageFormatEnum
+    private function getImageFormat(string $image): ImageFormatEnum
     {
-        $fileFormat = str($fileName)
+        $format = str($image)
             ->afterLast('.')
             ->toString();
 
-        return ImageFormatEnum::from($fileFormat);
+        return ImageFormatEnum::from($format);
     }
 
     /*
