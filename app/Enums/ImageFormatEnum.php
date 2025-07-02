@@ -31,6 +31,13 @@ enum ImageFormatEnum: string
         return ! $this->equalsTo($format);
     }
 
+    public function toUpper(): string
+    {
+        return str($this->value)
+            ->upper()
+            ->toString();
+    }
+
     public function getEncodeMethod(ImageInterface $image): EncodedImageInterface
     {
         return match ($this) {

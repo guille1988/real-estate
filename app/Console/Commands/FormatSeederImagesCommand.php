@@ -5,11 +5,14 @@ declare(strict_types=1);
 namespace App\Console\Commands;
 
 use App\Enums\ImageFormatEnum;
+use App\Rules\IsValidPath;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
+use Illuminate\Validation\Rule;
 use Intervention\Image\Laravel\Facades\Image;
 use Symfony\Component\Finder\SplFileInfo;
+use Throwable;
 
 final class FormatSeederImagesCommand extends Command
 {
@@ -27,42 +30,80 @@ final class FormatSeederImagesCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'format:seeder-images {format='.ImageFormatEnum::JPEG->value.'}';
+    protected $signature = 'format:seeder-images {--format=} {--path=}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'This command formats seeder images to the desired format. 
-                              The default format is '.ImageFormatEnum::JPEG->value.'.';
+    protected $description = 'This command formats seeder images to the desired format.';
 
-    /*
-     * Get the image format according to the file name.
+    /**
+     * Retrieves and processes the command options.
+     * Gets the format option (defaults to JPEG if not provided) and
+     * the path option (defaults to a specific storage path if not provided).
+     *
+     * @return array<string,string>
      */
-    private function getImageFormat(string $image): ImageFormatEnum
+    public function options(): array
     {
-        $format = str($image)
-            ->afterLast('.')
-            ->toString();
+        $format = $this->option('format') ??
+            ImageFormatEnum::JPEG->value;
 
-        return ImageFormatEnum::from($format);
+        $path = $this->option('path') ??
+            storage_path('app/private/seeders/images');
+
+        return compact(['format', 'path']);
     }
 
-    /*
-     * Format the image according to the desired format.
+    /**
+     * Validates the command input options.
+     *
+     * @param  array<string,string>  $options
+     *
+     * @throws Throwable
      */
-    private function formatImage(string $pathName, ImageFormatEnum $format): void
+    private function validateInput(array $options): void
     {
-        $path = str($pathName)
-            ->beforeLast('.')
-            ->append($format->getExtension())
-            ->toString();
+        $validator = validator($options, [
+            'format' => ['required', 'string', Rule::enum(ImageFormatEnum::class)],
+            'path' => ['required', 'string', new IsValidPath],
+        ]);
 
-        $format->getEncodeMethod(Image::read($pathName))
-            ->save($path);
+        if ($validator->fails()) {
+            $this->fail($validator->errors()->first());
+        }
+    }
 
-        File::delete($pathName);
+    /**
+     * Main method to process and format seeder images.
+     * Determines the target format and path, then
+     * processes all unformatted images.
+     *
+     * @param  array<string,string>  $options
+     */
+    private function formatSeederImages(array $options): void
+    {
+        $format = ImageFormatEnum::from($options['format']);
+        $this->startMessage($format->toUpper());
+
+        $images = $this->filterUnformattedImages($options['path'], $format);
+
+        if ($images->isNotEmpty()) {
+            $this->formatImages($images, $format);
+        }
+
+        $this->outputSuccessMessage();
+    }
+
+    /**
+     * Displays the starting message for the image formatting process.
+     */
+    private function startMessage(string $format): void
+    {
+        $this->newLine();
+        $this->info(sprintf('Formatting images to %s format...', $format));
     }
 
     /**
@@ -77,6 +118,18 @@ final class FormatSeederImagesCommand extends Command
                 return $this->getImageFormat($file->getFilename())
                     ->isNotEqualTo($format);
             });
+    }
+
+    /**
+     * Gets the image format according to the file name.
+     */
+    private function getImageFormat(string $image): ImageFormatEnum
+    {
+        $format = str($image)
+            ->afterLast('.')
+            ->toString();
+
+        return ImageFormatEnum::from($format);
     }
 
     /**
@@ -98,29 +151,52 @@ final class FormatSeederImagesCommand extends Command
 
         $bar->finish();
 
-        $this->successMessage = "$count images have been formatted successfully.";
+        $this->successMessage = str('image')
+            ->plural($count > 1 ? 2 : 1)
+            ->prepend("$count ")
+            ->append(' have been formatted successfully.')
+            ->toString();
     }
 
+    /**
+     * Formats the image according to the desired format.
+     */
+    private function formatImage(string $pathName, ImageFormatEnum $format): void
+    {
+        $path = str($pathName)
+            ->beforeLast('.')
+            ->append($format->getExtension())
+            ->toString();
+
+        $format->getEncodeMethod(Image::read($pathName))
+            ->save($path);
+
+        File::delete($pathName);
+    }
+
+    /*
+     * Displays the success message after the image formatting process.
+     * Uses the stored success message to provide feedback to the user.
+     */
     private function outputSuccessMessage(): void
     {
         $this->newLine(2);
         $this->output->success($this->successMessage);
     }
 
-    /*
+    /**
      * Execute the console command.
+     *
+     * @throws Throwable
      */
     public function handle(): void
     {
-        $images = $this->filterUnformattedImages(
-            storage_path('app/private/seeders/images'),
-            $format = ImageFormatEnum::from($this->argument('format')),
-        );
+        /**
+         * @var array<string,string> $options
+         */
+        $options = $this->options();
 
-        if ($images->isNotEmpty()) {
-            $this->formatImages($images, $format);
-        }
-
-        $this->outputSuccessMessage();
+        $this->validateInput($options);
+        $this->formatSeederImages($options);
     }
 }
