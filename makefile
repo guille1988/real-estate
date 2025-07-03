@@ -1,3 +1,7 @@
+format-seeder-images:
+	@echo Formatting seeder images...
+	@./vendor/bin/sail artisan format:seeder-images
+
 migrate-seed:
 	@echo Running migration and seeders...
 	@./vendor/bin/sail artisan migrate:fresh --seed
@@ -15,9 +19,9 @@ update:
 	@echo Running composer update...
 	@./vendor/bin/sail composer update
 
-al: migrate-seed clear
+al: format-seeder-images migrate-seed clear
 
-all: migrate-seed test clear
+all: format-seeder-images migrate-seed test clear
 
 whole: update all
 
