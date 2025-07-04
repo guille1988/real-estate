@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace Database\Seeders;
 
 use App\Enums\PropertyTypeEnum;
+use App\Exceptions\NotFoundPropertyTypeException;
 use App\Models\Image;
 use App\Models\Property;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\LazyCollection;
 use SplFileInfo;
+use Throwable;
 
 final class ImageSeeder extends Seeder
 {
@@ -35,6 +37,8 @@ final class ImageSeeder extends Seeder
 
     /**
      * Seeds all images to the database.
+     *
+     * @throws Throwable
      */
     private function seedImages(): void
     {
@@ -62,15 +66,20 @@ final class ImageSeeder extends Seeder
 
     /**
      * Gets the property type according to the storage directory.
+     *
+     * @throws Throwable
      */
     private function getPropertyType(string $propertyTypeDirectory): PropertyTypeEnum
     {
-        $propertyType = str($propertyTypeDirectory)
+        $rawPropertyType = str($propertyTypeDirectory)
             ->afterLast('/')
             ->singular()
             ->toString();
 
-        return PropertyTypeEnum::from($propertyType);
+        $propertyType = PropertyTypeEnum::tryFrom($rawPropertyType);
+        throw_if(is_null($propertyType), NotFoundPropertyTypeException::class);
+
+        return $propertyType;
     }
 
     /**
@@ -92,6 +101,8 @@ final class ImageSeeder extends Seeder
 
     /**
      * Run the database seeds.
+     *
+     * @throws Throwable
      */
     public function run(): void
     {
