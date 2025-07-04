@@ -17,8 +17,7 @@ final class ClearAllCommand extends Command
         $this->call('optimize:clear');
         $this->call('clear:log');
 
-        echo PHP_EOL;
-
+        $this->newLine();
         $this->components->info('Clear all command has been executed successfully.');
     }
 }
