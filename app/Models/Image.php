@@ -6,9 +6,11 @@ namespace App\Models;
 
 use Carbon\CarbonImmutable;
 use Database\Factories\ImageFactory;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 /**
  *  @property-read int $id
@@ -44,6 +46,23 @@ final class Image extends Model
     protected function casts(): array // @pest-arch-ignore-line
     {
         return ['is_default' => 'boolean'];
+    }
+
+    /**
+     * Gets the URL of the image.
+     *
+     * @return Attribute<string, string>
+     */
+    protected function path(): Attribute
+    {
+        return Attribute::get(function (mixed $path): string {
+
+            /**
+             * @var string $path
+             */
+            return Storage::disk('images')
+                ->url($path);
+        });
     }
 
     /**

@@ -30,3 +30,8 @@ it('has the correct fields to implement unique ids.', function (): void {
     expect(Image::inRandomOrder()->first()->uniqueIds())
         ->toContain('uuid');
 });
+
+it('casts path to URL as expected.', function (): void {
+    expect(Image::inRandomOrder()->first()->path)
+        ->toBeUrl();
+});

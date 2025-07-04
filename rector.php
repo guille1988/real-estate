@@ -6,6 +6,7 @@ use Rector\CodeQuality\Rector\FuncCall\CompactToVariablesRector;
 use Rector\Config\RectorConfig;
 use Rector\Php74\Rector\Closure\ClosureToArrowFunctionRector;
 use Rector\Php83\Rector\ClassMethod\AddOverrideAttributeToOverriddenMethodsRector;
+use Rector\Privatization\Rector\ClassMethod\PrivatizeFinalClassMethodRector;
 
 return RectorConfig::configure()
     ->withPaths([
@@ -20,6 +21,7 @@ return RectorConfig::configure()
         ClosureToArrowFunctionRector::class,
         AddOverrideAttributeToOverriddenMethodsRector::class,
         CompactToVariablesRector::class,
+        PrivatizeFinalClassMethodRector::class,
     ])
     ->withPreparedSets(
         deadCode: true,
