@@ -66,6 +66,22 @@ it("doesn't perform formatting if all images are of the same destination format.
     File::deleteDirectory($path);
 });
 
+it("doesn't perform formatting if one image has an unsupported format.", function (): void {
+    $basePath = base_path('tests/Fixtures/Jobs/format_seeder_images/default_images');
+    $path = base_path('tests/Fixtures/Jobs/format_seeder_images/images');
+
+    File::copyDirectory($basePath, $path);
+    File::put("$path/fail.txt", 'Failed content.');
+
+    $this->artisan('format:seeder-images', [
+        '--path' => $path,
+    ])
+        ->assertFailed()
+        ->expectsOutputToContain('has a format that is not supported.');
+
+    File::deleteDirectory($path);
+});
+
 it('should fail due to invalid path.', function (): void {
     $this->artisan('format:seeder-images', [
         '--path' => 'invalid/path',

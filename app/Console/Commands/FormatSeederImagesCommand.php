@@ -7,8 +7,8 @@ namespace App\Console\Commands;
 use App\Enums\ImageFormatEnum;
 use App\Rules\IsValidPath;
 use Illuminate\Console\Command;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\LazyCollection;
 use Illuminate\Validation\Rule;
 use Intervention\Image\Laravel\Facades\Image;
 use Symfony\Component\Finder\SplFileInfo;
@@ -109,35 +109,43 @@ final class FormatSeederImagesCommand extends Command
     /**
      * Filter the unformatted images.
      *
-     * @return Collection<int, SplFileInfo>
+     * @return LazyCollection<int, SplFileInfo>
      */
-    private function filterUnformattedImages(string $folderPath, ImageFormatEnum $format): Collection
+    private function filterUnformattedImages(string $folderPath, ImageFormatEnum $format): LazyCollection
     {
-        return collect(File::allFiles($folderPath))
+        return LazyCollection::make(File::allFiles($folderPath))
             ->filter(function (SplFileInfo $file) use ($format): bool {
-                return $this->getImageFormat($file->getFilename())
+                return $this->getImageFormat($file->getPathname())
                     ->isNotEqualTo($format);
             });
     }
 
     /**
      * Gets the image format according to the file name.
+     *
+     * @throws Throwable
      */
-    private function getImageFormat(string $image): ImageFormatEnum
+    private function getImageFormat(string $path): ImageFormatEnum
     {
-        $format = str($image)
+        $imageFormat = str($path)
             ->afterLast('.')
             ->toString();
 
-        return ImageFormatEnum::from($format);
+        $format = ImageFormatEnum::tryFrom($imageFormat);
+
+        if (is_null($format)) {
+            $this->fail("The image on the path: $path has a format that is not supported.");
+        }
+
+        return $format;
     }
 
     /**
      * Format all the images according to the desired format.
      *
-     * @param  Collection<int, SplFileInfo>  $images
+     * @param  LazyCollection<int, SplFileInfo>  $images
      */
-    private function formatImages(Collection $images, ImageFormatEnum $format): void
+    private function formatImages(LazyCollection $images, ImageFormatEnum $format): void
     {
         $this->newLine();
 
@@ -161,17 +169,17 @@ final class FormatSeederImagesCommand extends Command
     /**
      * Formats the image according to the desired format.
      */
-    private function formatImage(string $pathName, ImageFormatEnum $format): void
+    private function formatImage(string $path, ImageFormatEnum $format): void
     {
-        $path = str($pathName)
+        $image = str($path)
             ->beforeLast('.')
             ->append($format->getExtension())
             ->toString();
 
-        $format->getEncodeMethod(Image::read($pathName))
-            ->save($path);
+        $format->getEncodeMethod(Image::read($path))
+            ->save($image);
 
-        File::delete($pathName);
+        File::delete($path);
     }
 
     /*
