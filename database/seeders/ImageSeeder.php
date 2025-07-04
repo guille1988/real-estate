@@ -9,6 +9,7 @@ use App\Models\Image;
 use App\Models\Property;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\LazyCollection;
 use SplFileInfo;
 
 final class ImageSeeder extends Seeder
@@ -37,12 +38,12 @@ final class ImageSeeder extends Seeder
      */
     private function seedImages(): void
     {
-        collect(File::directories(storage_path('app/public/images')))
+        LazyCollection::make(File::directories(storage_path('app/public/images')))
             ->each(function (mixed $propertyTypeDirectory): void {
                 /**
                  * @var string $propertyTypeDirectory
                  */
-                collect(File::directories($propertyTypeDirectory))
+                LazyCollection::make(File::directories($propertyTypeDirectory))
                     ->each(function (mixed $imageDirectory) use ($propertyTypeDirectory): void {
                         $propertyId = Property::factory()
                             ->featured()
@@ -51,7 +52,7 @@ final class ImageSeeder extends Seeder
                         /**
                          * @var string $imageDirectory
                          */
-                        collect(File::allFiles($imageDirectory))
+                        LazyCollection::make(File::allFiles($imageDirectory))
                             ->each(function (SplFileInfo $image) use ($propertyId): void {
                                 $this->createImages($image, $propertyId);
                             });
