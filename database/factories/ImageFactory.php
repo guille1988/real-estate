@@ -22,8 +22,16 @@ final class ImageFactory extends Factory
     {
         return [
             'path' => $this->faker->imageUrl(),
-            'is_default' => $this->faker->boolean(),
+            'is_default' => false,
             'property_id' => Property::factory(),
         ];
+    }
+
+    /**
+     * Defines the image default state.
+     */
+    public function default(): self
+    {
+        return $this->state(['is_default' => true]);
     }
 }

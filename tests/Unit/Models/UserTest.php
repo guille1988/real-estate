@@ -23,16 +23,16 @@ it('contains all proper attributes.', function (): void {
 });
 
 it('matches with admin condition.', function (): void {
-    expect(($user = User::inRandomOrder()->first())->isAdmin())
+    expect(($user = User::factory()->create())->isAdmin())
         ->toEqual($user->is_admin);
 });
 
 it('has the correct field to implement route model binding.', function (): void {
-    expect(User::inRandomOrder()->first()->getRouteKeyName())
+    expect(User::factory()->create()->getRouteKeyName())
         ->toEqual('uuid');
 });
 
 it('has the correct fields to implement unique ids.', function (): void {
-    expect(User::inRandomOrder()->first()->uniqueIds())
+    expect(User::factory()->create()->uniqueIds())
         ->toContain('uuid');
 });

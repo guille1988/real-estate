@@ -34,4 +34,18 @@ final class UserFactory extends Factory
             'is_admin' => false,
         ];
     }
+
+    /**
+     * Defines an admin state.
+     */
+    public function admin(): self
+    {
+        return $this->state([
+            'name' => 'Guillermo Felipetti',
+            'email' => 'guill388@hotmail.com',
+            'email_verified_at' => now(),
+            'password' => bcrypt(config()->string('app.admin_password')),
+            'is_admin' => true,
+        ]);
+    }
 }

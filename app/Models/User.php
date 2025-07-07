@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use App\Builders\UserBuilder;
 use Carbon\CarbonImmutable;
 use Database\Factories\UserFactory;
-use Illuminate\Database\Eloquent\Attributes\UseEloquentBuilder;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -24,7 +22,6 @@ use Illuminate\Notifications\Notifiable;
  *  @property-read CarbonImmutable|null $created_at
  *  @property-read CarbonImmutable|null $updated_at
  */
-#[UseEloquentBuilder(UserBuilder::class)]
 final class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */

@@ -22,21 +22,21 @@ it('contains all proper attributes.', function (): void {
 });
 
 it('has the correct field to implement route model binding.', function (): void {
-    expect(Image::inRandomOrder()->first()->getRouteKeyName())
+    expect(Image::factory()->create()->getRouteKeyName())
         ->toEqual('uuid');
 });
 
 it('has the correct fields to implement unique ids.', function (): void {
-    expect(Image::inRandomOrder()->first()->uniqueIds())
+    expect(Image::factory()->create()->uniqueIds())
         ->toContain('uuid');
 });
 
 it('casts path to URL as expected.', function (): void {
-    expect(Image::inRandomOrder()->first()->path)
+    expect(Image::factory()->create()->path)
         ->toBeUrl();
 });
 
 it('has a property.', function (): void {
-    expect(Image::inRandomOrder()->first()->property)
+    expect(Image::factory()->create()->property)
         ->not->toBeNull();
 });

@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Models\Image;
 use App\Models\Property;
 
 it('contains all proper attributes.', function (): void {
@@ -29,21 +30,28 @@ it('contains all proper attributes.', function (): void {
 });
 
 it('has the correct field to implement route model binding.', function (): void {
-    expect(Property::inRandomOrder()->first()->getRouteKeyName())
+    expect(Property::factory()->create()->getRouteKeyName())
         ->toEqual('uuid');
 });
 
 it('has the correct fields to implement unique ids.', function (): void {
-    expect(Property::inRandomOrder()->first()->uniqueIds())
+    expect(Property::factory()->create()->uniqueIds())
         ->toContain('uuid');
 });
 
 it('has images.', function (): void {
-    expect(Property::inRandomOrder()->first()->images)
-        ->not->toBeEmpty();
+    $image = Image::factory()
+        ->create();
+
+    expect($image->property->images)
+        ->toHaveCount(1);
 });
 
 it('has a default image.', function (): void {
-    expect(Property::inRandomOrder()->first()->defaultImage)
+    $image = Image::factory()
+        ->default()
+        ->create();
+
+    expect($image->property->defaultImage)
         ->not->toBeNull();
 });
