@@ -80,11 +80,21 @@ final class Property extends Model
         return ['uuid'];
     }
 
+    /**
+     * Get the images for the property.
+     *
+     * @return HasMany<Image, $this>
+     */
     public function images(): HasMany
     {
         return $this->hasMany(Image::class);
     }
 
+    /**
+     * Get the default image for the property.
+     *
+     * @return HasOne<Image, $this>
+     */
     public function defaultImage(): HasOne
     {
         return $this->hasOne(Image::class)

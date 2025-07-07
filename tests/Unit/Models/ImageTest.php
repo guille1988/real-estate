@@ -35,3 +35,8 @@ it('casts path to URL as expected.', function (): void {
     expect(Image::inRandomOrder()->first()->path)
         ->toBeUrl();
 });
+
+it('has a property.', function (): void {
+    expect(Image::inRandomOrder()->first()->property)
+        ->not->toBeNull();
+});

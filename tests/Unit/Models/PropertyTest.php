@@ -37,3 +37,13 @@ it('has the correct fields to implement unique ids.', function (): void {
     expect(Property::inRandomOrder()->first()->uniqueIds())
         ->toContain('uuid');
 });
+
+it('has images.', function (): void {
+    expect(Property::inRandomOrder()->first()->images)
+        ->not->toBeEmpty();
+});
+
+it('has a default image.', function (): void {
+    expect(Property::inRandomOrder()->first()->defaultImage)
+        ->not->toBeNull();
+});

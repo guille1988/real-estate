@@ -87,6 +87,11 @@ final class Image extends Model
         return ['uuid'];
     }
 
+    /**
+     * Get the property that owns the image.
+     *
+     * @return BelongsTo<Property, $this>
+     */
     public function property(): BelongsTo
     {
         return $this->belongsTo(Property::class);
