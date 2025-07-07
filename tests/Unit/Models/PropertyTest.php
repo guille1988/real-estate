@@ -40,18 +40,34 @@ it('has the correct fields to implement unique ids.', function (): void {
 });
 
 it('has images.', function (): void {
-    $image = Image::factory()
+    $count = 4;
+
+    $property = Property::factory()
         ->create();
 
-    expect($image->property->images)
-        ->toHaveCount(1);
+    $imagesData = Image::factory($count)
+        ->make()
+        ->select(['path', 'is_default']);
+
+    $property->images()
+        ->createMany($imagesData);
+
+    expect($property->fresh()->images)
+        ->toHaveCount($count);
 });
 
 it('has a default image.', function (): void {
-    $image = Image::factory()
-        ->default()
+    $property = Property::factory()
         ->create();
 
-    expect($image->property->defaultImage)
-        ->not->toBeNull();
+    $imageData = Image::factory()
+        ->default()
+        ->make()
+        ->only(['path', 'is_default']);
+
+    $image = $property->images()
+        ->create($imageData);
+
+    expect($property->fresh()->defaultImage->id)
+        ->toBe($image->id);
 });
