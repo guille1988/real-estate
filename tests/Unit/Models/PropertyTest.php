@@ -45,12 +45,8 @@ it('has images.', function (): void {
     $property = Property::factory()
         ->create();
 
-    $imagesData = Image::factory($count)
-        ->make()
-        ->select(['path', 'is_default']);
-
-    $property->images()
-        ->createMany($imagesData);
+    Image::factory($count)
+        ->create(['property_id' => $property->id]);
 
     expect($property->fresh()->images)
         ->toHaveCount($count);
@@ -60,13 +56,9 @@ it('has a default image.', function (): void {
     $property = Property::factory()
         ->create();
 
-    $imageData = Image::factory()
+    $image = Image::factory()
         ->default()
-        ->make()
-        ->only(['path', 'is_default']);
-
-    $image = $property->images()
-        ->create($imageData);
+        ->create(['property_id' => $property->id]);
 
     expect($property->fresh()->defaultImage->id)
         ->toBe($image->id);
