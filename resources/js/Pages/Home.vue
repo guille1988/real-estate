@@ -13,4 +13,9 @@ import FeaturedProperties from '@/Components/Home/FeaturedProperties/FeaturedPro
 import HeroSection from '@/Components/Home/HeroSection/HeroSection.vue';
 import Layout from '@/Components/Layout/Layout.vue';
 import Faq from '@/Components/Shared/Faq/Faq.vue';
+import { FeaturedPropertyCardInterface } from '@/Types/App/Interfaces/FeaturedPropertyCardInterface';
+
+defineProps<{
+    featured_properties: FeaturedPropertyCardInterface[];
+}>();
 </script>

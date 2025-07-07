@@ -4,12 +4,15 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Builders\ImageBuilder;
 use Carbon\CarbonImmutable;
 use Database\Factories\ImageFactory;
+use Illuminate\Database\Eloquent\Attributes\UseEloquentBuilder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Storage;
 
 /**
@@ -21,6 +24,7 @@ use Illuminate\Support\Facades\Storage;
  *  @property-read CarbonImmutable|null $created_at
  *  @property-read CarbonImmutable|null $updated_at
  */
+#[UseEloquentBuilder(ImageBuilder::class)]
 final class Image extends Model
 {
     /** @use HasFactory<ImageFactory> */
@@ -81,5 +85,10 @@ final class Image extends Model
     public function uniqueIds(): array
     {
         return ['uuid'];
+    }
+
+    public function property(): BelongsTo
+    {
+        return $this->belongsTo(Property::class);
     }
 }

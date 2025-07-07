@@ -4,12 +4,16 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Builders\PropertyBuilder;
 use App\Enums\PropertyTypeEnum;
 use Carbon\CarbonImmutable;
 use Database\Factories\PropertyFactory;
+use Illuminate\Database\Eloquent\Attributes\UseEloquentBuilder;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  *  @property-read int $id
@@ -27,6 +31,7 @@ use Illuminate\Database\Eloquent\Model;
  *  @property-read CarbonImmutable|null $created_at
  *  @property-read CarbonImmutable|null $updated_at
  */
+#[UseEloquentBuilder(PropertyBuilder::class)]
 final class Property extends Model
 {
     /** @use HasFactory<PropertyFactory> */
@@ -73,5 +78,16 @@ final class Property extends Model
     public function uniqueIds(): array
     {
         return ['uuid'];
+    }
+
+    public function images(): HasMany
+    {
+        return $this->hasMany(Image::class);
+    }
+
+    public function defaultImage(): HasOne
+    {
+        return $this->hasOne(Image::class)
+            ->whereDefault();
     }
 }
