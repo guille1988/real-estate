@@ -33,13 +33,13 @@
                         class="h-4 w-4 text-gray-800 dark:text-white"
                     />
                     <span class="text-xs text-gray-400 md:text-sm"
-                        >{{ card.bedroom_count }}-Bedroom</span
+                        >{{ card.bedrooms }}-Bedroom</span
                     >
                 </div>
                 <div class="flex items-center gap-1 md:gap-2">
                     <BathroomIcon class="h-4 w-4 text-white" />
                     <span class="text-xs text-gray-400 md:text-sm"
-                        >{{ card.bathroom_count }}-Bathroom</span
+                        >{{ card.bathrooms }}-Bathroom</span
                     >
                 </div>
                 <div class="flex items-center gap-1 md:gap-2">

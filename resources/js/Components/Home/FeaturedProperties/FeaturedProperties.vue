@@ -71,8 +71,8 @@ import { router } from '@inertiajs/vue3';
 const cards: FeaturedPropertyCardInterface[] = [
     {
         id: 1,
-        bedroom_count: 4,
-        bathroom_count: 3,
+        bedrooms: 4,
+        bathrooms: 3,
         type: PropertyTypeEnum.VILLA,
         image: Villa,
         caption: 'Coastal Escapes - Where Waves Beckon',
@@ -83,8 +83,8 @@ const cards: FeaturedPropertyCardInterface[] = [
     },
     {
         id: 2,
-        bedroom_count: 4,
-        bathroom_count: 3,
+        bedrooms: 4,
+        bathrooms: 3,
         type: PropertyTypeEnum.LOFT,
         image: Loft,
         caption: 'Urban Oasis - Life in the Heart of the City',
@@ -95,8 +95,8 @@ const cards: FeaturedPropertyCardInterface[] = [
     },
     {
         id: 3,
-        bedroom_count: 4,
-        bathroom_count: 3,
+        bedrooms: 4,
+        bathrooms: 3,
         type: PropertyTypeEnum.HOUSE,
         image: House,
         caption: "Countryside Charm - Escape to Nature's Embrace",
@@ -107,8 +107,8 @@ const cards: FeaturedPropertyCardInterface[] = [
     },
     {
         id: 4,
-        bedroom_count: 1,
-        bathroom_count: 1,
+        bedrooms: 1,
+        bathrooms: 1,
         type: PropertyTypeEnum.APARTMENT,
         image: Loft,
         caption: 'Amazing Cushion - Get use to the space.',
