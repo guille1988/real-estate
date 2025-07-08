@@ -135,5 +135,5 @@ return [
     |
     */
 
-    'admin_password' => (string) env('APP_ADMIN_PASSWORD', 'who_perseveres_wins_88888888'),
+    'admin_password' => (string) env('ADMIN_PASSWORD', 'who_perseveres_wins_88888888'),
 ];
