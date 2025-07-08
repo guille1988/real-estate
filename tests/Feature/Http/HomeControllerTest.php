@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Models\Image;
 use App\Models\Property;
+use Inertia\Testing\AssertableInertia as Assert;
 
 it('works on home page.', function (): void {
     $featuredProperties = Property::factory(4)
@@ -15,12 +16,9 @@ it('works on home page.', function (): void {
                 ->create(['property_id' => $property->id]);
         });
 
-    $response = $this->get(route('home'))
-        ->inertiaProps('featured_properties');
-
-    collect(data_get($response, 'data'))
-        ->each(function (array $property) use ($featuredProperties): void {
-            $contains = $featuredProperties->contains('uuid', data_get($property, 'uuid'));
-            expect($contains)->toBeTrue();
+    $this->get(route('home'))
+        ->assertInertia(function (Assert $page) use ($featuredProperties): void {
+            $page->component('Home')
+                ->has('featured_properties', $featuredProperties->count());
         });
 });

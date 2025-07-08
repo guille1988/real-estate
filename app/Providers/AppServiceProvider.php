@@ -8,6 +8,7 @@ use Carbon\CarbonImmutable;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\RateLimiter;
@@ -55,6 +56,14 @@ final class AppServiceProvider extends ServiceProvider
     }
 
     /**
+     * Configure application's resources.
+     */
+    private function configureResources(): void
+    {
+        JsonResource::withoutWrapping();
+    }
+
+    /**
      * Configure application's URL.
      */
     private function configureUrl(): void
@@ -84,6 +93,7 @@ final class AppServiceProvider extends ServiceProvider
         $this->configureDates();
         $this->configureModels();
         $this->configureRateLimiting();
+        $this->configureResources();
         $this->configureUrl();
         $this->configureVite();
     }
