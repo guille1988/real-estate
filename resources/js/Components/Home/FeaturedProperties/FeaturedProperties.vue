@@ -30,7 +30,7 @@
                 class="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3"
             >
                 <FeaturedPropertyCard
-                    v-for="card in featured_properties"
+                    v-for="card in featured_properties.slice(0, 3)"
                     :key="card.uuid"
                     :card="card"
                 />
