@@ -1,7 +1,7 @@
 import { PropertyTypeEnum } from '@/Types/App/Enums/PropertyTypeEnum';
 
 export interface FeaturedPropertyCardInterface {
-    id: number;
+    uuid: string;
     bedrooms: number;
     bathrooms: number;
     type: PropertyTypeEnum;

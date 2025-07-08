@@ -1,7 +1,7 @@
 <template>
     <Layout>
         <HeroSection />
-        <FeaturedProperties />
+        <FeaturedProperties :featured_properties="featured_properties" />
         <ClientTestimonials />
         <Faq />
     </Layout>

@@ -9,7 +9,6 @@ migrate-seed:
 clear:
 	@echo Clearing all types of cache...
 	@./vendor/bin/sail artisan clear:all
-	clear
 
 test:
 	@echo Running tests...
@@ -21,7 +20,7 @@ update:
 
 al: format-seeder-images migrate-seed clear
 
-all: format-seeder-images migrate-seed test clear
+all: al test
 
 whole: update all
 

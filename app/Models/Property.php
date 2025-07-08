@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Number;
 
 /**
  *  @property-read int $id
@@ -78,6 +79,19 @@ final class Property extends Model
     public function uniqueIds(): array
     {
         return ['uuid'];
+    }
+
+    /*
+     * Formats the price to dollar.
+     */
+    public function getDollarPrice(): string
+    {
+        /** @var string */
+        return Number::currency(
+            number: $this->price / 100,
+            in: 'USD',
+            precision: 2,
+        );
     }
 
     /**

@@ -30,8 +30,8 @@
                 class="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3"
             >
                 <FeaturedPropertyCard
-                    v-for="card in cards.slice(0, 3)"
-                    :key="card.id"
+                    v-for="card in featured_properties"
+                    :key="card.uuid"
                     :card="card"
                 />
             </div>
@@ -56,66 +56,15 @@
 </template>
 
 <script setup lang="ts">
-import House from '@/Assets/Images/house.jpg';
-import Loft from '@/Assets/Images/loft.jpg';
-import Villa from '@/Assets/Images/villa.jpg';
 import FeaturedPropertyCard from '@/Components/Home/FeaturedProperties/FeaturedPropertyCard.vue';
 import ChevronIcon from '@/Components/Icons/ChevronIcon.vue';
 import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
 import { useSection } from '@/Composables/useSection';
 import { ChevronDirectionEnum } from '@/Types/App/Enums/ChevronDirectionEnum';
-import { PropertyTypeEnum } from '@/Types/App/Enums/PropertyTypeEnum';
 import { FeaturedPropertyCardInterface } from '@/Types/App/Interfaces/FeaturedPropertyCardInterface';
 import { router } from '@inertiajs/vue3';
 
-const cards: FeaturedPropertyCardInterface[] = [
-    {
-        id: 1,
-        bedrooms: 4,
-        bathrooms: 3,
-        type: PropertyTypeEnum.VILLA,
-        image: Villa,
-        caption: 'Coastal Escapes - Where Waves Beckon',
-        title: 'Seaside Serenity Villa',
-        description:
-            'Wake up to the soothing melody of waves. This beachfront villa offers...',
-        price: '$1.250.000',
-    },
-    {
-        id: 2,
-        bedrooms: 4,
-        bathrooms: 3,
-        type: PropertyTypeEnum.LOFT,
-        image: Loft,
-        caption: 'Urban Oasis - Life in the Heart of the City',
-        title: 'Metropolitan Haven',
-        description:
-            'Immerse yourself in the energy of the city. This modern loft in the heart...',
-        price: '$650.000',
-    },
-    {
-        id: 3,
-        bedrooms: 4,
-        bathrooms: 3,
-        type: PropertyTypeEnum.HOUSE,
-        image: House,
-        caption: "Countryside Charm - Escape to Nature's Embrace",
-        title: 'Rustic Retreat Cottage',
-        description:
-            'Find tranquility in the countryside. This charming cottage is nestled amidst rolling hills...',
-        price: '$350.000',
-    },
-    {
-        id: 4,
-        bedrooms: 1,
-        bathrooms: 1,
-        type: PropertyTypeEnum.APARTMENT,
-        image: Loft,
-        caption: 'Amazing Cushion - Get use to the space.',
-        title: 'Metropolitan Rest',
-        description:
-            'Immerse yourself in the comfortable zone. You are going to get use to that...',
-        price: '$350.000',
-    },
-];
+defineProps<{
+    featured_properties: FeaturedPropertyCardInterface[];
+}>();
 </script>

@@ -63,3 +63,8 @@ it('has a default image.', function (): void {
     expect($property->fresh()->defaultImage->id)
         ->toBe($image->id);
 });
+
+it('has the correct dollar price.', function (): void {
+    expect(Property::factory()->create()->getDollarPrice())
+        ->toBeString();
+});

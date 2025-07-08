@@ -62,7 +62,7 @@
                     </p>
                 </div>
                 <button
-                    @click="router.visit(show(card.id).url)"
+                    @click="router.visit(show(card.uuid).url)"
                     class="w-full rounded-md bg-purple-600 px-4 py-2 text-xs transition-colors duration-300 hover:bg-purple-500 sm:w-auto md:px-6 md:py-3 md:text-sm"
                 >
                     View Property Details
