@@ -40,24 +40,6 @@ final class FormatSeederImagesCommand extends Command
     protected $description = 'This command formats seeder images to the desired format.';
 
     /**
-     * Retrieves and processes the command options.
-     * Gets the format option (defaults to JPEG if not provided) and
-     * the path option (defaults to a specific storage path if not provided).
-     *
-     * @return array<string,string>
-     */
-    public function options(): array
-    {
-        $format = $this->option('format') ??
-            ImageFormatEnum::JPEG->value;
-
-        $path = $this->option('path') ??
-            storage_path('app/private/seeders/images');
-
-        return compact(['format', 'path']);
-    }
-
-    /**
      * Validates the command input options.
      *
      * @param  array<string,string>  $options
@@ -190,6 +172,24 @@ final class FormatSeederImagesCommand extends Command
     {
         $this->newLine(2);
         $this->output->success($this->successMessage);
+    }
+
+    /**
+     * Retrieves and processes the command options.
+     * Gets the format option (defaults to JPEG if not provided) and
+     * the path option (defaults to a specific storage path if not provided).
+     *
+     * @return array<string,string>
+     */
+    public function options(): array
+    {
+        $format = $this->option('format') ??
+            ImageFormatEnum::JPEG->value;
+
+        $path = $this->option('path') ??
+            storage_path('app/private/seeders/images');
+
+        return compact(['format', 'path']);
     }
 
     /**
