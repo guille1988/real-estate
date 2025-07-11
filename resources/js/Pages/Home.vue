@@ -1,7 +1,7 @@
 <template>
     <Layout>
         <HeroSection />
-        <FeaturedProperties :featured_properties="featured_properties" />
+        <FeaturedProperties :featured-properties="featuredProperties" />
         <ClientTestimonials />
         <Faq />
     </Layout>
@@ -16,6 +16,6 @@ import Faq from '@/Components/Shared/Faq/Faq.vue';
 import { FeaturedPropertyCardInterface } from '@/Types/App/Interfaces/FeaturedPropertyCardInterface';
 
 defineProps<{
-    featured_properties: FeaturedPropertyCardInterface[];
+    featuredProperties: FeaturedPropertyCardInterface[];
 }>();
 </script>

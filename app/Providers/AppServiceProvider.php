@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\Responses\InertiaResponse;
 use Carbon\CarbonImmutable;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Database\Eloquent\Model;
@@ -15,11 +16,12 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
+use Inertia\ResponseFactory;
 
 final class AppServiceProvider extends ServiceProvider
 {
     /**
-     * Configure application commands.
+     * Configure commands.
      */
     private function configureCommands(): void
     {
@@ -27,7 +29,7 @@ final class AppServiceProvider extends ServiceProvider
     }
 
     /**
-     * Configure application's dates.
+     * Configure dates.
      */
     private function configureDates(): void
     {
@@ -35,7 +37,15 @@ final class AppServiceProvider extends ServiceProvider
     }
 
     /**
-     * Configure application's models.
+     * Configure Inertia response.
+     */
+    private function configureInertiaResponse(): void
+    {
+        $this->app->singleton(ResponseFactory::class, InertiaResponse::class);
+    }
+
+    /**
+     * Configure models.
      */
     private function configureModels(): void
     {
@@ -45,7 +55,7 @@ final class AppServiceProvider extends ServiceProvider
     }
 
     /**
-     * Configure application's rate limiting.
+     * Configure rate limiting.
      */
     private function configureRateLimiting(): void
     {
@@ -56,7 +66,7 @@ final class AppServiceProvider extends ServiceProvider
     }
 
     /**
-     * Configure application's resources.
+     * Configure resources.
      */
     private function configureResources(): void
     {
@@ -64,7 +74,7 @@ final class AppServiceProvider extends ServiceProvider
     }
 
     /**
-     * Configure application's URL.
+     * Configure URL.
      */
     private function configureUrl(): void
     {
@@ -72,7 +82,7 @@ final class AppServiceProvider extends ServiceProvider
     }
 
     /**
-     * Configure application Vite loading strategy.
+     * Configure Vite loading strategy.
      */
     private function configureVite(): void
     {
@@ -82,7 +92,10 @@ final class AppServiceProvider extends ServiceProvider
     /**
      * Register any application services.
      */
-    public function register(): void {}
+    public function register(): void
+    {
+        $this->configureInertiaResponse();
+    }
 
     /**
      * Bootstrap any application services.

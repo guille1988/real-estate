@@ -30,7 +30,7 @@
                 class="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3"
             >
                 <FeaturedPropertyCard
-                    v-for="card in featured_properties.slice(0, 3)"
+                    v-for="card in featuredProperties.slice(0, 3)"
                     :key="card.uuid"
                     :card="card"
                 />
@@ -65,6 +65,6 @@ import { FeaturedPropertyCardInterface } from '@/Types/App/Interfaces/FeaturedPr
 import { router } from '@inertiajs/vue3';
 
 defineProps<{
-    featured_properties: FeaturedPropertyCardInterface[];
+    featuredProperties: FeaturedPropertyCardInterface[];
 }>();
 </script>

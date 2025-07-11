@@ -6,7 +6,7 @@ use App\Models\Image;
 use App\Models\Property;
 use Inertia\Testing\AssertableInertia as Assert;
 
-it('works on home page.', function (): void {
+it('works on home page.', function (string $properties): void {
     $featuredProperties = Property::factory(4)
         ->featured()
         ->create()
@@ -17,8 +17,8 @@ it('works on home page.', function (): void {
         });
 
     $this->get(route('home'))
-        ->assertInertia(function (Assert $page) use ($featuredProperties): void {
+        ->assertInertia(function (Assert $page) use ($properties, $featuredProperties): void {
             $page->component('Home')
-                ->has('featured_properties', $featuredProperties->count());
+                ->has(str($properties)->camel()->toString(), $featuredProperties->count());
         });
-});
+})->with(['featured_properties']);
