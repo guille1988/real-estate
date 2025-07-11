@@ -2,7 +2,7 @@ import { LocationTypeEnum } from '@/Types/App/Enums/LocationTypeEnum';
 
 export interface OfficeLocationCardInterface {
     id: number;
-    location_type: LocationTypeEnum;
+    locationType: LocationTypeEnum;
     title: string;
     address: string;
     description: string;

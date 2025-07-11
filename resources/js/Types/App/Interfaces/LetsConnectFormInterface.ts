@@ -3,12 +3,12 @@ import { SourceEnum } from '@/Types/App/Enums/SourceEnum';
 
 export interface LetsConnectFormInterface {
     [key: string]: string | boolean;
-    first_name: string;
-    last_name: string;
+    firstName: string;
+    lastName: string;
     email: string;
     phone: string;
-    inquiry_type: InquiryTypeEnum;
+    inquiryType: InquiryTypeEnum;
     source: SourceEnum;
     message: string;
-    terms_agreed: boolean;
+    termsAgreed: boolean;
 }

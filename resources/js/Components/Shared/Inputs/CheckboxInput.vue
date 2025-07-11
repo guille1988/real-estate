@@ -4,11 +4,11 @@
             <input
                 :id="id"
                 type="checkbox"
-                :checked="model_value"
+                :checked="modelValue"
                 @input="handleInput($event)"
                 class="mr-2 h-4 w-4 accent-purple-600"
             />
-            <span class="text-sm" :class="text_class">{{ label }}</span>
+            <span class="text-sm" :class="textClass">{{ label }}</span>
         </label>
     </div>
 </template>
@@ -22,6 +22,6 @@ defineProps<CheckboxInputInterface>();
 const emit: EmitInputFunctionType = defineEmits<EmitInputFunctionType>();
 
 const handleInput = (event: Event) => {
-    emit('update:model_value', (event.target as HTMLInputElement).checked);
+    emit('update:modelValue', (event.target as HTMLInputElement).checked);
 };
 </script>

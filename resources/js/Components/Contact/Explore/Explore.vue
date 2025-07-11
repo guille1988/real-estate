@@ -64,37 +64,37 @@ const cards: ExploreCardInterface[] = [
         id: 1,
         image: Office,
         alt: 'Real estate Office',
-        is_split: false,
+        isSplit: false,
     },
     {
         id: 2,
         image: Team,
         alt: 'Professional Team',
-        is_split: false,
+        isSplit: false,
     },
     {
         id: 3,
         image: WorkingTeam,
         alt: 'Team Working',
-        is_split: false,
+        isSplit: false,
     },
     {
         id: 4,
         image: TeamManPortrait,
         alt: 'Team Man Portrait',
-        is_split: true,
+        isSplit: true,
     },
     {
         id: 5,
         image: TeamWomanPortrait,
         alt: 'Team Woman Portrait',
-        is_split: true,
+        isSplit: true,
     },
     {
         id: 6,
         image: Handshake,
         alt: 'Handshake',
-        is_split: false,
+        isSplit: false,
     },
 ];
 

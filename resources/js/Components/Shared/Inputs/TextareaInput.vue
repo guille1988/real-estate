@@ -3,7 +3,7 @@
         <label :for="id" class="mb-2 block text-sm">{{ label }}</label>
         <textarea
             :id="id"
-            :value="model_value"
+            :value="modelValue"
             @input="handleInput($event)"
             :rows="rows"
             :placeholder="placeholder"
@@ -21,6 +21,6 @@ defineProps<TextareaInputInterface>();
 const emit: EmitInputFunctionType = defineEmits<EmitInputFunctionType>();
 
 const handleInput = (event: Event) => {
-    emit('update:model_value', (event.target as HTMLTextAreaElement).value);
+    emit('update:modelValue', (event.target as HTMLTextAreaElement).value);
 };
 </script>

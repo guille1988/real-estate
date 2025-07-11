@@ -16,5 +16,5 @@ const { card }: { card: ExploreCardInterface } = defineProps<{
 }>();
 
 const getClass = (): string =>
-    'overflow-hidden rounded-lg ' + (card.is_split ? 'h-64 sm:h-72' : 'flex-1');
+    'overflow-hidden rounded-lg ' + (card.isSplit ? 'h-64 sm:h-72' : 'flex-1');
 </script>

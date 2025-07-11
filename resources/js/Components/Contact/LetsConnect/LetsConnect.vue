@@ -22,7 +22,7 @@
                         <TextInput
                             id="first_name"
                             label="First Name:"
-                            v-model:model_value="form.first_name"
+                            v-model:modelValue="form.firstName"
                             type="text"
                             placeholder="Enter First Name"
                         />
@@ -35,7 +35,7 @@
                         <TextInput
                             id="last_name"
                             label="Last Name:"
-                            v-model:model_value="form.last_name"
+                            v-model:modelValue="form.lastName"
                             type="text"
                             placeholder="Enter Last Name"
                         />
@@ -48,7 +48,7 @@
                         <TextInput
                             id="email"
                             label="Email:"
-                            v-model:model_value="form.email"
+                            v-model:modelValue="form.email"
                             type="email"
                             placeholder="Enter Your E-mail"
                         />
@@ -61,7 +61,7 @@
                         <TextInput
                             id="phone"
                             label="Phone:"
-                            v-model:model_value="form.phone"
+                            v-model:modelValue="form.phone"
                             type="tel"
                             placeholder="Enter Phone Number"
                         />
@@ -74,7 +74,7 @@
                         <DropdownInput
                             id="inquiry_type"
                             label="Inquiry Type:"
-                            v-model:model_value="form.inquiry_type"
+                            v-model:modelValue="form.inquiryType"
                             placeholder="Select Inquiry Type"
                             :options="inquiryTypes"
                         />
@@ -87,7 +87,7 @@
                         <DropdownInput
                             id="source"
                             label="How Did You Hear About Us?:"
-                            v-model:model_value="form.source"
+                            v-model:modelValue="form.source"
                             placeholder="Select"
                             :options="sources"
                         />
@@ -101,7 +101,7 @@
                     <TextareaInput
                         id="message"
                         label="Message:"
-                        v-model:model_value="form.message"
+                        v-model:modelValue="form.message"
                         :rows="6"
                         placeholder="Enter Your Message Here"
                     />
@@ -187,14 +187,14 @@ const openPrivacyPolicyModal = (): void => {
 
 const form: InertiaForm<LetsConnectFormInterface> =
     useForm<LetsConnectFormInterface>({
-        first_name: '',
-        last_name: '',
+        firstName: '',
+        lastName: '',
         email: '',
         phone: '',
-        inquiry_type: InquiryTypeEnum.OTHER,
+        inquiryType: InquiryTypeEnum.OTHER,
         source: SourceEnum.OTHER,
         message: '',
-        terms_agreed: false,
+        termsAgreed: false,
     });
 
 const inquiryTypes: ComputedRef<Record<string, string>> = computed(() =>

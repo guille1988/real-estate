@@ -1,7 +1,7 @@
 export interface TextareaInputInterface {
     id: string;
     label: string;
-    model_value: string;
+    modelValue: string;
     rows: number;
     placeholder: string;
 }

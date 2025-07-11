@@ -170,7 +170,7 @@ import {
 const cards: OfficeLocationCardInterface[] = [
     {
         id: 1,
-        location_type: LocationTypeEnum.REGIONAL,
+        locationType: LocationTypeEnum.REGIONAL,
         title: 'Main Headquarters',
         address: '123 Real estate Plaza, City Center, Metropolis',
         description:
@@ -182,7 +182,7 @@ const cards: OfficeLocationCardInterface[] = [
     },
     {
         id: 2,
-        location_type: LocationTypeEnum.REGIONAL,
+        locationType: LocationTypeEnum.REGIONAL,
         title: 'Regional Offices',
         address: '456 Urban Avenue, Downtown District, Metropolis',
         description:
@@ -194,7 +194,7 @@ const cards: OfficeLocationCardInterface[] = [
     },
     {
         id: 3,
-        location_type: LocationTypeEnum.INTERNATIONAL,
+        locationType: LocationTypeEnum.INTERNATIONAL,
         title: 'International Headquarters',
         address: '789 Global Tower, Financial District, London',
         description:
@@ -227,7 +227,7 @@ const filteredCards: ComputedRef<OfficeLocationCardInterface[]> = computed(
         activeTabEqualsTo(LocationTypeEnum.ALL)
             ? cards
             : cards.filter((card: OfficeLocationCardInterface) =>
-                  activeTabEqualsTo(card.location_type),
+                  activeTabEqualsTo(card.locationType),
               ),
 );
 

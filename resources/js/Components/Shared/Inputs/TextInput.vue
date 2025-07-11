@@ -3,7 +3,7 @@
         <label :for="id" class="mb-2 block text-sm">{{ label }}</label>
         <input
             :id="id"
-            :value="model_value"
+            :value="modelValue"
             @input="handleInput($event)"
             :type="type"
             :placeholder="placeholder"
@@ -21,6 +21,6 @@ defineProps<TextInputInterface>();
 const emit: EmitInputFunctionType = defineEmits<EmitInputFunctionType>();
 
 const handleInput = (event: Event) => {
-    emit('update:model_value', (event.target as HTMLInputElement).value);
+    emit('update:modelValue', (event.target as HTMLInputElement).value);
 };
 </script>

@@ -7,7 +7,7 @@
         stroke="currentColor"
     >
         <path
-            v-if="mobile_menu_opened"
+            v-if="mobileMenuOpened"
             stroke-linecap="round"
             stroke-linejoin="round"
             stroke-width="2"
@@ -25,6 +25,6 @@
 
 <script setup lang="ts">
 defineProps<{
-    mobile_menu_opened: boolean;
+    mobileMenuOpened: boolean;
 }>();
 </script>

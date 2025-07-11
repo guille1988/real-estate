@@ -30,10 +30,10 @@ const dropdown: DropdownInputInterface = defineProps<DropdownInputInterface>();
 const emit: EmitInputFunctionType = defineEmits<EmitInputFunctionType>();
 
 const getDisplayValue = (): string => {
-    return !dropdown.model_value ? '' : dropdown.model_value.toString();
+    return !dropdown.modelValue ? '' : dropdown.modelValue.toString();
 };
 
 const handleInput = (event: Event) => {
-    emit('update:model_value', (event.target as HTMLSelectElement).value);
+    emit('update:modelValue', (event.target as HTMLSelectElement).value);
 };
 </script>

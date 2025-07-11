@@ -17,7 +17,7 @@
                 class="focus:outline-none lg:hidden"
                 aria-label="Toggle menu"
             >
-                <TurtleIcon :mobile_menu_opened="mobileMenuOpened" />
+                <TurtleIcon :mobile-menu-opened="mobileMenuOpened" />
             </button>
 
             <nav class="hidden lg:block">

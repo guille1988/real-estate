@@ -25,28 +25,28 @@
                             <TextInput
                                 id="first_name"
                                 label="First Name"
-                                v-model:model_value="form.first_name"
+                                v-model:modelValue="form.firstName"
                                 type="text"
                                 placeholder="Enter First Name"
                             />
                             <TextInput
                                 id="last_name"
                                 label="Last Name"
-                                v-model:model_value="form.last_name"
+                                v-model:modelValue="form.lastName"
                                 type="text"
                                 placeholder="Enter Last Name"
                             />
                             <TextInput
                                 id="email"
                                 label="Email"
-                                v-model:model_value="form.email"
+                                v-model:modelValue="form.email"
                                 type="email"
                                 placeholder="Enter your Email"
                             />
                             <TextInput
                                 id="phone"
                                 label="Phone"
-                                v-model:model_value="form.phone"
+                                v-model:modelValue="form.phone"
                                 type="tel"
                                 placeholder="Enter Phone Number"
                             />
@@ -58,28 +58,28 @@
                             <DropdownInput
                                 id="location"
                                 label="Preferred Location"
-                                v-model:model_value="form.location"
+                                v-model:modelValue="form.location"
                                 placeholder="Select Location"
                                 :options="locations"
                             />
                             <DropdownInput
                                 id="property_type"
                                 label="Property Type"
-                                v-model:model_value="form.property_type"
+                                v-model:modelValue="form.propertyType"
                                 placeholder="Select Property Type"
                                 :options="propertyTypes"
                             />
                             <DropdownInput
                                 id="bathroom_count"
                                 label="No. of Bathrooms"
-                                v-model:model_value="form.bathroom_count"
+                                v-model:modelValue="form.bathrooms"
                                 placeholder="Select no. of bathrooms"
                                 :options="bathroomCountOptions"
                             />
                             <DropdownInput
                                 id="bedroom_count"
                                 label="No. of Bedrooms"
-                                v-model:model_value="form.bedroom_count"
+                                v-model:modelValue="form.bedrooms"
                                 placeholder="Select no. of bedrooms"
                                 :options="bedroomCountOptions"
                             />
@@ -89,7 +89,7 @@
                             <DropdownInput
                                 id="budget"
                                 label="Budget"
-                                v-model:model_value="form.budget"
+                                v-model:modelValue="form.budget"
                                 placeholder="Select Budget"
                                 :options="budgetRanges"
                             />
@@ -99,7 +99,7 @@
                             <TextareaInput
                                 id="message"
                                 label="Message"
-                                v-model:model_value="form.message"
+                                v-model:modelValue="form.message"
                                 :rows="5"
                                 placeholder="Enter your Message here."
                             />
@@ -113,7 +113,7 @@
                                     <input
                                         type="checkbox"
                                         id="terms"
-                                        v-model="form.terms_agreed"
+                                        v-model="form.termsAgreed"
                                         class="mt-1 h-4 w-4 rounded border-neutral-800 bg-neutral-900/30 text-purple-500 focus:ring-purple-500"
                                         required
                                     />
@@ -143,10 +143,10 @@
                             <button
                                 type="submit"
                                 class="rounded bg-purple-600 px-6 py-3 text-white transition duration-300 hover:bg-purple-700"
-                                :disabled="!form.terms_agreed"
+                                :disabled="!form.termsAgreed"
                                 :class="{
                                     'cursor-not-allowed opacity-50':
-                                        !form.terms_agreed,
+                                        !form.termsAgreed,
                                 }"
                             >
                                 Send Your Message
@@ -186,17 +186,17 @@ const openPrivacyPolicyModal = (): void => {
 };
 
 const form: Ref<MakeItHappenFormInterface> = ref<MakeItHappenFormInterface>({
-    first_name: '',
-    last_name: '',
+    firstName: '',
+    lastName: '',
     email: '',
     phone: '',
     location: '',
-    property_type: null,
-    bathroom_count: null,
-    bedroom_count: null,
+    propertyType: null,
+    bathrooms: null,
+    bedrooms: null,
     budget: '',
     message: '',
-    terms_agreed: false,
+    termsAgreed: false,
 });
 
 const locations: Record<string, string> = {
@@ -250,7 +250,7 @@ const bathroomCountOptions = generateRoomCount(5);
 const bedroomCountOptions = generateRoomCount(5);
 
 const submit = (): void => {
-    if (!form.value.terms_agreed) {
+    if (!form.value.termsAgreed) {
         alert('Please agree to the Terms of Use and Privacy Policy');
         return;
     }

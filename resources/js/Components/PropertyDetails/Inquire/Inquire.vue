@@ -24,14 +24,14 @@
                             <TextInput
                                 id="first_name"
                                 label="First Name"
-                                v-model:model_value="form.first_name"
+                                v-model:modelValue="form.firstName"
                                 type="text"
                                 placeholder="Enter First Name"
                             />
                             <TextInput
                                 id="last_name"
                                 label="Last Name"
-                                v-model:model_value="form.last_name"
+                                v-model:modelValue="form.lastName"
                                 type="text"
                                 placeholder="Enter Last Name"
                             />
@@ -41,14 +41,14 @@
                             <TextInput
                                 id="email"
                                 label="Email"
-                                v-model:model_value="form.email"
+                                v-model:modelValue="form.email"
                                 type="email"
                                 placeholder="Enter your Email"
                             />
                             <TextInput
                                 id="phone"
                                 label="Phone"
-                                v-model:model_value="form.phone"
+                                v-model:modelValue="form.phone"
                                 type="tel"
                                 placeholder="Enter Phone Number"
                             />
@@ -57,7 +57,7 @@
                             <TextareaInput
                                 id="message"
                                 label="Message"
-                                v-model:model_value="form.message"
+                                v-model:modelValue="form.message"
                                 :rows="4"
                                 placeholder="Enter your Message here"
                             />
@@ -68,7 +68,7 @@
                                 <CheckboxInput
                                     id="terms_agreed"
                                     label="I agree with "
-                                    v-model:model_value="form.terms_agreed"
+                                    v-model:modelValue="form.termsAgreed"
                                     text_class="text-gray-400"
                                 />
                                 <button
@@ -93,10 +93,10 @@
                             <button
                                 type="submit"
                                 class="rounded-lg bg-purple-600 px-6 py-3 text-white transition-colors duration-200 hover:bg-purple-700"
-                                :disabled="!form.terms_agreed"
+                                :disabled="!form.termsAgreed"
                                 :class="{
                                     'cursor-not-allowed opacity-50':
-                                        !form.terms_agreed,
+                                        !form.termsAgreed,
                                 }"
                             >
                                 Send Your Message
@@ -136,16 +136,16 @@ const openPrivacyPolicyModal = (): void => {
 const uuid: string = (usePage().props.id as string) || '';
 const form: Ref<InquireFormInterface> = ref<InquireFormInterface>({
     uuid: uuid,
-    first_name: '',
-    last_name: '',
+    firstName: '',
+    lastName: '',
     email: '',
     phone: '',
     message: '',
-    terms_agreed: false,
+    termsAgreed: false,
 });
 
 const submit = (): void => {
-    if (!form.value.terms_agreed) {
+    if (!form.value.termsAgreed) {
         alert('Please agree to the Terms of Use and Privacy Policy');
         return;
     }
