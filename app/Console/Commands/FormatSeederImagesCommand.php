@@ -186,8 +186,10 @@ final class FormatSeederImagesCommand extends Command
         $format = $this->option('format') ??
             ImageFormatEnum::JPEG->value;
 
+        // @codeCoverageIgnoreStart
         $path = $this->option('path') ??
             storage_path('app/private/seeders/images');
+        // @codeCoverageIgnoreEnd
 
         return compact(['format', 'path']);
     }
