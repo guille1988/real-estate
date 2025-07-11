@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Enums\PageEnum;
 use App\Models\Property;
 use App\Responses\InertiaResponse;
 use Inertia\Response;
@@ -14,7 +15,7 @@ it('works with collections and arrays.', function (bool $isArray): void {
     }
 
     $inertiaResponse = app(InertiaResponse::class)
-        ->render('Component', $properties);
+        ->render(PageEnum::HOME->value, $properties);
 
     expect($inertiaResponse)
         ->toBeInstanceOf(Response::class);
