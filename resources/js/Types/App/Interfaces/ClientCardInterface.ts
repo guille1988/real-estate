@@ -5,5 +5,5 @@ export interface ClientCardInterface {
     company: string;
     domain: string;
     category: string;
-    what_they_said: string;
+    whatTheySaid: string;
 }

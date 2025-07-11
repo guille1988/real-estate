@@ -33,7 +33,7 @@ final class HomeController
             });
 
         return Inertia::render(PageEnum::HOME->value, [
-            'featured_properties' => $featuredProperties,
+            'featured_properties' => fn (): ResourceCollection => $featuredProperties,
         ]);
     }
 }

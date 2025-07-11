@@ -36,7 +36,7 @@
                 <FaceIcon />
             </div>
             <p class="text-gray-300">
-                {{ card.what_they_said }}
+                {{ card.whatTheySaid }}
             </p>
         </div>
     </div>

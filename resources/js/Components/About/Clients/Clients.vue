@@ -94,7 +94,7 @@ const cards: ClientCardInterface[] = [
         company: 'ABC Corporation',
         domain: 'Commercial Real State',
         category: 'Luxury Home Development',
-        what_they_said:
+        whatTheySaid:
             "Real estate's expertise in finding the perfect office space for our expanding operations was invaluable. They truly understand our business needs.",
     },
     {
@@ -104,7 +104,7 @@ const cards: ClientCardInterface[] = [
         company: 'GreenTech Enterprises',
         domain: 'Commercial Real State',
         category: 'Retail Space',
-        what_they_said:
+        whatTheySaid:
             "Real estate's ability to identify prime retail locations helped us expand our brand presence. They are a trusted partner in our growth.",
     },
     {
@@ -114,7 +114,7 @@ const cards: ClientCardInterface[] = [
         company: 'TechSolutions Inc',
         domain: 'Commercial Real State',
         category: 'Office Space',
-        what_they_said:
+        whatTheySaid:
             'Working with Real estate has been a game-changer for our business. Their expertise in finding the perfect location for our headquarters was exceptional.',
     },
     {
@@ -124,7 +124,7 @@ const cards: ClientCardInterface[] = [
         company: 'Global Ventures',
         domain: 'Residential Real State',
         category: 'Luxury Apartments',
-        what_they_said:
+        whatTheySaid:
             "Real estate's team went above and beyond to understand our specific needs. Their attention to detail and market knowledge is unmatched.",
     },
 ];
