@@ -6,6 +6,7 @@ namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
 use Inertia\Middleware;
+use Throwable;
 
 final class HandleInertiaRequestMiddleware extends Middleware
 {
@@ -27,18 +28,30 @@ final class HandleInertiaRequestMiddleware extends Middleware
     /**
      * Define the props that are shared by default.
      *
-     * @return array<string, mixed>
+     * @return array<int|string, mixed>
+     *
+     * @throws Throwable
      */
     public function share(Request $request): array
     {
         /** @var array<string, mixed> $sharedProperties */
         $sharedProperties = parent::share($request);
 
-        return [
+        /**
+         * @var array<string, mixed> $data
+         */
+        $data = [
             ...$sharedProperties,
             'auth' => [
-                'user' => $request->user(),
+                'user' => $request->user()?->only([
+                    'uuid',
+                    'name',
+                    'email',
+                    'email_verified_at',
+                ]),
             ],
         ];
+
+        return transformKeysToCamelCaseRecursively($data);
     }
 }

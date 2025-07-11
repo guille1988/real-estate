@@ -5,28 +5,11 @@ declare(strict_types=1);
 namespace App\Responses;
 
 use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Support\Arr;
 use Inertia\Response;
 use Inertia\ResponseFactory;
 
 final class InertiaResponse extends ResponseFactory
 {
-    /**
-     * @param  array<string, mixed>  $props
-     * @return array<string, mixed>
-     */
-    private function transformPropsToCamelCase(array $props): array
-    {
-        /**
-         * @var array<string, mixed>
-         */
-        return Arr::mapWithKeys(
-            $props,
-            fn (mixed $value, string $key): array => [
-                str($key)->camel()->toString() => $value,
-            ]);
-    }
-
     /**
      * @param  array<string, mixed>|Arrayable<string, mixed>  $props
      */
@@ -41,7 +24,7 @@ final class InertiaResponse extends ResponseFactory
          */
         return new Response(
             $component,
-            array_merge($this->sharedProps, $this->transformPropsToCamelCase($props)),
+            array_merge($this->sharedProps, transformKeysToCamelCaseRecursively($props)),
             $this->rootView,
             $this->getVersion(),
             (bool) ($this->encryptHistory ?? config('inertia.history.encrypt', false)),
