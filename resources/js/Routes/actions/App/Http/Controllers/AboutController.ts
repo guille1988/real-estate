@@ -1,7 +1,7 @@
 import { queryParams, type QueryParams } from './../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\AboutController::__invoke
-* @see app/Http/Controllers/AboutController.php:12
+* @see app/Http/Controllers/AboutController.php:13
 * @route '/about'
 */
 const AboutController = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -19,7 +19,7 @@ AboutController.definition = {
 
 /**
 * @see \App\Http\Controllers\AboutController::__invoke
-* @see app/Http/Controllers/AboutController.php:12
+* @see app/Http/Controllers/AboutController.php:13
 * @route '/about'
 */
 AboutController.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -28,7 +28,7 @@ AboutController.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams
 
 /**
 * @see \App\Http\Controllers\AboutController::__invoke
-* @see app/Http/Controllers/AboutController.php:12
+* @see app/Http/Controllers/AboutController.php:13
 * @route '/about'
 */
 AboutController.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -41,7 +41,7 @@ AboutController.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams
 
 /**
 * @see \App\Http\Controllers\AboutController::__invoke
-* @see app/Http/Controllers/AboutController.php:12
+* @see app/Http/Controllers/AboutController.php:13
 * @route '/about'
 */
 AboutController.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {

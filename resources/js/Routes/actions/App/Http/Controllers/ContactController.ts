@@ -1,7 +1,7 @@
 import { queryParams, type QueryParams } from './../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\ContactController::__invoke
-* @see app/Http/Controllers/ContactController.php:12
+* @see app/Http/Controllers/ContactController.php:13
 * @route '/contact'
 */
 const ContactController = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -19,7 +19,7 @@ ContactController.definition = {
 
 /**
 * @see \App\Http\Controllers\ContactController::__invoke
-* @see app/Http/Controllers/ContactController.php:12
+* @see app/Http/Controllers/ContactController.php:13
 * @route '/contact'
 */
 ContactController.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -28,7 +28,7 @@ ContactController.url = (options?: { query?: QueryParams, mergeQuery?: QueryPara
 
 /**
 * @see \App\Http\Controllers\ContactController::__invoke
-* @see app/Http/Controllers/ContactController.php:12
+* @see app/Http/Controllers/ContactController.php:13
 * @route '/contact'
 */
 ContactController.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -41,7 +41,7 @@ ContactController.get = (options?: { query?: QueryParams, mergeQuery?: QueryPara
 
 /**
 * @see \App\Http\Controllers\ContactController::__invoke
-* @see app/Http/Controllers/ContactController.php:12
+* @see app/Http/Controllers/ContactController.php:13
 * @route '/contact'
 */
 ContactController.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {

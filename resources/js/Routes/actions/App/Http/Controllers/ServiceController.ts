@@ -1,7 +1,7 @@
 import { queryParams, type QueryParams } from './../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\ServiceController::__invoke
-* @see app/Http/Controllers/ServiceController.php:12
+* @see app/Http/Controllers/ServiceController.php:13
 * @route '/services'
 */
 const ServiceController = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -19,7 +19,7 @@ ServiceController.definition = {
 
 /**
 * @see \App\Http\Controllers\ServiceController::__invoke
-* @see app/Http/Controllers/ServiceController.php:12
+* @see app/Http/Controllers/ServiceController.php:13
 * @route '/services'
 */
 ServiceController.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -28,7 +28,7 @@ ServiceController.url = (options?: { query?: QueryParams, mergeQuery?: QueryPara
 
 /**
 * @see \App\Http\Controllers\ServiceController::__invoke
-* @see app/Http/Controllers/ServiceController.php:12
+* @see app/Http/Controllers/ServiceController.php:13
 * @route '/services'
 */
 ServiceController.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -41,7 +41,7 @@ ServiceController.get = (options?: { query?: QueryParams, mergeQuery?: QueryPara
 
 /**
 * @see \App\Http\Controllers\ServiceController::__invoke
-* @see app/Http/Controllers/ServiceController.php:12
+* @see app/Http/Controllers/ServiceController.php:13
 * @route '/services'
 */
 ServiceController.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
