@@ -34,9 +34,9 @@
         <div class="container mx-auto px-8">
             <div class="mb-12 grid grid-cols-1 gap-8 md:grid-cols-12">
                 <div class="flex flex-col space-y-8 md:col-span-3 md:pr-4">
-                    <a
+                    <Link
+                        prefetch
                         :href="HomeController().url"
-                        target="_self"
                         class="flex items-center"
                     >
                         <div class="mr-2 h-8 w-8 rounded-md">
@@ -46,7 +46,7 @@
                             class="whitespace-nowrap text-xl font-bold text-white"
                             >Real estate</span
                         >
-                    </a>
+                    </Link>
 
                     <div
                         class="relative w-full md:w-[150%] md:max-w-[calc(100%+2rem)] md:pr-4"
@@ -117,7 +117,7 @@ import HomeController from '@/Routes/actions/App/Http/Controllers/HomeController
 import { SocialLinkIconEnum } from '@/Types/App/Enums/SocialLinkIconEnum';
 import { FooterCategoryInterface } from '@/Types/App/Interfaces/FooterCategoryInterface';
 import { SocialLinkInterface } from '@/Types/App/Interfaces/SocialLinkInterface';
-import { router } from '@inertiajs/vue3';
+import { Link, router } from '@inertiajs/vue3';
 
 const footerCategories: FooterCategoryInterface[] = [
     {

@@ -56,7 +56,6 @@ const cards: PricingCardInterface[] = [
     {
         id: 1,
         subject: 'Additional Fees',
-        link: '#',
         details: [
             {
                 id: 1,
@@ -95,7 +94,6 @@ const cards: PricingCardInterface[] = [
     {
         id: 2,
         subject: 'Monthly Costs',
-        link: '#',
         details: [
             {
                 id: 1,
@@ -116,7 +114,6 @@ const cards: PricingCardInterface[] = [
     {
         id: 3,
         subject: 'Total Initial Costs',
-        link: '#',
         details: [
             {
                 id: 1,
@@ -148,7 +145,6 @@ const cards: PricingCardInterface[] = [
     {
         id: 4,
         subject: 'Monthly Expenses',
-        link: '#',
         details: [
             {
                 id: 1,
