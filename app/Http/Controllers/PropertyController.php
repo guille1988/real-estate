@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Enums\PageEnum;
+use App\Models\Property;
 use Inertia\Inertia;
 use Inertia\Response;
+use Throwable;
 
 final class PropertyController
 {
@@ -15,8 +17,13 @@ final class PropertyController
         return Inertia::render(PageEnum::PROPERTIES->value);
     }
 
-    public function show(int $id): Response
+    /**
+     * @throws Throwable
+     */
+    public function show(Property $property): Response
     {
-        return Inertia::render(PageEnum::PROPERTY_DETAILS->value, compact('id'));
+        return Inertia::render(PageEnum::PROPERTY_DETAILS->value, [
+            'property' => $property->load('images')->toResource(),
+        ]);
     }
 }

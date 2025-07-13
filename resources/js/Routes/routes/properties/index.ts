@@ -1,7 +1,7 @@
 import { queryParams, type QueryParams } from './../../wayfinder'
 /**
 * @see \App\Http\Controllers\PropertyController::index
-* @see app/Http/Controllers/PropertyController.php:13
+* @see app/Http/Controllers/PropertyController.php:15
 * @route '/properties'
 */
 export const index = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -19,7 +19,7 @@ index.definition = {
 
 /**
 * @see \App\Http\Controllers\PropertyController::index
-* @see app/Http/Controllers/PropertyController.php:13
+* @see app/Http/Controllers/PropertyController.php:15
 * @route '/properties'
 */
 index.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
@@ -28,7 +28,7 @@ index.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
 
 /**
 * @see \App\Http\Controllers\PropertyController::index
-* @see app/Http/Controllers/PropertyController.php:13
+* @see app/Http/Controllers/PropertyController.php:15
 * @route '/properties'
 */
 index.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -41,7 +41,7 @@ index.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 
 /**
 * @see \App\Http\Controllers\PropertyController::index
-* @see app/Http/Controllers/PropertyController.php:13
+* @see app/Http/Controllers/PropertyController.php:15
 * @route '/properties'
 */
 index.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
@@ -54,10 +54,10 @@ index.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 
 /**
 * @see \App\Http\Controllers\PropertyController::show
-* @see app/Http/Controllers/PropertyController.php:18
+* @see app/Http/Controllers/PropertyController.php:23
 * @route '/properties/{property}'
 */
-export const show = (args: { property: string | number } | [property: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
+export const show = (args: { property: string | { uuid: string } } | [property: string | { uuid: string } ] | string | { uuid: string }, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
     method: 'get',
 } => ({
@@ -72,12 +72,16 @@ show.definition = {
 
 /**
 * @see \App\Http\Controllers\PropertyController::show
-* @see app/Http/Controllers/PropertyController.php:18
+* @see app/Http/Controllers/PropertyController.php:23
 * @route '/properties/{property}'
 */
-show.url = (args: { property: string | number } | [property: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+show.url = (args: { property: string | { uuid: string } } | [property: string | { uuid: string } ] | string | { uuid: string }, options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { property: args }
+    }
+
+    if (typeof args === 'object' && !Array.isArray(args) && 'uuid' in args) {
+        args = { property: args.uuid }
     }
 
     if (Array.isArray(args)) {
@@ -87,7 +91,9 @@ show.url = (args: { property: string | number } | [property: string | number ] |
     }
 
     const parsedArgs = {
-        property: args.property,
+        property: typeof args.property === 'object'
+        ? args.property.uuid
+        : args.property,
     }
 
     return show.definition.url
@@ -97,10 +103,10 @@ show.url = (args: { property: string | number } | [property: string | number ] |
 
 /**
 * @see \App\Http\Controllers\PropertyController::show
-* @see app/Http/Controllers/PropertyController.php:18
+* @see app/Http/Controllers/PropertyController.php:23
 * @route '/properties/{property}'
 */
-show.get = (args: { property: string | number } | [property: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
+show.get = (args: { property: string | { uuid: string } } | [property: string | { uuid: string } ] | string | { uuid: string }, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
     method: 'get',
 } => ({
@@ -110,10 +116,10 @@ show.get = (args: { property: string | number } | [property: string | number ] |
 
 /**
 * @see \App\Http\Controllers\PropertyController::show
-* @see app/Http/Controllers/PropertyController.php:18
+* @see app/Http/Controllers/PropertyController.php:23
 * @route '/properties/{property}'
 */
-show.head = (args: { property: string | number } | [property: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
+show.head = (args: { property: string | { uuid: string } } | [property: string | { uuid: string } ] | string | { uuid: string }, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
     url: string,
     method: 'head',
 } => ({
