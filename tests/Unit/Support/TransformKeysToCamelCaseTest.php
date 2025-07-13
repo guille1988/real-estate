@@ -29,7 +29,7 @@ it('works with empty collection.', function (): void {
 it('works with empty model.', function (): void {
     $result = ArrayHelper::transformKeysToCamelCase(Property::first());
 
-    expect($result)->toBeEmpty();
+    expect($result)->toBeNull();
 });
 
 it('works with arrays.', function (array $data): void {
