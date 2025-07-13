@@ -21,11 +21,13 @@ final class InertiaResponse extends ResponseFactory
         }
 
         /**
-         * @var array<string, mixed> $props
+         * @var array<int|string, mixed> $properties
          */
+        $properties = ArrayHelper::transformKeysToCamelCase($props);
+
         return new Response(
             $component,
-            array_merge($this->sharedProps, ArrayHelper::transformKeysToCamelCase($props)),
+            array_merge($this->sharedProps, $properties),
             $this->rootView,
             $this->getVersion(),
             (bool) ($this->encryptHistory ?? config('inertia.history.encrypt', false)),

@@ -4,21 +4,27 @@ declare(strict_types=1);
 
 namespace App\Support;
 
+use Illuminate\Contracts\Support\Arrayable;
+
 final class ArrayHelper
 {
-    /**
-     * @param  array<int|string, mixed>  $rawData
-     * @return array<int|string, mixed>
-     */
-    public static function transformKeysToCamelCase(array $rawData): array
+    public static function transformKeysToCamelCase(mixed $raw): mixed
     {
-        /**
-         * @var array<int|string, mixed> $data
-         */
+        if (self::isNotArrayOrArrayable($raw)) {
+            return $raw;
+        }
+
         $data = [];
 
-        foreach ($rawData as $key => $value) {
-            if (is_array($value)) {
+        /**
+         * @var array<int|string, mixed> $array
+         */
+        $array = $raw instanceof Arrayable
+            ? $raw->toArray()
+            : $raw;
+
+        foreach ($array as $key => $value) {
+            if (self::isArrayOrArrayable($value)) {
                 $value = self::transformKeysToCamelCase($value);
             }
 
@@ -30,5 +36,15 @@ final class ArrayHelper
         }
 
         return $data;
+    }
+
+    public static function isArrayOrArrayable(mixed $value): bool
+    {
+        return is_array($value) || $value instanceof Arrayable;
+    }
+
+    public static function isNotArrayOrArrayable(mixed $value): bool
+    {
+        return ! self::isArrayOrArrayable($value);
     }
 }

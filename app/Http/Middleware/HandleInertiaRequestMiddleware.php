@@ -53,6 +53,9 @@ final class HandleInertiaRequestMiddleware extends Middleware
             ],
         ];
 
+        /**
+         * @var array<int|string, mixed>
+         */
         return ArrayHelper::transformKeysToCamelCase($data);
     }
 }
