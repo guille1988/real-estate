@@ -23,13 +23,13 @@ final class PropertyController
      */
     public function show(Property $property): Response
     {
-        $property = cache()->rememberForever(
+        $cachedProperty = cache()->rememberForever(
             "property_$property->uuid",
             fn (): JsonResource => $property->load(['images', 'amenities'])->toResource()
         );
 
         return Inertia::render(PageEnum::PROPERTY_DETAILS->value, [
-            'property' => fn (): JsonResource => $property,
+            'property' => fn (): JsonResource => $cachedProperty,
         ]);
     }
 }
