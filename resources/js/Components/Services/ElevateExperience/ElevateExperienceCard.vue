@@ -1,26 +1,27 @@
 <template>
-    <div
-        class="group relative cursor-pointer border border-neutral-800 bg-neutral-900/30 p-6 transition-colors duration-300 hover:border-purple-500/50"
-        @click="router.visit(card.url)"
-    >
-        <div class="absolute right-4 top-4">
-            <ArrowIcon
-                class="h-5 w-5 text-gray-600 transition-colors duration-300 group-hover:text-purple-500"
-                :direction="ArrowDirectionEnum.RIGHT"
-            />
-        </div>
-
-        <div class="flex flex-col items-center">
-            <div
-                class="mb-8 flex h-14 w-14 items-center justify-center rounded-full bg-purple-500/10"
-            >
-                <component :is="icon" class="h-8 w-8 text-purple-500" />
+    <Link prefetch :href="card.url">
+        <div
+            class="group relative cursor-pointer border border-neutral-800 bg-neutral-900/30 p-6 transition-colors duration-300 hover:border-purple-500/50"
+        >
+            <div class="absolute right-4 top-4">
+                <ArrowIcon
+                    class="h-5 w-5 text-gray-600 transition-colors duration-300 group-hover:text-purple-500"
+                    :direction="ArrowDirectionEnum.RIGHT"
+                />
             </div>
-            <h3 class="text-center font-medium">
-                {{ card.description }}
-            </h3>
+
+            <div class="flex flex-col items-center">
+                <div
+                    class="mb-8 flex h-14 w-14 items-center justify-center rounded-full bg-purple-500/10"
+                >
+                    <component :is="icon" class="h-8 w-8 text-purple-500" />
+                </div>
+                <h3 class="text-center font-medium">
+                    {{ card.description }}
+                </h3>
+            </div>
         </div>
-    </div>
+    </Link>
 </template>
 
 <script setup lang="ts">
@@ -28,7 +29,7 @@ import ArrowIcon from '@/Components/Icons/ArrowIcon.vue';
 import { useIcon } from '@/Composables/useIcon';
 import { ArrowDirectionEnum } from '@/Types/App/Enums/ArrowDirectionEnum';
 import { HeroSectionCardInterface } from '@/Types/App/Interfaces/HeroSectionCardInterface';
-import { router } from '@inertiajs/vue3';
+import { Link } from '@inertiajs/vue3';
 import { type Component } from 'vue';
 
 const { card }: { card: HeroSectionCardInterface } = defineProps<{

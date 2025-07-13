@@ -18,12 +18,13 @@
                         Details" for more information.
                     </p>
                 </div>
-                <button
-                    @click="router.visit(useSection('search-property'))"
-                    class="self-start whitespace-nowrap rounded-md border border-gray-800 bg-transparent px-4 py-2 text-sm transition hover:bg-gray-800 md:px-6 md:py-3 md:text-base"
-                >
-                    View All Properties
-                </button>
+                <Link prefetch :href="useSection('search-property')">
+                    <button
+                        class="self-start whitespace-nowrap rounded-md border border-gray-800 bg-transparent px-4 py-2 text-sm transition hover:bg-gray-800 md:px-6 md:py-3 md:text-base"
+                    >
+                        View All Properties
+                    </button>
+                </Link>
             </div>
 
             <div
@@ -62,7 +63,7 @@ import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
 import { useSection } from '@/Composables/useSection';
 import { ChevronDirectionEnum } from '@/Types/App/Enums/ChevronDirectionEnum';
 import { FeaturedPropertyCardInterface } from '@/Types/App/Interfaces/FeaturedPropertyCardInterface';
-import { router } from '@inertiajs/vue3';
+import { Link } from '@inertiajs/vue3';
 
 defineProps<{
     featuredProperties: FeaturedPropertyCardInterface[];

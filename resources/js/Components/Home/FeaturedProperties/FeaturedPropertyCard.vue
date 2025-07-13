@@ -61,12 +61,13 @@
                         {{ card.price }}
                     </p>
                 </div>
-                <button
-                    @click="router.visit(show(card.uuid).url)"
-                    class="w-full rounded-md bg-purple-600 px-4 py-2 text-xs transition-colors duration-300 hover:bg-purple-500 sm:w-auto md:px-6 md:py-3 md:text-sm"
-                >
-                    View Property Details
-                </button>
+                <Link prefetch :href="show(card.uuid).url">
+                    <button
+                        class="w-full rounded-md bg-purple-600 px-4 py-2 text-xs transition-colors duration-300 hover:bg-purple-500 sm:w-auto md:px-6 md:py-3 md:text-sm"
+                    >
+                        View Property Details
+                    </button>
+                </Link>
             </div>
         </div>
     </div>
@@ -79,7 +80,7 @@ import BuildingIcon from '@/Components/Icons/BuildingIcon.vue';
 import { capitalizeFirstLetter } from '@/Composables/useCapitalization';
 import { show } from '@/Routes/actions/App/Http/Controllers/PropertyController';
 import { FeaturedPropertyCardInterface } from '@/Types/App/Interfaces/FeaturedPropertyCardInterface';
-import { router } from '@inertiajs/vue3';
+import { Link } from '@inertiajs/vue3';
 
 const { card }: { card: FeaturedPropertyCardInterface } = defineProps<{
     card: FeaturedPropertyCardInterface;

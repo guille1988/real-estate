@@ -19,12 +19,13 @@
                     </p>
                 </div>
                 <div class="mt-4 pr-8 lg:mt-0">
-                    <button
-                        class="rounded-lg bg-purple-600 px-6 py-3 font-medium text-white hover:bg-purple-700"
-                        @click="router.visit(useSection('search-property'))"
-                    >
-                        Explore Properties
-                    </button>
+                    <Link prefetch :href="useSection('search-property')">
+                        <button
+                            class="rounded-lg bg-purple-600 px-6 py-3 font-medium text-white hover:bg-purple-700"
+                        >
+                            Explore Properties
+                        </button>
+                    </Link>
                 </div>
             </div>
         </div>
@@ -117,7 +118,7 @@ import HomeController from '@/Routes/actions/App/Http/Controllers/HomeController
 import { SocialLinkIconEnum } from '@/Types/App/Enums/SocialLinkIconEnum';
 import { FooterCategoryInterface } from '@/Types/App/Interfaces/FooterCategoryInterface';
 import { SocialLinkInterface } from '@/Types/App/Interfaces/SocialLinkInterface';
-import { Link, router } from '@inertiajs/vue3';
+import { Link } from '@inertiajs/vue3';
 
 const footerCategories: FooterCategoryInterface[] = [
     {

@@ -31,12 +31,13 @@
                         {{ card.price }}
                     </p>
                 </div>
-                <button
-                    @click="router.visit(show(card.id).url)"
-                    class="rounded-lg bg-purple-600 px-4 py-2 text-sm font-medium text-white hover:bg-purple-700"
-                >
-                    View Property Details
-                </button>
+                <Link prefetch :href="show(card.id).url">
+                    <button
+                        class="rounded-lg bg-purple-600 px-4 py-2 text-sm font-medium text-white hover:bg-purple-700"
+                    >
+                        View Property Details
+                    </button>
+                </Link>
             </div>
         </div>
     </div>
@@ -45,7 +46,7 @@
 <script setup lang="ts">
 import { show } from '@/Routes/actions/App/Http/Controllers/PropertyController';
 import { SearchCardInterface } from '@/Types/App/Interfaces/SearchCardInterface';
-import { router } from '@inertiajs/vue3';
+import { Link } from '@inertiajs/vue3';
 
 const { card }: { card: SearchCardInterface } = defineProps<{
     card: SearchCardInterface;

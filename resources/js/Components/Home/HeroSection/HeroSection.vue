@@ -21,12 +21,13 @@
                         >
                             Learn More
                         </button>
-                        <button
-                            class="rounded-md bg-purple-600 px-6 py-3 transition hover:bg-purple-700"
-                            @click="router.visit(useSection('search-property'))"
-                        >
-                            Browse Properties
-                        </button>
+                        <Link prefetch :href="useSection('search-property')">
+                            <button
+                                class="rounded-md bg-purple-600 px-6 py-3 transition hover:bg-purple-700"
+                            >
+                                Browse Properties
+                            </button>
+                        </Link>
                     </div>
 
                     <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
@@ -70,7 +71,7 @@ import StatsCard from '@/Components/Home/HeroSection/StatsCard.vue';
 import { useSection } from '@/Composables/useSection';
 import { HeroSectionCardInterface } from '@/Types/App/Interfaces/HeroSectionCardInterface';
 import { StatCardInterface } from '@/Types/App/Interfaces/StatCardInterface';
-import { router } from '@inertiajs/vue3';
+import { Link } from '@inertiajs/vue3';
 import { ref, Ref } from 'vue';
 
 const showModal: Ref<boolean> = ref<boolean>(false);
