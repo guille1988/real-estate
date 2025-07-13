@@ -43,6 +43,7 @@
 
             <div class="hidden lg:block">
                 <Link
+                    prefetch
                     :href="ContactController().url"
                     class="rounded-md bg-purple-600 px-6 py-2 text-sm font-medium text-white transition-colors hover:text-black"
                     :class="{
@@ -66,6 +67,7 @@
                         :key="navigationPage.name"
                     >
                         <Link
+                            prefetch
                             :href="navigationPage.url"
                             class="block rounded px-3 py-2 transition-colors hover:text-purple-400"
                             :class="{
@@ -79,6 +81,7 @@
                     </li>
                     <li v-if="isNotPage(PagesEnum.CONTACT)">
                         <Link
+                            prefetch
                             :href="ContactController().url"
                             class="block w-full rounded-md bg-purple-600 px-6 py-2 text-center text-sm font-medium text-white transition-colors hover:text-black"
                             @click="closeMobileMenu"
