@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Models\Amenity;
 use App\Models\Image;
 use App\Models\Property;
 
@@ -19,6 +20,9 @@ it('works showing a specific property.', function (): void {
         ->create(['property_id' => $property->id]);
 
     Image::factory(8)
+        ->create(['property_id' => $property->id]);
+
+    Amenity::factory(8)
         ->create(['property_id' => $property->id]);
 
     $this->get(route('properties.show', $property->uuid))

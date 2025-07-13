@@ -23,7 +23,7 @@ final class PropertyController
     public function show(Property $property): Response
     {
         return Inertia::render(PageEnum::PROPERTY_DETAILS->value, [
-            'property' => $property->load('images')->toResource(),
+            'property' => $property->load(['images', 'amenities'])->toResource(),
         ]);
     }
 }

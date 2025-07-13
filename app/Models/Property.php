@@ -95,6 +95,16 @@ final class Property extends Model
     }
 
     /**
+     * Get the amenities for the property.
+     *
+     * @return HasMany<Amenity, $this>
+     */
+    public function amenities(): HasMany
+    {
+        return $this->hasMany(Amenity::class);
+    }
+
+    /**
      * Get the images for the property.
      *
      * @return HasMany<Image, $this>
