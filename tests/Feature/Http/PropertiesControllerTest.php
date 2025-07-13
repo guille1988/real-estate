@@ -6,7 +6,8 @@ use App\Models\Image;
 use App\Models\Property;
 
 it('works indexing properties.', function (): void {
-    $this->get(route('properties.index'))->assertOk();
+    $this->get(route('properties.index'))
+        ->assertOk();
 });
 
 it('works showing a specific property.', function (): void {
