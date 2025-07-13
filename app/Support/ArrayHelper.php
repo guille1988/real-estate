@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-// @codeCoverageIgnoreStart
-if (! function_exists('transformKeysToCamelCaseRecursively')) {
-    // @codeCoverageIgnoreEnd
+namespace App\Support;
 
+final class ArrayHelper
+{
     /**
      * @param  array<int|string, mixed>  $rawData
      * @return array<int|string, mixed>
      */
-    function transformKeysToCamelCaseRecursively(array $rawData): array
+    public static function transformKeysToCamelCase(array $rawData): array
     {
         /**
          * @var array<int|string, mixed> $data
@@ -19,7 +19,7 @@ if (! function_exists('transformKeysToCamelCaseRecursively')) {
 
         foreach ($rawData as $key => $value) {
             if (is_array($value)) {
-                $value = transformKeysToCamelCaseRecursively($value);
+                $value = self::transformKeysToCamelCase($value);
             }
 
             if (is_string($key)) {

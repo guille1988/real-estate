@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Responses;
 
+use App\Support\ArrayHelper;
 use Illuminate\Contracts\Support\Arrayable;
 use Inertia\Response;
 use Inertia\ResponseFactory;
@@ -24,7 +25,7 @@ final class InertiaResponse extends ResponseFactory
          */
         return new Response(
             $component,
-            array_merge($this->sharedProps, transformKeysToCamelCaseRecursively($props)),
+            array_merge($this->sharedProps, ArrayHelper::transformKeysToCamelCase($props)),
             $this->rootView,
             $this->getVersion(),
             (bool) ($this->encryptHistory ?? config('inertia.history.encrypt', false)),

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Middleware;
 
+use App\Support\ArrayHelper;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Throwable;
@@ -52,6 +53,6 @@ final class HandleInertiaRequestMiddleware extends Middleware
             ],
         ];
 
-        return transformKeysToCamelCaseRecursively($data);
+        return ArrayHelper::transformKeysToCamelCase($data);
     }
 }

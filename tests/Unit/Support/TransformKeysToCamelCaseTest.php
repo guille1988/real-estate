@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use App\Support\ArrayHelper;
+
 it('works without any kind of array.', function (): void {
     $data = [
         'first' => 1,
@@ -10,7 +12,7 @@ it('works without any kind of array.', function (): void {
         ],
     ];
 
-    $result = transformKeysToCamelCaseRecursively($data);
+    $result = ArrayHelper::transformKeysToCamelCase($data);
 
     expect(data_get($result, 'first'))
         ->toBe(1)
@@ -19,7 +21,7 @@ it('works without any kind of array.', function (): void {
 });
 
 it('works with empty array.', function (): void {
-    $result = transformKeysToCamelCaseRecursively([]);
+    $result = ArrayHelper::transformKeysToCamelCase([]);
 
     expect($result)->toBeEmpty();
 });
@@ -34,7 +36,7 @@ it('works with arrays.', function (): void {
         ],
     ];
 
-    $result = transformKeysToCamelCaseRecursively($data);
+    $result = ArrayHelper::transformKeysToCamelCase($data);
 
     expect(data_get($result, 0))
         ->toBe([1, 2, 3])
@@ -58,7 +60,7 @@ it('works with associative arrays.', function (): void {
         ],
     ];
 
-    $result = transformKeysToCamelCaseRecursively($data);
+    $result = ArrayHelper::transformKeysToCamelCase($data);
 
     expect(data_get($result, 'first.compoundKey'))
         ->toBe(1)
