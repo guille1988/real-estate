@@ -17,7 +17,7 @@ return new class extends Migration
         Schema::create('pricing_details', function (Blueprint $table): void {
             $table->id();
             $table->uuid()->unique();
-            $table->string('title');
+            $table->string('name');
             $table->string('description')->nullable();
             $table->string('category');
             $table->unsignedInteger('price');

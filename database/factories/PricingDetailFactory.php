@@ -25,11 +25,16 @@ final class PricingDetailFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => $this->faker->words(random_int(1, 3), true),
+            'name' => $this->faker->words(random_int(1, 3), true),
             'description' => $this->faker->randomElement([null, $this->faker->sentence()]),
             'category' => $this->faker->randomElement(PricingDetailCategoryEnum::cases()),
             'price' => $this->faker->numberBetween(1000, 100000),
             'property_id' => Property::factory(),
         ];
+    }
+
+    public function withoutPrice(): self
+    {
+        return $this->state(['price' => 0]);
     }
 }

@@ -5,18 +5,18 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Enums\PricingDetailCategoryEnum;
-use App\Models\Traits\Priceable;
 use Carbon\CarbonImmutable;
 use Database\Factories\PricingDetailFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Number;
 
 /**
  *  @property-read int $id
  *  @property-read string $uuid
- *  @property-read string $title
+ *  @property-read string $name
  *  @property-read ?string $description
  *  @property-read PricingDetailCategoryEnum $category
  *  @property-read int $price
@@ -27,7 +27,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 final class PricingDetail extends Model
 {
     /** @use HasFactory<PricingDetailFactory> */
-    use HasFactory, HasUuids, Priceable;
+    use HasFactory, HasUuids;
 
     /**
      * @var string
@@ -81,14 +81,38 @@ final class PricingDetail extends Model
         return $this->belongsTo(Property::class);
     }
 
-    public function getTitleDescription(): ?string
+    /*
+     * Formats the price to dollar.
+     */
+    public function getDollarPrice(): string
     {
-        if (is_null($this->description)) {
-            return null;
-        }
+        return $this->price === 0
+            ? $this->getSpecialPrice()
+            : $this->getPrice();
+    }
 
-        return str($this->description)
-            ->title()
-            ->toString();
+    /*
+     * Gets the price for special cases.
+     */
+    public function getSpecialPrice(): string
+    {
+        return match ($this->category) {
+            PricingDetailCategoryEnum::ADDITIONAL_FEES => 'Varies',
+            PricingDetailCategoryEnum::MONTHLY_EXPENSES => 'If Applicable',
+            default => 'N/A'
+        };
+    }
+
+    /*
+     * Gets the formatted price.
+     */
+    public function getPrice(): string
+    {
+        /** @var string */
+        return Number::currency(
+            number: $this->price / 100,
+            in: 'USD',
+            precision: 2,
+        );
     }
 }

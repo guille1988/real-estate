@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Enums\PricingDetailCategoryEnum;
 use App\Models\PricingDetail;
 
 it('contains all proper attributes.', function (): void {
@@ -13,7 +14,7 @@ it('contains all proper attributes.', function (): void {
         ->toEqual([
             'id',
             'uuid',
-            'title',
+            'name',
             'description',
             'category',
             'price',
@@ -38,7 +39,16 @@ it('has a property.', function (): void {
         ->not->toBeNull();
 });
 
-it('has the correct dollar price.', function (): void {
-    expect(PricingDetail::factory()->create()->getDollarPrice())
-        ->toBeString();
-});
+it('has the correct dollar price.', function (PricingDetailCategoryEnum $category): void {
+    $pricingDetail = PricingDetail::factory()
+        ->create(compact('category'));
+
+    $pricingDetailSpecialCase = PricingDetail::factory()
+        ->withoutPrice()
+        ->create(compact('category'));
+
+    expect($pricingDetail->getDollarPrice())
+        ->toBe($pricingDetail->getPrice())
+        ->and($pricingDetailSpecialCase->getDollarPrice())
+        ->toBe($pricingDetailSpecialCase->getSpecialPrice());
+})->with(PricingDetailCategoryEnum::cases());
