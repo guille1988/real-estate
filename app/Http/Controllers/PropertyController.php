@@ -25,7 +25,13 @@ final class PropertyController
     {
         $cachedProperty = cache()->rememberForever(
             "property_$property->uuid",
-            fn (): JsonResource => $property->load(['images', 'amenities'])->toResource()
+            function () use ($property): JsonResource {
+                return $property->load([
+                    'images',
+                    'amenities',
+                    'pricingDetails',
+                ])->toResource();
+            }
         );
 
         return Inertia::render(PageEnum::PROPERTY_DETAILS->value, [

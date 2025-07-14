@@ -15,6 +15,7 @@ final class DatabaseSeeder extends Seeder
         UserSeeder::class,
         PropertySeeder::class,
         AmenitySeeder::class,
+        PricingDetailSeeder::class,
     ];
 
     /**

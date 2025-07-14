@@ -6,6 +6,7 @@ namespace App\Models;
 
 use App\Builders\PropertyBuilder;
 use App\Enums\PropertyTypeEnum;
+use App\Models\Traits\Priceable;
 use Carbon\CarbonImmutable;
 use Database\Factories\PropertyFactory;
 use Illuminate\Database\Eloquent\Attributes\UseEloquentBuilder;
@@ -14,7 +15,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Support\Number;
 
 /**
  *  @property-read int $id
@@ -36,7 +36,7 @@ use Illuminate\Support\Number;
 final class Property extends Model
 {
     /** @use HasFactory<PropertyFactory> */
-    use HasFactory, HasUuids;
+    use HasFactory, HasUuids, Priceable;
 
     /**
      * @var string
@@ -81,17 +81,14 @@ final class Property extends Model
         return ['uuid'];
     }
 
-    /*
-     * Formats the price to dollar.
+    /**
+     * Get the pricing details for the property.
+     *
+     * @return HasMany<PricingDetail, $this>
      */
-    public function getDollarPrice(): string
+    public function pricingDetails(): HasMany
     {
-        /** @var string */
-        return Number::currency(
-            number: $this->price / 100,
-            in: 'USD',
-            precision: 2,
-        );
+        return $this->hasMany(PricingDetail::class);
     }
 
     /**
