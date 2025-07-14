@@ -86,9 +86,17 @@ final class PricingDetail extends Model
      */
     public function getDollarPrice(): string
     {
-        return $this->price === 0
+        return $this->doesntHavePrice()
             ? $this->getSpecialPrice()
             : $this->getPrice();
+    }
+
+    /*
+     * Determines if the pricing detail has a price.
+     */
+    public function doesntHavePrice(): bool
+    {
+        return $this->price === 0;
     }
 
     /*
@@ -96,11 +104,7 @@ final class PricingDetail extends Model
      */
     public function getSpecialPrice(): string
     {
-        return match ($this->category) {
-            PricingDetailCategoryEnum::ADDITIONAL_FEES => 'Varies',
-            PricingDetailCategoryEnum::MONTHLY_EXPENSES => 'If Applicable',
-            default => 'N/A'
-        };
+        return $this->category->getSpecialPrice();
     }
 
     /*

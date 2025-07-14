@@ -18,4 +18,13 @@ enum PricingDetailCategoryEnum: string
             ->title()
             ->toString();
     }
+
+    public function getSpecialPrice(): string
+    {
+        return match ($this) {
+            self::ADDITIONAL_FEES => 'Varies',
+            self::MONTHLY_EXPENSES => 'If Applicable',
+            default => 'N/A'
+        };
+    }
 }
