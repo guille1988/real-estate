@@ -29,7 +29,9 @@ final class ArrayHelper
             }
 
             if (is_string($key)) {
-                $key = str($key)->camel()->toString();
+                $key = str($key)
+                    ->camel()
+                    ->toString();
             }
 
             $data[$key] = $value;
@@ -38,13 +40,13 @@ final class ArrayHelper
         return $data;
     }
 
-    public static function isArrayOrArrayable(mixed $value): bool
-    {
-        return is_array($value) || $value instanceof Arrayable;
-    }
-
     public static function isNotArrayOrArrayable(mixed $value): bool
     {
         return ! self::isArrayOrArrayable($value);
+    }
+
+    public static function isArrayOrArrayable(mixed $value): bool
+    {
+        return is_array($value) || $value instanceof Arrayable;
     }
 }
