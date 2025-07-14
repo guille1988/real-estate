@@ -6,7 +6,6 @@ namespace Database\Seeders;
 
 use App\Enums\PropertyTypeEnum;
 use App\Exceptions\NotFoundPropertyTypeException;
-use App\Models\Amenity;
 use App\Models\Image;
 use App\Models\Property;
 use Illuminate\Database\Seeder;
@@ -15,7 +14,7 @@ use Illuminate\Support\LazyCollection;
 use SplFileInfo;
 use Throwable;
 
-final class ImageSeeder extends Seeder
+final class PropertySeeder extends Seeder
 {
     /**
      * Deletes all the current images of the storage.
@@ -50,7 +49,9 @@ final class ImageSeeder extends Seeder
                  */
                 LazyCollection::make(File::directories($propertyTypeDirectory))
                     ->each(function (mixed $imageDirectory) use ($propertyTypeDirectory): void {
-                        $propertyId = $this->createProperty($propertyTypeDirectory);
+                        $propertyId = Property::factory()
+                            ->featured()
+                            ->create(['type' => $this->getPropertyType($propertyTypeDirectory)])->id;
 
                         /**
                          * @var string $imageDirectory
@@ -61,21 +62,6 @@ final class ImageSeeder extends Seeder
                             });
                     });
             });
-    }
-
-    /**
-     * @throws Throwable
-     */
-    private function createProperty(string $propertyTypeDirectory): int
-    {
-        $propertyId = Property::factory()
-            ->featured()
-            ->create(['type' => $this->getPropertyType($propertyTypeDirectory)])->id;
-
-        Amenity::factory(random_int(4, 8))
-            ->create(['property_id' => $propertyId]);
-
-        return $propertyId;
     }
 
     /**

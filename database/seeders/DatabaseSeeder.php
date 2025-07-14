@@ -13,7 +13,8 @@ final class DatabaseSeeder extends Seeder
      */
     private array $seeders = [
         UserSeeder::class,
-        ImageSeeder::class,
+        PropertySeeder::class,
+        AmenitySeeder::class,
     ];
 
     /**
