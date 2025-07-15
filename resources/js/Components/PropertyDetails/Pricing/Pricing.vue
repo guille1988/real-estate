@@ -36,8 +36,8 @@
 
                 <div class="space-y-8 md:col-span-2">
                     <PricingCard
-                        v-for="card in cards"
-                        :key="card.id"
+                        v-for="(card, cardIndex) in cards"
+                        :key="cardIndex"
                         :card="card"
                     />
                 </div>
@@ -54,36 +54,35 @@ const listingPrice = '$1,250,000';
 
 const cards: PricingCardInterface[] = [
     {
-        id: 1,
-        subject: 'Additional Fees',
+        category: 'Additional Fees',
         details: [
             {
-                id: 1,
+                uuid: '1',
                 name: 'Property Transfer Tax',
                 description: 'Based on the sale price and local regulations',
                 price: '$25,000',
             },
             {
-                id: 2,
+                uuid: '2',
                 name: 'Legal Fees',
                 description:
                     'Approximate cost for legal services including title transfer',
                 price: '$3,000',
             },
             {
-                id: 3,
+                uuid: '3',
                 name: 'Home Inspection',
                 description: 'Recommended for due diligence',
                 price: '$500',
             },
             {
-                id: 4,
+                uuid: '4',
                 name: 'Property Insurance',
                 description: 'Annual cost for comprehensive property insurance',
                 price: '$1,200',
             },
             {
-                id: 5,
+                uuid: '5',
                 name: 'Brokerage Fees',
                 description:
                     'If applicable, consult with your broker for specific details',
@@ -92,18 +91,17 @@ const cards: PricingCardInterface[] = [
         ],
     },
     {
-        id: 2,
-        subject: 'Monthly Costs',
+        category: 'Monthly Costs',
         details: [
             {
-                id: 1,
+                uuid: '1',
                 name: 'Property Taxes',
                 description:
                     'Approximate monthly property tax based on the sale price and local rates',
                 price: '$1,250',
             },
             {
-                id: 2,
+                uuid: '2',
                 name: 'HOA Association Fee',
                 description:
                     'Monthly fee for common area maintenance and security',
@@ -112,30 +110,29 @@ const cards: PricingCardInterface[] = [
         ],
     },
     {
-        id: 3,
-        subject: 'Total Initial Costs',
+        category: 'Total Initial Costs',
         details: [
             {
-                id: 1,
+                uuid: '1',
                 name: 'Listing Price',
                 description: '',
                 price: '$1,250,000',
             },
             {
-                id: 2,
+                uuid: '2',
                 name: 'Additional Fees',
                 description:
                     'Property transfer tax, legal fees, inspection, insurance',
                 price: '$29,700',
             },
             {
-                id: 3,
+                uuid: '3',
                 name: 'Down Payment',
                 description: '20%',
                 price: '$250,000',
             },
             {
-                id: 4,
+                uuid: '4',
                 name: 'Mortgage Amount',
                 description: 'If applicable',
                 price: '$1,000,000',
@@ -143,29 +140,28 @@ const cards: PricingCardInterface[] = [
         ],
     },
     {
-        id: 4,
-        subject: 'Monthly Expenses',
+        category: 'Monthly Expenses',
         details: [
             {
-                id: 1,
+                uuid: '1',
                 name: 'Property Taxes',
                 description: '',
                 price: '$1,250',
             },
             {
-                id: 2,
+                uuid: '2',
                 name: 'HOA Association Fee',
                 description: '',
                 price: '$300',
             },
             {
-                id: 3,
+                uuid: '3',
                 name: 'Mortgage Payment',
                 description: 'Varies based on terms and interest rate',
                 price: 'If applicable',
             },
             {
-                id: 4,
+                uuid: '4',
                 name: 'Property Insurance',
                 description: 'Approximate monthly cost',
                 price: '$100',

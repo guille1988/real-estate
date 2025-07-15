@@ -1,5 +1,5 @@
 export interface PricingDetailInterface {
-    id: number;
+    uuid: string;
     name: string;
     description: string;
     price: string;

@@ -1,7 +1,7 @@
 <template>
     <div class="border border-neutral-700 p-6">
         <div class="mb-6 flex items-center justify-between">
-            <h4 class="text-lg font-medium">{{ card.subject }}</h4>
+            <h4 class="text-lg font-medium">{{ card.category }}</h4>
         </div>
 
         <div class="space-y-6">

@@ -1,7 +1,6 @@
 import { PricingDetailInterface } from './PricingDetailInterface';
 
 export interface PricingCardInterface {
-    id: number;
-    subject: string;
+    category: string;
     details: PricingDetailInterface[];
 }
