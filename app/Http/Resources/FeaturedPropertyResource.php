@@ -27,7 +27,7 @@ final class FeaturedPropertyResource extends JsonResource
             'bathrooms' => $this->bathrooms,
             'bedrooms' => $this->bedrooms,
             'price' => $this->getDollarPrice(),
-            'image' => $this->defaultImage?->path,
+            'image' => $this->defaultImage?->getUrl(),
         ];
     }
 }
