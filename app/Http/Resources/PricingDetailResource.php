@@ -22,6 +22,7 @@ final class PricingDetailResource extends JsonResource
             'uuid' => $this->uuid,
             'name' => $this->name,
             'description' => $this->description,
+            'category' => $this->category->title(),
             'price' => $this->getDollarPrice(),
         ];
     }

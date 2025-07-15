@@ -21,17 +21,17 @@
                     <div class="flex min-w-max gap-2 px-4 pb-2 pt-3">
                         <div
                             v-for="image in images"
-                            :key="image.id"
+                            :key="image.uuid"
                             class="h-14 w-20 flex-shrink-0 cursor-pointer overflow-hidden rounded-lg transition-all duration-200 sm:h-16 sm:w-24"
                             :class="{
                                 'ring-2 ring-white ring-offset-2 ring-offset-black':
-                                    currentImage === image.id,
+                                    currentImage === image.uuid,
                             }"
-                            @click="currentImage = image.id"
+                            @click="currentImage = image.uuid"
                         >
                             <img
                                 :src="image.url"
-                                :alt="image.alt"
+                                alt="Property Photo"
                                 class="h-full w-full object-cover transition-opacity hover:opacity-75"
                             />
                         </div>
@@ -43,7 +43,7 @@
                 <div class="mx-auto overflow-hidden rounded-lg">
                     <img
                         :src="getCurrentImage.url"
-                        :alt="getCurrentImage.alt"
+                        alt="Property Photo"
                         class="h-[300px] w-full object-cover sm:h-[400px] md:h-[500px]"
                     />
                 </div>
@@ -62,13 +62,13 @@
                 >
                     <button
                         v-for="image in images"
-                        :key="image.id"
+                        :key="image.uuid"
                         class="h-2 w-2 flex-shrink-0 rounded-full"
                         :class="{
-                            'bg-white': currentImage === image.id,
-                            'bg-gray-600': currentImage !== image.id,
+                            'bg-white': currentImage === image.uuid,
+                            'bg-gray-600': currentImage !== image.uuid,
                         }"
-                        @click="currentImage = image.id"
+                        @click="currentImage = image.uuid"
                     ></button>
                 </div>
                 <button
@@ -105,10 +105,10 @@
                         Key Features and Amenities
                     </h2>
                     <ul class="space-y-6">
-                        <Amenities
-                            v-for="amenitiesCard in amenitiesCards"
-                            :key="amenitiesCard.id"
-                            :card="amenitiesCard"
+                        <Amenity
+                            v-for="amenity in amenities"
+                            :key="amenity.uuid"
+                            :card="amenity"
                         />
                     </ul>
                 </div>
@@ -120,12 +120,12 @@
 <script setup lang="ts">
 import ChevronIcon from '@/Components/Icons/ChevronIcon.vue';
 import LocalizationIcon from '@/Components/Icons/LocalizationIcon.vue';
-import Amenities from '@/Components/PropertyDetails/Gallery/Amenities.vue';
+import Amenity from '@/Components/PropertyDetails/Gallery/Amenity.vue';
 import Description from '@/Components/PropertyDetails/Gallery/Description.vue';
 import { ChevronDirectionEnum } from '@/Types/App/Enums/ChevronDirectionEnum';
-import { AmenitiesInterface } from '@/Types/App/Interfaces/AmenitiesInterface';
+import { AmenityInterface } from '@/Types/App/Interfaces/AmenityInterface';
 import { DescriptionInterface } from '@/Types/App/Interfaces/DescriptionInterface';
-import { GalleryImageInterface } from '@/Types/App/Interfaces/GalleryImageInterface';
+import { ImageInterface } from '@/Types/App/Interfaces/ImageInterface';
 import { computed, ComputedRef, type Ref, ref } from 'vue';
 
 const descriptionCards: DescriptionInterface[] = [
@@ -149,100 +149,92 @@ const descriptionCards: DescriptionInterface[] = [
     },
 ];
 
-const amenitiesCards: AmenitiesInterface[] = [
+const amenities: AmenityInterface[] = [
     {
-        id: 1,
+        uuid: '1',
         description: 'Expansive oceanfront terrace for outdoor entertaining',
     },
     {
-        id: 2,
+        uuid: '2',
         description: 'Gourmet kitchen with top-of-the-line appliances',
     },
     {
-        id: 3,
+        uuid: '3',
         description:
             'Private beach access for morning strolls and sunset views',
     },
     {
-        id: 4,
+        uuid: '4',
         description:
             'Master suite with a spa-inspired bathroom and ocean-facing balcony',
     },
     {
-        id: 5,
+        uuid: '5',
         description: 'Private garage and ample storage space',
     },
 ];
 
-const images: GalleryImageInterface[] = [
+const images: ImageInterface[] = [
     {
-        id: 1,
+        uuid: '1',
         url: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1200&q=80',
-        alt: 'Modern luxury house with swimming pool',
     },
     {
-        id: 2,
+        uuid: '2',
         url: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
-        alt: 'Contemporary home with large windows',
     },
     {
-        id: 3,
+        uuid: '3',
         url: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80',
-        alt: 'Elegant kitchen with island',
     },
     {
-        id: 4,
+        uuid: '4',
         url: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1200&q=80',
-        alt: 'Spacious living room with fireplace',
     },
     {
-        id: 5,
+        uuid: '5',
         url: 'https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=1200&q=80',
-        alt: 'Master bedroom with ocean view',
     },
     {
-        id: 6,
+        uuid: '6',
         url: 'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=1200&q=80',
-        alt: 'Outdoor patio with dining area',
     },
     {
-        id: 7,
+        uuid: '7',
         url: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80',
-        alt: 'Home office with natural light',
     },
     {
-        id: 8,
+        uuid: '8',
         url: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=80',
-        alt: 'Aerial view of property and surroundings',
     },
 ];
 
-const currentImage: Ref<number> = ref<number>(1);
+const currentImage: Ref<string> = ref<string>('');
 
-const getCurrentImage: ComputedRef<GalleryImageInterface> =
-    computed<GalleryImageInterface>(() => {
+const getCurrentImage: ComputedRef<ImageInterface> = computed<ImageInterface>(
+    () => {
         return (
             images.find(
-                (image: GalleryImageInterface) =>
-                    image.id === currentImage.value,
+                (image: ImageInterface) => image.uuid === currentImage.value,
             ) || images[0]
         );
-    });
+    },
+);
 
 const nextImage = (): void => {
     const currentIndex: number = images.findIndex(
-        (image: GalleryImageInterface) => image.id === currentImage.value,
+        (image: ImageInterface) => image.uuid === currentImage.value,
     );
     const nextIndex: number = (currentIndex + 1) % images.length;
-    currentImage.value = images[nextIndex].id;
+    currentImage.value = images[nextIndex].uuid;
 };
 
 const previousImage = (): void => {
     const currentIndex: number = images.findIndex(
-        (image: GalleryImageInterface) => image.id === currentImage.value,
+        (image: ImageInterface) => image.uuid === currentImage.value,
     );
     const prevIndex: number =
         (currentIndex - 1 + images.length) % images.length;
-    currentImage.value = images[prevIndex].id;
+    currentImage.value = images[prevIndex].uuid;
 };
 </script>

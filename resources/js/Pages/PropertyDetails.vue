@@ -12,4 +12,9 @@ import Gallery from '@/Components/PropertyDetails/Gallery/Gallery.vue';
 import Inquire from '@/Components/PropertyDetails/Inquire/Inquire.vue';
 import Pricing from '@/Components/PropertyDetails/Pricing/Pricing.vue';
 import Faq from '@/Components/Shared/Faq/Faq.vue';
+import { PropertyInterface } from '@/Types/App/Interfaces/PropertyInterface';
+
+defineProps<{
+    property: PropertyInterface;
+}>();
 </script>
