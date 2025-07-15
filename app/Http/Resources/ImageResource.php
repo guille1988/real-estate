@@ -20,7 +20,7 @@ final class ImageResource extends JsonResource
     {
         return [
             'uuid' => $this->uuid,
-            'path' => $this->path,
+            'url' => $this->getUrl(),
             'is_default' => $this->is_default,
         ];
     }

@@ -1,6 +1,6 @@
 <template>
     <Layout>
-        <Gallery />
+        <Gallery :amenities="property.amenities" :images="property.images" />
         <Inquire />
         <Pricing />
         <Faq />

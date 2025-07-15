@@ -8,7 +8,6 @@ use App\Builders\ImageBuilder;
 use Carbon\CarbonImmutable;
 use Database\Factories\ImageFactory;
 use Illuminate\Database\Eloquent\Attributes\UseEloquentBuilder;
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -53,23 +52,6 @@ final class Image extends Model
     }
 
     /**
-     * Gets the URL of the image.
-     *
-     * @return Attribute<string, string>
-     */
-    protected function path(): Attribute
-    {
-        return Attribute::get(function (mixed $path): string {
-
-            /**
-             * @var string $path
-             */
-            return Storage::disk('images')
-                ->url($path);
-        });
-    }
-
-    /**
      * Get the field to use on route model binding.
      */
     public function getRouteKeyName(): string
@@ -95,5 +77,11 @@ final class Image extends Model
     public function property(): BelongsTo
     {
         return $this->belongsTo(Property::class);
+    }
+
+    public function getUrl(): string
+    {
+        return Storage::disk('images')
+            ->url($this->path);
     }
 }

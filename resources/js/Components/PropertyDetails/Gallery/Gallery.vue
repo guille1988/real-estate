@@ -128,6 +128,17 @@ import { DescriptionInterface } from '@/Types/App/Interfaces/DescriptionInterfac
 import { ImageInterface } from '@/Types/App/Interfaces/ImageInterface';
 import { computed, ComputedRef, type Ref, ref } from 'vue';
 
+const {
+    amenities,
+    images,
+}: {
+    amenities: AmenityInterface[];
+    images: ImageInterface[];
+} = defineProps<{
+    amenities: AmenityInterface[];
+    images: ImageInterface[];
+}>();
+
 const descriptionCards: DescriptionInterface[] = [
     {
         id: 1,
@@ -146,66 +157,6 @@ const descriptionCards: DescriptionInterface[] = [
         icon: 'HouseIcon',
         title: 'Area',
         description: '2.500 Square Feet',
-    },
-];
-
-const amenities: AmenityInterface[] = [
-    {
-        uuid: '1',
-        description: 'Expansive oceanfront terrace for outdoor entertaining',
-    },
-    {
-        uuid: '2',
-        description: 'Gourmet kitchen with top-of-the-line appliances',
-    },
-    {
-        uuid: '3',
-        description:
-            'Private beach access for morning strolls and sunset views',
-    },
-    {
-        uuid: '4',
-        description:
-            'Master suite with a spa-inspired bathroom and ocean-facing balcony',
-    },
-    {
-        uuid: '5',
-        description: 'Private garage and ample storage space',
-    },
-];
-
-const images: ImageInterface[] = [
-    {
-        uuid: '1',
-        url: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1200&q=80',
-    },
-    {
-        uuid: '2',
-        url: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
-    },
-    {
-        uuid: '3',
-        url: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80',
-    },
-    {
-        uuid: '4',
-        url: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1200&q=80',
-    },
-    {
-        uuid: '5',
-        url: 'https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=1200&q=80',
-    },
-    {
-        uuid: '6',
-        url: 'https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=1200&q=80',
-    },
-    {
-        uuid: '7',
-        url: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80',
-    },
-    {
-        uuid: '8',
-        url: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=80',
     },
 ];
 
