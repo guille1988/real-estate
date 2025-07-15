@@ -119,4 +119,12 @@ final class PricingDetail extends Model
             precision: 2,
         );
     }
+
+    /*
+     * Gets the category on a title format version.
+     */
+    public function categoryTitle(): string
+    {
+        return $this->category->title();
+    }
 }

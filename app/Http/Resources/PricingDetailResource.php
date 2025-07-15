@@ -23,7 +23,6 @@ final class PricingDetailResource extends JsonResource
             'name' => $this->name,
             'description' => $this->description,
             'price' => $this->getDollarPrice(),
-            'category' => $this->category->title(),
         ];
     }
 }
