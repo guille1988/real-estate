@@ -33,7 +33,7 @@ final class PropertyResource extends JsonResource
             'area' => $this->area,
             'images' => $this->images->toResourceCollection(),
             'amenities' => $this->amenities->toResourceCollection(),
-            'pricing_details' => $this->pricingDetails->toResourceCollection(),
+            'pricing_details' => $this->pricingDetails->groupedByCategory(),
         ];
     }
 }
