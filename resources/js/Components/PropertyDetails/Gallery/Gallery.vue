@@ -160,7 +160,9 @@ const descriptionCards: DescriptionInterface[] = [
     },
 ];
 
-const currentImage: Ref<string> = ref<string>('');
+const currentImage: Ref<string> = ref<string>(
+    images.length > 0 ? images[0].uuid : '',
+);
 
 const getCurrentImage: ComputedRef<ImageInterface> = computed<ImageInterface>(
     () => {
