@@ -85,7 +85,7 @@ const selectOption = (option: SearchFilterOptionInterface): void => {
     emit('optionSelected', card.id, option);
 };
 
-const dropdownRef = ref<HTMLElement | null>(null);
+const dropdownRef: Ref<HTMLElement | null> = ref<HTMLElement | null>(null);
 
 const shouldCloseDropdown = (event: MouseEvent): boolean | null => {
     return (

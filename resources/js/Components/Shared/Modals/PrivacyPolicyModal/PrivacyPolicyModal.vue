@@ -18,6 +18,7 @@
 import Modal from '@/Components/Shared/Modals/Modal.vue';
 import PrivacyPolicyModalItem from '@/Components/Shared/Modals/PrivacyPolicyModal/PrivacyPolicyModalItem.vue';
 import { PrivacyPolicyModalItemInterface } from '@/Types/App/Interfaces/PrivacyPolicyModalItemInterface';
+import { EmitInputFunctionType } from '@/Types/App/Types/EmitInputFunctionType';
 import { computed, ComputedRef, EmitFn } from 'vue';
 
 const { modelValue }: { modelValue: boolean } = defineProps({
@@ -27,7 +28,8 @@ const { modelValue }: { modelValue: boolean } = defineProps({
     },
 });
 
-const emit: EmitFn<'update:modelValue'[]> = defineEmits(['update:modelValue']);
+const emit: EmitFn<'update:modelValue'[]> =
+    defineEmits<EmitInputFunctionType>();
 
 const isOpen: ComputedRef<boolean> = computed({
     get: (): boolean => modelValue,

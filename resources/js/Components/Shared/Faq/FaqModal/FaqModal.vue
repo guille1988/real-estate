@@ -17,6 +17,7 @@
 <script setup lang="ts">
 import Modal from '@/Components/Shared/Modals/Modal.vue';
 import { FaqCardInterface } from '@/Types/App/Interfaces/FaqCardInterface';
+import { EmitInputFunctionType } from '@/Types/App/Types/EmitInputFunctionType';
 import { computed, ComputedRef, EmitFn } from 'vue';
 import FaqModalItem from './FaqModalItem.vue';
 
@@ -32,7 +33,8 @@ const { modelValue, card }: { modelValue: boolean; card: FaqCardInterface } =
         },
     });
 
-const emit: EmitFn<'update:modelValue'[]> = defineEmits(['update:modelValue']);
+const emit: EmitFn<'update:modelValue'[]> =
+    defineEmits<EmitInputFunctionType>();
 
 const isOpen: ComputedRef<boolean> = computed({
     get: (): boolean => modelValue,

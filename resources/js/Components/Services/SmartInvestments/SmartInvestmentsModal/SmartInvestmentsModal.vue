@@ -17,6 +17,7 @@
 <script setup lang="ts">
 import Modal from '@/Components/Shared/Modals/Modal.vue';
 import { SmartInvestmentsModalItemInterface } from '@/Types/App/Interfaces/SmartInvestmentsModalItemInterface';
+import { EmitInputFunctionType } from '@/Types/App/Types/EmitInputFunctionType';
 import { computed, ComputedRef, EmitFn } from 'vue';
 import SmartInvestmentsModalItem from './SmartInvestmentsModalItem.vue';
 
@@ -27,7 +28,8 @@ const { modelValue }: { modelValue: boolean } = defineProps({
     },
 });
 
-const emit: EmitFn<'update:modelValue'[]> = defineEmits(['update:modelValue']);
+const emit: EmitFn<'update:modelValue'[]> =
+    defineEmits<EmitInputFunctionType>();
 
 const isOpen: ComputedRef<boolean> = computed({
     get: (): boolean => modelValue,

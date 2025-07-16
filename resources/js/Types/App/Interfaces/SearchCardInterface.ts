@@ -1,5 +1,5 @@
 export interface SearchCardInterface {
-    id: number;
+    uuid: string;
     image: string;
     caption: string;
     title: string;

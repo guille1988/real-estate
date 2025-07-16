@@ -197,20 +197,21 @@ const form: InertiaForm<LetsConnectFormInterface> =
         termsAgreed: false,
     });
 
-const inquiryTypes: ComputedRef<Record<string, string>> = computed(() =>
-    Object.fromEntries(
-        Object.values(InquiryTypeEnum).map(
-            (inquiryType: InquiryTypeEnum): string[] => {
-                const label = capitalizeFirstLetter(inquiryType);
-                return [
-                    inquiryType,
-                    inquiryType === InquiryTypeEnum.OTHER
-                        ? label
-                        : `Looking For ${label}`,
-                ];
-            },
+const inquiryTypes: ComputedRef<Record<string, string>> = computed(
+    (): Record<string, string> =>
+        Object.fromEntries(
+            Object.values(InquiryTypeEnum).map(
+                (inquiryType: InquiryTypeEnum): string[] => {
+                    const label = capitalizeFirstLetter(inquiryType);
+                    return [
+                        inquiryType,
+                        inquiryType === InquiryTypeEnum.OTHER
+                            ? label
+                            : `Looking For ${label}`,
+                    ];
+                },
+            ),
         ),
-    ),
 );
 
 const sources: ComputedRef<Record<string, string>> = computed(

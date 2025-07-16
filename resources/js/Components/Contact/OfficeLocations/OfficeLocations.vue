@@ -208,12 +208,14 @@ const cards: OfficeLocationCardInterface[] = [
 
 const activeTab: Ref<string> = ref<LocationTypeEnum>(LocationTypeEnum.ALL);
 
-const sliderTrack: Ref<HTMLElement | null> = ref(null);
-const slideItems: Ref<HTMLElement[]> = ref([]);
-const currentIndex: Ref<number> = ref(0);
-const translateX: Ref<number> = ref(0);
-const screenSize: Ref<ScreenSizeEnum> = ref(ScreenSizeEnum.DESKTOP);
-const resizeTimeout: Ref<number | null> = ref(null);
+const sliderTrack: Ref<HTMLElement | null> = ref<HTMLElement | null>(null);
+const slideItems: Ref<HTMLElement[]> = ref<HTMLElement[]>([]);
+const currentIndex: Ref<number> = ref<number>(0);
+const translateX: Ref<number> = ref<number>(0);
+const screenSize: Ref<ScreenSizeEnum> = ref<ScreenSizeEnum>(
+    ScreenSizeEnum.DESKTOP,
+);
+const resizeTimeout: Ref<number | null> = ref<number | null>(null);
 
 const activeTabEqualsTo = (tab: LocationTypeEnum): boolean =>
     activeTab.value === tab;

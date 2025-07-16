@@ -18,6 +18,7 @@
 import HeroSectionModalItem from '@/Components/Home/HeroSection/HeroSectionModal/HeroSectionModalItem.vue';
 import Modal from '@/Components/Shared/Modals/Modal.vue';
 import { HeroSectionModalItemInterface } from '@/Types/App/Interfaces/HeroSectionModalItemInterface';
+import { EmitInputFunctionType } from '@/Types/App/Types/EmitInputFunctionType';
 import { computed, ComputedRef, EmitFn } from 'vue';
 
 const { modelValue }: { modelValue: boolean } = defineProps({
@@ -27,7 +28,8 @@ const { modelValue }: { modelValue: boolean } = defineProps({
     },
 });
 
-const emit: EmitFn<'update:modelValue'[]> = defineEmits(['update:modelValue']);
+const emit: EmitFn<'update:modelValue'[]> =
+    defineEmits<EmitInputFunctionType>();
 
 const isOpen: ComputedRef<boolean> = computed({
     get: (): boolean => modelValue,

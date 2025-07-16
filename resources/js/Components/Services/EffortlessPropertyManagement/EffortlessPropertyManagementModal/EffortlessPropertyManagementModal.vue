@@ -18,6 +18,7 @@
 import EffortlessPropertyManagementModalItem from '@/Components/Services/EffortlessPropertyManagement/EffortlessPropertyManagementModal/EffortlessPropertyManagementModalItem.vue';
 import Modal from '@/Components/Shared/Modals/Modal.vue';
 import { EffortlessPropertyManagementModalItemInterface } from '@/Types/App/Interfaces/EffortlessPropertyManagementModalItemInterface';
+import { EmitInputFunctionType } from '@/Types/App/Types/EmitInputFunctionType';
 import { computed, ComputedRef, EmitFn } from 'vue';
 
 const { modelValue }: { modelValue: boolean } = defineProps({
@@ -27,7 +28,8 @@ const { modelValue }: { modelValue: boolean } = defineProps({
     },
 });
 
-const emit: EmitFn<'update:modelValue'[]> = defineEmits(['update:modelValue']);
+const emit: EmitFn<'update:modelValue'[]> =
+    defineEmits<EmitInputFunctionType>();
 
 const isOpen: ComputedRef<boolean> = computed({
     get: (): boolean => modelValue,

@@ -31,7 +31,7 @@
                         {{ card.price }}
                     </p>
                 </div>
-                <Link prefetch :href="show(card.id).url">
+                <Link prefetch :href="show(card.uuid).url">
                     <button
                         class="rounded-lg bg-purple-600 px-4 py-2 text-sm font-medium text-white hover:bg-purple-700"
                     >

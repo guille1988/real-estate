@@ -32,6 +32,7 @@
 
 <script setup lang="ts">
 import CloseModalIcon from '@/Components/Icons/CloseModalIcon.vue';
+import { EmitInputFunctionType } from '@/Types/App/Types/EmitInputFunctionType';
 import { EmitFn } from 'vue';
 
 defineProps({
@@ -41,7 +42,8 @@ defineProps({
     },
 });
 
-const emit: EmitFn<'update:modelValue'[]> = defineEmits(['update:modelValue']);
+const emit: EmitFn<'update:modelValue'[]> =
+    defineEmits<EmitInputFunctionType>();
 
 const closeModal = (): void => {
     emit('update:modelValue', false);

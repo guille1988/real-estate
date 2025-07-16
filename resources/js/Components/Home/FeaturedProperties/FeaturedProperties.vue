@@ -111,13 +111,15 @@ const {
     featuredProperties: FeaturedPropertyCardInterface[];
 }>();
 
-const sliderTrack: Ref<HTMLElement | null> = ref(null);
-const slideItems: Ref<HTMLElement[]> = ref([]);
+const sliderTrack: Ref<HTMLElement | null> = ref<HTMLElement | null>(null);
+const slideItems: Ref<HTMLElement[]> = ref<HTMLElement[]>([]);
 
-const currentIndex: Ref<number> = ref(0);
-const translateX: Ref<number> = ref(0);
-const screenSize: Ref<ScreenSizeEnum> = ref(ScreenSizeEnum.DESKTOP);
-const resizeTimeout: Ref<number | null> = ref(null);
+const currentIndex: Ref<number> = ref<number>(0);
+const translateX: Ref<number> = ref<number>(0);
+const screenSize: Ref<ScreenSizeEnum> = ref<ScreenSizeEnum>(
+    ScreenSizeEnum.DESKTOP,
+);
+const resizeTimeout: Ref<number | null> = ref<number | null>(null);
 
 const currentSlides: ComputedRef<string> = computed((): string =>
     Math.min(currentIndex.value + visibleCards.value, featuredProperties.length)

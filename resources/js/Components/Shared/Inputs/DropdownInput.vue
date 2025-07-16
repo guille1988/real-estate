@@ -33,7 +33,7 @@ const getDisplayValue = (): string => {
     return !dropdown.modelValue ? '' : dropdown.modelValue.toString();
 };
 
-const handleInput = (event: Event) => {
+const handleInput = (event: Event): void => {
     emit('update:modelValue', (event.target as HTMLSelectElement).value);
 };
 </script>

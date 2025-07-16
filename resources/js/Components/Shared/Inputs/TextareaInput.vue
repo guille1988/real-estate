@@ -20,7 +20,7 @@ defineProps<TextareaInputInterface>();
 
 const emit: EmitInputFunctionType = defineEmits<EmitInputFunctionType>();
 
-const handleInput = (event: Event) => {
+const handleInput = (event: Event): void => {
     emit('update:modelValue', (event.target as HTMLTextAreaElement).value);
 };
 </script>

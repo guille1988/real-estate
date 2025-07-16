@@ -46,7 +46,7 @@
             >
                 <SearchCard
                     v-for="searchCard in searchCards"
-                    :key="searchCard.id"
+                    :key="searchCard.uuid"
                     :card="searchCard"
                 />
             </div>
@@ -164,7 +164,7 @@ const filterCards: SearchFilterCardInterface[] = [
 
 const searchCards: SearchCardInterface[] = [
     {
-        id: 1,
+        uuid: '1',
         image: Villa,
         caption: 'Coastal Escapes - Where Waves Beckon',
         title: 'Seaside Serenity Villa',
@@ -173,7 +173,7 @@ const searchCards: SearchCardInterface[] = [
         price: '$1.250.000',
     },
     {
-        id: 2,
+        uuid: '2',
         image: Loft,
         caption: 'Urban Oasis - Life in the Heart of the City',
         title: 'Metropolitan Haven',
@@ -182,7 +182,7 @@ const searchCards: SearchCardInterface[] = [
         price: '$650.000',
     },
     {
-        id: 3,
+        uuid: '3',
         image: House,
         caption: "Countryside Charm - Escape to Nature's Embrace",
         title: 'Rustic Retreat Cottage',
