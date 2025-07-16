@@ -21,7 +21,6 @@ final class ImageResource extends JsonResource
         return [
             'uuid' => $this->uuid,
             'url' => $this->getUrl(),
-            'is_default' => $this->is_default,
         ];
     }
 }
