@@ -22,13 +22,7 @@
                         <div
                             v-for="image in images"
                             :key="image.uuid"
-                            :ref="
-                                (el) => {
-                                    if (el)
-                                        thumbnailRefs[image.uuid] =
-                                            el as HTMLElement;
-                                }
-                            "
+                            :ref="(el) => setThumbnailRef(el, image.uuid)"
                             class="h-14 w-20 flex-shrink-0 cursor-pointer overflow-hidden rounded-lg transition-all duration-200 sm:h-16 sm:w-24"
                             :class="{
                                 'ring-2 ring-white ring-offset-2 ring-offset-black':
@@ -133,7 +127,15 @@ import { ChevronDirectionEnum } from '@/Types/App/Enums/ChevronDirectionEnum';
 import { AmenityInterface } from '@/Types/App/Interfaces/AmenityInterface';
 import { DescriptionInterface } from '@/Types/App/Interfaces/DescriptionInterface';
 import { ImageInterface } from '@/Types/App/Interfaces/ImageInterface';
-import { computed, ComputedRef, onMounted, type Ref, ref, watch } from 'vue';
+import {
+    ComponentPublicInstance,
+    computed,
+    ComputedRef,
+    onMounted,
+    type Ref,
+    ref,
+    watch,
+} from 'vue';
 
 const {
     amenities,
@@ -171,6 +173,15 @@ const thumbnailContainer: Ref<HTMLElement | null> = ref<HTMLElement | null>(
     null,
 );
 const thumbnailRefs: Record<string, HTMLElement> = {};
+
+const setThumbnailRef = (
+    el: Element | ComponentPublicInstance | null,
+    uuid: string,
+): void => {
+    if (el instanceof Element) {
+        thumbnailRefs[uuid] = el as HTMLElement;
+    }
+};
 
 const currentImage: Ref<string> = ref<string>(
     images.length > 0 ? images[0].uuid : '',
