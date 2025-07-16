@@ -24,7 +24,9 @@
                             :key="image.uuid"
                             :ref="
                                 (el) => {
-                                    if (el) thumbnailRefs[image.uuid] = el;
+                                    if (el)
+                                        thumbnailRefs[image.uuid] =
+                                            el as HTMLElement;
                                 }
                             "
                             class="h-14 w-20 flex-shrink-0 cursor-pointer overflow-hidden rounded-lg transition-all duration-200 sm:h-16 sm:w-24"
@@ -191,7 +193,10 @@ const scrollToSelectedThumbnail = (): void => {
 
     if (!selectedThumbnail) return;
 
-    const containerRect = thumbnailContainer.value.getBoundingClientRect();
+    const containerRect = (
+        thumbnailContainer.value as HTMLElement
+    ).getBoundingClientRect();
+
     const thumbnailRect = selectedThumbnail.getBoundingClientRect();
 
     if (isNotVisible(thumbnailRect, containerRect)) {
@@ -200,7 +205,7 @@ const scrollToSelectedThumbnail = (): void => {
             containerRect.width / 2 +
             thumbnailRect.width / 2;
 
-        thumbnailContainer.value.scrollTo({
+        (thumbnailContainer.value as HTMLElement).scrollTo({
             left: scrollLeft,
             behavior: 'smooth',
         });
