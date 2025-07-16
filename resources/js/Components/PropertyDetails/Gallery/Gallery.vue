@@ -17,11 +17,16 @@
             </div>
 
             <div class="mb-6 mt-6 w-full">
-                <div class="-mx-4 overflow-x-auto">
+                <div class="-mx-4 overflow-x-auto" ref="thumbnailContainer">
                     <div class="flex min-w-max gap-2 px-4 pb-2 pt-3">
                         <div
                             v-for="image in images"
                             :key="image.uuid"
+                            :ref="
+                                (el) => {
+                                    if (el) thumbnailRefs[image.uuid] = el;
+                                }
+                            "
                             class="h-14 w-20 flex-shrink-0 cursor-pointer overflow-hidden rounded-lg transition-all duration-200 sm:h-16 sm:w-24"
                             :class="{
                                 'ring-2 ring-white ring-offset-2 ring-offset-black':
@@ -126,7 +131,7 @@ import { ChevronDirectionEnum } from '@/Types/App/Enums/ChevronDirectionEnum';
 import { AmenityInterface } from '@/Types/App/Interfaces/AmenityInterface';
 import { DescriptionInterface } from '@/Types/App/Interfaces/DescriptionInterface';
 import { ImageInterface } from '@/Types/App/Interfaces/ImageInterface';
-import { computed, ComputedRef, type Ref, ref } from 'vue';
+import { computed, ComputedRef, onMounted, type Ref, ref, watch } from 'vue';
 
 const {
     amenities,
@@ -160,6 +165,11 @@ const descriptionCards: DescriptionInterface[] = [
     },
 ];
 
+const thumbnailContainer: Ref<HTMLElement | null> = ref<HTMLElement | null>(
+    null,
+);
+const thumbnailRefs: Record<string, HTMLElement> = {};
+
 const currentImage: Ref<string> = ref<string>(
     images.length > 0 ? images[0].uuid : '',
 );
@@ -173,6 +183,39 @@ const getCurrentImage: ComputedRef<ImageInterface> = computed<ImageInterface>(
         );
     },
 );
+
+const scrollToSelectedThumbnail = (): void => {
+    if (!thumbnailContainer.value) return;
+
+    const selectedThumbnail = thumbnailRefs[currentImage.value];
+
+    if (!selectedThumbnail) return;
+
+    const containerRect = thumbnailContainer.value.getBoundingClientRect();
+    const thumbnailRect = selectedThumbnail.getBoundingClientRect();
+
+    if (isNotVisible(thumbnailRect, containerRect)) {
+        const scrollLeft =
+            selectedThumbnail.offsetLeft -
+            containerRect.width / 2 +
+            thumbnailRect.width / 2;
+
+        thumbnailContainer.value.scrollTo({
+            left: scrollLeft,
+            behavior: 'smooth',
+        });
+    }
+};
+
+const isNotVisible = (
+    thumbnailRect: DOMRect,
+    containerRect: DOMRect,
+): boolean => {
+    return (
+        thumbnailRect.left < containerRect.left ||
+        thumbnailRect.right < containerRect.right
+    );
+};
 
 const nextImage = (): void => {
     const currentIndex: number = images.findIndex(
@@ -190,4 +233,12 @@ const previousImage = (): void => {
         (currentIndex - 1 + images.length) % images.length;
     currentImage.value = images[prevIndex].uuid;
 };
+
+watch(currentImage, (): void => {
+    scrollToSelectedThumbnail();
+});
+
+onMounted((): void => {
+    scrollToSelectedThumbnail();
+});
 </script>
