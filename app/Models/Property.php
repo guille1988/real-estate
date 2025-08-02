@@ -135,4 +135,30 @@ final class Property extends Model
             precision: 2,
         );
     }
+
+    public function getBathroomWithLeftPad(): string
+    {
+        return str((string) $this->bathrooms)
+            ->padLeft(2, '0')
+            ->toString();
+    }
+
+    public function getBedroomWithLeftPad(): string
+    {
+        return str((string) $this->bedrooms)
+            ->padLeft(2, '0')
+            ->toString();
+    }
+
+    public function getAreaOnSquareFeet(): string
+    {
+        /**
+         * @var string $area
+         */
+        $area = Number::format($this->area);
+
+        return str($area)
+            ->append(' Square Feet')
+            ->toString();
+    }
 }

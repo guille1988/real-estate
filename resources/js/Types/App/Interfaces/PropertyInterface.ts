@@ -5,14 +5,14 @@ import { PricingCardInterface } from '@/Types/App/Interfaces/PricingCardInterfac
 
 export interface PropertyInterface {
     uuid: string;
-    caption: string;
     title: string;
     description: string;
+    address: string;
     price: string;
     type: PropertyTypeEnum;
-    bathrooms: number;
-    bedrooms: number;
-    area: number;
+    bathrooms: string;
+    bedrooms: string;
+    area: string;
     amenities: AmenityInterface[];
     images: ImageInterface[];
     pricingDetails: PricingCardInterface[];

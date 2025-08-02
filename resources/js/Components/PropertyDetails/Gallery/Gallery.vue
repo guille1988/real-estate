@@ -6,21 +6,21 @@
             >
                 <div class="mb-2 flex flex-wrap items-center gap-2 sm:mb-0">
                     <h1 class="text-xl font-semibold">
-                        Seaside Serenity Villa
+                        {{ property.title }}
                     </h1>
                     <div class="flex items-center text-sm text-gray-400">
                         <LocalizationIcon class="mr-1 h-4 w-4" />
-                        Malibu, California
+                        {{ property.address }}
                     </div>
                 </div>
-                <div class="text-xl font-semibold">$1,250,000</div>
+                <div class="text-xl font-semibold">{{ property.price }}</div>
             </div>
 
             <div class="mb-6 mt-6 w-full">
                 <div class="-mx-4 overflow-x-auto" ref="thumbnailContainer">
                     <div class="flex min-w-max gap-2 px-4 pb-2 pt-3">
                         <div
-                            v-for="image in images"
+                            v-for="image in property.images"
                             :key="image.uuid"
                             :ref="(el) => setThumbnailRef(el, image.uuid)"
                             class="h-14 w-20 flex-shrink-0 cursor-pointer overflow-hidden rounded-lg transition-all duration-200 sm:h-16 sm:w-24"
@@ -62,7 +62,7 @@
                     class="flex max-w-[60vw] justify-center gap-1 overflow-x-auto py-1"
                 >
                     <button
-                        v-for="image in images"
+                        v-for="image in property.images"
                         :key="image.uuid"
                         class="h-2 w-2 flex-shrink-0 rounded-full"
                         :class="{
@@ -86,11 +86,7 @@
                 <div>
                     <h2 class="mb-4 text-xl font-semibold">Description</h2>
                     <p class="mb-6 text-gray-400">
-                        Perched on a stunning piece of paradise with the Seaside
-                        Serenity Villa, 7 MIN lift open concept living area with
-                        views down from every room and direct access to a
-                        pristine sandy beach, this property is the epitome of
-                        coastal living.
+                        {{ property.description }}
                     </p>
                     <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
                         <Description
@@ -107,7 +103,7 @@
                     </h2>
                     <ul class="space-y-6">
                         <Amenity
-                            v-for="amenity in amenities"
+                            v-for="amenity in property.amenities"
                             :key="amenity.uuid"
                             :card="amenity"
                         />
@@ -124,9 +120,9 @@ import LocalizationIcon from '@/Components/Icons/LocalizationIcon.vue';
 import Amenity from '@/Components/PropertyDetails/Gallery/Amenity.vue';
 import Description from '@/Components/PropertyDetails/Gallery/Description.vue';
 import { ChevronDirectionEnum } from '@/Types/App/Enums/ChevronDirectionEnum';
-import { AmenityInterface } from '@/Types/App/Interfaces/AmenityInterface';
 import { DescriptionInterface } from '@/Types/App/Interfaces/DescriptionInterface';
 import { ImageInterface } from '@/Types/App/Interfaces/ImageInterface';
+import { PropertyInterface } from '@/Types/App/Interfaces/PropertyInterface';
 import {
     ComponentPublicInstance,
     computed,
@@ -137,35 +133,28 @@ import {
     watch,
 } from 'vue';
 
-const {
-    amenities,
-    images,
-}: {
-    amenities: AmenityInterface[];
-    images: ImageInterface[];
-} = defineProps<{
-    amenities: AmenityInterface[];
-    images: ImageInterface[];
+const { property }: { property: PropertyInterface } = defineProps<{
+    property: PropertyInterface;
 }>();
 
 const descriptionCards: DescriptionInterface[] = [
     {
         id: 1,
-        icon: 'BedroomIcon',
-        title: 'Bedrooms',
-        description: '04',
+        icon: 'BathroomIcon',
+        title: 'Bathrooms',
+        description: property.bathrooms,
     },
     {
         id: 2,
-        icon: 'BathroomIcon',
-        title: 'Bathrooms',
-        description: '03',
+        icon: 'BedroomIcon',
+        title: 'Bedrooms',
+        description: property.bedrooms,
     },
     {
         id: 3,
         icon: 'HouseIcon',
         title: 'Area',
-        description: '2.500 Square Feet',
+        description: property.area,
     },
 ];
 
@@ -184,15 +173,15 @@ const setThumbnailRef = (
 };
 
 const currentImage: Ref<string> = ref<string>(
-    images.length > 0 ? images[0].uuid : '',
+    property.images.length > 0 ? property.images[0].uuid : '',
 );
 
 const getCurrentImage: ComputedRef<ImageInterface> = computed<ImageInterface>(
     () => {
         return (
-            images.find(
+            property.images.find(
                 (image: ImageInterface) => image.uuid === currentImage.value,
-            ) || images[0]
+            ) || property.images[0]
         );
     },
 );
@@ -234,20 +223,20 @@ const isNotVisible = (
 };
 
 const nextImage = (): void => {
-    const currentIndex: number = images.findIndex(
+    const currentIndex: number = property.images.findIndex(
         (image: ImageInterface) => image.uuid === currentImage.value,
     );
-    const nextIndex: number = (currentIndex + 1) % images.length;
-    currentImage.value = images[nextIndex].uuid;
+    const nextIndex: number = (currentIndex + 1) % property.images.length;
+    currentImage.value = property.images[nextIndex].uuid;
 };
 
 const previousImage = (): void => {
-    const currentIndex: number = images.findIndex(
+    const currentIndex: number = property.images.findIndex(
         (image: ImageInterface) => image.uuid === currentImage.value,
     );
     const prevIndex: number =
-        (currentIndex - 1 + images.length) % images.length;
-    currentImage.value = images[prevIndex].uuid;
+        (currentIndex - 1 + property.images.length) % property.images.length;
+    currentImage.value = property.images[prevIndex].uuid;
 };
 
 watch(currentImage, (): void => {

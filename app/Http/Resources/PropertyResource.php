@@ -23,14 +23,14 @@ final class PropertyResource extends JsonResource
     {
         return [
             'uuid' => $this->uuid,
-            'caption' => $this->caption,
             'title' => $this->title,
             'description' => $this->description,
+            'address' => $this->address,
             'type' => $this->type,
-            'bathrooms' => $this->bathrooms,
-            'bedrooms' => $this->bedrooms,
+            'bathrooms' => $this->getBathroomWithLeftPad(),
+            'bedrooms' => $this->getBedroomWithLeftPad(),
             'price' => $this->getDollarPrice(),
-            'area' => $this->area,
+            'area' => $this->getAreaOnSquareFeet(),
             'images' => $this->images->toResourceCollection(),
             'amenities' => $this->amenities->toResourceCollection(),
             'pricing_details' => $this->pricingDetails->groupedByCategory(),
