@@ -115,7 +115,10 @@
 </template>
 
 <script setup lang="ts">
+import BathroomIcon from '@/Components/Icons/BathroomIcon.vue';
+import BedroomIcon from '@/Components/Icons/BedroomIcon.vue';
 import ChevronIcon from '@/Components/Icons/ChevronIcon.vue';
+import HouseIcon from '@/Components/Icons/HouseIcon.vue';
 import LocalizationIcon from '@/Components/Icons/LocalizationIcon.vue';
 import Amenity from '@/Components/PropertyDetails/Gallery/Amenity.vue';
 import Description from '@/Components/PropertyDetails/Gallery/Description.vue';
@@ -140,19 +143,19 @@ const { property }: { property: PropertyInterface } = defineProps<{
 const descriptionCards: DescriptionInterface[] = [
     {
         id: 1,
-        icon: 'BathroomIcon',
+        icon: BathroomIcon,
         title: 'Bathrooms',
         description: property.bathrooms,
     },
     {
         id: 2,
-        icon: 'BedroomIcon',
+        icon: BedroomIcon,
         title: 'Bedrooms',
         description: property.bedrooms,
     },
     {
         id: 3,
-        icon: 'HouseIcon',
+        icon: HouseIcon,
         title: 'Area',
         description: property.area,
     },
