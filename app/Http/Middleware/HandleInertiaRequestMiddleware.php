@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Middleware;
 
-use App\Support\ArrayHelper;
+use App\Support\InertiaResponseHelper;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Throwable;
@@ -56,6 +56,7 @@ final class HandleInertiaRequestMiddleware extends Middleware
         /**
          * @var array<int|string, mixed>
          */
-        return ArrayHelper::transformKeysToCamelCase($data);
+        return app()
+            ->call(InertiaResponseHelper::class, ['raw' => $data]);
     }
 }

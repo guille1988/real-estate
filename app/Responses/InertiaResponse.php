@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Responses;
 
-use App\Support\ArrayHelper;
+use App\Support\InertiaResponseHelper;
 use Illuminate\Contracts\Support\Arrayable;
 use Inertia\Response;
 use Inertia\ResponseFactory;
@@ -23,7 +23,8 @@ final class InertiaResponse extends ResponseFactory
         /**
          * @var array<int|string, mixed> $properties
          */
-        $properties = ArrayHelper::transformKeysToCamelCase($props);
+        $properties = app()
+            ->call(InertiaResponseHelper::class, ['raw' => $props]);
 
         return new Response(
             $component,

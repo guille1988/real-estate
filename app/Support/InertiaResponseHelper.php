@@ -9,11 +9,11 @@ use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Http\Resources\Json\JsonResource;
 use JsonSerializable;
 
-final class ArrayHelper
+final class InertiaResponseHelper
 {
-    public static function transformKeysToCamelCase(mixed $raw): mixed
+    public function __invoke(mixed $raw): mixed
     {
-        if (self::isNotArrayOrJsonSerializable($raw)) {
+        if ($this->isNotArrayOrJsonSerializable($raw)) {
             return $raw;
         }
 
@@ -38,8 +38,8 @@ final class ArrayHelper
                 $value = $value->resolve();
             }
 
-            if (self::isArrayOrJsonSerializable($value)) {
-                $value = self::transformKeysToCamelCase($value);
+            if ($this->isArrayOrJsonSerializable($value)) {
+                $value = $this($value);
             }
 
             if (is_string($key)) {
@@ -56,12 +56,12 @@ final class ArrayHelper
         return $data;
     }
 
-    public static function isNotArrayOrJsonSerializable(mixed $value): bool
+    private function isNotArrayOrJsonSerializable(mixed $value): bool
     {
-        return ! self::isArrayOrJsonSerializable($value);
+        return ! $this->isArrayOrJsonSerializable($value);
     }
 
-    public static function isArrayOrJsonSerializable(mixed $value): bool
+    private function isArrayOrJsonSerializable(mixed $value): bool
     {
         return is_array($value) || $value instanceof JsonSerializable;
     }

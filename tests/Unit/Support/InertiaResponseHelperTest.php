@@ -3,10 +3,11 @@
 declare(strict_types=1);
 
 use App\Models\Property;
-use App\Support\ArrayHelper;
+use App\Support\InertiaResponseHelper;
 
 it('works with booleans, integers and strings.', function (bool|int|string $value): void {
-    expect(ArrayHelper::transformKeysToCamelCase($value))->toBe($value);
+    expect($this->app->call(InertiaResponseHelper::class, ['raw' => $value]))
+        ->toBe($value);
 })->with([
     true,
     false,
@@ -15,19 +16,19 @@ it('works with booleans, integers and strings.', function (bool|int|string $valu
 ]);
 
 it('works with empty array.', function (): void {
-    $result = ArrayHelper::transformKeysToCamelCase([]);
+    $result = $this->app->call(InertiaResponseHelper::class, ['raw' => []]);
 
     expect($result)->toBeEmpty();
 });
 
 it('works with empty collection.', function (): void {
-    $result = ArrayHelper::transformKeysToCamelCase(collect());
+    $result = $this->app->call(InertiaResponseHelper::class, ['raw' => collect()]);
 
     expect($result)->toBeEmpty();
 });
 
 it('works with empty model.', function (): void {
-    $result = ArrayHelper::transformKeysToCamelCase(Property::first());
+    $result = $this->app->call(InertiaResponseHelper::class, ['raw' => Property::first()]);
 
     expect($result)->toBeNull();
 });
@@ -46,7 +47,7 @@ it('works with arrays.', function (array $data): void {
         ],
     ];
 
-    $result = ArrayHelper::transformKeysToCamelCase($array);
+    $result = $this->app->call(InertiaResponseHelper::class, ['raw' => $array]);
 
     expect(data_get($result, 0))
         ->toBe($data)
@@ -59,7 +60,7 @@ it('works with arrays.', function (array $data): void {
 })->with([[['one', 'two', 'three']]]);
 
 it('works with closures as value.', function (Closure $closure): void {
-    $result = ArrayHelper::transformKeysToCamelCase(compact('closure'));
+    $result = $this->app->call(InertiaResponseHelper::class, ['raw' => compact('closure')]);
 
     expect($result)
         ->toBeArray()
@@ -87,7 +88,7 @@ it('works with collections.', function (array $rawData): void {
         ],
     ]);
 
-    $result = ArrayHelper::transformKeysToCamelCase($collection);
+    $result = $this->app->call(InertiaResponseHelper::class, ['raw' => $collection]);
 
     expect(data_get($result, 0))
         ->toBe($rawData)
@@ -116,7 +117,7 @@ it('works with a model.', function (): void {
         ],
     ];
 
-    $result = ArrayHelper::transformKeysToCamelCase($array);
+    $result = $this->app->call(InertiaResponseHelper::class, ['raw' => $array]);
 
     expect(data_get($result, '0.createdAt'))
         ->toBe($createdAt = $property->created_at->toJSON())
@@ -133,7 +134,7 @@ it('works with a model resource.', function (): void {
         ->create()
         ->toResource();
 
-    $result = ArrayHelper::transformKeysToCamelCase(compact('property'));
+    $result = $this->app->call(InertiaResponseHelper::class, ['raw' => compact('property')]);
 
     expect(array_keys(data_get($result, 'property')))
         ->toContain('pricingDetails');
