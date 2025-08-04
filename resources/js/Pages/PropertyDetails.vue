@@ -1,7 +1,7 @@
 <template>
     <Layout>
         <Gallery :property="property" />
-        <Inquire />
+        <Inquire :title="property.title" />
         <Pricing />
         <Faq />
     </Layout>

@@ -5,7 +5,8 @@
                 <div class="md:col-span-1">
                     <ThreeStars />
                     <h2 class="mb-4 text-3xl font-medium">
-                        Inquire About Seaside<br />Serenity Villa
+                        Inquire About <br />
+                        {{ title }}
                     </h2>
                     <p class="text-gray-400">
                         Interested in this property? Fill out the form below,
@@ -122,6 +123,10 @@ import TermsOfUseModal from '@/Components/Shared/Modals/TermsOfUseModal/TermsOfU
 import { InquireFormInterface } from '@/Types/App/Interfaces/InquireFormInterface';
 import { usePage } from '@inertiajs/vue3';
 import { ref, Ref } from 'vue';
+
+defineProps<{
+    title: string;
+}>();
 
 const showTermsOfUseModal: Ref<boolean> = ref<boolean>(false);
 const showPrivacyPolicyModal: Ref<boolean> = ref<boolean>(false);
