@@ -4,13 +4,16 @@ declare(strict_types=1);
 
 namespace App\Support;
 
+use Closure;
 use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Http\Resources\Json\JsonResource;
+use JsonSerializable;
 
 final class ArrayHelper
 {
     public static function transformKeysToCamelCase(mixed $raw): mixed
     {
-        if (self::isNotArrayOrArrayable($raw)) {
+        if (self::isNotArrayOrJsonSerializable($raw)) {
             return $raw;
         }
 
@@ -24,7 +27,18 @@ final class ArrayHelper
             : $raw;
 
         foreach ($array as $key => $value) {
-            if (self::isArrayOrArrayable($value)) {
+            $isClosure = false;
+
+            if ($value instanceof Closure) {
+                $isClosure = true;
+                $value = $value();
+            }
+
+            if ($value instanceof JsonResource) {
+                $value = $value->resolve();
+            }
+
+            if (self::isArrayOrJsonSerializable($value)) {
                 $value = self::transformKeysToCamelCase($value);
             }
 
@@ -34,19 +48,21 @@ final class ArrayHelper
                     ->toString();
             }
 
-            $data[$key] = $value;
+            $data[$key] = $isClosure
+                ? fn () => $value
+                : $value;
         }
 
         return $data;
     }
 
-    public static function isNotArrayOrArrayable(mixed $value): bool
+    public static function isNotArrayOrJsonSerializable(mixed $value): bool
     {
-        return ! self::isArrayOrArrayable($value);
+        return ! self::isArrayOrJsonSerializable($value);
     }
 
-    public static function isArrayOrArrayable(mixed $value): bool
+    public static function isArrayOrJsonSerializable(mixed $value): bool
     {
-        return is_array($value) || $value instanceof Arrayable;
+        return is_array($value) || $value instanceof JsonSerializable;
     }
 }

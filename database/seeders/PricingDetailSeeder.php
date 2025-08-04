@@ -95,8 +95,8 @@ final class PricingDetailSeeder extends Seeder
         ],
         [
             'name' => 'Mortgage Payment',
-            'description' => PricingDetailCategoryEnum::MONTHLY_EXPENSES,
-            'category' => 'monthly_expenses',
+            'description' => 'Varies based on terms and interest rate',
+            'category' => PricingDetailCategoryEnum::MONTHLY_EXPENSES,
             'price' => 0,
         ],
         [

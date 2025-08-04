@@ -36,7 +36,7 @@
 
                 <div class="space-y-8 md:col-span-2">
                     <PricingCard
-                        v-for="(card, cardIndex) in cards"
+                        v-for="(card, cardIndex) in pricingDetails"
                         :key="cardIndex"
                         :card="card"
                     />
@@ -52,123 +52,6 @@ import PricingCard from './PricingCard.vue';
 
 defineProps<{
     price: string;
+    pricingDetails: PricingCardInterface[];
 }>();
-
-const cards: PricingCardInterface[] = [
-    {
-        category: 'Additional Fees',
-        details: [
-            {
-                uuid: '1',
-                name: 'Property Transfer Tax',
-                description: 'Based on the sale price and local regulations',
-                price: '$25,000',
-            },
-            {
-                uuid: '2',
-                name: 'Legal Fees',
-                description:
-                    'Approximate cost for legal services including title transfer',
-                price: '$3,000',
-            },
-            {
-                uuid: '3',
-                name: 'Home Inspection',
-                description: 'Recommended for due diligence',
-                price: '$500',
-            },
-            {
-                uuid: '4',
-                name: 'Property Insurance',
-                description: 'Annual cost for comprehensive property insurance',
-                price: '$1,200',
-            },
-            {
-                uuid: '5',
-                name: 'Brokerage Fees',
-                description:
-                    'If applicable, consult with your broker for specific details',
-                price: 'Varies',
-            },
-        ],
-    },
-    {
-        category: 'Monthly Costs',
-        details: [
-            {
-                uuid: '1',
-                name: 'Property Taxes',
-                description:
-                    'Approximate monthly property tax based on the sale price and local rates',
-                price: '$1,250',
-            },
-            {
-                uuid: '2',
-                name: 'HOA Association Fee',
-                description:
-                    'Monthly fee for common area maintenance and security',
-                price: '$300',
-            },
-        ],
-    },
-    {
-        category: 'Total Initial Costs',
-        details: [
-            {
-                uuid: '1',
-                name: 'Listing Price',
-                description: '',
-                price: '$1,250,000',
-            },
-            {
-                uuid: '2',
-                name: 'Additional Fees',
-                description:
-                    'Property transfer tax, legal fees, inspection, insurance',
-                price: '$29,700',
-            },
-            {
-                uuid: '3',
-                name: 'Down Payment',
-                description: '20%',
-                price: '$250,000',
-            },
-            {
-                uuid: '4',
-                name: 'Mortgage Amount',
-                description: 'If applicable',
-                price: '$1,000,000',
-            },
-        ],
-    },
-    {
-        category: 'Monthly Expenses',
-        details: [
-            {
-                uuid: '1',
-                name: 'Property Taxes',
-                description: '',
-                price: '$1,250',
-            },
-            {
-                uuid: '2',
-                name: 'HOA Association Fee',
-                description: '',
-                price: '$300',
-            },
-            {
-                uuid: '3',
-                name: 'Mortgage Payment',
-                description: 'Varies based on terms and interest rate',
-                price: 'If applicable',
-            },
-            {
-                uuid: '4',
-                name: 'Property Insurance',
-                description: 'Approximate monthly cost',
-                price: '$100',
-            },
-        ],
-    },
-];
 </script>

@@ -58,6 +58,19 @@ it('works with arrays.', function (array $data): void {
         ->toBe($data);
 })->with([[['one', 'two', 'three']]]);
 
+it('works with closures as value.', function (Closure $closure): void {
+    $result = ArrayHelper::transformKeysToCamelCase(compact('closure'));
+
+    expect($result)
+        ->toBeArray()
+        ->and($result['closure'])
+        ->toBeInstanceOf(Closure::class)
+        ->and(array_keys($result['closure']()))
+        ->toEqualCanonicalizing(['firstKey', 'secondKey']);
+})->with([
+    fn (): array => ['first_key' => 'firstData', 'second_key' => 'secondData'],
+]);
+
 it('works with collections.', function (array $rawData): void {
     $data = collect($rawData);
 
@@ -113,4 +126,15 @@ it('works with a model.', function (): void {
         ->toBe($createdAt)
         ->and(data_get($result, 'third.nestedKey.nestedNestedKey.createdAt'))
         ->toBe($createdAt);
+});
+
+it('works with a model resource.', function (): void {
+    $property = Property::factory()
+        ->create()
+        ->toResource();
+
+    $result = ArrayHelper::transformKeysToCamelCase(compact('property'));
+
+    expect(array_keys(data_get($result, 'property')))
+        ->toContain('pricingDetails');
 });

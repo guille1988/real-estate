@@ -2,7 +2,10 @@
     <Layout>
         <Gallery :property="property" />
         <Inquire :title="property.title" />
-        <Pricing :price="property.price" />
+        <Pricing
+            :price="property.price"
+            :pricingDetails="property.pricingDetails"
+        />
         <Faq />
     </Layout>
 </template>
