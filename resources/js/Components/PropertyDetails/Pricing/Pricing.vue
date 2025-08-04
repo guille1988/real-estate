@@ -30,7 +30,7 @@
                         LISTING PRICE
                     </h3>
                     <p class="text-3xl font-medium">
-                        {{ listingPrice }}
+                        {{ price }}
                     </p>
                 </div>
 
@@ -50,7 +50,9 @@ import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
 import { PricingCardInterface } from '@/Types/App/Interfaces/PricingCardInterface';
 import PricingCard from './PricingCard.vue';
 
-const listingPrice = '$1,250,000';
+defineProps<{
+    price: string;
+}>();
 
 const cards: PricingCardInterface[] = [
     {
