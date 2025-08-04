@@ -23,7 +23,7 @@ final class PropertyFactory extends Factory
         return [
             'caption' => $this->faker->sentence(3),
             'title' => $this->faker->sentence(2),
-            'description' => $this->faker->sentence(20),
+            'description' => $this->faker->realTextBetween(300, 500),
             'address' => $this->faker->address(),
             'type' => $this->faker->randomElement(PropertyTypeEnum::cases()),
             'bathrooms' => $this->faker->numberBetween(1, 5),

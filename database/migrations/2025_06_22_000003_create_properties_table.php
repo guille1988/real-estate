@@ -18,7 +18,7 @@ return new class extends Migration
             $table->uuid()->unique();
             $table->string('caption');
             $table->string('title');
-            $table->string('description');
+            $table->text('description');
             $table->string('address');
             $table->string('type');
             $table->unsignedInteger('bathrooms');
