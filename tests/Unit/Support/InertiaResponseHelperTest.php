@@ -6,7 +6,7 @@ use App\Models\Property;
 use App\Support\InertiaResponseHelper;
 
 it('works with booleans, integers and strings.', function (bool|int|string $value): void {
-    expect($this->app->call(InertiaResponseHelper::class, ['raw' => $value]))
+    expect($this->app->call(InertiaResponseHelper::class, ['data' => $value]))
         ->toBe($value);
 })->with([
     true,
@@ -16,19 +16,19 @@ it('works with booleans, integers and strings.', function (bool|int|string $valu
 ]);
 
 it('works with empty array.', function (): void {
-    $result = $this->app->call(InertiaResponseHelper::class, ['raw' => []]);
+    $result = $this->app->call(InertiaResponseHelper::class, ['data' => []]);
 
     expect($result)->toBeEmpty();
 });
 
 it('works with empty collection.', function (): void {
-    $result = $this->app->call(InertiaResponseHelper::class, ['raw' => collect()]);
+    $result = $this->app->call(InertiaResponseHelper::class, ['data' => collect()]);
 
     expect($result)->toBeEmpty();
 });
 
 it('works with empty model.', function (): void {
-    $result = $this->app->call(InertiaResponseHelper::class, ['raw' => Property::first()]);
+    $result = $this->app->call(InertiaResponseHelper::class, ['data' => Property::first()]);
 
     expect($result)->toBeNull();
 });
@@ -47,7 +47,7 @@ it('works with arrays.', function (array $data): void {
         ],
     ];
 
-    $result = $this->app->call(InertiaResponseHelper::class, ['raw' => $array]);
+    $result = $this->app->call(InertiaResponseHelper::class, ['data' => $array]);
 
     expect(data_get($result, 0))
         ->toBe($data)
@@ -60,7 +60,7 @@ it('works with arrays.', function (array $data): void {
 })->with([[['one', 'two', 'three']]]);
 
 it('works with closures as value.', function (Closure $closure): void {
-    $result = $this->app->call(InertiaResponseHelper::class, ['raw' => compact('closure')]);
+    $result = $this->app->call(InertiaResponseHelper::class, ['data' => compact('closure')]);
 
     expect($result)
         ->toBeArray()
@@ -88,7 +88,7 @@ it('works with collections.', function (array $rawData): void {
         ],
     ]);
 
-    $result = $this->app->call(InertiaResponseHelper::class, ['raw' => $collection]);
+    $result = $this->app->call(InertiaResponseHelper::class, ['data' => $collection]);
 
     expect(data_get($result, 0))
         ->toBe($rawData)
@@ -117,7 +117,7 @@ it('works with a model.', function (): void {
         ],
     ];
 
-    $result = $this->app->call(InertiaResponseHelper::class, ['raw' => $array]);
+    $result = $this->app->call(InertiaResponseHelper::class, ['data' => $array]);
 
     expect(data_get($result, '0.createdAt'))
         ->toBe($createdAt = $property->created_at->toJSON())
@@ -134,7 +134,7 @@ it('works with a model resource.', function (): void {
         ->create()
         ->toResource();
 
-    $result = $this->app->call(InertiaResponseHelper::class, ['raw' => compact('property')]);
+    $result = $this->app->call(InertiaResponseHelper::class, ['data' => compact('property')]);
 
     expect(array_keys(data_get($result, 'property')))
         ->toContain('pricingDetails');

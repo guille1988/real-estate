@@ -11,20 +11,20 @@ use JsonSerializable;
 
 final class InertiaResponseHelper
 {
-    public function __invoke(mixed $raw): mixed
+    public function __invoke(mixed $data): mixed
     {
-        if ($this->isNotArrayOrJsonSerializable($raw)) {
-            return $raw;
+        if ($this->isNotArrayOrJsonSerializable($data)) {
+            return $data;
         }
 
-        $data = [];
+        $result = [];
 
         /**
          * @var array<int|string, mixed> $array
          */
-        $array = $raw instanceof Arrayable
-            ? $raw->toArray()
-            : $raw;
+        $array = $data instanceof Arrayable
+            ? $data->toArray()
+            : $data;
 
         foreach ($array as $key => $value) {
             $isClosure = false;
@@ -48,21 +48,21 @@ final class InertiaResponseHelper
                     ->toString();
             }
 
-            $data[$key] = $isClosure
+            $result[$key] = $isClosure
                 ? fn () => $value
                 : $value;
         }
 
-        return $data;
+        return $result;
     }
 
-    private function isNotArrayOrJsonSerializable(mixed $value): bool
+    private function isNotArrayOrJsonSerializable(mixed $data): bool
     {
-        return ! $this->isArrayOrJsonSerializable($value);
+        return ! $this->isArrayOrJsonSerializable($data);
     }
 
-    private function isArrayOrJsonSerializable(mixed $value): bool
+    private function isArrayOrJsonSerializable(mixed $data): bool
     {
-        return is_array($value) || $value instanceof JsonSerializable;
+        return is_array($data) || $data instanceof JsonSerializable;
     }
 }
