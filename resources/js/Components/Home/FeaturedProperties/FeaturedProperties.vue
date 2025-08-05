@@ -55,7 +55,7 @@
                 </p>
                 <div class="flex gap-2">
                     <button
-                        class="rounded-full border border-gray-800 p-1.5 transition-colors duration-300 md:p-2"
+                        class="border border-gray-800 p-1.5 transition-colors duration-300 md:p-2"
                         :class="{
                             'hover:bg-gray-800': canGoBack,
                             'cursor-not-allowed opacity-50': !canGoBack,
@@ -67,7 +67,7 @@
                         <ChevronIcon :direction="ChevronDirectionEnum.LEFT" />
                     </button>
                     <button
-                        class="rounded-full border border-gray-800 p-1.5 transition-colors duration-300 md:p-2"
+                        class="border border-gray-800 p-1.5 transition-colors duration-300 md:p-2"
                         :class="{
                             'hover:bg-gray-800': canGoForward,
                             'cursor-not-allowed opacity-50': !canGoForward,
