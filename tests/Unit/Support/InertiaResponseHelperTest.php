@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Resources\ShowPropertyResource;
 use App\Models\Property;
 use App\Support\InertiaResponseHelper;
 
@@ -132,7 +133,7 @@ it('works with a model.', function (): void {
 it('works with a model resource.', function (): void {
     $property = Property::factory()
         ->create()
-        ->toResource();
+        ->toResource(ShowPropertyResource::class);
 
     $result = $this->app->call(InertiaResponseHelper::class, ['data' => compact('property')]);
 

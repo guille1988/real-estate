@@ -7,27 +7,33 @@ namespace App\Http\Resources;
 use App\Models\Property;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Throwable;
 
 /** @mixin Property */
-final class FeaturedPropertyResource extends JsonResource
+final class ShowPropertyResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
      *
      * @return array<string, mixed>
+     *
+     * @throws Throwable
      */
     public function toArray(Request $request): array
     {
         return [
             'uuid' => $this->uuid,
-            'caption' => $this->caption,
             'title' => $this->title,
             'description' => $this->description,
+            'address' => $this->address,
             'type' => $this->type,
-            'bathrooms' => $this->bathrooms,
-            'bedrooms' => $this->bedrooms,
+            'bathrooms' => $this->getBathroomWithLeftPad(),
+            'bedrooms' => $this->getBedroomWithLeftPad(),
             'price' => $this->getDollarPrice(),
-            'image' => $this->defaultImage?->getUrl(),
+            'area' => $this->getAreaOnSquareFeet(),
+            'images' => $this->images->toResourceCollection(),
+            'amenities' => $this->amenities->toResourceCollection(),
+            'pricing_details' => $this->pricingDetails->groupedByCategory(),
         ];
     }
 }

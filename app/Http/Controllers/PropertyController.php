@@ -5,17 +5,42 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Enums\PageEnum;
+use App\Http\Resources\IndexPropertyResource;
+use App\Http\Resources\ShowPropertyResource;
 use App\Models\Property;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 use Inertia\Inertia;
 use Inertia\Response;
 use Throwable;
 
 final class PropertyController
 {
+    /**
+     * @throws Throwable
+     */
     public function index(): Response
     {
-        return Inertia::render(PageEnum::PROPERTIES->value);
+        $properties = cache()
+            ->rememberForever('properties', function (): ResourceCollection {
+                return Property::query()
+                    ->with('defaultImage:id,path,property_id')
+                    ->get([
+                        'id',
+                        'uuid',
+                        'caption',
+                        'title',
+                        'description',
+                        'type',
+                        'bathrooms',
+                        'bedrooms',
+                        'price',
+                    ])->toResourceCollection(IndexPropertyResource::class);
+            });
+
+        return Inertia::render(PageEnum::PROPERTIES->value, [
+            'properties' => fn (): ResourceCollection => $properties,
+        ]);
     }
 
     /**
@@ -30,7 +55,7 @@ final class PropertyController
                     'images',
                     'amenities',
                     'pricingDetails',
-                ])->toResource();
+                ])->toResource(ShowPropertyResource::class);
             }
         );
 

@@ -5,19 +5,24 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Enums\PageEnum;
-use App\Http\Resources\FeaturedPropertyResource;
+use App\Http\Resources\IndexPropertyResource;
 use App\Models\Property;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Inertia\Inertia;
 use Inertia\Response;
+use Throwable;
 
 final class HomeController
 {
+    /**
+     * @throws Throwable
+     */
     public function __invoke(): Response
     {
         $featuredProperties = cache()
             ->rememberForever('featured_properties', function (): ResourceCollection {
                 return Property::query()
+                    ->with('defaultImage:id,path,property_id')
                     ->featured()
                     ->get([
                         'id',
@@ -29,7 +34,7 @@ final class HomeController
                         'bathrooms',
                         'bedrooms',
                         'price',
-                    ])->toResourceCollection(FeaturedPropertyResource::class);
+                    ])->toResourceCollection(IndexPropertyResource::class);
             });
 
         return Inertia::render(PageEnum::HOME->value, [
