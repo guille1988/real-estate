@@ -79,10 +79,10 @@ import BedroomIcon from '@/Components/Icons/BedroomIcon.vue';
 import BuildingIcon from '@/Components/Icons/BuildingIcon.vue';
 import { capitalizeFirstLetter } from '@/Composables/useCapitalization';
 import { show } from '@/Routes/actions/App/Http/Controllers/PropertyController';
-import { FeaturedPropertyCardInterface } from '@/Types/App/Interfaces/FeaturedPropertyCardInterface';
+import { IndexPropertyInterface } from '@/Types/App/Interfaces/IndexPropertyInterface';
 import { Link } from '@inertiajs/vue3';
 
-const { card }: { card: FeaturedPropertyCardInterface } = defineProps<{
-    card: FeaturedPropertyCardInterface;
+const { card }: { card: IndexPropertyInterface } = defineProps<{
+    card: IndexPropertyInterface;
 }>();
 </script>

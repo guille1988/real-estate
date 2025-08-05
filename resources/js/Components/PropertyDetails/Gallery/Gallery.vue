@@ -125,7 +125,7 @@ import Description from '@/Components/PropertyDetails/Gallery/Description.vue';
 import { ChevronDirectionEnum } from '@/Types/App/Enums/ChevronDirectionEnum';
 import { DescriptionInterface } from '@/Types/App/Interfaces/DescriptionInterface';
 import { ImageInterface } from '@/Types/App/Interfaces/ImageInterface';
-import { PropertyInterface } from '@/Types/App/Interfaces/PropertyInterface';
+import { ShowPropertyInterface } from '@/Types/App/Interfaces/ShowPropertyInterface';
 import {
     ComponentPublicInstance,
     computed,
@@ -136,8 +136,8 @@ import {
     watch,
 } from 'vue';
 
-const { property }: { property: PropertyInterface } = defineProps<{
-    property: PropertyInterface;
+const { property }: { property: ShowPropertyInterface } = defineProps<{
+    property: ShowPropertyInterface;
 }>();
 
 const descriptionCards: DescriptionInterface[] = [

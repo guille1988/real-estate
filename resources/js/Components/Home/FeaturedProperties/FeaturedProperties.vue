@@ -91,7 +91,7 @@ import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
 import { useSection } from '@/Composables/useSection';
 import { ChevronDirectionEnum } from '@/Types/App/Enums/ChevronDirectionEnum';
 import { ScreenSizeEnum } from '@/Types/App/Enums/ScreenSizeEnum';
-import { FeaturedPropertyCardInterface } from '@/Types/App/Interfaces/FeaturedPropertyCardInterface';
+import { IndexPropertyInterface } from '@/Types/App/Interfaces/IndexPropertyInterface';
 import { ScreenSizeConfigInterface } from '@/Types/App/Interfaces/ScreenSizeConfigInterface';
 import { Link } from '@inertiajs/vue3';
 import {
@@ -105,11 +105,10 @@ import {
     watch,
 } from 'vue';
 
-const {
-    featuredProperties,
-}: { featuredProperties: FeaturedPropertyCardInterface[] } = defineProps<{
-    featuredProperties: FeaturedPropertyCardInterface[];
-}>();
+const { featuredProperties }: { featuredProperties: IndexPropertyInterface[] } =
+    defineProps<{
+        featuredProperties: IndexPropertyInterface[];
+    }>();
 
 const sliderTrack: Ref<HTMLElement | null> = ref<HTMLElement | null>(null);
 const slideItems: Ref<HTMLElement[]> = ref<HTMLElement[]>([]);
