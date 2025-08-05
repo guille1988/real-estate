@@ -45,10 +45,10 @@
 
 <script setup lang="ts">
 import { show } from '@/Routes/actions/App/Http/Controllers/PropertyController';
-import { SearchCardInterface } from '@/Types/App/Interfaces/SearchCardInterface';
+import { IndexPropertyInterface } from '@/Types/App/Interfaces/IndexPropertyInterface';
 import { Link } from '@inertiajs/vue3';
 
-const { card }: { card: SearchCardInterface } = defineProps<{
-    card: SearchCardInterface;
+const { card }: { card: IndexPropertyInterface } = defineProps<{
+    card: IndexPropertyInterface;
 }>();
 </script>

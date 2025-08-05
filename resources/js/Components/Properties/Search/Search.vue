@@ -45,9 +45,9 @@
                 class="grid grid-cols-1 gap-6 pt-16 md:grid-cols-2 lg:grid-cols-3"
             >
                 <SearchCard
-                    v-for="searchCard in searchCards"
-                    :key="searchCard.uuid"
-                    :card="searchCard"
+                    v-for="property in properties"
+                    :key="property.uuid"
+                    :card="property"
                 />
             </div>
 
@@ -71,9 +71,6 @@
 </template>
 
 <script setup lang="ts">
-import House from '@/Assets/Images/house.jpg';
-import Loft from '@/Assets/Images/loft.jpg';
-import Villa from '@/Assets/Images/villa.jpg';
 import ChevronIcon from '@/Components/Icons/ChevronIcon.vue';
 import SearchIcon from '@/Components/Icons/SearchIcon.vue';
 import SearchCard from '@/Components/Properties/Search/SearchCard.vue';
@@ -81,10 +78,14 @@ import SearchFilterCard from '@/Components/Properties/Search/SearchFilterCard.vu
 import { capitalizeFirstLetter } from '@/Composables/useCapitalization';
 import { ChevronDirectionEnum } from '@/Types/App/Enums/ChevronDirectionEnum';
 import { PropertyTypeEnum } from '@/Types/App/Enums/PropertyTypeEnum';
-import { SearchCardInterface } from '@/Types/App/Interfaces/SearchCardInterface';
+import { IndexPropertyInterface } from '@/Types/App/Interfaces/IndexPropertyInterface';
 import { SearchFilterCardInterface } from '@/Types/App/Interfaces/SearchFilterCardInterface';
 import { SearchFilterOptionInterface } from '@/Types/App/Interfaces/SearchFilterOptionInterface';
 import { ref } from 'vue';
+
+defineProps<{
+    properties: IndexPropertyInterface[];
+}>();
 
 const propertyTypes: SearchFilterOptionInterface[] = Object.values(
     PropertyTypeEnum,
@@ -159,36 +160,6 @@ const filterCards: SearchFilterCardInterface[] = [
             { id: 4, label: '2010 - 2020', value: '2010-2020' },
             { id: 5, label: '2020 and newer', value: '2020-plus' },
         ],
-    },
-];
-
-const searchCards: SearchCardInterface[] = [
-    {
-        uuid: '1',
-        image: Villa,
-        caption: 'Coastal Escapes - Where Waves Beckon',
-        title: 'Seaside Serenity Villa',
-        description:
-            'Wake up to the soothing melody of waves. This beachfront villa offers...',
-        price: '$1.250.000',
-    },
-    {
-        uuid: '2',
-        image: Loft,
-        caption: 'Urban Oasis - Life in the Heart of the City',
-        title: 'Metropolitan Haven',
-        description:
-            'Immerse yourself in the energy of the city. This modern loft in the heart...',
-        price: '$650.000',
-    },
-    {
-        uuid: '3',
-        image: House,
-        caption: "Countryside Charm - Escape to Nature's Embrace",
-        title: 'Rustic Retreat Cottage',
-        description:
-            'Find tranquility in the countryside. This charming cottage is nestled amidst rolling hills...',
-        price: '$350.000',
     },
 ];
 </script>
