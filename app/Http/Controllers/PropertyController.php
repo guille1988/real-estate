@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Data\PropertyData;
 use App\Enums\PageEnum;
 use App\Http\Resources\IndexPropertyResource;
 use App\Http\Resources\ShowPropertyResource;
@@ -19,27 +20,25 @@ final class PropertyController
     /**
      * @throws Throwable
      */
-    public function index(): Response
+    public function index(PropertyData $data): Response
     {
-        $properties = cache()
-            ->rememberForever('properties', function (): ResourceCollection {
-                return Property::query()
-                    ->with('defaultImage:id,path,property_id')
-                    ->get([
-                        'id',
-                        'uuid',
-                        'caption',
-                        'title',
-                        'description',
-                        'type',
-                        'bathrooms',
-                        'bedrooms',
-                        'price',
-                    ])->toResourceCollection(IndexPropertyResource::class);
-            });
+        $properties = Property::query()
+            ->search($data)
+            ->get([
+                'id',
+                'uuid',
+                'caption',
+                'title',
+                'description',
+                'type',
+                'bathrooms',
+                'bedrooms',
+                'price',
+            ])->toResourceCollection(IndexPropertyResource::class);
 
         return Inertia::render(PageEnum::PROPERTIES->value, [
             'properties' => fn (): ResourceCollection => $properties,
+            'filters' => fn (): array => $data->toArray(),
         ]);
     }
 

@@ -18,10 +18,12 @@
                 <div class="relative">
                     <input
                         type="text"
+                        v-model="search"
                         placeholder="Search For A Property"
                         class="w-full rounded-lg bg-[#111] px-4 py-4 pr-40 text-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-600"
                     />
                     <button
+                        @click="applyFilters()"
                         class="absolute right-2 top-1/2 flex -translate-y-1/2 items-center gap-2 rounded-lg bg-purple-600 px-6 py-3 text-sm font-medium text-white hover:bg-purple-700"
                     >
                         <SearchIcon class="text-white" />
@@ -51,15 +53,35 @@ import SearchIcon from '@/Components/Icons/SearchIcon.vue';
 import Properties from '@/Components/Properties/Search/Properties/Properties.vue';
 import SearchFilterCard from '@/Components/Properties/Search/SearchFilterCard.vue';
 import { capitalizeFirstLetter } from '@/Composables/useCapitalization';
+import { index } from '@/Routes/actions/App/Http/Controllers/PropertyController';
 import { PropertyTypeEnum } from '@/Types/App/Enums/PropertyTypeEnum';
+import { FilterInterface } from '@/Types/App/Interfaces/FilterInterface';
 import { IndexPropertyInterface } from '@/Types/App/Interfaces/IndexPropertyInterface';
 import { SearchFilterCardInterface } from '@/Types/App/Interfaces/SearchFilterCardInterface';
 import { SearchFilterOptionInterface } from '@/Types/App/Interfaces/SearchFilterOptionInterface';
-import { ref } from 'vue';
+import { router } from '@inertiajs/vue3';
+import { Ref, ref } from 'vue';
 
-defineProps<{
+const { filters }: { filters: FilterInterface } = defineProps<{
     properties: IndexPropertyInterface[];
+    filters: FilterInterface;
 }>();
+
+const search: Ref<string> = ref<string>(filters.search || '');
+
+const applyFilters = (): void => {
+    router.get(
+        index().url,
+        {
+            search: search.value,
+        },
+        {
+            preserveState: true,
+            preserveScroll: true,
+            replace: true,
+        },
+    );
+};
 
 const propertyTypes: SearchFilterOptionInterface[] = Object.values(
     PropertyTypeEnum,

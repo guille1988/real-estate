@@ -2,15 +2,32 @@
 
 declare(strict_types=1);
 
+use App\Enums\PageEnum;
 use App\Enums\PricingDetailCategoryEnum;
 use App\Models\Amenity;
 use App\Models\Image;
 use App\Models\PricingDetail;
 use App\Models\Property;
+use Inertia\Testing\AssertableInertia as Assert;
 
 it('works indexing properties.', function (): void {
     $this->get(route('properties.index'))
         ->assertOk();
+});
+
+it('works searching for a property.', function (): void {
+    $property = Property::factory()
+        ->create();
+
+    Image::factory()
+        ->default()
+        ->create(['property_id' => $property->id]);
+
+    $this->get(route('properties.index', ['search' => $property->title]))
+        ->assertInertia(function (Assert $page): void {
+            $page->component(PageEnum::PROPERTIES->value)
+                ->has('properties', 1);
+        });
 });
 
 it('works showing a specific property.', function (): void {
@@ -40,5 +57,8 @@ it('works showing a specific property.', function (): void {
         });
 
     $this->get(route('properties.show', $property->uuid))
-        ->assertOk();
+        ->assertInertia(function (Assert $page): void {
+            $page->component(PageEnum::PROPERTY_DETAILS->value)
+                ->has('property');
+        });
 });

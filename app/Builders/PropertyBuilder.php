@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Builders;
 
+use App\Data\PropertyData;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -29,5 +30,19 @@ final class PropertyBuilder extends Builder
     {
         return $this->with('defaultImage:id,path,property_id')
             ->whereFeatured();
+    }
+
+    /**
+     * @return self<TModel>
+     */
+    public function search(PropertyData $data): self
+    {
+        return $this->with('defaultImage:id,path,property_id')
+            ->when($data->isNotEmpty('search'), function (self $query) use ($data): self {
+                $search = "%$data->search%";
+
+                return $query->whereLike('title', $search)
+                    ->orWhereLike('caption', $search);
+            });
     }
 }

@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Enums\PageEnum;
 use App\Models\Image;
 use App\Models\Property;
 use Inertia\Testing\AssertableInertia as Assert;
@@ -18,7 +19,7 @@ it('works on home page.', function (string $properties): void {
 
     $this->get(route('home'))
         ->assertInertia(function (Assert $page) use ($properties, $featuredProperties): void {
-            $page->component('Home')
+            $page->component(PageEnum::HOME->value)
                 ->has(str($properties)->camel()->toString(), $featuredProperties->count());
         });
 })->with(['featured_properties']);
