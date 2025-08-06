@@ -10,25 +10,38 @@ use App\Models\PricingDetail;
 use App\Models\Property;
 use Inertia\Testing\AssertableInertia as Assert;
 
-it('works indexing properties.', function (): void {
+it('works indexing properties without any search.', function (): void {
     $this->get(route('properties.index'))
-        ->assertOk();
+        ->assertInertia(function (Assert $page): void {
+            $page->component(PageEnum::PROPERTIES->value);
+        });
 });
 
-it('works searching for a property.', function (): void {
-    $property = Property::factory()
-        ->create();
+it('works searching for a property.', function (string $title): void {
+    $propertyOne = Property::factory()
+        ->create([
+            'title' => "$title one",
+        ]);
+
+    $propertyTwo = Property::factory()
+        ->create([
+            'title' => "$title two",
+        ]);
 
     Image::factory()
         ->default()
-        ->create(['property_id' => $property->id]);
+        ->create(['property_id' => $propertyOne->id]);
 
-    $this->get(route('properties.index', ['search' => $property->title]))
+    Image::factory()
+        ->default()
+        ->create(['property_id' => $propertyTwo->id]);
+
+    $this->get(route('properties.index', ['search' => $title]))
         ->assertInertia(function (Assert $page): void {
             $page->component(PageEnum::PROPERTIES->value)
-                ->has('properties', 1);
+                ->has('properties', 2);
         });
-});
+})->with(['Test']);
 
 it('works showing a specific property.', function (): void {
     $property = Property::factory()
