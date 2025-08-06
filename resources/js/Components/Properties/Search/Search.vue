@@ -1,6 +1,6 @@
 <template>
     <section class="bg-black px-4 py-8" id="search-property">
-        <div class="container mx-auto">
+        <div class="container mx-auto px-4">
             <div class="mb-12 pl-4 text-left md:pl-36">
                 <h1 class="mb-4 text-2xl font-bold text-white md:text-3xl">
                     Find Your Dream Property
@@ -41,42 +41,16 @@
                 />
             </div>
 
-            <div
-                class="grid grid-cols-1 gap-6 pt-16 md:grid-cols-2 lg:grid-cols-3"
-            >
-                <SearchCard
-                    v-for="property in properties"
-                    :key="property.uuid"
-                    :card="property"
-                />
-            </div>
-
-            <div class="mt-8 flex items-center justify-between">
-                <span class="text-sm text-gray-400">03 of 60</span>
-                <div class="flex gap-2">
-                    <button
-                        class="rounded-lg border border-gray-800 p-2 text-gray-400 hover:bg-gray-800"
-                    >
-                        <ChevronIcon :direction="ChevronDirectionEnum.LEFT" />
-                    </button>
-                    <button
-                        class="rounded-lg border border-gray-800 p-2 text-gray-400 hover:bg-gray-800"
-                    >
-                        <ChevronIcon :direction="ChevronDirectionEnum.RIGHT" />
-                    </button>
-                </div>
-            </div>
+            <Properties :properties="properties" />
         </div>
     </section>
 </template>
 
 <script setup lang="ts">
-import ChevronIcon from '@/Components/Icons/ChevronIcon.vue';
 import SearchIcon from '@/Components/Icons/SearchIcon.vue';
-import SearchCard from '@/Components/Properties/Search/SearchCard.vue';
+import Properties from '@/Components/Properties/Search/Properties/Properties.vue';
 import SearchFilterCard from '@/Components/Properties/Search/SearchFilterCard.vue';
 import { capitalizeFirstLetter } from '@/Composables/useCapitalization';
-import { ChevronDirectionEnum } from '@/Types/App/Enums/ChevronDirectionEnum';
 import { PropertyTypeEnum } from '@/Types/App/Enums/PropertyTypeEnum';
 import { IndexPropertyInterface } from '@/Types/App/Interfaces/IndexPropertyInterface';
 import { SearchFilterCardInterface } from '@/Types/App/Interfaces/SearchFilterCardInterface';
