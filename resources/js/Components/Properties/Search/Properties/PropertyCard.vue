@@ -23,9 +23,21 @@
             >
                 {{ card.title }}
             </h3>
-            <p class="mb-4 text-xs text-gray-400 md:text-sm">
-                {{ card.description }}
-            </p>
+            <div class="mb-4">
+                <p
+                    class="text-xs text-gray-400 md:text-sm"
+                    :class="{ 'line-clamp-2': !showFullDescription }"
+                >
+                    {{ card.description }}
+                </p>
+                <button
+                    v-if="card.description.length > 100"
+                    @click="toggleShowFullDescription()"
+                    class="mt-1 text-xs text-purple-500 hover:text-purple-400 focus:outline-none"
+                >
+                    {{ showFullDescription ? 'Read Less' : 'Read More...' }}
+                </button>
+            </div>
 
             <div class="mb-4 flex flex-wrap gap-2 md:mb-6 md:gap-4">
                 <div class="flex items-center gap-1 md:gap-2">
@@ -81,8 +93,15 @@ import { capitalizeFirstLetter } from '@/Composables/useCapitalization';
 import { show } from '@/Routes/actions/App/Http/Controllers/PropertyController';
 import { IndexPropertyInterface } from '@/Types/App/Interfaces/IndexPropertyInterface';
 import { Link } from '@inertiajs/vue3';
+import { Ref, ref } from 'vue';
 
 const { card }: { card: IndexPropertyInterface } = defineProps<{
     card: IndexPropertyInterface;
 }>();
+
+const showFullDescription: Ref<boolean> = ref<boolean>(false);
+
+const toggleShowFullDescription = (): void => {
+    showFullDescription.value = !showFullDescription.value;
+};
 </script>

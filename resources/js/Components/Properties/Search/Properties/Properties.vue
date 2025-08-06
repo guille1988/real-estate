@@ -1,5 +1,5 @@
 <template>
-    <section class="bg-black py-10 text-white md:py-8" id="properties">
+    <section class="bg-black py-10 text-white md:py-10" id="properties">
         <div class="container mx-auto">
             <div class="mb-8 overflow-hidden">
                 <div
