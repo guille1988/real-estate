@@ -21,6 +21,7 @@
                         v-model="search"
                         placeholder="Search For A Property"
                         class="w-full rounded-lg bg-[#111] px-4 py-4 pr-40 text-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-600"
+                        @keyup.enter="applyFilters()"
                     />
                     <button
                         @click="applyFilters()"
@@ -39,6 +40,7 @@
                     v-for="filterCard in filterCards"
                     :key="filterCard.id"
                     :card="filterCard"
+                    :selected-value="getSelectedValue(filterCard)"
                     @option-selected="handleOptionSelected"
                 />
             </div>
@@ -77,20 +79,30 @@ const {
     filters: FilterInterface;
 }>();
 
-const search: Ref<string> = ref<string>(filters.search || '');
-const location: Ref<string> = ref<string>(filters.location || '');
-const type: Ref<string> = ref<string>(filters.type || '');
-const isFeatured: Ref<boolean> = ref<boolean>(filters.isFeatured || false);
+const search: Ref<string | undefined> = ref<string | undefined>(
+    filters.search || undefined,
+);
+const location: Ref<string | undefined> = ref<string | undefined>(
+    filters.location || undefined,
+);
+const type: Ref<string | undefined> = ref<string | undefined>(
+    filters.type || undefined,
+);
+const isFeatured: Ref<boolean | undefined> = ref<boolean | undefined>(
+    filters.isFeatured || undefined,
+);
 
 const applyFilters = (): void => {
+    const query = {
+        search: search.value?.trim(),
+        location: location.value,
+        type: type.value,
+        is_featured: isFeatured.value,
+    } as const;
+
     router.get(
-        index().url,
-        {
-            search: search.value,
-            location: location.value,
-            type: type.value,
-            is_featured: isFeatured.value,
-        },
+        index.url({ query }),
+        {},
         {
             preserveState: true,
             preserveScroll: true,
@@ -103,9 +115,38 @@ const selectedFilters = ref<Record<number, SearchFilterOptionInterface>>({});
 
 const handleOptionSelected = (
     cardId: number,
-    option: SearchFilterOptionInterface,
+    option: SearchFilterOptionInterface | null,
 ): void => {
+    if (option === null) {
+        delete selectedFilters.value[cardId];
+        if (cardId === 1) {
+            location.value = undefined;
+        } else if (cardId === 2) {
+            type.value = undefined;
+        } else if (cardId === 5) {
+            isFeatured.value = undefined;
+        }
+        return;
+    }
+
     selectedFilters.value[cardId] = option;
+
+    if (cardId === 1) {
+        location.value = String(option.value);
+    } else if (cardId === 2) {
+        type.value = String(option.value);
+    } else if (cardId === 5) {
+        isFeatured.value = Boolean(option.value);
+    }
+};
+
+const getSelectedValue = (
+    card: SearchFilterCardInterface,
+): string | boolean | null => {
+    if (card.id === 1) return location.value || null;
+    if (card.id === 2) return type.value || null;
+    if (card.id === 5) return selectedFilters.value[5]?.value ?? null;
+    return null;
 };
 
 const filterCards: SearchFilterCardInterface[] = [

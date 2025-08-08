@@ -38,22 +38,22 @@ final class PropertyBuilder extends Builder
     public function search(PropertyData $data): self
     {
         return $this->with('defaultImage:id,path,property_id')
-            ->when($data->isNotEmpty('search'), function (self $query) use ($data): self {
+            ->when($data->isNotNull('search'), function (self $query) use ($data): self {
                 $search = "%$data->search%";
 
                 return $query->whereLike('title', $search)
                     ->orWhereLike('caption', $search);
             })
             ->when(
-                $data->isNotEmpty('type'),
+                $data->isNotNull('type'),
                 fn (self $query): self => $query->where('type', $data->type),
             )
             ->when(
-                $data->isNotEmpty('location'),
+                $data->isNotNull('location'),
                 fn (self $query): self => $query->where('location', $data->location),
             )
             ->when(
-                $data->isNotEmpty('isFeatured'),
+                $data->isNotNull('isFeatured'),
                 fn (self $query): self => $query->where('is_featured', $data->isFeatured),
             );
     }

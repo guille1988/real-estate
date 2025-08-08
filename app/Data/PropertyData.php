@@ -7,8 +7,11 @@ namespace App\Data;
 use App\Enums\PropertyLocationEnum;
 use App\Enums\PropertyTypeEnum;
 use Illuminate\Validation\Rule;
+use Spatie\LaravelData\Attributes\MapName;
 use Spatie\LaravelData\Data;
+use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 
+#[MapName(SnakeCaseMapper::class)]
 final class PropertyData extends Data
 {
     public function __construct(
@@ -31,8 +34,8 @@ final class PropertyData extends Data
         ];
     }
 
-    public function isNotEmpty(string $field): bool
+    public function isNotNull(string $field): bool
     {
-        return ! empty($this->$field);
+        return ! is_null($this->$field);
     }
 }

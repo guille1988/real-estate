@@ -60,10 +60,24 @@ import { SearchFilterCardInterface } from '@/Types/App/Interfaces/SearchFilterCa
 import { SearchFilterOptionInterface } from '@/Types/App/Interfaces/SearchFilterOptionInterface';
 import { EmitSearchFilterEventsType } from '@/Types/App/Types/EmitSearchFilterEventsType';
 import { EmitSearchFilterFunctionType } from '@/Types/App/Types/EmitSearchFilterFunctionType';
-import { type Component, onMounted, onUnmounted, type Ref, ref } from 'vue';
+import {
+    type Component,
+    onMounted,
+    onUnmounted,
+    type Ref,
+    ref,
+    watch,
+} from 'vue';
 
-const { card }: { card: SearchFilterCardInterface } = defineProps<{
+const {
+    card,
+    selectedValue,
+}: {
     card: SearchFilterCardInterface;
+    selectedValue?: string | boolean | null;
+} = defineProps<{
+    card: SearchFilterCardInterface;
+    selectedValue?: string | boolean | null;
 }>();
 
 const emit: EmitSearchFilterFunctionType =
@@ -75,14 +89,23 @@ const selectedOption: Ref<SearchFilterOptionInterface | null> =
 
 const icon: Component = useIcon(card.icon);
 
+const syncSelectedFromValue = (
+    value: string | boolean | null | undefined,
+): void => {
+    if (value === undefined) return;
+    selectedOption.value =
+        card.options?.find((option) => option.value === value) || null;
+};
+
 const toggleDropdown = (): void => {
     isOpen.value = !isOpen.value;
 };
 
 const selectOption = (option: SearchFilterOptionInterface): void => {
-    selectedOption.value = option;
+    const alreadySelected = !!isOptionSelected(option);
+    selectedOption.value = alreadySelected ? null : option;
     isOpen.value = false;
-    emit('optionSelected', card.id, option);
+    emit('optionSelected', card.id, alreadySelected ? null : option);
 };
 
 const dropdownRef: Ref<HTMLElement | null> = ref<HTMLElement | null>(null);
@@ -110,6 +133,14 @@ const isOptionSelected = (
 ): boolean | null => {
     return selectedOption.value && selectedOption.value.value === option.value;
 };
+
+watch(
+    (): string | boolean | null | undefined => selectedValue,
+    (selectedValue: string | boolean | null | undefined): void => {
+        syncSelectedFromValue(selectedValue ?? null);
+    },
+    { immediate: true },
+);
 
 onMounted((): void => {
     document.addEventListener('click', handleClickOutside);
