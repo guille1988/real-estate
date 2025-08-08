@@ -6,11 +6,14 @@ namespace App\Http\Controllers;
 
 use App\Data\PropertyData;
 use App\Enums\PageEnum;
+use App\Enums\PropertyLocationEnum;
+use App\Enums\PropertyTypeEnum;
 use App\Http\Resources\IndexPropertyResource;
 use App\Http\Resources\ShowPropertyResource;
 use App\Models\Property;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Support\Collection;
 use Inertia\Inertia;
 use Inertia\Response;
 use Throwable;
@@ -39,6 +42,8 @@ final class PropertyController
         return Inertia::render(PageEnum::PROPERTIES->value, [
             'properties' => fn (): ResourceCollection => $properties,
             'filters' => fn (): array => $data->toArray(),
+            'locations' => fn (): Collection => PropertyLocationEnum::toResponse(),
+            'types' => fn (): Collection => PropertyTypeEnum::toResponse(),
         ]);
     }
 
