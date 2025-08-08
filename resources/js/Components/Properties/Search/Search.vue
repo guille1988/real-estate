@@ -147,14 +147,11 @@ const filterCards: SearchFilterCardInterface[] = [
     },
     {
         id: 5,
-        icon: 'CalendarIcon',
-        label: 'Build Year',
+        icon: 'ThunderIcon',
+        label: 'Featured',
         options: [
-            { id: 1, label: 'Before 1990', value: 'before-1990' },
-            { id: 2, label: '1990 - 2000', value: '1990-2000' },
-            { id: 3, label: '2000 - 2010', value: '2000-2010' },
-            { id: 4, label: '2010 - 2020', value: '2010-2020' },
-            { id: 5, label: '2020 and newer', value: '2020-plus' },
+            { id: 1, label: 'Yes', value: true },
+            { id: 2, label: 'No', value: false },
         ],
     },
 ];

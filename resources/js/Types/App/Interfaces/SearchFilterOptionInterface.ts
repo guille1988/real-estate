@@ -1,5 +1,5 @@
 export interface SearchFilterOptionInterface {
     id: number;
     label: string;
-    value: string;
+    value: string | boolean;
 }
