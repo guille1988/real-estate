@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
+use App\Enums\PropertyLocationEnum;
 use App\Enums\PropertyTypeEnum;
 use App\Models\Property;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -29,6 +30,7 @@ final class PropertyFactory extends Factory
             'description' => $this->faker->realTextBetween(300, 500),
             'address' => $this->faker->address(),
             'type' => $this->faker->randomElement(PropertyTypeEnum::cases()),
+            'location' => $this->faker->randomElement(PropertyLocationEnum::cases()),
             'bathrooms' => $this->faker->numberBetween(1, 5),
             'bedrooms' => $this->faker->numberBetween(1, 5),
             'area' => $this->faker->numberBetween(600, 4_000),

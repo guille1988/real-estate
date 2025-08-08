@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('description');
             $table->string('address');
             $table->string('type');
+            $table->string('location');
             $table->unsignedInteger('bathrooms');
             $table->unsignedInteger('bedrooms');
             $table->unsignedInteger('area');

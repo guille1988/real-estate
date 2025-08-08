@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Builders\PropertyBuilder;
+use App\Enums\PropertyLocationEnum;
 use App\Enums\PropertyTypeEnum;
 use Carbon\CarbonImmutable;
 use Database\Factories\PropertyFactory;
@@ -24,6 +25,7 @@ use Illuminate\Support\Number;
  *  @property-read string $description
  *  @property-read string $address
  *  @property-read PropertyTypeEnum $type
+ *  @property-read PropertyLocationEnum $location
  *  @property-read int $bathrooms
  *  @property-read int $bedrooms
  *  @property-read int $area
@@ -59,6 +61,7 @@ final class Property extends Model
     {
         return [
             'type' => PropertyTypeEnum::class,
+            'location' => PropertyLocationEnum::class,
             'is_featured' => 'boolean',
         ];
     }

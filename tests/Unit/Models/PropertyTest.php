@@ -19,6 +19,7 @@ it('contains all proper attributes.', function (): void {
             'description',
             'address',
             'type',
+            'location',
             'bathrooms',
             'bedrooms',
             'area',
