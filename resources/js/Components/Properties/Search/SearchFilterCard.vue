@@ -32,8 +32,8 @@
         >
             <ul class="py-1">
                 <li
-                    v-for="option in card.options"
-                    :key="option.id"
+                    v-for="(option, key) in card.options"
+                    :key="key"
                     @click="selectOption(option)"
                     class="flex cursor-pointer items-center px-4 py-2 text-gray-400 transition-colors duration-150 hover:bg-[#1a1a1a] hover:text-purple-500"
                     :class="{
@@ -108,7 +108,7 @@ const isOpenDropdown = (): boolean => {
 const isOptionSelected = (
     option: SearchFilterOptionInterface,
 ): boolean | null => {
-    return selectedOption.value && selectedOption.value.id === option.id;
+    return selectedOption.value && selectedOption.value.value === option.value;
 };
 
 onMounted((): void => {

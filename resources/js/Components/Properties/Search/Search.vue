@@ -52,28 +52,44 @@
 import SearchIcon from '@/Components/Icons/SearchIcon.vue';
 import Properties from '@/Components/Properties/Search/Properties/Properties.vue';
 import SearchFilterCard from '@/Components/Properties/Search/SearchFilterCard.vue';
-import { capitalizeFirstLetter } from '@/Composables/useCapitalization';
 import { index } from '@/Routes/actions/App/Http/Controllers/PropertyController';
-import { PropertyTypeEnum } from '@/Types/App/Enums/PropertyTypeEnum';
 import { FilterInterface } from '@/Types/App/Interfaces/FilterInterface';
 import { IndexPropertyInterface } from '@/Types/App/Interfaces/IndexPropertyInterface';
+import { PropertyLocationInterface } from '@/Types/App/Interfaces/PropertyLocationInterface';
+import { PropertyTypeInterface } from '@/Types/App/Interfaces/PropertyTypeInterface';
 import { SearchFilterCardInterface } from '@/Types/App/Interfaces/SearchFilterCardInterface';
 import { SearchFilterOptionInterface } from '@/Types/App/Interfaces/SearchFilterOptionInterface';
 import { router } from '@inertiajs/vue3';
 import { Ref, ref } from 'vue';
 
-const { filters }: { filters: FilterInterface } = defineProps<{
+const {
+    filters,
+    locations,
+    types,
+}: {
+    filters: FilterInterface;
+    locations: PropertyLocationInterface[];
+    types: PropertyTypeInterface[];
+} = defineProps<{
     properties: IndexPropertyInterface[];
+    locations: PropertyLocationInterface[];
+    types: PropertyTypeInterface[];
     filters: FilterInterface;
 }>();
 
 const search: Ref<string> = ref<string>(filters.search || '');
+const location: Ref<string> = ref<string>(filters.location || '');
+const type: Ref<string> = ref<string>(filters.type || '');
+const isFeatured: Ref<boolean> = ref<boolean>(filters.isFeatured || false);
 
 const applyFilters = (): void => {
     router.get(
         index().url,
         {
             search: search.value,
+            location: location.value,
+            type: type.value,
+            is_featured: isFeatured.value,
         },
         {
             preserveState: true,
@@ -82,16 +98,6 @@ const applyFilters = (): void => {
         },
     );
 };
-
-const propertyTypes: SearchFilterOptionInterface[] = Object.values(
-    PropertyTypeEnum,
-).map(
-    (value: PropertyTypeEnum, index: number): SearchFilterOptionInterface => ({
-        id: index + 1,
-        label: capitalizeFirstLetter(value),
-        value: value,
-    }),
-);
 
 const selectedFilters = ref<Record<number, SearchFilterOptionInterface>>({});
 
@@ -107,30 +113,24 @@ const filterCards: SearchFilterCardInterface[] = [
         id: 1,
         icon: 'LocalizationIcon',
         label: 'Location',
-        options: [
-            { id: 1, label: 'New York', value: 'new_york' },
-            { id: 2, label: 'Los Angeles', value: 'los_angeles' },
-            { id: 3, label: 'Chicago', value: 'chicago' },
-            { id: 4, label: 'Miami', value: 'miami' },
-            { id: 5, label: 'San Francisco', value: 'san_francisco' },
-        ],
+        options: locations,
     },
     {
         id: 2,
         icon: 'HouseIcon',
         label: 'Property Type',
-        options: propertyTypes,
+        options: types,
     },
     {
         id: 3,
         icon: 'MoneyIcon',
         label: 'Pricing Range',
         options: [
-            { id: 1, label: '$100,000 - $300,000', value: '100000-300000' },
-            { id: 2, label: '$300,000 - $500,000', value: '300000-500000' },
-            { id: 3, label: '$500,000 - $800,000', value: '500000-800000' },
-            { id: 4, label: '$800,000 - $1,200,000', value: '800000-1200000' },
-            { id: 5, label: '$1,200,000+', value: '1200000-plus' },
+            { label: '$100,000 - $300,000', value: '100000-300000' },
+            { label: '$300,000 - $500,000', value: '300000-500000' },
+            { label: '$500,000 - $800,000', value: '500000-800000' },
+            { label: '$800,000 - $1,200,000', value: '800000-1200000' },
+            { label: '$1,200,000+', value: '1200000-plus' },
         ],
     },
     {
@@ -138,11 +138,11 @@ const filterCards: SearchFilterCardInterface[] = [
         icon: 'ChartIcon',
         label: 'Property Size',
         options: [
-            { id: 1, label: '500 - 1,000 sq ft', value: '500-1000' },
-            { id: 2, label: '1,000 - 1,500 sq ft', value: '1000-1500' },
-            { id: 3, label: '1,500 - 2,000 sq ft', value: '1500-2000' },
-            { id: 4, label: '2,000 - 3,000 sq ft', value: '2000-3000' },
-            { id: 5, label: '3,000+ sq ft', value: '3000-plus' },
+            { label: '500 - 1,000 sq ft', value: '500-1000' },
+            { label: '1,000 - 1,500 sq ft', value: '1000-1500' },
+            { label: '1,500 - 2,000 sq ft', value: '1500-2000' },
+            { label: '2,000 - 3,000 sq ft', value: '2000-3000' },
+            { label: '3,000+ sq ft', value: '3000-plus' },
         ],
     },
     {
@@ -150,8 +150,8 @@ const filterCards: SearchFilterCardInterface[] = [
         icon: 'ThunderIcon',
         label: 'Featured',
         options: [
-            { id: 1, label: 'Yes', value: true },
-            { id: 2, label: 'No', value: false },
+            { label: 'Yes', value: true },
+            { label: 'No', value: false },
         ],
     },
 ];
