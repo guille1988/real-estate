@@ -51,8 +51,8 @@ final class PropertyController
             "property_$property->uuid",
             function () use ($property): JsonResource {
                 return $property->load([
-                    'images',
                     'amenities',
+                    'images',
                     'pricingDetails',
                 ])->toResource(ShowPropertyResource::class);
             }
