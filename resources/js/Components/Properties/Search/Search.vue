@@ -121,13 +121,13 @@ const handleOptionSelected = (
         number,
         (option: SearchFilterOptionInterface | null) => void
     > = {
-        1: (option) => {
+        1: (option: SearchFilterOptionInterface | null) => {
             location.value = option ? String(option.value) : undefined;
         },
-        2: (option) => {
+        2: (option: SearchFilterOptionInterface | null) => {
             type.value = option ? String(option.value) : undefined;
         },
-        5: (option) => {
+        5: (option: SearchFilterOptionInterface | null) => {
             isFeatured.value = option ? Boolean(option.value) : undefined;
         },
     };
