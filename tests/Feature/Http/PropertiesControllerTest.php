@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Enums\PageEnum;
 use App\Enums\PricingDetailCategoryEnum;
+use App\Enums\PropertyLocationEnum;
 use App\Enums\PropertyTypeEnum;
 use App\Models\Amenity;
 use App\Models\Image;
@@ -65,6 +66,50 @@ it('works searching for a property by type.', function (PropertyTypeEnum $type):
                 ->has('properties', 2);
         });
 })->with(PropertyTypeEnum::cases());
+
+it('works searching for a property by location.', function (PropertyLocationEnum $location): void {
+    $propertyOne = Property::factory()
+        ->create(compact('location'));
+
+    $propertyTwo = Property::factory()
+        ->create(compact('location'));
+
+    Image::factory()
+        ->default()
+        ->create(['property_id' => $propertyOne->id]);
+
+    Image::factory()
+        ->default()
+        ->create(['property_id' => $propertyTwo->id]);
+
+    $this->get(route('properties.index', ['location' => $location->value]))
+        ->assertInertia(function (Assert $page): void {
+            $page->component(PageEnum::PROPERTIES->value)
+                ->has('properties', 2);
+        });
+})->with(PropertyLocationEnum::cases());
+
+it('works searching for a property by featured.', function (bool $isFeatured): void {
+    $propertyOne = Property::factory()
+        ->create(['is_featured' => $isFeatured]);
+
+    $propertyTwo = Property::factory()
+        ->create(['is_featured' => $isFeatured]);
+
+    Image::factory()
+        ->default()
+        ->create(['property_id' => $propertyOne->id]);
+
+    Image::factory()
+        ->default()
+        ->create(['property_id' => $propertyTwo->id]);
+
+    $this->get(route('properties.index', ['is_featured' => $isFeatured]))
+        ->assertInertia(function (Assert $page): void {
+            $page->component(PageEnum::PROPERTIES->value)
+                ->has('properties', 2);
+        });
+})->with([true, false]);
 
 it('works showing a specific property.', function (): void {
     $property = Property::factory()

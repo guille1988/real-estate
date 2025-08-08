@@ -47,6 +47,14 @@ final class PropertyBuilder extends Builder
             ->when(
                 $data->isNotEmpty('type'),
                 fn (self $query): self => $query->where('type', $data->type),
+            )
+            ->when(
+                $data->isNotEmpty('location'),
+                fn (self $query): self => $query->where('location', $data->location),
+            )
+            ->when(
+                $data->isNotEmpty('isFeatured'),
+                fn (self $query): self => $query->where('is_featured', $data->isFeatured),
             );
     }
 }
