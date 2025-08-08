@@ -16,21 +16,33 @@ enum ImageFormatEnum: string
     case PNG = 'png';
     case WEBP = 'webp';
 
+    /*
+     * Returns true if the format is jpg.
+     */
     public function isJpg(): bool
     {
         return $this === self::JPG;
     }
 
+    /*
+     * Returns true if the format is jpeg.
+     */
     public function equalsTo(self $format): bool
     {
         return $this === $format;
     }
 
+    /*
+     * Returns true if the format is not equal to the given format.
+     */
     public function isNotEqualTo(self $format): bool
     {
         return ! $this->equalsTo($format);
     }
 
+    /*
+     * Returns the format in upper case.
+     */
     public function toUpper(): string
     {
         return str($this->value)
@@ -38,6 +50,9 @@ enum ImageFormatEnum: string
             ->toString();
     }
 
+    /*
+     * Returns the encode method for the given image.
+     */
     public function getEncodeMethod(ImageInterface $image): EncodedImageInterface
     {
         return match ($this) {
@@ -48,6 +63,9 @@ enum ImageFormatEnum: string
         };
     }
 
+    /*
+     * Returns the extension for the format.
+     */
     public function getExtension(): string
     {
         return str($this->value)
