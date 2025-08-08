@@ -94,7 +94,10 @@ const syncSelectedFromValue = (
 ): void => {
     if (value === undefined) return;
     selectedOption.value =
-        card.options?.find((option) => option.value === value) || null;
+        card.options?.find(
+            (option: SearchFilterOptionInterface): boolean =>
+                option.value === value,
+        ) || null;
 };
 
 const toggleDropdown = (): void => {

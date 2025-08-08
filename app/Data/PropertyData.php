@@ -15,9 +15,9 @@ use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 final class PropertyData extends Data
 {
     public function __construct(
-        public ?string $search,
-        public ?PropertyTypeEnum $type,
-        public ?PropertyLocationEnum $location,
+        public ?string $search = null,
+        public ?PropertyTypeEnum $type = null,
+        public ?PropertyLocationEnum $location = null,
         public ?bool $isFeatured = null,
     ) {}
 
