@@ -25,7 +25,7 @@ final class ShowPropertyResource extends JsonResource
             'uuid' => $this->uuid,
             'title' => $this->title,
             'description' => $this->description,
-            'address' => $this->address,
+            'address' => $this->getFullAddress(),
             'type' => $this->type,
             'bathrooms' => $this->getBathroomWithLeftPad(),
             'bedrooms' => $this->getBedroomWithLeftPad(),

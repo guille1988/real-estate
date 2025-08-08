@@ -26,4 +26,15 @@ enum PropertyLocationEnum: string
     case SAN_JOSE = 'san_jose';
     case SEATTLE = 'seattle';
     case WASHINGTON = 'washington';
+
+    /*
+     * Returns the title of the enum value.
+     */
+    public function title(): string
+    {
+        return str($this->value)
+            ->replace('_', ' ')
+            ->title()
+            ->toString();
+    }
 }

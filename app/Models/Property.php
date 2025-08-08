@@ -84,14 +84,73 @@ final class Property extends Model
         return ['uuid'];
     }
 
-    /**
-     * Get the pricing details for the property.
-     *
-     * @return HasMany<PricingDetail, $this>
+    /*
+     * Formats the price to dollar.
      */
-    public function pricingDetails(): HasMany
+    public function getDollarPrice(): string
     {
-        return $this->hasMany(PricingDetail::class);
+        /** @var string */
+        return Number::currency(
+            number: $this->price / 100,
+            in: 'USD',
+            precision: 2,
+        );
+    }
+
+    /*
+     * Formats the bathrooms and bedrooms to have a left pad.
+     */
+    public function getBathroomWithLeftPad(): string
+    {
+        return str((string) $this->bathrooms)
+            ->padLeft(2, '0')
+            ->toString();
+    }
+
+    /*
+     * Formats the bathrooms and bedrooms to have a left pad.
+     */
+    public function getBedroomWithLeftPad(): string
+    {
+        return str((string) $this->bedrooms)
+            ->padLeft(2, '0')
+            ->toString();
+    }
+
+    /*
+     * Formats the area to square feet.
+     */
+    public function getAreaOnSquareFeet(): string
+    {
+        /**
+         * @var string $area
+         */
+        $area = Number::format($this->area);
+
+        return str($area)
+            ->append(' Square Feet')
+            ->toString();
+    }
+
+    /*
+     * Formats the address with the location.
+     */
+    public function getFullAddress(): string
+    {
+        return str($this->address)
+            ->append(', ', $this->location->title())
+            ->toString();
+    }
+
+    /**
+     * Get the default image for the property.
+     *
+     * @return HasOne<Image, $this>
+     */
+    public function defaultImage(): HasOne
+    {
+        return $this->hasOne(Image::class)
+            ->whereDefault();
     }
 
     /**
@@ -116,52 +175,12 @@ final class Property extends Model
     }
 
     /**
-     * Get the default image for the property.
+     * Get the pricing details for the property.
      *
-     * @return HasOne<Image, $this>
+     * @return HasMany<PricingDetail, $this>
      */
-    public function defaultImage(): HasOne
+    public function pricingDetails(): HasMany
     {
-        return $this->hasOne(Image::class)
-            ->whereDefault();
-    }
-
-    /*
-     * Formats the price to dollar.
-     */
-    public function getDollarPrice(): string
-    {
-        /** @var string */
-        return Number::currency(
-            number: $this->price / 100,
-            in: 'USD',
-            precision: 2,
-        );
-    }
-
-    public function getBathroomWithLeftPad(): string
-    {
-        return str((string) $this->bathrooms)
-            ->padLeft(2, '0')
-            ->toString();
-    }
-
-    public function getBedroomWithLeftPad(): string
-    {
-        return str((string) $this->bedrooms)
-            ->padLeft(2, '0')
-            ->toString();
-    }
-
-    public function getAreaOnSquareFeet(): string
-    {
-        /**
-         * @var string $area
-         */
-        $area = Number::format($this->area);
-
-        return str($area)
-            ->append(' Square Feet')
-            ->toString();
+        return $this->hasMany(PricingDetail::class);
     }
 }
