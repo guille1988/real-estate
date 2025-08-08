@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Enums\PageEnum;
 use App\Enums\PricingDetailCategoryEnum;
+use App\Enums\PropertyTypeEnum;
 use App\Models\Amenity;
 use App\Models\Image;
 use App\Models\PricingDetail;
@@ -42,6 +43,28 @@ it('works searching for a property.', function (string $title): void {
                 ->has('properties', 2);
         });
 })->with(['Test']);
+
+it('works searching for a property by type.', function (PropertyTypeEnum $type): void {
+    $propertyOne = Property::factory()
+        ->create(compact('type'));
+
+    $propertyTwo = Property::factory()
+        ->create(compact('type'));
+
+    Image::factory()
+        ->default()
+        ->create(['property_id' => $propertyOne->id]);
+
+    Image::factory()
+        ->default()
+        ->create(['property_id' => $propertyTwo->id]);
+
+    $this->get(route('properties.index', ['type' => $type->value]))
+        ->assertInertia(function (Assert $page): void {
+            $page->component(PageEnum::PROPERTIES->value)
+                ->has('properties', 2);
+        });
+})->with(PropertyTypeEnum::cases());
 
 it('works showing a specific property.', function (): void {
     $property = Property::factory()

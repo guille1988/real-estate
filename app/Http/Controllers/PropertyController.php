@@ -41,9 +41,9 @@ final class PropertyController
 
         return Inertia::render(PageEnum::PROPERTIES->value, [
             'properties' => fn (): ResourceCollection => $properties,
-            'filters' => fn (): array => $data->toArray(),
             'locations' => fn (): Collection => PropertyLocationEnum::toResponse(),
             'types' => fn (): Collection => PropertyTypeEnum::toResponse(),
+            'filters' => fn (): array => $data->toArray(),
         ]);
     }
 

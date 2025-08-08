@@ -43,6 +43,10 @@ final class PropertyBuilder extends Builder
 
                 return $query->whereLike('title', $search)
                     ->orWhereLike('caption', $search);
-            });
+            })
+            ->when(
+                $data->isNotEmpty('type'),
+                fn (self $query): self => $query->where('type', $data->type),
+            );
     }
 }
