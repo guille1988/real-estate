@@ -117,36 +117,40 @@ const handleOptionSelected = (
     cardId: number,
     option: SearchFilterOptionInterface | null,
 ): void => {
+    const updateWith: Record<
+        number,
+        (option: SearchFilterOptionInterface | null) => void
+    > = {
+        1: (option) => {
+            location.value = option ? String(option.value) : undefined;
+        },
+        2: (option) => {
+            type.value = option ? String(option.value) : undefined;
+        },
+        5: (option) => {
+            isFeatured.value = option ? Boolean(option.value) : undefined;
+        },
+    };
+
     if (option === null) {
         delete selectedFilters.value[cardId];
-        if (cardId === 1) {
-            location.value = undefined;
-        } else if (cardId === 2) {
-            type.value = undefined;
-        } else if (cardId === 5) {
-            isFeatured.value = undefined;
-        }
-        return;
+    } else {
+        selectedFilters.value[cardId] = option;
     }
 
-    selectedFilters.value[cardId] = option;
-
-    if (cardId === 1) {
-        location.value = String(option.value);
-    } else if (cardId === 2) {
-        type.value = String(option.value);
-    } else if (cardId === 5) {
-        isFeatured.value = Boolean(option.value);
-    }
+    updateWith[cardId]?.(option);
 };
 
 const getSelectedValue = (
     card: SearchFilterCardInterface,
 ): string | boolean | null => {
-    if (card.id === 1) return location.value || null;
-    if (card.id === 2) return type.value || null;
-    if (card.id === 5) return selectedFilters.value[5]?.value ?? null;
-    return null;
+    const valueById: Record<number, () => string | boolean | null> = {
+        1: () => location.value ?? null,
+        2: () => type.value ?? null,
+        5: () => isFeatured.value ?? null,
+    };
+
+    return valueById[card.id]?.() ?? null;
 };
 
 const filterCards: SearchFilterCardInterface[] = [
