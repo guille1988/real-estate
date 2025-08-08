@@ -41,8 +41,10 @@ final class PropertyBuilder extends Builder
             ->when($data->isNotNull('search'), function (self $query) use ($data): self {
                 $search = "%$data->search%";
 
-                return $query->whereLike('title', $search)
-                    ->orWhereLike('caption', $search);
+                return $query->where(function (self $query) use ($search): self {
+                    return $query->whereLike('title', $search)
+                        ->orWhereLike('caption', $search);
+                });
             })
             ->when(
                 $data->isNotNull('type'),
