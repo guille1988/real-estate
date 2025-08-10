@@ -14,7 +14,7 @@ it('replaces keys on query strings as it should.', function (string $snakeCaseQu
 
     Route::middleware(HandleInertiaRequestMiddleware::class)
         ->get('test', function (Request $request): JsonResponse {
-            return response()->json($request->query->all());
+            return response()->json($request->all());
         });
 
     $url = Uri::of(config('app.url'))
@@ -38,7 +38,7 @@ it('replaces keys on json payloads as it should.', function (string $snakeCaseJs
 
     Route::middleware(HandleInertiaRequestMiddleware::class)
         ->post('test', function (Request $request): JsonResponse {
-            return response()->json($request->json()->all());
+            return response()->json($request->all());
         });
 
     $url = Uri::of(config('app.url'))

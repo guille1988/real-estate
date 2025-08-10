@@ -69,35 +69,15 @@ final class HandleInertiaRequestMiddleware extends Middleware
     public function handle(Request $request, Closure $next): Response
     {
         /*
-            Replace all the query strings of the
-            request for the snake case version.
+            Replace all data of the request
+            for the snake case version of it.
         */
-        if ($request->query->count() > 0) {
+        if (count($data = $request->all()) > 0) {
             /**
-             * @var array<int|string, mixed> $snakeCaseQueryStrings
+             * @var array<int|string, mixed> $snakeCaseData
              */
-            $snakeCaseQueryStrings = app()
-                ->call(InertiaRequestHelper::class, [
-                    'data' => $request->query->all(),
-                ]);
-
-            $request->query->replace($snakeCaseQueryStrings);
-        }
-
-        /*
-            Replace all the JSON payload of the
-            request for the snake case version.
-        */
-        if ($request->json()->count() > 0) {
-
-            /**
-             * @var array<int|string, mixed> $jsonPayload
-             */
-            $jsonPayload = app()->call(InertiaRequestHelper::class, [
-                'data' => $request->json()->all(),
-            ]);
-
-            $request->json()->replace($jsonPayload);
+            $snakeCaseData = app()->call(InertiaRequestHelper::class, compact('data'));
+            $request->replace($snakeCaseData);
         }
 
         return parent::handle($request, $next);
