@@ -27,12 +27,14 @@
                         @click="clearFilters()"
                         type="button"
                         :disabled="doesntHaveActiveFilters"
-                        class="pointer-events-auto absolute left-2 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 cursor-pointer items-center justify-center rounded-lg bg-purple-500 text-white shadow-lg ring-1 ring-purple-300/60 hover:bg-purple-600 hover:ring-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-400"
+                        class="pointer-events-auto absolute left-2 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-lg bg-purple-500 text-white shadow-lg ring-1 ring-purple-300/60 hover:bg-purple-600 hover:ring-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-400"
                         :class="{
                             'cursor-not-allowed hover:bg-purple-600 hover:ring-purple-300/60':
                                 doesntHaveActiveFilters,
+                            'cursor-pointer': hasActiveFilters,
                         }"
                         aria-label="Clear filters"
+                        :aria-disabled="doesntHaveActiveFilters"
                         title="Clear filters"
                     >
                         <TrashIcon class="h-5 w-5 text-white" />
@@ -169,15 +171,26 @@ const getSelectedValue = (
     return valueById[card.id]?.() ?? null;
 };
 
-const doesntHaveActiveFilters = computed<boolean>((): boolean => {
+const hasActiveFilters: Ref<boolean> = computed<boolean>((): boolean => {
+    const filters: (string | boolean | undefined)[] = [
+        search.value,
+        location.value,
+        type.value,
+        isFeatured.value,
+    ];
+
+    const hasActiveAnyFilter: boolean = filters.some(
+        (filter: string | boolean | undefined) => filter !== undefined,
+    );
+
     return Boolean(
-        search.value === undefined &&
-            location.value === undefined &&
-            type.value === undefined &&
-            isFeatured.value === undefined &&
-            Object.keys(selectedFilters.value).length === 0,
+        hasActiveAnyFilter && Object.keys(selectedFilters.value).length > 0,
     );
 });
+
+const doesntHaveActiveFilters: Ref<boolean> = computed<boolean>(
+    (): boolean => !hasActiveFilters.value,
+);
 
 const clearFilters = (): void => {
     search.value = undefined;
@@ -185,6 +198,7 @@ const clearFilters = (): void => {
     type.value = undefined;
     isFeatured.value = undefined;
     selectedFilters.value = {};
+
     applyFilters();
 };
 
