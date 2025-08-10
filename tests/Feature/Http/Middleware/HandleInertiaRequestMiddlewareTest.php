@@ -31,8 +31,8 @@ it('replaces keys on query strings as it should.', function (string $snakeCaseQu
         ->toBeTrue();
 })->with([fake()->words(2, true)]);
 
-it('replaces keys on json payloads as it should.', function (string $snakeCaseQueryString): void {
-    $camelCaseQueryStringKey = str($snakeCaseQueryString)
+it('replaces keys on json payloads as it should.', function (string $snakeCaseJsonPayload): void {
+    $camelCaseJsonPayload = str($snakeCaseJsonPayload)
         ->camel()
         ->toString();
 
@@ -46,11 +46,47 @@ it('replaces keys on json payloads as it should.', function (string $snakeCaseQu
         ->value();
 
     $response = $this->postJson($url, [
-        $camelCaseQueryStringKey => $snakeCaseQueryString,
+        $camelCaseJsonPayload => $snakeCaseJsonPayload,
+    ])->collect();
+
+    expect($response->contains($snakeCaseJsonPayload))
+        ->toBeTrue()
+        ->and($response->doesntContain($camelCaseJsonPayload))
+        ->toBeTrue();
+})->with([fake()->words(2, true)]);
+
+it('replaces both query string and payload as it should.', function (string $snakeCaseQueryString, string $snakeCaseJsonPayload): void {
+    $camelCaseQueryStringKey = str($snakeCaseQueryString)
+        ->camel()
+        ->toString();
+
+    $camelCaseJsonPayload = str($snakeCaseJsonPayload)
+        ->camel()
+        ->toString();
+
+    Route::middleware(HandleInertiaRequestMiddleware::class)
+        ->post('test', function (Request $request): JsonResponse {
+            return response()->json($request->all());
+        });
+
+    $url = Uri::of(config('app.url'))
+        ->withPath('test')
+        ->withQuery([$camelCaseQueryStringKey => $snakeCaseQueryString])
+        ->value();
+
+    $response = $this->postJson($url, [
+        $camelCaseJsonPayload => $snakeCaseJsonPayload,
     ])->collect();
 
     expect($response->contains($snakeCaseQueryString))
         ->toBeTrue()
         ->and($response->doesntContain($camelCaseQueryStringKey))
+        ->toBeTrue()
+        ->and($response->contains($snakeCaseJsonPayload))
+        ->toBeTrue()
+        ->and($response->doesntContain($camelCaseJsonPayload))
         ->toBeTrue();
-})->with([fake()->words(2, true)]);
+})->with(
+    [fake()->unique()->words(2, true)],
+    [fake()->unique()->words(2, true)],
+);
