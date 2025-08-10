@@ -20,27 +20,27 @@
                 <div class="mb-8 grid gap-6 md:grid-cols-2">
                     <div class="flex flex-col">
                         <TextInput
-                            id="first_name"
+                            id="firstName"
                             label="First Name:"
                             v-model:modelValue="form.firstName"
                             type="text"
                             placeholder="Enter First Name"
                         />
-                        <div v-if="form.errors.first_name">
-                            {{ form.errors.first_name }}
+                        <div v-if="form.errors.firstName">
+                            {{ form.errors.firstName }}
                         </div>
                     </div>
 
                     <div class="flex flex-col">
                         <TextInput
-                            id="last_name"
+                            id="lastName"
                             label="Last Name:"
                             v-model:modelValue="form.lastName"
                             type="text"
                             placeholder="Enter Last Name"
                         />
-                        <div v-if="form.errors.last_name">
-                            {{ form.errors.last_name }}
+                        <div v-if="form.errors.lastName">
+                            {{ form.errors.lastName }}
                         </div>
                     </div>
 
@@ -72,14 +72,14 @@
 
                     <div class="flex flex-col">
                         <DropdownInput
-                            id="inquiry_type"
+                            id="inquiryType"
                             label="Inquiry Type:"
                             v-model:modelValue="form.inquiryType"
                             placeholder="Select Inquiry Type"
                             :options="inquiryTypes"
                         />
-                        <div v-if="form.errors.inquiry_type">
-                            {{ form.errors.inquiry_type }}
+                        <div v-if="form.errors.inquiryType">
+                            {{ form.errors.inquiryType }}
                         </div>
                     </div>
 
@@ -115,7 +115,7 @@
                         <input
                             type="checkbox"
                             id="terms"
-                            v-model="form.terms_agreed"
+                            v-model="form.termsAgreed"
                             class="mt-1 h-4 w-4 rounded border-neutral-800 bg-neutral-900/30 text-purple-500 focus:ring-purple-500"
                             required
                         />
@@ -144,9 +144,9 @@
                     <button
                         type="submit"
                         class="rounded-lg bg-purple-600 px-6 py-3 font-medium text-white hover:bg-purple-700"
-                        :disabled="!form.terms_agreed"
+                        :disabled="!form.termsAgreed"
                         :class="{
-                            'cursor-not-allowed opacity-50': !form.terms_agreed,
+                            'cursor-not-allowed opacity-50': !form.termsAgreed,
                         }"
                     >
                         Send Your Message

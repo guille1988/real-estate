@@ -23,14 +23,14 @@
                             class="mb-6 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4"
                         >
                             <TextInput
-                                id="first_name"
+                                id="firstName"
                                 label="First Name"
                                 v-model:modelValue="form.firstName"
                                 type="text"
                                 placeholder="Enter First Name"
                             />
                             <TextInput
-                                id="last_name"
+                                id="lastName"
                                 label="Last Name"
                                 v-model:modelValue="form.lastName"
                                 type="text"
@@ -63,21 +63,21 @@
                                 :options="locations"
                             />
                             <DropdownInput
-                                id="property_type"
+                                id="propertyType"
                                 label="Property Type"
                                 v-model:modelValue="form.propertyType"
                                 placeholder="Select Property Type"
                                 :options="propertyTypes"
                             />
                             <DropdownInput
-                                id="bathroom_count"
+                                id="bathroomCount"
                                 label="No. of Bathrooms"
                                 v-model:modelValue="form.bathrooms"
                                 placeholder="Select no. of bathrooms"
                                 :options="bathroomCountOptions"
                             />
                             <DropdownInput
-                                id="bedroom_count"
+                                id="bedroomCount"
                                 label="No. of Bedrooms"
                                 v-model:modelValue="form.bedrooms"
                                 placeholder="Select no. of bedrooms"

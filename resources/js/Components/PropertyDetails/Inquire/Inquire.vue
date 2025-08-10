@@ -23,14 +23,14 @@
                     >
                         <div class="mb-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
                             <TextInput
-                                id="first_name"
+                                id="firstName"
                                 label="First Name"
                                 v-model:modelValue="form.firstName"
                                 type="text"
                                 placeholder="Enter First Name"
                             />
                             <TextInput
-                                id="last_name"
+                                id="lastName"
                                 label="Last Name"
                                 v-model:modelValue="form.lastName"
                                 type="text"
@@ -67,10 +67,10 @@
                         <div class="mb-6">
                             <div class="flex items-center">
                                 <CheckboxInput
-                                    id="terms_agreed"
+                                    id="termsAgreed"
                                     label="I agree with "
                                     v-model:modelValue="form.termsAgreed"
-                                    text_class="text-gray-400"
+                                    text-class="text-gray-400"
                                 />
                                 <button
                                     type="button"
