@@ -20,12 +20,27 @@
                         type="text"
                         v-model="search"
                         placeholder="Search For A Property"
-                        class="w-full rounded-lg bg-[#111] px-4 py-4 pr-40 text-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-600"
+                        class="w-full rounded-lg bg-[#111] py-4 pl-16 pr-40 text-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-600"
                         @keyup.enter="applyFilters()"
                     />
                     <button
+                        @click="clearFilters()"
+                        type="button"
+                        :disabled="doesntHaveActiveFilters"
+                        class="pointer-events-auto absolute left-2 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 cursor-pointer items-center justify-center rounded-lg bg-purple-500 text-white shadow-lg ring-1 ring-purple-300/60 hover:bg-purple-600 hover:ring-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-400"
+                        :class="{
+                            'cursor-not-allowed hover:bg-purple-600 hover:ring-purple-300/60':
+                                doesntHaveActiveFilters,
+                        }"
+                        aria-label="Clear filters"
+                        title="Clear filters"
+                    >
+                        <TrashIcon class="h-5 w-5 text-white" />
+                    </button>
+                    <button
                         @click="applyFilters()"
-                        class="absolute right-2 top-1/2 flex -translate-y-1/2 items-center gap-2 rounded-lg bg-purple-600 px-6 py-3 text-sm font-medium text-white hover:bg-purple-700"
+                        type="button"
+                        class="absolute right-2 top-1/2 flex -translate-y-1/2 cursor-pointer items-center gap-2 rounded-lg bg-purple-600 px-6 py-3 text-sm font-medium text-white hover:bg-purple-700"
                     >
                         <SearchIcon class="text-white" />
                         <span>Find Property</span>
@@ -52,6 +67,7 @@
 
 <script setup lang="ts">
 import SearchIcon from '@/Components/Icons/SearchIcon.vue';
+import TrashIcon from '@/Components/Icons/TrashIcon.vue';
 import Properties from '@/Components/Properties/Search/Properties/Properties.vue';
 import SearchFilterCard from '@/Components/Properties/Search/SearchFilterCard.vue';
 import { index } from '@/Routes/actions/App/Http/Controllers/PropertyController';
@@ -62,7 +78,7 @@ import { PropertyTypeInterface } from '@/Types/App/Interfaces/PropertyTypeInterf
 import { SearchFilterCardInterface } from '@/Types/App/Interfaces/SearchFilterCardInterface';
 import { SearchFilterOptionInterface } from '@/Types/App/Interfaces/SearchFilterOptionInterface';
 import { router } from '@inertiajs/vue3';
-import { Ref, ref } from 'vue';
+import { computed, Ref, ref } from 'vue';
 
 const {
     filters,
@@ -151,6 +167,25 @@ const getSelectedValue = (
     };
 
     return valueById[card.id]?.() ?? null;
+};
+
+const doesntHaveActiveFilters = computed<boolean>((): boolean => {
+    return Boolean(
+        search.value === undefined &&
+            location.value === undefined &&
+            type.value === undefined &&
+            isFeatured.value === undefined &&
+            Object.keys(selectedFilters.value).length === 0,
+    );
+});
+
+const clearFilters = (): void => {
+    search.value = undefined;
+    location.value = undefined;
+    type.value = undefined;
+    isFeatured.value = undefined;
+    selectedFilters.value = {};
+    applyFilters();
 };
 
 const filterCards: SearchFilterCardInterface[] = [
