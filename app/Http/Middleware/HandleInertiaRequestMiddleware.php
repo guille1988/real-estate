@@ -69,7 +69,7 @@ final class HandleInertiaRequestMiddleware extends Middleware
     public function handle(Request $request, Closure $next): Response
     {
         /*
-            Replace all data of the request
+            Replace all the data of the request
             for the snake case version of it.
         */
         if (count($data = $request->all()) > 0) {
@@ -77,6 +77,7 @@ final class HandleInertiaRequestMiddleware extends Middleware
              * @var array<int|string, mixed> $snakeCaseData
              */
             $snakeCaseData = app()->call(InertiaRequestHelper::class, compact('data'));
+
             $request->replace($snakeCaseData);
         }
 
