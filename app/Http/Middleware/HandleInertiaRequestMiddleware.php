@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace App\Http\Middleware;
 
+use App\Support\InertiaRequestHelper;
 use App\Support\InertiaResponseHelper;
+use Closure;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
+use Symfony\Component\HttpFoundation\Response;
 use Throwable;
 
 final class HandleInertiaRequestMiddleware extends Middleware
@@ -58,5 +61,45 @@ final class HandleInertiaRequestMiddleware extends Middleware
          */
         return app()
             ->call(InertiaResponseHelper::class, compact('data'));
+    }
+
+    /*
+     * Handle the incoming request.
+     */
+    public function handle(Request $request, Closure $next): Response
+    {
+        /*
+            Replace all the query strings of the
+            request for the snake case version.
+        */
+        if ($request->query->count() > 0) {
+            /**
+             * @var array<int|string, mixed> $snakeCaseQueryStrings
+             */
+            $snakeCaseQueryStrings = app()
+                ->call(InertiaRequestHelper::class, [
+                    'data' => $request->query->all(),
+                ]);
+
+            $request->query->replace($snakeCaseQueryStrings);
+        }
+
+        /*
+            Replace all the JSON payload of the
+            request for the snake case version.
+        */
+        if ($request->json()->count() > 0) {
+
+            /**
+             * @var array<int|string, mixed> $jsonPayload
+             */
+            $jsonPayload = app()->call(InertiaRequestHelper::class, [
+                'data' => $request->json()->all(),
+            ]);
+
+            $request->json()->replace($jsonPayload);
+        }
+
+        return parent::handle($request, $next);
     }
 }

@@ -11,6 +11,9 @@ use JsonSerializable;
 
 final class InertiaResponseHelper
 {
+    /**
+     * Recursively transform array keys to camel case.
+     */
     public function __invoke(mixed $data): mixed
     {
         if ($this->isNotArrayOrJsonSerializable($data)) {
@@ -56,11 +59,17 @@ final class InertiaResponseHelper
         return $result;
     }
 
+    /*
+     * Checks if the data is not an array or implements JsonSerializable.
+     */
     private function isNotArrayOrJsonSerializable(mixed $data): bool
     {
         return ! $this->isArrayOrJsonSerializable($data);
     }
 
+    /*
+     * Checks if the data is an array or implements JsonSerializable.
+     */
     private function isArrayOrJsonSerializable(mixed $data): bool
     {
         return is_array($data) || $data instanceof JsonSerializable;
