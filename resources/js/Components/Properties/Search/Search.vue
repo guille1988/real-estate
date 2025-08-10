@@ -97,7 +97,7 @@ const applyFilters = (): void => {
         search: search.value?.trim(),
         location: location.value,
         type: type.value,
-        is_featured: isFeatured.value,
+        isFeatured: isFeatured.value,
     } as const;
 
     router.get(
