@@ -172,8 +172,9 @@ const getSelectedValue = (
 };
 
 const hasActiveFilters: Ref<boolean> = computed<boolean>((): boolean => {
+    const isSearchActive: boolean = (search.value ?? '').trim().length > 0;
+
     const filters: (string | boolean | undefined)[] = [
-        search.value,
         location.value,
         type.value,
         isFeatured.value,
@@ -183,9 +184,10 @@ const hasActiveFilters: Ref<boolean> = computed<boolean>((): boolean => {
         (filter: string | boolean | undefined) => filter !== undefined,
     );
 
-    return Boolean(
-        hasActiveAnyFilter && Object.keys(selectedFilters.value).length > 0,
-    );
+    const hasActiveAnySelectedFilter: boolean =
+        Object.keys(selectedFilters.value).length > 0;
+
+    return isSearchActive || hasActiveAnyFilter || hasActiveAnySelectedFilter;
 });
 
 const doesntHaveActiveFilters: Ref<boolean> = computed<boolean>(
@@ -193,7 +195,7 @@ const doesntHaveActiveFilters: Ref<boolean> = computed<boolean>(
 );
 
 const clearFilters = (): void => {
-    search.value = undefined;
+    search.value = '';
     location.value = undefined;
     type.value = undefined;
     isFeatured.value = undefined;
