@@ -45,28 +45,6 @@ it('works searching for a property.', function (string $title): void {
         });
 })->with(['Test']);
 
-it('works searching for a property by type.', function (PropertyTypeEnum $type): void {
-    $propertyOne = Property::factory()
-        ->create(compact('type'));
-
-    $propertyTwo = Property::factory()
-        ->create(compact('type'));
-
-    Image::factory()
-        ->default()
-        ->create(['property_id' => $propertyOne->id]);
-
-    Image::factory()
-        ->default()
-        ->create(['property_id' => $propertyTwo->id]);
-
-    $this->get(route('properties.index', ['type' => $type->value]))
-        ->assertInertia(function (Assert $page): void {
-            $page->component(PageEnum::PROPERTIES->value)
-                ->has('properties', 2);
-        });
-})->with(PropertyTypeEnum::cases());
-
 it('works searching for a property by location.', function (PropertyLocationEnum $location): void {
     $propertyOne = Property::factory()
         ->create(compact('location'));
@@ -88,6 +66,28 @@ it('works searching for a property by location.', function (PropertyLocationEnum
                 ->has('properties', 2);
         });
 })->with(PropertyLocationEnum::cases());
+
+it('works searching for a property by type.', function (PropertyTypeEnum $type): void {
+    $propertyOne = Property::factory()
+        ->create(compact('type'));
+
+    $propertyTwo = Property::factory()
+        ->create(compact('type'));
+
+    Image::factory()
+        ->default()
+        ->create(['property_id' => $propertyOne->id]);
+
+    Image::factory()
+        ->default()
+        ->create(['property_id' => $propertyTwo->id]);
+
+    $this->get(route('properties.index', ['type' => $type->value]))
+        ->assertInertia(function (Assert $page): void {
+            $page->component(PageEnum::PROPERTIES->value)
+                ->has('properties', 2);
+        });
+})->with(PropertyTypeEnum::cases());
 
 it('works searching for a property by featured.', function (bool $isFeatured): void {
     $propertyOne = Property::factory()
