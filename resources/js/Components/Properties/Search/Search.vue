@@ -20,7 +20,7 @@
                         type="text"
                         v-model="search"
                         placeholder="Search For A Property"
-                        class="w-full rounded-lg bg-[#111] py-4 pl-16 pr-40 text-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-600"
+                        class="w-full truncate rounded-lg bg-[#111] py-4 pl-16 pr-16 text-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-600 sm:pr-40"
                         @keyup.enter="applyFilters()"
                     />
                     <button
@@ -42,10 +42,10 @@
                     <button
                         @click="applyFilters()"
                         type="button"
-                        class="absolute right-2 top-1/2 flex -translate-y-1/2 cursor-pointer items-center gap-2 rounded-lg bg-purple-600 px-6 py-3 text-sm font-medium text-white hover:bg-purple-700"
+                        class="absolute right-2 top-1/2 flex -translate-y-1/2 cursor-pointer items-center gap-2 rounded-lg bg-purple-600 px-3 py-3 text-xs font-medium text-white hover:bg-purple-700 sm:px-6 sm:text-sm"
                     >
                         <SearchIcon class="text-white" />
-                        <span>Find Property</span>
+                        <span class="hidden sm:inline">Find Property</span>
                     </button>
                 </div>
             </div>
