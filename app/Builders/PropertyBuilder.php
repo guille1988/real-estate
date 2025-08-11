@@ -57,6 +57,24 @@ final class PropertyBuilder extends Builder
             ->when(
                 $data->isNotNull('isFeatured'),
                 fn (self $query): self => $query->where('is_featured', $data->isFeatured),
+            )->when(
+                $data->isNotNull('price'),
+                function (self $query) use ($data): self {
+                    return $query->where('price', '>=', $data->price[0])
+                        ->when(
+                            count($data->price) > 1,
+                            fn (self $builder): self => $builder->where('price', '<=', $data->price[1])
+                        );
+                },
+            )->when(
+                $data->isNotNull('area'),
+                function (self $query) use ($data): self {
+                    return $query->where('area', '>=', $data->area[0])
+                        ->when(
+                            count($data->area) > 1,
+                            fn (self $builder): self => $builder->where('price', '<=', $data->area[1])
+                        );
+                },
             );
     }
 }

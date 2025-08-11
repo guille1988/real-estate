@@ -1,4 +1,4 @@
 export interface SearchFilterOptionInterface {
     label: string;
-    value: string | boolean;
+    value: number[] | string | boolean;
 }
