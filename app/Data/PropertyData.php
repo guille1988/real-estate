@@ -6,6 +6,7 @@ namespace App\Data;
 
 use App\Enums\PropertyLocationEnum;
 use App\Enums\PropertyTypeEnum;
+use Illuminate\Support\Collection;
 use Illuminate\Validation\Rule;
 use Spatie\LaravelData\Attributes\MapName;
 use Spatie\LaravelData\Data;
@@ -18,10 +19,33 @@ final class PropertyData extends Data
         public ?string $search = null,
         public ?PropertyLocationEnum $location = null,
         public ?PropertyTypeEnum $type = null,
-        public ?array $price = null,
-        public ?array $area = null,
+        public ?string $price = null,
+        public ?string $area = null,
         public ?bool $isFeatured = null,
     ) {}
+
+    /**
+     * Get the field of the data.
+     *
+     * @return Collection<int, int<min, -1>|int<1, max>>
+     */
+    private function getField(string $field): Collection
+    {
+        /**
+         * @var string $dataField
+         */
+        $dataField = $this->$field;
+
+        return str($dataField)
+            ->explode('-')
+            ->map(function (string $value): ?int {
+                return is_numeric($value)
+                    ? (int) $value
+                    : null;
+            })
+            ->values()
+            ->filter();
+    }
 
     /**
      * @return array<string, array<int, mixed>>
@@ -32,18 +56,37 @@ final class PropertyData extends Data
             'search' => ['nullable', 'string', 'between:1,200'],
             'location' => ['nullable', Rule::enum(PropertyLocationEnum::class)],
             'type' => ['nullable', Rule::enum(PropertyTypeEnum::class)],
-            'price' => ['nullable', 'array', 'min:1', 'max:2'],
-            'price.0' => ['required_with:price', 'integer', 'lt:price.1'],
-            'price.1' => ['nullable', 'integer', 'gt:price.0'],
-            'area' => ['nullable', 'array', 'min:1', 'max:2'],
-            'area.0' => ['required_with:area', 'integer', 'lt:area.1'],
-            'area.1' => ['nullable', 'integer', 'gt:area.0'],
+            'price' => ['nullable', 'string', 'between:12,14'],
+            'area' => ['nullable', 'string', 'between:8,9'],
             'is_featured' => ['nullable', 'boolean'],
         ];
     }
 
+    /*
+     * Check if the field is not null.
+     */
     public function isNotNull(string $field): bool
     {
         return ! is_null($this->$field);
+    }
+
+    /**
+     * Get the price of the data.
+     *
+     * @return Collection<int, int<min, -1>|int<1, max>>
+     */
+    public function getPrice(): Collection
+    {
+        return $this->getField('price');
+    }
+
+    /**
+     * Get the area of the data.
+     *
+     * @return Collection<int, int<min, -1>|int<1, max>>
+     */
+    public function getArea(): Collection
+    {
+        return $this->getField('area');
     }
 }

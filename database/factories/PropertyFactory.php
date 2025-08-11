@@ -34,7 +34,7 @@ final class PropertyFactory extends Factory
             'bathrooms' => $this->faker->numberBetween(1, 5),
             'bedrooms' => $this->faker->numberBetween(1, 5),
             'area' => $this->faker->numberBetween(600, 4_000),
-            'price' => $this->faker->numberBetween(600_000, 4_000_000),
+            'price' => $this->faker->numberBetween(100_000, 4_000_000),
             'is_featured' => $this->faker->boolean(),
         ];
     }

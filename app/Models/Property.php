@@ -91,9 +91,9 @@ final class Property extends Model
     {
         /** @var string */
         return Number::currency(
-            number: $this->price / 100,
+            number: $this->price,
             in: 'USD',
-            precision: 2,
+            precision: 0,
         );
     }
 

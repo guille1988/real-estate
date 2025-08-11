@@ -45,36 +45,37 @@ final class PropertyBuilder extends Builder
                     return $query->whereLike('title', $search)
                         ->orWhereLike('caption', $search);
                 });
-            })
-            ->when(
-                $data->isNotNull('type'),
-                fn (self $query): self => $query->where('type', $data->type),
-            )
-            ->when(
+            })->when(
                 $data->isNotNull('location'),
                 fn (self $query): self => $query->where('location', $data->location),
-            )
-            ->when(
-                $data->isNotNull('isFeatured'),
-                fn (self $query): self => $query->where('is_featured', $data->isFeatured),
+            )->when(
+                $data->isNotNull('type'),
+                fn (self $query): self => $query->where('type', $data->type),
             )->when(
                 $data->isNotNull('price'),
                 function (self $query) use ($data): self {
-                    return $query->where('price', '>=', $data->price[0])
+                    $price = $data->getPrice();
+
+                    return $query->where('price', '>=', $price->first())
                         ->when(
-                            count($data->price) > 1,
-                            fn (self $builder): self => $builder->where('price', '<=', $data->price[1])
+                            $price->count() > 1,
+                            fn (self $builder): self => $builder->where('price', '<=', $price->last())
                         );
                 },
             )->when(
                 $data->isNotNull('area'),
                 function (self $query) use ($data): self {
-                    return $query->where('area', '>=', $data->area[0])
+                    $area = $data->getArea();
+
+                    return $query->where('area', '>=', $area->first())
                         ->when(
-                            count($data->area) > 1,
-                            fn (self $builder): self => $builder->where('price', '<=', $data->area[1])
+                            $area->count() > 1,
+                            fn (self $builder): self => $builder->where('area', '<=', $area->last())
                         );
                 },
+            )->when(
+                $data->isNotNull('isFeatured'),
+                fn (self $query): self => $query->where('is_featured', $data->isFeatured),
             );
     }
 }

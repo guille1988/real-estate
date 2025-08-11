@@ -2,7 +2,7 @@ export interface FilterInterface {
     search: string;
     location: string;
     type: string;
-    price: number[];
-    area: number[];
+    price: string;
+    area: string;
     isFeatured: boolean;
 }

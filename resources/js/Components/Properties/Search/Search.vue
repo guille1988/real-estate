@@ -107,11 +107,11 @@ const type: Ref<string | undefined> = ref<string | undefined>(
     filters.type || undefined,
 );
 
-const price: Ref<number[] | undefined> = ref<number[] | undefined>(
+const price: Ref<string | undefined> = ref<string | undefined>(
     filters.price || undefined,
 );
 
-const area: Ref<number[] | undefined> = ref<number[] | undefined>(
+const area: Ref<string | undefined> = ref<string | undefined>(
     filters.area || undefined,
 );
 
@@ -156,6 +156,12 @@ const handleOptionSelected = (
         2: (option: SearchFilterOptionInterface | null) => {
             type.value = option ? String(option.value) : undefined;
         },
+        3: (option: SearchFilterOptionInterface | null) => {
+            price.value = option ? String(option.value) : undefined;
+        },
+        4: (option: SearchFilterOptionInterface | null) => {
+            area.value = option ? String(option.value) : undefined;
+        },
         5: (option: SearchFilterOptionInterface | null) => {
             isFeatured.value = option ? Boolean(option.value) : undefined;
         },
@@ -176,6 +182,8 @@ const getSelectedValue = (
     const valueById: Record<number, () => string | boolean | null> = {
         1: () => location.value ?? null,
         2: () => type.value ?? null,
+        3: () => price.value ?? null,
+        4: () => area.value ?? null,
         5: () => isFeatured.value ?? null,
     };
 
@@ -188,6 +196,8 @@ const hasActiveFilters: Ref<boolean> = computed<boolean>((): boolean => {
     const filters: (string | boolean | undefined)[] = [
         location.value,
         type.value,
+        price.value,
+        area.value,
         isFeatured.value,
     ];
 
@@ -209,6 +219,8 @@ const clearFilters = (): void => {
     search.value = '';
     location.value = undefined;
     type.value = undefined;
+    price.value = undefined;
+    area.value = undefined;
     isFeatured.value = undefined;
     selectedFilters.value = {};
 
@@ -233,11 +245,11 @@ const filterCards: SearchFilterCardInterface[] = [
         icon: 'MoneyIcon',
         label: 'Pricing Range',
         options: [
-            { label: '$100,000 - $300,000', value: [100000, 300000] },
-            { label: '$300,000 - $500,000', value: [300000, 500000] },
-            { label: '$500,000 - $800,000', value: [500000, 800000] },
-            { label: '$800,000 - $1,200,000', value: [800000, 1200000] },
-            { label: '$1,200,000+', value: [1200000] },
+            { label: '$100,000 - $300,000', value: '100000-300000' },
+            { label: '$300,000 - $500,000', value: '300000-500000' },
+            { label: '$500,000 - $800,000', value: '500000-800000' },
+            { label: '$800,000 - $1,200,000', value: '800000-1200000' },
+            { label: '$1,200,000+', value: '1200000-plus' },
         ],
     },
     {
@@ -245,11 +257,11 @@ const filterCards: SearchFilterCardInterface[] = [
         icon: 'ChartIcon',
         label: 'Property Size',
         options: [
-            { label: '500 - 1,000 sq ft', value: [500, 1000] },
-            { label: '1,000 - 1,500 sq ft', value: [1000, 1500] },
-            { label: '1,500 - 2,000 sq ft', value: [1500, 2000] },
-            { label: '2,000 - 3,000 sq ft', value: [2000, 3000] },
-            { label: '3,000+ sq ft', value: [3000] },
+            { label: '500 - 1,000 sq ft', value: '500-1000' },
+            { label: '1,000 - 1,500 sq ft', value: '1000-1500' },
+            { label: '1,500 - 2,000 sq ft', value: '1500-2000' },
+            { label: '2,000 - 3,000 sq ft', value: '2000-3000' },
+            { label: '3,000+ sq ft', value: '3000-plus' },
         ],
     },
     {
