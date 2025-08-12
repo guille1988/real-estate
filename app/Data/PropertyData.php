@@ -6,6 +6,7 @@ namespace App\Data;
 
 use App\Enums\PropertyLocationEnum;
 use App\Enums\PropertyTypeEnum;
+use App\Rules\IsValidRange;
 use Illuminate\Support\Collection;
 use Illuminate\Validation\Rule;
 use Spatie\LaravelData\Attributes\MapName;
@@ -56,8 +57,8 @@ final class PropertyData extends Data
             'search' => ['nullable', 'string', 'between:1,200'],
             'location' => ['nullable', Rule::enum(PropertyLocationEnum::class)],
             'type' => ['nullable', Rule::enum(PropertyTypeEnum::class)],
-            'price' => ['nullable', 'string', 'between:12,14'],
-            'area' => ['nullable', 'string', 'between:8,9'],
+            'price' => ['nullable', 'string', 'between:12,14', new IsValidRange],
+            'area' => ['nullable', 'string', 'between:8,9', new IsValidRange],
             'is_featured' => ['nullable', 'boolean'],
         ];
     }
