@@ -65,8 +65,8 @@ final class IsValidRange implements ValidationRule
          */
         $max = $range->last();
 
-        if ($this->isPlus($min)) {
-            return is_numeric($max);
+        if ($this->isPlus($max)) {
+            return is_numeric($min);
         }
 
         return false;
