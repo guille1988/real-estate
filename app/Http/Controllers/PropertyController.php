@@ -38,7 +38,7 @@ final class PropertyController
                 'bedrooms',
                 'price',
             ])->toResourceCollection(IndexPropertyResource::class);
-sleep(5);
+
         return Inertia::render(PageEnum::PROPERTIES->value, [
             'properties' => fn (): ResourceCollection => $properties,
             'locations' => fn (): Collection => PropertyLocationEnum::toResponse(),

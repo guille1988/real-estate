@@ -68,8 +68,8 @@
                                 class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5"
                             >
                                 <div
-                                    v-for="filterCard in 5"
-                                    :key="filterCard"
+                                    v-for="skeletonFilterCard in 5"
+                                    :key="skeletonFilterCard"
                                     class="rounded-lg bg-[#0f0f0f] p-4 ring-1 ring-gray-800"
                                 >
                                     <div
@@ -85,8 +85,8 @@
                                 class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3"
                             >
                                 <div
-                                    v-for="propertyCard in 3"
-                                    :key="propertyCard"
+                                    v-for="visibleSkeletonCard in visibleSkeletonCards"
+                                    :key="visibleSkeletonCard"
                                     class="overflow-hidden rounded-xl bg-[#0f0f0f] ring-1 ring-gray-800"
                                 >
                                     <div
@@ -145,14 +145,23 @@ import TrashIcon from '@/Components/Icons/TrashIcon.vue';
 import Properties from '@/Components/Properties/Search/Properties/Properties.vue';
 import SearchFilterCard from '@/Components/Properties/Search/SearchFilterCard.vue';
 import { index } from '@/Routes/actions/App/Http/Controllers/PropertyController';
+import { ScreenSizeEnum } from '@/Types/App/Enums/ScreenSizeEnum';
 import { FilterInterface } from '@/Types/App/Interfaces/FilterInterface';
 import { IndexPropertyInterface } from '@/Types/App/Interfaces/IndexPropertyInterface';
 import { PropertyLocationInterface } from '@/Types/App/Interfaces/PropertyLocationInterface';
 import { PropertyTypeInterface } from '@/Types/App/Interfaces/PropertyTypeInterface';
+import { ScreenSizeConfigInterface } from '@/Types/App/Interfaces/ScreenSizeConfigInterface';
 import { SearchFilterCardInterface } from '@/Types/App/Interfaces/SearchFilterCardInterface';
 import { SearchFilterOptionInterface } from '@/Types/App/Interfaces/SearchFilterOptionInterface';
 import { router, WhenVisible } from '@inertiajs/vue3';
-import { computed, Ref, ref } from 'vue';
+import {
+    computed,
+    onMounted,
+    onUnmounted,
+    Ref,
+    ref,
+    type ComputedRef,
+} from 'vue';
 
 const {
     filters,
@@ -346,4 +355,50 @@ const filterCards: SearchFilterCardInterface[] = [
         ],
     },
 ];
+
+const screenSize = ref<ScreenSizeEnum>(ScreenSizeEnum.DESKTOP);
+const resizeTimeout = ref<number | null>(null);
+
+const updateScreenSize = (): void => {
+    const screenSizes: ScreenSizeConfigInterface[] = [
+        { max: 768, type: ScreenSizeEnum.MOBILE },
+        { max: 1024, type: ScreenSizeEnum.TABLET },
+    ];
+
+    const width: number =
+        typeof window !== 'undefined' ? window.innerWidth : 1920;
+    const match = screenSizes.find((cfg) => width < cfg.max);
+    screenSize.value =
+        match === undefined ? ScreenSizeEnum.DESKTOP : match.type;
+};
+
+const handleResize = (): void => {
+    if (resizeTimeout.value !== null) {
+        window.clearTimeout(resizeTimeout.value);
+    }
+    resizeTimeout.value = window.setTimeout((): void => {
+        updateScreenSize();
+    }, 200);
+};
+
+onMounted((): void => {
+    updateScreenSize();
+    window.addEventListener('resize', handleResize);
+});
+
+onUnmounted((): void => {
+    if (resizeTimeout.value !== null) {
+        window.clearTimeout(resizeTimeout.value);
+    }
+    window.removeEventListener('resize', handleResize);
+});
+
+const visibleSkeletonCards: ComputedRef<number> = computed((): number => {
+    const map: Record<ScreenSizeEnum, number> = {
+        [ScreenSizeEnum.MOBILE]: 1,
+        [ScreenSizeEnum.TABLET]: 2,
+        [ScreenSizeEnum.DESKTOP]: 3,
+    };
+    return map[screenSize.value] ?? 3;
+});
 </script>
