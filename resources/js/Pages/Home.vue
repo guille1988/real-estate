@@ -13,9 +13,17 @@ import FeaturedProperties from '@/Components/Home/FeaturedProperties/FeaturedPro
 import HeroSection from '@/Components/Home/HeroSection/HeroSection.vue';
 import Layout from '@/Components/Layout/Layout.vue';
 import Faq from '@/Components/Shared/Faq/Faq.vue';
+import { displayErrors } from '@/Composables/useErrorHandling';
+import { ErrorInterface } from '@/Types/App/Interfaces/ErrorInterface';
 import { IndexPropertyInterface } from '@/Types/App/Interfaces/IndexPropertyInterface';
+import { onMounted } from 'vue';
 
-defineProps<{
+const { errors }: { errors: ErrorInterface } = defineProps<{
     featuredProperties: IndexPropertyInterface[];
+    errors: ErrorInterface;
 }>();
+
+onMounted((): void => {
+    displayErrors(errors);
+});
 </script>

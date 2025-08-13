@@ -14,15 +14,23 @@
 import Layout from '@/Components/Layout/Layout.vue';
 import MakeItHappen from '@/Components/Properties/MakeItHappen/MakeItHappen.vue';
 import Search from '@/Components/Properties/Search/Search.vue';
+import { displayErrors } from '@/Composables/useErrorHandling';
+import { ErrorInterface } from '@/Types/App/Interfaces/ErrorInterface';
 import { FilterInterface } from '@/Types/App/Interfaces/FilterInterface';
 import { IndexPropertyInterface } from '@/Types/App/Interfaces/IndexPropertyInterface';
 import { PropertyLocationInterface } from '@/Types/App/Interfaces/PropertyLocationInterface';
 import { PropertyTypeInterface } from '@/Types/App/Interfaces/PropertyTypeInterface';
+import { onMounted } from 'vue';
 
-defineProps<{
+const { errors }: { errors: ErrorInterface } = defineProps<{
     properties: IndexPropertyInterface[];
     locations: PropertyLocationInterface[];
     types: PropertyTypeInterface[];
     filters: FilterInterface;
+    errors: ErrorInterface;
 }>();
+
+onMounted((): void => {
+    displayErrors(errors);
+});
 </script>
