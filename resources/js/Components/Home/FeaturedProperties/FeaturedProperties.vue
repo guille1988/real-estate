@@ -27,59 +27,154 @@
                 </Link>
             </div>
 
-            <div class="mb-8 overflow-hidden">
-                <div
-                    ref="sliderTrack"
-                    class="flex transition-transform duration-500 ease-in-out"
-                    :style="{ transform: `translateX(-${translateX}px)` }"
-                >
-                    <div
-                        v-for="card in featuredProperties"
-                        :key="card.uuid"
-                        class="flex-shrink-0 pr-4 md:pr-6"
-                        :class="{
-                            'w-full': screenSize === ScreenSizeEnum.MOBILE,
-                            'w-1/2': screenSize === ScreenSizeEnum.TABLET,
-                            'w-1/3': screenSize === ScreenSizeEnum.DESKTOP,
-                        }"
-                        ref="slideItems"
+            <WhenVisible :data="['featuredProperties']">
+                <template #fallback>
+                    <Transition
+                        appear
+                        enter-active-class="transition-all duration-200 ease-out"
+                        enter-from-class="opacity-0 scale-95"
+                        enter-to-class="opacity-100 scale-100"
+                        leave-active-class="transition-all duration-200 ease-in"
+                        leave-from-class="opacity-100 scale-100"
+                        leave-to-class="opacity-0 scale-95"
                     >
-                        <FeaturedPropertyCard :card="card" />
-                    </div>
-                </div>
-            </div>
+                        <div class="animate-pulse" aria-hidden="true">
+                            <div class="mb-8 overflow-hidden">
+                                <div class="flex">
+                                    <div
+                                        v-for="visibleSkeletonCard in visibleSkeletonCards"
+                                        :key="visibleSkeletonCard"
+                                        class="flex-shrink-0 pr-4 md:pr-6"
+                                        :class="{
+                                            'w-full':
+                                                screenSize ===
+                                                ScreenSizeEnum.MOBILE,
+                                            'w-1/2':
+                                                screenSize ===
+                                                ScreenSizeEnum.TABLET,
+                                            'w-1/3':
+                                                screenSize ===
+                                                ScreenSizeEnum.DESKTOP,
+                                        }"
+                                    >
+                                        <div
+                                            class="overflow-hidden rounded-xl bg-[#0f0f0f] ring-1 ring-gray-800"
+                                        >
+                                            <div
+                                                class="h-40 w-full bg-gray-700/30"
+                                            ></div>
+                                            <div class="space-y-2 p-4">
+                                                <div
+                                                    class="h-4 w-3/4 rounded bg-gray-700/50"
+                                                ></div>
+                                                <div
+                                                    class="h-4 w-1/2 rounded bg-gray-700/40"
+                                                ></div>
+                                                <div
+                                                    class="mt-4 h-8 w-24 rounded bg-gray-700/30"
+                                                ></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div
+                                    class="h-4 w-20 rounded bg-gray-700/40"
+                                ></div>
+                                <div class="flex gap-2">
+                                    <div
+                                        class="h-9 w-9 rounded border border-gray-800 bg-[#0f0f0f]"
+                                    ></div>
+                                    <div
+                                        class="h-9 w-9 rounded border border-gray-800 bg-[#0f0f0f]"
+                                    ></div>
+                                </div>
+                            </div>
+                        </div>
+                    </Transition>
+                </template>
 
-            <div class="flex items-center justify-between">
-                <p class="text-xs text-gray-400 md:text-sm">
-                    {{ `${currentSlides} of ${slidesTotal}` }}
-                </p>
-                <div class="flex gap-2">
-                    <button
-                        class="border border-gray-800 p-1.5 transition-colors duration-300 md:p-2"
-                        :class="{
-                            'hover:bg-gray-800': canGoBack,
-                            'cursor-not-allowed opacity-50': !canGoBack,
-                        }"
-                        @click="prevSlide"
-                        :disabled="!canGoBack"
-                        aria-label="Previous slide"
-                    >
-                        <ChevronIcon :direction="ChevronDirectionEnum.LEFT" />
-                    </button>
-                    <button
-                        class="border border-gray-800 p-1.5 transition-colors duration-300 md:p-2"
-                        :class="{
-                            'hover:bg-gray-800': canGoForward,
-                            'cursor-not-allowed opacity-50': !canGoForward,
-                        }"
-                        @click="nextSlide"
-                        :disabled="!canGoForward"
-                        aria-label="Next slide"
-                    >
-                        <ChevronIcon :direction="ChevronDirectionEnum.RIGHT" />
-                    </button>
-                </div>
-            </div>
+                <Transition
+                    appear
+                    enter-active-class="transition-opacity duration-200 ease-out"
+                    enter-from-class="opacity-0"
+                    enter-to-class="opacity-100"
+                    leave-active-class="transition-opacity duration-200 ease-in"
+                    leave-from-class="opacity-100"
+                    leave-to-class="opacity-0"
+                >
+                    <div>
+                        <div class="mb-8 overflow-hidden">
+                            <div
+                                ref="sliderTrack"
+                                class="flex transition-transform duration-500 ease-in-out"
+                                :style="{
+                                    transform: `translateX(-${translateX}px)`,
+                                }"
+                            >
+                                <div
+                                    v-for="card in featuredProperties"
+                                    :key="card.uuid"
+                                    class="flex-shrink-0 pr-4 md:pr-6"
+                                    :class="{
+                                        'w-full':
+                                            screenSize ===
+                                            ScreenSizeEnum.MOBILE,
+                                        'w-1/2':
+                                            screenSize ===
+                                            ScreenSizeEnum.TABLET,
+                                        'w-1/3':
+                                            screenSize ===
+                                            ScreenSizeEnum.DESKTOP,
+                                    }"
+                                    ref="slideItems"
+                                >
+                                    <FeaturedPropertyCard :card="card" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <p class="text-xs text-gray-400 md:text-sm">
+                                {{ `${currentSlides} of ${slidesTotal}` }}
+                            </p>
+                            <div class="flex gap-2">
+                                <button
+                                    class="border border-gray-800 p-1.5 transition-colors duration-300 md:p-2"
+                                    :class="{
+                                        'hover:bg-gray-800': canGoBack,
+                                        'cursor-not-allowed opacity-50':
+                                            !canGoBack,
+                                    }"
+                                    @click="prevSlide"
+                                    :disabled="!canGoBack"
+                                    aria-label="Previous slide"
+                                >
+                                    <ChevronIcon
+                                        :direction="ChevronDirectionEnum.LEFT"
+                                    />
+                                </button>
+                                <button
+                                    class="border border-gray-800 p-1.5 transition-colors duration-300 md:p-2"
+                                    :class="{
+                                        'hover:bg-gray-800': canGoForward,
+                                        'cursor-not-allowed opacity-50':
+                                            !canGoForward,
+                                    }"
+                                    @click="nextSlide"
+                                    :disabled="!canGoForward"
+                                    aria-label="Next slide"
+                                >
+                                    <ChevronIcon
+                                        :direction="ChevronDirectionEnum.RIGHT"
+                                    />
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </Transition>
+            </WhenVisible>
         </div>
     </section>
 </template>
@@ -93,7 +188,7 @@ import { ChevronDirectionEnum } from '@/Types/App/Enums/ChevronDirectionEnum';
 import { ScreenSizeEnum } from '@/Types/App/Enums/ScreenSizeEnum';
 import { IndexPropertyInterface } from '@/Types/App/Interfaces/IndexPropertyInterface';
 import { ScreenSizeConfigInterface } from '@/Types/App/Interfaces/ScreenSizeConfigInterface';
-import { Link } from '@inertiajs/vue3';
+import { Link, WhenVisible } from '@inertiajs/vue3';
 import {
     computed,
     ComputedRef,
@@ -224,5 +319,14 @@ onUnmounted((): void => {
         window.clearTimeout(resizeTimeout.value);
     }
     window.removeEventListener('resize', handleResize);
+});
+
+const visibleSkeletonCards: ComputedRef<number> = computed((): number => {
+    const map: Record<ScreenSizeEnum, number> = {
+        [ScreenSizeEnum.MOBILE]: 1,
+        [ScreenSizeEnum.TABLET]: 2,
+        [ScreenSizeEnum.DESKTOP]: 3,
+    };
+    return map[screenSize.value] ?? 3;
 });
 </script>
