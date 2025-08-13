@@ -31,8 +31,5 @@
         "vite-plugin-run": "^0.6.1",
         "vue": "^3.4.0",
         "vue-tsc": "^2.0.24"
-    },
-    "dependencies": {
-        "vue3-spinners": "^1.2.2"
     }
 }
