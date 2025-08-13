@@ -121,6 +121,16 @@ it('works searching for a property by price range.', function (array $range): vo
     ],
 ]);
 
+it("doesn't work by price range if the query string is invalid.", function (string $price): void {
+    $this->get(route('properties.index', compact('price')))
+        ->assertSessionHasErrors('price');
+})->with([
+    '100000/300000',
+    '100000-',
+    '300000-100000',
+    'plus-plus',
+]);
+
 it('works searching for a property by area range.', function (array $range): void {
     $area = fake()->numberBetween(...$range);
 
@@ -151,6 +161,16 @@ it('works searching for a property by area range.', function (array $range): voi
         [2000, 3000],
         [3000],
     ],
+]);
+
+it("doesn't work by area range if the query string is invalid.", function (string $area): void {
+    $this->get(route('properties.index', compact('area')))
+        ->assertSessionHasErrors('area');
+})->with([
+    '500/1000',
+    '500-',
+    '1000-500',
+    'plus-plus',
 ]);
 
 it('works searching for a property by featured.', function (bool $isFeatured): void {
