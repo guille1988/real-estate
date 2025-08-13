@@ -1,68 +1,105 @@
 <template>
     <section class="bg-black px-4 py-8" id="search-property">
         <div class="container mx-auto px-4">
-            <div class="mb-12 pl-4 text-left md:pl-36">
-                <h1 class="mb-4 text-2xl font-bold text-white md:text-3xl">
-                    Find Your Dream Property
-                </h1>
-                <p class="ml-0 max-w-6xl text-gray-400">
-                    Welcome to Real estate, where your dream property awaits in
-                    every corner of our beautiful world. Explore our curated
-                    selection of properties, each offering a unique story and a
-                    chance to redefine your life. With categories to suit every
-                    dreamer, your journey.
-                </p>
-            </div>
-
-            <div class="mx-auto mb-6 max-w-4xl py-8">
-                <div class="relative">
-                    <input
-                        type="text"
-                        v-model="search"
-                        placeholder="Search For A Property"
-                        class="w-full truncate rounded-lg bg-[#111] py-4 pl-16 pr-16 text-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-600 sm:pr-40"
-                        @keyup.enter="applyFilters()"
-                    />
-                    <button
-                        @click="clearFilters()"
-                        type="button"
-                        :disabled="doesntHaveActiveFilters"
-                        class="pointer-events-auto absolute left-2 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-lg bg-purple-500 text-white shadow-lg ring-1 ring-purple-300/60 hover:bg-purple-600 hover:ring-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-400"
-                        :class="{
-                            'cursor-not-allowed hover:bg-purple-600 hover:ring-purple-300/60':
-                                doesntHaveActiveFilters,
-                            'cursor-pointer': hasActiveFilters,
-                        }"
-                        aria-label="Clear filters"
-                        :aria-disabled="doesntHaveActiveFilters"
-                        title="Clear filters"
-                    >
-                        <TrashIcon class="h-5 w-5 text-white" />
-                    </button>
-                    <button
-                        @click="applyFilters()"
-                        type="button"
-                        class="absolute right-2 top-1/2 flex -translate-y-1/2 cursor-pointer items-center gap-2 rounded-lg bg-purple-600 px-3 py-3 text-xs font-medium text-white hover:bg-purple-700 sm:px-6 sm:text-sm"
-                    >
-                        <SearchIcon class="text-white" />
-                        <span class="hidden sm:inline">Find Property</span>
-                    </button>
-                </div>
-            </div>
-
-            <div
-                class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5"
+            <WhenVisible
+                :data="['properties', 'locations', 'types', 'filters']"
             >
-                <SearchFilterCard
-                    v-for="filterCard in filterCards"
-                    :key="filterCard.id"
-                    :card="filterCard"
-                    :selected-value="getSelectedValue(filterCard)"
-                    @option-selected="handleOptionSelected"
-                />
-            </div>
+                <template #fallback>
+                    <Transition
+                        appear
+                        enter-active-class="transition-all duration-200 ease-out"
+                        enter-from-class="opacity-0 scale-95"
+                        enter-to-class="opacity-100 scale-100"
+                        leave-active-class="transition-all duration-200 ease-in"
+                        leave-from-class="opacity-100 scale-100"
+                        leave-to-class="opacity-0 scale-95"
+                    >
+                        <div class="flex items-center justify-center py-16">
+                            <VueSpinnerRings size="80" color="purple" />
+                        </div>
+                    </Transition>
+                </template>
 
-            <Properties :properties="properties" />
+                <Transition
+                    appear
+                    enter-active-class="transition-opacity duration-200 ease-out"
+                    enter-from-class="opacity-0"
+                    enter-to-class="opacity-100"
+                    leave-active-class="transition-opacity duration-200 ease-in"
+                    leave-from-class="opacity-100"
+                    leave-to-class="opacity-0"
+                >
+                    <div>
+                        <div class="mb-12 pl-4 text-left md:pl-36">
+                            <h1
+                                class="mb-4 text-2xl font-bold text-white md:text-3xl"
+                            >
+                                Find Your Dream Property
+                            </h1>
+                            <p class="ml-0 max-w-6xl text-gray-400">
+                                Welcome to Real estate, where your dream
+                                property awaits in every corner of our beautiful
+                                world. Explore our curated selection of
+                                properties, each offering a unique story and a
+                                chance to redefine your life. With categories to
+                                suit every dreamer, your journey.
+                            </p>
+                        </div>
+
+                        <div class="mx-auto mb-6 max-w-4xl py-8">
+                            <div class="relative">
+                                <input
+                                    type="text"
+                                    v-model="search"
+                                    placeholder="Search For A Property"
+                                    class="w-full truncate rounded-lg bg-[#111] py-4 pl-16 pr-16 text-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-600 sm:pr-40"
+                                    @keyup.enter="applyFilters()"
+                                />
+                                <button
+                                    @click="clearFilters()"
+                                    type="button"
+                                    :disabled="doesntHaveActiveFilters"
+                                    class="pointer-events-auto absolute left-2 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-lg bg-purple-500 text-white shadow-lg ring-1 ring-purple-300/60 hover:bg-purple-600 hover:ring-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-400"
+                                    :class="{
+                                        'cursor-not-allowed hover:bg-purple-600 hover:ring-purple-300/60':
+                                            doesntHaveActiveFilters,
+                                        'cursor-pointer': hasActiveFilters,
+                                    }"
+                                    aria-label="Clear filters"
+                                    :aria-disabled="doesntHaveActiveFilters"
+                                    title="Clear filters"
+                                >
+                                    <TrashIcon class="h-5 w-5 text-white" />
+                                </button>
+                                <button
+                                    @click="applyFilters()"
+                                    type="button"
+                                    class="absolute right-2 top-1/2 flex -translate-y-1/2 cursor-pointer items-center gap-2 rounded-lg bg-purple-600 px-3 py-3 text-xs font-medium text-white hover:bg-purple-700 sm:px-6 sm:text-sm"
+                                >
+                                    <SearchIcon class="text-white" />
+                                    <span class="hidden sm:inline"
+                                        >Find Property</span
+                                    >
+                                </button>
+                            </div>
+                        </div>
+
+                        <div
+                            class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5"
+                        >
+                            <SearchFilterCard
+                                v-for="filterCard in filterCards"
+                                :key="filterCard.id"
+                                :card="filterCard"
+                                :selected-value="getSelectedValue(filterCard)"
+                                @option-selected="handleOptionSelected"
+                            />
+                        </div>
+
+                        <Properties :properties="properties" />
+                    </div>
+                </Transition>
+            </WhenVisible>
         </div>
     </section>
 </template>
@@ -79,8 +116,9 @@ import { PropertyLocationInterface } from '@/Types/App/Interfaces/PropertyLocati
 import { PropertyTypeInterface } from '@/Types/App/Interfaces/PropertyTypeInterface';
 import { SearchFilterCardInterface } from '@/Types/App/Interfaces/SearchFilterCardInterface';
 import { SearchFilterOptionInterface } from '@/Types/App/Interfaces/SearchFilterOptionInterface';
-import { router } from '@inertiajs/vue3';
+import { router, WhenVisible } from '@inertiajs/vue3';
 import { computed, Ref, ref } from 'vue';
+import { VueSpinnerRings } from 'vue3-spinners';
 
 const {
     filters,
