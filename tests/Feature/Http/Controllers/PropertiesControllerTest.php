@@ -89,6 +89,70 @@ it('works searching for a property by type.', function (PropertyTypeEnum $type):
         });
 })->with(PropertyTypeEnum::cases());
 
+it('works searching for a property by price range.', function (array $range): void {
+    $price = fake()->numberBetween(...$range);
+
+    $property = Property::factory()
+        ->create(compact('price'));
+
+    Image::factory()
+        ->default()
+        ->create(['property_id' => $property->id]);
+
+    $price = collect($range)
+        ->implode('-');
+
+    if (! str($price)->contains('-')) {
+        $price .= '-plus';
+    }
+
+    $this->get(route('properties.index', compact('price')))
+        ->assertInertia(function (Assert $page): void {
+            $page->component(PageEnum::PROPERTIES->value)
+                ->has('properties', 1);
+        });
+})->with([
+    [
+        [100000, 300000],
+        [300000, 500000],
+        [500000, 800000],
+        [800000, 1200000],
+        [1200000],
+    ],
+]);
+
+it('works searching for a property by area range.', function (array $range): void {
+    $area = fake()->numberBetween(...$range);
+
+    $property = Property::factory()
+        ->create(compact('area'));
+
+    Image::factory()
+        ->default()
+        ->create(['property_id' => $property->id]);
+
+    $area = collect($range)
+        ->implode('-');
+
+    if (! str($area)->contains('-')) {
+        $area .= '-plus';
+    }
+
+    $this->get(route('properties.index', compact('area')))
+        ->assertInertia(function (Assert $page): void {
+            $page->component(PageEnum::PROPERTIES->value)
+                ->has('properties', 1);
+        });
+})->with([
+    [
+        [500, 1000],
+        [1000, 1500],
+        [1500, 2000],
+        [2000, 3000],
+        [3000],
+    ],
+]);
+
 it('works searching for a property by featured.', function (bool $isFeatured): void {
     $propertyOne = Property::factory()
         ->create(['is_featured' => $isFeatured]);
