@@ -6,6 +6,24 @@
     font-display: swap;
 }
 
+:root {
+    --toastify-color-success: #7c3aed;
+    --toastify-icon-color-success: #ffffff;
+    --toastify-text-color-success: #ffffff;
+    --toastify-color-progress-success: #a78bfa;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.Toastify__toast--success {
+    background-color: #7c3aed !important;
+    color: #ffffff !important;
+}
+.Toastify__toast--success .Toastify__close-button > svg {
+    fill: #ffffff !important;
+}
+.Toastify__progress-bar--success {
+    background: #a78bfa !important;
+}
