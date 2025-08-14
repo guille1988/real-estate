@@ -42,10 +42,18 @@
                     <button
                         @click="applyFilters()"
                         type="button"
-                        class="absolute right-2 top-1/2 flex -translate-y-1/2 cursor-pointer items-center gap-2 rounded-lg bg-purple-600 px-3 py-3 text-xs font-medium text-white hover:bg-purple-700 sm:px-6 sm:text-sm"
+                        :disabled="isSearching"
+                        class="absolute right-2 top-1/2 flex -translate-y-1/2 items-center gap-2 rounded-lg bg-purple-600 px-3 py-3 text-xs font-medium text-white hover:bg-purple-700 sm:px-6 sm:text-sm"
+                        :class="{
+                            'cursor-not-allowed opacity-70': isSearching,
+                            'cursor-pointer': !isSearching,
+                        }"
+                        :aria-busy="isSearching ? 'true' : 'false'"
                     >
                         <SearchIcon class="text-white" />
-                        <span class="hidden sm:inline">Find Property</span>
+                        <span class="hidden sm:inline">{{
+                            isSearching ? 'Searching....' : 'Find Property'
+                        }}</span>
                     </button>
                 </div>
             </div>
@@ -201,7 +209,13 @@ const isFeatured: Ref<boolean | undefined> = ref<boolean | undefined>(
     (filters as any)?.isFeatured ?? undefined,
 );
 
-const applyFilters = (): void => {
+const isSearching: Ref<boolean> = ref<boolean>(false);
+
+const applyFilters = (fromClearingFilters: boolean = false): void => {
+    if (isSearching.value) {
+        return;
+    }
+
     const query = {
         search: search.value?.trim(),
         location: location.value,
@@ -218,8 +232,18 @@ const applyFilters = (): void => {
             preserveState: true,
             preserveScroll: true,
             replace: true,
+            onStart: (): void => {
+                isSearching.value = true;
+            },
+            onFinish: (): void => {
+                isSearching.value = false;
+            },
             onSuccess: (): void => {
-                toast.success('Search applied.');
+                const message: string = fromClearingFilters
+                    ? 'Filters cleared.'
+                    : 'Search applied.';
+
+                toast.success(message);
             },
         },
     );
@@ -309,7 +333,7 @@ const clearFilters = (): void => {
     isFeatured.value = undefined;
     selectedFilters.value = {};
 
-    applyFilters();
+    applyFilters(true);
 };
 
 const filterCards: SearchFilterCardInterface[] = [
