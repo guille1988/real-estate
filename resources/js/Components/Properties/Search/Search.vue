@@ -162,6 +162,7 @@ import {
     ref,
     type ComputedRef,
 } from 'vue';
+import { toast } from 'vue3-toastify';
 
 const {
     filters,
@@ -217,6 +218,9 @@ const applyFilters = (): void => {
             preserveState: true,
             preserveScroll: true,
             replace: true,
+            onSuccess: (): void => {
+                toast.success('Search applied.');
+            },
         },
     );
 };
