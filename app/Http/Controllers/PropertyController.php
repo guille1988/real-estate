@@ -6,7 +6,9 @@ namespace App\Http\Controllers;
 
 use App\Data\PropertyData;
 use App\Enums\PageEnum;
+use App\Enums\PropertyAreaRangeEnum;
 use App\Enums\PropertyLocationEnum;
+use App\Enums\PropertyPriceRangeEnum;
 use App\Enums\PropertyTypeEnum;
 use App\Http\Resources\IndexPropertyResource;
 use App\Http\Resources\ShowPropertyResource;
@@ -41,7 +43,9 @@ final class PropertyController
 
         return Inertia::render(PageEnum::PROPERTIES->value, [
             'properties' => fn (): ResourceCollection => $properties,
+            'areas' => fn (): Collection => PropertyAreaRangeEnum::toResponse(),
             'locations' => fn (): Collection => PropertyLocationEnum::toResponse(),
+            'prices' => fn (): Collection => PropertyPriceRangeEnum::toResponse(),
             'types' => fn (): Collection => PropertyTypeEnum::toResponse(),
             'filters' => fn (): array => $data->toArray(),
         ]);

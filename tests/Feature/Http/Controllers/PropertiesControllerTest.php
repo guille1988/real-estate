@@ -171,7 +171,6 @@ it('works showing a specific property.', function (): void {
     $property = Property::factory()
         ->create();
 
-    // Create nine images for the property, one of them is the default one.
     Image::factory()
         ->default()
         ->create(['property_id' => $property->id]);
@@ -179,11 +178,9 @@ it('works showing a specific property.', function (): void {
     Image::factory(8)
         ->create(['property_id' => $property->id]);
 
-    // Create eight amenities for the property.
     Amenity::factory(8)
         ->create(['property_id' => $property->id]);
 
-    // Create four pricing details for each category for the property.
     collect(PricingDetailCategoryEnum::cases())
         ->each(function (PricingDetailCategoryEnum $category) use ($property): void {
             PricingDetail::factory(4)
