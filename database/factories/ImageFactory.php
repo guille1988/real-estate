@@ -21,7 +21,7 @@ final class ImageFactory extends Factory
     public function definition(): array
     {
         return [
-            'path' => $this->faker->imageUrl(),
+            'path' => 'three_pigs_house.jpeg',
             'is_default' => false,
             'property_id' => Property::factory(),
         ];
