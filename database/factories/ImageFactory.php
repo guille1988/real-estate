@@ -34,4 +34,12 @@ final class ImageFactory extends Factory
     {
         return $this->state(['is_default' => true]);
     }
+
+    /**
+     * Defines the image not the default state.
+     */
+    public function notDefault(): self
+    {
+        return $this->state(['is_default' => false]);
+    }
 }

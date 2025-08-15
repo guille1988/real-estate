@@ -31,8 +31,8 @@ it('has the correct fields to implement unique ids.', function (): void {
         ->toContain('uuid');
 });
 
-it('casts path to URL as expected.', function (): void {
-    expect(Image::factory()->create()->path)
+it('gets image URL as expected.', function (): void {
+    expect(Image::factory()->create()->getUrl())
         ->toBeUrl();
 });
 

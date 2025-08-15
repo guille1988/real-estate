@@ -16,8 +16,6 @@ use Throwable;
 
 final class PropertySeeder extends Seeder
 {
-    private bool $isLoadTest = true;
-
     /**
      * Deletes all the current images of the storage.
      */
@@ -101,11 +99,19 @@ final class PropertySeeder extends Seeder
         ]);
     }
 
-    public function seedFactoriesForLoadTest(int $count = 100): void
+    public function seedFillingFactories(int $count = 100): void
     {
-        Image::factory($count)
-            ->default()
-            ->create();
+        Property::factory($count)
+            ->create()
+            ->each(function (Property $property): void {
+                Image::factory()
+                    ->default()
+                    ->create(['property_id' => $property->id]);
+
+                Image::factory(random_int(1, 30))
+                    ->notDefault()
+                    ->create(['property_id' => $property->id]);
+            });
     }
 
     /**
@@ -118,9 +124,6 @@ final class PropertySeeder extends Seeder
         $this->deleteCurrentImages();
         $this->copyImagesToSeed();
         $this->seedImages();
-
-        if ($this->isLoadTest) {
-            $this->seedFactoriesForLoadTest();
-        }
+        $this->seedFillingFactories();
     }
 }
