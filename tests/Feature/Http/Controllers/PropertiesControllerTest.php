@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 use App\Enums\PageEnum;
 use App\Enums\PricingDetailCategoryEnum;
+use App\Enums\PropertyAreaRangeEnum;
 use App\Enums\PropertyLocationEnum;
+use App\Enums\PropertyPriceRangeEnum;
 use App\Enums\PropertyTypeEnum;
 use App\Models\Amenity;
 use App\Models\Image;
@@ -89,8 +91,8 @@ it('works searching for a property by type.', function (PropertyTypeEnum $type):
         });
 })->with(PropertyTypeEnum::cases());
 
-it('works searching for a property by price range.', function (array $range): void {
-    $price = fake()->numberBetween(...$range);
+it('works searching for a property by price range.', function (PropertyPriceRangeEnum $range): void {
+    $price = fake()->numberBetween(...$range->toArray());
 
     $property = Property::factory()
         ->create(compact('price'));
@@ -99,27 +101,12 @@ it('works searching for a property by price range.', function (array $range): vo
         ->default()
         ->create(['property_id' => $property->id]);
 
-    $price = collect($range)
-        ->implode('-');
-
-    if (! str($price)->contains('-')) {
-        $price .= '-plus';
-    }
-
-    $this->get(route('properties.index', compact('price')))
+    $this->get(route('properties.index', ['price' => $range->value]))
         ->assertInertia(function (Assert $page): void {
             $page->component(PageEnum::PROPERTIES->value)
                 ->has('properties', 1);
         });
-})->with([
-    [
-        [100000, 300000],
-        [300000, 500000],
-        [500000, 800000],
-        [800000, 1200000],
-        [1200000],
-    ],
-]);
+})->with(PropertyPriceRangeEnum::cases());
 
 it("doesn't work by price range if the query string is invalid.", function (string $price): void {
     $this->get(route('properties.index', compact('price')))
@@ -131,8 +118,8 @@ it("doesn't work by price range if the query string is invalid.", function (stri
     'plus-plus',
 ]);
 
-it('works searching for a property by area range.', function (array $range): void {
-    $area = fake()->numberBetween(...$range);
+it('works searching for a property by area range.', function (PropertyAreaRangeEnum $range): void {
+    $area = fake()->numberBetween(...$range->toArray());
 
     $property = Property::factory()
         ->create(compact('area'));
@@ -141,27 +128,12 @@ it('works searching for a property by area range.', function (array $range): voi
         ->default()
         ->create(['property_id' => $property->id]);
 
-    $area = collect($range)
-        ->implode('-');
-
-    if (! str($area)->contains('-')) {
-        $area .= '-plus';
-    }
-
-    $this->get(route('properties.index', compact('area')))
+    $this->get(route('properties.index', ['area' => $range->value]))
         ->assertInertia(function (Assert $page): void {
             $page->component(PageEnum::PROPERTIES->value)
                 ->has('properties', 1);
         });
-})->with([
-    [
-        [500, 1000],
-        [1000, 1500],
-        [1500, 2000],
-        [2000, 3000],
-        [3000],
-    ],
-]);
+})->with(PropertyAreaRangeEnum::cases());
 
 it("doesn't work by area range if the query string is invalid.", function (string $area): void {
     $this->get(route('properties.index', compact('area')))

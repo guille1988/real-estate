@@ -7,6 +7,7 @@ namespace App\Builders;
 use App\Data\PropertyData;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
 /**
  * @template TModel of Model
@@ -54,6 +55,9 @@ final class PropertyBuilder extends Builder
             )->when(
                 $data->isNotNull('price'),
                 function (self $query) use ($data): self {
+                    /**
+                     * @var Collection<int, int<min, -1>|int<1, max>> $price
+                     */
                     $price = $data->getPrice();
 
                     return $query->where('price', '>=', $price->first())
@@ -65,6 +69,9 @@ final class PropertyBuilder extends Builder
             )->when(
                 $data->isNotNull('area'),
                 function (self $query) use ($data): self {
+                    /**
+                     * @var Collection<int, int<min, -1>|int<1, max>> $area
+                     */
                     $area = $data->getArea();
 
                     return $query->where('area', '>=', $area->first())

@@ -16,7 +16,7 @@ enum PropertyTypeEnum: string
     /**
      * @return Collection<int, array{label: string, value: string}>
      *
-     * Returns the label and value response version of all property types.
+     * Returns the label and value response version of all types.
      */
     public static function toResponse(): Collection
     {
@@ -28,7 +28,7 @@ enum PropertyTypeEnum: string
     }
 
     /*
-     * Returns the title version of the property type value.
+     * Returns the title version of the type value.
      */
     public function title(): string
     {
