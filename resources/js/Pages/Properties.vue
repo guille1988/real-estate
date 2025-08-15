@@ -2,7 +2,9 @@
     <Layout>
         <Search
             :properties="properties"
+            :areas="areas"
             :locations="locations"
+            :prices="prices"
             :types="types"
             :filters="filters"
         />
@@ -18,13 +20,17 @@ import { displayErrors } from '@/Composables/useErrorHandling';
 import { ErrorInterface } from '@/Types/App/Interfaces/ErrorInterface';
 import { FilterInterface } from '@/Types/App/Interfaces/FilterInterface';
 import { IndexPropertyInterface } from '@/Types/App/Interfaces/IndexPropertyInterface';
+import { PropertyAreaRangeInterface } from '@/Types/App/Interfaces/PropertyAreaRangeInterface';
 import { PropertyLocationInterface } from '@/Types/App/Interfaces/PropertyLocationInterface';
+import { PropertyPriceRangeInterface } from '@/Types/App/Interfaces/PropertyPriceRangeInterface';
 import { PropertyTypeInterface } from '@/Types/App/Interfaces/PropertyTypeInterface';
 import { onMounted } from 'vue';
 
 const { errors }: { errors: ErrorInterface } = defineProps<{
     properties: IndexPropertyInterface[];
+    areas: PropertyAreaRangeInterface[];
     locations: PropertyLocationInterface[];
+    prices: PropertyPriceRangeInterface[];
     types: PropertyTypeInterface[];
     filters: FilterInterface;
     errors: ErrorInterface;

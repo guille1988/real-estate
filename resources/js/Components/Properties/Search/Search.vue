@@ -156,7 +156,9 @@ import { index } from '@/Routes/actions/App/Http/Controllers/PropertyController'
 import { ScreenSizeEnum } from '@/Types/App/Enums/ScreenSizeEnum';
 import { FilterInterface } from '@/Types/App/Interfaces/FilterInterface';
 import { IndexPropertyInterface } from '@/Types/App/Interfaces/IndexPropertyInterface';
+import { PropertyAreaRangeInterface } from '@/Types/App/Interfaces/PropertyAreaRangeInterface';
 import { PropertyLocationInterface } from '@/Types/App/Interfaces/PropertyLocationInterface';
+import { PropertyPriceRangeInterface } from '@/Types/App/Interfaces/PropertyPriceRangeInterface';
 import { PropertyTypeInterface } from '@/Types/App/Interfaces/PropertyTypeInterface';
 import { ScreenSizeConfigInterface } from '@/Types/App/Interfaces/ScreenSizeConfigInterface';
 import { SearchFilterCardInterface } from '@/Types/App/Interfaces/SearchFilterCardInterface';
@@ -173,16 +175,22 @@ import {
 import { toast } from 'vue3-toastify';
 
 const {
-    filters,
+    areas,
     locations,
+    prices,
     types,
+    filters,
 }: {
-    filters: FilterInterface;
+    areas: PropertyAreaRangeInterface[];
     locations: PropertyLocationInterface[];
+    prices: PropertyPriceRangeInterface[];
     types: PropertyTypeInterface[];
+    filters: FilterInterface;
 } = defineProps<{
     properties: IndexPropertyInterface[];
+    areas: PropertyAreaRangeInterface[];
     locations: PropertyLocationInterface[];
+    prices: PropertyPriceRangeInterface[];
     types: PropertyTypeInterface[];
     filters: FilterInterface;
 }>();
@@ -353,25 +361,13 @@ const filterCards: SearchFilterCardInterface[] = [
         id: 3,
         icon: 'MoneyIcon',
         label: 'Pricing Range',
-        options: [
-            { label: '$100,000 - $300,000', value: '100000-300000' },
-            { label: '$300,000 - $500,000', value: '300000-500000' },
-            { label: '$500,000 - $800,000', value: '500000-800000' },
-            { label: '$800,000 - $1,200,000', value: '800000-1200000' },
-            { label: '$1,200,000+', value: '1200000-plus' },
-        ],
+        options: prices,
     },
     {
         id: 4,
         icon: 'ChartIcon',
         label: 'Property Size',
-        options: [
-            { label: '500 - 1,000 sq ft', value: '500-1000' },
-            { label: '1,000 - 1,500 sq ft', value: '1000-1500' },
-            { label: '1,500 - 2,000 sq ft', value: '1500-2000' },
-            { label: '2,000 - 3,000 sq ft', value: '2000-3000' },
-            { label: '3,000+ sq ft', value: '3000-plus' },
-        ],
+        options: areas,
     },
     {
         id: 5,

@@ -1,0 +1,7 @@
+export enum PropertyAreaRangeEnum {
+    BETWEEN_500_AND_1000 = '500-1000',
+    BETWEEN_1_000_AND_1_500 = '1000-1500',
+    BETWEEN_1_500_AND_2_000 = '1500-2000',
+    BETWEEN_2_000_AND_3_000 = '2000-3000',
+    MORE_THAN_3_000 = '3000-plus',
+}
