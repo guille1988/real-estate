@@ -17,7 +17,7 @@ enum PropertyAreaRangeEnum: string
     /*
      * Returns the label version of the area range value.
      */
-    private function getLabel(): string
+    public function getLabel(): string
     {
         return match ($this) {
             self::BETWEEN_500_AND_1000 => '500 - 1,000 sq ft',

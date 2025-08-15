@@ -17,7 +17,7 @@ enum PropertyPriceRangeEnum: string
     /*
      * Returns the label version of the price range value.
      */
-    private function getLabel(): string
+    public function getLabel(): string
     {
         return match ($this) {
             self::BETWEEN_100_000_AND_300_000 => '$100,000 - $300,000',
