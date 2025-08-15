@@ -14,20 +14,6 @@ enum PropertyAreaRangeEnum: string
     case BETWEEN_2_000_AND_3_000 = '2000-3000';
     case MORE_THAN_3_000 = '3000-plus';
 
-    /*
-     * Returns the label version of the area range value.
-     */
-    public function getLabel(): string
-    {
-        return match ($this) {
-            self::BETWEEN_500_AND_1000 => '500 - 1,000 sq ft',
-            self::BETWEEN_1_000_AND_1_500 => '1,000 - 1,500 sq ft',
-            self::BETWEEN_1_500_AND_2_000 => '1,500 - 2,000 sq ft',
-            self::BETWEEN_2_000_AND_3_000 => '2,000 - 3,000 sq ft',
-            self::MORE_THAN_3_000 => '3,000+ sq ft',
-        };
-    }
-
     /**
      * @return Collection<int, array{label: string, value: string}>
      *
@@ -40,6 +26,20 @@ enum PropertyAreaRangeEnum: string
                 'label' => $case->getLabel(),
                 'value' => $case->value,
             ]);
+    }
+
+    /*
+     * Returns the label version of the area range value.
+     */
+    public function getLabel(): string
+    {
+        return match ($this) {
+            self::BETWEEN_500_AND_1000 => '500 - 1,000 sq ft',
+            self::BETWEEN_1_000_AND_1_500 => '1,000 - 1,500 sq ft',
+            self::BETWEEN_1_500_AND_2_000 => '1,500 - 2,000 sq ft',
+            self::BETWEEN_2_000_AND_3_000 => '2,000 - 3,000 sq ft',
+            self::MORE_THAN_3_000 => '3,000+ sq ft',
+        };
     }
 
     /**

@@ -14,20 +14,6 @@ enum PropertyPriceRangeEnum: string
     case BETWEEN_800_000_AND_1_200_000 = '800000-1200000';
     case MORE_THAN_1_200_000 = '1200000-plus';
 
-    /*
-     * Returns the label version of the price range value.
-     */
-    public function getLabel(): string
-    {
-        return match ($this) {
-            self::BETWEEN_100_000_AND_300_000 => '$100,000 - $300,000',
-            self::BETWEEN_300_000_AND_500_000 => '$300,000 - $500,000',
-            self::BETWEEN_500_000_AND_800_000 => '$500,000 - $800,000',
-            self::BETWEEN_800_000_AND_1_200_000 => '$800,000 - $1,200,000',
-            self::MORE_THAN_1_200_000 => '$1,200,000+',
-        };
-    }
-
     /**
      * @return Collection<int, array{label: string, value: string}>
      *
@@ -40,6 +26,20 @@ enum PropertyPriceRangeEnum: string
                 'label' => $case->getLabel(),
                 'value' => $case->value,
             ]);
+    }
+
+    /*
+     * Returns the label version of the price range value.
+     */
+    public function getLabel(): string
+    {
+        return match ($this) {
+            self::BETWEEN_100_000_AND_300_000 => '$100,000 - $300,000',
+            self::BETWEEN_300_000_AND_500_000 => '$300,000 - $500,000',
+            self::BETWEEN_500_000_AND_800_000 => '$500,000 - $800,000',
+            self::BETWEEN_800_000_AND_1_200_000 => '$800,000 - $1,200,000',
+            self::MORE_THAN_1_200_000 => '$1,200,000+',
+        };
     }
 
     /**
