@@ -8,6 +8,7 @@ use App\Enums\PricingDetailCategoryEnum;
 use App\Models\PricingDetail;
 use App\Models\Property;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\LazyCollection;
 
 final class PricingDetailSeeder extends Seeder
 {
@@ -112,10 +113,7 @@ final class PricingDetailSeeder extends Seeder
      */
     public function run(): void
     {
-        /**
-         * @var array<int, array<string, mixed>> $pricingDetails
-         */
-        $pricingDetails = Property::query()
+        Property::query()
             ->get('id')
             ->flatMap(function (Property $property): array {
                 return array_map(function (array $pricingDetail) use ($property): array {
@@ -123,8 +121,16 @@ final class PricingDetailSeeder extends Seeder
 
                     return $pricingDetail;
                 }, $this->pricingDetails);
-            })->toArray();
+            })
+            ->lazy()
+            ->chunk(100)
+            ->each(function (LazyCollection $pricingDetailsChunk): void {
+                /**
+                 * @var array<int, array<string, mixed>> $pricingDetails
+                 */
+                $pricingDetails = $pricingDetailsChunk->toArray();
 
-        PricingDetail::fillAndInsert($pricingDetails);
+                PricingDetail::fillAndInsert($pricingDetails);
+            });
     }
 }

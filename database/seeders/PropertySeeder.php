@@ -11,6 +11,7 @@ use App\Models\Property;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\LazyCollection;
+use Random\RandomException;
 use SplFileInfo;
 use Throwable;
 
@@ -99,18 +100,33 @@ final class PropertySeeder extends Seeder
         ]);
     }
 
-    public function seedFillingFactories(int $count = 100): void
+    /**
+     * @throws RandomException
+     */
+    public function seedFillingFactories(int $count = 1000): void
     {
         Property::factory($count)
             ->create()
-            ->each(function (Property $property): void {
-                Image::factory()
-                    ->default()
-                    ->create(['property_id' => $property->id]);
+            ->lazy()
+            ->chunk(100)
+            ->each(function (LazyCollection $properties): void {
+                $properties->each(function (Property $property): void {
+                    $defaultImage = Image::factory()
+                        ->default()
+                        ->make(['property_id' => $property->id]);
 
-                Image::factory(random_int(1, 30))
-                    ->notDefault()
-                    ->create(['property_id' => $property->id]);
+                    /**
+                     * @var array<int, array<string, mixed>> $images
+                     */
+                    $images = Image::factory(random_int(1, 30))
+                        ->notDefault()
+                        ->make(['property_id' => $property->id])
+                        ->prepend($defaultImage)
+                        ->each->only(['path', 'is_default'])
+                        ->toArray();
+
+                    Image::fillAndInsert($images);
+                });
             });
     }
 
