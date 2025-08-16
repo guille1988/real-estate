@@ -26,25 +26,93 @@
             </div>
 
             <div class="mb-8 overflow-hidden">
-                <div
-                    ref="sliderTrack"
-                    class="flex transition-transform duration-500 ease-in-out"
-                    :style="{ transform: `translateX(-${translateX}px)` }"
-                >
-                    <div
-                        v-for="testimonial in testimonials"
-                        :key="testimonial.uuid"
-                        class="flex-shrink-0 pr-4 md:pr-6"
-                        :class="{
-                            'w-full': screenSize === ScreenSizeEnum.MOBILE,
-                            'w-1/2': screenSize === ScreenSizeEnum.TABLET,
-                            'w-1/3': screenSize === ScreenSizeEnum.DESKTOP,
-                        }"
-                        ref="slideItems"
+                <WhenVisible :data="['testimonials']">
+                    <template #fallback>
+                        <div class="animate-pulse" aria-hidden="true">
+                            <div
+                                class="flex transition-transform duration-500 ease-in-out"
+                            >
+                                <div
+                                    v-for="i in visibleSkeletonCards"
+                                    :key="i"
+                                    class="flex-shrink-0 pr-4 md:pr-6"
+                                    :class="{
+                                        'w-full':
+                                            screenSize ===
+                                            ScreenSizeEnum.MOBILE,
+                                        'w-1/2':
+                                            screenSize ===
+                                            ScreenSizeEnum.TABLET,
+                                        'w-1/3':
+                                            screenSize ===
+                                            ScreenSizeEnum.DESKTOP,
+                                    }"
+                                >
+                                    <div
+                                        class="rounded-xl bg-[#0f0f0f] p-4 ring-1 ring-gray-800"
+                                    >
+                                        <div
+                                            class="mb-4 flex items-center gap-3"
+                                        >
+                                            <div
+                                                class="h-10 w-10 rounded-full bg-gray-700/50"
+                                            ></div>
+                                            <div
+                                                class="h-4 w-32 rounded bg-gray-700/40"
+                                            ></div>
+                                        </div>
+                                        <div class="space-y-2">
+                                            <div
+                                                class="h-4 w-full rounded bg-gray-700/30"
+                                            ></div>
+                                            <div
+                                                class="h-4 w-5/6 rounded bg-gray-700/30"
+                                            ></div>
+                                            <div
+                                                class="h-4 w-2/3 rounded bg-gray-700/30"
+                                            ></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+
+                    <Transition
+                        appear
+                        enter-active-class="transition-opacity duration-200 ease-out"
+                        enter-from-class="opacity-0"
+                        enter-to-class="opacity-100"
+                        leave-active-class="transition-opacity duration-200 ease-in"
+                        leave-from-class="opacity-100"
+                        leave-to-class="opacity-0"
                     >
-                        <ClientTestimonialCard :card="testimonial" />
-                    </div>
-                </div>
+                        <div
+                            ref="sliderTrack"
+                            class="flex transition-transform duration-500 ease-in-out"
+                            :style="{
+                                transform: `translateX(-${translateX}px)`,
+                            }"
+                        >
+                            <div
+                                v-for="testimonial in testimonials"
+                                :key="testimonial.uuid"
+                                class="flex-shrink-0 pr-4 md:pr-6"
+                                :class="{
+                                    'w-full':
+                                        screenSize === ScreenSizeEnum.MOBILE,
+                                    'w-1/2':
+                                        screenSize === ScreenSizeEnum.TABLET,
+                                    'w-1/3':
+                                        screenSize === ScreenSizeEnum.DESKTOP,
+                                }"
+                                ref="slideItems"
+                            >
+                                <ClientTestimonialCard :card="testimonial" />
+                            </div>
+                        </div>
+                    </Transition>
+                </WhenVisible>
             </div>
 
             <div class="flex justify-end">
@@ -87,6 +155,7 @@ import { ChevronDirectionEnum } from '@/Types/App/Enums/ChevronDirectionEnum';
 import { ScreenSizeEnum } from '@/Types/App/Enums/ScreenSizeEnum';
 import { ScreenSizeConfigInterface } from '@/Types/App/Interfaces/ScreenSizeConfigInterface';
 import { TestimonialInterface } from '@/Types/App/Interfaces/TestimonialInterface';
+import { WhenVisible } from '@inertiajs/vue3';
 import {
     computed,
     ComputedRef,
@@ -207,5 +276,9 @@ onUnmounted((): void => {
     }
 
     window.removeEventListener('resize', handleResize);
+});
+
+const visibleSkeletonCards: ComputedRef<number> = computed((): number => {
+    return visibleCards.value;
 });
 </script>
