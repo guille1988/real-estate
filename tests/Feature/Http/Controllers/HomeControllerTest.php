@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Enums\PageEnum;
+use App\Models\Faq;
 use App\Models\Image;
 use App\Models\Property;
 use App\Models\Testimonial;
@@ -35,3 +36,14 @@ it('renders testimonials on home page.', function (string $key): void {
                 ->has($key, $testimonials->count());
         });
 })->with(['testimonials']);
+
+it('renders frequently asked questions on home page.', function (string $key): void {
+    $faq = Faq::factory(4)
+        ->create();
+
+    $this->get(route('home'))
+        ->assertInertia(function (Assert $page) use ($key, $faq): void {
+            $page->component(PageEnum::HOME->value)
+                ->has($key, $faq->count());
+        });
+})->with(['faq']);

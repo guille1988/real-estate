@@ -25,7 +25,7 @@ final class FaqItemFactory extends Factory
     {
         return [
             'subtitle' => $this->faker->words(random_int(3, 5), true),
-            'description' => $this->faker->realTextBetween(),
+            'paragraphs' => [$this->faker->realTextBetween(), $this->faker->realTextBetween()],
             'faq_id' => Faq::factory(),
         ];
     }

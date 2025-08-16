@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\PageEnum;
 use App\Http\Resources\IndexPropertyResource;
+use App\Models\Faq;
 use App\Models\Property;
 use App\Models\Testimonial;
 use Illuminate\Http\Resources\Json\ResourceCollection;
@@ -52,9 +53,22 @@ final class HomeController
                     ])->toResourceCollection();
             });
 
+        $faq = cache()
+            ->rememberForever('faq', function (): ResourceCollection {
+                return Faq::query()
+                    ->with('faqItems:id,uuid,subtitle,paragraphs,faq_id')
+                    ->get([
+                        'id',
+                        'uuid',
+                        'title',
+                        'description',
+                    ])->toResourceCollection();
+            });
+
         return Inertia::render(PageEnum::HOME->value, [
             'featured_properties' => fn (): ResourceCollection => $featuredProperties,
             'testimonials' => fn (): ResourceCollection => $testimonials,
+            'faq' => fn (): ResourceCollection => $faq,
         ]);
     }
 }
