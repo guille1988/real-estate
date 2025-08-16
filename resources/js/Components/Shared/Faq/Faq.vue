@@ -19,25 +19,69 @@
             </div>
 
             <div class="mb-8 overflow-hidden">
-                <div
-                    ref="sliderTrack"
-                    class="flex transition-transform duration-500 ease-in-out"
-                    :style="{ transform: `translateX(-${translateX}px)` }"
-                >
+                <WhenVisible :data="['faq']">
+                    <template #fallback>
+                        <div
+                            class="flex transition-transform duration-500 ease-in-out"
+                        >
+                            <div
+                                v-for="skeleton in visibleCards"
+                                :key="`faq-skeleton-${skeleton}`"
+                                class="flex-shrink-0 pr-4 md:pr-6"
+                                :class="{
+                                    'w-full':
+                                        screenSize === ScreenSizeEnum.MOBILE,
+                                    'w-1/2':
+                                        screenSize === ScreenSizeEnum.TABLET,
+                                    'w-1/3':
+                                        screenSize === ScreenSizeEnum.DESKTOP,
+                                }"
+                            >
+                                <div
+                                    class="h-full animate-pulse rounded-xl border border-gray-800 bg-gray-900/50 p-6"
+                                >
+                                    <div
+                                        class="mb-6 h-7 w-3/4 rounded bg-gray-700/50"
+                                    ></div>
+                                    <div class="mb-8 space-y-3">
+                                        <div
+                                            class="h-4 w-full rounded bg-gray-700/40"
+                                        ></div>
+                                        <div
+                                            class="h-4 w-5/6 rounded bg-gray-700/30"
+                                        ></div>
+                                        <div
+                                            class="h-4 w-4/6 rounded bg-gray-700/20"
+                                        ></div>
+                                    </div>
+                                    <div
+                                        class="h-10 w-28 rounded-md border border-gray-800 bg-black"
+                                    ></div>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+
                     <div
-                        v-for="card in faq"
-                        :key="card.uuid"
-                        class="flex-shrink-0 pr-4 md:pr-6"
-                        :class="{
-                            'w-full': screenSize === ScreenSizeEnum.MOBILE,
-                            'w-1/2': screenSize === ScreenSizeEnum.TABLET,
-                            'w-1/3': screenSize === ScreenSizeEnum.DESKTOP,
-                        }"
-                        ref="slideItems"
+                        ref="sliderTrack"
+                        class="flex transition-transform duration-500 ease-in-out"
+                        :style="{ transform: `translateX(-${translateX}px)` }"
                     >
-                        <FaqCard :card="card" />
+                        <div
+                            v-for="card in faq"
+                            :key="card.uuid"
+                            class="flex-shrink-0 pr-4 md:pr-6"
+                            :class="{
+                                'w-full': screenSize === ScreenSizeEnum.MOBILE,
+                                'w-1/2': screenSize === ScreenSizeEnum.TABLET,
+                                'w-1/3': screenSize === ScreenSizeEnum.DESKTOP,
+                            }"
+                            ref="slideItems"
+                        >
+                            <FaqCard :card="card" />
+                        </div>
                     </div>
-                </div>
+                </WhenVisible>
             </div>
 
             <div class="flex justify-end">
@@ -90,6 +134,7 @@ import { ChevronDirectionEnum } from '@/Types/App/Enums/ChevronDirectionEnum';
 import { ScreenSizeEnum } from '@/Types/App/Enums/ScreenSizeEnum';
 import { FaqInterface } from '@/Types/App/Interfaces/FaqInterface';
 import { ScreenSizeConfigInterface } from '@/Types/App/Interfaces/ScreenSizeConfigInterface';
+import { WhenVisible } from '@inertiajs/vue3';
 
 const { faq }: { faq: FaqInterface[] } = defineProps<{
     faq: FaqInterface[];
