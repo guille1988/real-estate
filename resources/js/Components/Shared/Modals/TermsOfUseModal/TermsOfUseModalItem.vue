@@ -18,9 +18,9 @@
 
 <script setup lang="ts">
 import { formatText } from '@/Composables/useTextFormatting';
-import { TermsOfUseModalItemInterface } from '@/Types/App/Interfaces/TermsOfUseModalItemInterface';
+import { TermsOfUseItemInterface } from '@/Types/App/Interfaces/TermsOfUseItemInterface';
 
-const { item }: { item: TermsOfUseModalItemInterface } = defineProps<{
-    item: TermsOfUseModalItemInterface;
+const { item }: { item: TermsOfUseItemInterface } = defineProps<{
+    item: TermsOfUseItemInterface;
 }>();
 </script>

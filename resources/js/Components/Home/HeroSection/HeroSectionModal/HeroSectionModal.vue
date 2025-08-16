@@ -6,7 +6,7 @@
             </h2>
 
             <HeroSectionModalItem
-                v-for="item in modalItems"
+                v-for="item in heroSectionItems"
                 :key="item.id"
                 :item="item"
             />
@@ -17,7 +17,7 @@
 <script setup lang="ts">
 import HeroSectionModalItem from '@/Components/Home/HeroSection/HeroSectionModal/HeroSectionModalItem.vue';
 import Modal from '@/Components/Shared/Modals/Modal.vue';
-import { HeroSectionModalItemInterface } from '@/Types/App/Interfaces/HeroSectionModalItemInterface';
+import { HeroSectionItemInterface } from '@/Types/App/Interfaces/HeroSectionItemInterface';
 import { EmitInputFunctionType } from '@/Types/App/Types/EmitInputFunctionType';
 import { computed, ComputedRef, EmitFn } from 'vue';
 
@@ -36,7 +36,7 @@ const isOpen: ComputedRef<boolean> = computed({
     set: (value: boolean): void => emit('update:modelValue', value),
 });
 
-const modalItems: HeroSectionModalItemInterface[] = [
+const heroSectionItems: HeroSectionItemInterface[] = [
     {
         id: 1,
         subtitle: 'Lorem ipsum dolor sit amet',

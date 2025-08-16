@@ -21,11 +21,11 @@
 
 <script setup lang="ts">
 import FaqModal from '@/Components/Shared/Faq/FaqModal/FaqModal.vue';
-import { FaqCardInterface } from '@/Types/App/Interfaces/FaqCardInterface';
+import { FaqInterface } from '@/Types/App/Interfaces/FaqInterface';
 import { ref, Ref } from 'vue';
 
 defineProps<{
-    card: FaqCardInterface;
+    card: FaqInterface;
 }>();
 
 const showModal: Ref<boolean> = ref<boolean>(false);

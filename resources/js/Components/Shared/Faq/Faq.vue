@@ -88,16 +88,16 @@ import ChevronIcon from '@/Components/Icons/ChevronIcon.vue';
 import FaqCard from '@/Components/Shared/Faq/FaqCard.vue';
 import { ChevronDirectionEnum } from '@/Types/App/Enums/ChevronDirectionEnum';
 import { ScreenSizeEnum } from '@/Types/App/Enums/ScreenSizeEnum';
-import { FaqCardInterface } from '@/Types/App/Interfaces/FaqCardInterface';
+import { FaqInterface } from '@/Types/App/Interfaces/FaqInterface';
 import { ScreenSizeConfigInterface } from '@/Types/App/Interfaces/ScreenSizeConfigInterface';
 
-const cards: FaqCardInterface[] = [
+const cards: FaqInterface[] = [
     {
         id: 1,
         title: 'How do I search for properties on Real estate?',
         description:
             'Learn how to use our user-friendly search tools to find properties that match your criteria.',
-        modalItems: [
+        faqItems: [
             {
                 id: 1,
                 subtitle: 'Lorem ipsum dolor sit amet',
@@ -166,7 +166,7 @@ const cards: FaqCardInterface[] = [
         title: 'What documents do I need to sell my property through Real estate?',
         description:
             'Find out about the necessary documentation for listing your property with us.',
-        modalItems: [
+        faqItems: [
             {
                 id: 1,
                 subtitle: 'Lorem ipsum dolor sit amet',
@@ -235,7 +235,7 @@ const cards: FaqCardInterface[] = [
         title: 'How can I contact an Real estate agent?',
         description:
             'Discover the different ways you can get in touch with our experienced agents.',
-        modalItems: [
+        faqItems: [
             {
                 id: 1,
                 subtitle: 'Lorem ipsum dolor sit amet',
@@ -304,7 +304,7 @@ const cards: FaqCardInterface[] = [
         title: 'What are the benefits of working with Real estate?',
         description:
             'Learn about the advantages of choosing our agency for your real estate needs.',
-        modalItems: [
+        faqItems: [
             {
                 id: 1,
                 subtitle: 'Lorem ipsum dolor sit amet',
@@ -373,7 +373,7 @@ const cards: FaqCardInterface[] = [
         title: 'How does the property buying process work?',
         description:
             'Get a step-by-step overview of the property buying journey with Real estate.',
-        modalItems: [
+        faqItems: [
             {
                 id: 1,
                 subtitle: 'Lorem ipsum dolor sit amet',
@@ -442,7 +442,7 @@ const cards: FaqCardInterface[] = [
         title: 'What financing options are available for buyers?',
         description:
             'Explore the various financing solutions we can help you access for your property purchase.',
-        modalItems: [
+        faqItems: [
             {
                 id: 1,
                 subtitle: 'Lorem ipsum dolor sit amet',

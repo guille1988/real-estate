@@ -6,7 +6,7 @@
             </h2>
 
             <TermsOfUseModalItem
-                v-for="item in modalItems"
+                v-for="item in termsOfUseItems"
                 :key="item.id"
                 :item="item"
             />
@@ -17,7 +17,7 @@
 <script setup lang="ts">
 import Modal from '@/Components/Shared/Modals/Modal.vue';
 import TermsOfUseModalItem from '@/Components/Shared/Modals/TermsOfUseModal/TermsOfUseModalItem.vue';
-import { TermsOfUseModalItemInterface } from '@/Types/App/Interfaces/TermsOfUseModalItemInterface';
+import { TermsOfUseItemInterface } from '@/Types/App/Interfaces/TermsOfUseItemInterface';
 import { EmitInputFunctionType } from '@/Types/App/Types/EmitInputFunctionType';
 import { computed, ComputedRef, EmitFn } from 'vue';
 
@@ -36,7 +36,7 @@ const isOpen: ComputedRef<boolean> = computed({
     set: (value: boolean): void => emit('update:modelValue', value),
 });
 
-const modalItems: TermsOfUseModalItemInterface[] = [
+const termsOfUseItems: TermsOfUseItemInterface[] = [
     {
         id: 1,
         subtitle: '1. Acceptance of Terms',

@@ -17,6 +17,8 @@ final class DatabaseSeeder extends Seeder
         AmenitySeeder::class,
         PricingDetailSeeder::class,
         TestimonialSeeder::class,
+        FaqSeeder::class,
+        FaqItemSeeder::class,
     ];
 
     /**

@@ -18,10 +18,10 @@
 
 <script setup lang="ts">
 import { formatText } from '@/Composables/useTextFormatting';
-import { EffortlessPropertyManagementModalItemInterface } from '@/Types/App/Interfaces/EffortlessPropertyManagementModalItemInterface';
+import { EffortlessPropertyManagementItemInterface } from '@/Types/App/Interfaces/EffortlessPropertyManagementItemInterface';
 
-const { item }: { item: EffortlessPropertyManagementModalItemInterface } =
+const { item }: { item: EffortlessPropertyManagementItemInterface } =
     defineProps<{
-        item: EffortlessPropertyManagementModalItemInterface;
+        item: EffortlessPropertyManagementItemInterface;
     }>();
 </script>

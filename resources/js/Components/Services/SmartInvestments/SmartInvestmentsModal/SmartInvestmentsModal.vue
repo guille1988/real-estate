@@ -6,7 +6,7 @@
             </h2>
 
             <SmartInvestmentsModalItem
-                v-for="item in modalItems"
+                v-for="item in smartInvestmentItems"
                 :key="item.id"
                 :item="item"
             />
@@ -16,7 +16,7 @@
 
 <script setup lang="ts">
 import Modal from '@/Components/Shared/Modals/Modal.vue';
-import { SmartInvestmentsModalItemInterface } from '@/Types/App/Interfaces/SmartInvestmentsModalItemInterface';
+import { SmartInvestmentItemInterface } from '@/Types/App/Interfaces/SmartInvestmentItemInterface';
 import { EmitInputFunctionType } from '@/Types/App/Types/EmitInputFunctionType';
 import { computed, ComputedRef, EmitFn } from 'vue';
 import SmartInvestmentsModalItem from './SmartInvestmentsModalItem.vue';
@@ -36,7 +36,7 @@ const isOpen: ComputedRef<boolean> = computed({
     set: (value: boolean): void => emit('update:modelValue', value),
 });
 
-const modalItems: SmartInvestmentsModalItemInterface[] = [
+const smartInvestmentItems: SmartInvestmentItemInterface[] = [
     {
         id: 1,
         subtitle: 'Market Insight',

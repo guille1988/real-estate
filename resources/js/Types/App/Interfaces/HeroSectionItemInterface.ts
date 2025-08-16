@@ -1,4 +1,4 @@
-export interface PrivacyPolicyModalItemInterface {
+export interface HeroSectionItemInterface {
     id: number;
     subtitle: string;
     paragraphs: string[];

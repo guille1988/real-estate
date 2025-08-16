@@ -6,7 +6,7 @@
             </h2>
 
             <FaqModalItem
-                v-for="item in card.modalItems"
+                v-for="item in card.faqItems"
                 :key="item.id"
                 :item="item"
             />
@@ -16,19 +16,19 @@
 
 <script setup lang="ts">
 import Modal from '@/Components/Shared/Modals/Modal.vue';
-import { FaqCardInterface } from '@/Types/App/Interfaces/FaqCardInterface';
+import { FaqInterface } from '@/Types/App/Interfaces/FaqInterface';
 import { EmitInputFunctionType } from '@/Types/App/Types/EmitInputFunctionType';
 import { computed, ComputedRef, EmitFn } from 'vue';
 import FaqModalItem from './FaqModalItem.vue';
 
-const { modelValue, card }: { modelValue: boolean; card: FaqCardInterface } =
+const { modelValue, card }: { modelValue: boolean; card: FaqInterface } =
     defineProps({
         modelValue: {
             type: Boolean,
             required: true,
         },
         card: {
-            type: Object as () => FaqCardInterface,
+            type: Object as () => FaqInterface,
             required: true,
         },
     });

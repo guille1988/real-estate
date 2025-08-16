@@ -18,9 +18,9 @@
 
 <script setup lang="ts">
 import { formatText } from '@/Composables/useTextFormatting';
-import { UnlockPropertyModalItemInterface } from '@/Types/App/Interfaces/UnlockPropertyModalItemInterface';
+import { UnlockPropertyItemInterface } from '@/Types/App/Interfaces/UnlockPropertyItemInterface';
 
-const { item }: { item: UnlockPropertyModalItemInterface } = defineProps<{
-    item: UnlockPropertyModalItemInterface;
+const { item }: { item: UnlockPropertyItemInterface } = defineProps<{
+    item: UnlockPropertyItemInterface;
 }>();
 </script>

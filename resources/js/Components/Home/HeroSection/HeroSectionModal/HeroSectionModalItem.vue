@@ -18,9 +18,9 @@
 
 <script setup lang="ts">
 import { formatText } from '@/Composables/useTextFormatting';
-import { HeroSectionModalItemInterface } from '@/Types/App/Interfaces/HeroSectionModalItemInterface';
+import { HeroSectionItemInterface } from '@/Types/App/Interfaces/HeroSectionItemInterface';
 
-const { item }: { item: HeroSectionModalItemInterface } = defineProps<{
-    item: HeroSectionModalItemInterface;
+const { item }: { item: HeroSectionItemInterface } = defineProps<{
+    item: HeroSectionItemInterface;
 }>();
 </script>

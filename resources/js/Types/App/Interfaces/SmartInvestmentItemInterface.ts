@@ -1,4 +1,4 @@
-export interface EffortlessPropertyManagementModalItemInterface {
+export interface SmartInvestmentItemInterface {
     id: number;
     subtitle: string;
     paragraphs: string[];

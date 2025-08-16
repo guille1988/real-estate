@@ -6,7 +6,7 @@
             </h2>
 
             <UnlockPropertyModalItem
-                v-for="item in modalItems"
+                v-for="item in unlockPropertyItems"
                 :key="item.id"
                 :item="item"
             />
@@ -16,7 +16,7 @@
 
 <script setup lang="ts">
 import Modal from '@/Components/Shared/Modals/Modal.vue';
-import { UnlockPropertyModalItemInterface } from '@/Types/App/Interfaces/UnlockPropertyModalItemInterface';
+import { UnlockPropertyItemInterface } from '@/Types/App/Interfaces/UnlockPropertyItemInterface';
 import { EmitInputFunctionType } from '@/Types/App/Types/EmitInputFunctionType';
 import { computed, ComputedRef, EmitFn } from 'vue';
 import UnlockPropertyModalItem from './UnlockPropertyModalItem.vue';
@@ -36,7 +36,7 @@ const isOpen: ComputedRef<boolean> = computed({
     set: (value: boolean): void => emit('update:modelValue', value),
 });
 
-const modalItems: UnlockPropertyModalItemInterface[] = [
+const unlockPropertyItems: UnlockPropertyItemInterface[] = [
     {
         id: 1,
         subtitle: 'Lorem ipsum dolor sit amet',

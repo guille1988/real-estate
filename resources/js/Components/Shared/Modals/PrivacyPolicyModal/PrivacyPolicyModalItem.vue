@@ -18,9 +18,9 @@
 
 <script setup lang="ts">
 import { formatText } from '@/Composables/useTextFormatting';
-import { PrivacyPolicyModalItemInterface } from '@/Types/App/Interfaces/PrivacyPolicyModalItemInterface';
+import { PrivacyPolicyItemInterface } from '@/Types/App/Interfaces/PrivacyPolicyItemInterface';
 
-const { item }: { item: PrivacyPolicyModalItemInterface } = defineProps<{
-    item: PrivacyPolicyModalItemInterface;
+const { item }: { item: PrivacyPolicyItemInterface } = defineProps<{
+    item: PrivacyPolicyItemInterface;
 }>();
 </script>

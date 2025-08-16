@@ -6,7 +6,7 @@
             </h2>
 
             <PrivacyPolicyModalItem
-                v-for="item in modalItems"
+                v-for="item in privacyPolicyItems"
                 :key="item.id"
                 :item="item"
             />
@@ -17,7 +17,7 @@
 <script setup lang="ts">
 import Modal from '@/Components/Shared/Modals/Modal.vue';
 import PrivacyPolicyModalItem from '@/Components/Shared/Modals/PrivacyPolicyModal/PrivacyPolicyModalItem.vue';
-import { PrivacyPolicyModalItemInterface } from '@/Types/App/Interfaces/PrivacyPolicyModalItemInterface';
+import { PrivacyPolicyItemInterface } from '@/Types/App/Interfaces/PrivacyPolicyItemInterface';
 import { EmitInputFunctionType } from '@/Types/App/Types/EmitInputFunctionType';
 import { computed, ComputedRef, EmitFn } from 'vue';
 
@@ -36,7 +36,7 @@ const isOpen: ComputedRef<boolean> = computed({
     set: (value: boolean): void => emit('update:modelValue', value),
 });
 
-const modalItems: PrivacyPolicyModalItemInterface[] = [
+const privacyPolicyItems: PrivacyPolicyItemInterface[] = [
     {
         id: 1,
         subtitle: '1. Introduction',

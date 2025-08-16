@@ -1,4 +1,4 @@
-export interface UnlockPropertyModalItemInterface {
+export interface EffortlessPropertyManagementItemInterface {
     id: number;
     subtitle: string;
     paragraphs: string[];
