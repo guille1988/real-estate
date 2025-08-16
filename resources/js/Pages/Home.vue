@@ -3,7 +3,7 @@
         <HeroSection />
         <FeaturedProperties :featured-properties="featuredProperties" />
         <ClientTestimonials :testimonials="testimonials" />
-        <Faq />
+        <Faq :faq="faq" />
     </Layout>
 </template>
 
@@ -15,6 +15,7 @@ import Layout from '@/Components/Layout/Layout.vue';
 import Faq from '@/Components/Shared/Faq/Faq.vue';
 import { displayErrors } from '@/Composables/useErrorHandling';
 import { ErrorInterface } from '@/Types/App/Interfaces/ErrorInterface';
+import { FaqInterface } from '@/Types/App/Interfaces/FaqInterface';
 import { IndexPropertyInterface } from '@/Types/App/Interfaces/IndexPropertyInterface';
 import { TestimonialInterface } from '@/Types/App/Interfaces/TestimonialInterface';
 import { onMounted } from 'vue';
@@ -22,6 +23,7 @@ import { onMounted } from 'vue';
 const { errors }: { errors: ErrorInterface } = defineProps<{
     featuredProperties: IndexPropertyInterface[];
     testimonials: TestimonialInterface[];
+    faq: FaqInterface[];
     errors: ErrorInterface;
 }>();
 

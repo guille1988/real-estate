@@ -1,5 +1,5 @@
 export interface FaqItemInterface {
-    id: number;
+    uuid: string;
     subtitle: string;
     paragraphs: string[];
 }

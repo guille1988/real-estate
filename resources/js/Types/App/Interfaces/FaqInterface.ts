@@ -1,7 +1,7 @@
 import { FaqItemInterface } from './FaqItemInterface';
 
 export interface FaqInterface {
-    id: number;
+    uuid: string;
     title: string;
     description: string;
     faqItems: FaqItemInterface[];

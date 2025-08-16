@@ -7,7 +7,7 @@
 
             <FaqModalItem
                 v-for="item in card.faqItems"
-                :key="item.id"
+                :key="item.uuid"
                 :item="item"
             />
         </div>
