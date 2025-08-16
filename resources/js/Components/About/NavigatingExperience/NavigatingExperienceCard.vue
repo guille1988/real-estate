@@ -1,6 +1,6 @@
 <template>
     <div class="relative rounded-lg bg-gray-900/50 p-8">
-        <div class="absolute left-0 top-0 h-1 w-16 bg-indigo-600"></div>
+        <div class="absolute left-0 top-0 h-1 w-16 bg-purple-600"></div>
         <span class="mb-4 block text-sm text-gray-400"
             >Step {{ getStep() }}</span
         >
