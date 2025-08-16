@@ -1,10 +1,13 @@
+import { wayfinder } from '@laravel/vite-plugin-wayfinder';
 import vue from '@vitejs/plugin-vue';
 import laravel from 'laravel-vite-plugin';
 import { defineConfig } from 'vite';
-import { run } from 'vite-plugin-run';
 
 export default defineConfig({
     plugins: [
+        wayfinder({
+            path: 'resources/js/Routes',
+        }),
         laravel({
             input: 'resources/js/app.ts',
             ssr: 'resources/js/ssr.ts',
@@ -18,17 +21,5 @@ export default defineConfig({
                 },
             },
         }),
-        run([
-            {
-                name: 'wayfinder',
-                run: [
-                    'php',
-                    'artisan',
-                    'wayfinder:generate',
-                    '--path=resources/js/Routes',
-                ],
-                pattern: ['routes/**/*.php', 'app/**/Http/**/*.php'],
-            },
-        ]),
     ],
 });
