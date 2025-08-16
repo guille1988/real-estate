@@ -15,7 +15,7 @@ final class TestimonialSeeder extends Seeder
      */
     private array $testimonials = [
         [
-            'title' => 'Exceptional Service!',
+            'title' => 'Exceptional Attention',
             'description' => "Our experience with Real estate was outstanding. Their team's dedication and professionalism made finding our dream home a breeze. Highly recommended!",
             'name' => 'Wade Warren',
             'location' => 'USA, California',
@@ -34,6 +34,20 @@ final class TestimonialSeeder extends Seeder
             'name' => 'John Mans',
             'location' => 'USA, Nevada',
             'thumbnail' => 'thumbnails/john_mans.jpg',
+        ],
+        [
+            'title' => 'Great Service',
+            'description' => 'The Real Estate team supported us every step of the way. Their expertise and dedication to understanding our needs made the process smooth and stress-free. Thank you!',
+            'name' => 'Devon Ackley',
+            'location' => 'USA, Denver',
+            'thumbnail' => 'thumbnails/devon_ackley.jpg',
+        ],
+        [
+            'title' => 'Remarkable Work',
+            'description' => "The Real Estate team made the entire buying experience effortless. Their professionalism and attention to our needs were outstanding. We're grateful for their guidance!",
+            'name' => 'James Hogan',
+            'location' => 'USA, Phoenix',
+            'thumbnail' => 'thumbnails/james_hogan.jpg',
         ],
     ];
 
