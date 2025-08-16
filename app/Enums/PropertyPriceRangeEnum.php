@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Enums;
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\Number;
+use Illuminate\Support\Stringable;
 
 enum PropertyPriceRangeEnum: string
 {
@@ -33,13 +35,28 @@ enum PropertyPriceRangeEnum: string
      */
     public function getLabel(): string
     {
-        return match ($this) {
-            self::BETWEEN_100_000_AND_300_000 => '$100,000 - $300,000',
-            self::BETWEEN_300_000_AND_500_000 => '$300,000 - $500,000',
-            self::BETWEEN_500_000_AND_800_000 => '$500,000 - $800,000',
-            self::BETWEEN_800_000_AND_1_200_000 => '$800,000 - $1,200,000',
-            self::MORE_THAN_1_200_000 => '$1,200,000+',
-        };
+        $label = str($this->value)
+            ->explode('-')
+            ->map(function (string $number): string {
+                if (is_numeric($number)) {
+                    /**
+                     * @var string $number
+                     */
+                    $number = Number::currency(
+                        number: (int) $number,
+                        in: 'USD',
+                        precision: 0,
+                    );
+                }
+
+                return $number;
+            })->implode(' - ');
+
+        return str($label)
+            ->whenContains(
+                'plus',
+                fn (Stringable $value): Stringable => $value->replace(' - plus', '+')
+            )->toString();
     }
 
     /**
@@ -49,13 +66,14 @@ enum PropertyPriceRangeEnum: string
      */
     public function toArray(): array
     {
-        return match ($this) {
-            self::BETWEEN_100_000_AND_300_000 => [100000, 300000],
-            self::BETWEEN_300_000_AND_500_000 => [300000, 500000],
-            self::BETWEEN_500_000_AND_800_000 => [500000, 800000],
-            self::BETWEEN_800_000_AND_1_200_000 => [800000, 1200000],
-            self::MORE_THAN_1_200_000 => [1200000],
-        };
+        /**
+         * @var array<int, int<min, -1>|int<1, max>>
+         */
+        return str($this->value)
+            ->explode('-')
+            ->reject(fn (string $value): bool => $value === 'plus')
+            ->map(fn (string $value): int => (int) $value)
+            ->toArray();
     }
 
     /**

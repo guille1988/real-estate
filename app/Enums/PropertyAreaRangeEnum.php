@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Enums;
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\Number;
+use Illuminate\Support\Stringable;
 
 enum PropertyAreaRangeEnum: string
 {
@@ -33,13 +35,29 @@ enum PropertyAreaRangeEnum: string
      */
     public function getLabel(): string
     {
-        return match ($this) {
-            self::BETWEEN_500_AND_1000 => '500 - 1,000 sq ft',
-            self::BETWEEN_1_000_AND_1_500 => '1,000 - 1,500 sq ft',
-            self::BETWEEN_1_500_AND_2_000 => '1,500 - 2,000 sq ft',
-            self::BETWEEN_2_000_AND_3_000 => '2,000 - 3,000 sq ft',
-            self::MORE_THAN_3_000 => '3,000+ sq ft',
-        };
+        $label = str($this->value)
+            ->explode('-')
+            ->map(function (string $number): string {
+                if (is_numeric($number)) {
+                    /**
+                     * @var string $number
+                     */
+                    $number = Number::format(
+                        number: (int) $number,
+                        precision: 0,
+                    );
+                }
+
+                return $number;
+            })->implode(' - ');
+
+        return str($label)
+            ->whenContains(
+                'plus',
+                fn (Stringable $value): Stringable => $value->replace(' - plus', '+')
+            )
+            ->append(' sq ft')
+            ->toString();
     }
 
     /**
@@ -49,13 +67,14 @@ enum PropertyAreaRangeEnum: string
      */
     public function toArray(): array
     {
-        return match ($this) {
-            self::BETWEEN_500_AND_1000 => [500, 1000],
-            self::BETWEEN_1_000_AND_1_500 => [1000, 1500],
-            self::BETWEEN_1_500_AND_2_000 => [1500, 2000],
-            self::BETWEEN_2_000_AND_3_000 => [2000, 3000],
-            self::MORE_THAN_3_000 => [3000],
-        };
+        /**
+         * @var array<int, int<min, -1>|int<1, max>>
+         */
+        return str($this->value)
+            ->explode('-')
+            ->reject(fn (string $value): bool => $value === 'plus')
+            ->map(fn (string $value): int => (int) $value)
+            ->toArray();
     }
 
     /**
