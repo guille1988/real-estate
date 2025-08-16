@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Enums\PageEnum;
 use App\Models\Faq;
+use App\Models\FaqItem;
 use App\Models\Image;
 use App\Models\Property;
 use App\Models\Testimonial;
@@ -37,13 +38,20 @@ it('renders testimonials on home page.', function (string $key): void {
         });
 })->with(['testimonials']);
 
-it('renders frequently asked questions on home page.', function (string $key): void {
-    $faq = Faq::factory(4)
-        ->create();
+it('renders frequently asked questions with respective items on home page.', function (string $key): void {
+    Faq::factory($count = 4)
+        ->create()
+        ->each(function (Faq $faq) use ($count): void {
+            FaqItem::factory($count)
+                ->create(['faq_id' => $faq->id]);
+        });
 
     $this->get(route('home'))
-        ->assertInertia(function (Assert $page) use ($key, $faq): void {
-            $page->component(PageEnum::HOME->value)
-                ->has($key, $faq->count());
+        ->assertInertia(function (Assert $page) use ($key, $count): void {
+            foreach (range(0, $count - 1) as $index) {
+                $page->component(PageEnum::HOME->value)
+                    ->has($key, $count)
+                    ->has("$key.$index.faqItems", $count);
+            }
         });
 })->with(['faq']);
