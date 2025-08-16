@@ -9,6 +9,8 @@ use App\Enums\PropertyLocationEnum;
 use App\Enums\PropertyPriceRangeEnum;
 use App\Enums\PropertyTypeEnum;
 use App\Models\Amenity;
+use App\Models\Faq;
+use App\Models\FaqItem;
 use App\Models\Image;
 use App\Models\PricingDetail;
 use App\Models\Property;
@@ -190,9 +192,22 @@ it('works showing a specific property.', function (): void {
                 ]);
         });
 
+    Faq::factory($count = 4)
+        ->create()
+        ->each(function (Faq $faq) use ($count): void {
+            FaqItem::factory($count)
+                ->create(['faq_id' => $faq->id]);
+        });
+
     $this->get(route('properties.show', $property->uuid))
-        ->assertInertia(function (Assert $page): void {
+        ->assertInertia(function (Assert $page) use ($count): void {
             $page->component(PageEnum::PROPERTY_DETAILS->value)
                 ->has('property');
+
+            foreach (range(0, $count - 1) as $index) {
+                $page->component(PageEnum::PROPERTY_DETAILS->value)
+                    ->has('faq', $count)
+                    ->has("faq.$index.faqItems", $count);
+            }
         });
 });

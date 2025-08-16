@@ -12,6 +12,7 @@ use App\Enums\PropertyPriceRangeEnum;
 use App\Enums\PropertyTypeEnum;
 use App\Http\Resources\IndexPropertyResource;
 use App\Http\Resources\ShowPropertyResource;
+use App\Models\Faq;
 use App\Models\Property;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
@@ -67,8 +68,21 @@ final class PropertyController
             }
         );
 
+        $faq = cache()
+            ->rememberForever('faq', function (): ResourceCollection {
+                return Faq::query()
+                    ->with('faqItems:id,uuid,subtitle,paragraphs,faq_id')
+                    ->get([
+                        'id',
+                        'uuid',
+                        'title',
+                        'description',
+                    ])->toResourceCollection();
+            });
+
         return Inertia::render(PageEnum::PROPERTY_DETAILS->value, [
             'property' => fn (): JsonResource => $cachedProperty,
+            'faq' => fn (): ResourceCollection => $faq,
         ]);
     }
 }
