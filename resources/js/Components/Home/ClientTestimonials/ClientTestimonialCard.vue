@@ -30,9 +30,9 @@
 </template>
 <script setup lang="ts">
 import StarIcon from '@/Components/Icons/StarIcon.vue';
-import { ClientTestimonialCardInterface } from '@/Types/App/Interfaces/ClientTestimonialCardInterface';
+import { TestimonialInterface } from '@/Types/App/Interfaces/TestimonialInterface';
 
-const { card }: { card: ClientTestimonialCardInterface } = defineProps<{
-    card: ClientTestimonialCardInterface;
+const { card }: { card: TestimonialInterface } = defineProps<{
+    card: TestimonialInterface;
 }>();
 </script>

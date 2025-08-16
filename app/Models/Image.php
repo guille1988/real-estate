@@ -79,6 +79,9 @@ final class Image extends Model
         return $this->belongsTo(Property::class);
     }
 
+    /*
+     * Returns the image url.
+     */
     public function getUrl(): string
     {
         return Storage::disk('images')

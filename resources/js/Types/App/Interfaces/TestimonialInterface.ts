@@ -1,5 +1,5 @@
-export interface ClientTestimonialCardInterface {
-    id: number;
+export interface TestimonialInterface {
+    uuid: string;
     title: string;
     description: string;
     name: string;

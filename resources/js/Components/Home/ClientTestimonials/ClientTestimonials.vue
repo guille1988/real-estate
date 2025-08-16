@@ -32,8 +32,8 @@
                     :style="{ transform: `translateX(-${translateX}px)` }"
                 >
                     <div
-                        v-for="card in cards"
-                        :key="card.id"
+                        v-for="testimonial in testimonials"
+                        :key="testimonial.uuid"
                         class="flex-shrink-0 pr-4 md:pr-6"
                         :class="{
                             'w-full': screenSize === ScreenSizeEnum.MOBILE,
@@ -42,7 +42,7 @@
                         }"
                         ref="slideItems"
                     >
-                        <ClientTestimonialCard :card="card" />
+                        <ClientTestimonialCard :card="testimonial" />
                     </div>
                 </div>
             </div>
@@ -80,16 +80,13 @@
 </template>
 
 <script setup lang="ts">
-import EmelieThompson from '@/Assets/Images/emelie_thmpson.jpg';
-import JohnMans from '@/Assets/Images/john_mans.jpg';
-import WadeWarren from '@/Assets/Images/wade_warren.jpg';
 import ClientTestimonialCard from '@/Components/Home/ClientTestimonials/ClientTestimonialCard.vue';
 import ChevronIcon from '@/Components/Icons/ChevronIcon.vue';
 import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
 import { ChevronDirectionEnum } from '@/Types/App/Enums/ChevronDirectionEnum';
 import { ScreenSizeEnum } from '@/Types/App/Enums/ScreenSizeEnum';
-import { ClientTestimonialCardInterface } from '@/Types/App/Interfaces/ClientTestimonialCardInterface';
 import { ScreenSizeConfigInterface } from '@/Types/App/Interfaces/ScreenSizeConfigInterface';
+import { TestimonialInterface } from '@/Types/App/Interfaces/TestimonialInterface';
 import {
     computed,
     ComputedRef,
@@ -101,35 +98,9 @@ import {
     watch,
 } from 'vue';
 
-const cards: ClientTestimonialCardInterface[] = [
-    {
-        id: 1,
-        title: 'Exceptional Service!',
-        description:
-            "Our experience with Real estate was outstanding. Their team's dedication and professionalism made finding our dream home a breeze. Highly recommended!",
-        name: 'Wade Warren',
-        location: 'USA, California',
-        thumbnail: WadeWarren,
-    },
-    {
-        id: 2,
-        title: 'Efficient and Reliable',
-        description:
-            "Real estate provided us with top-notch service. They helped us sell our property quickly and at a great price. We couldn't be happier with the results.",
-        name: 'Emelie Thompson',
-        location: 'USA, Florida',
-        thumbnail: EmelieThompson,
-    },
-    {
-        id: 3,
-        title: 'Trusted Advisors',
-        description:
-            'The Real estate team guided us through the entire buying process. Their knowledge and commitment to our needs were impressive. Thank you for your support!',
-        name: 'John Mans',
-        location: 'USA, Nevada',
-        thumbnail: JohnMans,
-    },
-];
+const { testimonials }: { testimonials: TestimonialInterface[] } = defineProps<{
+    testimonials: TestimonialInterface[];
+}>();
 
 const sliderTrack: Ref<HTMLElement | null> = ref<HTMLElement | null>(null);
 const slideItems: Ref<HTMLElement[]> = ref<HTMLElement[]>([]);
@@ -152,7 +123,7 @@ const visibleCards: ComputedRef<number> = computed((): number => {
 });
 
 const maxIndex: ComputedRef<number> = computed((): number =>
-    Math.max(0, cards.length - visibleCards.value),
+    Math.max(0, testimonials.length - visibleCards.value),
 );
 
 const canGoBack: ComputedRef<boolean> = computed(
