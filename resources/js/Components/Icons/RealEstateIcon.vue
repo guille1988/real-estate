@@ -1,6 +1,6 @@
 <template>
     <img
-        :src="RealStateLogo"
+        :src="RealEstateLogo"
         width="48"
         height="48"
         alt="Real estate logo"
@@ -9,5 +9,5 @@
 </template>
 
 <script setup lang="ts">
-import RealStateLogo from '@/Assets/Images/real_state_logo.jpg';
+import RealEstateLogo from '@/Assets/Images/real_estate_logo.jpg';
 </script>

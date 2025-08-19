@@ -7,7 +7,7 @@
                     :href="HomeController().url"
                     class="flex items-center"
                 >
-                    <RealStateIcon />
+                    <RealEstateIcon />
                     <span class="ml-4 text-xl font-bold">Real estate</span>
                 </Link>
             </div>
@@ -96,7 +96,7 @@
 </template>
 
 <script setup lang="ts">
-import RealStateIcon from '@/Components/Icons/RealStateIcon.vue';
+import RealEstateIcon from '@/Components/Icons/RealEstateIcon.vue';
 import TurtleIcon from '@/Components/Icons/TurtleIcon.vue';
 import AboutController from '@/Routes/actions/App/Http/Controllers/AboutController';
 import ContactController from '@/Routes/actions/App/Http/Controllers/ContactController';

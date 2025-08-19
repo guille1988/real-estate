@@ -41,7 +41,7 @@
                         class="flex items-center"
                     >
                         <div class="mr-2 h-8 w-8 rounded-md">
-                            <RealStateIcon />
+                            <RealEstateIcon />
                         </div>
                         <span
                             class="whitespace-nowrap text-xl font-bold text-white"
@@ -109,7 +109,7 @@
 
 <script setup lang="ts">
 import EmailIcon from '@/Components/Icons/EmailIcon.vue';
-import RealStateIcon from '@/Components/Icons/RealStateIcon.vue';
+import RealEstateIcon from '@/Components/Icons/RealEstateIcon.vue';
 import SendIcon from '@/Components/Icons/SendIcon.vue';
 import FooterCategory from '@/Components/Layout/Footer/FooterCategory.vue';
 import FooterSocialLink from '@/Components/Layout/Footer/FooterSocialLink.vue';
