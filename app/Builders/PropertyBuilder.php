@@ -38,51 +38,60 @@ final class PropertyBuilder extends Builder
      */
     public function search(PropertyData $data): self
     {
-        return $this->with('defaultImage:id,path,property_id')
-            ->when($data->isNotNull('search'), function (self $query) use ($data): self {
+        $columns = [
+            'id',
+            'uuid',
+            'caption',
+            'title',
+            'description',
+            'type',
+            'bathrooms',
+            'bedrooms',
+            'price',
+        ];
+
+        return $this->select($columns)
+            ->with('defaultImage:id,path,property_id')
+            ->when($data->isNotNull('search'), function (self $query) use ($data): void {
                 $search = "%$data->search%";
 
-                return $query->where(function (self $query) use ($search): self {
-                    return $query->whereLike('title', $search)
+                $query->where(function (self $subQuery) use ($search): void {
+                    $subQuery->whereLike('title', $search)
                         ->orWhereLike('caption', $search);
                 });
+            })->when($data->isNotNull('location'), function (self $query) use ($data): void {
+                $query->where('location', $data->location);
+            })->when($data->isNotNull('type'), function (self $query) use ($data): void {
+                $query->where('type', $data->type);
             })->when(
-                $data->isNotNull('location'),
-                fn (self $query): self => $query->where('location', $data->location),
-            )->when(
-                $data->isNotNull('type'),
-                fn (self $query): self => $query->where('type', $data->type),
-            )->when(
                 $data->isNotNull('price'),
-                function (self $query) use ($data): self {
+                function (self $query) use ($data): void {
                     /**
                      * @var Collection<int, int<min, -1>|int<1, max>> $price
                      */
                     $price = $data->getPrice();
 
-                    return $query->where('price', '>=', $price->first())
-                        ->when(
-                            $price->count() > 1,
-                            fn (self $builder): self => $builder->where('price', '<=', $price->last())
-                        );
+                    $query->where('price', '>=', $price->first())
+                        ->when($price->count() > 1, function (self $subQuery) use ($price): void {
+                            $subQuery->where('price', '<=', $price->last());
+                        });
                 },
             )->when(
                 $data->isNotNull('area'),
-                function (self $query) use ($data): self {
+                function (self $query) use ($data): void {
                     /**
                      * @var Collection<int, int<min, -1>|int<1, max>> $area
                      */
                     $area = $data->getArea();
 
-                    return $query->where('area', '>=', $area->first())
-                        ->when(
-                            $area->count() > 1,
-                            fn (self $builder): self => $builder->where('area', '<=', $area->last())
+                    $query->where('area', '>=', $area->first())
+                        ->when($area->count() > 1, function (self $subQuery) use ($area): void {
+                            $subQuery->where('area', '<=', $area->last());
+                        }
                         );
                 },
-            )->when(
-                $data->isNotNull('isFeatured'),
-                fn (self $query): self => $query->where('is_featured', $data->isFeatured),
-            );
+            )->when($data->isNotNull('isFeatured'), function (self $query) use ($data): void {
+                $query->where('is_featured', $data->isFeatured);
+            });
     }
 }

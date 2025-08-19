@@ -155,7 +155,7 @@ import SearchFilterCard from '@/Components/Properties/Search/SearchFilterCard.vu
 import { index } from '@/Routes/actions/App/Http/Controllers/PropertyController';
 import { ScreenSizeEnum } from '@/Types/App/Enums/ScreenSizeEnum';
 import { FilterInterface } from '@/Types/App/Interfaces/FilterInterface';
-import { IndexPropertyInterface } from '@/Types/App/Interfaces/IndexPropertyInterface';
+import { IndexPropertyPaginatedInterface } from '@/Types/App/Interfaces/IndexPropertyPaginatedInterface';
 import { PropertyAreaRangeInterface } from '@/Types/App/Interfaces/PropertyAreaRangeInterface';
 import { PropertyLocationInterface } from '@/Types/App/Interfaces/PropertyLocationInterface';
 import { PropertyPriceRangeInterface } from '@/Types/App/Interfaces/PropertyPriceRangeInterface';
@@ -187,7 +187,7 @@ const {
     types: PropertyTypeInterface[];
     filters: FilterInterface;
 } = defineProps<{
-    properties: IndexPropertyInterface[];
+    properties: IndexPropertyPaginatedInterface;
     areas: PropertyAreaRangeInterface[];
     locations: PropertyLocationInterface[];
     prices: PropertyPriceRangeInterface[];

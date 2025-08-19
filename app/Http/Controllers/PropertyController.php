@@ -18,6 +18,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Support\Collection;
 use Inertia\Inertia;
+use Inertia\MergeProp;
 use Inertia\Response;
 use Throwable;
 
@@ -30,20 +31,12 @@ final class PropertyController
     {
         $properties = Property::query()
             ->search($data)
-            ->get([
-                'id',
-                'uuid',
-                'caption',
-                'title',
-                'description',
-                'type',
-                'bathrooms',
-                'bedrooms',
-                'price',
-            ])->toResourceCollection(IndexPropertyResource::class);
+            ->paginate()
+            ->withQueryString()
+            ->toResourceCollection(IndexPropertyResource::class);
 
         return Inertia::render(PageEnum::PROPERTIES->value, [
-            'properties' => fn (): ResourceCollection => $properties,
+            'properties' => fn (): MergeProp => Inertia::deepMerge($properties),
             'areas' => fn (): Collection => PropertyAreaRangeEnum::toResponse(),
             'locations' => fn (): Collection => PropertyLocationEnum::toResponse(),
             'prices' => fn (): Collection => PropertyPriceRangeEnum::toResponse(),

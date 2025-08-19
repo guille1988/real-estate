@@ -8,7 +8,7 @@
                     :style="{ transform: `translateX(-${translateX}px)` }"
                 >
                     <div
-                        v-for="property in properties"
+                        v-for="property in properties.data"
                         :key="property.uuid"
                         class="flex-shrink-0 pr-4 md:pr-6"
                         :class="{
@@ -63,7 +63,7 @@ import ChevronIcon from '@/Components/Icons/ChevronIcon.vue';
 import PropertyCard from '@/Components/Properties/Search/Properties/PropertyCard.vue';
 import { ChevronDirectionEnum } from '@/Types/App/Enums/ChevronDirectionEnum';
 import { ScreenSizeEnum } from '@/Types/App/Enums/ScreenSizeEnum';
-import { IndexPropertyInterface } from '@/Types/App/Interfaces/IndexPropertyInterface';
+import { IndexPropertyPaginatedInterface } from '@/Types/App/Interfaces/IndexPropertyPaginatedInterface';
 import { ScreenSizeConfigInterface } from '@/Types/App/Interfaces/ScreenSizeConfigInterface';
 import {
     computed,
@@ -76,9 +76,10 @@ import {
     watch,
 } from 'vue';
 
-const { properties }: { properties: IndexPropertyInterface[] } = defineProps<{
-    properties: IndexPropertyInterface[];
-}>();
+const { properties }: { properties: IndexPropertyPaginatedInterface } =
+    defineProps<{
+        properties: IndexPropertyPaginatedInterface;
+    }>();
 
 const sliderTrack: Ref<HTMLElement | null> = ref<HTMLElement | null>(null);
 const slideItems: Ref<HTMLElement[]> = ref<HTMLElement[]>([]);
@@ -91,13 +92,13 @@ const screenSize: Ref<ScreenSizeEnum> = ref<ScreenSizeEnum>(
 const resizeTimeout: Ref<number | null> = ref<number | null>(null);
 
 const currentSlides: ComputedRef<string> = computed((): string =>
-    Math.min(currentIndex.value + visibleCards.value, properties.length)
+    Math.min(currentIndex.value + visibleCards.value, properties.meta.total)
         .toString()
         .padStart(2, '0'),
 );
 
 const slidesTotal: ComputedRef<string> = computed((): string =>
-    properties.length.toString().padStart(2, '0'),
+    properties.meta.total.toString().padStart(2, '0'),
 );
 
 const visibleCards: ComputedRef<number> = computed((): number => {
@@ -111,7 +112,7 @@ const visibleCards: ComputedRef<number> = computed((): number => {
 });
 
 const maxIndex: ComputedRef<number> = computed((): number =>
-    Math.max(0, properties.length - visibleCards.value),
+    Math.max(0, properties.meta.total - visibleCards.value),
 );
 
 const canGoBack: ComputedRef<boolean> = computed(
