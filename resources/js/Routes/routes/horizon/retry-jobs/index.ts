@@ -1,28 +1,25 @@
-import { queryParams, type QueryParams } from './../../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../../wayfinder'
 /**
 * @see \Laravel\Horizon\Http\Controllers\RetryController::show
 * @see vendor/laravel/horizon/src/Http/Controllers/RetryController.php:15
 * @route '/horizon/api/jobs/retry/{id}'
 */
-export const show = (args: { id: string | number } | [id: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'post',
-} => ({
+export const show = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: show.url(args, options),
     method: 'post',
 })
 
 show.definition = {
-    methods: ['post'],
+    methods: ["post"],
     url: '/horizon/api/jobs/retry/{id}',
-}
+} satisfies RouteDefinition<["post"]>
 
 /**
 * @see \Laravel\Horizon\Http\Controllers\RetryController::show
 * @see vendor/laravel/horizon/src/Http/Controllers/RetryController.php:15
 * @route '/horizon/api/jobs/retry/{id}'
 */
-show.url = (args: { id: string | number } | [id: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+show.url = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { id: args }
     }
@@ -32,6 +29,8 @@ show.url = (args: { id: string | number } | [id: string | number ] | string | nu
             id: args[0],
         }
     }
+
+    args = applyUrlDefaults(args)
 
     const parsedArgs = {
         id: args.id,
@@ -47,10 +46,7 @@ show.url = (args: { id: string | number } | [id: string | number ] | string | nu
 * @see vendor/laravel/horizon/src/Http/Controllers/RetryController.php:15
 * @route '/horizon/api/jobs/retry/{id}'
 */
-show.post = (args: { id: string | number } | [id: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'post',
-} => ({
+show.post = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: show.url(args, options),
     method: 'post',
 })

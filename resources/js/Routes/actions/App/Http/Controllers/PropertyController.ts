@@ -1,28 +1,25 @@
-import { queryParams, type QueryParams } from './../../../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\PropertyController::index
 * @see app/Http/Controllers/PropertyController.php:30
 * @route '/properties'
 */
-export const index = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: index.url(options),
     method: 'get',
 })
 
 index.definition = {
-    methods: ['get','head'],
+    methods: ["get","head"],
     url: '/properties',
-}
+} satisfies RouteDefinition<["get","head"]>
 
 /**
 * @see \App\Http\Controllers\PropertyController::index
 * @see app/Http/Controllers/PropertyController.php:30
 * @route '/properties'
 */
-index.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+index.url = (options?: RouteQueryOptions) => {
     return index.definition.url + queryParams(options)
 }
 
@@ -31,10 +28,7 @@ index.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
 * @see app/Http/Controllers/PropertyController.php:30
 * @route '/properties'
 */
-index.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: index.url(options),
     method: 'get',
 })
@@ -44,10 +38,7 @@ index.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 * @see app/Http/Controllers/PropertyController.php:30
 * @route '/properties'
 */
-index.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'head',
-} => ({
+index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: index.url(options),
     method: 'head',
 })
@@ -57,25 +48,22 @@ index.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 * @see app/Http/Controllers/PropertyController.php:51
 * @route '/properties/{property}'
 */
-export const show = (args: { property: string | { uuid: string } } | [property: string | { uuid: string } ] | string | { uuid: string }, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+export const show = (args: { property: string | { uuid: string } } | [property: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, options),
     method: 'get',
 })
 
 show.definition = {
-    methods: ['get','head'],
+    methods: ["get","head"],
     url: '/properties/{property}',
-}
+} satisfies RouteDefinition<["get","head"]>
 
 /**
 * @see \App\Http\Controllers\PropertyController::show
 * @see app/Http/Controllers/PropertyController.php:51
 * @route '/properties/{property}'
 */
-show.url = (args: { property: string | { uuid: string } } | [property: string | { uuid: string } ] | string | { uuid: string }, options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+show.url = (args: { property: string | { uuid: string } } | [property: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { property: args }
     }
@@ -89,6 +77,8 @@ show.url = (args: { property: string | { uuid: string } } | [property: string | 
             property: args[0],
         }
     }
+
+    args = applyUrlDefaults(args)
 
     const parsedArgs = {
         property: typeof args.property === 'object'
@@ -106,10 +96,7 @@ show.url = (args: { property: string | { uuid: string } } | [property: string | 
 * @see app/Http/Controllers/PropertyController.php:51
 * @route '/properties/{property}'
 */
-show.get = (args: { property: string | { uuid: string } } | [property: string | { uuid: string } ] | string | { uuid: string }, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+show.get = (args: { property: string | { uuid: string } } | [property: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, options),
     method: 'get',
 })
@@ -119,10 +106,7 @@ show.get = (args: { property: string | { uuid: string } } | [property: string | 
 * @see app/Http/Controllers/PropertyController.php:51
 * @route '/properties/{property}'
 */
-show.head = (args: { property: string | { uuid: string } } | [property: string | { uuid: string } ] | string | { uuid: string }, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'head',
-} => ({
+show.head = (args: { property: string | { uuid: string } } | [property: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: show.url(args, options),
     method: 'head',
 })

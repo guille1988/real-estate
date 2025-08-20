@@ -1,28 +1,25 @@
-import { queryParams, type QueryParams } from './../../../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\AboutController::__invoke
 * @see app/Http/Controllers/AboutController.php:13
 * @route '/about'
 */
-const AboutController = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+const AboutController = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: AboutController.url(options),
     method: 'get',
 })
 
 AboutController.definition = {
-    methods: ['get','head'],
+    methods: ["get","head"],
     url: '/about',
-}
+} satisfies RouteDefinition<["get","head"]>
 
 /**
 * @see \App\Http\Controllers\AboutController::__invoke
 * @see app/Http/Controllers/AboutController.php:13
 * @route '/about'
 */
-AboutController.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+AboutController.url = (options?: RouteQueryOptions) => {
     return AboutController.definition.url + queryParams(options)
 }
 
@@ -31,10 +28,7 @@ AboutController.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams
 * @see app/Http/Controllers/AboutController.php:13
 * @route '/about'
 */
-AboutController.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+AboutController.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: AboutController.url(options),
     method: 'get',
 })
@@ -44,10 +38,7 @@ AboutController.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams
 * @see app/Http/Controllers/AboutController.php:13
 * @route '/about'
 */
-AboutController.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'head',
-} => ({
+AboutController.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: AboutController.url(options),
     method: 'head',
 })

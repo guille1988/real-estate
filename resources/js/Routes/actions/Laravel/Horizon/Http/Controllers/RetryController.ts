@@ -1,28 +1,25 @@
-import { queryParams, type QueryParams } from './../../../../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../../../../wayfinder'
 /**
 * @see \Laravel\Horizon\Http\Controllers\RetryController::store
 * @see vendor/laravel/horizon/src/Http/Controllers/RetryController.php:15
 * @route '/horizon/api/jobs/retry/{id}'
 */
-export const store = (args: { id: string | number } | [id: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'post',
-} => ({
+export const store = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: store.url(args, options),
     method: 'post',
 })
 
 store.definition = {
-    methods: ['post'],
+    methods: ["post"],
     url: '/horizon/api/jobs/retry/{id}',
-}
+} satisfies RouteDefinition<["post"]>
 
 /**
 * @see \Laravel\Horizon\Http\Controllers\RetryController::store
 * @see vendor/laravel/horizon/src/Http/Controllers/RetryController.php:15
 * @route '/horizon/api/jobs/retry/{id}'
 */
-store.url = (args: { id: string | number } | [id: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+store.url = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { id: args }
     }
@@ -32,6 +29,8 @@ store.url = (args: { id: string | number } | [id: string | number ] | string | n
             id: args[0],
         }
     }
+
+    args = applyUrlDefaults(args)
 
     const parsedArgs = {
         id: args.id,
@@ -47,10 +46,7 @@ store.url = (args: { id: string | number } | [id: string | number ] | string | n
 * @see vendor/laravel/horizon/src/Http/Controllers/RetryController.php:15
 * @route '/horizon/api/jobs/retry/{id}'
 */
-store.post = (args: { id: string | number } | [id: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'post',
-} => ({
+store.post = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: store.url(args, options),
     method: 'post',
 })

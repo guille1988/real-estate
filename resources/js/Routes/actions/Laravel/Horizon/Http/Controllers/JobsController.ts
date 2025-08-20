@@ -1,28 +1,25 @@
-import { queryParams, type QueryParams } from './../../../../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../../../../wayfinder'
 /**
 * @see \Laravel\Horizon\Http\Controllers\JobsController::show
 * @see vendor/laravel/horizon/src/Http/Controllers/JobsController.php:35
 * @route '/horizon/api/jobs/{id}'
 */
-export const show = (args: { id: string | number } | [id: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+export const show = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, options),
     method: 'get',
 })
 
 show.definition = {
-    methods: ['get','head'],
+    methods: ["get","head"],
     url: '/horizon/api/jobs/{id}',
-}
+} satisfies RouteDefinition<["get","head"]>
 
 /**
 * @see \Laravel\Horizon\Http\Controllers\JobsController::show
 * @see vendor/laravel/horizon/src/Http/Controllers/JobsController.php:35
 * @route '/horizon/api/jobs/{id}'
 */
-show.url = (args: { id: string | number } | [id: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+show.url = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { id: args }
     }
@@ -32,6 +29,8 @@ show.url = (args: { id: string | number } | [id: string | number ] | string | nu
             id: args[0],
         }
     }
+
+    args = applyUrlDefaults(args)
 
     const parsedArgs = {
         id: args.id,
@@ -47,10 +46,7 @@ show.url = (args: { id: string | number } | [id: string | number ] | string | nu
 * @see vendor/laravel/horizon/src/Http/Controllers/JobsController.php:35
 * @route '/horizon/api/jobs/{id}'
 */
-show.get = (args: { id: string | number } | [id: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+show.get = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, options),
     method: 'get',
 })
@@ -60,10 +56,7 @@ show.get = (args: { id: string | number } | [id: string | number ] | string | nu
 * @see vendor/laravel/horizon/src/Http/Controllers/JobsController.php:35
 * @route '/horizon/api/jobs/{id}'
 */
-show.head = (args: { id: string | number } | [id: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'head',
-} => ({
+show.head = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: show.url(args, options),
     method: 'head',
 })

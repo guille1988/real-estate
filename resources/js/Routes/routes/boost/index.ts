@@ -1,26 +1,23 @@
-import { queryParams, type QueryParams } from './../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../wayfinder'
 /**
 * @see vendor/laravel/boost/src/BoostServiceProvider.php:100
 * @route '/_boost/browser-logs'
 */
-export const browserLogs = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'post',
-} => ({
+export const browserLogs = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: browserLogs.url(options),
     method: 'post',
 })
 
 browserLogs.definition = {
-    methods: ['post'],
+    methods: ["post"],
     url: '/_boost/browser-logs',
-}
+} satisfies RouteDefinition<["post"]>
 
 /**
 * @see vendor/laravel/boost/src/BoostServiceProvider.php:100
 * @route '/_boost/browser-logs'
 */
-browserLogs.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+browserLogs.url = (options?: RouteQueryOptions) => {
     return browserLogs.definition.url + queryParams(options)
 }
 
@@ -28,10 +25,7 @@ browserLogs.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) 
 * @see vendor/laravel/boost/src/BoostServiceProvider.php:100
 * @route '/_boost/browser-logs'
 */
-browserLogs.post = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'post',
-} => ({
+browserLogs.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: browserLogs.url(options),
     method: 'post',
 })

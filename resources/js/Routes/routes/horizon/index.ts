@@ -1,4 +1,4 @@
-import { queryParams, type QueryParams, validateParameters } from './../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults, validateParameters } from './../../wayfinder'
 import stats from './stats'
 import workload from './workload'
 import masters from './masters'
@@ -18,25 +18,22 @@ import jobs from './jobs'
 * @see vendor/laravel/horizon/src/Http/Controllers/HomeController.php:14
 * @route '/horizon/{view?}'
 */
-export const index = (args?: { view?: string | number } | [view: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+export const index = (args?: { view?: string | number } | [view: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: index.url(args, options),
     method: 'get',
 })
 
 index.definition = {
-    methods: ['get','head'],
+    methods: ["get","head"],
     url: '/horizon/{view?}',
-}
+} satisfies RouteDefinition<["get","head"]>
 
 /**
 * @see \Laravel\Horizon\Http\Controllers\HomeController::index
 * @see vendor/laravel/horizon/src/Http/Controllers/HomeController.php:14
 * @route '/horizon/{view?}'
 */
-index.url = (args?: { view?: string | number } | [view: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+index.url = (args?: { view?: string | number } | [view: string | number ] | string | number, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { view: args }
     }
@@ -46,6 +43,8 @@ index.url = (args?: { view?: string | number } | [view: string | number ] | stri
             view: args[0],
         }
     }
+
+    args = applyUrlDefaults(args)
 
     validateParameters(args, [
         "view",
@@ -65,10 +64,7 @@ index.url = (args?: { view?: string | number } | [view: string | number ] | stri
 * @see vendor/laravel/horizon/src/Http/Controllers/HomeController.php:14
 * @route '/horizon/{view?}'
 */
-index.get = (args?: { view?: string | number } | [view: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+index.get = (args?: { view?: string | number } | [view: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: index.url(args, options),
     method: 'get',
 })
@@ -78,10 +74,7 @@ index.get = (args?: { view?: string | number } | [view: string | number ] | stri
 * @see vendor/laravel/horizon/src/Http/Controllers/HomeController.php:14
 * @route '/horizon/{view?}'
 */
-index.head = (args?: { view?: string | number } | [view: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'head',
-} => ({
+index.head = (args?: { view?: string | number } | [view: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: index.url(args, options),
     method: 'head',
 })
