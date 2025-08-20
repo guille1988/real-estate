@@ -305,6 +305,15 @@ const handleResize = () => {
     }, 200);
 };
 
+const visibleSkeletonCards: ComputedRef<number> = computed((): number => {
+    const map: Record<ScreenSizeEnum, number> = {
+        [ScreenSizeEnum.MOBILE]: 1,
+        [ScreenSizeEnum.TABLET]: 2,
+        [ScreenSizeEnum.DESKTOP]: 3,
+    };
+    return map[screenSize.value] ?? 3;
+});
+
 watch(screenSize, (): void => {
     updateTranslateX();
 });
@@ -319,14 +328,5 @@ onUnmounted((): void => {
         window.clearTimeout(resizeTimeout.value);
     }
     window.removeEventListener('resize', handleResize);
-});
-
-const visibleSkeletonCards: ComputedRef<number> = computed((): number => {
-    const map: Record<ScreenSizeEnum, number> = {
-        [ScreenSizeEnum.MOBILE]: 1,
-        [ScreenSizeEnum.TABLET]: 2,
-        [ScreenSizeEnum.DESKTOP]: 3,
-    };
-    return map[screenSize.value] ?? 3;
 });
 </script>

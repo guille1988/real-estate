@@ -277,10 +277,6 @@ const handleResize = (): void => {
     }, 200);
 };
 
-watch(screenSize, (): void => {
-    updateTranslateX();
-});
-
 const resetStateFromProps = (
     newProps: IndexPropertyPaginatedInterface,
 ): void => {
@@ -292,6 +288,10 @@ const resetStateFromProps = (
 
     nextTick((): void => updateTranslateX());
 };
+
+watch(screenSize, (): void => {
+    updateTranslateX();
+});
 
 watch(
     () => properties,
