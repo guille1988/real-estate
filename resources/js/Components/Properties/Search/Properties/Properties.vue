@@ -8,7 +8,7 @@
                     :style="{ transform: `translateX(-${translateX}px)` }"
                 >
                     <div
-                        v-for="property in properties.data"
+                        v-for="property in allProperties"
                         :key="property.uuid"
                         class="flex-shrink-0 pr-4 md:pr-6"
                         :class="{
@@ -61,10 +61,14 @@
 <script setup lang="ts">
 import ChevronIcon from '@/Components/Icons/ChevronIcon.vue';
 import PropertyCard from '@/Components/Properties/Search/Properties/PropertyCard.vue';
+import PropertyController from '@/Routes/actions/App/Http/Controllers/PropertyController';
 import { ChevronDirectionEnum } from '@/Types/App/Enums/ChevronDirectionEnum';
 import { ScreenSizeEnum } from '@/Types/App/Enums/ScreenSizeEnum';
+import { FilterInterface } from '@/Types/App/Interfaces/FilterInterface';
+import { IndexPropertyInterface } from '@/Types/App/Interfaces/IndexPropertyInterface';
 import { IndexPropertyPaginatedInterface } from '@/Types/App/Interfaces/IndexPropertyPaginatedInterface';
 import { ScreenSizeConfigInterface } from '@/Types/App/Interfaces/ScreenSizeConfigInterface';
+import { router } from '@inertiajs/vue3';
 import {
     computed,
     ComputedRef,
@@ -76,13 +80,27 @@ import {
     watch,
 } from 'vue';
 
-const { properties }: { properties: IndexPropertyPaginatedInterface } =
+const {
+    properties,
+    filters,
+}: { properties: IndexPropertyPaginatedInterface; filters?: FilterInterface } =
     defineProps<{
         properties: IndexPropertyPaginatedInterface;
+        filters?: FilterInterface;
     }>();
 
 const sliderTrack: Ref<HTMLElement | null> = ref<HTMLElement | null>(null);
 const slideItems: Ref<HTMLElement[]> = ref<HTMLElement[]>([]);
+
+const allProperties: Ref<IndexPropertyInterface[]> = ref<
+    IndexPropertyInterface[]
+>([...properties.data]);
+const page: Ref<number> = ref<number>(properties.currentPage);
+const total: Ref<number> = ref<number>(properties.total);
+const isLoadingNext: Ref<boolean> = ref<boolean>(false);
+const loadedPages: Ref<Set<number>> = ref<Set<number>>(
+    new Set([properties.currentPage]),
+);
 
 const currentIndex: Ref<number> = ref<number>(0);
 const translateX: Ref<number> = ref<number>(0);
@@ -91,14 +109,16 @@ const screenSize: Ref<ScreenSizeEnum> = ref<ScreenSizeEnum>(
 );
 const resizeTimeout: Ref<number | null> = ref<number | null>(null);
 
+const currentVisibleEnd: ComputedRef<number> = computed(
+    (): number => currentIndex.value + visibleCards.value,
+);
+
 const currentSlides: ComputedRef<string> = computed((): string =>
-    Math.min(currentIndex.value + visibleCards.value, properties.total)
-        .toString()
-        .padStart(2, '0'),
+    Math.min(currentVisibleEnd.value, total.value).toString().padStart(2, '0'),
 );
 
 const slidesTotal: ComputedRef<string> = computed((): string =>
-    properties.total.toString().padStart(2, '0'),
+    total.value.toString().padStart(2, '0'),
 );
 
 const visibleCards: ComputedRef<number> = computed((): number => {
@@ -112,7 +132,7 @@ const visibleCards: ComputedRef<number> = computed((): number => {
 });
 
 const maxIndex: ComputedRef<number> = computed((): number =>
-    Math.max(0, properties.total - visibleCards.value),
+    Math.max(0, total.value - visibleCards.value),
 );
 
 const canGoBack: ComputedRef<boolean> = computed(
@@ -122,10 +142,57 @@ const canGoForward: ComputedRef<boolean> = computed(
     (): boolean => currentIndex.value < maxIndex.value,
 );
 
+const mustLoadNextPage = (): boolean => {
+    const threshold: number = 10;
+
+    return (
+        page.value * threshold >= currentVisibleEnd.value &&
+        currentVisibleEnd.value % threshold === 0
+    );
+};
+
+const maybeLoadNextPage = (): void => {
+    if (isLoadingNext.value) {
+        return;
+    }
+
+    if (mustLoadNextPage()) {
+        const next: number = page.value + 1;
+
+        if (loadedPages.value.has(next)) {
+            return;
+        }
+
+        if (allProperties.value.length >= total.value) {
+            return;
+        }
+
+        const query = { ...(filters as any), page: next } as const;
+
+        router.get(
+            PropertyController.index.url({ query }),
+            {},
+            {
+                preserveState: true,
+                preserveScroll: true,
+                only: ['properties'],
+                replace: true,
+                onStart: (): void => {
+                    isLoadingNext.value = true;
+                },
+                onFinish: (): void => {
+                    isLoadingNext.value = false;
+                },
+            },
+        );
+    }
+};
+
 const nextSlide = (): void => {
     if (!canGoForward.value) return;
     currentIndex.value = Math.min(currentIndex.value + 1, maxIndex.value);
     updateTranslateX();
+    maybeLoadNextPage();
 };
 
 const prevSlide = (): void => {
@@ -184,6 +251,67 @@ const handleResize = () => {
 watch(screenSize, (): void => {
     updateTranslateX();
 });
+
+const resetStateFromProps = (
+    newProps: IndexPropertyPaginatedInterface,
+): void => {
+    allProperties.value = [...newProps.data];
+    page.value = newProps.currentPage;
+    total.value = newProps.total;
+    loadedPages.value = new Set([1]);
+    currentIndex.value = 0;
+
+    nextTick((): void => updateTranslateX());
+};
+
+watch(
+    () => properties,
+    (newProps: IndexPropertyPaginatedInterface): void => {
+        if (!newProps) {
+            return;
+        }
+        if (newProps.currentPage === 1) {
+            resetStateFromProps(newProps);
+            return;
+        }
+
+        if (newProps.currentPage > page.value) {
+            const existing: Set<string> = new Set(
+                allProperties.value.map(
+                    (property: IndexPropertyInterface): string => property.uuid,
+                ),
+            );
+
+            const toAppend: IndexPropertyInterface[] = newProps.data.filter(
+                (property: IndexPropertyInterface): boolean =>
+                    !existing.has(property.uuid),
+            );
+
+            if (toAppend.length > 0) {
+                allProperties.value.push(...toAppend);
+            }
+
+            page.value = newProps.currentPage;
+            total.value = newProps.total;
+            loadedPages.value.add(newProps.currentPage);
+
+            nextTick((): void => {
+                updateTranslateX();
+            });
+        }
+    },
+    { deep: false },
+);
+
+watch(
+    () => filters,
+    (): void => {
+        if (properties) {
+            resetStateFromProps(properties);
+        }
+    },
+    { deep: true },
+);
 
 onMounted((): void => {
     updateScreenSize();

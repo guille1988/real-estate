@@ -32,8 +32,9 @@ final class PropertyController
         $properties = Property::query()
             ->search($data)
             ->paginate(page: $data->page)
-            ->through(fn (Property $property): JsonResource => IndexPropertyResource::make($property))
-            ->withQueryString();
+            ->through(function (Property $property): JsonResource {
+                return IndexPropertyResource::make($property);
+            });
 
         return Inertia::render(PageEnum::PROPERTIES->value, [
             'properties' => fn (): AbstractPaginator => $properties,

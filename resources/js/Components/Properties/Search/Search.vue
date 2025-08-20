@@ -139,7 +139,10 @@
                             />
                         </div>
 
-                        <Properties :properties="properties" />
+                        <Properties
+                            :properties="properties"
+                            :filters="filters"
+                        />
                     </div>
                 </Transition>
             </WhenVisible>
@@ -195,6 +198,10 @@ const {
     filters: FilterInterface;
 }>();
 
+const page: Ref<number | undefined> = ref<number | undefined>(
+    (filters as any)?.page ?? undefined,
+);
+
 const search: Ref<string | undefined> = ref<string | undefined>(
     (filters as any)?.search ?? undefined,
 );
@@ -225,6 +232,7 @@ const applyFilters = (fromClearingFilters: boolean = false): void => {
     }
 
     const query = {
+        page: page.value,
         search: search.value?.trim(),
         location: location.value,
         type: type.value,
@@ -310,7 +318,8 @@ const getSelectedValue = (
 const hasActiveFilters: Ref<boolean> = computed<boolean>((): boolean => {
     const isSearchActive: boolean = (search.value ?? '').trim().length > 0;
 
-    const filters: (string | boolean | undefined)[] = [
+    const filters: (boolean | number | string | undefined)[] = [
+        page.value,
         location.value,
         type.value,
         price.value,
@@ -319,7 +328,8 @@ const hasActiveFilters: Ref<boolean> = computed<boolean>((): boolean => {
     ];
 
     const hasActiveAnyFilter: boolean = filters.some(
-        (filter: string | boolean | undefined) => filter !== undefined,
+        (filter: boolean | number | string | undefined): boolean =>
+            filter !== undefined,
     );
 
     const hasActiveAnySelectedFilter: boolean =
@@ -333,6 +343,7 @@ const doesntHaveActiveFilters: Ref<boolean> = computed<boolean>(
 );
 
 const clearFilters = (): void => {
+    page.value = undefined;
     search.value = '';
     location.value = undefined;
     type.value = undefined;

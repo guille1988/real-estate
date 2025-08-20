@@ -4,5 +4,4 @@ export interface IndexPropertyPaginatedInterface {
     data: IndexPropertyInterface[];
     currentPage: number;
     total: number;
-    nextPageUrl: string | null;
 }

@@ -45,7 +45,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\PropertyController::show
-* @see app/Http/Controllers/PropertyController.php:51
+* @see app/Http/Controllers/PropertyController.php:52
 * @route '/properties/{property}'
 */
 export const show = (args: { property: string | { uuid: string } } | [property: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -60,7 +60,7 @@ show.definition = {
 
 /**
 * @see \App\Http\Controllers\PropertyController::show
-* @see app/Http/Controllers/PropertyController.php:51
+* @see app/Http/Controllers/PropertyController.php:52
 * @route '/properties/{property}'
 */
 show.url = (args: { property: string | { uuid: string } } | [property: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
@@ -93,7 +93,7 @@ show.url = (args: { property: string | { uuid: string } } | [property: string | 
 
 /**
 * @see \App\Http\Controllers\PropertyController::show
-* @see app/Http/Controllers/PropertyController.php:51
+* @see app/Http/Controllers/PropertyController.php:52
 * @route '/properties/{property}'
 */
 show.get = (args: { property: string | { uuid: string } } | [property: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -103,7 +103,7 @@ show.get = (args: { property: string | { uuid: string } } | [property: string | 
 
 /**
 * @see \App\Http\Controllers\PropertyController::show
-* @see app/Http/Controllers/PropertyController.php:51
+* @see app/Http/Controllers/PropertyController.php:52
 * @route '/properties/{property}'
 */
 show.head = (args: { property: string | { uuid: string } } | [property: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
