@@ -232,7 +232,7 @@ const applyFilters = (fromClearingFilters: boolean = false): void => {
     }
 
     const query = {
-        page: page.value,
+        page: undefined,
         search: search.value?.trim(),
         location: location.value,
         type: type.value,

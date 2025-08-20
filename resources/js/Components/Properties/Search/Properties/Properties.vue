@@ -314,6 +314,21 @@ watch(
 );
 
 onMounted((): void => {
+    if (page.value !== 1) {
+        const query = { ...(filters as any), page: undefined } as const;
+
+        router.get(
+            PropertyController.index.url({ query }),
+            {},
+            {
+                preserveState: true,
+                preserveScroll: true,
+                only: ['properties'],
+                replace: true,
+            },
+        );
+    }
+
     updateScreenSize();
     window.addEventListener('resize', handleResize);
 });
