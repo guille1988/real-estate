@@ -1,59 +1,69 @@
 <template>
     <section class="bg-black py-10 text-white md:py-10" id="properties">
         <div class="container mx-auto">
-            <div class="mb-8 overflow-hidden">
-                <div
-                    ref="sliderTrack"
-                    class="flex transition-transform duration-500 ease-in-out"
-                    :style="{ transform: `translateX(-${translateX}px)` }"
-                >
-                    <div
-                        v-for="property in allProperties"
-                        :key="property.uuid"
-                        class="flex-shrink-0 pr-4 md:pr-6"
-                        :class="{
-                            'w-full': screenSize === ScreenSizeEnum.MOBILE,
-                            'w-1/2': screenSize === ScreenSizeEnum.TABLET,
-                            'w-1/3': screenSize === ScreenSizeEnum.DESKTOP,
-                        }"
-                        ref="slideItems"
-                    >
-                        <PropertyCard :card="property" />
-                    </div>
-                </div>
+            <div v-if="total === 0" class="py-16 text-center">
+                <p class="text-purple-500">No results found.</p>
             </div>
 
-            <div class="flex items-center justify-between">
-                <p class="text-xs text-gray-400 md:text-sm">
-                    {{ `${currentSlides} of ${slidesTotal}` }}
-                </p>
-                <div class="flex gap-2">
-                    <button
-                        class="border border-gray-800 p-1.5 transition-colors duration-300 md:p-2"
-                        :class="{
-                            'hover:bg-gray-800': canGoBack,
-                            'cursor-not-allowed opacity-50': !canGoBack,
-                        }"
-                        @click="prevSlide"
-                        :disabled="!canGoBack"
-                        aria-label="Previous slide"
+            <template v-else>
+                <div class="mb-8 overflow-hidden">
+                    <div
+                        ref="sliderTrack"
+                        class="flex transition-transform duration-500 ease-in-out"
+                        :style="{ transform: `translateX(-${translateX}px)` }"
                     >
-                        <ChevronIcon :direction="ChevronDirectionEnum.LEFT" />
-                    </button>
-                    <button
-                        class="border border-gray-800 p-1.5 transition-colors duration-300 md:p-2"
-                        :class="{
-                            'hover:bg-gray-800': canGoForward,
-                            'cursor-not-allowed opacity-50': !canGoForward,
-                        }"
-                        @click="nextSlide"
-                        :disabled="!canGoForward"
-                        aria-label="Next slide"
-                    >
-                        <ChevronIcon :direction="ChevronDirectionEnum.RIGHT" />
-                    </button>
+                        <div
+                            v-for="property in allProperties"
+                            :key="property.uuid"
+                            class="flex-shrink-0 pr-4 md:pr-6"
+                            :class="{
+                                'w-full': screenSize === ScreenSizeEnum.MOBILE,
+                                'w-1/2': screenSize === ScreenSizeEnum.TABLET,
+                                'w-1/3': screenSize === ScreenSizeEnum.DESKTOP,
+                            }"
+                            ref="slideItems"
+                        >
+                            <PropertyCard :card="property" />
+                        </div>
+                    </div>
                 </div>
-            </div>
+
+                <div class="flex items-center justify-between">
+                    <p class="text-xs text-gray-400 md:text-sm">
+                        {{ `${currentSlides} of ${slidesTotal}` }}
+                    </p>
+                    <div class="flex gap-2">
+                        <button
+                            class="border border-gray-800 p-1.5 transition-colors duration-300 md:p-2"
+                            :class="{
+                                'hover:bg-gray-800': canGoBack,
+                                'cursor-not-allowed opacity-50': !canGoBack,
+                            }"
+                            @click="prevSlide"
+                            :disabled="!canGoBack"
+                            aria-label="Previous slide"
+                        >
+                            <ChevronIcon
+                                :direction="ChevronDirectionEnum.LEFT"
+                            />
+                        </button>
+                        <button
+                            class="border border-gray-800 p-1.5 transition-colors duration-300 md:p-2"
+                            :class="{
+                                'hover:bg-gray-800': canGoForward,
+                                'cursor-not-allowed opacity-50': !canGoForward,
+                            }"
+                            @click="nextSlide"
+                            :disabled="!canGoForward"
+                            aria-label="Next slide"
+                        >
+                            <ChevronIcon
+                                :direction="ChevronDirectionEnum.RIGHT"
+                            />
+                        </button>
+                    </div>
+                </div>
+            </template>
         </div>
     </section>
 </template>
