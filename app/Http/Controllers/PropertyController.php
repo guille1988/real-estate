@@ -16,9 +16,9 @@ use App\Models\Faq;
 use App\Models\Property;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Pagination\AbstractPaginator;
 use Illuminate\Support\Collection;
 use Inertia\Inertia;
-use Inertia\MergeProp;
 use Inertia\Response;
 use Throwable;
 
@@ -32,11 +32,11 @@ final class PropertyController
         $properties = Property::query()
             ->search($data)
             ->paginate(page: $data->page)
-            ->withQueryString()
-            ->toResourceCollection(IndexPropertyResource::class);
+            ->through(fn (Property $property): JsonResource => IndexPropertyResource::make($property))
+            ->withQueryString();
 
         return Inertia::render(PageEnum::PROPERTIES->value, [
-            'properties' => fn (): MergeProp => Inertia::deepMerge($properties),
+            'properties' => fn (): AbstractPaginator => $properties,
             'areas' => fn (): Collection => PropertyAreaRangeEnum::toResponse(),
             'locations' => fn (): Collection => PropertyLocationEnum::toResponse(),
             'prices' => fn (): Collection => PropertyPriceRangeEnum::toResponse(),

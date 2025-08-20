@@ -92,13 +92,13 @@ const screenSize: Ref<ScreenSizeEnum> = ref<ScreenSizeEnum>(
 const resizeTimeout: Ref<number | null> = ref<number | null>(null);
 
 const currentSlides: ComputedRef<string> = computed((): string =>
-    Math.min(currentIndex.value + visibleCards.value, properties.meta.total)
+    Math.min(currentIndex.value + visibleCards.value, properties.total)
         .toString()
         .padStart(2, '0'),
 );
 
 const slidesTotal: ComputedRef<string> = computed((): string =>
-    properties.meta.total.toString().padStart(2, '0'),
+    properties.total.toString().padStart(2, '0'),
 );
 
 const visibleCards: ComputedRef<number> = computed((): number => {
@@ -112,7 +112,7 @@ const visibleCards: ComputedRef<number> = computed((): number => {
 });
 
 const maxIndex: ComputedRef<number> = computed((): number =>
-    Math.max(0, properties.meta.total - visibleCards.value),
+    Math.max(0, properties.total - visibleCards.value),
 );
 
 const canGoBack: ComputedRef<boolean> = computed(
