@@ -225,6 +225,9 @@ const isFeatured: Ref<boolean | undefined> = ref<boolean | undefined>(
 );
 
 const isSearching: Ref<boolean> = ref<boolean>(false);
+const screenSize = ref<ScreenSizeEnum>(ScreenSizeEnum.DESKTOP);
+const resizeTimeout = ref<number | null>(null);
+const selectedFilters = ref<Record<number, SearchFilterOptionInterface>>({});
 
 const applyFilters = (fromClearingFilters: boolean = false): void => {
     if (isSearching.value) {
@@ -264,8 +267,6 @@ const applyFilters = (fromClearingFilters: boolean = false): void => {
         },
     );
 };
-
-const selectedFilters = ref<Record<number, SearchFilterOptionInterface>>({});
 
 const handleOptionSelected = (
     cardId: number,
@@ -390,9 +391,6 @@ const filterCards: SearchFilterCardInterface[] = [
         ],
     },
 ];
-
-const screenSize = ref<ScreenSizeEnum>(ScreenSizeEnum.DESKTOP);
-const resizeTimeout = ref<number | null>(null);
 
 const updateScreenSize = (): void => {
     const screenSizes: ScreenSizeConfigInterface[] = [
