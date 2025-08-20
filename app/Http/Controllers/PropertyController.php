@@ -31,7 +31,7 @@ final class PropertyController
     {
         $properties = Property::query()
             ->search($data)
-            ->paginate()
+            ->paginate(page: $data->page)
             ->withQueryString()
             ->toResourceCollection(IndexPropertyResource::class);
 
