@@ -151,6 +151,42 @@ const mustLoadNextPage = (): boolean => {
     );
 };
 
+const resetPage = (): void => {
+    const query = { ...(filters as any), page: undefined } as const;
+
+    router.get(
+        PropertyController.index.url({ query }),
+        {},
+        {
+            preserveState: true,
+            preserveScroll: true,
+            only: ['properties'],
+            replace: true,
+        },
+    );
+};
+
+const getNextPage = (page: number): void => {
+    const query = { ...(filters as any), page: page } as const;
+
+    router.get(
+        PropertyController.index.url({ query }),
+        {},
+        {
+            preserveState: true,
+            preserveScroll: true,
+            only: ['properties'],
+            replace: true,
+            onStart: (): void => {
+                isLoadingNext.value = true;
+            },
+            onFinish: (): void => {
+                isLoadingNext.value = false;
+            },
+        },
+    );
+};
+
 const maybeLoadNextPage = (): void => {
     if (isLoadingNext.value) {
         return;
@@ -167,24 +203,7 @@ const maybeLoadNextPage = (): void => {
             return;
         }
 
-        const query = { ...(filters as any), page: next } as const;
-
-        router.get(
-            PropertyController.index.url({ query }),
-            {},
-            {
-                preserveState: true,
-                preserveScroll: true,
-                only: ['properties'],
-                replace: true,
-                onStart: (): void => {
-                    isLoadingNext.value = true;
-                },
-                onFinish: (): void => {
-                    isLoadingNext.value = false;
-                },
-            },
-        );
+        getNextPage(next);
     }
 };
 
@@ -238,7 +257,7 @@ const updateScreenSize = (): void => {
     });
 };
 
-const handleResize = () => {
+const handleResize = (): void => {
     if (resizeTimeout.value !== null) {
         window.clearTimeout(resizeTimeout.value);
     }
@@ -304,7 +323,7 @@ watch(
 );
 
 watch(
-    () => filters,
+    (): FilterInterface | undefined => filters,
     (): void => {
         if (properties) {
             resetStateFromProps(properties);
@@ -315,18 +334,7 @@ watch(
 
 onMounted((): void => {
     if (page.value !== 1) {
-        const query = { ...(filters as any), page: undefined } as const;
-
-        router.get(
-            PropertyController.index.url({ query }),
-            {},
-            {
-                preserveState: true,
-                preserveScroll: true,
-                only: ['properties'],
-                replace: true,
-            },
-        );
+        resetPage();
     }
 
     updateScreenSize();
