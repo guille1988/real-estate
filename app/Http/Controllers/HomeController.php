@@ -24,7 +24,7 @@ final class HomeController
      */
     public function __invoke(HomeData $data): Response
     {
-        $featuredProperties = Property::query()
+        $properties = Property::query()
             ->featured()
             ->paginate(page: $data->page)
             ->through(function (Property $property): JsonResource {
@@ -58,7 +58,7 @@ final class HomeController
             });
 
         return Inertia::render(PageEnum::HOME->value, [
-            'featured_properties' => fn (): AbstractPaginator => $featuredProperties,
+            'properties' => fn (): AbstractPaginator => $properties,
             'filters' => fn (): array => $data->toArray(),
             'testimonials' => fn (): ResourceCollection => $testimonials,
             'faq' => fn (): ResourceCollection => $faq,

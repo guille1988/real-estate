@@ -1,10 +1,7 @@
 <template>
     <Layout>
         <HeroSection />
-        <FeaturedProperties
-            :properties="featuredProperties"
-            :filters="filters"
-        />
+        <FeaturedProperties :properties="properties" :filters="filters" />
         <ClientTestimonials :testimonials="testimonials" />
         <Faq :faq="faq" />
     </Layout>
@@ -24,7 +21,7 @@ import { TestimonialInterface } from '@/Types/App/Interfaces/TestimonialInterfac
 import { onMounted } from 'vue';
 
 const { errors }: { errors: ErrorInterface } = defineProps<{
-    featuredProperties: IndexPropertyPaginatedInterface;
+    properties: IndexPropertyPaginatedInterface;
     filters: Object;
     testimonials: TestimonialInterface[];
     faq: FaqInterface[];

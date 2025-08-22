@@ -184,7 +184,7 @@ const getNextPage = (page: number): void => {
         {
             preserveState: true,
             preserveScroll: true,
-            only: ['featuredProperties'],
+            only: ['properties'],
             replace: true,
             onStart: (): void => {
                 isLoadingNext.value = true;
