@@ -161,15 +161,11 @@ const mustLoadNextPage = (): boolean => {
 };
 
 const resetPage = (): void => {
-    const query = { ...(filters as any), page: undefined } as const;
-
     router.get(
-        HomeController.url({ query }),
+        HomeController.url(),
         {},
         {
-            preserveState: true,
             preserveScroll: true,
-            only: ['featureProperties'],
             replace: true,
         },
     );
