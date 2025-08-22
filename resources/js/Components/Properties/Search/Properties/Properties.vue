@@ -70,7 +70,7 @@
 
 <script setup lang="ts">
 import ChevronIcon from '@/Components/Icons/ChevronIcon.vue';
-import PropertyCard from '@/Components/Properties/Search/Properties/PropertyCard.vue';
+import PropertyCard from '@/Components/Shared/Properties/PropertyCard.vue';
 import PropertyController from '@/Routes/actions/App/Http/Controllers/PropertyController';
 import { ChevronDirectionEnum } from '@/Types/App/Enums/ChevronDirectionEnum';
 import { ScreenSizeEnum } from '@/Types/App/Enums/ScreenSizeEnum';

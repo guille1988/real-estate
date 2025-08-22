@@ -23,7 +23,7 @@
                             }"
                             ref="slideItems"
                         >
-                            <FeaturedPropertyCard :card="property" />
+                            <PropertyCard :card="property" />
                         </div>
                     </div>
                 </div>
@@ -69,8 +69,8 @@
 </template>
 
 <script setup lang="ts">
-import FeaturedPropertyCard from '@/Components/Home/FeaturedProperties/FeaturedPropertyCard.vue';
 import ChevronIcon from '@/Components/Icons/ChevronIcon.vue';
+import PropertyCard from '@/Components/Shared/Properties/PropertyCard.vue';
 import HomeController from '@/Routes/actions/App/Http/Controllers/HomeController';
 import { ChevronDirectionEnum } from '@/Types/App/Enums/ChevronDirectionEnum';
 import { ScreenSizeEnum } from '@/Types/App/Enums/ScreenSizeEnum';
@@ -91,11 +91,11 @@ import {
 
 const {
     properties,
-    filters,
-}: { properties: IndexPropertyPaginatedInterface; filters?: Object } =
+    filterPage,
+}: { properties: IndexPropertyPaginatedInterface; filterPage: number | null } =
     defineProps<{
         properties: IndexPropertyPaginatedInterface;
-        filters?: Object;
+        filterPage: number | null;
     }>();
 
 const sliderTrack: Ref<HTMLElement | null> = ref<HTMLElement | null>(null);
@@ -172,7 +172,7 @@ const resetPage = (): void => {
 };
 
 const getNextPage = (page: number): void => {
-    const query = { ...(filters as any), page: page } as const;
+    const query = { page: page } as const;
 
     router.get(
         HomeController.url({ query }),
@@ -328,7 +328,7 @@ watch(
 );
 
 watch(
-    (): Object | undefined => filters,
+    (): number | null => filterPage,
     (): void => {
         if (properties) {
             resetStateFromProps(properties);

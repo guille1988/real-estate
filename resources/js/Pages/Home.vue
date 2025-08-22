@@ -1,7 +1,7 @@
 <template>
     <Layout>
         <HeroSection />
-        <FeaturedProperties :properties="properties" :filters="filters" />
+        <FeaturedProperties :properties="properties" :filterPage="page" />
         <ClientTestimonials :testimonials="testimonials" />
         <Faq :faq="faq" />
     </Layout>
@@ -22,7 +22,7 @@ import { onMounted } from 'vue';
 
 const { errors }: { errors: ErrorInterface } = defineProps<{
     properties: IndexPropertyPaginatedInterface;
-    filters: Object;
+    page: number | null;
     testimonials: TestimonialInterface[];
     faq: FaqInterface[];
     errors: ErrorInterface;

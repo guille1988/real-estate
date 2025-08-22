@@ -59,7 +59,7 @@ final class HomeController
 
         return Inertia::render(PageEnum::HOME->value, [
             'properties' => fn (): AbstractPaginator => $properties,
-            'filters' => fn (): array => $data->toArray(),
+            'page' => fn (): ?int => $data->page,
             'testimonials' => fn (): ResourceCollection => $testimonials,
             'faq' => fn (): ResourceCollection => $faq,
         ]);
