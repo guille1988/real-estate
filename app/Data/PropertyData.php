@@ -70,4 +70,31 @@ final class PropertyData extends Data
     {
         return $this->area?->collect();
     }
+
+    /*
+     * Get the cache key for the data.
+     */
+    public function getCacheKey(): string
+    {
+        $key = collect($this->toArray())
+            ->filter(fn (mixed $value): bool => isset($value))
+            ->map(function (mixed $value, string $key): string {
+                if (is_bool($value)) {
+                    $value = $value
+                        ? 'true'
+                        : 'false';
+                }
+
+                /**
+                 * @var string $value
+                 */
+                return "$key:$value";
+            })->implode('_');
+
+        $prefix = empty($key)
+            ? ''
+            : "_$key";
+
+        return "properties$prefix";
+    }
 }

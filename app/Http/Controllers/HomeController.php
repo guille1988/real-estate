@@ -12,7 +12,6 @@ use App\Models\Property;
 use App\Models\Testimonial;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
-use Illuminate\Pagination\AbstractPaginator;
 use Inertia\Inertia;
 use Inertia\Response;
 use Throwable;
@@ -24,11 +23,17 @@ final class HomeController
      */
     public function __invoke(HomeData $data): Response
     {
-        $properties = Property::query()
-            ->featured()
-            ->paginate(page: $data->page)
-            ->through(function (Property $property): JsonResource {
-                return IndexPropertyResource::make($property);
+        /**
+         * @var array<string, mixed> $properties
+         */
+        $properties = cache()
+            ->rememberForever($data->getCacheKey(), function () use ($data) {
+                return Property::query()
+                    ->featured()
+                    ->paginate(page: $data->page)
+                    ->through(function (Property $property): JsonResource {
+                        return IndexPropertyResource::make($property);
+                    })->toArray();
             });
 
         $testimonials = cache()
@@ -58,7 +63,7 @@ final class HomeController
             });
 
         return Inertia::render(PageEnum::HOME->value, [
-            'properties' => fn (): AbstractPaginator => $properties,
+            'properties' => fn (): array => $properties,
             'page' => fn (): ?int => $data->page,
             'testimonials' => fn (): ResourceCollection => $testimonials,
             'faq' => fn (): ResourceCollection => $faq,

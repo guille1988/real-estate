@@ -28,11 +28,11 @@ import { onMounted } from 'vue';
 
 const { errors }: { errors: ErrorInterface } = defineProps<{
     properties: IndexPropertyPaginatedInterface;
+    filters: FilterInterface;
     areas: PropertyAreaRangeInterface[];
     locations: PropertyLocationInterface[];
     prices: PropertyPriceRangeInterface[];
     types: PropertyTypeInterface[];
-    filters: FilterInterface;
     errors: ErrorInterface;
 }>();
 
