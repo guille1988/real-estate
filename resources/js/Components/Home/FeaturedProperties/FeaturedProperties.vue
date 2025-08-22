@@ -1,6 +1,6 @@
 <template>
     <section class="bg-black py-10 text-white md:py-10" id="properties">
-        <div class="container mx-auto">
+        <div class="container mx-auto px-4">
             <div v-if="total === 0" class="py-16 text-center">
                 <p class="text-purple-500">No results found.</p>
             </div>
