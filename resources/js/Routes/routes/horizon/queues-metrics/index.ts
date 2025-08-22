@@ -1,28 +1,25 @@
-import { queryParams, type QueryParams } from './../../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../../wayfinder'
 /**
 * @see \Laravel\Horizon\Http\Controllers\QueueMetricsController::index
 * @see vendor/laravel/horizon/src/Http/Controllers/QueueMetricsController.php:34
 * @route '/horizon/api/metrics/queues'
 */
-export const index = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: index.url(options),
     method: 'get',
 })
 
 index.definition = {
-    methods: ['get','head'],
+    methods: ["get","head"],
     url: '/horizon/api/metrics/queues',
-}
+} satisfies RouteDefinition<["get","head"]>
 
 /**
 * @see \Laravel\Horizon\Http\Controllers\QueueMetricsController::index
 * @see vendor/laravel/horizon/src/Http/Controllers/QueueMetricsController.php:34
 * @route '/horizon/api/metrics/queues'
 */
-index.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+index.url = (options?: RouteQueryOptions) => {
     return index.definition.url + queryParams(options)
 }
 
@@ -31,10 +28,7 @@ index.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
 * @see vendor/laravel/horizon/src/Http/Controllers/QueueMetricsController.php:34
 * @route '/horizon/api/metrics/queues'
 */
-index.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: index.url(options),
     method: 'get',
 })
@@ -44,10 +38,7 @@ index.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 * @see vendor/laravel/horizon/src/Http/Controllers/QueueMetricsController.php:34
 * @route '/horizon/api/metrics/queues'
 */
-index.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'head',
-} => ({
+index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: index.url(options),
     method: 'head',
 })
@@ -57,25 +48,22 @@ index.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 * @see vendor/laravel/horizon/src/Http/Controllers/QueueMetricsController.php:45
 * @route '/horizon/api/metrics/queues/{id}'
 */
-export const show = (args: { id: string | number } | [id: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+export const show = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, options),
     method: 'get',
 })
 
 show.definition = {
-    methods: ['get','head'],
+    methods: ["get","head"],
     url: '/horizon/api/metrics/queues/{id}',
-}
+} satisfies RouteDefinition<["get","head"]>
 
 /**
 * @see \Laravel\Horizon\Http\Controllers\QueueMetricsController::show
 * @see vendor/laravel/horizon/src/Http/Controllers/QueueMetricsController.php:45
 * @route '/horizon/api/metrics/queues/{id}'
 */
-show.url = (args: { id: string | number } | [id: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+show.url = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { id: args }
     }
@@ -85,6 +73,8 @@ show.url = (args: { id: string | number } | [id: string | number ] | string | nu
             id: args[0],
         }
     }
+
+    args = applyUrlDefaults(args)
 
     const parsedArgs = {
         id: args.id,
@@ -100,10 +90,7 @@ show.url = (args: { id: string | number } | [id: string | number ] | string | nu
 * @see vendor/laravel/horizon/src/Http/Controllers/QueueMetricsController.php:45
 * @route '/horizon/api/metrics/queues/{id}'
 */
-show.get = (args: { id: string | number } | [id: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+show.get = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, options),
     method: 'get',
 })
@@ -113,10 +100,7 @@ show.get = (args: { id: string | number } | [id: string | number ] | string | nu
 * @see vendor/laravel/horizon/src/Http/Controllers/QueueMetricsController.php:45
 * @route '/horizon/api/metrics/queues/{id}'
 */
-show.head = (args: { id: string | number } | [id: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'head',
-} => ({
+show.head = (args: { id: string | number } | [id: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: show.url(args, options),
     method: 'head',
 })

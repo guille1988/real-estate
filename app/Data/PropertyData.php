@@ -18,6 +18,7 @@ use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 final class PropertyData extends Data
 {
     public function __construct(
+        public ?int $page = null,
         public ?string $search = null,
         public ?PropertyLocationEnum $location = null,
         public ?PropertyTypeEnum $type = null,
@@ -32,6 +33,7 @@ final class PropertyData extends Data
     public static function rules(): array
     {
         return [
+            'page' => ['nullable', 'integer', 'digits_between:1,100'],
             'search' => ['nullable', 'string', 'between:1,200'],
             'location' => ['nullable', Rule::enum(PropertyLocationEnum::class)],
             'type' => ['nullable', Rule::enum(PropertyTypeEnum::class)],

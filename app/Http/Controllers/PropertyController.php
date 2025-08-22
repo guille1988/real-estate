@@ -16,6 +16,7 @@ use App\Models\Faq;
 use App\Models\Property;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Pagination\AbstractPaginator;
 use Illuminate\Support\Collection;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -30,20 +31,13 @@ final class PropertyController
     {
         $properties = Property::query()
             ->search($data)
-            ->get([
-                'id',
-                'uuid',
-                'caption',
-                'title',
-                'description',
-                'type',
-                'bathrooms',
-                'bedrooms',
-                'price',
-            ])->toResourceCollection(IndexPropertyResource::class);
+            ->paginate(page: $data->page)
+            ->through(function (Property $property): JsonResource {
+                return IndexPropertyResource::make($property);
+            });
 
         return Inertia::render(PageEnum::PROPERTIES->value, [
-            'properties' => fn (): ResourceCollection => $properties,
+            'properties' => fn (): AbstractPaginator => $properties,
             'areas' => fn (): Collection => PropertyAreaRangeEnum::toResponse(),
             'locations' => fn (): Collection => PropertyLocationEnum::toResponse(),
             'prices' => fn (): Collection => PropertyPriceRangeEnum::toResponse(),

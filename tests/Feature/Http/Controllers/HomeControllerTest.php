@@ -10,8 +10,8 @@ use App\Models\Property;
 use App\Models\Testimonial;
 use Inertia\Testing\AssertableInertia as Assert;
 
-it('renders features properties on home page.', function (string $key): void {
-    $featuredProperties = Property::factory(4)
+it('renders properties on home page.', function (string $key): void {
+    $properties = Property::factory(4)
         ->featured()
         ->create()
         ->each(function (Property $property): void {
@@ -21,11 +21,31 @@ it('renders features properties on home page.', function (string $key): void {
         });
 
     $this->get(route('home'))
-        ->assertInertia(function (Assert $page) use ($key, $featuredProperties): void {
+        ->assertInertia(function (Assert $page) use ($properties, $key): void {
             $page->component(PageEnum::HOME->value)
-                ->has(str($key)->camel()->toString(), $featuredProperties->count());
+                ->has("$key.data", $properties->count());
         });
-})->with(['featured_properties']);
+})->with(['properties']);
+
+it('works with pagination.', function (): void {
+    $perPage = $this->app->make(Property::class)
+        ->getPerPage();
+
+    Property::factory($perPage + 10)
+        ->featured()
+        ->create()
+        ->each(function (Property $property): void {
+            Image::factory()
+                ->default()
+                ->create(['property_id' => $property->id]);
+        });
+
+    $this->get(route('home', ['page' => 1]))
+        ->assertInertia(function (Assert $page) use ($perPage): void {
+            $page->component(PageEnum::HOME->value)
+                ->has('properties.data', $perPage);
+        });
+});
 
 it('renders testimonials on home page.', function (string $key): void {
     $testimonials = Testimonial::factory(4)

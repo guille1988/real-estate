@@ -1,28 +1,25 @@
-import { queryParams, type QueryParams } from './../../../../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../../../../wayfinder'
 /**
 * @see \Laravel\Horizon\Http\Controllers\MonitoringController::index
 * @see vendor/laravel/horizon/src/Http/Controllers/MonitoringController.php:47
 * @route '/horizon/api/monitoring'
 */
-export const index = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: index.url(options),
     method: 'get',
 })
 
 index.definition = {
-    methods: ['get','head'],
+    methods: ["get","head"],
     url: '/horizon/api/monitoring',
-}
+} satisfies RouteDefinition<["get","head"]>
 
 /**
 * @see \Laravel\Horizon\Http\Controllers\MonitoringController::index
 * @see vendor/laravel/horizon/src/Http/Controllers/MonitoringController.php:47
 * @route '/horizon/api/monitoring'
 */
-index.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+index.url = (options?: RouteQueryOptions) => {
     return index.definition.url + queryParams(options)
 }
 
@@ -31,10 +28,7 @@ index.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
 * @see vendor/laravel/horizon/src/Http/Controllers/MonitoringController.php:47
 * @route '/horizon/api/monitoring'
 */
-index.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: index.url(options),
     method: 'get',
 })
@@ -44,10 +38,7 @@ index.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 * @see vendor/laravel/horizon/src/Http/Controllers/MonitoringController.php:47
 * @route '/horizon/api/monitoring'
 */
-index.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'head',
-} => ({
+index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: index.url(options),
     method: 'head',
 })
@@ -57,25 +48,22 @@ index.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 * @see vendor/laravel/horizon/src/Http/Controllers/MonitoringController.php:100
 * @route '/horizon/api/monitoring'
 */
-export const store = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'post',
-} => ({
+export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: store.url(options),
     method: 'post',
 })
 
 store.definition = {
-    methods: ['post'],
+    methods: ["post"],
     url: '/horizon/api/monitoring',
-}
+} satisfies RouteDefinition<["post"]>
 
 /**
 * @see \Laravel\Horizon\Http\Controllers\MonitoringController::store
 * @see vendor/laravel/horizon/src/Http/Controllers/MonitoringController.php:100
 * @route '/horizon/api/monitoring'
 */
-store.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+store.url = (options?: RouteQueryOptions) => {
     return store.definition.url + queryParams(options)
 }
 
@@ -84,10 +72,7 @@ store.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
 * @see vendor/laravel/horizon/src/Http/Controllers/MonitoringController.php:100
 * @route '/horizon/api/monitoring'
 */
-store.post = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'post',
-} => ({
+store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     url: store.url(options),
     method: 'post',
 })
@@ -97,25 +82,22 @@ store.post = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 * @see vendor/laravel/horizon/src/Http/Controllers/MonitoringController.php:63
 * @route '/horizon/api/monitoring/{tag}'
 */
-export const paginate = (args: { tag: string | number } | [tag: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+export const paginate = (args: { tag: string | number } | [tag: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: paginate.url(args, options),
     method: 'get',
 })
 
 paginate.definition = {
-    methods: ['get','head'],
+    methods: ["get","head"],
     url: '/horizon/api/monitoring/{tag}',
-}
+} satisfies RouteDefinition<["get","head"]>
 
 /**
 * @see \Laravel\Horizon\Http\Controllers\MonitoringController::paginate
 * @see vendor/laravel/horizon/src/Http/Controllers/MonitoringController.php:63
 * @route '/horizon/api/monitoring/{tag}'
 */
-paginate.url = (args: { tag: string | number } | [tag: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+paginate.url = (args: { tag: string | number } | [tag: string | number ] | string | number, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { tag: args }
     }
@@ -125,6 +107,8 @@ paginate.url = (args: { tag: string | number } | [tag: string | number ] | strin
             tag: args[0],
         }
     }
+
+    args = applyUrlDefaults(args)
 
     const parsedArgs = {
         tag: args.tag,
@@ -140,10 +124,7 @@ paginate.url = (args: { tag: string | number } | [tag: string | number ] | strin
 * @see vendor/laravel/horizon/src/Http/Controllers/MonitoringController.php:63
 * @route '/horizon/api/monitoring/{tag}'
 */
-paginate.get = (args: { tag: string | number } | [tag: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+paginate.get = (args: { tag: string | number } | [tag: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: paginate.url(args, options),
     method: 'get',
 })
@@ -153,10 +134,7 @@ paginate.get = (args: { tag: string | number } | [tag: string | number ] | strin
 * @see vendor/laravel/horizon/src/Http/Controllers/MonitoringController.php:63
 * @route '/horizon/api/monitoring/{tag}'
 */
-paginate.head = (args: { tag: string | number } | [tag: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'head',
-} => ({
+paginate.head = (args: { tag: string | number } | [tag: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: paginate.url(args, options),
     method: 'head',
 })
@@ -166,25 +144,22 @@ paginate.head = (args: { tag: string | number } | [tag: string | number ] | stri
 * @see vendor/laravel/horizon/src/Http/Controllers/MonitoringController.php:111
 * @route '/horizon/api/monitoring/{tag}'
 */
-export const destroy = (args: { tag: string | number } | [tag: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'delete',
-} => ({
+export const destroy = (args: { tag: string | number } | [tag: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, options),
     method: 'delete',
 })
 
 destroy.definition = {
-    methods: ['delete'],
+    methods: ["delete"],
     url: '/horizon/api/monitoring/{tag}',
-}
+} satisfies RouteDefinition<["delete"]>
 
 /**
 * @see \Laravel\Horizon\Http\Controllers\MonitoringController::destroy
 * @see vendor/laravel/horizon/src/Http/Controllers/MonitoringController.php:111
 * @route '/horizon/api/monitoring/{tag}'
 */
-destroy.url = (args: { tag: string | number } | [tag: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+destroy.url = (args: { tag: string | number } | [tag: string | number ] | string | number, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { tag: args }
     }
@@ -194,6 +169,8 @@ destroy.url = (args: { tag: string | number } | [tag: string | number ] | string
             tag: args[0],
         }
     }
+
+    args = applyUrlDefaults(args)
 
     const parsedArgs = {
         tag: args.tag,
@@ -209,10 +186,7 @@ destroy.url = (args: { tag: string | number } | [tag: string | number ] | string
 * @see vendor/laravel/horizon/src/Http/Controllers/MonitoringController.php:111
 * @route '/horizon/api/monitoring/{tag}'
 */
-destroy.delete = (args: { tag: string | number } | [tag: string | number ] | string | number, options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'delete',
-} => ({
+destroy.delete = (args: { tag: string | number } | [tag: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, options),
     method: 'delete',
 })

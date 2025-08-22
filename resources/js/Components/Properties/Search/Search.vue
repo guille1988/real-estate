@@ -139,7 +139,10 @@
                             />
                         </div>
 
-                        <Properties :properties="properties" />
+                        <Properties
+                            :properties="properties"
+                            :filters="filters"
+                        />
                     </div>
                 </Transition>
             </WhenVisible>
@@ -155,7 +158,7 @@ import SearchFilterCard from '@/Components/Properties/Search/SearchFilterCard.vu
 import { index } from '@/Routes/actions/App/Http/Controllers/PropertyController';
 import { ScreenSizeEnum } from '@/Types/App/Enums/ScreenSizeEnum';
 import { FilterInterface } from '@/Types/App/Interfaces/FilterInterface';
-import { IndexPropertyInterface } from '@/Types/App/Interfaces/IndexPropertyInterface';
+import { IndexPropertyPaginatedInterface } from '@/Types/App/Interfaces/IndexPropertyPaginatedInterface';
 import { PropertyAreaRangeInterface } from '@/Types/App/Interfaces/PropertyAreaRangeInterface';
 import { PropertyLocationInterface } from '@/Types/App/Interfaces/PropertyLocationInterface';
 import { PropertyPriceRangeInterface } from '@/Types/App/Interfaces/PropertyPriceRangeInterface';
@@ -187,13 +190,17 @@ const {
     types: PropertyTypeInterface[];
     filters: FilterInterface;
 } = defineProps<{
-    properties: IndexPropertyInterface[];
+    properties: IndexPropertyPaginatedInterface;
     areas: PropertyAreaRangeInterface[];
     locations: PropertyLocationInterface[];
     prices: PropertyPriceRangeInterface[];
     types: PropertyTypeInterface[];
     filters: FilterInterface;
 }>();
+
+const page: Ref<number | undefined> = ref<number | undefined>(
+    (filters as any)?.page ?? undefined,
+);
 
 const search: Ref<string | undefined> = ref<string | undefined>(
     (filters as any)?.search ?? undefined,
@@ -218,6 +225,9 @@ const isFeatured: Ref<boolean | undefined> = ref<boolean | undefined>(
 );
 
 const isSearching: Ref<boolean> = ref<boolean>(false);
+const screenSize = ref<ScreenSizeEnum>(ScreenSizeEnum.DESKTOP);
+const resizeTimeout = ref<number | null>(null);
+const selectedFilters = ref<Record<number, SearchFilterOptionInterface>>({});
 
 const applyFilters = (fromClearingFilters: boolean = false): void => {
     if (isSearching.value) {
@@ -225,6 +235,7 @@ const applyFilters = (fromClearingFilters: boolean = false): void => {
     }
 
     const query = {
+        page: undefined,
         search: search.value?.trim(),
         location: location.value,
         type: type.value,
@@ -256,8 +267,6 @@ const applyFilters = (fromClearingFilters: boolean = false): void => {
         },
     );
 };
-
-const selectedFilters = ref<Record<number, SearchFilterOptionInterface>>({});
 
 const handleOptionSelected = (
     cardId: number,
@@ -310,7 +319,8 @@ const getSelectedValue = (
 const hasActiveFilters: Ref<boolean> = computed<boolean>((): boolean => {
     const isSearchActive: boolean = (search.value ?? '').trim().length > 0;
 
-    const filters: (string | boolean | undefined)[] = [
+    const filters: (boolean | number | string | undefined)[] = [
+        page.value,
         location.value,
         type.value,
         price.value,
@@ -319,7 +329,8 @@ const hasActiveFilters: Ref<boolean> = computed<boolean>((): boolean => {
     ];
 
     const hasActiveAnyFilter: boolean = filters.some(
-        (filter: string | boolean | undefined) => filter !== undefined,
+        (filter: boolean | number | string | undefined): boolean =>
+            filter !== undefined,
     );
 
     const hasActiveAnySelectedFilter: boolean =
@@ -333,6 +344,7 @@ const doesntHaveActiveFilters: Ref<boolean> = computed<boolean>(
 );
 
 const clearFilters = (): void => {
+    page.value = undefined;
     search.value = '';
     location.value = undefined;
     type.value = undefined;
@@ -380,9 +392,6 @@ const filterCards: SearchFilterCardInterface[] = [
     },
 ];
 
-const screenSize = ref<ScreenSizeEnum>(ScreenSizeEnum.DESKTOP);
-const resizeTimeout = ref<number | null>(null);
-
 const updateScreenSize = (): void => {
     const screenSizes: ScreenSizeConfigInterface[] = [
         { max: 768, type: ScreenSizeEnum.MOBILE },
@@ -405,6 +414,15 @@ const handleResize = (): void => {
     }, 200);
 };
 
+const visibleSkeletonCards: ComputedRef<number> = computed((): number => {
+    const map: Record<ScreenSizeEnum, number> = {
+        [ScreenSizeEnum.MOBILE]: 1,
+        [ScreenSizeEnum.TABLET]: 2,
+        [ScreenSizeEnum.DESKTOP]: 3,
+    };
+    return map[screenSize.value] ?? 3;
+});
+
 onMounted((): void => {
     updateScreenSize();
     window.addEventListener('resize', handleResize);
@@ -415,14 +433,5 @@ onUnmounted((): void => {
         window.clearTimeout(resizeTimeout.value);
     }
     window.removeEventListener('resize', handleResize);
-});
-
-const visibleSkeletonCards: ComputedRef<number> = computed((): number => {
-    const map: Record<ScreenSizeEnum, number> = {
-        [ScreenSizeEnum.MOBILE]: 1,
-        [ScreenSizeEnum.TABLET]: 2,
-        [ScreenSizeEnum.DESKTOP]: 3,
-    };
-    return map[screenSize.value] ?? 3;
 });
 </script>

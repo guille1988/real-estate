@@ -1,28 +1,25 @@
-import { queryParams, type QueryParams } from './../../../../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../../../../wayfinder'
 /**
 * @see \Laravel\Horizon\Http\Controllers\MasterSupervisorController::index
 * @see vendor/laravel/horizon/src/Http/Controllers/MasterSupervisorController.php:18
 * @route '/horizon/api/masters'
 */
-export const index = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: index.url(options),
     method: 'get',
 })
 
 index.definition = {
-    methods: ['get','head'],
+    methods: ["get","head"],
     url: '/horizon/api/masters',
-}
+} satisfies RouteDefinition<["get","head"]>
 
 /**
 * @see \Laravel\Horizon\Http\Controllers\MasterSupervisorController::index
 * @see vendor/laravel/horizon/src/Http/Controllers/MasterSupervisorController.php:18
 * @route '/horizon/api/masters'
 */
-index.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+index.url = (options?: RouteQueryOptions) => {
     return index.definition.url + queryParams(options)
 }
 
@@ -31,10 +28,7 @@ index.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
 * @see vendor/laravel/horizon/src/Http/Controllers/MasterSupervisorController.php:18
 * @route '/horizon/api/masters'
 */
-index.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: index.url(options),
     method: 'get',
 })
@@ -44,10 +38,7 @@ index.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
 * @see vendor/laravel/horizon/src/Http/Controllers/MasterSupervisorController.php:18
 * @route '/horizon/api/masters'
 */
-index.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'head',
-} => ({
+index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: index.url(options),
     method: 'head',
 })

@@ -19,7 +19,7 @@ import Search from '@/Components/Properties/Search/Search.vue';
 import { displayErrors } from '@/Composables/useErrorHandling';
 import { ErrorInterface } from '@/Types/App/Interfaces/ErrorInterface';
 import { FilterInterface } from '@/Types/App/Interfaces/FilterInterface';
-import { IndexPropertyInterface } from '@/Types/App/Interfaces/IndexPropertyInterface';
+import { IndexPropertyPaginatedInterface } from '@/Types/App/Interfaces/IndexPropertyPaginatedInterface';
 import { PropertyAreaRangeInterface } from '@/Types/App/Interfaces/PropertyAreaRangeInterface';
 import { PropertyLocationInterface } from '@/Types/App/Interfaces/PropertyLocationInterface';
 import { PropertyPriceRangeInterface } from '@/Types/App/Interfaces/PropertyPriceRangeInterface';
@@ -27,7 +27,7 @@ import { PropertyTypeInterface } from '@/Types/App/Interfaces/PropertyTypeInterf
 import { onMounted } from 'vue';
 
 const { errors }: { errors: ErrorInterface } = defineProps<{
-    properties: IndexPropertyInterface[];
+    properties: IndexPropertyPaginatedInterface;
     areas: PropertyAreaRangeInterface[];
     locations: PropertyLocationInterface[];
     prices: PropertyPriceRangeInterface[];

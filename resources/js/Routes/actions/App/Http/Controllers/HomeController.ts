@@ -1,53 +1,44 @@
-import { queryParams, type QueryParams } from './../../../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\HomeController::__invoke
-* @see app/Http/Controllers/HomeController.php:22
+* @see app/Http/Controllers/HomeController.php:25
 * @route '/'
 */
-const HomeController = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+const HomeController = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: HomeController.url(options),
     method: 'get',
 })
 
 HomeController.definition = {
-    methods: ['get','head'],
+    methods: ["get","head"],
     url: '/',
-}
+} satisfies RouteDefinition<["get","head"]>
 
 /**
 * @see \App\Http\Controllers\HomeController::__invoke
-* @see app/Http/Controllers/HomeController.php:22
+* @see app/Http/Controllers/HomeController.php:25
 * @route '/'
 */
-HomeController.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+HomeController.url = (options?: RouteQueryOptions) => {
     return HomeController.definition.url + queryParams(options)
 }
 
 /**
 * @see \App\Http\Controllers\HomeController::__invoke
-* @see app/Http/Controllers/HomeController.php:22
+* @see app/Http/Controllers/HomeController.php:25
 * @route '/'
 */
-HomeController.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+HomeController.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: HomeController.url(options),
     method: 'get',
 })
 
 /**
 * @see \App\Http\Controllers\HomeController::__invoke
-* @see app/Http/Controllers/HomeController.php:22
+* @see app/Http/Controllers/HomeController.php:25
 * @route '/'
 */
-HomeController.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'head',
-} => ({
+HomeController.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: HomeController.url(options),
     method: 'head',
 })

@@ -1,28 +1,25 @@
-import { queryParams, type QueryParams } from './../../../../wayfinder'
+import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\ServiceController::__invoke
 * @see app/Http/Controllers/ServiceController.php:13
 * @route '/services'
 */
-const ServiceController = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+const ServiceController = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: ServiceController.url(options),
     method: 'get',
 })
 
 ServiceController.definition = {
-    methods: ['get','head'],
+    methods: ["get","head"],
     url: '/services',
-}
+} satisfies RouteDefinition<["get","head"]>
 
 /**
 * @see \App\Http\Controllers\ServiceController::__invoke
 * @see app/Http/Controllers/ServiceController.php:13
 * @route '/services'
 */
-ServiceController.url = (options?: { query?: QueryParams, mergeQuery?: QueryParams }) => {
+ServiceController.url = (options?: RouteQueryOptions) => {
     return ServiceController.definition.url + queryParams(options)
 }
 
@@ -31,10 +28,7 @@ ServiceController.url = (options?: { query?: QueryParams, mergeQuery?: QueryPara
 * @see app/Http/Controllers/ServiceController.php:13
 * @route '/services'
 */
-ServiceController.get = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'get',
-} => ({
+ServiceController.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: ServiceController.url(options),
     method: 'get',
 })
@@ -44,10 +38,7 @@ ServiceController.get = (options?: { query?: QueryParams, mergeQuery?: QueryPara
 * @see app/Http/Controllers/ServiceController.php:13
 * @route '/services'
 */
-ServiceController.head = (options?: { query?: QueryParams, mergeQuery?: QueryParams }): {
-    url: string,
-    method: 'head',
-} => ({
+ServiceController.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: ServiceController.url(options),
     method: 'head',
 })
