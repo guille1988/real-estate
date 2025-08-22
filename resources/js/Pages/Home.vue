@@ -1,7 +1,10 @@
 <template>
     <Layout>
         <HeroSection />
-        <FeaturedProperties :featured-properties="featuredProperties" />
+        <FeaturedProperties
+            :properties="featuredProperties"
+            :filters="filters"
+        />
         <ClientTestimonials :testimonials="testimonials" />
         <Faq :faq="faq" />
     </Layout>
@@ -16,12 +19,13 @@ import Faq from '@/Components/Shared/Faq/Faq.vue';
 import { displayErrors } from '@/Composables/useErrorHandling';
 import { ErrorInterface } from '@/Types/App/Interfaces/ErrorInterface';
 import { FaqInterface } from '@/Types/App/Interfaces/FaqInterface';
-import { IndexPropertyInterface } from '@/Types/App/Interfaces/IndexPropertyInterface';
+import { IndexPropertyPaginatedInterface } from '@/Types/App/Interfaces/IndexPropertyPaginatedInterface';
 import { TestimonialInterface } from '@/Types/App/Interfaces/TestimonialInterface';
 import { onMounted } from 'vue';
 
 const { errors }: { errors: ErrorInterface } = defineProps<{
-    featuredProperties: IndexPropertyInterface[];
+    featuredProperties: IndexPropertyPaginatedInterface;
+    filters: Object;
     testimonials: TestimonialInterface[];
     faq: FaqInterface[];
     errors: ErrorInterface;

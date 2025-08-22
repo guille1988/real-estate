@@ -29,7 +29,20 @@ final class PropertyBuilder extends Builder
      */
     public function featured(): self
     {
+        $columns = [
+            'id',
+            'uuid',
+            'caption',
+            'title',
+            'description',
+            'type',
+            'bathrooms',
+            'bedrooms',
+            'price',
+        ];
+
         return $this->with('defaultImage:id,path,property_id')
+            ->select($columns)
             ->whereFeatured();
     }
 
