@@ -27,6 +27,26 @@ it('renders properties on home page.', function (string $key): void {
         });
 })->with(['properties']);
 
+it('works with pagination.', function (): void {
+    $perPage = $this->app->make(Property::class)
+        ->getPerPage();
+
+    Property::factory($perPage + 10)
+        ->featured()
+        ->create()
+        ->each(function (Property $property): void {
+            Image::factory()
+                ->default()
+                ->create(['property_id' => $property->id]);
+        });
+
+    $this->get(route('home', ['page' => 1]))
+        ->assertInertia(function (Assert $page) use ($perPage): void {
+            $page->component(PageEnum::HOME->value)
+                ->has('properties.data', $perPage);
+        });
+});
+
 it('renders testimonials on home page.', function (string $key): void {
     $testimonials = Testimonial::factory(4)
         ->create();

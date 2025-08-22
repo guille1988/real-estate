@@ -23,6 +23,25 @@ it('works indexing properties without any search.', function (): void {
         });
 });
 
+it('works with pagination.', function (): void {
+    $perPage = $this->app->make(Property::class)
+        ->getPerPage();
+
+    Property::factory($perPage + 10)
+        ->create()
+        ->each(function (Property $property): void {
+            Image::factory()
+                ->default()
+                ->create(['property_id' => $property->id]);
+        });
+
+    $this->get(route('properties.index', ['page' => 1]))
+        ->assertInertia(function (Assert $page) use ($perPage): void {
+            $page->component(PageEnum::PROPERTIES->value)
+                ->has('properties.data', $perPage);
+        });
+});
+
 it('works searching for a property.', function (string $title): void {
     $propertyOne = Property::factory()
         ->create([
@@ -45,7 +64,7 @@ it('works searching for a property.', function (string $title): void {
     $this->get(route('properties.index', ['search' => $title]))
         ->assertInertia(function (Assert $page): void {
             $page->component(PageEnum::PROPERTIES->value)
-                ->has('properties', 2);
+                ->has('properties.data', 2);
         });
 })->with(['Test']);
 
@@ -67,7 +86,7 @@ it('works searching for a property by location.', function (PropertyLocationEnum
     $this->get(route('properties.index', ['location' => $location->value]))
         ->assertInertia(function (Assert $page): void {
             $page->component(PageEnum::PROPERTIES->value)
-                ->has('properties', 2);
+                ->has('properties.data', 2);
         });
 })->with(PropertyLocationEnum::cases());
 
@@ -89,7 +108,7 @@ it('works searching for a property by type.', function (PropertyTypeEnum $type):
     $this->get(route('properties.index', ['type' => $type->value]))
         ->assertInertia(function (Assert $page): void {
             $page->component(PageEnum::PROPERTIES->value)
-                ->has('properties', 2);
+                ->has('properties.data', 2);
         });
 })->with(PropertyTypeEnum::cases());
 
@@ -106,7 +125,7 @@ it('works searching for a property by price range.', function (PropertyPriceRang
     $this->get(route('properties.index', ['price' => $range->value]))
         ->assertInertia(function (Assert $page): void {
             $page->component(PageEnum::PROPERTIES->value)
-                ->has('properties', 1);
+                ->has('properties.data', 1);
         });
 })->with(PropertyPriceRangeEnum::cases());
 
@@ -133,7 +152,7 @@ it('works searching for a property by area range.', function (PropertyAreaRangeE
     $this->get(route('properties.index', ['area' => $range->value]))
         ->assertInertia(function (Assert $page): void {
             $page->component(PageEnum::PROPERTIES->value)
-                ->has('properties', 1);
+                ->has('properties.data', 1);
         });
 })->with(PropertyAreaRangeEnum::cases());
 
@@ -165,7 +184,7 @@ it('works searching for a property by featured.', function (bool $isFeatured): v
     $this->get(route('properties.index', ['is_featured' => $isFeatured]))
         ->assertInertia(function (Assert $page): void {
             $page->component(PageEnum::PROPERTIES->value)
-                ->has('properties', 2);
+                ->has('properties.data', 2);
         });
 })->with([true, false]);
 
