@@ -169,7 +169,7 @@ const resetPage = (): void => {
         {
             preserveState: true,
             preserveScroll: true,
-            only: ['featuredProperties'],
+            only: ['featureProperties'],
             replace: true,
         },
     );
