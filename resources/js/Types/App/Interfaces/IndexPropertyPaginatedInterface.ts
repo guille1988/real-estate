@@ -3,5 +3,6 @@ import { IndexPropertyInterface } from '@/Types/App/Interfaces/IndexPropertyInte
 export interface IndexPropertyPaginatedInterface {
     data: IndexPropertyInterface[];
     currentPage: number;
+    perPage: number;
     total: number;
 }

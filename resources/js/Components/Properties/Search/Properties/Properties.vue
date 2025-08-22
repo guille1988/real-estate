@@ -153,7 +153,7 @@ const canGoForward: ComputedRef<boolean> = computed(
 );
 
 const mustLoadNextPage = (): boolean => {
-    const threshold: number = 10;
+    const threshold: number = properties.perPage / 2;
 
     return (
         page.value * threshold >= currentVisibleEnd.value &&
