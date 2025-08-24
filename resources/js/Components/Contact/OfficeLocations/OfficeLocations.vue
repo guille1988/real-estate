@@ -55,28 +55,6 @@
             </div>
 
             <div class="relative">
-                <button
-                    v-if="shouldShowArrows"
-                    @click="prevSlide"
-                    class="absolute left-0 top-1/2 z-10 hidden -translate-y-1/2 transform rounded-full bg-neutral-800 p-2 text-white opacity-75 transition-opacity hover:opacity-100 focus:outline-none md:-left-12 md:block"
-                    :class="{ 'cursor-not-allowed opacity-50': !canGoBack }"
-                    :disabled="!canGoBack"
-                    aria-label="Previous slide"
-                >
-                    <ChevronIcon :direction="ChevronDirectionEnum.LEFT" />
-                </button>
-
-                <button
-                    v-if="shouldShowArrows"
-                    @click="nextSlide"
-                    class="absolute right-0 top-1/2 z-10 hidden -translate-y-1/2 transform rounded-full bg-neutral-800 p-2 text-white opacity-75 transition-opacity hover:opacity-100 focus:outline-none md:-right-12 md:block"
-                    :class="{ 'cursor-not-allowed opacity-50': !canGoForward }"
-                    :disabled="!canGoForward"
-                    aria-label="Next slide"
-                >
-                    <ChevronIcon :direction="ChevronDirectionEnum.RIGHT" />
-                </button>
-
                 <div class="overflow-hidden">
                     <div
                         ref="sliderTrack"
@@ -100,29 +78,37 @@
                     </div>
                 </div>
 
-                <div class="mt-6 flex justify-between md:hidden">
-                    <button
-                        v-if="shouldShowArrows"
-                        @click="prevSlide"
-                        class="rounded-full bg-neutral-800 p-2 text-white opacity-75 transition-opacity hover:opacity-100 focus:outline-none"
-                        :class="{ 'cursor-not-allowed opacity-50': !canGoBack }"
-                        :disabled="!canGoBack"
-                        aria-label="Previous slide"
-                    >
-                        <ChevronIcon :direction="ChevronDirectionEnum.LEFT" />
-                    </button>
-                    <button
-                        v-if="shouldShowArrows"
-                        @click="nextSlide"
-                        class="rounded-full bg-neutral-800 p-2 text-white opacity-75 transition-opacity hover:opacity-100 focus:outline-none"
-                        :class="{
-                            'cursor-not-allowed opacity-50': !canGoForward,
-                        }"
-                        :disabled="!canGoForward"
-                        aria-label="Next slide"
-                    >
-                        <ChevronIcon :direction="ChevronDirectionEnum.RIGHT" />
-                    </button>
+                <div class="mt-6 flex justify-end" v-if="shouldShowArrows">
+                    <div class="flex gap-2">
+                        <button
+                            class="border border-gray-800 p-1.5 transition-colors duration-300 md:p-2"
+                            :class="{
+                                'hover:bg-gray-800': canGoBack,
+                                'cursor-not-allowed opacity-50': !canGoBack,
+                            }"
+                            @click="prevSlide"
+                            :disabled="!canGoBack"
+                            aria-label="Previous slide"
+                        >
+                            <ChevronIcon
+                                :direction="ChevronDirectionEnum.LEFT"
+                            />
+                        </button>
+                        <button
+                            class="border border-gray-800 p-1.5 transition-colors duration-300 md:p-2"
+                            :class="{
+                                'hover:bg-gray-800': canGoForward,
+                                'cursor-not-allowed opacity-50': !canGoForward,
+                            }"
+                            @click="nextSlide"
+                            :disabled="!canGoForward"
+                            aria-label="Next slide"
+                        >
+                            <ChevronIcon
+                                :direction="ChevronDirectionEnum.RIGHT"
+                            />
+                        </button>
+                    </div>
                 </div>
 
                 <div
