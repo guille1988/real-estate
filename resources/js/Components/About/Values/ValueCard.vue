@@ -1,5 +1,7 @@
 <template>
-    <div class="rounded-lg bg-gray-900/50 p-6">
+    <div
+        class="rounded-lg border border-neutral-800 bg-gray-900/50 p-6 transition-all duration-300 hover:border-purple-500/50"
+    >
         <div class="flex items-start gap-4">
             <div
                 class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-indigo-600/20"
