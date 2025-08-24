@@ -1,6 +1,6 @@
 <template>
     <div
-        class="flex flex-col rounded-md border border-neutral-700 bg-neutral-900/20 p-6"
+        class="flex flex-col rounded-md border border-neutral-700 bg-neutral-900/20 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-purple-900/30 hover:shadow-lg hover:shadow-purple-900/20"
     >
         <div class="mb-2 text-sm font-medium text-gray-400">
             {{ card.title }}
