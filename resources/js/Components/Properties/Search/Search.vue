@@ -381,7 +381,7 @@ const doesntHaveActiveFilters: Ref<boolean> = computed<boolean>(
 
 const clearFilters = (): void => {
     page.value = undefined;
-    search.value = '';
+    search.value = undefined;
     location.value = undefined;
     type.value = undefined;
     price.value = undefined;
