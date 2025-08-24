@@ -59,11 +59,6 @@ import SmartInvestmentsModal from '@/Components/Services/SmartInvestments/SmartI
 import { SmartInvestmentsCardInterface } from '@/Types/App/Interfaces/SmartInvestmentsCardInterface';
 import { ref, Ref } from 'vue';
 
-const showModal: Ref<boolean> = ref<boolean>(false);
-const openModal = (): void => {
-    showModal.value = true;
-};
-
 const cards: SmartInvestmentsCardInterface[] = [
     {
         id: 1,
@@ -94,4 +89,10 @@ const cards: SmartInvestmentsCardInterface[] = [
             'Diversify your real estate portfolio effectively. Our experts guide you in spreading your investments across various property types and locations.',
     },
 ];
+
+const showModal: Ref<boolean> = ref<boolean>(false);
+
+const openModal = (): void => {
+    showModal.value = true;
+};
 </script>

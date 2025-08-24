@@ -70,11 +70,6 @@ import EffortlessPropertyManagementModal from '@/Components/Services/EffortlessP
 import { EffortlessPropertyCardInterface } from '@/Types/App/Interfaces/EffortlessPropertyCardInterface';
 import { ref, Ref } from 'vue';
 
-const showModal: Ref<boolean> = ref<boolean>(false);
-const openModal = (): void => {
-    showModal.value = true;
-};
-
 const cards: EffortlessPropertyCardInterface[] = [
     {
         id: 1,
@@ -105,6 +100,12 @@ const cards: EffortlessPropertyCardInterface[] = [
             'Stay compliant with property laws and regulations effortlessly.',
     },
 ];
+
+const showModal: Ref<boolean> = ref<boolean>(false);
+
+const openModal = (): void => {
+    showModal.value = true;
+};
 
 const getFirstThreeCards = (): EffortlessPropertyCardInterface[] =>
     cards.slice(0, 3);

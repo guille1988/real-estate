@@ -21,21 +21,6 @@ import { TermsOfUseItemInterface } from '@/Types/App/Interfaces/TermsOfUseItemIn
 import { EmitInputFunctionType } from '@/Types/App/Types/EmitInputFunctionType';
 import { computed, ComputedRef, EmitFn } from 'vue';
 
-const { modelValue }: { modelValue: boolean } = defineProps({
-    modelValue: {
-        type: Boolean,
-        required: true,
-    },
-});
-
-const emit: EmitFn<'update:modelValue'[]> =
-    defineEmits<EmitInputFunctionType>();
-
-const isOpen: ComputedRef<boolean> = computed({
-    get: (): boolean => modelValue,
-    set: (value: boolean): void => emit('update:modelValue', value),
-});
-
 const termsOfUseItems: TermsOfUseItemInterface[] = [
     {
         id: 1,
@@ -99,4 +84,19 @@ const termsOfUseItems: TermsOfUseItemInterface[] = [
         ],
     },
 ];
+
+const { modelValue }: { modelValue: boolean } = defineProps({
+    modelValue: {
+        type: Boolean,
+        required: true,
+    },
+});
+
+const emit: EmitFn<'update:modelValue'[]> =
+    defineEmits<EmitInputFunctionType>();
+
+const isOpen: ComputedRef<boolean> = computed({
+    get: (): boolean => modelValue,
+    set: (value: boolean): void => emit('update:modelValue', value),
+});
 </script>

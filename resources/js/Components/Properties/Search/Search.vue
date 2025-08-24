@@ -198,6 +198,42 @@ const {
     filters: FilterInterface;
 }>();
 
+const filterCards: SearchFilterCardInterface[] = [
+    {
+        id: 1,
+        icon: 'LocalizationIcon',
+        label: 'Location',
+        options: locations,
+    },
+    {
+        id: 2,
+        icon: 'HouseIcon',
+        label: 'Property Type',
+        options: types,
+    },
+    {
+        id: 3,
+        icon: 'MoneyIcon',
+        label: 'Pricing Range',
+        options: prices,
+    },
+    {
+        id: 4,
+        icon: 'ChartIcon',
+        label: 'Property Size',
+        options: areas,
+    },
+    {
+        id: 5,
+        icon: 'ThunderIcon',
+        label: 'Featured',
+        options: [
+            { label: 'Yes', value: true },
+            { label: 'No', value: false },
+        ],
+    },
+];
+
 const page: Ref<number | undefined> = ref<number | undefined>(
     (filters as any)?.page ?? undefined,
 );
@@ -355,42 +391,6 @@ const clearFilters = (): void => {
 
     applyFilters(true);
 };
-
-const filterCards: SearchFilterCardInterface[] = [
-    {
-        id: 1,
-        icon: 'LocalizationIcon',
-        label: 'Location',
-        options: locations,
-    },
-    {
-        id: 2,
-        icon: 'HouseIcon',
-        label: 'Property Type',
-        options: types,
-    },
-    {
-        id: 3,
-        icon: 'MoneyIcon',
-        label: 'Pricing Range',
-        options: prices,
-    },
-    {
-        id: 4,
-        icon: 'ChartIcon',
-        label: 'Property Size',
-        options: areas,
-    },
-    {
-        id: 5,
-        icon: 'ThunderIcon',
-        label: 'Featured',
-        options: [
-            { label: 'Yes', value: true },
-            { label: 'No', value: false },
-        ],
-    },
-];
 
 const updateScreenSize = (): void => {
     const screenSizes: ScreenSizeConfigInterface[] = [

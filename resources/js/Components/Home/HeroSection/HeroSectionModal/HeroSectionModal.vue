@@ -21,21 +21,6 @@ import { HeroSectionItemInterface } from '@/Types/App/Interfaces/HeroSectionItem
 import { EmitInputFunctionType } from '@/Types/App/Types/EmitInputFunctionType';
 import { computed, ComputedRef, EmitFn } from 'vue';
 
-const { modelValue }: { modelValue: boolean } = defineProps({
-    modelValue: {
-        type: Boolean,
-        required: true,
-    },
-});
-
-const emit: EmitFn<'update:modelValue'[]> =
-    defineEmits<EmitInputFunctionType>();
-
-const isOpen: ComputedRef<boolean> = computed({
-    get: (): boolean => modelValue,
-    set: (value: boolean): void => emit('update:modelValue', value),
-});
-
 const heroSectionItems: HeroSectionItemInterface[] = [
     {
         id: 1,
@@ -99,4 +84,19 @@ const heroSectionItems: HeroSectionItemInterface[] = [
         ],
     },
 ];
+
+const { modelValue }: { modelValue: boolean } = defineProps({
+    modelValue: {
+        type: Boolean,
+        required: true,
+    },
+});
+
+const emit: EmitFn<'update:modelValue'[]> =
+    defineEmits<EmitInputFunctionType>();
+
+const isOpen: ComputedRef<boolean> = computed({
+    get: (): boolean => modelValue,
+    set: (value: boolean): void => emit('update:modelValue', value),
+});
 </script>

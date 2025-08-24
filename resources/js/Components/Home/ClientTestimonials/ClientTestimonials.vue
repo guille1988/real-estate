@@ -261,6 +261,10 @@ const handleResize = () => {
     }, 200);
 };
 
+const visibleSkeletonCards: ComputedRef<number> = computed((): number => {
+    return visibleCards.value;
+});
+
 watch(screenSize, (): void => {
     updateTranslateX();
 });
@@ -276,9 +280,5 @@ onUnmounted((): void => {
     }
 
     window.removeEventListener('resize', handleResize);
-});
-
-const visibleSkeletonCards: ComputedRef<number> = computed((): number => {
-    return visibleCards.value;
 });
 </script>

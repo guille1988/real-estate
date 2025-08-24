@@ -131,14 +131,8 @@ defineProps<{
 const showTermsOfUseModal: Ref<boolean> = ref<boolean>(false);
 const showPrivacyPolicyModal: Ref<boolean> = ref<boolean>(false);
 
-const openTermsOfUseModal = (): void => {
-    showTermsOfUseModal.value = true;
-};
-
-const openPrivacyPolicyModal = (): void => {
-    showPrivacyPolicyModal.value = true;
-};
 const uuid: string = (usePage().props.id as string) || '';
+
 const form: Ref<InquireFormInterface> = ref<InquireFormInterface>({
     uuid: uuid,
     firstName: '',
@@ -148,6 +142,14 @@ const form: Ref<InquireFormInterface> = ref<InquireFormInterface>({
     message: '',
     termsAgreed: false,
 });
+
+const openTermsOfUseModal = (): void => {
+    showTermsOfUseModal.value = true;
+};
+
+const openPrivacyPolicyModal = (): void => {
+    showPrivacyPolicyModal.value = true;
+};
 
 const submit = (): void => {
     if (!form.value.termsAgreed) {

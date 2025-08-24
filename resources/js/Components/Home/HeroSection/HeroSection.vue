@@ -74,11 +74,6 @@ import { StatCardInterface } from '@/Types/App/Interfaces/StatCardInterface';
 import { Link } from '@inertiajs/vue3';
 import { ref, Ref } from 'vue';
 
-const showModal: Ref<boolean> = ref<boolean>(false);
-const openModal = (): void => {
-    showModal.value = true;
-};
-
 const statCards: StatCardInterface[] = [
     {
         id: 1,
@@ -123,4 +118,9 @@ const heroCards: HeroSectionCardInterface[] = [
         description: 'Smart Investments, Informed Decisions',
     },
 ];
+
+const showModal: Ref<boolean> = ref<boolean>(false);
+const openModal = (): void => {
+    showModal.value = true;
+};
 </script>

@@ -66,11 +66,6 @@ import UnlockPropertyModal from '@/Components/Services/UnlockPropertyValue/Unloc
 import { UnlockPropertyCardInterface } from '@/Types/App/Interfaces/UnlockPropertyCardInterface';
 import { Ref, ref } from 'vue';
 
-const showModal: Ref<boolean> = ref<boolean>(false);
-const openModal = (): void => {
-    showModal.value = true;
-};
-
 const cards: UnlockPropertyCardInterface[] = [
     {
         id: 1,
@@ -102,7 +97,14 @@ const cards: UnlockPropertyCardInterface[] = [
     },
 ];
 
+const showModal: Ref<boolean> = ref<boolean>(false);
+
+const openModal = (): void => {
+    showModal.value = true;
+};
+
 const getFirstThreeCards = (): UnlockPropertyCardInterface[] =>
     cards.slice(0, 3);
+
 const getLastCard = (): UnlockPropertyCardInterface => cards[cards.length - 1];
 </script>

@@ -108,19 +108,6 @@ import { NavigationPagesInterface } from '@/Types/App/Interfaces/NavigationPages
 import { Link, usePage } from '@inertiajs/vue3';
 import { Ref, ref } from 'vue';
 
-const isPage = (page: PagesEnum): boolean => usePage().component === page;
-const isNotPage = (page: PagesEnum): boolean => !isPage(page);
-
-const mobileMenuOpened: Ref<boolean> = ref<boolean>(false);
-
-const toggleMobileMenu = (): void => {
-    mobileMenuOpened.value = !mobileMenuOpened.value;
-};
-
-const closeMobileMenu = (): void => {
-    mobileMenuOpened.value = false;
-};
-
 const navigationPages: NavigationPagesInterface[] = [
     {
         name: 'Home',
@@ -143,4 +130,17 @@ const navigationPages: NavigationPagesInterface[] = [
         page: PagesEnum.SERVICES,
     },
 ];
+
+const mobileMenuOpened: Ref<boolean> = ref<boolean>(false);
+
+const toggleMobileMenu = (): void => {
+    mobileMenuOpened.value = !mobileMenuOpened.value;
+};
+
+const closeMobileMenu = (): void => {
+    mobileMenuOpened.value = false;
+};
+
+const isPage = (page: PagesEnum): boolean => usePage().component === page;
+const isNotPage = (page: PagesEnum): boolean => !isPage(page);
 </script>

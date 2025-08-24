@@ -28,14 +28,6 @@ const { modelValue }: { modelValue: boolean } = defineProps({
     },
 });
 
-const emit: EmitFn<'update:modelValue'[]> =
-    defineEmits<EmitInputFunctionType>();
-
-const isOpen: ComputedRef<boolean> = computed({
-    get: (): boolean => modelValue,
-    set: (value: boolean): void => emit('update:modelValue', value),
-});
-
 const smartInvestmentItems: SmartInvestmentItemInterface[] = [
     {
         id: 1,
@@ -86,4 +78,12 @@ const smartInvestmentItems: SmartInvestmentItemInterface[] = [
         ],
     },
 ];
+
+const emit: EmitFn<'update:modelValue'[]> =
+    defineEmits<EmitInputFunctionType>();
+
+const isOpen: ComputedRef<boolean> = computed({
+    get: (): boolean => modelValue,
+    set: (value: boolean): void => emit('update:modelValue', value),
+});
 </script>

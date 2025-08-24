@@ -174,31 +174,6 @@ import { PropertyTypeEnum } from '@/Types/App/Enums/PropertyTypeEnum';
 import { MakeItHappenFormInterface } from '@/Types/App/Interfaces/MakeItHappenFormInterface';
 import { type Ref, ref } from 'vue';
 
-const showTermsOfUseModal: Ref<boolean> = ref<boolean>(false);
-const showPrivacyPolicyModal: Ref<boolean> = ref<boolean>(false);
-
-const openTermsOfUseModal = (): void => {
-    showTermsOfUseModal.value = true;
-};
-
-const openPrivacyPolicyModal = (): void => {
-    showPrivacyPolicyModal.value = true;
-};
-
-const form: Ref<MakeItHappenFormInterface> = ref<MakeItHappenFormInterface>({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    location: '',
-    propertyType: null,
-    bathrooms: null,
-    bedrooms: null,
-    budget: '',
-    message: '',
-    termsAgreed: false,
-});
-
 const locations: Record<string, string> = {
     '0': 'New York',
     '1': 'Los Angeles',
@@ -217,6 +192,31 @@ const budgetRanges: Record<string, string> = {
     '3': '$500,000 - $750,000',
     '4': '$750,000 - $1,000,000',
     '5': 'Over $1,000,000',
+};
+
+const form: Ref<MakeItHappenFormInterface> = ref<MakeItHappenFormInterface>({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    location: '',
+    propertyType: null,
+    bathrooms: null,
+    bedrooms: null,
+    budget: '',
+    message: '',
+    termsAgreed: false,
+});
+
+const showTermsOfUseModal: Ref<boolean> = ref<boolean>(false);
+const showPrivacyPolicyModal: Ref<boolean> = ref<boolean>(false);
+
+const openTermsOfUseModal = (): void => {
+    showTermsOfUseModal.value = true;
+};
+
+const openPrivacyPolicyModal = (): void => {
+    showPrivacyPolicyModal.value = true;
 };
 
 const propertyTypes: Record<string, string> = Object.values(

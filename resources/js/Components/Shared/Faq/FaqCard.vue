@@ -29,6 +29,7 @@ defineProps<{
 }>();
 
 const showModal: Ref<boolean> = ref<boolean>(false);
+
 const openModal = (): void => {
     showModal.value = true;
 };

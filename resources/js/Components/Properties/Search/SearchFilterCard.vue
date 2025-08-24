@@ -80,12 +80,12 @@ const {
     selectedValue?: string | boolean | null;
 }>();
 
-const emit: EmitSearchFilterFunctionType =
-    defineEmits<EmitSearchFilterEventsType>();
-
 const isOpen: Ref<boolean> = ref<boolean>(false);
 const selectedOption: Ref<SearchFilterOptionInterface | null> =
     ref<SearchFilterOptionInterface | null>(null);
+
+const emit: EmitSearchFilterFunctionType =
+    defineEmits<EmitSearchFilterEventsType>();
 
 const icon: Component = useIcon(card.icon);
 
