@@ -1,5 +1,7 @@
 <template>
-    <div class="rounded-lg bg-gray-900/50 p-8">
+    <div
+        class="rounded-lg border border-gray-800 bg-gray-900/50 p-8 transition-all duration-300 hover:-translate-y-1 hover:border-purple-900/30 hover:shadow-lg hover:shadow-purple-900/20"
+    >
         <div class="mb-6 flex items-start justify-between">
             <div>
                 <p class="mb-2 text-gray-400">{{ card.since }}</p>
