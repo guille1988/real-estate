@@ -8,6 +8,7 @@ enum PageEnum: string
 {
     case ABOUT = 'About';
     case CONTACT = 'Contact';
+    case ERROR = 'Error';
     case HOME = 'Home';
     case PROPERTIES = 'Properties';
     case PROPERTY_DETAILS = 'PropertyDetails';
