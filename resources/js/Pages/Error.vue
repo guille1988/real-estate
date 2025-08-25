@@ -1,41 +1,41 @@
 <template>
     <section
-        class="flex min-h-screen items-center justify-center bg-black text-white"
+        class="flex min-h-screen items-center justify-center bg-black pb-32 text-white"
     >
         <div class="container mx-auto px-6 py-16 text-center">
             <div
-                class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-xl bg-purple-600/10 ring-1 ring-purple-600/30"
+                class="mx-auto mb-8 flex h-24 w-24 items-center justify-center rounded-2xl bg-purple-600/10 ring-1 ring-purple-600/30"
             >
                 <RealEstateIcon />
             </div>
 
-            <p class="text-xs uppercase tracking-widest text-purple-400">
+            <p class="text-sm uppercase tracking-widest text-purple-400">
                 Error {{ statusCode }}
             </p>
 
-            <h1 class="mt-2 text-3xl font-bold sm:text-4xl">
+            <h1 class="mt-2 text-4xl font-bold sm:text-5xl">
                 {{ title }}
             </h1>
             <p
-                class="mx-auto mt-4 max-w-2xl text-sm text-gray-400 sm:text-base"
+                class="mx-auto mt-5 max-w-3xl text-base text-gray-400 sm:text-lg"
             >
                 {{ description }}
             </p>
 
             <div
-                class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row"
+                class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
             >
                 <Link
                     prefetch
                     :href="HomeController().url"
-                    class="inline-flex items-center justify-center rounded-md bg-purple-600 px-6 py-2 text-sm font-medium text-white transition-colors hover:bg-purple-500"
+                    class="inline-flex items-center justify-center rounded-md bg-purple-600 px-8 py-3 text-base font-medium text-white transition-colors hover:bg-purple-500"
                 >
                     Go to homepage
                 </Link>
                 <button
                     type="button"
-                    @click="goBack"
-                    class="inline-flex items-center justify-center rounded-md border border-purple-600/50 px-6 py-2 text-sm font-medium text-white/90 transition-colors hover:border-purple-500 hover:text-white"
+                    @click="goBack()"
+                    class="inline-flex items-center justify-center rounded-md border border-purple-600/50 px-8 py-3 text-base font-medium text-white/90 transition-colors hover:border-purple-500 hover:text-white"
                 >
                     Go back
                 </button>
