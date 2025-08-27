@@ -55,6 +55,14 @@ return [
             'throw' => false,
         ],
 
+        'team' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/team'),
+            'url' => env('APP_URL').'/storage/team',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
         'testimonials' => [
             'driver' => 'local',
             'root' => storage_path('app/public/testimonials'),
