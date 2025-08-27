@@ -23,8 +23,8 @@
                     :style="{ transform: `translateX(-${translateX}px)` }"
                 >
                     <div
-                        v-for="card in cards"
-                        :key="card.id"
+                        v-for="card in team"
+                        :key="card.uuid"
                         class="flex-shrink-0 pr-6"
                         :class="{
                             'w-full': screenSize === ScreenSizeEnum.MOBILE,
@@ -70,19 +70,13 @@
     </section>
 </template>
 <script setup lang="ts">
-import DavidBrown from '@/Assets/Images/david_brown.jpg';
-import DevonMills from '@/Assets/Images/devon_mills.jpg';
-import IanMcHill from '@/Assets/Images/ian_mc_hill.jpg';
-import MaxMitchell from '@/Assets/Images/max_mitchell.jpg';
-import MichaelTurner from '@/Assets/Images/michael_turner.jpg';
-import SarahJohnson from '@/Assets/Images/sarah_johnson.jpg';
 import MemberCard from '@/Components/About/MeetTeam/MemberCard.vue';
 import ChevronIcon from '@/Components/Icons/ChevronIcon.vue';
 import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
 import { ChevronDirectionEnum } from '@/Types/App/Enums/ChevronDirectionEnum';
 import { ScreenSizeEnum } from '@/Types/App/Enums/ScreenSizeEnum';
-import { MemberCardInterface } from '@/Types/App/Interfaces/MemberCardInterface';
 import { ScreenSizeConfigInterface } from '@/Types/App/Interfaces/ScreenSizeConfigInterface';
+import { TeamInterface } from '@/Types/App/Interfaces/TeamInterface';
 import {
     computed,
     ComputedRef,
@@ -94,44 +88,9 @@ import {
     watch,
 } from 'vue';
 
-const cards: MemberCardInterface[] = [
-    {
-        id: 1,
-        name: 'Max Mitchell',
-        position: 'Founder',
-        image: MaxMitchell,
-    },
-    {
-        id: 2,
-        name: 'Sarah Johnson',
-        position: 'Chief Real Estate Officer',
-        image: SarahJohnson,
-    },
-    {
-        id: 3,
-        name: 'David Brown',
-        position: 'Head of Property Management',
-        image: DavidBrown,
-    },
-    {
-        id: 4,
-        name: 'Michael Turner',
-        position: 'Legal Counsel',
-        image: MichaelTurner,
-    },
-    {
-        id: 5,
-        name: 'Ian McHill',
-        position: 'Accountant',
-        image: IanMcHill,
-    },
-    {
-        id: 6,
-        name: 'Devon Mills',
-        position: 'Surveyor',
-        image: DevonMills,
-    },
-];
+const { team }: { team: TeamInterface[] } = defineProps<{
+    team: TeamInterface[];
+}>();
 
 const sliderTrack: Ref<HTMLElement | null> = ref<HTMLElement | null>(null);
 const slideItems: Ref<HTMLElement[]> = ref<HTMLElement[]>([]);
@@ -152,7 +111,7 @@ const visibleCards: ComputedRef<number> = computed((): number => {
 });
 
 const maxIndex: ComputedRef<number> = computed((): number =>
-    Math.max(0, cards.length - visibleCards.value),
+    Math.max(0, team.length - visibleCards.value),
 );
 
 const canGoBack: ComputedRef<boolean> = computed(

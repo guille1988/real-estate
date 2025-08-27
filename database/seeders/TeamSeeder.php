@@ -22,7 +22,7 @@ final class TeamSeeder extends Seeder
         [
             'name' => 'Sarah Johnson',
             'position' => 'Chief Real Estate Officer',
-            'thumbnail' => 'thumbnails/sara_johnson.jpg',
+            'thumbnail' => 'thumbnails/sarah_johnson.jpg',
         ],
         [
             'name' => 'David Brown',

@@ -4,7 +4,7 @@
         <Values />
         <Achievements />
         <NavigatingExperience />
-        <MeetTeam />
+        <MeetTeam :team="team" />
         <Clients />
     </Layout>
 </template>
@@ -17,4 +17,17 @@ import MeetTeam from '@/Components/About/MeetTeam/MeetTeam.vue';
 import NavigatingExperience from '@/Components/About/NavigatingExperience/NavigatingExperience.vue';
 import Values from '@/Components/About/Values/Values.vue';
 import Layout from '@/Components/Layout/Layout.vue';
+import { displayErrors } from '@/Composables/useErrorHandling';
+import { ErrorInterface } from '@/Types/App/Interfaces/ErrorInterface';
+import { TeamInterface } from '@/Types/App/Interfaces/TeamInterface';
+import { onMounted } from 'vue';
+
+const { errors }: { errors: ErrorInterface } = defineProps<{
+    team: TeamInterface[];
+    errors: ErrorInterface;
+}>();
+
+onMounted((): void => {
+    displayErrors(errors);
+});
 </script>

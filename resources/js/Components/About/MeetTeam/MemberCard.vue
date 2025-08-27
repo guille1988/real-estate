@@ -3,7 +3,7 @@
         class="overflow-hidden rounded-lg border border-gray-800 bg-gray-900/50 transition-all duration-300 hover:-translate-y-1 hover:border-purple-900/30 hover:shadow-lg hover:shadow-purple-900/20"
     >
         <img
-            :src="card.image"
+            :src="card.thumbnail"
             :alt="card.name"
             class="h-64 w-full object-cover"
         />
@@ -18,9 +18,9 @@
     </div>
 </template>
 <script setup lang="ts">
-import { MemberCardInterface } from '@/Types/App/Interfaces/MemberCardInterface';
+import { TeamInterface } from '@/Types/App/Interfaces/TeamInterface';
 
 defineProps<{
-    card: MemberCardInterface;
+    card: TeamInterface;
 }>();
 </script>
