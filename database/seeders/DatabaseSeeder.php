@@ -20,6 +20,7 @@ final class DatabaseSeeder extends Seeder
         FaqSeeder::class,
         FaqItemSeeder::class,
         TeamSeeder::class,
+        ClientSeeder::class,
     ];
 
     /**

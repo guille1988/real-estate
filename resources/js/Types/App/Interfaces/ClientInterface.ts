@@ -1,5 +1,5 @@
 export interface ClientInterface {
-    id: number;
+    uuid: string;
     url: string;
     since: number;
     company: string;

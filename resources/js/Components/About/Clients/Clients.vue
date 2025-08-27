@@ -24,7 +24,7 @@
                 >
                     <div
                         v-for="card in cards"
-                        :key="card.id"
+                        :key="card.uuid"
                         class="flex-shrink-0 pr-6"
                         :class="{
                             'w-full': screenSize === ScreenSizeEnum.MOBILE,
@@ -92,7 +92,7 @@ import {
 
 const cards: ClientInterface[] = [
     {
-        id: 1,
+        uuid: '1',
         url: 'https://www.google.com',
         since: 2019,
         company: 'ABC Corporation',
@@ -102,7 +102,7 @@ const cards: ClientInterface[] = [
             "Real estate's expertise in finding the perfect office space for our expanding operations was invaluable. They truly understand our business needs.",
     },
     {
-        id: 2,
+        uuid: '2',
         url: 'https://www.google.com',
         since: 2018,
         company: 'GreenTech Enterprises',
@@ -112,7 +112,7 @@ const cards: ClientInterface[] = [
             "Real estate's ability to identify prime retail locations helped us expand our brand presence. They are a trusted partner in our growth.",
     },
     {
-        id: 3,
+        uuid: '3',
         url: 'https://www.google.com',
         since: 2020,
         company: 'TechSolutions Inc',
@@ -122,7 +122,7 @@ const cards: ClientInterface[] = [
             'Working with Real estate has been a game-changer for our business. Their expertise in finding the perfect location for our headquarters was exceptional.',
     },
     {
-        id: 4,
+        uuid: '4',
         url: 'https://www.google.com',
         since: 2017,
         company: 'Global Ventures',
