@@ -23,7 +23,7 @@
                     :style="{ transform: `translateX(-${translateX}px)` }"
                 >
                     <div
-                        v-for="card in cards"
+                        v-for="card in clients"
                         :key="card.uuid"
                         class="flex-shrink-0 pr-6"
                         :class="{
@@ -90,48 +90,9 @@ import {
     watch,
 } from 'vue';
 
-const cards: ClientInterface[] = [
-    {
-        uuid: '1',
-        url: 'https://www.google.com',
-        since: 2019,
-        company: 'ABC Corporation',
-        domain: 'Commercial Real State',
-        category: 'Luxury Home Development',
-        opinion:
-            "Real estate's expertise in finding the perfect office space for our expanding operations was invaluable. They truly understand our business needs.",
-    },
-    {
-        uuid: '2',
-        url: 'https://www.google.com',
-        since: 2018,
-        company: 'GreenTech Enterprises',
-        domain: 'Commercial Real State',
-        category: 'Retail Space',
-        opinion:
-            "Real estate's ability to identify prime retail locations helped us expand our brand presence. They are a trusted partner in our growth.",
-    },
-    {
-        uuid: '3',
-        url: 'https://www.google.com',
-        since: 2020,
-        company: 'TechSolutions Inc',
-        domain: 'Commercial Real State',
-        category: 'Office Space',
-        opinion:
-            'Working with Real estate has been a game-changer for our business. Their expertise in finding the perfect location for our headquarters was exceptional.',
-    },
-    {
-        uuid: '4',
-        url: 'https://www.google.com',
-        since: 2017,
-        company: 'Global Ventures',
-        domain: 'Residential Real State',
-        category: 'Luxury Apartments',
-        opinion:
-            "Real estate's team went above and beyond to understand our specific needs. Their attention to detail and market knowledge is unmatched.",
-    },
-];
+const { clients }: { clients: ClientInterface[] } = defineProps<{
+    clients: ClientInterface[];
+}>();
 
 const sliderTrack: Ref<HTMLElement | null> = ref<HTMLElement | null>(null);
 const slideItems: Ref<HTMLElement[]> = ref<HTMLElement[]>([]);
@@ -153,7 +114,7 @@ const visibleCards: ComputedRef<number> = computed((): number => {
 });
 
 const maxIndex: ComputedRef<number> = computed((): number =>
-    Math.max(0, cards.length - visibleCards.value),
+    Math.max(0, clients.length - visibleCards.value),
 );
 
 const canGoBack: ComputedRef<boolean> = computed(

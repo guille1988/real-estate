@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Enums\PageEnum;
+use App\Models\Client;
 use App\Models\Team;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Inertia\Inertia;
@@ -30,6 +31,21 @@ final class AboutController
                     ])->toResourceCollection();
             });
 
-        return Inertia::render(PageEnum::ABOUT->value, compact('team'));
+        $clients = cache()
+            ->rememberForever('clients', function (): ResourceCollection {
+                return Client::query()
+                    ->get([
+                        'id',
+                        'uuid',
+                        'since',
+                        'url',
+                        'company',
+                        'domain',
+                        'category',
+                        'opinion',
+                    ])->toResourceCollection();
+            });
+
+        return Inertia::render(PageEnum::ABOUT->value, compact(['team', 'clients']));
     }
 }

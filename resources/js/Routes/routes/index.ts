@@ -45,7 +45,7 @@ home.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\AboutController::__invoke
-* @see app/Http/Controllers/AboutController.php:19
+* @see app/Http/Controllers/AboutController.php:20
 * @route '/about'
 */
 export const about = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -60,7 +60,7 @@ about.definition = {
 
 /**
 * @see \App\Http\Controllers\AboutController::__invoke
-* @see app/Http/Controllers/AboutController.php:19
+* @see app/Http/Controllers/AboutController.php:20
 * @route '/about'
 */
 about.url = (options?: RouteQueryOptions) => {
@@ -69,7 +69,7 @@ about.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\AboutController::__invoke
-* @see app/Http/Controllers/AboutController.php:19
+* @see app/Http/Controllers/AboutController.php:20
 * @route '/about'
 */
 about.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -79,7 +79,7 @@ about.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\AboutController::__invoke
-* @see app/Http/Controllers/AboutController.php:19
+* @see app/Http/Controllers/AboutController.php:20
 * @route '/about'
 */
 about.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({

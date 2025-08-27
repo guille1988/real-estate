@@ -9,6 +9,9 @@ use Illuminate\Database\Seeder;
 
 final class ClientSeeder extends Seeder
 {
+    /**
+     * @var array<int, array<string, int|string>>
+     */
     private array $clients = [
         [
             'since' => 2019,
