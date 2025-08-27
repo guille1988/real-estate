@@ -4,7 +4,7 @@ import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../
 * @see app/Http/Controllers/HomeController.php:24
 * @route '/'
 */
-const home = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const home = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: home.url(options),
     method: 'get',
 })
@@ -48,7 +48,7 @@ home.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 * @see app/Http/Controllers/AboutController.php:13
 * @route '/about'
 */
-const about = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const about = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: about.url(options),
     method: 'get',
 })
@@ -92,7 +92,7 @@ about.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 * @see app/Http/Controllers/ContactController.php:13
 * @route '/contact'
 */
-const contact = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const contact = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: contact.url(options),
     method: 'get',
 })
@@ -136,7 +136,7 @@ contact.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 * @see app/Http/Controllers/ServiceController.php:13
 * @route '/services'
 */
-const services = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const services = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: services.url(options),
     method: 'get',
 })
