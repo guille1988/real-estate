@@ -2,7 +2,7 @@
     <div
         class="rounded-lg border border-gray-800 bg-gray-900/50 p-8 transition-all duration-300 hover:-translate-y-1 hover:border-purple-900/30 hover:shadow-lg hover:shadow-purple-900/20"
     >
-        <div class="mb-6 flex items-start justify-between">
+        <div class="mb-6 ml-4 flex items-start justify-between">
             <div>
                 <p class="mb-2 text-gray-400">{{ card.since }}</p>
                 <h3 class="mb-4 font-bold">{{ card.company }}</h3>
@@ -15,20 +15,18 @@
             </button>
         </div>
 
-        <div class="mb-8 grid grid-cols-2 gap-8">
+        <div class="mb-8 ml-4 grid grid-cols-2 gap-8">
             <div>
                 <div class="mb-2 flex items-center gap-2 text-gray-400">
                     <GridIcon class="h-5 w-5" />
                     {{ card.domain }}
                 </div>
-                <p class="text-white">Commercial Real Estate</p>
             </div>
             <div>
                 <div class="mb-2 flex items-center gap-2 text-gray-400">
                     <ThunderIcon class="h-5 w-5" fill="none" />
                     {{ card.category }}
                 </div>
-                <p class="text-white">{{ card.company }}</p>
             </div>
         </div>
 
@@ -38,7 +36,7 @@
                 <FaceIcon />
             </div>
             <p class="text-gray-300">
-                {{ card.whatTheySaid }}
+                {{ card.opinion }}
             </p>
         </div>
     </div>
@@ -47,10 +45,10 @@
 import FaceIcon from '@/Components/Icons/FaceIcon.vue';
 import GridIcon from '@/Components/Icons/GridIcon.vue';
 import ThunderIcon from '@/Components/Icons/ThunderIcon.vue';
-import { ClientCardInterface } from '@/Types/App/Interfaces/ClientCardInterface';
+import { ClientInterface } from '@/Types/App/Interfaces/ClientInterface';
 
-const { card }: { card: ClientCardInterface } = defineProps<{
-    card: ClientCardInterface;
+const { card }: { card: ClientInterface } = defineProps<{
+    card: ClientInterface;
 }>();
 
 const visitWebsite = (): void => {
