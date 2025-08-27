@@ -46,6 +46,9 @@ final class AboutController
                     ])->toResourceCollection();
             });
 
-        return Inertia::render(PageEnum::ABOUT->value, compact(['team', 'clients']));
+        return Inertia::render(PageEnum::ABOUT->value, [
+            'team' => fn (): ResourceCollection => $team,
+            'clients' => fn (): ResourceCollection => $clients,
+        ]);
     }
 }
