@@ -7,25 +7,120 @@
 
             <template v-else>
                 <div class="mb-8 overflow-hidden">
-                    <div
-                        ref="sliderTrack"
-                        class="flex transition-transform duration-500 ease-in-out"
-                        :style="{ transform: `translateX(-${translateX}px)` }"
-                    >
-                        <div
-                            v-for="property in allProperties"
-                            :key="property.uuid"
-                            class="flex-shrink-0 pr-4 md:pr-6"
-                            :class="{
-                                'w-full': screenSize === ScreenSizeEnum.MOBILE,
-                                'w-1/2': screenSize === ScreenSizeEnum.TABLET,
-                                'w-1/3': screenSize === ScreenSizeEnum.DESKTOP,
-                            }"
-                            ref="slideItems"
+                    <WhenVisible :data="['properties']">
+                        <template #fallback>
+                            <div
+                                class="flex transition-transform duration-500 ease-in-out"
+                                aria-hidden="true"
+                            >
+                                <div
+                                    v-for="skeleton in visibleCards"
+                                    :key="`prop-skeleton-${skeleton}`"
+                                    class="flex-shrink-0 pr-4 md:pr-6"
+                                    :class="{
+                                        'w-full':
+                                            screenSize ===
+                                            ScreenSizeEnum.MOBILE,
+                                        'w-1/2':
+                                            screenSize ===
+                                            ScreenSizeEnum.TABLET,
+                                        'w-1/3':
+                                            screenSize ===
+                                            ScreenSizeEnum.DESKTOP,
+                                    }"
+                                >
+                                    <div
+                                        class="overflow-hidden rounded-xl bg-[#0f0f0f] ring-1 ring-gray-800"
+                                    >
+                                        <div class="relative overflow-hidden">
+                                            <div
+                                                class="h-48 w-full bg-gray-700/30 sm:h-56 md:h-64"
+                                            ></div>
+                                            <div
+                                                class="absolute bottom-0 left-0 right-0 bg-black/70 p-2"
+                                            >
+                                                <div
+                                                    class="h-3 w-24 rounded bg-gray-700/50"
+                                                ></div>
+                                            </div>
+                                        </div>
+                                        <div class="p-4 md:p-6">
+                                            <div
+                                                class="mb-2 h-5 w-3/4 rounded bg-gray-700/50"
+                                            ></div>
+                                            <div
+                                                class="mb-4 h-4 w-5/6 rounded bg-gray-700/40"
+                                            ></div>
+                                            <div class="mb-4 flex gap-4">
+                                                <div
+                                                    class="h-4 w-20 rounded bg-gray-700/30"
+                                                ></div>
+                                                <div
+                                                    class="h-4 w-24 rounded bg-gray-700/30"
+                                                ></div>
+                                                <div
+                                                    class="h-4 w-20 rounded bg-gray-700/30"
+                                                ></div>
+                                            </div>
+                                            <div
+                                                class="flex items-center justify-between"
+                                            >
+                                                <div>
+                                                    <div
+                                                        class="h-3 w-10 rounded bg-gray-700/40"
+                                                    ></div>
+                                                    <div
+                                                        class="mt-2 h-5 w-24 rounded bg-gray-700/50"
+                                                    ></div>
+                                                </div>
+                                                <div
+                                                    class="h-8 w-36 rounded-md bg-gray-700/30"
+                                                ></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+
+                        <Transition
+                            appear
+                            enter-active-class="transition-opacity duration-200 ease-out"
+                            enter-from-class="opacity-0"
+                            enter-to-class="opacity-100"
+                            leave-active-class="transition-opacity duration-200 ease-in"
+                            leave-from-class="opacity-100"
+                            leave-to-class="opacity-0"
                         >
-                            <PropertyCard :card="property" />
-                        </div>
-                    </div>
+                            <div
+                                ref="sliderTrack"
+                                class="flex transition-transform duration-500 ease-in-out"
+                                :style="{
+                                    transform: `translateX(-${translateX}px)`,
+                                }"
+                            >
+                                <div
+                                    v-for="property in allProperties"
+                                    :key="property.uuid"
+                                    class="flex-shrink-0 pr-4 md:pr-6"
+                                    :class="{
+                                        'w-full':
+                                            screenSize ===
+                                            ScreenSizeEnum.MOBILE,
+                                        'w-1/2':
+                                            screenSize ===
+                                            ScreenSizeEnum.TABLET,
+                                        'w-1/3':
+                                            screenSize ===
+                                            ScreenSizeEnum.DESKTOP,
+                                    }"
+                                    ref="slideItems"
+                                >
+                                    <PropertyCard :card="property" />
+                                </div>
+                            </div>
+                        </Transition>
+                    </WhenVisible>
                 </div>
 
                 <div class="flex items-center justify-between">
@@ -77,7 +172,7 @@ import { ScreenSizeEnum } from '@/Types/App/Enums/ScreenSizeEnum';
 import { IndexPropertyInterface } from '@/Types/App/Interfaces/IndexPropertyInterface';
 import { IndexPropertyPaginatedInterface } from '@/Types/App/Interfaces/IndexPropertyPaginatedInterface';
 import { ScreenSizeConfigInterface } from '@/Types/App/Interfaces/ScreenSizeConfigInterface';
-import { router } from '@inertiajs/vue3';
+import { router, WhenVisible } from '@inertiajs/vue3';
 import {
     computed,
     ComputedRef,
