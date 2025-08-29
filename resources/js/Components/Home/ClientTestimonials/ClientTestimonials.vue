@@ -28,7 +28,7 @@
             <div class="mb-8 overflow-hidden">
                 <WhenVisible :data="['testimonials']">
                     <template #fallback>
-                        <div class="animate-pulse" aria-hidden="true">
+                        <div aria-hidden="true">
                             <div
                                 class="flex transition-transform duration-500 ease-in-out"
                             >
@@ -49,19 +49,30 @@
                                     }"
                                 >
                                     <div
-                                        class="rounded-xl bg-[#0f0f0f] p-4 ring-1 ring-gray-800"
+                                        class="rounded-xl border border-gray-800 bg-gray-900/50 p-6"
                                     >
-                                        <div
-                                            class="mb-4 flex items-center gap-3"
-                                        >
+                                        <div class="mb-4 flex gap-1">
                                             <div
-                                                class="h-10 w-10 rounded-full bg-gray-700/50"
+                                                class="h-5 w-5 rounded bg-gray-700/40"
                                             ></div>
                                             <div
-                                                class="h-4 w-32 rounded bg-gray-700/40"
+                                                class="h-5 w-5 rounded bg-gray-700/40"
+                                            ></div>
+                                            <div
+                                                class="h-5 w-5 rounded bg-gray-700/40"
+                                            ></div>
+                                            <div
+                                                class="h-5 w-5 rounded bg-gray-700/40"
+                                            ></div>
+                                            <div
+                                                class="h-5 w-5 rounded bg-gray-700/40"
                                             ></div>
                                         </div>
-                                        <div class="space-y-2">
+
+                                        <div
+                                            class="mb-4 h-6 w-2/3 rounded bg-gray-700/50"
+                                        ></div>
+                                        <div class="mb-6 space-y-2">
                                             <div
                                                 class="h-4 w-full rounded bg-gray-700/30"
                                             ></div>
@@ -69,8 +80,22 @@
                                                 class="h-4 w-5/6 rounded bg-gray-700/30"
                                             ></div>
                                             <div
-                                                class="h-4 w-2/3 rounded bg-gray-700/30"
+                                                class="h-4 w-4/5 rounded bg-gray-700/30"
                                             ></div>
+                                        </div>
+
+                                        <div class="flex items-center gap-3">
+                                            <div
+                                                class="h-10 w-10 rounded-full bg-gray-700/50"
+                                            ></div>
+                                            <div>
+                                                <div
+                                                    class="mb-1 h-4 w-32 rounded bg-gray-700/40"
+                                                ></div>
+                                                <div
+                                                    class="h-3 w-24 rounded bg-gray-700/30"
+                                                ></div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
