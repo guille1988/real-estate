@@ -17,26 +17,95 @@
             </div>
 
             <div class="mb-8 overflow-hidden">
-                <div
-                    ref="sliderTrack"
-                    class="flex transition-transform duration-500 ease-in-out"
-                    :style="{ transform: `translateX(-${translateX}px)` }"
-                >
-                    <div
-                        v-for="card in clients"
-                        :key="card.uuid"
-                        class="flex-shrink-0 pr-6"
-                        :class="{
-                            'w-full': screenSize === ScreenSizeEnum.MOBILE,
-                            'w-1/2':
-                                screenSize === ScreenSizeEnum.TABLET ||
-                                screenSize === ScreenSizeEnum.DESKTOP,
-                        }"
-                        ref="slideItems"
+                <WhenVisible :data="['clients']">
+                    <template #fallback>
+                        <div
+                            class="flex transition-transform duration-500 ease-in-out"
+                        >
+                            <div
+                                v-for="skeleton in visibleCards"
+                                :key="`clients-skeleton-${skeleton}`"
+                                class="flex-shrink-0 pr-6"
+                                :class="{
+                                    'w-full':
+                                        screenSize === ScreenSizeEnum.MOBILE,
+                                    'w-1/2':
+                                        screenSize === ScreenSizeEnum.TABLET ||
+                                        screenSize === ScreenSizeEnum.DESKTOP,
+                                }"
+                            >
+                                <div
+                                    class="rounded-lg border border-gray-800 bg-gray-900/50 p-8"
+                                >
+                                    <div class="mb-6 ml-4">
+                                        <div
+                                            class="mb-2 h-4 w-16 rounded bg-gray-700/50"
+                                        ></div>
+                                        <div
+                                            class="h-5 w-40 rounded bg-gray-700/40"
+                                        ></div>
+                                    </div>
+                                    <div
+                                        class="mb-8 ml-4 grid grid-cols-2 gap-8"
+                                    >
+                                        <div>
+                                            <div
+                                                class="mb-2 h-4 w-24 rounded bg-gray-700/50"
+                                            ></div>
+                                        </div>
+                                        <div>
+                                            <div
+                                                class="mb-2 h-4 w-24 rounded bg-gray-700/50"
+                                            ></div>
+                                        </div>
+                                    </div>
+                                    <div class="rounded-lg bg-black/50 p-6">
+                                        <div
+                                            class="mb-3 h-4 w-32 rounded bg-gray-700/40"
+                                        ></div>
+                                        <div
+                                            class="h-4 w-5/6 rounded bg-gray-700/30"
+                                        ></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+
+                    <Transition
+                        appear
+                        enter-active-class="transition-opacity duration-200 ease-out"
+                        enter-from-class="opacity-0"
+                        enter-to-class="opacity-100"
+                        leave-active-class="transition-opacity duration-200 ease-in"
+                        leave-from-class="opacity-100"
+                        leave-to-class="opacity-0"
                     >
-                        <ClientCard :card="card" />
-                    </div>
-                </div>
+                        <div
+                            ref="sliderTrack"
+                            class="flex transition-transform duration-500 ease-in-out"
+                            :style="{
+                                transform: `translateX(-${translateX}px)`,
+                            }"
+                        >
+                            <div
+                                v-for="card in clients"
+                                :key="card.uuid"
+                                class="flex-shrink-0 pr-6"
+                                :class="{
+                                    'w-full':
+                                        screenSize === ScreenSizeEnum.MOBILE,
+                                    'w-1/2':
+                                        screenSize === ScreenSizeEnum.TABLET ||
+                                        screenSize === ScreenSizeEnum.DESKTOP,
+                                }"
+                                ref="slideItems"
+                            >
+                                <ClientCard :card="card" />
+                            </div>
+                        </div>
+                    </Transition>
+                </WhenVisible>
             </div>
 
             <div class="flex justify-end">
@@ -79,6 +148,7 @@ import { ChevronDirectionEnum } from '@/Types/App/Enums/ChevronDirectionEnum';
 import { ScreenSizeEnum } from '@/Types/App/Enums/ScreenSizeEnum';
 import { ClientInterface } from '@/Types/App/Interfaces/ClientInterface';
 import { ScreenSizeConfigInterface } from '@/Types/App/Interfaces/ScreenSizeConfigInterface';
+import { WhenVisible } from '@inertiajs/vue3';
 import {
     computed,
     ComputedRef,

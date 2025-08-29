@@ -36,20 +36,19 @@
                                 }"
                             >
                                 <div
-                                    class="rounded-xl bg-[#0f0f0f] p-4 ring-1 ring-gray-800"
+                                    class="overflow-hidden rounded-lg border border-gray-800 bg-gray-900/50 p-0"
                                 >
                                     <div
-                                        class="mb-3 h-40 w-full rounded bg-gray-700/30"
+                                        class="h-64 w-full bg-gray-700/30"
                                     ></div>
-                                    <div class="space-y-2">
+                                    <div
+                                        class="flex h-[120px] flex-col items-center justify-center px-0"
+                                    >
                                         <div
                                             class="h-5 w-3/4 rounded bg-gray-700/50"
                                         ></div>
                                         <div
-                                            class="h-4 w-1/2 rounded bg-gray-700/40"
-                                        ></div>
-                                        <div
-                                            class="mt-4 h-8 w-24 rounded bg-gray-700/30"
+                                            class="mt-2 h-4 w-1/2 rounded bg-gray-700/40"
                                         ></div>
                                     </div>
                                 </div>
