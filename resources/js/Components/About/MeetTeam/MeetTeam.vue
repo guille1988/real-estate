@@ -17,25 +17,81 @@
             </div>
 
             <div class="mb-8 overflow-hidden">
-                <div
-                    ref="sliderTrack"
-                    class="flex transition-transform duration-500 ease-in-out"
-                    :style="{ transform: `translateX(-${translateX}px)` }"
-                >
-                    <div
-                        v-for="card in team"
-                        :key="card.uuid"
-                        class="flex-shrink-0 pr-6"
-                        :class="{
-                            'w-full': screenSize === ScreenSizeEnum.MOBILE,
-                            'w-1/2': screenSize === ScreenSizeEnum.TABLET,
-                            'w-1/4': screenSize === ScreenSizeEnum.DESKTOP,
-                        }"
-                        ref="slideItems"
+                <WhenVisible :data="['team']">
+                    <template #fallback>
+                        <div
+                            class="flex transition-transform duration-500 ease-in-out"
+                        >
+                            <div
+                                v-for="skeleton in visibleCards"
+                                :key="`team-skeleton-${skeleton}`"
+                                class="flex-shrink-0 pr-6"
+                                :class="{
+                                    'w-full':
+                                        screenSize === ScreenSizeEnum.MOBILE,
+                                    'w-1/2':
+                                        screenSize === ScreenSizeEnum.TABLET,
+                                    'w-1/4':
+                                        screenSize === ScreenSizeEnum.DESKTOP,
+                                }"
+                            >
+                                <div
+                                    class="rounded-xl bg-[#0f0f0f] p-4 ring-1 ring-gray-800"
+                                >
+                                    <div
+                                        class="mb-3 h-40 w-full rounded bg-gray-700/30"
+                                    ></div>
+                                    <div class="space-y-2">
+                                        <div
+                                            class="h-5 w-3/4 rounded bg-gray-700/50"
+                                        ></div>
+                                        <div
+                                            class="h-4 w-1/2 rounded bg-gray-700/40"
+                                        ></div>
+                                        <div
+                                            class="mt-4 h-8 w-24 rounded bg-gray-700/30"
+                                        ></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+
+                    <Transition
+                        appear
+                        enter-active-class="transition-opacity duration-200 ease-out"
+                        enter-from-class="opacity-0"
+                        enter-to-class="opacity-100"
+                        leave-active-class="transition-opacity duration-200 ease-in"
+                        leave-from-class="opacity-100"
+                        leave-to-class="opacity-0"
                     >
-                        <MemberCard :card="card" />
-                    </div>
-                </div>
+                        <div
+                            ref="sliderTrack"
+                            class="flex transition-transform duration-500 ease-in-out"
+                            :style="{
+                                transform: `translateX(-${translateX}px)`,
+                            }"
+                        >
+                            <div
+                                v-for="card in team"
+                                :key="card.uuid"
+                                class="flex-shrink-0 pr-6"
+                                :class="{
+                                    'w-full':
+                                        screenSize === ScreenSizeEnum.MOBILE,
+                                    'w-1/2':
+                                        screenSize === ScreenSizeEnum.TABLET,
+                                    'w-1/4':
+                                        screenSize === ScreenSizeEnum.DESKTOP,
+                                }"
+                                ref="slideItems"
+                            >
+                                <MemberCard :card="card" />
+                            </div>
+                        </div>
+                    </Transition>
+                </WhenVisible>
             </div>
 
             <div class="flex justify-end">
@@ -77,6 +133,7 @@ import { ChevronDirectionEnum } from '@/Types/App/Enums/ChevronDirectionEnum';
 import { ScreenSizeEnum } from '@/Types/App/Enums/ScreenSizeEnum';
 import { ScreenSizeConfigInterface } from '@/Types/App/Interfaces/ScreenSizeConfigInterface';
 import { TeamInterface } from '@/Types/App/Interfaces/TeamInterface';
+import { WhenVisible } from '@inertiajs/vue3';
 import {
     computed,
     ComputedRef,
