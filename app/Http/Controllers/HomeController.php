@@ -10,6 +10,7 @@ use App\Http\Resources\IndexPropertyResource;
 use App\Models\Faq;
 use App\Models\Property;
 use App\Models\Testimonial;
+use App\Support\AssetHelper;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Inertia\Inertia;
@@ -23,6 +24,19 @@ final class HomeController
      */
     public function __invoke(HomeData $data): Response
     {
+        $assets = cache()
+            ->rememberForever('home-assets', function (): array {
+
+                /**
+                 * @var array<string, string> $assets
+                 */
+                $assets = app()->call(AssetHelper::class, [
+                    'asset' => 'blue_building',
+                ]);
+
+                return $assets;
+            });
+
         /**
          * @var array<string, mixed> $properties
          */
@@ -63,6 +77,7 @@ final class HomeController
             });
 
         return Inertia::render(PageEnum::HOME->value, [
+            'assets' => fn (): array => $assets,
             'properties' => fn (): array => $properties,
             'page' => fn (): ?int => $data->page,
             'testimonials' => fn (): ResourceCollection => $testimonials,

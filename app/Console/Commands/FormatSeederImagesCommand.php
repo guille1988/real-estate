@@ -184,7 +184,7 @@ final class FormatSeederImagesCommand extends Command
     public function options(): array
     {
         $format = $this->option('format') ??
-            ImageFormatEnum::JPEG->value;
+            config()->string('app.default_image_format');
 
         // @codeCoverageIgnoreStart
         $path = $this->option('path') ??

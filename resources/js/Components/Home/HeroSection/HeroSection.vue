@@ -41,7 +41,7 @@
 
                 <div class="relative hidden lg:block">
                     <img
-                        :src="BlueBuilding"
+                        :src="blueBuilding"
                         alt="Modern blue building"
                         class="h-auto w-full object-contain"
                     />
@@ -64,7 +64,6 @@
 </template>
 
 <script setup lang="ts">
-import BlueBuilding from '@/Assets/Images/blue_building.png';
 import HeroSectionCard from '@/Components/Home/HeroSection/HeroSectionCard.vue';
 import HeroSectionModal from '@/Components/Home/HeroSection/HeroSectionModal/HeroSectionModal.vue';
 import StatsCard from '@/Components/Home/HeroSection/StatsCard.vue';
@@ -73,6 +72,10 @@ import { HeroSectionCardInterface } from '@/Types/App/Interfaces/HeroSectionCard
 import { StatCardInterface } from '@/Types/App/Interfaces/StatCardInterface';
 import { Link } from '@inertiajs/vue3';
 import { ref, Ref } from 'vue';
+
+defineProps<{
+    blueBuilding: string;
+}>();
 
 const statCards: StatCardInterface[] = [
     {
