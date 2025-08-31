@@ -2,7 +2,21 @@
 
 declare(strict_types=1);
 
-it('works on contact page.', function (): void {
+use App\Enums\PageEnum;
+use App\Models\OfficeLocation;
+use Inertia\Testing\AssertableInertia as Assert;
+
+it('renders office locations on contact page.', function (string $key): void {
+    OfficeLocation::factory($count = 4)
+        ->create();
+
     $this->get(route('contact'))
-        ->assertOk();
-});
+        ->assertInertia(function (Assert $page) use ($count, $key): void {
+            $key = str($key)
+                ->camel()
+                ->toString();
+
+            $page->component(PageEnum::CONTACT->value)
+                ->has($key, $count);
+        });
+})->with(['office_locations']);

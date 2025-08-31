@@ -46,9 +46,9 @@
 import EmailIcon from '@/Components/Icons/EmailIcon.vue';
 import LocalizationIcon from '@/Components/Icons/LocalizationIcon.vue';
 import PhoneIcon from '@/Components/Icons/PhoneIcon.vue';
-import { OfficeLocationCardInterface } from '@/Types/App/Interfaces/OfficeLocationCardInterface';
+import { OfficeLocationInterface } from '@/Types/App/Interfaces/OfficeLocationInterface';
 
-const { card }: { card: OfficeLocationCardInterface } = defineProps<{
-    card: OfficeLocationCardInterface;
+const { card }: { card: OfficeLocationInterface } = defineProps<{
+    card: OfficeLocationInterface;
 }>();
 </script>

@@ -63,7 +63,7 @@
                     >
                         <div
                             v-for="card in filteredCards"
-                            :key="card.id"
+                            :key="card.uuid"
                             class="flex-shrink-0 pr-6"
                             :class="{
                                 'w-full': screenSize === ScreenSizeEnum.MOBILE,
@@ -140,7 +140,7 @@ import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
 import { ChevronDirectionEnum } from '@/Types/App/Enums/ChevronDirectionEnum';
 import { LocationTypeEnum } from '@/Types/App/Enums/LocationTypeEnum';
 import { ScreenSizeEnum } from '@/Types/App/Enums/ScreenSizeEnum';
-import { OfficeLocationCardInterface } from '@/Types/App/Interfaces/OfficeLocationCardInterface';
+import { OfficeLocationInterface } from '@/Types/App/Interfaces/OfficeLocationInterface';
 import { ScreenSizeConfigInterface } from '@/Types/App/Interfaces/ScreenSizeConfigInterface';
 import {
     computed,
@@ -153,44 +153,10 @@ import {
     watch,
 } from 'vue';
 
-const cards: OfficeLocationCardInterface[] = [
-    {
-        id: 1,
-        locationType: LocationTypeEnum.REGIONAL,
-        title: 'Main Headquarters',
-        address: '123 Real estate Plaza, City Center, Metropolis',
-        description:
-            'Our main headquarters serve as the heart of Real estate. Located in the bustling city center, this is where our core team of experts operates, driving the excellence and innovation that define us.',
-        email: 'main@realestate.com',
-        phone: '+1 123 456-7890',
-        location: 'Metropolis',
-        url: 'https://maps.app.goo.gl/WiF8c82wfXatGE7k8',
-    },
-    {
-        id: 2,
-        locationType: LocationTypeEnum.REGIONAL,
-        title: 'Regional Offices',
-        address: '456 Urban Avenue, Downtown District, Metropolis',
-        description:
-            "Real estate's presence extends to multiple regions, each with its own dynamic real estate landscape. Discover our regional offices, staffed by local experts who understand the nuances of their respective markets.",
-        email: 'regional@realestate.com',
-        phone: '+1 123 456-7890',
-        location: 'Metropolis',
-        url: 'https://maps.app.goo.gl/WiF8c82wfXatGE7k8',
-    },
-    {
-        id: 3,
-        locationType: LocationTypeEnum.INTERNATIONAL,
-        title: 'International Headquarters',
-        address: '789 Global Tower, Financial District, London',
-        description:
-            'Our international headquarters connects Real estate to the global real estate market. Located in the heart of London, this office serves as our gateway to international clients and opportunities.',
-        email: 'international@realestate.com',
-        phone: '+44 20 1234-5678',
-        location: 'London',
-        url: 'https://maps.app.goo.gl/WiF8c82wfXatGE7k8',
-    },
-];
+const { officeLocations }: { officeLocations: OfficeLocationInterface[] } =
+    defineProps<{
+        officeLocations: OfficeLocationInterface[];
+    }>();
 
 const activeTab: Ref<string> = ref<LocationTypeEnum>(LocationTypeEnum.ALL);
 
@@ -210,12 +176,13 @@ const setActiveTab = (tab: LocationTypeEnum): void => {
     activeTab.value = tab;
 };
 
-const filteredCards: ComputedRef<OfficeLocationCardInterface[]> = computed(
-    (): OfficeLocationCardInterface[] =>
+const filteredCards: ComputedRef<OfficeLocationInterface[]> = computed(
+    (): OfficeLocationInterface[] =>
         activeTabEqualsTo(LocationTypeEnum.ALL)
-            ? cards
-            : cards.filter((card: OfficeLocationCardInterface) =>
-                  activeTabEqualsTo(card.locationType),
+            ? officeLocations
+            : officeLocations.filter(
+                  (officeLocation: OfficeLocationInterface): boolean =>
+                      activeTabEqualsTo(officeLocation.type),
               ),
 );
 

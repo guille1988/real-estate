@@ -58,7 +58,7 @@ it('renders testimonials on home page.', function (string $key): void {
         });
 })->with(['testimonials']);
 
-it('renders frequently asked questions with respective items on home page.', function (string $key): void {
+it('renders frequently asked questions with respective items on home page.', function (string $key, string $field): void {
     Faq::factory($count = 4)
         ->create()
         ->each(function (Faq $faq) use ($count): void {
@@ -67,11 +67,15 @@ it('renders frequently asked questions with respective items on home page.', fun
         });
 
     $this->get(route('home'))
-        ->assertInertia(function (Assert $page) use ($key, $count): void {
+        ->assertInertia(function (Assert $page) use ($key, $count, $field): void {
+            $field = str($field)
+                ->camel()
+                ->toString();
+
             foreach (range(0, $count - 1) as $index) {
                 $page->component(PageEnum::HOME->value)
                     ->has($key, $count)
-                    ->has("$key.$index.faqItems", $count);
+                    ->has("$key.$index.$field", $count);
             }
         });
-})->with(['faq']);
+})->with(['faq'], ['faq_items']);
