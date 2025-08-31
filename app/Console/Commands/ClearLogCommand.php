@@ -4,22 +4,32 @@ declare(strict_types=1);
 
 namespace App\Console\Commands;
 
+use BadMethodCallException;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
+use Symfony\Component\HttpFoundation\Response;
 
 final class ClearLogCommand extends Command
 {
-    /**
-     * @var string[]
-     */
-    private array $permittedLogs = ['laravel', 'browser'];
-
     protected $signature = 'clear:log {log}';
 
     protected $description = 'Clear a project specific log file.';
 
-    /*
+    /**
+     * @var string[]
+     */
+    public array $permittedLogs = ['laravel', 'browser'] {
+        get => $this->permittedLogs;
+        set => throw new BadMethodCallException(
+            'The permitted logs cannot be changed from outside.',
+            Response::HTTP_INTERNAL_SERVER_ERROR,
+        );
+    }
+
+    /**
      * Gets the log file name and path.
+     *
+     * @return array<int,string>
      */
     private function getLogData(): array
     {
