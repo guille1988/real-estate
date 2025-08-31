@@ -56,26 +56,99 @@
 
             <div class="relative">
                 <div class="overflow-hidden">
-                    <div
-                        ref="sliderTrack"
-                        class="flex transition-transform duration-300 ease-in-out"
-                        :style="{ transform: `translateX(-${translateX}px)` }"
-                    >
-                        <div
-                            v-for="card in filteredCards"
-                            :key="card.uuid"
-                            class="flex-shrink-0 pr-6"
-                            :class="{
-                                'w-full': screenSize === ScreenSizeEnum.MOBILE,
-                                'w-1/2':
-                                    screenSize === ScreenSizeEnum.TABLET ||
-                                    screenSize === ScreenSizeEnum.DESKTOP,
-                            }"
-                            ref="slideItems"
+                    <WhenVisible :data="['officeLocations']">
+                        <template #fallback>
+                            <div
+                                class="flex transition-transform duration-500 ease-in-out"
+                                aria-hidden="true"
+                            >
+                                <div
+                                    v-for="skeleton in visibleCards"
+                                    :key="`office-location-skeleton-${skeleton}`"
+                                    class="flex-shrink-0 pr-6"
+                                    :class="{
+                                        'w-full':
+                                            screenSize ===
+                                            ScreenSizeEnum.MOBILE,
+                                        'w-1/2':
+                                            screenSize ===
+                                                ScreenSizeEnum.TABLET ||
+                                            screenSize ===
+                                                ScreenSizeEnum.DESKTOP,
+                                    }"
+                                >
+                                    <div
+                                        class="flex flex-col rounded-md border border-neutral-700 bg-neutral-900/20 p-6"
+                                    >
+                                        <div
+                                            class="mb-2 h-4 w-24 rounded bg-gray-700/50"
+                                        ></div>
+                                        <div
+                                            class="mb-4 h-6 w-3/4 rounded bg-gray-700/50"
+                                        ></div>
+                                        <div
+                                            class="mb-6 h-4 w-full rounded bg-gray-700/40"
+                                        ></div>
+                                        <div class="mt-auto">
+                                            <div
+                                                class="mb-4 flex flex-wrap gap-4"
+                                            >
+                                                <div
+                                                    class="h-8 w-28 rounded-full bg-neutral-800"
+                                                ></div>
+                                                <div
+                                                    class="h-8 w-24 rounded-full bg-neutral-800"
+                                                ></div>
+                                                <div
+                                                    class="h-8 w-28 rounded-full bg-neutral-800"
+                                                ></div>
+                                            </div>
+                                            <div
+                                                class="h-10 w-full rounded-sm bg-gray-700/40"
+                                            ></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+
+                        <Transition
+                            appear
+                            enter-active-class="transition-opacity duration-200 ease-out"
+                            enter-from-class="opacity-0"
+                            enter-to-class="opacity-100"
+                            leave-active-class="transition-opacity duration-200 ease-in"
+                            leave-from-class="opacity-100"
+                            leave-to-class="opacity-0"
                         >
-                            <OfficeLocationCard :card="card" />
-                        </div>
-                    </div>
+                            <div
+                                ref="sliderTrack"
+                                class="flex transition-transform duration-300 ease-in-out"
+                                :style="{
+                                    transform: `translateX(-${translateX}px)`,
+                                }"
+                            >
+                                <div
+                                    v-for="card in filteredCards"
+                                    :key="card.uuid"
+                                    class="flex-shrink-0 pr-6"
+                                    :class="{
+                                        'w-full':
+                                            screenSize ===
+                                            ScreenSizeEnum.MOBILE,
+                                        'w-1/2':
+                                            screenSize ===
+                                                ScreenSizeEnum.TABLET ||
+                                            screenSize ===
+                                                ScreenSizeEnum.DESKTOP,
+                                    }"
+                                    ref="slideItems"
+                                >
+                                    <OfficeLocationCard :card="card" />
+                                </div>
+                            </div>
+                        </Transition>
+                    </WhenVisible>
                 </div>
 
                 <div class="mt-6 flex justify-end" v-if="shouldShowArrows">
@@ -142,6 +215,7 @@ import { LocationTypeEnum } from '@/Types/App/Enums/LocationTypeEnum';
 import { ScreenSizeEnum } from '@/Types/App/Enums/ScreenSizeEnum';
 import { OfficeLocationInterface } from '@/Types/App/Interfaces/OfficeLocationInterface';
 import { ScreenSizeConfigInterface } from '@/Types/App/Interfaces/ScreenSizeConfigInterface';
+import { WhenVisible } from '@inertiajs/vue3';
 import {
     computed,
     ComputedRef,
