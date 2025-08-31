@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Middleware;
 
+use App\Support\AssetHelper;
 use App\Support\InertiaRequestHelper;
 use App\Support\InertiaResponseHelper;
 use Closure;
@@ -41,11 +42,25 @@ final class HandleInertiaRequestMiddleware extends Middleware
         /** @var array<string, mixed> $sharedProperties */
         $sharedProperties = parent::share($request);
 
+        $globalAssets = cache()
+            ->rememberForever('global-assets', function (): array {
+
+                /**
+                 * @var array<string, string> $assets
+                 */
+                $assets = app()->call(AssetHelper::class, [
+                    'asset' => 'real_estate_logo',
+                ]);
+
+                return $assets;
+            });
+
         /**
          * @var array<string, mixed> $data
          */
         $data = [
             ...$sharedProperties,
+            'global_assets' => $globalAssets,
             'auth' => [
                 'user' => $request->user()?->only([
                     'uuid',
