@@ -59,7 +59,7 @@
                     <WhenVisible :data="['officeLocations']">
                         <template #fallback>
                             <div
-                                class="flex transition-transform duration-500 ease-in-out"
+                                class="flex animate-pulse transition-transform duration-500 ease-in-out"
                                 aria-hidden="true"
                             >
                                 <div
