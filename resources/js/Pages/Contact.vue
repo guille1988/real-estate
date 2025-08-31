@@ -3,7 +3,7 @@
         <GetInTouch />
         <LetsConnect />
         <OfficeLocations :office-locations="officeLocations" />
-        <Explore />
+        <Explore :assets="assets" />
     </Layout>
 </template>
 
@@ -19,6 +19,7 @@ import { OfficeLocationInterface } from '@/Types/App/Interfaces/OfficeLocationIn
 import { onMounted } from 'vue';
 
 const { errors }: { errors: ErrorInterface } = defineProps<{
+    assets: ContactAssetsInterface;
     officeLocations: OfficeLocationInterface[];
     errors: ErrorInterface;
 }>();

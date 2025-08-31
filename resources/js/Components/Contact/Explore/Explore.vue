@@ -49,50 +49,49 @@
 </template>
 
 <script setup lang="ts">
-import Handshake from '@/Assets/Images/handshake.png';
-import Office from '@/Assets/Images/office.png';
-import Team from '@/Assets/Images/team.png';
-import TeamManPortrait from '@/Assets/Images/team_man_portrait.png';
-import TeamWomanPortrait from '@/Assets/Images/team_woman_portrait.png';
-import WorkingTeam from '@/Assets/Images/working_team.png';
 import ExploreCard from '@/Components/Contact/Explore/ExploreCard.vue';
 import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
+import { ContactAssetsInterface } from '@/Types/App/Interfaces/ContactAssetsInterface';
 import { ExploreCardInterface } from '@/Types/App/Interfaces/ExploreCardInterface';
+
+const { assets }: { assets: ContactAssetsInterface } = defineProps<{
+    assets: ContactAssetsInterface;
+}>();
 
 const cards: ExploreCardInterface[] = [
     {
         id: 1,
-        image: Office,
+        image: assets.office,
         alt: 'Real estate Office',
         isSplit: false,
     },
     {
         id: 2,
-        image: Team,
+        image: assets.team,
         alt: 'Professional Team',
         isSplit: false,
     },
     {
         id: 3,
-        image: WorkingTeam,
+        image: assets.workingTeam,
         alt: 'Team Working',
         isSplit: false,
     },
     {
         id: 4,
-        image: TeamManPortrait,
+        image: assets.teamManPortrait,
         alt: 'Team Man Portrait',
         isSplit: true,
     },
     {
         id: 5,
-        image: TeamWomanPortrait,
+        image: assets.teamWomanPortrait,
         alt: 'Team Woman Portrait',
         isSplit: true,
     },
     {
         id: 6,
-        image: Handshake,
+        image: assets.handshake,
         alt: 'Handshake',
         isSplit: false,
     },

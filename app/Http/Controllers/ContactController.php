@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\PageEnum;
 use App\Models\OfficeLocation;
+use App\Support\AssetHelper;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -18,6 +19,26 @@ final class ContactController
      */
     public function __invoke(): Response
     {
+        $assets = cache()
+            ->rememberForever('contact-assets', function (): array {
+
+                /**
+                 * @var array<string, string> $assets
+                 */
+                $assets = app()->call(AssetHelper::class, [
+                    'asset' => [
+                        'office',
+                        'team',
+                        'working_team',
+                        'team_man_portrait',
+                        'team_woman_portrait',
+                        'handshake',
+                    ],
+                ]);
+
+                return $assets;
+            });
+
         $officeLocations = cache()
             ->rememberForever('office_locations', function (): ResourceCollection {
                 return OfficeLocation::query()
@@ -35,6 +56,7 @@ final class ContactController
             });
 
         return Inertia::render(PageEnum::CONTACT->value, [
+            'assets' => fn (): array => $assets,
             'office_locations' => fn (): ResourceCollection => $officeLocations,
         ]);
     }

@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\ContactController::__invoke
-* @see app/Http/Controllers/ContactController.php:19
+* @see app/Http/Controllers/ContactController.php:20
 * @route '/contact'
 */
 const ContactController = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ ContactController.definition = {
 
 /**
 * @see \App\Http\Controllers\ContactController::__invoke
-* @see app/Http/Controllers/ContactController.php:19
+* @see app/Http/Controllers/ContactController.php:20
 * @route '/contact'
 */
 ContactController.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ ContactController.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\ContactController::__invoke
-* @see app/Http/Controllers/ContactController.php:19
+* @see app/Http/Controllers/ContactController.php:20
 * @route '/contact'
 */
 ContactController.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -35,7 +35,7 @@ ContactController.get = (options?: RouteQueryOptions): RouteDefinition<'get'> =>
 
 /**
 * @see \App\Http\Controllers\ContactController::__invoke
-* @see app/Http/Controllers/ContactController.php:19
+* @see app/Http/Controllers/ContactController.php:20
 * @route '/contact'
 */
 ContactController.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
