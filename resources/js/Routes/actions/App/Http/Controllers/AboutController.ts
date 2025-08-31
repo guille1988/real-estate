@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\AboutController::__invoke
-* @see app/Http/Controllers/AboutController.php:20
+* @see app/Http/Controllers/AboutController.php:21
 * @route '/about'
 */
 const AboutController = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ AboutController.definition = {
 
 /**
 * @see \App\Http\Controllers\AboutController::__invoke
-* @see app/Http/Controllers/AboutController.php:20
+* @see app/Http/Controllers/AboutController.php:21
 * @route '/about'
 */
 AboutController.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ AboutController.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\AboutController::__invoke
-* @see app/Http/Controllers/AboutController.php:20
+* @see app/Http/Controllers/AboutController.php:21
 * @route '/about'
 */
 AboutController.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -35,7 +35,7 @@ AboutController.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => (
 
 /**
 * @see \App\Http\Controllers\AboutController::__invoke
-* @see app/Http/Controllers/AboutController.php:20
+* @see app/Http/Controllers/AboutController.php:21
 * @route '/about'
 */
 AboutController.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({

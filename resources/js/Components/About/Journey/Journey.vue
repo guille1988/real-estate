@@ -32,7 +32,7 @@
                     </div>
                 </div>
 
-                <House />
+                <House :house="house" />
             </div>
         </div>
     </section>
@@ -42,6 +42,10 @@ import House from '@/Components/About/Journey/House.vue';
 import JourneyCard from '@/Components/About/Journey/JourneyCard.vue';
 import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
 import { JourneyCardInterface } from '@/Types/App/Interfaces/JourneyCardInterface';
+
+const { house }: { house: string } = defineProps<{
+    house: string;
+}>();
 
 const cards: JourneyCardInterface[] = [
     {

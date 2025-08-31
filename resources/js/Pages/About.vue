@@ -1,6 +1,6 @@
 <template>
     <Layout>
-        <Journey />
+        <Journey :house="assets.house" />
         <Values />
         <Achievements />
         <NavigatingExperience />
@@ -18,12 +18,14 @@ import NavigatingExperience from '@/Components/About/NavigatingExperience/Naviga
 import Values from '@/Components/About/Values/Values.vue';
 import Layout from '@/Components/Layout/Layout.vue';
 import { displayErrors } from '@/Composables/useErrorHandling';
+import { AboutAssetsInterface } from '@/Types/App/Interfaces/AboutAssetsInterface';
 import { ClientInterface } from '@/Types/App/Interfaces/ClientInterface';
 import { ErrorInterface } from '@/Types/App/Interfaces/ErrorInterface';
 import { TeamInterface } from '@/Types/App/Interfaces/TeamInterface';
 import { onMounted } from 'vue';
 
 const { errors }: { errors: ErrorInterface } = defineProps<{
+    assets: AboutAssetsInterface;
     team: TeamInterface[];
     clients: ClientInterface[];
     errors: ErrorInterface;
