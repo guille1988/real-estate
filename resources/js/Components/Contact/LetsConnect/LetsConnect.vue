@@ -16,10 +16,7 @@
                 </p>
             </div>
 
-            <form
-                @submit.prevent="form.post(ContactController.store().url)"
-                class="w-full"
-            >
+            <form @submit.prevent="submit()" class="w-full">
                 <div class="mb-8 grid gap-6 md:grid-cols-2">
                     <div class="flex flex-col">
                         <TextInput
@@ -143,17 +140,25 @@
                     </div>
                 </div>
 
-                <div class="flex justify-end">
+                <div class="flex flex-col items-end gap-2">
                     <button
                         type="submit"
                         class="rounded-lg bg-purple-600 px-6 py-3 font-medium text-white hover:bg-purple-700"
-                        :disabled="!form.termsAgreed"
+                        :disabled="!form.termsAgreed || form.processing"
                         :class="{
-                            'cursor-not-allowed opacity-50': !form.termsAgreed,
+                            'cursor-not-allowed opacity-50':
+                                !form.termsAgreed || form.processing,
                         }"
                     >
-                        Send Your Message
+                        <span v-if="!form.processing">Send Your Message</span>
+                        <span v-else>Sending...</span>
                     </button>
+                    <p
+                        v-if="showSuccessMessage"
+                        class="mt-1 text-sm text-green-400"
+                    >
+                        {{ successMessage }}
+                    </p>
                 </div>
             </form>
         </div>
@@ -178,6 +183,10 @@ import { LetsConnectFormInterface } from '@/Types/App/Interfaces/LetsConnectForm
 import { InertiaForm, useForm } from '@inertiajs/vue3';
 import { computed, ComputedRef, Ref, ref } from 'vue';
 
+const successMessage: string =
+    'Thank you for contacting us. We will get back to you as soon as possible.';
+
+const showSuccessMessage: Ref<boolean> = ref<boolean>(false);
 const showTermsOfUseModal: Ref<boolean> = ref<boolean>(false);
 const showPrivacyPolicyModal: Ref<boolean> = ref<boolean>(false);
 
@@ -227,4 +236,20 @@ const sources: ComputedRef<Record<string, string>> = computed(
             ]),
         ),
 );
+
+const submit = (): void => {
+    showSuccessMessage.value = false;
+
+    form.post(ContactController.store().url, {
+        preserveScroll: true,
+        onSuccess: (): void => {
+            showSuccessMessage.value = true;
+            form.reset();
+
+            setTimeout((): void => {
+                showSuccessMessage.value = false;
+            }, 8000);
+        },
+    });
+};
 </script>
