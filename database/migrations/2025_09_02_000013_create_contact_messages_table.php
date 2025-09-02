@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('phone');
             $table->string('inquiry_type');
             $table->string('source');
-            $table->text('message');
+            $table->text('message')->nullable();
             $table->timestamps();
         });
     }

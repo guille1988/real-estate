@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\ContactController::index
-* @see app/Http/Controllers/ContactController.php:21
+* @see app/Http/Controllers/ContactController.php:23
 * @route '/contact'
 */
 export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ index.definition = {
 
 /**
 * @see \App\Http\Controllers\ContactController::index
-* @see app/Http/Controllers/ContactController.php:21
+* @see app/Http/Controllers/ContactController.php:23
 * @route '/contact'
 */
 index.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ index.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\ContactController::index
-* @see app/Http/Controllers/ContactController.php:21
+* @see app/Http/Controllers/ContactController.php:23
 * @route '/contact'
 */
 index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -35,7 +35,7 @@ index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\ContactController::index
-* @see app/Http/Controllers/ContactController.php:21
+* @see app/Http/Controllers/ContactController.php:23
 * @route '/contact'
 */
 index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -45,7 +45,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\ContactController::store
-* @see app/Http/Controllers/ContactController.php:65
+* @see app/Http/Controllers/ContactController.php:67
 * @route '/contact'
 */
 export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -60,7 +60,7 @@ store.definition = {
 
 /**
 * @see \App\Http\Controllers\ContactController::store
-* @see app/Http/Controllers/ContactController.php:65
+* @see app/Http/Controllers/ContactController.php:67
 * @route '/contact'
 */
 store.url = (options?: RouteQueryOptions) => {
@@ -69,7 +69,7 @@ store.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\ContactController::store
-* @see app/Http/Controllers/ContactController.php:65
+* @see app/Http/Controllers/ContactController.php:67
 * @route '/contact'
 */
 store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({

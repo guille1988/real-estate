@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
+use App\Enums\InquiryTypeEnum;
 use App\Enums\PageEnum;
+use App\Enums\SourceEnum;
 use App\Models\OfficeLocation;
 use Inertia\Testing\AssertableInertia as Assert;
 
@@ -21,18 +23,18 @@ it('renders office locations on contact page.', function (string $key): void {
         });
 })->with(['office_locations']);
 
-it('submits contact message form.', function (array $data): void {
+it('submits contact message form.', function (InquiryTypeEnum $inquiryType, SourceEnum $source): void {
+    $data = [
+        'first_name' => fake()->firstName(),
+        'last_name' => fake()->lastName(),
+        'email' => fake()->unique()->safeEmail(),
+        'phone' => fake()->phoneNumber(),
+        'inquiry_type' => $inquiryType->value,
+        'source' => $source->value,
+        'message' => fake()->realText(),
+        'terms_agreed' => true,
+    ];
+
     $this->post(route('contact.store'), $data)
         ->assertRedirect();
-})->with([
-    'first_name' => 'John',
-    'last_name' => 'Doe',
-    'email' => 'john@example.com',
-    'phone' => '1234567890',
-    'inquiry_type' => 'other',
-    'source' => 'other',
-    'message' => 'Hello',
-    'terms_agreed' => true,
-])
-    ->skip('Pending back-end implementation.')
-    ->todo('Test also error handling logic.');
+})->with(InquiryTypeEnum::cases(), SourceEnum::cases());

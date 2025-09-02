@@ -21,7 +21,7 @@ use Illuminate\Database\Eloquent\Model;
  *  @property-read string $phone
  *  @property-read InquiryTypeEnum $inquiry_type
  *  @property-read SourceEnum $source
- *  @property-read string $message
+ *  @property-read string|null $message
  *  @property-read CarbonImmutable|null $created_at
  *  @property-read CarbonImmutable|null $updated_at
  */

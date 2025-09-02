@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Data\ContactMessageData;
 use App\Enums\PageEnum;
+use App\Models\ContactMessage;
 use App\Models\OfficeLocation;
 use App\Support\AssetHelper;
 use Illuminate\Http\RedirectResponse;
@@ -62,8 +64,10 @@ final class ContactController
         ]);
     }
 
-    public function store(): RedirectResponse
+    public function store(ContactMessageData $data): RedirectResponse
     {
+        ContactMessage::create($data->toArray());
+
         return back();
     }
 }
