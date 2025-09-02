@@ -15,11 +15,11 @@ Route::get('', HomeController::class)
 Route::get('about', AboutController::class)
     ->name('about');
 
-Route::get('contact', ContactController::class)
-    ->name('contact');
-
 Route::get('services', ServiceController::class)
     ->name('services');
+
+Route::resource('contact', ContactController::class)
+    ->only(['index', 'store']);
 
 Route::resource('properties', PropertyController::class)
     ->only(['index', 'show']);

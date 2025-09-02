@@ -10,7 +10,7 @@ it('renders office locations on contact page.', function (string $key): void {
     OfficeLocation::factory($count = 4)
         ->create();
 
-    $this->get(route('contact'))
+    $this->get(route('contact.index'))
         ->assertInertia(function (Assert $page) use ($count, $key): void {
             $key = str($key)
                 ->camel()

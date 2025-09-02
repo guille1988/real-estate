@@ -1,14 +1,14 @@
 import HomeController from './HomeController'
 import AboutController from './AboutController'
-import ContactController from './ContactController'
 import ServiceController from './ServiceController'
+import ContactController from './ContactController'
 import PropertyController from './PropertyController'
 
 const Controllers = {
     HomeController,
     AboutController,
-    ContactController,
     ServiceController,
+    ContactController,
     PropertyController,
 }
 
