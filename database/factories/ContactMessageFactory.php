@@ -1,0 +1,34 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Database\Factories;
+
+use App\Enums\InquiryTypeEnum;
+use App\Enums\SourceEnum;
+use App\Models\ContactMessage;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+/**
+ * @extends Factory<ContactMessage>
+ */
+final class ContactMessageFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
+    public function definition(): array
+    {
+        return [
+            'first_name' => $this->faker->firstName(),
+            'last_name' => $this->faker->lastName(),
+            'email' => $this->faker->unique()->safeEmail(),
+            'phone' => $this->faker->phoneNumber(),
+            'inquiry_type' => $this->faker->randomElement(InquiryTypeEnum::cases()),
+            'source' => $this->faker->randomElement(SourceEnum::cases()),
+            'message' => $this->faker->optional()->realText(),
+        ];
+    }
+}
