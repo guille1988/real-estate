@@ -16,7 +16,10 @@
                 </p>
             </div>
 
-            <form @submit.prevent="form.post('/')" class="w-full">
+            <form
+                @submit.prevent="form.post(ContactController.store().url)"
+                class="w-full"
+            >
                 <div class="mb-8 grid gap-6 md:grid-cols-2">
                     <div class="flex flex-col">
                         <TextInput
@@ -168,6 +171,7 @@ import TextInput from '@/Components/Shared/Inputs/TextInput.vue';
 import PrivacyPolicyModal from '@/Components/Shared/Modals/PrivacyPolicyModal/PrivacyPolicyModal.vue';
 import TermsOfUseModal from '@/Components/Shared/Modals/TermsOfUseModal/TermsOfUseModal.vue';
 import { capitalizeFirstLetter } from '@/Composables/useCapitalization';
+import ContactController from '@/Routes/actions/App/Http/Controllers/ContactController';
 import { InquiryTypeEnum } from '@/Types/App/Enums/InquiryTypeEnum';
 import { SourceEnum } from '@/Types/App/Enums/SourceEnum';
 import { LetsConnectFormInterface } from '@/Types/App/Interfaces/LetsConnectFormInterface';
