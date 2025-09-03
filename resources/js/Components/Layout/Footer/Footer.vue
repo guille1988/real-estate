@@ -54,7 +54,7 @@
                     >
                         <input
                             type="email"
-                            placeholder="Enter Your Email"
+                            placeholder="Enter Your Email To Receive Updates"
                             class="w-full rounded border border-gray-700 bg-transparent py-2 pl-8 pr-12 text-sm text-white placeholder:text-ellipsis placeholder:text-gray-400 sm:text-xs md:text-sm"
                             aria-label="Enter Your Email"
                         />
