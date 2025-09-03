@@ -74,8 +74,10 @@ final class HandleInertiaRequestMiddleware extends Middleware
         /**
          * @var array<int|string, mixed>
          */
-        return app()
-            ->call(InertiaResponseHelper::class, compact('data'));
+        return app()->call(
+            InertiaResponseHelper::class,
+            compact('data'),
+        );
     }
 
     /*

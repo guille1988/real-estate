@@ -23,8 +23,10 @@ final class InertiaResponse extends ResponseFactory
         /**
          * @var array<int|string, mixed> $properties
          */
-        $properties = app()
-            ->call(InertiaResponseHelper::class, ['data' => $props]);
+        $properties = app()->call(
+            InertiaResponseHelper::class,
+            ['data' => $props],
+        );
 
         return new Response(
             $component,

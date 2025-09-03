@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\Exceptions\Handler;
 use App\Responses\InertiaResponse;
 use Carbon\CarbonImmutable;
 use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -34,6 +36,14 @@ final class AppServiceProvider extends ServiceProvider
     private function configureDates(): void
     {
         Date::use(CarbonImmutable::class);
+    }
+
+    /**
+     * Configure the application exception handler.
+     */
+    private function configureExceptionHandler(): void
+    {
+        $this->app->singleton(ExceptionHandler::class, Handler::class);
     }
 
     /**
@@ -104,6 +114,7 @@ final class AppServiceProvider extends ServiceProvider
     {
         $this->configureCommands();
         $this->configureDates();
+        $this->configureExceptionHandler();
         $this->configureModels();
         $this->configureRateLimiting();
         $this->configureResources();
