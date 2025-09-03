@@ -26,7 +26,10 @@
                             type="text"
                             placeholder="Enter First Name"
                         />
-                        <div v-if="form.errors.firstName">
+                        <div
+                            v-if="form.errors.firstName"
+                            class="mt-1 text-sm text-red-500 dark:text-red-400"
+                        >
                             {{ form.errors.firstName }}
                         </div>
                     </div>
@@ -39,7 +42,10 @@
                             type="text"
                             placeholder="Enter Last Name"
                         />
-                        <div v-if="form.errors.lastName">
+                        <div
+                            v-if="form.errors.lastName"
+                            class="mt-1 text-sm text-red-500 dark:text-red-400"
+                        >
                             {{ form.errors.lastName }}
                         </div>
                     </div>
@@ -52,7 +58,10 @@
                             type="email"
                             placeholder="Enter Your E-mail"
                         />
-                        <div v-if="form.errors.email">
+                        <div
+                            v-if="form.errors.email"
+                            class="mt-1 text-sm text-red-500 dark:text-red-400"
+                        >
                             {{ form.errors.email }}
                         </div>
                     </div>
@@ -65,7 +74,10 @@
                             type="tel"
                             placeholder="Enter Phone Number"
                         />
-                        <div v-if="form.errors.phone">
+                        <div
+                            v-if="form.errors.phone"
+                            class="mt-1 text-sm text-red-500 dark:text-red-400"
+                        >
                             {{ form.errors.phone }}
                         </div>
                     </div>
@@ -78,7 +90,10 @@
                             placeholder="Select Inquiry Type"
                             :options="inquiryTypes"
                         />
-                        <div v-if="form.errors.inquiryType">
+                        <div
+                            v-if="form.errors.inquiryType"
+                            class="mt-1 text-sm text-red-500 dark:text-red-400"
+                        >
                             {{ form.errors.inquiryType }}
                         </div>
                     </div>
@@ -91,7 +106,10 @@
                             placeholder="Select"
                             :options="sources"
                         />
-                        <div v-if="form.errors.source">
+                        <div
+                            v-if="form.errors.source"
+                            class="mt-1 text-sm text-red-500 dark:text-red-400"
+                        >
                             {{ form.errors.source }}
                         </div>
                     </div>
@@ -105,7 +123,10 @@
                         :rows="6"
                         placeholder="Enter Your Message Here"
                     />
-                    <div v-if="form.errors.message">
+                    <div
+                        v-if="form.errors.message"
+                        class="mt-1 text-sm text-red-500 dark:text-red-400"
+                    >
                         {{ form.errors.message }}
                     </div>
                 </div>
