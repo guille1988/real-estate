@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Data\PropertyData;
+use App\Data\PropertyMessageData;
 use App\Enums\PageEnum;
 use App\Enums\PropertyAreaRangeEnum;
 use App\Enums\PropertyLocationEnum;
@@ -14,6 +15,8 @@ use App\Http\Resources\IndexPropertyResource;
 use App\Http\Resources\ShowPropertyResource;
 use App\Models\Faq;
 use App\Models\Property;
+use App\Models\PropertyMessage;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Support\Collection;
@@ -83,5 +86,12 @@ final class PropertyController
             'property' => fn (): JsonResource => $cachedProperty,
             'faq' => fn (): ResourceCollection => $faq,
         ]);
+    }
+
+    public function store(PropertyMessageData $data): RedirectResponse
+    {
+        PropertyMessage::create($data->toArray());
+
+        return back();
     }
 }

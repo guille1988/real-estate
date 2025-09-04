@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\PropertyController::index
-* @see app/Http/Controllers/PropertyController.php:29
+* @see app/Http/Controllers/PropertyController.php:32
 * @route '/properties'
 */
 export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ index.definition = {
 
 /**
 * @see \App\Http\Controllers\PropertyController::index
-* @see app/Http/Controllers/PropertyController.php:29
+* @see app/Http/Controllers/PropertyController.php:32
 * @route '/properties'
 */
 index.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ index.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\PropertyController::index
-* @see app/Http/Controllers/PropertyController.php:29
+* @see app/Http/Controllers/PropertyController.php:32
 * @route '/properties'
 */
 index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -35,7 +35,7 @@ index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\PropertyController::index
-* @see app/Http/Controllers/PropertyController.php:29
+* @see app/Http/Controllers/PropertyController.php:32
 * @route '/properties'
 */
 index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -44,8 +44,42 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
+* @see \App\Http\Controllers\PropertyController::store
+* @see app/Http/Controllers/PropertyController.php:91
+* @route '/properties'
+*/
+export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: store.url(options),
+    method: 'post',
+})
+
+store.definition = {
+    methods: ["post"],
+    url: '/properties',
+} satisfies RouteDefinition<["post"]>
+
+/**
+* @see \App\Http\Controllers\PropertyController::store
+* @see app/Http/Controllers/PropertyController.php:91
+* @route '/properties'
+*/
+store.url = (options?: RouteQueryOptions) => {
+    return store.definition.url + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\PropertyController::store
+* @see app/Http/Controllers/PropertyController.php:91
+* @route '/properties'
+*/
+store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: store.url(options),
+    method: 'post',
+})
+
+/**
 * @see \App\Http\Controllers\PropertyController::show
-* @see app/Http/Controllers/PropertyController.php:57
+* @see app/Http/Controllers/PropertyController.php:60
 * @route '/properties/{property}'
 */
 export const show = (args: { property: string | { uuid: string } } | [property: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -60,7 +94,7 @@ show.definition = {
 
 /**
 * @see \App\Http\Controllers\PropertyController::show
-* @see app/Http/Controllers/PropertyController.php:57
+* @see app/Http/Controllers/PropertyController.php:60
 * @route '/properties/{property}'
 */
 show.url = (args: { property: string | { uuid: string } } | [property: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
@@ -93,7 +127,7 @@ show.url = (args: { property: string | { uuid: string } } | [property: string | 
 
 /**
 * @see \App\Http\Controllers\PropertyController::show
-* @see app/Http/Controllers/PropertyController.php:57
+* @see app/Http/Controllers/PropertyController.php:60
 * @route '/properties/{property}'
 */
 show.get = (args: { property: string | { uuid: string } } | [property: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -103,7 +137,7 @@ show.get = (args: { property: string | { uuid: string } } | [property: string | 
 
 /**
 * @see \App\Http\Controllers\PropertyController::show
-* @see app/Http/Controllers/PropertyController.php:57
+* @see app/Http/Controllers/PropertyController.php:60
 * @route '/properties/{property}'
 */
 show.head = (args: { property: string | { uuid: string } } | [property: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -111,6 +145,6 @@ show.head = (args: { property: string | { uuid: string } } | [property: string |
     method: 'head',
 })
 
-const PropertyController = { index, show }
+const PropertyController = { index, store, show }
 
 export default PropertyController

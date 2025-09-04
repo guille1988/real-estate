@@ -22,4 +22,4 @@ Route::resource('contact', ContactController::class)
     ->only(['index', 'store']);
 
 Route::resource('properties', PropertyController::class)
-    ->only(['index', 'show']);
+    ->only(['index', 'show', 'store']);
