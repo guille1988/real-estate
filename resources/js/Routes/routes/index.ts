@@ -133,7 +133,7 @@ services.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\ContactController::__invoke
-* @see app/Http/Controllers/ContactController.php:20
+* @see app/Http/Controllers/ContactController.php:23
 * @route '/contact'
 */
 export const contact = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -148,7 +148,7 @@ contact.definition = {
 
 /**
 * @see \App\Http\Controllers\ContactController::__invoke
-* @see app/Http/Controllers/ContactController.php:20
+* @see app/Http/Controllers/ContactController.php:23
 * @route '/contact'
 */
 contact.url = (options?: RouteQueryOptions) => {
@@ -157,7 +157,7 @@ contact.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\ContactController::__invoke
-* @see app/Http/Controllers/ContactController.php:20
+* @see app/Http/Controllers/ContactController.php:23
 * @route '/contact'
 */
 contact.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -167,7 +167,7 @@ contact.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\ContactController::__invoke
-* @see app/Http/Controllers/ContactController.php:20
+* @see app/Http/Controllers/ContactController.php:23
 * @route '/contact'
 */
 contact.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({

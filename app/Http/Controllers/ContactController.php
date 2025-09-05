@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Enums\InquiryTypeEnum;
 use App\Enums\PageEnum;
+use App\Enums\SourceEnum;
 use App\Models\OfficeLocation;
 use App\Support\AssetHelper;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Support\Collection;
 use Inertia\Inertia;
 use Inertia\Response;
 use Throwable;
@@ -58,6 +61,8 @@ final class ContactController
         return Inertia::render(PageEnum::CONTACT->value, [
             'assets' => fn (): array => $assets,
             'office_locations' => fn (): ResourceCollection => $officeLocations,
+            'inquiry_types' => fn (): Collection => InquiryTypeEnum::toResponse(),
+            'sources' => fn (): Collection => SourceEnum::toResponse(),
         ]);
     }
 }
