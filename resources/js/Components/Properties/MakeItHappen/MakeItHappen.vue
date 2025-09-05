@@ -18,7 +18,7 @@
                 <div
                     class="rounded-lg border border-gray-800 bg-black/50 p-6 md:p-10"
                 >
-                    <form @submit.prevent="submit">
+                    <form @submit.prevent="submit()">
                         <div
                             class="mb-6 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4"
                         >
@@ -29,6 +29,12 @@
                                 type="text"
                                 placeholder="Enter First Name"
                             />
+                            <div
+                                v-if="form.errors.firstName"
+                                class="mt-1 text-sm text-red-500 dark:text-red-400"
+                            >
+                                {{ form.errors.firstName }}
+                            </div>
                             <TextInput
                                 id="lastName"
                                 label="Last Name"
@@ -36,6 +42,12 @@
                                 type="text"
                                 placeholder="Enter Last Name"
                             />
+                            <div
+                                v-if="form.errors.lastName"
+                                class="mt-1 text-sm text-red-500 dark:text-red-400"
+                            >
+                                {{ form.errors.lastName }}
+                            </div>
                             <TextInput
                                 id="email"
                                 label="Email"
@@ -43,6 +55,12 @@
                                 type="email"
                                 placeholder="Enter your Email"
                             />
+                            <div
+                                v-if="form.errors.email"
+                                class="mt-1 text-sm text-red-500 dark:text-red-400"
+                            >
+                                {{ form.errors.email }}
+                            </div>
                             <TextInput
                                 id="phone"
                                 label="Phone"
@@ -50,6 +68,12 @@
                                 type="tel"
                                 placeholder="Enter Phone Number"
                             />
+                            <div
+                                v-if="form.errors.phone"
+                                class="mt-1 text-sm text-red-500 dark:text-red-400"
+                            >
+                                {{ form.errors.phone }}
+                            </div>
                         </div>
 
                         <div
@@ -62,6 +86,12 @@
                                 placeholder="Select Location"
                                 :options="locations"
                             />
+                            <div
+                                v-if="form.errors.location"
+                                class="mt-1 text-sm text-red-500 dark:text-red-400"
+                            >
+                                {{ form.errors.location }}
+                            </div>
                             <DropdownInput
                                 id="propertyType"
                                 label="Property Type"
@@ -69,6 +99,12 @@
                                 placeholder="Select Property Type"
                                 :options="propertyTypes"
                             />
+                            <div
+                                v-if="form.errors.propertyType"
+                                class="mt-1 text-sm text-red-500 dark:text-red-400"
+                            >
+                                {{ form.errors.propertyType }}
+                            </div>
                             <DropdownInput
                                 id="bathroomCount"
                                 label="No. of Bathrooms"
@@ -76,6 +112,12 @@
                                 placeholder="Select no. of bathrooms"
                                 :options="bathroomCountOptions"
                             />
+                            <div
+                                v-if="form.errors.bathrooms"
+                                class="mt-1 text-sm text-red-500 dark:text-red-400"
+                            >
+                                {{ form.errors.bathrooms }}
+                            </div>
                             <DropdownInput
                                 id="bedroomCount"
                                 label="No. of Bedrooms"
@@ -83,6 +125,12 @@
                                 placeholder="Select no. of bedrooms"
                                 :options="bedroomCountOptions"
                             />
+                            <div
+                                v-if="form.errors.bedrooms"
+                                class="mt-1 text-sm text-red-500 dark:text-red-400"
+                            >
+                                {{ form.errors.bedrooms }}
+                            </div>
                         </div>
 
                         <div class="mb-6 grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -93,6 +141,12 @@
                                 placeholder="Select Budget"
                                 :options="budgetRanges"
                             />
+                            <div
+                                v-if="form.errors.budget"
+                                class="mt-1 text-sm text-red-500 dark:text-red-400"
+                            >
+                                {{ form.errors.budget }}
+                            </div>
                         </div>
 
                         <div class="mb-6">
@@ -103,6 +157,12 @@
                                 :rows="5"
                                 placeholder="Enter your Message here."
                             />
+                            <div
+                                v-if="form.errors.message"
+                                class="mt-1 text-sm text-red-500 dark:text-red-400"
+                            >
+                                {{ form.errors.message }}
+                            </div>
                         </div>
 
                         <div
@@ -140,17 +200,31 @@
                                     </label>
                                 </div>
                             </div>
-                            <button
-                                type="submit"
-                                class="rounded bg-purple-600 px-6 py-3 text-white transition duration-300 hover:bg-purple-700"
-                                :disabled="!form.termsAgreed"
-                                :class="{
-                                    'cursor-not-allowed opacity-50':
-                                        !form.termsAgreed,
-                                }"
-                            >
-                                Send Your Message
-                            </button>
+                            <div class="flex flex-col items-end gap-2">
+                                <button
+                                    type="submit"
+                                    class="rounded bg-purple-600 px-6 py-3 text-white transition duration-300 hover:bg-purple-700"
+                                    :disabled="
+                                        !form.termsAgreed || form.processing
+                                    "
+                                    :class="{
+                                        'cursor-not-allowed opacity-50':
+                                            !form.termsAgreed ||
+                                            form.processing,
+                                    }"
+                                >
+                                    <span v-if="!form.processing"
+                                        >Send Your Message</span
+                                    >
+                                    <span v-else>Sending...</span>
+                                </button>
+                                <p
+                                    v-if="showSuccessMessage"
+                                    class="mt-1 text-sm text-green-400"
+                                >
+                                    {{ successMessage }}
+                                </p>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -170,8 +244,10 @@ import TextInput from '@/Components/Shared/Inputs/TextInput.vue';
 import PrivacyPolicyModal from '@/Components/Shared/Modals/PrivacyPolicyModal/PrivacyPolicyModal.vue';
 import TermsOfUseModal from '@/Components/Shared/Modals/TermsOfUseModal/TermsOfUseModal.vue';
 import { capitalizeFirstLetter } from '@/Composables/useCapitalization';
+import PropertyMessageController from '@/Routes/actions/App/Http/Controllers/PropertyMessageController';
 import { PropertyTypeEnum } from '@/Types/App/Enums/PropertyTypeEnum';
 import { MakeItHappenFormInterface } from '@/Types/App/Interfaces/MakeItHappenFormInterface';
+import { InertiaForm, useForm } from '@inertiajs/vue3';
 import { type Ref, ref } from 'vue';
 
 const locations: Record<string, string> = {
@@ -194,22 +270,26 @@ const budgetRanges: Record<string, string> = {
     '5': 'Over $1,000,000',
 };
 
-const form: Ref<MakeItHappenFormInterface> = ref<MakeItHappenFormInterface>({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    location: '',
-    propertyType: null,
-    bathrooms: null,
-    bedrooms: null,
-    budget: '',
-    message: '',
-    termsAgreed: false,
-});
-
+const successMessage: string =
+    'Thank you for contacting us. We will get back to you as soon as possible.';
+const showSuccessMessage: Ref<boolean> = ref<boolean>(false);
 const showTermsOfUseModal: Ref<boolean> = ref<boolean>(false);
 const showPrivacyPolicyModal: Ref<boolean> = ref<boolean>(false);
+
+const form: InertiaForm<MakeItHappenFormInterface> =
+    useForm<MakeItHappenFormInterface>({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        location: null,
+        propertyType: null,
+        bathrooms: null,
+        bedrooms: null,
+        budget: '',
+        message: '',
+        termsAgreed: false,
+    });
 
 const openTermsOfUseModal = (): void => {
     showTermsOfUseModal.value = true;
@@ -250,11 +330,22 @@ const bathroomCountOptions = generateRoomCount(5);
 const bedroomCountOptions = generateRoomCount(5);
 
 const submit = (): void => {
-    if (!form.value.termsAgreed) {
-        alert('Please agree to the Terms of Use and Privacy Policy');
+    showSuccessMessage.value = false;
+
+    if (!form.termsAgreed) {
         return;
     }
 
-    console.log(form.value);
+    form.post(PropertyMessageController().url, {
+        preserveScroll: true,
+        onSuccess: (): void => {
+            showSuccessMessage.value = true;
+            form.reset();
+
+            setTimeout((): void => {
+                showSuccessMessage.value = false;
+            }, 8000);
+        },
+    });
 };
 </script>

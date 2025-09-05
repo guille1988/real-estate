@@ -103,7 +103,7 @@
                             id="source"
                             label="How Did You Hear About Us?:"
                             v-model:modelValue="form.source"
-                            placeholder="Select"
+                            placeholder="Select Source"
                             :options="sources"
                         />
                         <div
@@ -225,8 +225,8 @@ const form: InertiaForm<LetsConnectFormInterface> =
         lastName: '',
         email: '',
         phone: '',
-        inquiryType: InquiryTypeEnum.OTHER,
-        source: SourceEnum.OTHER,
+        inquiryType: null,
+        source: null,
         message: '',
         termsAgreed: false,
     });
