@@ -88,7 +88,7 @@
                             label="Inquiry Type:"
                             v-model:modelValue="form.inquiryType"
                             placeholder="Select Inquiry Type"
-                            :options="inquiryTypes"
+                            :options="toKeyValue(inquiryTypes)"
                         />
                         <div
                             v-if="form.errors.inquiryType"
@@ -104,7 +104,7 @@
                             label="How Did You Hear About Us?:"
                             v-model:modelValue="form.source"
                             placeholder="Select Source"
-                            :options="sources"
+                            :options="toKeyValue(sources)"
                         />
                         <div
                             v-if="form.errors.source"
@@ -196,13 +196,21 @@ import TextareaInput from '@/Components/Shared/Inputs/TextareaInput.vue';
 import TextInput from '@/Components/Shared/Inputs/TextInput.vue';
 import PrivacyPolicyModal from '@/Components/Shared/Modals/PrivacyPolicyModal/PrivacyPolicyModal.vue';
 import TermsOfUseModal from '@/Components/Shared/Modals/TermsOfUseModal/TermsOfUseModal.vue';
-import { capitalizeFirstLetter } from '@/Composables/useCapitalization';
 import ContactMessageController from '@/Routes/actions/App/Http/Controllers/ContactMessageController';
-import { InquiryTypeEnum } from '@/Types/App/Enums/InquiryTypeEnum';
-import { SourceEnum } from '@/Types/App/Enums/SourceEnum';
+import { InquiryTypeInterface } from '@/Types/App/Interfaces/InquiryTypeInterface';
 import { LetsConnectFormInterface } from '@/Types/App/Interfaces/LetsConnectFormInterface';
+import { SourceInterface } from '@/Types/App/Interfaces/SourceInterface';
 import { InertiaForm, useForm } from '@inertiajs/vue3';
-import { computed, ComputedRef, Ref, ref } from 'vue';
+import { Ref, ref } from 'vue';
+
+const {
+    inquiryTypes,
+    sources,
+}: { inquiryTypes: InquiryTypeInterface[]; sources: SourceInterface[] } =
+    defineProps<{
+        inquiryTypes: InquiryTypeInterface[];
+        sources: SourceInterface[];
+    }>();
 
 const successMessage: string =
     'Thank you for contacting us. We will get back to you as soon as possible.';
@@ -231,32 +239,19 @@ const form: InertiaForm<LetsConnectFormInterface> =
         termsAgreed: false,
     });
 
-const inquiryTypes: ComputedRef<Record<string, string>> = computed(
-    (): Record<string, string> =>
-        Object.fromEntries(
-            Object.values(InquiryTypeEnum).map(
-                (inquiryType: InquiryTypeEnum): string[] => {
-                    const label = capitalizeFirstLetter(inquiryType);
-                    return [
-                        inquiryType,
-                        inquiryType === InquiryTypeEnum.OTHER
-                            ? label
-                            : `Looking For ${label}`,
-                    ];
-                },
-            ),
-        ),
-);
-
-const sources: ComputedRef<Record<string, string>> = computed(
-    (): Record<string, string> =>
-        Object.fromEntries(
-            Object.values(SourceEnum).map((source: SourceEnum): string[] => [
-                source,
-                capitalizeFirstLetter(source),
-            ]),
-        ),
-);
+const toKeyValue = (
+    options: Array<InquiryTypeInterface | SourceInterface>,
+): Record<string, string> =>
+    options.reduce<Record<string, string>>(
+        (
+            accumulator: Record<string, string>,
+            { label, value }: InquiryTypeInterface | SourceInterface,
+        ) => {
+            accumulator[String(value)] = label;
+            return accumulator;
+        },
+        {},
+    );
 
 const submit = (): void => {
     showSuccessMessage.value = false;

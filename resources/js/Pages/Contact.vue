@@ -1,7 +1,7 @@
 <template>
     <Layout>
         <GetInTouch />
-        <LetsConnect />
+        <LetsConnect :inquiry-types="inquiryTypes" :sources="sources" />
         <OfficeLocations :office-locations="officeLocations" />
         <Explore :assets="assets" />
     </Layout>
