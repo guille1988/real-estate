@@ -197,7 +197,7 @@ import TextInput from '@/Components/Shared/Inputs/TextInput.vue';
 import PrivacyPolicyModal from '@/Components/Shared/Modals/PrivacyPolicyModal/PrivacyPolicyModal.vue';
 import TermsOfUseModal from '@/Components/Shared/Modals/TermsOfUseModal/TermsOfUseModal.vue';
 import { capitalizeFirstLetter } from '@/Composables/useCapitalization';
-import ContactController from '@/Routes/actions/App/Http/Controllers/ContactController';
+import ContactMessageController from '@/Routes/actions/App/Http/Controllers/ContactMessageController';
 import { InquiryTypeEnum } from '@/Types/App/Enums/InquiryTypeEnum';
 import { SourceEnum } from '@/Types/App/Enums/SourceEnum';
 import { LetsConnectFormInterface } from '@/Types/App/Interfaces/LetsConnectFormInterface';
@@ -261,7 +261,7 @@ const sources: ComputedRef<Record<string, string>> = computed(
 const submit = (): void => {
     showSuccessMessage.value = false;
 
-    form.post(ContactController.store().url, {
+    form.post(ContactMessageController().url, {
         preserveScroll: true,
         onSuccess: (): void => {
             showSuccessMessage.value = true;

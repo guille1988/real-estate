@@ -1,85 +1,40 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../wayfinder'
 /**
-* @see \App\Http\Controllers\ContactController::index
-* @see app/Http/Controllers/ContactController.php:23
-* @route '/contact'
+* @see \App\Http\Controllers\ContactMessageController::__invoke
+* @see app/Http/Controllers/ContactMessageController.php:13
+* @route '/contact/messages'
 */
-export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
-    url: index.url(options),
-    method: 'get',
-})
-
-index.definition = {
-    methods: ["get","head"],
-    url: '/contact',
-} satisfies RouteDefinition<["get","head"]>
-
-/**
-* @see \App\Http\Controllers\ContactController::index
-* @see app/Http/Controllers/ContactController.php:23
-* @route '/contact'
-*/
-index.url = (options?: RouteQueryOptions) => {
-    return index.definition.url + queryParams(options)
-}
-
-/**
-* @see \App\Http\Controllers\ContactController::index
-* @see app/Http/Controllers/ContactController.php:23
-* @route '/contact'
-*/
-index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
-    url: index.url(options),
-    method: 'get',
-})
-
-/**
-* @see \App\Http\Controllers\ContactController::index
-* @see app/Http/Controllers/ContactController.php:23
-* @route '/contact'
-*/
-index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
-    url: index.url(options),
-    method: 'head',
-})
-
-/**
-* @see \App\Http\Controllers\ContactController::store
-* @see app/Http/Controllers/ContactController.php:67
-* @route '/contact'
-*/
-export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
-    url: store.url(options),
+export const messages = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: messages.url(options),
     method: 'post',
 })
 
-store.definition = {
+messages.definition = {
     methods: ["post"],
-    url: '/contact',
+    url: '/contact/messages',
 } satisfies RouteDefinition<["post"]>
 
 /**
-* @see \App\Http\Controllers\ContactController::store
-* @see app/Http/Controllers/ContactController.php:67
-* @route '/contact'
+* @see \App\Http\Controllers\ContactMessageController::__invoke
+* @see app/Http/Controllers/ContactMessageController.php:13
+* @route '/contact/messages'
 */
-store.url = (options?: RouteQueryOptions) => {
-    return store.definition.url + queryParams(options)
+messages.url = (options?: RouteQueryOptions) => {
+    return messages.definition.url + queryParams(options)
 }
 
 /**
-* @see \App\Http\Controllers\ContactController::store
-* @see app/Http/Controllers/ContactController.php:67
-* @route '/contact'
+* @see \App\Http\Controllers\ContactMessageController::__invoke
+* @see app/Http/Controllers/ContactMessageController.php:13
+* @route '/contact/messages'
 */
-store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
-    url: store.url(options),
+messages.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: messages.url(options),
     method: 'post',
 })
 
 const contact = {
-    index,
-    store,
+    messages,
 }
 
 export default contact
