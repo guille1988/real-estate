@@ -197,9 +197,9 @@ import TextInput from '@/Components/Shared/Inputs/TextInput.vue';
 import PrivacyPolicyModal from '@/Components/Shared/Modals/PrivacyPolicyModal/PrivacyPolicyModal.vue';
 import TermsOfUseModal from '@/Components/Shared/Modals/TermsOfUseModal/TermsOfUseModal.vue';
 import ContactMessageController from '@/Routes/actions/App/Http/Controllers/ContactMessageController';
-import { InquiryTypeEnum } from '@/Types/App/Enums/InquiryTypeEnum';
-import { SourceEnum } from '@/Types/App/Enums/SourceEnum';
+import { InquiryTypeInterface } from '@/Types/App/Interfaces/InquiryTypeInterface';
 import { LetsConnectFormInterface } from '@/Types/App/Interfaces/LetsConnectFormInterface';
+import { SourceInterface } from '@/Types/App/Interfaces/SourceInterface';
 import { InertiaForm, useForm } from '@inertiajs/vue3';
 import { Ref, ref } from 'vue';
 
@@ -207,11 +207,11 @@ const {
     inquiryTypes,
     sources,
 }: {
-    inquiryTypes: Record<InquiryTypeEnum, string>;
-    sources: Record<SourceEnum, string>;
+    inquiryTypes: InquiryTypeInterface[];
+    sources: SourceInterface[];
 } = defineProps<{
-    inquiryTypes: Record<InquiryTypeEnum, string>;
-    sources: Record<SourceEnum, string>;
+    inquiryTypes: InquiryTypeInterface[];
+    sources: SourceInterface[];
 }>();
 
 const successMessage: string =

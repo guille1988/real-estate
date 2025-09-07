@@ -14,16 +14,17 @@ enum InquiryTypeEnum: string
     case OTHER = 'other';
 
     /**
-     * @return Collection<string, string>
+     * @return Collection<int, array{label: string, value: string}>
      *
-     * Returns a collection of inquiry types with their title versions.
+     * Returns the label and value response version of all inquiry types.
      */
     public static function toResponse(): Collection
     {
         return collect(self::cases())
-            ->flatMap(function (self $inquiryType): array {
-                return [$inquiryType->value => $inquiryType->title()];
-            });
+            ->map(fn (self $inquiryType): array => [
+                'label' => $inquiryType->title(),
+                'value' => $inquiryType->value,
+            ]);
     }
 
     /*

@@ -10,11 +10,11 @@
             >
                 <option value="" disabled selected>{{ placeholder }}</option>
                 <option
-                    v-for="(value, key) in options"
-                    :key="`${id}-option-${key}`"
-                    :value="key"
+                    v-for="option in options"
+                    :key="`${id}-option-${option.value}`"
+                    :value="option.value"
                 >
-                    {{ value }}
+                    {{ option.label }}
                 </option>
             </select>
         </div>
