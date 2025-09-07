@@ -90,7 +90,7 @@
 
                     <div class="md:col-span-2">
                         <form
-                            @submit.prevent="submit"
+                            @submit.prevent="submit()"
                             class="rounded-lg border border-gray-800 bg-black p-6 shadow-lg"
                         >
                             <div
