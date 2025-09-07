@@ -15,6 +15,16 @@ final class SubscriberData extends Data
     ) {}
 
     /**
+     * @return array<string, string>
+     */
+    public static function messages(): array
+    {
+        return [
+            'email.unique' => 'This e-mail is already subscribed.',
+        ];
+    }
+
+    /**
      * @return array<string, array<int, mixed>>
      */
     public static function rules(): array
