@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Enums\PageEnum;
 use App\Enums\PricingDetailCategoryEnum;
 use App\Enums\PropertyAreaRangeEnum;
+use App\Enums\PropertyBudgetEnum;
 use App\Enums\PropertyLocationEnum;
 use App\Enums\PropertyPriceRangeEnum;
 use App\Enums\PropertyTypeEnum;
@@ -16,10 +17,31 @@ use App\Models\PricingDetail;
 use App\Models\Property;
 use Inertia\Testing\AssertableInertia as Assert;
 
-it('works indexing properties without any search.', function (): void {
+it('indexes properties.', function (): void {
+    Property::factory($propertyCount = 10)
+        ->create()
+        ->each(function (Property $property): void {
+            Image::factory()
+                ->default()
+                ->create(['property_id' => $property->id]);
+        });
+
+    $propertyPageResponse = [
+        'properties.data' => $propertyCount,
+        'areas' => PropertyAreaRangeEnum::toResponse()->count(),
+        'locations' => PropertyLocationEnum::toResponse()->count(),
+        'prices' => PropertyPriceRangeEnum::toResponse()->count(),
+        'types' => PropertyTypeEnum::toResponse()->count(),
+        'budgets' => PropertyBudgetEnum::toResponse()->count(),
+    ];
+
     $this->get(route('properties.index'))
-        ->assertInertia(function (Assert $page): void {
-            $page->component(PageEnum::PROPERTIES->value);
+        ->assertInertia(function (Assert $page) use ($propertyPageResponse): void {
+            $component = $page->component(PageEnum::PROPERTIES->value);
+
+            foreach ($propertyPageResponse as $key => $count) {
+                $component->has($key, $count);
+            }
         });
 });
 
