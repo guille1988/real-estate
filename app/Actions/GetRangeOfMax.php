@@ -32,10 +32,8 @@ final class GetRangeOfMax
         throw_if(
             ! in_array($field, $this->permittedFields),
             InvalidArgumentException::class,
-            [
-                'message' => "The field $field is not permitted.",
-                'code' => Response::HTTP_UNPROCESSABLE_ENTITY,
-            ]
+            "The field $field is not permitted.",
+            Response::HTTP_UNPROCESSABLE_ENTITY,
         );
 
         $maxNumber = cache()
