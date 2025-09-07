@@ -12,6 +12,8 @@
             :locations="locations"
             :types="types"
             :budgets="budgets"
+            :bathrooms="bathrooms"
+            :bedrooms="bedrooms"
         />
     </Layout>
 </template>
@@ -26,6 +28,8 @@ import { ErrorInterface } from '@/Types/App/Interfaces/ErrorInterface';
 import { FilterInterface } from '@/Types/App/Interfaces/FilterInterface';
 import { IndexPropertyPaginatedInterface } from '@/Types/App/Interfaces/IndexPropertyPaginatedInterface';
 import { PropertyAreaRangeInterface } from '@/Types/App/Interfaces/PropertyAreaRangeInterface';
+import { PropertyBathroomInterface } from '@/Types/App/Interfaces/PropertyBathroomInterface';
+import { PropertyBedroomInterface } from '@/Types/App/Interfaces/PropertyBedroomInterface';
 import { PropertyLocationInterface } from '@/Types/App/Interfaces/PropertyLocationInterface';
 import { PropertyPriceRangeInterface } from '@/Types/App/Interfaces/PropertyPriceRangeInterface';
 import { PropertyTypeInterface } from '@/Types/App/Interfaces/PropertyTypeInterface';
@@ -39,6 +43,8 @@ const { errors }: { errors: ErrorInterface } = defineProps<{
     prices: PropertyPriceRangeInterface[];
     types: PropertyTypeInterface[];
     budgets: BudgetInterface[];
+    bathrooms: PropertyBathroomInterface[];
+    bedrooms: PropertyBedroomInterface[];
     errors: ErrorInterface;
 }>();
 

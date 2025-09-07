@@ -110,7 +110,7 @@
                                 label="No. of Bathrooms"
                                 v-model:modelValue="form.bathrooms"
                                 placeholder="Select no. of bathrooms"
-                                :options="bathroomCountOptions"
+                                :options="bathrooms"
                             />
                             <div
                                 v-if="form.errors.bathrooms"
@@ -123,7 +123,7 @@
                                 label="No. of Bedrooms"
                                 v-model:modelValue="form.bedrooms"
                                 placeholder="Select no. of bedrooms"
-                                :options="bedroomCountOptions"
+                                :options="bedrooms"
                             />
                             <div
                                 v-if="form.errors.bedrooms"
@@ -246,6 +246,8 @@ import TermsOfUseModal from '@/Components/Shared/Modals/TermsOfUseModal/TermsOfU
 import PropertyMessageController from '@/Routes/actions/App/Http/Controllers/PropertyMessageController';
 import { BudgetInterface } from '@/Types/App/Interfaces/BudgetInterface';
 import { MakeItHappenFormInterface } from '@/Types/App/Interfaces/MakeItHappenFormInterface';
+import { PropertyBathroomInterface } from '@/Types/App/Interfaces/PropertyBathroomInterface';
+import { PropertyBedroomInterface } from '@/Types/App/Interfaces/PropertyBedroomInterface';
 import { PropertyLocationInterface } from '@/Types/App/Interfaces/PropertyLocationInterface';
 import { PropertyTypeInterface } from '@/Types/App/Interfaces/PropertyTypeInterface';
 import { InertiaForm, useForm } from '@inertiajs/vue3';
@@ -263,52 +265,9 @@ const {
     locations: PropertyLocationInterface[];
     types: PropertyTypeInterface[];
     budgets: BudgetInterface[];
+    bathrooms: PropertyBathroomInterface[];
+    bedrooms: PropertyBedroomInterface[];
 }>();
-
-const bathroomCountOptions: { label: string; value: number }[] = [
-    {
-        label: 'One',
-        value: 1,
-    },
-    {
-        label: 'Two',
-        value: 2,
-    },
-    {
-        label: 'Three',
-        value: 3,
-    },
-    {
-        label: 'Four',
-        value: 4,
-    },
-    {
-        label: 'Five',
-        value: 5,
-    },
-];
-const bedroomCountOptions: { label: string; value: number }[] = [
-    {
-        label: 'One',
-        value: 1,
-    },
-    {
-        label: 'Two',
-        value: 2,
-    },
-    {
-        label: 'Three',
-        value: 3,
-    },
-    {
-        label: 'Four',
-        value: 4,
-    },
-    {
-        label: 'Five',
-        value: 5,
-    },
-];
 
 const successMessage: string =
     'Thank you for contacting us. We will get back to you as soon as possible.';
