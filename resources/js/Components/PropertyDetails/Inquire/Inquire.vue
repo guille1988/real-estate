@@ -208,10 +208,8 @@ defineProps<{
 const showTermsOfUseModal: Ref<boolean> = ref<boolean>(false);
 const showPrivacyPolicyModal: Ref<boolean> = ref<boolean>(false);
 
-const uuid: string = (usePage().props.id as string) || '';
-
 const form: Ref<InquireFormInterface> = ref<InquireFormInterface>({
-    uuid: uuid,
+    uuid: usePage().props.id as string,
     firstName: '',
     lastName: '',
     email: '',
