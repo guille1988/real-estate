@@ -22,146 +22,166 @@
                         <div
                             class="mb-6 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4"
                         >
-                            <TextInput
-                                id="firstName"
-                                label="First Name"
-                                v-model:modelValue="form.firstName"
-                                type="text"
-                                placeholder="Enter First Name"
-                            />
-                            <div
-                                v-if="form.errors.firstName"
-                                class="mt-1 text-sm text-red-500 dark:text-red-400"
-                            >
-                                {{ form.errors.firstName }}
+                            <div class="flex flex-col">
+                                <TextInput
+                                    id="firstName"
+                                    label="First Name"
+                                    v-model:modelValue="form.firstName"
+                                    type="text"
+                                    placeholder="Enter First Name"
+                                />
+                                <div
+                                    v-if="form.errors.firstName"
+                                    class="mt-1 text-sm text-red-500 dark:text-red-400"
+                                >
+                                    {{ form.errors.firstName }}
+                                </div>
                             </div>
-                            <TextInput
-                                id="lastName"
-                                label="Last Name"
-                                v-model:modelValue="form.lastName"
-                                type="text"
-                                placeholder="Enter Last Name"
-                            />
-                            <div
-                                v-if="form.errors.lastName"
-                                class="mt-1 text-sm text-red-500 dark:text-red-400"
-                            >
-                                {{ form.errors.lastName }}
+                            <div class="flex flex-col">
+                                <TextInput
+                                    id="lastName"
+                                    label="Last Name"
+                                    v-model:modelValue="form.lastName"
+                                    type="text"
+                                    placeholder="Enter Last Name"
+                                />
+                                <div
+                                    v-if="form.errors.lastName"
+                                    class="mt-1 text-sm text-red-500 dark:text-red-400"
+                                >
+                                    {{ form.errors.lastName }}
+                                </div>
                             </div>
-                            <TextInput
-                                id="email"
-                                label="Email"
-                                v-model:modelValue="form.email"
-                                type="email"
-                                placeholder="Enter your Email"
-                            />
-                            <div
-                                v-if="form.errors.email"
-                                class="mt-1 text-sm text-red-500 dark:text-red-400"
-                            >
-                                {{ form.errors.email }}
+                            <div class="flex flex-col">
+                                <TextInput
+                                    id="email"
+                                    label="Email"
+                                    v-model:modelValue="form.email"
+                                    type="email"
+                                    placeholder="Enter your Email"
+                                />
+                                <div
+                                    v-if="form.errors.email"
+                                    class="mt-1 text-sm text-red-500 dark:text-red-400"
+                                >
+                                    {{ form.errors.email }}
+                                </div>
                             </div>
-                            <TextInput
-                                id="phone"
-                                label="Phone"
-                                v-model:modelValue="form.phone"
-                                type="tel"
-                                placeholder="Enter Phone Number"
-                            />
-                            <div
-                                v-if="form.errors.phone"
-                                class="mt-1 text-sm text-red-500 dark:text-red-400"
-                            >
-                                {{ form.errors.phone }}
+                            <div class="flex flex-col">
+                                <TextInput
+                                    id="phone"
+                                    label="Phone"
+                                    v-model:modelValue="form.phone"
+                                    type="tel"
+                                    placeholder="Enter Phone Number"
+                                />
+                                <div
+                                    v-if="form.errors.phone"
+                                    class="mt-1 text-sm text-red-500 dark:text-red-400"
+                                >
+                                    {{ form.errors.phone }}
+                                </div>
                             </div>
                         </div>
 
                         <div
                             class="mb-6 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4"
                         >
-                            <DropdownInput
-                                id="location"
-                                label="Preferred Location"
-                                v-model:modelValue="form.location"
-                                placeholder="Select Location"
-                                :options="locations"
-                            />
-                            <div
-                                v-if="form.errors.location"
-                                class="mt-1 text-sm text-red-500 dark:text-red-400"
-                            >
-                                {{ form.errors.location }}
+                            <div class="flex flex-col">
+                                <DropdownInput
+                                    id="location"
+                                    label="Preferred Location"
+                                    v-model:modelValue="form.location"
+                                    placeholder="Select Location"
+                                    :options="locations"
+                                />
+                                <div
+                                    v-if="form.errors.location"
+                                    class="mt-1 text-sm text-red-500 dark:text-red-400"
+                                >
+                                    {{ form.errors.location }}
+                                </div>
                             </div>
-                            <DropdownInput
-                                id="propertyType"
-                                label="Property Type"
-                                v-model:modelValue="form.propertyType"
-                                placeholder="Select Property Type"
-                                :options="types"
-                            />
-                            <div
-                                v-if="form.errors.propertyType"
-                                class="mt-1 text-sm text-red-500 dark:text-red-400"
-                            >
-                                {{ form.errors.propertyType }}
+                            <div class="flex flex-col">
+                                <DropdownInput
+                                    id="propertyType"
+                                    label="Property Type"
+                                    v-model:modelValue="form.propertyType"
+                                    placeholder="Select Property Type"
+                                    :options="types"
+                                />
+                                <div
+                                    v-if="form.errors.propertyType"
+                                    class="mt-1 text-sm text-red-500 dark:text-red-400"
+                                >
+                                    {{ form.errors.propertyType }}
+                                </div>
                             </div>
-                            <DropdownInput
-                                id="bathroomCount"
-                                label="No. of Bathrooms"
-                                v-model:modelValue="form.bathrooms"
-                                placeholder="Select no. of bathrooms"
-                                :options="bathrooms"
-                            />
-                            <div
-                                v-if="form.errors.bathrooms"
-                                class="mt-1 text-sm text-red-500 dark:text-red-400"
-                            >
-                                {{ form.errors.bathrooms }}
+                            <div class="flex flex-col">
+                                <DropdownInput
+                                    id="bathroomCount"
+                                    label="No. of Bathrooms"
+                                    v-model:modelValue="form.bathrooms"
+                                    placeholder="Select no. of bathrooms"
+                                    :options="bathrooms"
+                                />
+                                <div
+                                    v-if="form.errors.bathrooms"
+                                    class="mt-1 text-sm text-red-500 dark:text-red-400"
+                                >
+                                    {{ form.errors.bathrooms }}
+                                </div>
                             </div>
-                            <DropdownInput
-                                id="bedroomCount"
-                                label="No. of Bedrooms"
-                                v-model:modelValue="form.bedrooms"
-                                placeholder="Select no. of bedrooms"
-                                :options="bedrooms"
-                            />
-                            <div
-                                v-if="form.errors.bedrooms"
-                                class="mt-1 text-sm text-red-500 dark:text-red-400"
-                            >
-                                {{ form.errors.bedrooms }}
+                            <div class="flex flex-col">
+                                <DropdownInput
+                                    id="bedroomCount"
+                                    label="No. of Bedrooms"
+                                    v-model:modelValue="form.bedrooms"
+                                    placeholder="Select no. of bedrooms"
+                                    :options="bedrooms"
+                                />
+                                <div
+                                    v-if="form.errors.bedrooms"
+                                    class="mt-1 text-sm text-red-500 dark:text-red-400"
+                                >
+                                    {{ form.errors.bedrooms }}
+                                </div>
                             </div>
                         </div>
 
                         <div class="mb-6 grid grid-cols-1 gap-6 md:grid-cols-2">
-                            <DropdownInput
-                                id="budget"
-                                label="Budget"
-                                v-model:modelValue="form.budget"
-                                placeholder="Select Budget"
-                                :options="budgets"
-                            />
-                            <div
-                                v-if="form.errors.budget"
-                                class="mt-1 text-sm text-red-500 dark:text-red-400"
-                            >
-                                {{ form.errors.budget }}
+                            <div class="flex flex-col">
+                                <DropdownInput
+                                    id="budget"
+                                    label="Budget"
+                                    v-model:modelValue="form.budget"
+                                    placeholder="Select Budget"
+                                    :options="budgets"
+                                />
+                                <div
+                                    v-if="form.errors.budget"
+                                    class="mt-1 text-sm text-red-500 dark:text-red-400"
+                                >
+                                    {{ form.errors.budget }}
+                                </div>
                             </div>
                         </div>
 
                         <div class="mb-6">
-                            <TextareaInput
-                                id="message"
-                                label="Message"
-                                v-model:modelValue="form.message"
-                                :rows="5"
-                                placeholder="Enter your Message here."
-                            />
-                            <div
-                                v-if="form.errors.message"
-                                class="mt-1 text-sm text-red-500 dark:text-red-400"
-                            >
-                                {{ form.errors.message }}
+                            <div class="flex flex-col">
+                                <TextareaInput
+                                    id="message"
+                                    label="Message"
+                                    v-model:modelValue="form.message"
+                                    :rows="5"
+                                    placeholder="Enter your Message here."
+                                />
+                                <div
+                                    v-if="form.errors.message"
+                                    class="mt-1 text-sm text-red-500 dark:text-red-400"
+                                >
+                                    {{ form.errors.message }}
+                                </div>
                             </div>
                         </div>
 
