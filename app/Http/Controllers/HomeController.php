@@ -25,7 +25,7 @@ final class HomeController
     public function __invoke(HomeData $data): Response
     {
         $assets = cache()
-            ->rememberForever('home-assets', function (): array {
+            ->rememberForever('home_assets', function (): array {
 
                 /**
                  * @var array<string, string> $assets

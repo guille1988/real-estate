@@ -37,7 +37,7 @@ final class ContactMessageData extends Data
         return [
             'first_name' => ['required', 'string', 'between:2,200'],
             'last_name' => ['required', 'string', 'between:2,200'],
-            'email' => ['required', 'email'],
+            'email' => ['required', 'string', 'email'],
             'phone' => ['required', 'string', 'between:8,20'],
             'inquiry_type' => ['required', Rule::enum(InquiryTypeEnum::class)],
             'source' => ['required', 'string', Rule::enum(SourceEnum::class)],

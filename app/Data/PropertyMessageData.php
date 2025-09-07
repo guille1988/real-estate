@@ -42,7 +42,7 @@ final class PropertyMessageData extends Data
         return [
             'first_name' => ['required', 'string', 'between:2,200'],
             'last_name' => ['required', 'string', 'between:2,200'],
-            'email' => ['required', 'email'],
+            'email' => ['required', 'string', 'email'],
             'phone' => ['required', 'string', 'between:8,20'],
             'location' => ['required', Rule::enum(PropertyLocationEnum::class)],
             'property_type' => ['required', Rule::enum(PropertyTypeEnum::class)],

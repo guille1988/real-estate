@@ -23,7 +23,7 @@ final class ContactController
     public function __invoke(): Response
     {
         $assets = cache()
-            ->rememberForever('contact-assets', function (): array {
+            ->rememberForever('contact_assets', function (): array {
 
                 /**
                  * @var array<string, string> $assets

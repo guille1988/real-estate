@@ -20,7 +20,7 @@ final class SubscriberData extends Data
     public static function rules(): array
     {
         return [
-            'email' => ['required', 'email', Rule::unique(Subscriber::class, 'email')],
+            'email' => ['required', 'string', 'email', Rule::unique(Subscriber::class, 'email')],
         ];
     }
 }

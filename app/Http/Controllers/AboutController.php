@@ -21,7 +21,7 @@ final class AboutController
     public function __invoke(): Response
     {
         $assets = cache()
-            ->rememberForever('about-assets', function (): array {
+            ->rememberForever('about_assets', function (): array {
 
                 /**
                  * @var array<string, string> $assets

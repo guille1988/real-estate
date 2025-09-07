@@ -32,7 +32,7 @@ final class PropertyInquireData extends Data
             'property_uuid' => ['required', 'string', Rule::exists(Property::class, 'uuid')],
             'first_name' => ['required', 'string', 'between:2,200'],
             'last_name' => ['required', 'string', 'between:2,200'],
-            'email' => ['required', 'email'],
+            'email' => ['required', 'string', 'email'],
             'phone' => ['required', 'string', 'between:8,20'],
             'message' => ['nullable', 'string', 'between:2,2000'],
             'terms_agreed' => ['accepted'],
