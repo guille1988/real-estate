@@ -5,6 +5,7 @@ import ContactController from './ContactController'
 import ContactMessageController from './ContactMessageController'
 import PropertyController from './PropertyController'
 import PropertyMessageController from './PropertyMessageController'
+import SubscriberController from './SubscriberController'
 
 const Controllers = {
     HomeController,
@@ -14,6 +15,7 @@ const Controllers = {
     ContactMessageController,
     PropertyController,
     PropertyMessageController,
+    SubscriberController,
 }
 
 export default Controllers

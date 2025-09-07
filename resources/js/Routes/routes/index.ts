@@ -175,3 +175,37 @@ contact.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     method: 'head',
 })
 
+/**
+* @see \App\Http\Controllers\SubscriberController::__invoke
+* @see app/Http/Controllers/SubscriberController.php:13
+* @route '/subscribers'
+*/
+export const subscribers = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: subscribers.url(options),
+    method: 'post',
+})
+
+subscribers.definition = {
+    methods: ["post"],
+    url: '/subscribers',
+} satisfies RouteDefinition<["post"]>
+
+/**
+* @see \App\Http\Controllers\SubscriberController::__invoke
+* @see app/Http/Controllers/SubscriberController.php:13
+* @route '/subscribers'
+*/
+subscribers.url = (options?: RouteQueryOptions) => {
+    return subscribers.definition.url + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\SubscriberController::__invoke
+* @see app/Http/Controllers/SubscriberController.php:13
+* @route '/subscribers'
+*/
+subscribers.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: subscribers.url(options),
+    method: 'post',
+})
+

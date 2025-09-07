@@ -9,6 +9,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\PropertyMessageController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\SubscriberController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('', HomeController::class)
@@ -44,3 +45,6 @@ Route::prefix('properties')
         Route::post('messages', PropertyMessageController::class)
             ->name('.messages');
     });
+
+Route::post('subscribers', SubscriberController::class)
+    ->name('subscribers');
