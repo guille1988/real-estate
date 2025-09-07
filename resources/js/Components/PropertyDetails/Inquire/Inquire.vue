@@ -96,48 +96,88 @@
                             <div
                                 class="mb-4 grid grid-cols-1 gap-4 sm:grid-cols-2"
                             >
-                                <TextInput
-                                    id="firstName"
-                                    label="First Name"
-                                    v-model:modelValue="form.firstName"
-                                    type="text"
-                                    placeholder="Enter First Name"
-                                />
-                                <TextInput
-                                    id="lastName"
-                                    label="Last Name"
-                                    v-model:modelValue="form.lastName"
-                                    type="text"
-                                    placeholder="Enter Last Name"
-                                />
+                                <div class="flex flex-col">
+                                    <TextInput
+                                        id="firstName"
+                                        label="First Name"
+                                        v-model:modelValue="form.firstName"
+                                        type="text"
+                                        placeholder="Enter First Name"
+                                    />
+                                    <div
+                                        v-if="form.errors.firstName"
+                                        class="mt-1 text-sm text-red-500 dark:text-red-400"
+                                    >
+                                        {{ form.errors.firstName }}
+                                    </div>
+                                </div>
+                                <div class="flex flex-col">
+                                    <TextInput
+                                        id="lastName"
+                                        label="Last Name"
+                                        v-model:modelValue="form.lastName"
+                                        type="text"
+                                        placeholder="Enter Last Name"
+                                    />
+                                    <div
+                                        v-if="form.errors.lastName"
+                                        class="mt-1 text-sm text-red-500 dark:text-red-400"
+                                    >
+                                        {{ form.errors.lastName }}
+                                    </div>
+                                </div>
                             </div>
 
                             <div
                                 class="mb-4 grid grid-cols-1 gap-4 sm:grid-cols-2"
                             >
-                                <TextInput
-                                    id="email"
-                                    label="Email"
-                                    v-model:modelValue="form.email"
-                                    type="email"
-                                    placeholder="Enter your Email"
-                                />
-                                <TextInput
-                                    id="phone"
-                                    label="Phone"
-                                    v-model:modelValue="form.phone"
-                                    type="tel"
-                                    placeholder="Enter Phone Number"
-                                />
+                                <div class="flex flex-col">
+                                    <TextInput
+                                        id="email"
+                                        label="Email"
+                                        v-model:modelValue="form.email"
+                                        type="email"
+                                        placeholder="Enter your Email"
+                                    />
+                                    <div
+                                        v-if="form.errors.email"
+                                        class="mt-1 text-sm text-red-500 dark:text-red-400"
+                                    >
+                                        {{ form.errors.email }}
+                                    </div>
+                                </div>
+                                <div class="flex flex-col">
+                                    <TextInput
+                                        id="phone"
+                                        label="Phone"
+                                        v-model:modelValue="form.phone"
+                                        type="tel"
+                                        placeholder="Enter Phone Number"
+                                    />
+                                    <div
+                                        v-if="form.errors.phone"
+                                        class="mt-1 text-sm text-red-500 dark:text-red-400"
+                                    >
+                                        {{ form.errors.phone }}
+                                    </div>
+                                </div>
                             </div>
                             <div class="mb-6">
-                                <TextareaInput
-                                    id="message"
-                                    label="Message"
-                                    v-model:modelValue="form.message"
-                                    :rows="4"
-                                    placeholder="Enter your Message here"
-                                />
+                                <div class="flex flex-col">
+                                    <TextareaInput
+                                        id="message"
+                                        label="Message"
+                                        v-model:modelValue="form.message"
+                                        :rows="4"
+                                        placeholder="Enter your Message here"
+                                    />
+                                    <div
+                                        v-if="form.errors.message"
+                                        class="mt-1 text-sm text-red-500 dark:text-red-400"
+                                    >
+                                        {{ form.errors.message }}
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="mb-6">
@@ -166,18 +206,30 @@
                                 </div>
                             </div>
 
-                            <div class="flex justify-end">
+                            <div class="flex flex-col items-end gap-2">
                                 <button
                                     type="submit"
                                     class="rounded-lg bg-purple-600 px-6 py-3 text-white transition-colors duration-200 hover:bg-purple-700"
-                                    :disabled="!form.termsAgreed"
+                                    :disabled="
+                                        !form.termsAgreed || form.processing
+                                    "
                                     :class="{
                                         'cursor-not-allowed opacity-50':
-                                            !form.termsAgreed,
+                                            !form.termsAgreed ||
+                                            form.processing,
                                     }"
                                 >
-                                    Send Your Message
+                                    <span v-if="!form.processing"
+                                        >Send Your Message</span
+                                    >
+                                    <span v-else>Sending...</span>
                                 </button>
+                                <p
+                                    v-if="showSuccessMessage"
+                                    class="mt-1 text-sm text-green-400"
+                                >
+                                    {{ successMessage }}
+                                </p>
                             </div>
                         </form>
                     </div>
@@ -197,19 +249,23 @@ import TextInput from '@/Components/Shared/Inputs/TextInput.vue';
 import TextareaInput from '@/Components/Shared/Inputs/TextareaInput.vue';
 import PrivacyPolicyModal from '@/Components/Shared/Modals/PrivacyPolicyModal/PrivacyPolicyModal.vue';
 import TermsOfUseModal from '@/Components/Shared/Modals/TermsOfUseModal/TermsOfUseModal.vue';
+import PropertyController from '@/Routes/actions/App/Http/Controllers/PropertyController';
 import { InquireFormInterface } from '@/Types/App/Interfaces/InquireFormInterface';
-import { usePage, WhenVisible } from '@inertiajs/vue3';
-import { ref, Ref } from 'vue';
+import { InertiaForm, useForm, usePage, WhenVisible } from '@inertiajs/vue3';
+import { ref, type Ref } from 'vue';
 
 defineProps<{
     title: string;
 }>();
 
+const successMessage: string =
+    'Thank you for contacting us. We will get back to you as soon as possible.';
+const showSuccessMessage: Ref<boolean> = ref<boolean>(false);
 const showTermsOfUseModal: Ref<boolean> = ref<boolean>(false);
 const showPrivacyPolicyModal: Ref<boolean> = ref<boolean>(false);
 
-const form: Ref<InquireFormInterface> = ref<InquireFormInterface>({
-    uuid: usePage().props.id as string,
+const form: InertiaForm<InquireFormInterface> = useForm<InquireFormInterface>({
+    propertyUuid: usePage().props.id as string,
     firstName: '',
     lastName: '',
     email: '',
@@ -227,11 +283,22 @@ const openPrivacyPolicyModal = (): void => {
 };
 
 const submit = (): void => {
-    if (!form.value.termsAgreed) {
-        alert('Please agree to the Terms of Use and Privacy Policy');
+    showSuccessMessage.value = false;
+
+    if (!form.termsAgreed) {
         return;
     }
 
-    console.log(form.value);
+    form.post(PropertyController.inquire().url, {
+        preserveScroll: true,
+        onSuccess: (): void => {
+            showSuccessMessage.value = true;
+            form.reset();
+
+            setTimeout((): void => {
+                showSuccessMessage.value = false;
+            }, 8000);
+        },
+    });
 };
 </script>

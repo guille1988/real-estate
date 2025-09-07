@@ -1,5 +1,6 @@
 export interface InquireFormInterface {
-    uuid: string;
+    [key: string]: boolean | string;
+    propertyUuid: string;
     firstName: string;
     lastName: string;
     email: string;
