@@ -251,10 +251,11 @@ import PrivacyPolicyModal from '@/Components/Shared/Modals/PrivacyPolicyModal/Pr
 import TermsOfUseModal from '@/Components/Shared/Modals/TermsOfUseModal/TermsOfUseModal.vue';
 import PropertyController from '@/Routes/actions/App/Http/Controllers/PropertyController';
 import { InquireFormInterface } from '@/Types/App/Interfaces/InquireFormInterface';
-import { InertiaForm, useForm, usePage, WhenVisible } from '@inertiajs/vue3';
+import { InertiaForm, useForm, WhenVisible } from '@inertiajs/vue3';
 import { ref, type Ref } from 'vue';
 
-defineProps<{
+const { propertyUuid }: { propertyUuid: string } = defineProps<{
+    propertyUuid: string;
     title: string;
 }>();
 
@@ -265,7 +266,7 @@ const showTermsOfUseModal: Ref<boolean> = ref<boolean>(false);
 const showPrivacyPolicyModal: Ref<boolean> = ref<boolean>(false);
 
 const form: InertiaForm<InquireFormInterface> = useForm<InquireFormInterface>({
-    propertyUuid: usePage().props.id as string,
+    propertyUuid: propertyUuid,
     firstName: '',
     lastName: '',
     email: '',

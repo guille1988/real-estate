@@ -1,7 +1,7 @@
 <template>
     <Layout>
         <Gallery :property="property" />
-        <Inquire :title="property.title" />
+        <Inquire :property-uuid="property.uuid" :title="property.title" />
         <Pricing
             :price="property.price"
             :pricingDetails="property.pricingDetails"
