@@ -14,17 +14,16 @@ enum SourceEnum: string
     case OTHER = 'other';
 
     /**
-     * @return Collection<int, array{label: string, value: string}>
+     * @return Collection<string, string>
      *
-     * Returns the label and value response version of all sources.
+     * Returns a collection of source types and their titles.
      */
     public static function toResponse(): Collection
     {
         return collect(self::cases())
-            ->map(fn (self $source): array => [
-                'label' => $source->title(),
-                'value' => $source->value,
-            ]);
+            ->flatMap(function (self $source): array {
+                return [$source->value => $source->title()];
+            });
     }
 
     /*

@@ -14,18 +14,18 @@ import LetsConnect from '@/Components/Contact/LetsConnect/LetsConnect.vue';
 import OfficeLocations from '@/Components/Contact/OfficeLocations/OfficeLocations.vue';
 import Layout from '@/Components/Layout/Layout.vue';
 import { displayErrors } from '@/Composables/useErrorHandling';
+import { InquiryTypeEnum } from '@/Types/App/Enums/InquiryTypeEnum';
+import { SourceEnum } from '@/Types/App/Enums/SourceEnum';
 import { ContactAssetsInterface } from '@/Types/App/Interfaces/ContactAssetsInterface';
 import { ErrorInterface } from '@/Types/App/Interfaces/ErrorInterface';
-import { InquiryTypeInterface } from '@/Types/App/Interfaces/InquiryTypeInterface';
 import { OfficeLocationInterface } from '@/Types/App/Interfaces/OfficeLocationInterface';
-import { SourceInterface } from '@/Types/App/Interfaces/SourceInterface';
 import { onMounted } from 'vue';
 
 const { errors }: { errors: ErrorInterface } = defineProps<{
     assets: ContactAssetsInterface;
     officeLocations: OfficeLocationInterface[];
-    inquiryTypes: InquiryTypeInterface[];
-    sources: SourceInterface[];
+    inquiryTypes: Record<InquiryTypeEnum, string>;
+    sources: Record<SourceEnum, string>;
     errors: ErrorInterface;
 }>();
 
