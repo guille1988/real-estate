@@ -52,22 +52,44 @@
                     <div
                         class="relative w-full md:w-[150%] md:max-w-[calc(100%+2rem)] md:pr-4"
                     >
-                        <input
-                            type="email"
-                            placeholder="Enter Your Email To Receive Updates"
-                            class="w-full rounded border border-gray-700 bg-transparent py-2 pl-8 pr-12 text-sm text-white placeholder:text-ellipsis placeholder:text-gray-400 sm:text-xs md:text-sm"
-                            aria-label="Enter Your Email"
-                        />
-                        <span
-                            class="absolute left-2 top-1/2 -translate-y-1/2 text-gray-400"
+                        <form @submit.prevent="submit()" class="relative">
+                            <input
+                                type="email"
+                                name="email"
+                                v-model="form.email"
+                                placeholder="Enter Your Email To Receive Updates"
+                                class="w-full rounded border border-gray-700 bg-transparent py-2 pl-8 pr-12 text-sm text-white placeholder:text-ellipsis placeholder:text-gray-400 sm:text-xs md:text-sm"
+                                aria-label="Enter Your Email"
+                            />
+                            <span
+                                class="pointer-events-none absolute left-2 top-1/2 -translate-y-1/2 text-gray-400"
+                            >
+                                <EmailIcon class="mr-2 h-4 w-4 text-white" />
+                            </span>
+                            <button
+                                type="submit"
+                                class="absolute right-2 top-1/2 flex h-4 w-4 -translate-y-1/2 items-center justify-center leading-none text-white"
+                                :disabled="form.processing"
+                                :class="{
+                                    'cursor-not-allowed opacity-50':
+                                        form.processing,
+                                }"
+                            >
+                                <SendIcon class="lucide lucide-send h-4 w-4" />
+                            </button>
+                        </form>
+                        <p
+                            v-if="form.errors.email"
+                            class="mt-2 text-sm text-red-500 dark:text-red-400"
                         >
-                            <EmailIcon class="mr-2 h-4 w-4 text-white" />
-                        </span>
-                        <button
-                            class="absolute right-2 top-1/2 -translate-y-1/2 text-white md:pr-4"
+                            {{ form.errors.email }}
+                        </p>
+                        <p
+                            v-if="showSuccessMessage"
+                            class="mt-2 text-sm text-green-400"
                         >
-                            <SendIcon class="lucide lucide-send h-4 w-4" />
-                        </button>
+                            {{ successMessage }}
+                        </p>
                     </div>
                 </div>
 
@@ -118,7 +140,7 @@ import HomeController from '@/Routes/actions/App/Http/Controllers/HomeController
 import { SocialLinkIconEnum } from '@/Types/App/Enums/SocialLinkIconEnum';
 import { FooterCategoryInterface } from '@/Types/App/Interfaces/FooterCategoryInterface';
 import { SocialLinkInterface } from '@/Types/App/Interfaces/SocialLinkInterface';
-import { Link } from '@inertiajs/vue3';
+import { InertiaForm, Link, useForm } from '@inertiajs/vue3';
 
 const footerCategories: FooterCategoryInterface[] = [
     {
@@ -232,6 +254,32 @@ const footerCategories: FooterCategoryInterface[] = [
         ],
     },
 ];
+
+import SubscriberController from '@/Routes/actions/App/Http/Controllers/SubscriberController';
+import { ref, type Ref } from 'vue';
+
+const successMessage: string = 'Thanks for subscribing!';
+const showSuccessMessage: Ref<boolean> = ref<boolean>(false);
+
+const form: InertiaForm<{ email: string }> = useForm<{ email: string }>({
+    email: '',
+});
+
+const submit = (): void => {
+    showSuccessMessage.value = false;
+
+    form.post(SubscriberController().url, {
+        preserveScroll: true,
+        onSuccess: (): void => {
+            showSuccessMessage.value = true;
+            form.reset();
+
+            setTimeout((): void => {
+                showSuccessMessage.value = false;
+            }, 8000);
+        },
+    });
+};
 
 const socialLinks: SocialLinkInterface[] = [
     {
