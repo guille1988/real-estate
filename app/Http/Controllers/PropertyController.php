@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Actions\GetRangeOfMax;
 use App\Data\PropertyData;
 use App\Enums\BudgetEnum;
 use App\Enums\PageEnum;
@@ -15,7 +16,6 @@ use App\Http\Resources\IndexPropertyResource;
 use App\Http\Resources\ShowPropertyResource;
 use App\Models\Faq;
 use App\Models\Property;
-use App\Support\RangeHelper;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Support\Collection;
@@ -28,7 +28,7 @@ final class PropertyController
     /**
      * @throws Throwable
      */
-    public function index(PropertyData $data): Response
+    public function index(PropertyData $data, GetRangeOfMax $action): Response
     {
         /**
          * @var array<string, mixed> $properties
@@ -43,44 +43,6 @@ final class PropertyController
                     })->toArray();
             });
 
-        $maxBathrooms = cache()
-            ->rememberForever('max_bathrooms', function (): int {
-                /**
-                 * @var int $maxBathrooms
-                 */
-                $maxBathrooms = Property::max('bathrooms');
-
-                return $maxBathrooms;
-            });
-
-        $maxBedrooms = cache()
-            ->rememberForever('max_bedrooms', function (): int {
-                /**
-                 * @var int $maxBedrooms
-                 */
-                $maxBedrooms = Property::max('bedrooms');
-
-                return $maxBedrooms;
-            });
-
-        $bathrooms = function () use ($maxBathrooms): array {
-            /**
-             * @var array<int, array{label: string, value: int}> $range
-             */
-            $range = app()->call(RangeHelper::class, ['max' => $maxBathrooms]);
-
-            return $range;
-        };
-
-        $bedrooms = function () use ($maxBedrooms): array {
-            /**
-             * @var array<int, array{label: string, value: int}> $range
-             */
-            $range = app()->call(RangeHelper::class, ['max' => $maxBedrooms]);
-
-            return $range;
-        };
-
         return Inertia::render(PageEnum::PROPERTIES->value, [
             'properties' => fn (): array => $properties,
             'filters' => fn (): array => $data->toArray(),
@@ -89,8 +51,8 @@ final class PropertyController
             'prices' => fn (): Collection => PropertyPriceRangeEnum::toResponse(),
             'types' => fn (): Collection => PropertyTypeEnum::toResponse(),
             'budgets' => fn (): Collection => BudgetEnum::toResponse(),
-            'bathrooms' => $bathrooms,
-            'bedrooms' => $bedrooms,
+            'bathrooms' => fn (): array => $action->execute('bathrooms'),
+            'bedrooms' => fn (): array => $action->execute('bedrooms'),
         ]);
     }
 
