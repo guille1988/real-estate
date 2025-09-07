@@ -183,6 +183,16 @@ final class Property extends Model
     }
 
     /**
+     * Get the inquiries for the property.
+     *
+     * @return HasMany<Inquiry, $this>
+     */
+    public function inquiries(): HasMany
+    {
+        return $this->hasMany(Inquiry::class);
+    }
+
+    /**
      * Get the pricing details for the property.
      *
      * @return HasMany<PricingDetail, $this>

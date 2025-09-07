@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Models\Image;
+use App\Models\Inquiry;
 use App\Models\Property;
 
 it('contains all proper attributes.', function (): void {
@@ -50,6 +51,19 @@ it('has images.', function (): void {
         ->create(['property_id' => $property->id]);
 
     expect($property->fresh()->images)
+        ->toHaveCount($count);
+});
+
+it('has inquiries.', function (): void {
+    $count = 4;
+
+    $property = Property::factory()
+        ->create();
+
+    Inquiry::factory($count)
+        ->create(['property_id' => $property->id]);
+
+    expect($property->fresh()->inquiries)
         ->toHaveCount($count);
 });
 

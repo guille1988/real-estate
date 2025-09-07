@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Enums\InquiryTypeEnum;
 use App\Enums\SourceEnum;
+use App\Models\ContactMessage;
 
 it('submits contact message form.', function (InquiryTypeEnum $inquiryType, SourceEnum $source): void {
     $data = [
@@ -19,4 +20,7 @@ it('submits contact message form.', function (InquiryTypeEnum $inquiryType, Sour
 
     $this->post(route('contact.messages'), $data)
         ->assertRedirect();
+
+    expect(ContactMessage::count())
+        ->toBe(1);
 })->with(InquiryTypeEnum::cases(), SourceEnum::cases());

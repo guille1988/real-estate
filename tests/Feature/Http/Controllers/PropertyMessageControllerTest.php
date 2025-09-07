@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Enums\BudgetEnum;
 use App\Enums\PropertyLocationEnum;
 use App\Enums\PropertyTypeEnum;
+use App\Models\PropertyMessage;
 
 it('submits property message form.', function (PropertyLocationEnum $location, PropertyTypeEnum $propertyType, BudgetEnum $budget): void {
     $data = [
@@ -23,4 +24,7 @@ it('submits property message form.', function (PropertyLocationEnum $location, P
 
     $this->post(route('properties.messages'), $data)
         ->assertRedirect();
+
+    expect(PropertyMessage::count())
+        ->toBe(1);
 })->with(PropertyLocationEnum::cases(), PropertyTypeEnum::cases(), BudgetEnum::cases())->only();

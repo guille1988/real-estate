@@ -252,3 +252,28 @@ it('works showing a specific property.', function (): void {
             }
         });
 });
+
+it('submits an inquiry.', function (array $data): void {
+    $property = Property::factory()
+        ->featured()
+        ->create();
+
+    $data['property_uuid'] = $property->uuid;
+
+    $this->post(route('properties.inquiries'), $data)
+        ->assertRedirect();
+
+    expect($property->fresh()->inquiries->count())
+        ->toBe(1);
+})->with([
+    [
+        [
+            'first_name' => fake()->firstName(),
+            'last_name' => fake()->lastName(),
+            'email' => fake()->unique()->safeEmail(),
+            'phone' => fake()->phoneNumber(),
+            'message' => fake()->realText(),
+            'terms_agreed' => true,
+        ],
+    ],
+])->only();

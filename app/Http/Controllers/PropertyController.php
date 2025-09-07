@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Actions\GetRangeOfMax;
 use App\Data\PropertyData;
+use App\Data\PropertyInquireData;
 use App\Enums\BudgetEnum;
 use App\Enums\PageEnum;
 use App\Enums\PropertyAreaRangeEnum;
@@ -16,6 +17,7 @@ use App\Http\Resources\IndexPropertyResource;
 use App\Http\Resources\ShowPropertyResource;
 use App\Models\Faq;
 use App\Models\Property;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Support\Collection;
@@ -88,5 +90,16 @@ final class PropertyController
             'property' => fn (): JsonResource => $cachedProperty,
             'faq' => fn (): ResourceCollection => $faq,
         ]);
+    }
+
+    public function inquire(PropertyInquireData $data): RedirectResponse
+    {
+        /**
+         * @var Property $property
+         */
+        $property = Property::firstWhere('uuid', $data->propertyUuid);
+        $property->inquiries()->create($data->toArray());
+
+        return back();
     }
 }

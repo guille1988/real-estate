@@ -38,6 +38,9 @@ Route::prefix('properties')
         Route::get('{property}', [PropertyController::class, 'show'])
             ->name('.show');
 
+        Route::post('inquiries', [PropertyController::class, 'inquire'])
+            ->name('.inquiries');
+
         Route::post('messages', PropertyMessageController::class)
             ->name('.messages');
     });
