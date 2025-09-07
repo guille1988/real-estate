@@ -97,7 +97,7 @@
                                 label="Property Type"
                                 v-model:modelValue="form.propertyType"
                                 placeholder="Select Property Type"
-                                :options="propertyTypes"
+                                :options="types"
                             />
                             <div
                                 v-if="form.errors.propertyType"
@@ -139,7 +139,7 @@
                                 label="Budget"
                                 v-model:modelValue="form.budget"
                                 placeholder="Select Budget"
-                                :options="budgetRanges"
+                                :options="budgets"
                             />
                             <div
                                 v-if="form.errors.budget"
@@ -243,32 +243,72 @@ import TextareaInput from '@/Components/Shared/Inputs/TextareaInput.vue';
 import TextInput from '@/Components/Shared/Inputs/TextInput.vue';
 import PrivacyPolicyModal from '@/Components/Shared/Modals/PrivacyPolicyModal/PrivacyPolicyModal.vue';
 import TermsOfUseModal from '@/Components/Shared/Modals/TermsOfUseModal/TermsOfUseModal.vue';
-import { capitalizeFirstLetter } from '@/Composables/useCapitalization';
 import PropertyMessageController from '@/Routes/actions/App/Http/Controllers/PropertyMessageController';
-import { PropertyTypeEnum } from '@/Types/App/Enums/PropertyTypeEnum';
+import { BudgetInterface } from '@/Types/App/Interfaces/BudgetInterface';
 import { MakeItHappenFormInterface } from '@/Types/App/Interfaces/MakeItHappenFormInterface';
+import { PropertyLocationInterface } from '@/Types/App/Interfaces/PropertyLocationInterface';
+import { PropertyTypeInterface } from '@/Types/App/Interfaces/PropertyTypeInterface';
 import { InertiaForm, useForm } from '@inertiajs/vue3';
 import { type Ref, ref } from 'vue';
 
-const locations: Record<string, string> = {
-    '0': 'New York',
-    '1': 'Los Angeles',
-    '2': 'Chicago',
-    '3': 'Miami',
-    '4': 'San Francisco',
-    '5': 'Seattle',
-    '6': 'Austin',
-    '7': 'Denver',
-};
+const {
+    locations,
+    types,
+    budgets,
+}: {
+    locations: PropertyLocationInterface[];
+    types: PropertyTypeInterface[];
+    budgets: BudgetInterface[];
+} = defineProps<{
+    locations: PropertyLocationInterface[];
+    types: PropertyTypeInterface[];
+    budgets: BudgetInterface[];
+}>();
 
-const budgetRanges: Record<string, string> = {
-    '0': 'Under $100,000',
-    '1': '$100,000 - $250,000',
-    '2': '$250,000 - $500,000',
-    '3': '$500,000 - $750,000',
-    '4': '$750,000 - $1,000,000',
-    '5': 'Over $1,000,000',
-};
+const bathroomCountOptions: { label: string; value: number }[] = [
+    {
+        label: 'One',
+        value: 1,
+    },
+    {
+        label: 'Two',
+        value: 2,
+    },
+    {
+        label: 'Three',
+        value: 3,
+    },
+    {
+        label: 'Four',
+        value: 4,
+    },
+    {
+        label: 'Five',
+        value: 5,
+    },
+];
+const bedroomCountOptions: { label: string; value: number }[] = [
+    {
+        label: 'One',
+        value: 1,
+    },
+    {
+        label: 'Two',
+        value: 2,
+    },
+    {
+        label: 'Three',
+        value: 3,
+    },
+    {
+        label: 'Four',
+        value: 4,
+    },
+    {
+        label: 'Five',
+        value: 5,
+    },
+];
 
 const successMessage: string =
     'Thank you for contacting us. We will get back to you as soon as possible.';
@@ -298,36 +338,6 @@ const openTermsOfUseModal = (): void => {
 const openPrivacyPolicyModal = (): void => {
     showPrivacyPolicyModal.value = true;
 };
-
-const propertyTypes: Record<string, string> = Object.values(
-    PropertyTypeEnum,
-).reduce(
-    (
-        accumulator: Record<string, string>,
-        propertyType: PropertyTypeEnum,
-    ): Record<string, string> => {
-        accumulator[propertyType] = capitalizeFirstLetter(propertyType);
-        return accumulator;
-    },
-    {} as Record<string, string>,
-);
-
-const generateRoomCount = (max: number): Record<number, string> =>
-    Array.from({ length: max }, (_, key: number) => key + 1).reduce<
-        Record<number, string>
-    >(
-        (
-            accumulator: Record<number, string>,
-            key: number,
-        ): Record<number, string> => {
-            accumulator[key] = key.toString();
-            return accumulator;
-        },
-        {},
-    );
-
-const bathroomCountOptions = generateRoomCount(5);
-const bedroomCountOptions = generateRoomCount(5);
 
 const submit = (): void => {
     showSuccessMessage.value = false;

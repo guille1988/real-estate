@@ -8,7 +8,11 @@
             :types="types"
             :filters="filters"
         />
-        <MakeItHappen />
+        <MakeItHappen
+            :locations="locations"
+            :types="types"
+            :budgets="budgets"
+        />
     </Layout>
 </template>
 
@@ -17,6 +21,7 @@ import Layout from '@/Components/Layout/Layout.vue';
 import MakeItHappen from '@/Components/Properties/MakeItHappen/MakeItHappen.vue';
 import Search from '@/Components/Properties/Search/Search.vue';
 import { displayErrors } from '@/Composables/useErrorHandling';
+import { BudgetInterface } from '@/Types/App/Interfaces/BudgetInterface';
 import { ErrorInterface } from '@/Types/App/Interfaces/ErrorInterface';
 import { FilterInterface } from '@/Types/App/Interfaces/FilterInterface';
 import { IndexPropertyPaginatedInterface } from '@/Types/App/Interfaces/IndexPropertyPaginatedInterface';
@@ -33,6 +38,7 @@ const { errors }: { errors: ErrorInterface } = defineProps<{
     locations: PropertyLocationInterface[];
     prices: PropertyPriceRangeInterface[];
     types: PropertyTypeInterface[];
+    budgets: BudgetInterface[];
     errors: ErrorInterface;
 }>();
 

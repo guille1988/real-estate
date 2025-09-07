@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Data\PropertyData;
+use App\Enums\BudgetEnum;
 use App\Enums\PageEnum;
 use App\Enums\PropertyAreaRangeEnum;
-use App\Enums\PropertyBudgetEnum;
 use App\Enums\PropertyLocationEnum;
 use App\Enums\PropertyPriceRangeEnum;
 use App\Enums\PropertyTypeEnum;
@@ -49,7 +49,7 @@ final class PropertyController
             'locations' => fn (): Collection => PropertyLocationEnum::toResponse(),
             'prices' => fn (): Collection => PropertyPriceRangeEnum::toResponse(),
             'types' => fn (): Collection => PropertyTypeEnum::toResponse(),
-            'budgets' => fn (): Collection => PropertyBudgetEnum::toResponse(),
+            'budgets' => fn (): Collection => BudgetEnum::toResponse(),
         ]);
     }
 
