@@ -5,13 +5,19 @@ declare(strict_types=1);
 use App\Enums\ImageFormatEnum;
 use Symfony\Component\Finder\SplFileInfo;
 
-it('formats seeder images.', function (ImageFormatEnum $format): void {
-    $basePath = base_path('tests/Fixtures/Jobs/format_seeder_images/default_images');
-    $path = base_path('tests/Fixtures/Jobs/format_seeder_images/images');
+beforeEach(function (): void {
+    File::deleteDirectory(
+        base_path('tests/Fixtures/Commands/format_images/images')
+    );
+});
+
+it('formats images.', function (ImageFormatEnum $format): void {
+    $basePath = base_path('tests/Fixtures/Commands/format_images/default_images');
+    $path = base_path('tests/Fixtures/Commands/format_images/images');
 
     File::copyDirectory($basePath, $path);
 
-    $this->artisan('format:seeder-images', [
+    $this->artisan('format:images', [
         '--path' => $path,
         '--format' => $format->value,
     ])->assertSuccessful();
@@ -23,14 +29,12 @@ it('formats seeder images.', function (ImageFormatEnum $format): void {
         });
 
     expect($isProperFormat)->toBeTrue();
-
-    File::deleteDirectory($path);
 })->with(ImageFormatEnum::cases());
 
 it("doesn't perform formatting if there are no images to format.", function (): void {
     $format = ImageFormatEnum::AVIF;
-    $basePath = base_path('tests/Fixtures/Jobs/format_seeder_images/default_images');
-    $path = base_path('tests/Fixtures/Jobs/format_seeder_images/images');
+    $basePath = base_path('tests/Fixtures/Commands/format_images/default_images');
+    $path = base_path('tests/Fixtures/Commands/format_images/images');
 
     File::copyDirectory($basePath, $path);
 
@@ -39,61 +43,58 @@ it("doesn't perform formatting if there are no images to format.", function (): 
             File::delete($file->getPathname());
         });
 
-    $this->artisan('format:seeder-images', [
+    $this->artisan('format:images', [
         '--path' => $path,
         '--format' => $format->value,
     ])
         ->assertSuccessful()
         ->expectsOutputToContain('There are no images to format.');
-
-    File::deleteDirectory($path);
 });
 
 it("doesn't perform formatting if all images are of the same destination format.", function (): void {
     $format = ImageFormatEnum::JPEG;
-    $basePath = base_path('tests/Fixtures/Jobs/format_seeder_images/default_images');
-    $path = base_path('tests/Fixtures/Jobs/format_seeder_images/images');
+    $basePath = base_path('tests/Fixtures/Commands/format_images/default_images');
+    $path = base_path('tests/Fixtures/Commands/format_images/images');
 
     File::copyDirectory($basePath, $path);
 
-    $this->artisan('format:seeder-images', [
+    $this->artisan('format:images', [
         '--path' => $path,
         '--format' => $format->value,
     ])
         ->assertSuccessful()
         ->expectsOutputToContain('There are no images to format.');
-
-    File::deleteDirectory($path);
 });
 
-it("doesn't perform formatting if one image has an unsupported format.", function (): void {
-    $basePath = base_path('tests/Fixtures/Jobs/format_seeder_images/default_images');
-    $path = base_path('tests/Fixtures/Jobs/format_seeder_images/images');
+it('ignores files.', function (): void {
+    $basePath = base_path('tests/Fixtures/Commands/format_images/default_images');
+    $path = base_path('tests/Fixtures/Commands/format_images/images');
 
     File::copyDirectory($basePath, $path);
-    File::put("$path/fail.txt", 'Failed content.');
+    File::put($fileName = "$path/fail.txt", 'Failed content.');
 
-    $this->artisan('format:seeder-images', [
+    $this->artisan('format:images', [
         '--path' => $path,
-    ])
-        ->assertFailed()
-        ->expectsOutputToContain('has a format that is not supported.');
+        '--format' => ImageFormatEnum::JPEG->value,
+    ])->assertSuccessful();
 
-    File::deleteDirectory($path);
+    expect(File::exists($fileName))
+        ->toBeTrue();
 });
 
 it('should fail due to invalid path.', function (): void {
-    $this->artisan('format:seeder-images', [
+    $this->artisan('format:images', [
         '--path' => 'invalid/path',
+        '--format' => ImageFormatEnum::JPEG->value,
     ])
         ->expectsOutputToContain("The path must be a path inside the project's directory.")
         ->assertFailed();
 });
 
 it('should fail due to invalid format.', function (): void {
-    $this->artisan('format:seeder-images', [
+    $this->artisan('format:images', [
         '--format' => 'invalid',
-        '--path' => base_path('tests/Fixtures/Jobs/format_seeder_images/images'),
+        '--path' => base_path('tests/Fixtures/Commands/format_images/images'),
     ])
         ->assertFailed()
         ->expectsOutputToContain('The selected format is invalid.');
