@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
-use App\Enums\BudgetEnum;
 use App\Enums\PropertyLocationEnum;
+use App\Enums\PropertyMessageBudgetEnum;
 use App\Enums\PropertyTypeEnum;
 use App\Models\PropertyMessage;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -29,7 +29,7 @@ final class PropertyMessageFactory extends Factory
             'phone' => $this->faker->phoneNumber(),
             'location' => $this->faker->randomElement(PropertyLocationEnum::cases()),
             'property_type' => $this->faker->randomElement(PropertyTypeEnum::cases()),
-            'budget' => $this->faker->randomElement(BudgetEnum::cases()),
+            'budget' => $this->faker->randomElement(PropertyMessageBudgetEnum::cases()),
             'bedrooms' => $this->faker->numberBetween(1, 4),
             'bathrooms' => $this->faker->numberBetween(1, 4),
             'message' => $this->faker->optional()->realTextBetween(),

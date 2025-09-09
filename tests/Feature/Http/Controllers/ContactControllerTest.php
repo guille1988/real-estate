@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use App\Enums\InquiryTypeEnum;
+use App\Enums\ContactMessageInquiryTypeEnum;
+use App\Enums\ContactMessageSourceEnum;
 use App\Enums\PageEnum;
-use App\Enums\SourceEnum;
 use App\Models\OfficeLocation;
 use Inertia\Testing\AssertableInertia as Assert;
 
@@ -21,8 +21,8 @@ it('renders contact page.', function (): void {
 
     $contactPageResponse = [
         'office_locations' => $officeLocationsCount,
-        'inquiry_types' => InquiryTypeEnum::toResponse()->count(),
-        'sources' => SourceEnum::toResponse()->count(),
+        'inquiry_types' => ContactMessageInquiryTypeEnum::toResponse()->count(),
+        'sources' => ContactMessageSourceEnum::toResponse()->count(),
     ];
 
     $this->get(route('contact'))

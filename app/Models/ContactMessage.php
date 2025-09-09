@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use App\Enums\InquiryTypeEnum;
-use App\Enums\SourceEnum;
+use App\Enums\ContactMessageInquiryTypeEnum;
+use App\Enums\ContactMessageSourceEnum;
 use Carbon\CarbonImmutable;
 use Database\Factories\ContactMessageFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
@@ -19,8 +19,8 @@ use Illuminate\Database\Eloquent\Model;
  *  @property-read string $last_name
  *  @property-read string $email
  *  @property-read string $phone
- *  @property-read InquiryTypeEnum $inquiry_type
- *  @property-read SourceEnum $source
+ *  @property-read ContactMessageInquiryTypeEnum $inquiry_type
+ *  @property-read ContactMessageSourceEnum $source
  *  @property-read string|null $message
  *  @property-read CarbonImmutable|null $created_at
  *  @property-read CarbonImmutable|null $updated_at

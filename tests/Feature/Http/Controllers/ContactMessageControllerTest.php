@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-use App\Enums\InquiryTypeEnum;
-use App\Enums\SourceEnum;
+use App\Enums\ContactMessageInquiryTypeEnum;
+use App\Enums\ContactMessageSourceEnum;
 use App\Models\ContactMessage;
 
-it('submits contact message form.', function (InquiryTypeEnum $inquiryType, SourceEnum $source): void {
+it('submits contact message form.', function (ContactMessageInquiryTypeEnum $inquiryType, ContactMessageSourceEnum $source): void {
     $data = [
         'first_name' => fake()->firstName(),
         'last_name' => fake()->lastName(),
@@ -23,4 +23,4 @@ it('submits contact message form.', function (InquiryTypeEnum $inquiryType, Sour
 
     expect(ContactMessage::count())
         ->toBe(1);
-})->with(InquiryTypeEnum::cases(), SourceEnum::cases());
+})->with(ContactMessageInquiryTypeEnum::cases(), ContactMessageSourceEnum::cases());

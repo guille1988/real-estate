@@ -1,4 +1,4 @@
-export enum BudgetEnum {
+export enum PropertyMessageBudgetEnum {
     UNDER_100_000 = 'under-100000',
     BETWEEN_100_000_AND_250_000 = '100000-250000',
     BETWEEN_250_000_AND_500_000 = '250000-500000',

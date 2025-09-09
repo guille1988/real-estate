@@ -1,8 +1,8 @@
-import { LocationTypeEnum } from '@/Types/App/Enums/LocationTypeEnum';
+import { OfficeLocationTypeEnum } from '@/Types/App/Enums/OfficeLocationTypeEnum';
 
 export interface OfficeLocationInterface {
     uuid: string;
-    type: LocationTypeEnum;
+    type: OfficeLocationTypeEnum;
     title: string;
     address: string;
     description: string;

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-use App\Enums\BudgetEnum;
 use App\Enums\PageEnum;
 use App\Enums\PricingDetailCategoryEnum;
 use App\Enums\PropertyAreaRangeEnum;
 use App\Enums\PropertyLocationEnum;
+use App\Enums\PropertyMessageBudgetEnum;
 use App\Enums\PropertyPriceRangeEnum;
 use App\Enums\PropertyTypeEnum;
 use App\Models\Amenity;
@@ -32,7 +32,7 @@ it('indexes properties.', function (): void {
         'locations' => PropertyLocationEnum::toResponse()->count(),
         'prices' => PropertyPriceRangeEnum::toResponse()->count(),
         'types' => PropertyTypeEnum::toResponse()->count(),
-        'budgets' => BudgetEnum::toResponse()->count(),
+        'budgets' => PropertyMessageBudgetEnum::toResponse()->count(),
     ];
 
     $this->get(route('properties.index'))

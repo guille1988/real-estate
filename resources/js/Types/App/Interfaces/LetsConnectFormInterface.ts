@@ -1,5 +1,5 @@
-import { InquiryTypeEnum } from '@/Types/App/Enums/InquiryTypeEnum';
-import { SourceEnum } from '@/Types/App/Enums/SourceEnum';
+import { ContactMessageInquiryTypeEnum } from '@/Types/App/Enums/ContactMessageInquiryTypeEnum';
+import { ContactMessageSourceEnum } from '@/Types/App/Enums/ContactMessageSourceEnum';
 
 export interface LetsConnectFormInterface {
     [key: string]: null | boolean | string;
@@ -7,8 +7,8 @@ export interface LetsConnectFormInterface {
     lastName: string;
     email: string;
     phone: string;
-    inquiryType: InquiryTypeEnum | null;
-    source: SourceEnum | null;
+    inquiryType: ContactMessageInquiryTypeEnum | null;
+    source: ContactMessageSourceEnum | null;
     message: string;
     termsAgreed: boolean;
 }

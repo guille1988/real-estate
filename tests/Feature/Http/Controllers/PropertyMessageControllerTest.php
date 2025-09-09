@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-use App\Enums\BudgetEnum;
 use App\Enums\PropertyLocationEnum;
+use App\Enums\PropertyMessageBudgetEnum;
 use App\Enums\PropertyTypeEnum;
 use App\Models\PropertyMessage;
 
-it('submits property message form.', function (PropertyLocationEnum $location, PropertyTypeEnum $propertyType, BudgetEnum $budget): void {
+it('submits property message form.', function (PropertyLocationEnum $location, PropertyTypeEnum $propertyType, PropertyMessageBudgetEnum $budget): void {
     $data = [
         'first_name' => fake()->firstName(),
         'last_name' => fake()->lastName(),
@@ -27,4 +27,4 @@ it('submits property message form.', function (PropertyLocationEnum $location, P
 
     expect(PropertyMessage::count())
         ->toBe(1);
-})->with(PropertyLocationEnum::cases(), PropertyTypeEnum::cases(), BudgetEnum::cases())->only();
+})->with(PropertyLocationEnum::cases(), PropertyTypeEnum::cases(), PropertyMessageBudgetEnum::cases())->only();

@@ -19,10 +19,10 @@
             <div class="mb-10">
                 <div class="inline-flex rounded-md bg-neutral-900/50 p-1">
                     <button
-                        @click="setActiveTab(LocationTypeEnum.ALL)"
+                        @click="setActiveTab(OfficeLocationTypeEnum.ALL)"
                         :class="[
                             'rounded-md px-6 py-2 text-sm transition-colors duration-200',
-                            activeTabEqualsTo(LocationTypeEnum.ALL)
+                            activeTabEqualsTo(OfficeLocationTypeEnum.ALL)
                                 ? 'bg-neutral-800 outline outline-1 outline-black'
                                 : 'text-gray-400 hover:text-white',
                         ]"
@@ -30,10 +30,10 @@
                         All
                     </button>
                     <button
-                        @click="setActiveTab(LocationTypeEnum.REGIONAL)"
+                        @click="setActiveTab(OfficeLocationTypeEnum.REGIONAL)"
                         :class="[
                             'rounded-md px-6 py-2 text-sm transition-colors duration-200',
-                            activeTabEqualsTo(LocationTypeEnum.REGIONAL)
+                            activeTabEqualsTo(OfficeLocationTypeEnum.REGIONAL)
                                 ? 'bg-neutral-800 outline outline-1 outline-black'
                                 : 'text-gray-400 hover:text-white',
                         ]"
@@ -41,10 +41,14 @@
                         Regional
                     </button>
                     <button
-                        @click="setActiveTab(LocationTypeEnum.INTERNATIONAL)"
+                        @click="
+                            setActiveTab(OfficeLocationTypeEnum.INTERNATIONAL)
+                        "
                         :class="[
                             'rounded-md px-6 py-2 text-sm transition-colors duration-200',
-                            activeTabEqualsTo(LocationTypeEnum.INTERNATIONAL)
+                            activeTabEqualsTo(
+                                OfficeLocationTypeEnum.INTERNATIONAL,
+                            )
                                 ? 'bg-neutral-800 outline outline-1 outline-black'
                                 : 'text-gray-400 hover:text-white',
                         ]"
@@ -211,7 +215,7 @@ import OfficeLocationCard from '@/Components/Contact/OfficeLocations/OfficeLocat
 import ChevronIcon from '@/Components/Icons/ChevronIcon.vue';
 import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
 import { ChevronDirectionEnum } from '@/Types/App/Enums/ChevronDirectionEnum';
-import { LocationTypeEnum } from '@/Types/App/Enums/LocationTypeEnum';
+import { OfficeLocationTypeEnum } from '@/Types/App/Enums/OfficeLocationTypeEnum';
 import { ScreenSizeEnum } from '@/Types/App/Enums/ScreenSizeEnum';
 import { OfficeLocationInterface } from '@/Types/App/Interfaces/OfficeLocationInterface';
 import { ScreenSizeConfigInterface } from '@/Types/App/Interfaces/ScreenSizeConfigInterface';
@@ -232,7 +236,9 @@ const { officeLocations }: { officeLocations: OfficeLocationInterface[] } =
         officeLocations: OfficeLocationInterface[];
     }>();
 
-const activeTab: Ref<string> = ref<LocationTypeEnum>(LocationTypeEnum.ALL);
+const activeTab: Ref<string> = ref<OfficeLocationTypeEnum>(
+    OfficeLocationTypeEnum.ALL,
+);
 
 const sliderTrack: Ref<HTMLElement | null> = ref<HTMLElement | null>(null);
 const slideItems: Ref<HTMLElement[]> = ref<HTMLElement[]>([]);
@@ -243,16 +249,16 @@ const screenSize: Ref<ScreenSizeEnum> = ref<ScreenSizeEnum>(
 );
 const resizeTimeout: Ref<number | null> = ref<number | null>(null);
 
-const activeTabEqualsTo = (tab: LocationTypeEnum): boolean =>
+const activeTabEqualsTo = (tab: OfficeLocationTypeEnum): boolean =>
     activeTab.value === tab;
 
-const setActiveTab = (tab: LocationTypeEnum): void => {
+const setActiveTab = (tab: OfficeLocationTypeEnum): void => {
     activeTab.value = tab;
 };
 
 const filteredCards: ComputedRef<OfficeLocationInterface[]> = computed(
     (): OfficeLocationInterface[] =>
-        activeTabEqualsTo(LocationTypeEnum.ALL)
+        activeTabEqualsTo(OfficeLocationTypeEnum.ALL)
             ? officeLocations
             : officeLocations.filter(
                   (officeLocation: OfficeLocationInterface): boolean =>

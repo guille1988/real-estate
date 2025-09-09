@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Data;
 
-use App\Enums\BudgetEnum;
 use App\Enums\PropertyLocationEnum;
+use App\Enums\PropertyMessageBudgetEnum;
 use App\Enums\PropertyTypeEnum;
 use Illuminate\Validation\Rule;
 use Spatie\LaravelData\Attributes\MapName;
@@ -27,7 +27,7 @@ final class PropertyMessageData extends Data
         #[WithCast(EnumCast::class)]
         public PropertyTypeEnum $propertyType,
         #[WithCast(EnumCast::class)]
-        public BudgetEnum $budget,
+        public PropertyMessageBudgetEnum $budget,
         public int $bedrooms,
         public int $bathrooms,
         public ?string $message,
@@ -46,7 +46,7 @@ final class PropertyMessageData extends Data
             'phone' => ['required', 'string', 'between:8,20'],
             'location' => ['required', Rule::enum(PropertyLocationEnum::class)],
             'property_type' => ['required', Rule::enum(PropertyTypeEnum::class)],
-            'budget' => ['required', 'string', Rule::enum(BudgetEnum::class)],
+            'budget' => ['required', 'string', Rule::enum(PropertyMessageBudgetEnum::class)],
             'bedrooms' => ['required', 'integer', 'digits_between:1,8'],
             'bathrooms' => ['required', 'integer', 'digits_between:1,8'],
             'message' => ['nullable', 'string', 'between:2,2000'],

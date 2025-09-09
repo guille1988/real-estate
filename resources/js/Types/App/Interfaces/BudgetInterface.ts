@@ -1,6 +1,6 @@
-import { BudgetEnum } from '@/Types/App/Enums/BudgetEnum';
+import { PropertyMessageBudgetEnum } from '@/Types/App/Enums/PropertyMessageBudgetEnum';
 
 export interface BudgetInterface {
     label: string;
-    value: BudgetEnum;
+    value: PropertyMessageBudgetEnum;
 }

@@ -48,7 +48,7 @@
                     class="rounded-md bg-purple-600 px-6 py-2 text-sm font-medium text-white transition-colors hover:text-black"
                     :class="{
                         'pointer-events-none opacity-0': isPage(
-                            PagesEnum.CONTACT,
+                            PageEnum.CONTACT,
                         ),
                     }"
                 >
@@ -79,7 +79,7 @@
                             {{ navigationPage.name }}
                         </Link>
                     </li>
-                    <li v-if="isNotPage(PagesEnum.CONTACT)">
+                    <li v-if="isNotPage(PageEnum.CONTACT)">
                         <Link
                             prefetch
                             :href="ContactController().url"
@@ -103,7 +103,7 @@ import ContactController from '@/Routes/actions/App/Http/Controllers/ContactCont
 import HomeController from '@/Routes/actions/App/Http/Controllers/HomeController';
 import PropertyController from '@/Routes/actions/App/Http/Controllers/PropertyController';
 import ServiceController from '@/Routes/actions/App/Http/Controllers/ServiceController';
-import { PagesEnum } from '@/Types/App/Enums/PagesEnum';
+import { PageEnum } from '@/Types/App/Enums/PageEnum';
 import { NavigationPagesInterface } from '@/Types/App/Interfaces/NavigationPagesInterface';
 import { Link, usePage } from '@inertiajs/vue3';
 import { Ref, ref } from 'vue';
@@ -112,22 +112,22 @@ const navigationPages: NavigationPagesInterface[] = [
     {
         name: 'Home',
         url: HomeController().url,
-        page: PagesEnum.HOME,
+        page: PageEnum.HOME,
     },
     {
         name: 'About Us',
         url: AboutController().url,
-        page: PagesEnum.ABOUT,
+        page: PageEnum.ABOUT,
     },
     {
         name: 'Properties',
         url: PropertyController.index().url,
-        page: PagesEnum.PROPERTIES,
+        page: PageEnum.PROPERTIES,
     },
     {
         name: 'Services',
         url: ServiceController().url,
-        page: PagesEnum.SERVICES,
+        page: PageEnum.SERVICES,
     },
 ];
 
@@ -141,6 +141,6 @@ const closeMobileMenu = (): void => {
     mobileMenuOpened.value = false;
 };
 
-const isPage = (page: PagesEnum): boolean => usePage().component === page;
-const isNotPage = (page: PagesEnum): boolean => !isPage(page);
+const isPage = (page: PageEnum): boolean => usePage().component === page;
+const isNotPage = (page: PageEnum): boolean => !isPage(page);
 </script>

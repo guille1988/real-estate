@@ -1,6 +1,6 @@
-import { InquiryTypeEnum } from '@/Types/App/Enums/InquiryTypeEnum';
+import { ContactMessageInquiryTypeEnum } from '@/Types/App/Enums/ContactMessageInquiryTypeEnum';
 
 export interface InquiryTypeInterface {
     label: string;
-    value: InquiryTypeEnum;
+    value: ContactMessageInquiryTypeEnum;
 }

@@ -1,4 +1,4 @@
-export enum SourceEnum {
+export enum ContactMessageSourceEnum {
     SEARCH = 'search',
     SOCIAL = 'social',
     REFERRAL = 'referral',

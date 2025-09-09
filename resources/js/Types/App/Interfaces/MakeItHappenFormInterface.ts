@@ -1,4 +1,4 @@
-import { LocationTypeEnum } from '@/Types/App/Enums/LocationTypeEnum';
+import { OfficeLocationTypeEnum } from '@/Types/App/Enums/OfficeLocationTypeEnum';
 import { PropertyTypeEnum } from '@/Types/App/Enums/PropertyTypeEnum';
 
 export interface MakeItHappenFormInterface {
@@ -7,7 +7,7 @@ export interface MakeItHappenFormInterface {
     lastName: string;
     email: string;
     phone: string;
-    location: LocationTypeEnum | null;
+    location: OfficeLocationTypeEnum | null;
     propertyType: PropertyTypeEnum | null;
     bathrooms: number | null;
     bedrooms: number | null;

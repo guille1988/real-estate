@@ -6,24 +6,24 @@ namespace App\Enums;
 
 use Illuminate\Support\Collection;
 
-enum InquiryTypeEnum: string
+enum ContactMessageSourceEnum: string
 {
-    case BUY = 'buy';
-    case SELL = 'sell';
-    case RENT = 'rent';
+    case SEARCH = 'search';
+    case SOCIAL = 'social';
+    case REFERRAL = 'referral';
     case OTHER = 'other';
 
     /**
      * @return Collection<int, array{label: string, value: string}>
      *
-     * Returns the label and value response version of all inquiry types.
+     * Returns the label and value response version of all sources.
      */
     public static function toResponse(): Collection
     {
         return collect(self::cases())
-            ->map(fn (self $inquiryType): array => [
-                'label' => $inquiryType->title(),
-                'value' => $inquiryType->value,
+            ->map(fn (self $source): array => [
+                'label' => $source->title(),
+                'value' => $source->value,
             ]);
     }
 

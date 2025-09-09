@@ -1,7 +1,7 @@
-import { PagesEnum } from '@/Types/App/Enums/PagesEnum';
+import { PageEnum } from '@/Types/App/Enums/PageEnum';
 
 export interface NavigationPagesInterface {
     name: string;
     url: string;
-    page: PagesEnum;
+    page: PageEnum;
 }

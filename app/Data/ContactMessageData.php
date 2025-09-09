@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Data;
 
-use App\Enums\InquiryTypeEnum;
-use App\Enums\SourceEnum;
+use App\Enums\ContactMessageInquiryTypeEnum;
+use App\Enums\ContactMessageSourceEnum;
 use Illuminate\Validation\Rule;
 use Spatie\LaravelData\Attributes\MapName;
 use Spatie\LaravelData\Attributes\WithCast;
@@ -22,9 +22,9 @@ final class ContactMessageData extends Data
         public string $email,
         public string $phone,
         #[WithCast(EnumCast::class)]
-        public InquiryTypeEnum $inquiryType,
+        public ContactMessageInquiryTypeEnum $inquiryType,
         #[WithCast(EnumCast::class)]
-        public SourceEnum $source,
+        public ContactMessageSourceEnum $source,
         public ?string $message,
         public bool $termsAgreed,
     ) {}
@@ -39,8 +39,8 @@ final class ContactMessageData extends Data
             'last_name' => ['required', 'string', 'between:2,200'],
             'email' => ['required', 'string', 'email'],
             'phone' => ['required', 'string', 'between:8,20'],
-            'inquiry_type' => ['required', Rule::enum(InquiryTypeEnum::class)],
-            'source' => ['required', 'string', Rule::enum(SourceEnum::class)],
+            'inquiry_type' => ['required', Rule::enum(ContactMessageInquiryTypeEnum::class)],
+            'source' => ['required', 'string', Rule::enum(ContactMessageSourceEnum::class)],
             'message' => ['nullable', 'string', 'between:2,2000'],
             'terms_agreed' => ['accepted'],
         ];

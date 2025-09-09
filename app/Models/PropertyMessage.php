@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use App\Enums\BudgetEnum;
 use App\Enums\PropertyLocationEnum;
+use App\Enums\PropertyMessageBudgetEnum;
 use App\Enums\PropertyTypeEnum;
 use Carbon\CarbonImmutable;
 use Database\Factories\PropertyMessageFactory;
@@ -22,7 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  *  @property-read string $phone
  *  @property-read PropertyLocationEnum $location
  *  @property-read PropertyTypeEnum $property_type
- *  @property-read BudgetEnum $budget
+ *  @property-read PropertyMessageBudgetEnum $budget
  *  @property-read int $bedrooms
  *  @property-read int $bathrooms
  *  @property-read string|null $message

@@ -7,10 +7,10 @@ namespace App\Http\Controllers;
 use App\Actions\GetRangeOfMax;
 use App\Data\PropertyData;
 use App\Data\PropertyInquireData;
-use App\Enums\BudgetEnum;
 use App\Enums\PageEnum;
 use App\Enums\PropertyAreaRangeEnum;
 use App\Enums\PropertyLocationEnum;
+use App\Enums\PropertyMessageBudgetEnum;
 use App\Enums\PropertyPriceRangeEnum;
 use App\Enums\PropertyTypeEnum;
 use App\Http\Resources\IndexPropertyResource;
@@ -52,7 +52,7 @@ final class PropertyController
             'locations' => fn (): Collection => PropertyLocationEnum::toResponse(),
             'prices' => fn (): Collection => PropertyPriceRangeEnum::toResponse(),
             'types' => fn (): Collection => PropertyTypeEnum::toResponse(),
-            'budgets' => fn (): Collection => BudgetEnum::toResponse(),
+            'budgets' => fn (): Collection => PropertyMessageBudgetEnum::toResponse(),
             'bathrooms' => fn (): array => $action->execute('bathrooms'),
             'bedrooms' => fn (): array => $action->execute('bedrooms'),
         ]);

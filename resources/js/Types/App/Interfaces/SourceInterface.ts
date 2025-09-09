@@ -1,6 +1,6 @@
-import { SourceEnum } from '@/Types/App/Enums/SourceEnum';
+import { ContactMessageSourceEnum } from '@/Types/App/Enums/ContactMessageSourceEnum';
 
 export interface SourceInterface {
     label: string;
-    value: SourceEnum;
+    value: ContactMessageSourceEnum;
 }
