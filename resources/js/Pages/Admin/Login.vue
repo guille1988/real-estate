@@ -1,17 +1,11 @@
 <template>
     <div
-        class="flex min-h-screen w-full flex-col items-center justify-center bg-gray-900 px-6 py-12 lg:px-8"
+        class="flex min-h-screen w-full flex-col items-center justify-center bg-gray-900 px-6 pb-64 lg:px-8"
     >
         <div class="text-white sm:mx-auto sm:w-full sm:max-w-sm">
             <div class="flex justify-center">
                 <RealEstateIcon />
             </div>
-
-            <h2
-                class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-white"
-            >
-                Sign in to your account
-            </h2>
         </div>
 
         <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
