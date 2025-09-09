@@ -1,10 +1,10 @@
 <template>
     <div
-        class="flex min-h-screen w-full flex-col items-center justify-center bg-gray-900 px-6 pb-64 lg:px-8"
+        class="flex min-h-screen w-full flex-col items-center justify-center bg-black px-6 pb-64 lg:px-8"
     >
         <div class="text-white sm:mx-auto sm:w-full sm:max-w-sm">
             <div class="flex justify-center">
-                <RealEstateIcon />
+                <RealEstateIcon :height="64" :width="64" />
             </div>
         </div>
 
@@ -51,7 +51,7 @@
                 <div>
                     <button
                         type="submit"
-                        class="shadow-xs flex w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm/6 font-semibold text-white hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                        class="shadow-xs flex w-full justify-center rounded-md bg-purple-700 px-3 py-1.5 text-sm/6 font-semibold text-white hover:bg-purple-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
                     >
                         Sign in
                     </button>
