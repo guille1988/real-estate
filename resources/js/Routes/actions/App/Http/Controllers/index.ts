@@ -6,6 +6,7 @@ import ContactMessageController from './ContactMessageController'
 import PropertyController from './PropertyController'
 import PropertyMessageController from './PropertyMessageController'
 import SubscriberController from './SubscriberController'
+import Admin from './Admin'
 
 const Controllers = {
     HomeController: Object.assign(HomeController, HomeController),
@@ -16,6 +17,7 @@ const Controllers = {
     PropertyController: Object.assign(PropertyController, PropertyController),
     PropertyMessageController: Object.assign(PropertyMessageController, PropertyMessageController),
     SubscriberController: Object.assign(SubscriberController, SubscriberController),
+    Admin: Object.assign(Admin, Admin),
 }
 
 export default Controllers

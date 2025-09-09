@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ContactMessageController;
 use App\Http\Controllers\HomeController;
@@ -54,3 +55,13 @@ Route::prefix('properties')
 
 Route::post('subscribers', SubscriberController::class)
     ->name('subscribers');
+
+Route::prefix('admin')
+    ->name('admin')
+    ->group(function (): void {
+        Route::controller(LoginController::class)
+            ->group(function (): void {
+                Route::get('login', 'create')
+                    ->name('.login');
+            });
+    });

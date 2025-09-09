@@ -7,6 +7,7 @@ namespace App\Enums;
 enum PageEnum: string
 {
     case ABOUT = 'About';
+    case ADMIN_LOGIN = 'Admin/Login';
     case CONTACT = 'Contact';
     case ERROR = 'Error';
     case HOME = 'Home';
