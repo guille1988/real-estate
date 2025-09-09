@@ -73,6 +73,11 @@ final class AppServiceProvider extends ServiceProvider
             return Limit::perSecond(20)
                 ->by($request->user()?->id ?: $request->ip());
         });
+
+        RateLimiter::for('form', function (Request $request): Limit {
+            return Limit::perSecond(1)
+                ->by($request->user()?->id ?: $request->ip());
+        });
     }
 
     /**

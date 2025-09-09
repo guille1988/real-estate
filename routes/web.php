@@ -27,7 +27,8 @@ Route::prefix('contact')
         Route::get('', ContactController::class);
 
         Route::post('messages', ContactMessageController::class)
-            ->name('.messages');
+            ->name('.messages')
+            ->middleware('throttle:form');
     });
 
 Route::prefix('properties')
@@ -42,11 +43,13 @@ Route::prefix('properties')
                     ->name('.show');
 
                 Route::post('inquiries', 'inquire')
-                    ->name('.inquiries');
+                    ->name('.inquiries')
+                    ->middleware('throttle:form');
             });
 
         Route::post('messages', PropertyMessageController::class)
-            ->name('.messages');
+            ->name('.messages')
+            ->middleware('throttle:form');
     });
 
 Route::post('subscribers', SubscriberController::class)
