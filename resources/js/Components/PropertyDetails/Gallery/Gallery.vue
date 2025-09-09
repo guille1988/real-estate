@@ -244,8 +244,8 @@ import LocalizationIcon from '@/Components/Icons/LocalizationIcon.vue';
 import Amenity from '@/Components/PropertyDetails/Gallery/Amenity.vue';
 import Description from '@/Components/PropertyDetails/Gallery/Description.vue';
 import { ChevronDirectionEnum } from '@/Types/App/Enums/ChevronDirectionEnum';
-import { DescriptionInterface } from '@/Types/App/Interfaces/DescriptionInterface';
-import { ImageInterface } from '@/Types/App/Interfaces/ImageInterface';
+import { PropertyDescriptionInterface } from '@/Types/App/Interfaces/PropertyDescriptionInterface';
+import { PropertyImageInterface } from '@/Types/App/Interfaces/PropertyImageInterface';
 import { ShowPropertyInterface } from '@/Types/App/Interfaces/ShowPropertyInterface';
 import { WhenVisible } from '@inertiajs/vue3';
 import {
@@ -262,7 +262,7 @@ const { property }: { property: ShowPropertyInterface } = defineProps<{
     property: ShowPropertyInterface;
 }>();
 
-const descriptionCards: DescriptionInterface[] = [
+const descriptionCards: PropertyDescriptionInterface[] = [
     {
         id: 1,
         icon: BathroomIcon,
@@ -301,15 +301,15 @@ const currentImage: Ref<string> = ref<string>(
     property.images.length > 0 ? property.images[0].uuid : '',
 );
 
-const getCurrentImage: ComputedRef<ImageInterface> = computed<ImageInterface>(
-    () => {
+const getCurrentImage: ComputedRef<PropertyImageInterface> =
+    computed<PropertyImageInterface>(() => {
         return (
             property.images.find(
-                (image: ImageInterface) => image.uuid === currentImage.value,
+                (image: PropertyImageInterface) =>
+                    image.uuid === currentImage.value,
             ) || property.images[0]
         );
-    },
-);
+    });
 
 const scrollToSelectedThumbnail = (): void => {
     if (!thumbnailContainer.value) return;
@@ -349,7 +349,7 @@ const isNotVisible = (
 
 const nextImage = (): void => {
     const currentIndex: number = property.images.findIndex(
-        (image: ImageInterface) => image.uuid === currentImage.value,
+        (image: PropertyImageInterface) => image.uuid === currentImage.value,
     );
     const nextIndex: number = (currentIndex + 1) % property.images.length;
     currentImage.value = property.images[nextIndex].uuid;
@@ -357,7 +357,7 @@ const nextImage = (): void => {
 
 const previousImage = (): void => {
     const currentIndex: number = property.images.findIndex(
-        (image: ImageInterface) => image.uuid === currentImage.value,
+        (image: PropertyImageInterface) => image.uuid === currentImage.value,
     );
     const prevIndex: number =
         (currentIndex - 1 + property.images.length) % property.images.length;

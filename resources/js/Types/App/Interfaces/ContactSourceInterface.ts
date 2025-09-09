@@ -1,6 +1,6 @@
 import { ContactMessageSourceEnum } from '@/Types/App/Enums/ContactMessageSourceEnum';
 
-export interface ContactMessageSourceInterface {
+export interface ContactSourceInterface {
     label: string;
     value: ContactMessageSourceEnum;
 }

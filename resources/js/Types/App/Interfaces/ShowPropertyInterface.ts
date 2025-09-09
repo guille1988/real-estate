@@ -1,7 +1,7 @@
 import { PropertyTypeEnum } from '@/Types/App/Enums/PropertyTypeEnum';
-import { AmenityInterface } from '@/Types/App/Interfaces/AmenityInterface';
-import { ImageInterface } from '@/Types/App/Interfaces/ImageInterface';
 import { PricingCardInterface } from '@/Types/App/Interfaces/PricingCardInterface';
+import { PropertyAmenityInterface } from '@/Types/App/Interfaces/PropertyAmenityInterface';
+import { PropertyImageInterface } from '@/Types/App/Interfaces/PropertyImageInterface';
 
 export interface ShowPropertyInterface {
     uuid: string;
@@ -13,7 +13,7 @@ export interface ShowPropertyInterface {
     bathrooms: string;
     bedrooms: string;
     area: string;
-    amenities: AmenityInterface[];
-    images: ImageInterface[];
+    amenities: PropertyAmenityInterface[];
+    images: PropertyImageInterface[];
     pricingDetails: PricingCardInterface[];
 }

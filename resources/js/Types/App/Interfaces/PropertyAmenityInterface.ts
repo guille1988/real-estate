@@ -1,4 +1,4 @@
-export interface AmenityInterface {
+export interface PropertyAmenityInterface {
     uuid: string;
     description: string;
 }

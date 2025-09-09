@@ -1,6 +1,6 @@
 import { Component } from 'vue';
 
-export interface DescriptionInterface {
+export interface PropertyDescriptionInterface {
     id: number;
     icon: Component;
     title: string;

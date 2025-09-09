@@ -8,9 +8,9 @@
     </div>
 </template>
 <script setup lang="ts">
-import { DescriptionInterface } from '@/Types/App/Interfaces/DescriptionInterface';
+import { PropertyDescriptionInterface } from '@/Types/App/Interfaces/PropertyDescriptionInterface';
 
-const { card }: { card: DescriptionInterface } = defineProps<{
-    card: DescriptionInterface;
+const { card }: { card: PropertyDescriptionInterface } = defineProps<{
+    card: PropertyDescriptionInterface;
 }>();
 </script>

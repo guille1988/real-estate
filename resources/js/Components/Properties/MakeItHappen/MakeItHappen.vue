@@ -264,10 +264,10 @@ import TextInput from '@/Components/Shared/Inputs/TextInput.vue';
 import PrivacyPolicyModal from '@/Components/Shared/Modals/PrivacyPolicyModal/PrivacyPolicyModal.vue';
 import TermsOfUseModal from '@/Components/Shared/Modals/TermsOfUseModal/TermsOfUseModal.vue';
 import PropertyMessageController from '@/Routes/actions/App/Http/Controllers/PropertyMessageController';
-import { BudgetInterface } from '@/Types/App/Interfaces/BudgetInterface';
 import { MakeItHappenFormInterface } from '@/Types/App/Interfaces/MakeItHappenFormInterface';
 import { PropertyBathroomInterface } from '@/Types/App/Interfaces/PropertyBathroomInterface';
 import { PropertyBedroomInterface } from '@/Types/App/Interfaces/PropertyBedroomInterface';
+import { PropertyBudgetInterface } from '@/Types/App/Interfaces/PropertyBudgetInterface';
 import { PropertyLocationInterface } from '@/Types/App/Interfaces/PropertyLocationInterface';
 import { PropertyTypeInterface } from '@/Types/App/Interfaces/PropertyTypeInterface';
 import { InertiaForm, useForm } from '@inertiajs/vue3';
@@ -280,11 +280,11 @@ const {
 }: {
     locations: PropertyLocationInterface[];
     types: PropertyTypeInterface[];
-    budgets: BudgetInterface[];
+    budgets: PropertyBudgetInterface[];
 } = defineProps<{
     locations: PropertyLocationInterface[];
     types: PropertyTypeInterface[];
-    budgets: BudgetInterface[];
+    budgets: PropertyBudgetInterface[];
     bathrooms: PropertyBathroomInterface[];
     bedrooms: PropertyBedroomInterface[];
 }>();

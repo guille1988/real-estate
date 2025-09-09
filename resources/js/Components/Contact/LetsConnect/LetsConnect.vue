@@ -197,8 +197,8 @@ import TextInput from '@/Components/Shared/Inputs/TextInput.vue';
 import PrivacyPolicyModal from '@/Components/Shared/Modals/PrivacyPolicyModal/PrivacyPolicyModal.vue';
 import TermsOfUseModal from '@/Components/Shared/Modals/TermsOfUseModal/TermsOfUseModal.vue';
 import ContactMessageController from '@/Routes/actions/App/Http/Controllers/ContactMessageController';
-import { ContactMessageSourceInterface } from '@/Types/App/Interfaces/ContactMessageSourceInterface';
-import { InquiryTypeInterface } from '@/Types/App/Interfaces/InquiryTypeInterface';
+import { ContactInquiryTypeInterface } from '@/Types/App/Interfaces/ContactInquiryTypeInterface';
+import { ContactSourceInterface } from '@/Types/App/Interfaces/ContactSourceInterface';
 import { LetsConnectFormInterface } from '@/Types/App/Interfaces/LetsConnectFormInterface';
 import { InertiaForm, useForm } from '@inertiajs/vue3';
 import { Ref, ref } from 'vue';
@@ -207,11 +207,11 @@ const {
     inquiryTypes,
     sources,
 }: {
-    inquiryTypes: InquiryTypeInterface[];
-    sources: ContactMessageSourceInterface[];
+    inquiryTypes: ContactInquiryTypeInterface[];
+    sources: ContactSourceInterface[];
 } = defineProps<{
-    inquiryTypes: InquiryTypeInterface[];
-    sources: ContactMessageSourceInterface[];
+    inquiryTypes: ContactInquiryTypeInterface[];
+    sources: ContactSourceInterface[];
 }>();
 
 const successMessage: string =

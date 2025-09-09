@@ -15,17 +15,17 @@ import OfficeLocations from '@/Components/Contact/OfficeLocations/OfficeLocation
 import Layout from '@/Components/Layout/Layout.vue';
 import { displayErrors } from '@/Composables/useErrorHandling';
 import { ContactAssetsInterface } from '@/Types/App/Interfaces/ContactAssetsInterface';
-import { ContactMessageSourceInterface } from '@/Types/App/Interfaces/ContactMessageSourceInterface';
+import { ContactInquiryTypeInterface } from '@/Types/App/Interfaces/ContactInquiryTypeInterface';
+import { ContactSourceInterface } from '@/Types/App/Interfaces/ContactSourceInterface';
 import { ErrorInterface } from '@/Types/App/Interfaces/ErrorInterface';
-import { InquiryTypeInterface } from '@/Types/App/Interfaces/InquiryTypeInterface';
 import { OfficeLocationInterface } from '@/Types/App/Interfaces/OfficeLocationInterface';
 import { onMounted } from 'vue';
 
 const { errors }: { errors: ErrorInterface } = defineProps<{
     assets: ContactAssetsInterface;
     officeLocations: OfficeLocationInterface[];
-    inquiryTypes: InquiryTypeInterface[];
-    sources: ContactMessageSourceInterface[];
+    inquiryTypes: ContactInquiryTypeInterface[];
+    sources: ContactSourceInterface[];
     errors: ErrorInterface;
 }>();
 
