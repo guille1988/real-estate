@@ -13,10 +13,10 @@
 </template>
 
 <script setup lang="ts">
-import { TextareaInputInterface } from '@/Types/App/Interfaces/TextareaInputInterface';
+import { TextAreaInputInterface } from '@/Types/App/Interfaces/TextAreaInputInterface';
 import { EmitInputFunctionType } from '@/Types/App/Types/EmitInputFunctionType';
 
-defineProps<TextareaInputInterface>();
+defineProps<TextAreaInputInterface>();
 
 const emit: EmitInputFunctionType = defineEmits<EmitInputFunctionType>();
 

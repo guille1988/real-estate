@@ -1,4 +1,4 @@
-export interface TextareaInputInterface {
+export interface TextAreaInputInterface {
     id: string;
     label: string;
     modelValue: string;

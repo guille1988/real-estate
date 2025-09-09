@@ -116,7 +116,7 @@
                 </div>
 
                 <div class="mb-6 flex flex-col">
-                    <TextareaInput
+                    <TextAreaInput
                         id="message"
                         label="Message:"
                         v-model:modelValue="form.message"
@@ -192,14 +192,14 @@
 <script setup lang="ts">
 import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
 import DropdownInput from '@/Components/Shared/Inputs/DropdownInput.vue';
-import TextareaInput from '@/Components/Shared/Inputs/TextareaInput.vue';
+import TextAreaInput from '@/Components/Shared/Inputs/TextAreaInput.vue';
 import TextInput from '@/Components/Shared/Inputs/TextInput.vue';
 import PrivacyPolicyModal from '@/Components/Shared/Modals/PrivacyPolicyModal/PrivacyPolicyModal.vue';
 import TermsOfUseModal from '@/Components/Shared/Modals/TermsOfUseModal/TermsOfUseModal.vue';
 import ContactMessageController from '@/Routes/actions/App/Http/Controllers/ContactMessageController';
+import { ContactMessageSourceInterface } from '@/Types/App/Interfaces/ContactMessageSourceInterface';
 import { InquiryTypeInterface } from '@/Types/App/Interfaces/InquiryTypeInterface';
 import { LetsConnectFormInterface } from '@/Types/App/Interfaces/LetsConnectFormInterface';
-import { SourceInterface } from '@/Types/App/Interfaces/SourceInterface';
 import { InertiaForm, useForm } from '@inertiajs/vue3';
 import { Ref, ref } from 'vue';
 
@@ -208,10 +208,10 @@ const {
     sources,
 }: {
     inquiryTypes: InquiryTypeInterface[];
-    sources: SourceInterface[];
+    sources: ContactMessageSourceInterface[];
 } = defineProps<{
     inquiryTypes: InquiryTypeInterface[];
-    sources: SourceInterface[];
+    sources: ContactMessageSourceInterface[];
 }>();
 
 const successMessage: string =

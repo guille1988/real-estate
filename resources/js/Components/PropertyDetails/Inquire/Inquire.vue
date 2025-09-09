@@ -164,7 +164,7 @@
                             </div>
                             <div class="mb-6">
                                 <div class="flex flex-col">
-                                    <TextareaInput
+                                    <TextAreaInput
                                         id="message"
                                         label="Message"
                                         v-model:modelValue="form.message"
@@ -245,8 +245,8 @@
 <script setup lang="ts">
 import ThreeStars from '@/Components/Icons/ThreeStarsIcon.vue';
 import CheckboxInput from '@/Components/Shared/Inputs/CheckboxInput.vue';
+import TextAreaInput from '@/Components/Shared/Inputs/TextAreaInput.vue';
 import TextInput from '@/Components/Shared/Inputs/TextInput.vue';
-import TextareaInput from '@/Components/Shared/Inputs/TextareaInput.vue';
 import PrivacyPolicyModal from '@/Components/Shared/Modals/PrivacyPolicyModal/PrivacyPolicyModal.vue';
 import TermsOfUseModal from '@/Components/Shared/Modals/TermsOfUseModal/TermsOfUseModal.vue';
 import PropertyController from '@/Routes/actions/App/Http/Controllers/PropertyController';
