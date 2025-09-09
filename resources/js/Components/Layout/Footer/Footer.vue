@@ -69,10 +69,10 @@
                             <button
                                 type="submit"
                                 class="absolute right-2 top-1/2 flex h-4 w-4 -translate-y-1/2 items-center justify-center leading-none text-white"
-                                :disabled="form.processing"
+                                :disabled="disableButton"
                                 :class="{
                                     'cursor-not-allowed opacity-50':
-                                        form.processing,
+                                        disableButton,
                                 }"
                             >
                                 <SendIcon class="lucide lucide-send h-4 w-4" />
@@ -260,6 +260,7 @@ import { ref, type Ref } from 'vue';
 
 const successMessage: string = 'Thanks for subscribing!';
 const showSuccessMessage: Ref<boolean> = ref<boolean>(false);
+const disableButton: Ref<boolean> = ref<boolean>(false);
 
 const form: InertiaForm<{ email: string }> = useForm<{ email: string }>({
     email: '',
@@ -267,6 +268,7 @@ const form: InertiaForm<{ email: string }> = useForm<{ email: string }>({
 
 const submit = (): void => {
     showSuccessMessage.value = false;
+    disableButton.value = true;
 
     form.post(SubscriberController().url, {
         preserveScroll: true,
@@ -276,7 +278,17 @@ const submit = (): void => {
 
             setTimeout((): void => {
                 showSuccessMessage.value = false;
-            }, 8000);
+            }, 4000);
+        },
+        onError: (): void => {
+            setTimeout((): void => {
+                form.clearErrors();
+            }, 4000);
+        },
+        onFinish: (): void => {
+            setTimeout((): void => {
+                disableButton.value = false;
+            }, 4000);
         },
     });
 };

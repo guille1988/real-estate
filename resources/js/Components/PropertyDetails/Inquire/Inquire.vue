@@ -298,7 +298,12 @@ const submit = (): void => {
 
             setTimeout((): void => {
                 showSuccessMessage.value = false;
-            }, 8000);
+            }, 4000);
+        },
+        onError: (): void => {
+            setTimeout((): void => {
+                form.clearErrors();
+            }, 4000);
         },
     });
 };
