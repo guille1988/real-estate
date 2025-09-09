@@ -1,7 +1,7 @@
 import Http from './Http'
 
 const Horizon = {
-    Http,
+    Http: Object.assign(Http, Http),
 }
 
 export default Horizon

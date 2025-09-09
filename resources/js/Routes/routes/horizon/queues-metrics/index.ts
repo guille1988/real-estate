@@ -106,8 +106,8 @@ show.head = (args: { id: string | number } | [id: string | number ] | string | n
 })
 
 const queuesMetrics = {
-    index,
-    show,
+    index: Object.assign(index, index),
+    show: Object.assign(show, show),
 }
 
 export default queuesMetrics

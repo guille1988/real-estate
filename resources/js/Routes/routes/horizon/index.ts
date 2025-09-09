@@ -80,21 +80,21 @@ index.head = (args?: { view?: string | number } | [view: string | number ] | str
 })
 
 const horizon = {
-    stats,
-    workload,
-    masters,
-    monitoring,
-    monitoringTag,
-    jobsMetrics,
-    queuesMetrics,
-    jobsBatches,
-    pendingJobs,
-    completedJobs,
-    silencedJobs,
-    failedJobs,
-    retryJobs,
-    jobs,
-    index,
+    stats: Object.assign(stats, stats),
+    workload: Object.assign(workload, workload),
+    masters: Object.assign(masters, masters),
+    monitoring: Object.assign(monitoring, monitoring),
+    monitoringTag: Object.assign(monitoringTag, monitoringTag),
+    jobsMetrics: Object.assign(jobsMetrics, jobsMetrics),
+    queuesMetrics: Object.assign(queuesMetrics, queuesMetrics),
+    jobsBatches: Object.assign(jobsBatches, jobsBatches),
+    pendingJobs: Object.assign(pendingJobs, pendingJobs),
+    completedJobs: Object.assign(completedJobs, completedJobs),
+    silencedJobs: Object.assign(silencedJobs, silencedJobs),
+    failedJobs: Object.assign(failedJobs, failedJobs),
+    retryJobs: Object.assign(retryJobs, retryJobs),
+    jobs: Object.assign(jobs, jobs),
+    index: Object.assign(index, index),
 }
 
 export default horizon

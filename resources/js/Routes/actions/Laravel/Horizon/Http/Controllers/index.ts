@@ -14,20 +14,20 @@ import JobsController from './JobsController'
 import HomeController from './HomeController'
 
 const Controllers = {
-    DashboardStatsController,
-    WorkloadController,
-    MasterSupervisorController,
-    MonitoringController,
-    JobMetricsController,
-    QueueMetricsController,
-    BatchesController,
-    PendingJobsController,
-    CompletedJobsController,
-    SilencedJobsController,
-    FailedJobsController,
-    RetryController,
-    JobsController,
-    HomeController,
+    DashboardStatsController: Object.assign(DashboardStatsController, DashboardStatsController),
+    WorkloadController: Object.assign(WorkloadController, WorkloadController),
+    MasterSupervisorController: Object.assign(MasterSupervisorController, MasterSupervisorController),
+    MonitoringController: Object.assign(MonitoringController, MonitoringController),
+    JobMetricsController: Object.assign(JobMetricsController, JobMetricsController),
+    QueueMetricsController: Object.assign(QueueMetricsController, QueueMetricsController),
+    BatchesController: Object.assign(BatchesController, BatchesController),
+    PendingJobsController: Object.assign(PendingJobsController, PendingJobsController),
+    CompletedJobsController: Object.assign(CompletedJobsController, CompletedJobsController),
+    SilencedJobsController: Object.assign(SilencedJobsController, SilencedJobsController),
+    FailedJobsController: Object.assign(FailedJobsController, FailedJobsController),
+    RetryController: Object.assign(RetryController, RetryController),
+    JobsController: Object.assign(JobsController, JobsController),
+    HomeController: Object.assign(HomeController, HomeController),
 }
 
 export default Controllers

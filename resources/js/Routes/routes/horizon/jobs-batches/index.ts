@@ -158,9 +158,9 @@ retry.post = (args: { id: string | number } | [id: string | number ] | string | 
 })
 
 const jobsBatches = {
-    index,
-    show,
-    retry,
+    index: Object.assign(index, index),
+    show: Object.assign(show, show),
+    retry: Object.assign(retry, retry),
 }
 
 export default jobsBatches

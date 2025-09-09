@@ -180,10 +180,10 @@ messages.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 })
 
 const properties = {
-    index,
-    show,
-    inquiries,
-    messages,
+    index: Object.assign(index, index),
+    show: Object.assign(show, show),
+    inquiries: Object.assign(inquiries, inquiries),
+    messages: Object.assign(messages, messages),
 }
 
 export default properties

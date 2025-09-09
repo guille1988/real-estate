@@ -52,7 +52,7 @@ show.post = (args: { id: string | number } | [id: string | number ] | string | n
 })
 
 const retryJobs = {
-    show,
+    show: Object.assign(show, show),
 }
 
 export default retryJobs

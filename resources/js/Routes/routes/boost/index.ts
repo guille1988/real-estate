@@ -31,7 +31,7 @@ browserLogs.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 })
 
 const boost = {
-    browserLogs,
+    browserLogs: Object.assign(browserLogs, browserLogs),
 }
 
 export default boost

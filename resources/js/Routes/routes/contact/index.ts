@@ -34,7 +34,7 @@ messages.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 })
 
 const contact = {
-    messages,
+    messages: Object.assign(messages, messages),
 }
 
 export default contact

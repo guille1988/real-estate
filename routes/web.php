@@ -33,14 +33,17 @@ Route::prefix('contact')
 Route::prefix('properties')
     ->name('properties')
     ->group(function (): void {
-        Route::get('', [PropertyController::class, 'index'])
-            ->name('.index');
+        Route::controller(PropertyController::class)
+            ->group(function (): void {
+                Route::get('', 'index')
+                    ->name('.index');
 
-        Route::get('{property}', [PropertyController::class, 'show'])
-            ->name('.show');
+                Route::get('{property}', 'show')
+                    ->name('.show');
 
-        Route::post('inquiries', [PropertyController::class, 'inquire'])
-            ->name('.inquiries');
+                Route::post('inquiries', 'inquire')
+                    ->name('.inquiries');
+            });
 
         Route::post('messages', PropertyMessageController::class)
             ->name('.messages');

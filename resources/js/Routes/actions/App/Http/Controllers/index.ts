@@ -8,14 +8,14 @@ import PropertyMessageController from './PropertyMessageController'
 import SubscriberController from './SubscriberController'
 
 const Controllers = {
-    HomeController,
-    AboutController,
-    ServiceController,
-    ContactController,
-    ContactMessageController,
-    PropertyController,
-    PropertyMessageController,
-    SubscriberController,
+    HomeController: Object.assign(HomeController, HomeController),
+    AboutController: Object.assign(AboutController, AboutController),
+    ServiceController: Object.assign(ServiceController, ServiceController),
+    ContactController: Object.assign(ContactController, ContactController),
+    ContactMessageController: Object.assign(ContactMessageController, ContactMessageController),
+    PropertyController: Object.assign(PropertyController, PropertyController),
+    PropertyMessageController: Object.assign(PropertyMessageController, PropertyMessageController),
+    SubscriberController: Object.assign(SubscriberController, SubscriberController),
 }
 
 export default Controllers

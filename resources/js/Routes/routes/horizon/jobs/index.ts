@@ -62,7 +62,7 @@ show.head = (args: { id: string | number } | [id: string | number ] | string | n
 })
 
 const jobs = {
-    show,
+    show: Object.assign(show, show),
 }
 
 export default jobs

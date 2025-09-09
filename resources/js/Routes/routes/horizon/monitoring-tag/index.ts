@@ -114,8 +114,8 @@ destroy.delete = (args: { tag: string | number } | [tag: string | number ] | str
 })
 
 const monitoringTag = {
-    paginate,
-    destroy,
+    paginate: Object.assign(paginate, paginate),
+    destroy: Object.assign(destroy, destroy),
 }
 
 export default monitoringTag

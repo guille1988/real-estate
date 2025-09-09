@@ -44,7 +44,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 const completedJobs = {
-    index,
+    index: Object.assign(index, index),
 }
 
 export default completedJobs
