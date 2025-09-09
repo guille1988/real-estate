@@ -3,11 +3,9 @@
         class="flex min-h-screen w-full flex-col items-center justify-center bg-gray-900 px-6 py-12 lg:px-8"
     >
         <div class="text-white sm:mx-auto sm:w-full sm:max-w-sm">
-            <img
-                class="mx-auto h-10 w-auto"
-                src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
-                alt="Your Company"
-            />
+            <div class="flex justify-center">
+                <RealEstateIcon />
+            </div>
 
             <h2
                 class="mt-10 text-center text-2xl/9 font-bold tracking-tight text-white"
@@ -22,7 +20,7 @@
                     <label
                         for="email"
                         class="block text-sm/6 font-medium text-gray-100"
-                        >Email address</label
+                        >E-mail address</label
                     >
                     <div class="mt-2">
                         <input
@@ -68,3 +66,6 @@
         </div>
     </div>
 </template>
+<script setup lang="ts">
+import RealEstateIcon from '@/Components/Icons/RealEstateIcon.vue';
+</script>
