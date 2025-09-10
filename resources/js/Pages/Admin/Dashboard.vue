@@ -68,14 +68,16 @@
 
                             <!-- Sidebar component, swap this element with another sidebar if you like -->
                             <div
-                                class="relative flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 pb-4 ring ring-white/10 before:pointer-events-none before:absolute before:inset-0 before:bg-black/10"
+                                class="relative flex grow flex-col gap-y-5 overflow-y-auto bg-purple-800 px-6 pb-4 ring-1 ring-white/10"
                             >
-                                <div
-                                    class="relative flex h-16 shrink-0 items-center"
-                                >
-                                    <RealEstateIcon />
+                                <div class="flex h-16 shrink-0 items-center">
+                                    <img
+                                        class="h-8 w-auto"
+                                        src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=white"
+                                        alt="Your Company"
+                                    />
                                 </div>
-                                <nav class="relative flex flex-1 flex-col">
+                                <nav class="flex flex-1 flex-col">
                                     <ul
                                         role="list"
                                         class="flex flex-1 flex-col gap-y-7"
@@ -93,8 +95,8 @@
                                                         :href="item.href"
                                                         :class="[
                                                             item.current
-                                                                ? 'bg-white/5 text-white'
-                                                                : 'text-gray-400 hover:bg-white/5 hover:text-white',
+                                                                ? 'bg-purple-950/25 text-white'
+                                                                : 'text-purple-100 hover:bg-purple-950/25 hover:text-white',
                                                             'group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold',
                                                         ]"
                                                     >
@@ -103,7 +105,7 @@
                                                             :class="[
                                                                 item.current
                                                                     ? 'text-white'
-                                                                    : 'text-gray-400 group-hover:text-white',
+                                                                    : 'text-purple-100 group-hover:text-white',
                                                                 'size-6 shrink-0',
                                                             ]"
                                                             aria-hidden="true"
@@ -115,7 +117,7 @@
                                         </li>
                                         <li>
                                             <div
-                                                class="text-xs/6 font-semibold text-gray-400"
+                                                class="text-xs/6 font-semibold text-purple-100"
                                             >
                                                 Your teams
                                             </div>
@@ -131,18 +133,13 @@
                                                         :href="team.href"
                                                         :class="[
                                                             team.current
-                                                                ? 'bg-white/5 text-white'
-                                                                : 'text-gray-400 hover:bg-white/5 hover:text-white',
+                                                                ? 'bg-purple-950/25 text-white'
+                                                                : 'text-purple-100 hover:bg-purple-950/25 hover:text-white',
                                                             'group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold',
                                                         ]"
                                                     >
                                                         <span
-                                                            :class="[
-                                                                team.current
-                                                                    ? 'border-white/20 text-white'
-                                                                    : 'border-white/10 text-gray-400 group-hover:border-white/20 group-hover:text-white',
-                                                                'flex size-6 shrink-0 items-center justify-center rounded-lg border bg-white/5 text-[0.625rem] font-medium',
-                                                            ]"
+                                                            class="flex size-6 shrink-0 items-center justify-center rounded-lg border border-purple-500/50 bg-purple-700 text-[0.625rem] font-medium text-white"
                                                             >{{
                                                                 team.initial
                                                             }}</span
@@ -160,10 +157,10 @@
                                         <li class="mt-auto">
                                             <a
                                                 href="#"
-                                                class="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-gray-400 hover:bg-white/5 hover:text-white"
+                                                class="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-purple-100 hover:bg-purple-950/25 hover:text-white"
                                             >
                                                 <Cog6ToothIcon
-                                                    class="size-6 shrink-0 text-gray-400 group-hover:text-white"
+                                                    class="size-6 shrink-0 text-purple-100 group-hover:text-white"
                                                     aria-hidden="true"
                                                 />
                                                 Settings
@@ -180,14 +177,18 @@
 
         <!-- Static sidebar for desktop -->
         <div
-            class="hidden bg-gray-900 lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col"
+            class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col"
         >
             <!-- Sidebar component, swap this element with another sidebar if you like -->
             <div
-                class="flex grow flex-col gap-y-5 overflow-y-auto border-r border-white/10 bg-black/10 px-6 pb-4"
+                class="relative flex grow flex-col gap-y-5 overflow-y-auto bg-purple-800 px-6 pb-4 after:pointer-events-none after:absolute after:inset-y-0 after:right-0 after:w-px after:bg-white/10"
             >
                 <div class="flex h-16 shrink-0 items-center">
-                    <RealEstateIcon :height="40" :width="40" />
+                    <img
+                        class="h-8 w-auto"
+                        src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=white"
+                        alt="Your Company"
+                    />
                 </div>
                 <nav class="flex flex-1 flex-col">
                     <ul role="list" class="flex flex-1 flex-col gap-y-7">
@@ -198,8 +199,8 @@
                                         :href="item.href"
                                         :class="[
                                             item.current
-                                                ? 'bg-white/5 text-white'
-                                                : 'text-gray-400 hover:bg-white/5 hover:text-white',
+                                                ? 'bg-purple-950/25 text-white'
+                                                : 'text-purple-100 hover:bg-purple-950/25 hover:text-white',
                                             'group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold',
                                         ]"
                                     >
@@ -208,7 +209,7 @@
                                             :class="[
                                                 item.current
                                                     ? 'text-white'
-                                                    : 'text-gray-400 group-hover:text-white',
+                                                    : 'text-purple-100 group-hover:text-white',
                                                 'size-6 shrink-0',
                                             ]"
                                             aria-hidden="true"
@@ -219,7 +220,9 @@
                             </ul>
                         </li>
                         <li>
-                            <div class="text-xs/6 font-semibold text-gray-400">
+                            <div
+                                class="text-xs/6 font-semibold text-purple-100"
+                            >
                                 Your teams
                             </div>
                             <ul role="list" class="-mx-2 mt-2 space-y-1">
@@ -228,18 +231,13 @@
                                         :href="team.href"
                                         :class="[
                                             team.current
-                                                ? 'bg-white/5 text-white'
-                                                : 'text-gray-400 hover:bg-white/5 hover:text-white',
+                                                ? 'bg-purple-950/25 text-white'
+                                                : 'text-purple-100 hover:bg-purple-950/25 hover:text-white',
                                             'group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold',
                                         ]"
                                     >
                                         <span
-                                            :class="[
-                                                team.current
-                                                    ? 'border-white/20 text-white'
-                                                    : 'border-white/10 text-gray-400 group-hover:border-white/20 group-hover:text-white',
-                                                'flex size-6 shrink-0 items-center justify-center rounded-lg border bg-white/5 text-[0.625rem] font-medium',
-                                            ]"
+                                            class="flex size-6 shrink-0 items-center justify-center rounded-lg border border-purple-500/50 bg-purple-700 text-[0.625rem] font-medium text-white"
                                             >{{ team.initial }}</span
                                         >
                                         <span class="truncate">{{
@@ -252,10 +250,10 @@
                         <li class="mt-auto">
                             <a
                                 href="#"
-                                class="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-gray-300 hover:bg-white/5 hover:text-white"
+                                class="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-purple-100 hover:bg-purple-950/25 hover:text-white"
                             >
                                 <Cog6ToothIcon
-                                    class="size-6 shrink-0 text-gray-400 group-hover:text-white"
+                                    class="size-6 shrink-0 text-purple-100 group-hover:text-white"
                                     aria-hidden="true"
                                 />
                                 Settings
@@ -267,118 +265,114 @@
         </div>
 
         <div class="lg:pl-72">
-            <div class="sticky top-0 z-40 lg:mx-auto lg:max-w-7xl lg:px-8">
-                <div
-                    class="flex h-16 items-center gap-x-4 border-b border-white/10 bg-gray-900 px-4 sm:gap-x-6 sm:px-6 lg:px-0"
+            <div
+                class="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-white/10 bg-gray-900 px-4 sm:gap-x-6 sm:px-6 lg:px-8"
+            >
+                <button
+                    type="button"
+                    class="-m-2.5 p-2.5 text-gray-400 hover:text-white lg:hidden"
+                    @click="sidebarOpen = true"
                 >
-                    <button
-                        type="button"
-                        class="-m-2.5 p-2.5 text-gray-400 hover:text-white lg:hidden"
-                        @click="sidebarOpen = true"
+                    <span class="sr-only">Open sidebar</span>
+                    <Bars3Icon class="size-6" aria-hidden="true" />
+                </button>
+
+                <!-- Separator -->
+                <div
+                    class="h-6 w-px bg-white/10 lg:hidden"
+                    aria-hidden="true"
+                />
+
+                <div class="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
+                    <form
+                        class="grid flex-1 grid-cols-1"
+                        action="#"
+                        method="GET"
                     >
-                        <span class="sr-only">Open sidebar</span>
-                        <Bars3Icon class="size-6" aria-hidden="true" />
-                    </button>
-
-                    <!-- Separator -->
-                    <div
-                        class="h-6 w-px bg-gray-700 lg:hidden"
-                        aria-hidden="true"
-                    />
-
-                    <div class="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
-                        <form
-                            class="grid flex-1 grid-cols-1"
-                            action="#"
-                            method="GET"
+                        <input
+                            name="search"
+                            aria-label="Search"
+                            class="outline-hidden col-start-1 row-start-1 block size-full bg-gray-900 pl-8 text-base text-white placeholder:text-gray-500 sm:text-sm/6"
+                            placeholder="Search"
+                        />
+                        <MagnifyingGlassIcon
+                            class="pointer-events-none col-start-1 row-start-1 size-5 self-center text-gray-400"
+                            aria-hidden="true"
+                        />
+                    </form>
+                    <div class="flex items-center gap-x-4 lg:gap-x-6">
+                        <button
+                            type="button"
+                            class="-m-2.5 p-2.5 text-gray-400 hover:text-white"
                         >
-                            <input
-                                name="search"
-                                aria-label="Search"
-                                class="outline-hidden col-start-1 row-start-1 block size-full bg-gray-900 pl-8 text-base text-white placeholder:text-gray-500 sm:text-sm/6"
-                                placeholder="Search"
-                            />
-                            <MagnifyingGlassIcon
-                                class="pointer-events-none col-start-1 row-start-1 size-5 self-center text-gray-400"
-                                aria-hidden="true"
-                            />
-                        </form>
-                        <div class="flex items-center gap-x-4 lg:gap-x-6">
-                            <button
-                                type="button"
-                                class="-m-2.5 p-2.5 text-gray-400 hover:text-white"
-                            >
-                                <span class="sr-only">View notifications</span>
-                                <BellIcon class="size-6" aria-hidden="true" />
-                            </button>
+                            <span class="sr-only">View notifications</span>
+                            <BellIcon class="size-6" aria-hidden="true" />
+                        </button>
 
-                            <!-- Separator -->
-                            <div
-                                class="hidden lg:block lg:h-6 lg:w-px lg:bg-white/10"
-                                aria-hidden="true"
-                            />
+                        <!-- Separator -->
+                        <div
+                            class="hidden lg:block lg:h-6 lg:w-px lg:bg-gray-100/10"
+                            aria-hidden="true"
+                        />
 
-                            <!-- Profile dropdown -->
-                            <Menu as="div" class="relative">
-                                <MenuButton class="relative flex items-center">
-                                    <span class="absolute -inset-1.5" />
-                                    <span class="sr-only">Open user menu</span>
-                                    <img
-                                        class="size-8 rounded-full bg-gray-800 outline -outline-offset-1 outline-white/10"
-                                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                        alt=""
-                                    />
+                        <!-- Profile dropdown -->
+                        <Menu as="div" class="relative">
+                            <MenuButton class="relative flex items-center">
+                                <span class="absolute -inset-1.5" />
+                                <span class="sr-only">Open user menu</span>
+                                <img
+                                    class="size-8 rounded-full bg-gray-800 outline -outline-offset-1 outline-white/10"
+                                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                    alt=""
+                                />
+                                <span class="hidden lg:flex lg:items-center">
                                     <span
-                                        class="hidden lg:flex lg:items-center"
+                                        class="ml-4 text-sm/6 font-semibold text-white"
+                                        aria-hidden="true"
+                                        >Tom Cook</span
                                     >
-                                        <span
-                                            class="ml-4 text-sm/6 font-semibold text-white"
-                                            aria-hidden="true"
-                                            >Tom Cook</span
-                                        >
-                                        <ChevronDownIcon
-                                            class="ml-2 size-5 text-gray-400"
-                                            aria-hidden="true"
-                                        />
-                                    </span>
-                                </MenuButton>
-                                <transition
-                                    enter-active-class="transition ease-out duration-100"
-                                    enter-from-class="transform opacity-0 scale-95"
-                                    enter-to-class="transform scale-100"
-                                    leave-active-class="transition ease-in duration-75"
-                                    leave-from-class="transform scale-100"
-                                    leave-to-class="transform opacity-0 scale-95"
+                                    <ChevronDownIcon
+                                        class="ml-2 size-5 text-gray-500"
+                                        aria-hidden="true"
+                                    />
+                                </span>
+                            </MenuButton>
+                            <transition
+                                enter-active-class="transition ease-out duration-100"
+                                enter-from-class="transform opacity-0 scale-95"
+                                enter-to-class="transform scale-100"
+                                leave-active-class="transition ease-in duration-75"
+                                leave-from-class="transform scale-100"
+                                leave-to-class="transform opacity-0 scale-95"
+                            >
+                                <MenuItems
+                                    class="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-gray-800 py-2 outline -outline-offset-1 outline-white/10"
                                 >
-                                    <MenuItems
-                                        class="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-gray-800 py-2 outline-1 -outline-offset-1 outline-white/10"
+                                    <MenuItem
+                                        v-for="item in userNavigation"
+                                        :key="item.name"
+                                        v-slot="{ active }"
                                     >
-                                        <MenuItem
-                                            v-for="item in userNavigation"
-                                            :key="item.name"
-                                            v-slot="{ active }"
+                                        <a
+                                            :href="item.href"
+                                            :class="[
+                                                active
+                                                    ? 'outline-hidden bg-white/5'
+                                                    : '',
+                                                'block px-3 py-1 text-sm/6 text-white',
+                                            ]"
+                                            >{{ item.name }}</a
                                         >
-                                            <a
-                                                :href="item.href"
-                                                :class="[
-                                                    active
-                                                        ? 'outline-hidden bg-gray-700'
-                                                        : '',
-                                                    'block px-3 py-1 text-sm/6 text-white',
-                                                ]"
-                                                >{{ item.name }}</a
-                                            >
-                                        </MenuItem>
-                                    </MenuItems>
-                                </transition>
-                            </Menu>
-                        </div>
+                                    </MenuItem>
+                                </MenuItems>
+                            </transition>
+                        </Menu>
                     </div>
                 </div>
             </div>
 
             <main class="py-10">
-                <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="px-4 sm:px-6 lg:px-8">
                     <!-- Your content -->
                 </div>
             </main>
@@ -387,7 +381,6 @@
 </template>
 
 <script setup>
-import RealEstateIcon from '@/Components/Icons/RealEstateIcon.vue';
 import {
     Dialog,
     DialogPanel,
