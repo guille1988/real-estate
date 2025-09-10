@@ -1,13 +1,5 @@
 <template>
-    <!--
-      This example requires updating your template:
-  
-      ```
-      <html class="h-full bg-gray-900">
-      <body class="h-full">
-      ```
-    -->
-    <div>
+    <div class="min-h-screen bg-gray-900 text-white">
         <TransitionRoot as="template" :show="sidebarOpen">
             <Dialog
                 class="relative z-50 lg:hidden"
@@ -292,11 +284,11 @@
                         <input
                             name="search"
                             aria-label="Search"
-                            class="outline-hidden col-start-1 row-start-1 block size-full bg-gray-900 pl-8 text-base text-white placeholder:text-gray-500 sm:text-sm/6"
+                            class="col-start-1 row-start-1 block size-full rounded-md border border-white/10 bg-gray-900 pl-10 pr-3 text-base text-white caret-purple-400 selection:bg-purple-600 selection:text-white placeholder:text-gray-500 focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-0 sm:text-sm/6"
                             placeholder="Search"
                         />
                         <MagnifyingGlassIcon
-                            class="pointer-events-none col-start-1 row-start-1 size-5 self-center text-gray-400"
+                            class="pointer-events-none col-start-1 row-start-1 ml-3 size-5 self-center text-gray-400"
                             aria-hidden="true"
                         />
                     </form>
