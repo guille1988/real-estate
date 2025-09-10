@@ -107,57 +107,6 @@
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li>
-                                            <div
-                                                class="text-xs/6 font-semibold text-purple-100"
-                                            >
-                                                Your teams
-                                            </div>
-                                            <ul
-                                                role="list"
-                                                class="-mx-2 mt-2 space-y-1"
-                                            >
-                                                <li
-                                                    v-for="team in teams"
-                                                    :key="team.name"
-                                                >
-                                                    <a
-                                                        :href="team.href"
-                                                        :class="[
-                                                            team.current
-                                                                ? 'bg-purple-950/25 text-white'
-                                                                : 'text-purple-100 hover:bg-purple-950/25 hover:text-white',
-                                                            'group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold',
-                                                        ]"
-                                                    >
-                                                        <span
-                                                            class="flex size-6 shrink-0 items-center justify-center rounded-lg border border-purple-500/50 bg-purple-700 text-[0.625rem] font-medium text-white"
-                                                            >{{
-                                                                team.initial
-                                                            }}</span
-                                                        >
-                                                        <span
-                                                            class="truncate"
-                                                            >{{
-                                                                team.name
-                                                            }}</span
-                                                        >
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="mt-auto">
-                                            <a
-                                                href="#"
-                                                class="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-purple-100 hover:bg-purple-950/25 hover:text-white"
-                                            >
-                                                <Cog6ToothIcon
-                                                    class="size-6 shrink-0 text-purple-100 group-hover:text-white"
-                                                    aria-hidden="true"
-                                                />
-                                                Settings
-                                            </a>
-                                        </li>
                                     </ul>
                                 </nav>
                             </div>
@@ -210,46 +159,6 @@
                                     </a>
                                 </li>
                             </ul>
-                        </li>
-                        <li>
-                            <div
-                                class="text-xs/6 font-semibold text-purple-100"
-                            >
-                                Your teams
-                            </div>
-                            <ul role="list" class="-mx-2 mt-2 space-y-1">
-                                <li v-for="team in teams" :key="team.name">
-                                    <a
-                                        :href="team.href"
-                                        :class="[
-                                            team.current
-                                                ? 'bg-purple-950/25 text-white'
-                                                : 'text-purple-100 hover:bg-purple-950/25 hover:text-white',
-                                            'group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold',
-                                        ]"
-                                    >
-                                        <span
-                                            class="flex size-6 shrink-0 items-center justify-center rounded-lg border border-purple-500/50 bg-purple-700 text-[0.625rem] font-medium text-white"
-                                            >{{ team.initial }}</span
-                                        >
-                                        <span class="truncate">{{
-                                            team.name
-                                        }}</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="mt-auto">
-                            <a
-                                href="#"
-                                class="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-purple-100 hover:bg-purple-950/25 hover:text-white"
-                            >
-                                <Cog6ToothIcon
-                                    class="size-6 shrink-0 text-purple-100 group-hover:text-white"
-                                    aria-hidden="true"
-                                />
-                                Settings
-                            </a>
                         </li>
                     </ul>
                 </nav>
@@ -372,7 +281,9 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { SidebarNavigationInterface } from '@/Types/App/Interfaces/Admin/SidebarNavigationInterface';
+import { UserNavigationInterface } from '@/Types/App/Interfaces/Admin/UserNavigationInterface';
 import {
     Dialog,
     DialogPanel,
@@ -389,16 +300,15 @@ import {
     BellIcon,
     CalendarIcon,
     ChartPieIcon,
-    Cog6ToothIcon,
     DocumentDuplicateIcon,
     FolderIcon,
     HomeIcon,
     UsersIcon,
     XMarkIcon,
 } from '@heroicons/vue/24/outline';
-import { ref } from 'vue';
+import { Ref, ref } from 'vue';
 
-const navigation = [
+const navigation: SidebarNavigationInterface[] = [
     { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
     { name: 'Team', href: '#', icon: UsersIcon, current: false },
     { name: 'Projects', href: '#', icon: FolderIcon, current: false },
@@ -411,15 +321,10 @@ const navigation = [
     },
     { name: 'Reports', href: '#', icon: ChartPieIcon, current: false },
 ];
-const teams = [
-    { id: 1, name: 'Heroicons', href: '#', initial: 'H', current: false },
-    { id: 2, name: 'Tailwind Labs', href: '#', initial: 'T', current: false },
-    { id: 3, name: 'Workcation', href: '#', initial: 'W', current: false },
-];
-const userNavigation = [
+const userNavigation: UserNavigationInterface[] = [
     { name: 'Your profile', href: '#' },
     { name: 'Sign out', href: '#' },
 ];
 
-const sidebarOpen = ref(false);
+const sidebarOpen: Ref<boolean> = ref<boolean>(false);
 </script>
