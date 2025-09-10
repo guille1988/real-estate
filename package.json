@@ -34,6 +34,8 @@
         "vue-tsc": "^2.0.24"
     },
     "dependencies": {
+        "@headlessui/vue": "^1.7.23",
+        "@heroicons/vue": "^2.2.0",
         "vue3-toastify": "^0.2.8"
     }
 }

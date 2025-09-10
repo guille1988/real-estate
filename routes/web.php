@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ContactMessageController;
@@ -64,4 +65,7 @@ Route::prefix('admin')
                 Route::get('login', 'create')
                     ->name('.login');
             });
+
+        Route::get('dashboard', DashboardController::class)
+            ->name('.dashboard');
     });
