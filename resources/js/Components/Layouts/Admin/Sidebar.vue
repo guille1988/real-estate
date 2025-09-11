@@ -1,6 +1,6 @@
 <template>
     <!-- Mobile sidebar -->
-    <TransitionRoot as="template" :show="open">
+    <TransitionRoot as="template" :show="isOpen">
         <Dialog class="relative z-50 lg:hidden" @close="emitClose">
             <TransitionChild
                 as="template"
@@ -168,11 +168,11 @@ import {
 import { XMarkIcon } from '@heroicons/vue/24/outline';
 import { computed, ComputedRef } from 'vue';
 
-const props = defineProps<SidebarInterface>();
+const { open }: { open: boolean } = defineProps<SidebarInterface>();
 const emit = defineEmits<{ (e: 'update:open', value: boolean): void }>();
 
-const open: ComputedRef<boolean> = computed({
-    get: (): boolean => props.open ?? false,
+const isOpen: ComputedRef<boolean> = computed({
+    get: (): boolean => open ?? false,
     set: (value: boolean): void => emit('update:open', value),
 });
 
