@@ -17,7 +17,7 @@
 <script setup lang="ts">
 import { Ref, ref } from 'vue';
 import AdminSidebar from './Sidebar.vue';
-import AdminTopbar from './Topbar.vue';
+import AdminTopbar from './Topbar/Topbar.vue';
 
 const open: Ref<boolean> = ref<boolean>(false);
 </script>
