@@ -5,7 +5,7 @@
         <button
             type="button"
             class="-m-2.5 p-2.5 text-gray-400 hover:text-white lg:hidden"
-            @click="$emit('update:open', true)"
+            @click="emitOpen()"
         >
             <span class="sr-only">Open sidebar</span>
             <Bars3Icon class="size-6" aria-hidden="true" />
@@ -113,4 +113,7 @@ const topbarNavigation: TopbarNavigationInterface[] = [
 defineProps<{
     open: boolean;
 }>();
+
+const emit = defineEmits<{ (e: 'update:open', value: boolean): void }>();
+const emitOpen = (): void => emit('update:open', true);
 </script>

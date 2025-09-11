@@ -1,7 +1,7 @@
 <template>
     <!-- Mobile sidebar -->
     <TransitionRoot as="template" :show="isOpen">
-        <Dialog class="relative z-50 lg:hidden" @close="emitClose">
+        <Dialog class="relative z-50 lg:hidden" @close="emitClose()">
             <TransitionChild
                 as="template"
                 enter="transition-opacity ease-linear duration-300"
@@ -42,7 +42,7 @@
                                 <button
                                     type="button"
                                     class="-m-2.5 p-2.5"
-                                    @click="emitClose"
+                                    @click="emitClose()"
                                 >
                                     <span class="sr-only">Close sidebar</span>
                                     <XMarkIcon
