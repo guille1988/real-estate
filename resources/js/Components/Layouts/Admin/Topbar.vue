@@ -81,7 +81,7 @@
                                 v-slot="{ active }"
                             >
                                 <a
-                                    :href="item.href"
+                                    :href="item.route"
                                     :class="[
                                         active
                                             ? 'outline-hidden bg-white/5'
@@ -106,8 +106,8 @@ import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/vue/20/solid';
 import { Bars3Icon, BellIcon } from '@heroicons/vue/24/outline';
 
 const topbarNavigation: TopbarNavigationInterface[] = [
-    { name: 'Your profile', href: '#' },
-    { name: 'Sign out', href: '#' },
+    { name: 'Your profile', route: '#' },
+    { name: 'Sign out', route: '#' },
 ];
 
 defineProps<{

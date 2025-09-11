@@ -2,7 +2,7 @@ import type { Component } from 'vue';
 
 export interface SidebarNavigationInterface {
     name: string;
-    href: string;
+    route: string;
     icon: Component;
     current: boolean;
 }

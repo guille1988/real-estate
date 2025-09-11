@@ -76,7 +76,7 @@
                                                 :key="item.name"
                                             >
                                                 <a
-                                                    :href="item.href"
+                                                    :href="item.route"
                                                     :class="[
                                                         item.current
                                                             ? 'bg-purple-950/25 text-white'
@@ -128,7 +128,7 @@
                         <ul role="list" class="-mx-2 space-y-1">
                             <li v-for="item in navigation" :key="item.name">
                                 <a
-                                    :href="item.href"
+                                    :href="item.route"
                                     :class="[
                                         item.current
                                             ? 'bg-purple-950/25 text-white'
@@ -177,17 +177,17 @@ import {
 import { computed, ComputedRef } from 'vue';
 
 const navigation: SidebarNavigationInterface[] = [
-    { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
-    { name: 'Team', href: '#', icon: UsersIcon, current: false },
-    { name: 'Projects', href: '#', icon: FolderIcon, current: false },
-    { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
+    { name: 'Dashboard', route: '#', icon: HomeIcon, current: true },
+    { name: 'Team', route: '#', icon: UsersIcon, current: false },
+    { name: 'Projects', route: '#', icon: FolderIcon, current: false },
+    { name: 'Calendar', route: '#', icon: CalendarIcon, current: false },
     {
         name: 'Documents',
-        href: '#',
+        route: '#',
         icon: DocumentDuplicateIcon,
         current: false,
     },
-    { name: 'Reports', href: '#', icon: ChartPieIcon, current: false },
+    { name: 'Reports', route: '#', icon: ChartPieIcon, current: false },
 ];
 
 const { open }: { open: boolean } = defineProps<{
