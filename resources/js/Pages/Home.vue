@@ -11,7 +11,7 @@
 import ClientTestimonials from '@/Components/Home/ClientTestimonials/ClientTestimonials.vue';
 import FeaturedProperties from '@/Components/Home/FeaturedProperties/FeaturedProperties.vue';
 import HeroSection from '@/Components/Home/HeroSection/HeroSection.vue';
-import Layout from '@/Components/Layout/Layout.vue';
+import Layout from '@/Components/Layouts/Layout.vue';
 import Faq from '@/Components/Shared/Faq/Faq.vue';
 import { displayErrors } from '@/Composables/useErrorHandling';
 import { ErrorInterface } from '@/Types/App/Interfaces/ErrorInterface';

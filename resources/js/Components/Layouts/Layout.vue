@@ -7,6 +7,6 @@
 </template>
 
 <script lang="ts" setup>
-import Footer from '@/Components/Layout/Footer/Footer.vue';
-import Navbar from '@/Components/Layout/Navbar.vue';
+import Footer from '@/Components/Layouts/Footer/Footer.vue';
+import Navbar from '@/Components/Layouts/Navbar.vue';
 </script>
