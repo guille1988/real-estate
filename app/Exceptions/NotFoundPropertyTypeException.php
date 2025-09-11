@@ -11,12 +11,12 @@ use Symfony\Component\HttpFoundation\Response;
 final class NotFoundPropertyTypeException extends Exception
 {
     /**
-     * @phpstan-ignore-next-line
+     * @var int
      */
     protected $code = Response::HTTP_NOT_FOUND;
 
     /**
-     * @phpstan-ignore-next-line
+     * @var string
      */
     protected $message = 'This property type is missing. Please add it to '.PropertyTypeEnum::class.' enum class.';
 }
