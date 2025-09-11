@@ -158,17 +158,42 @@
 </template>
 
 <script setup lang="ts">
-import { SidebarInterface } from '@/Types/App/Interfaces/Admin/SidebarInterface';
+import { SidebarNavigationInterface } from '@/Types/App/Interfaces/Admin/SidebarNavigationInterface';
 import {
     Dialog,
     DialogPanel,
     TransitionChild,
     TransitionRoot,
 } from '@headlessui/vue';
-import { XMarkIcon } from '@heroicons/vue/24/outline';
+import {
+    CalendarIcon,
+    ChartPieIcon,
+    DocumentDuplicateIcon,
+    FolderIcon,
+    HomeIcon,
+    UsersIcon,
+    XMarkIcon,
+} from '@heroicons/vue/24/outline';
 import { computed, ComputedRef } from 'vue';
 
-const { open }: { open: boolean } = defineProps<SidebarInterface>();
+const navigation: SidebarNavigationInterface[] = [
+    { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
+    { name: 'Team', href: '#', icon: UsersIcon, current: false },
+    { name: 'Projects', href: '#', icon: FolderIcon, current: false },
+    { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
+    {
+        name: 'Documents',
+        href: '#',
+        icon: DocumentDuplicateIcon,
+        current: false,
+    },
+    { name: 'Reports', href: '#', icon: ChartPieIcon, current: false },
+];
+
+const { open }: { open: boolean } = defineProps<{
+    open: boolean;
+}>();
+
 const emit = defineEmits<{ (e: 'update:open', value: boolean): void }>();
 
 const isOpen: ComputedRef<boolean> = computed({
