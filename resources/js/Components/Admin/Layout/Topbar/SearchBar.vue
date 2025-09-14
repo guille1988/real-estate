@@ -1,5 +1,5 @@
 <template>
-    <form class="grid flex-1 grid-cols-1" action="#" method="GET">
+    <form class="mb-3 mt-3 grid flex-1 grid-cols-1" action="#" method="GET">
         <input
             name="search"
             aria-label="Search"
