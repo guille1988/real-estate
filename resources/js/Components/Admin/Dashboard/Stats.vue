@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h3 class="text-base font-semibold text-white">Last 30 days</h3>
+        <h3 class="ml-2 text-base font-semibold text-white">Last 30 days</h3>
         <dl
             class="inset-ring inset-ring-white/10 mt-5 grid grid-cols-1 divide-white/10 overflow-hidden rounded-lg bg-gray-800/75 md:grid-cols-3 md:divide-x md:divide-y-0"
         >
