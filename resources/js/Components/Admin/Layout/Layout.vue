@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import Sidebar from '@/Components/Admin/Layout/Sidebar.vue';
+import Sidebar from '@/Components/Admin/Layout/Sidebar/Sidebar.vue';
 import Topbar from '@/Components/Admin/Layout/Topbar/Topbar.vue';
 import { ref, Ref } from 'vue';
 
