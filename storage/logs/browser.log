@@ -1,1 +1,0 @@
-[2025-09-14 15:47:09] local.WARNING: Tried to use the 'fill' option without the 'Filler' plugin enabled. Please import and register the 'Filler' plugin and make sure it is not disabled in the options {"url":"http://localhost/admin/dashboard","user_agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:142.0) Gecko/20100101 Firefox/142.0","timestamp":"2025-09-14T15:47:08.781Z"} 
