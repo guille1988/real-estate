@@ -77,9 +77,44 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     method: 'post',
 })
 
+/**
+* @see \App\Http\Controllers\Admin\LoginController::destroy
+* @see app/Http/Controllers/Admin/LoginController.php:33
+* @route '/admin/login'
+*/
+export const destroy = (options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+    url: destroy.url(options),
+    method: 'delete',
+})
+
+destroy.definition = {
+    methods: ["delete"],
+    url: '/admin/login',
+} satisfies RouteDefinition<["delete"]>
+
+/**
+* @see \App\Http\Controllers\Admin\LoginController::destroy
+* @see app/Http/Controllers/Admin/LoginController.php:33
+* @route '/admin/login'
+*/
+destroy.url = (options?: RouteQueryOptions) => {
+    return destroy.definition.url + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\Admin\LoginController::destroy
+* @see app/Http/Controllers/Admin/LoginController.php:33
+* @route '/admin/login'
+*/
+destroy.delete = (options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+    url: destroy.url(options),
+    method: 'delete',
+})
+
 const login = {
     create: Object.assign(create, create),
     store: Object.assign(store, store),
+    destroy: Object.assign(destroy, destroy),
 }
 
 export default login

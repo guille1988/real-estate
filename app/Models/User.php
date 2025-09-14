@@ -72,6 +72,15 @@ final class User extends Authenticatable
         return 'uuid';
     }
 
+    /*
+     * Returns null because we don't use
+     * remember token functionality.
+     */
+    public function getRememberToken(): ?string
+    {
+        return null;
+    }
+
     /**
      * Get the fields from which will be unique.
      *

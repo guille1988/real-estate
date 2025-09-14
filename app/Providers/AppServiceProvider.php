@@ -29,7 +29,7 @@ final class AppServiceProvider extends ServiceProvider
      */
     private function configureAuthenticationRedirect(): void
     {
-        Authenticate::redirectUsing(fn (): string => route('admin.login'));
+        Authenticate::redirectUsing(fn (): string => route('admin.login.create'));
     }
 
     /**
@@ -83,13 +83,13 @@ final class AppServiceProvider extends ServiceProvider
             return;
         }
 
-        Password::defaults(function (): ?Password {
-            return Password::uncompromised()
+        Password::defaults(function (): Password {
+            return Password::min(8)
+                ->max(200)
                 ->numbers()
                 ->mixedCase()
                 ->symbols()
-                ->min(8)
-                ->max(200);
+                ->uncompromised();
         });
     }
 

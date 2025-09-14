@@ -7,25 +7,71 @@
             :key="item.name"
             v-slot="{ active }"
         >
-            <Link
-                :href="item.route"
-                :class="[
-                    active ? 'outline-hidden bg-white/5' : '',
-                    'block px-3 py-1 text-sm/6 text-white',
-                ]"
-                >{{ item.name }}
-            </Link>
+            <template v-if="isGetMethod(item.method)">
+                <Link
+                    :href="item.route"
+                    :class="[
+                        active ? 'outline-hidden bg-white/5' : '',
+                        'block px-3 py-1 text-sm/6 text-white',
+                    ]"
+                    >{{ item.name }}
+                </Link>
+            </template>
+            <template v-else>
+                <button
+                    type="button"
+                    :class="[
+                        active ? 'outline-hidden bg-white/5' : '',
+                        'block w-full px-3 py-1 text-left text-sm/6 text-white',
+                    ]"
+                    @click="submit(item)"
+                >
+                    {{ item.name }}
+                </button>
+            </template>
         </MenuItem>
     </MenuItems>
 </template>
 
 <script setup lang="ts">
+import LoginController from '@/Routes/actions/App/Http/Controllers/Admin/LoginController';
+import { FormMethodEnum } from '@/Types/Admin/Enums/FormMethodEnum';
 import { UserDropdownInterface } from '@/Types/Admin/Interfaces/UserDropdownInterface';
 import { MenuItem, MenuItems } from '@headlessui/vue';
-import { Link } from '@inertiajs/vue3';
+import { Link, router } from '@inertiajs/vue3';
 
 const userDropdown: UserDropdownInterface[] = [
-    { name: 'Your profile', route: '#' },
-    { name: 'Sign out', route: '#' },
+    {
+        name: 'Your profile',
+        route: '#',
+    },
+    {
+        name: 'Sign out',
+        route: LoginController.destroy().url,
+        method: FormMethodEnum.DELETE,
+    },
 ];
+
+const isGetMethod = (method?: FormMethodEnum): boolean => {
+    return (method ?? FormMethodEnum.GET) === FormMethodEnum.GET;
+};
+
+const submit = (item: UserDropdownInterface): void => {
+    switch (item.method) {
+        case FormMethodEnum.POST:
+            router.post(item.route);
+            break;
+        case FormMethodEnum.PUT:
+            router.put(item.route);
+            break;
+        case FormMethodEnum.PATCH:
+            router.patch(item.route);
+            break;
+        case FormMethodEnum.DELETE:
+            router.delete(item.route);
+            break;
+        default:
+            break;
+    }
+};
 </script>

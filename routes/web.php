@@ -68,6 +68,9 @@ Route::prefix('admin')
                 Route::post('login', 'store')
                     ->name('.login.store')
                     ->middleware('throttle:form');
+
+                Route::delete('login', 'destroy')
+                    ->name('.login.destroy');
             });
 
         Route::middleware('auth:web')

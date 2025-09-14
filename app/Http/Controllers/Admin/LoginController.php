@@ -29,4 +29,14 @@ final class LoginController
 
         return redirect()->intended(route('admin.dashboard'));
     }
+
+    public function destroy(): RedirectResponse
+    {
+        auth()->guard('web')->logout();
+
+        ($request = request())->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return to_route('admin.login.create');
+    }
 }
