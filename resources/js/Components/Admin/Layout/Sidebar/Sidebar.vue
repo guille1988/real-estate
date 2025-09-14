@@ -19,7 +19,12 @@ const navigationItems: SidebarNavigationInterface[] = [
         icon: ChartPieIcon,
         current: true,
     },
-    { name: PageEnum.PROPERTIES, route: '#', icon: HomeIcon, current: false },
+    {
+        name: PageEnum.PROPERTIES,
+        route: '#',
+        icon: HomeIcon,
+        current: false,
+    },
 ];
 
 const { open }: { open: boolean } = defineProps<{
