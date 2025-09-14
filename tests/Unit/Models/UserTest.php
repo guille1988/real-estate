@@ -16,6 +16,7 @@ it('contains all proper attributes.', function (): void {
             'name',
             'email',
             'email_verified_at',
+            'thumbnail',
             'is_admin',
             'created_at',
             'updated_at',

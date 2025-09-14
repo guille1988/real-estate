@@ -62,12 +62,7 @@ final class HandleInertiaRequestMiddleware extends Middleware
             ...$sharedProperties,
             'global_assets' => $globalAssets,
             'auth' => [
-                'user' => $request->user()?->only([
-                    'uuid',
-                    'name',
-                    'email',
-                    'email_verified_at',
-                ]),
+                'user' => $request->user()?->toResource(),
             ],
         ];
 

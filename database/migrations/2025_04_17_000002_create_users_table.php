@@ -22,7 +22,6 @@ return new class extends Migration
             $table->string('password');
             $table->string('thumbnail')->nullable();
             $table->boolean('is_admin');
-            $table->rememberToken();
             $table->timestamps();
         });
     }

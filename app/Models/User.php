@@ -20,7 +20,6 @@ use Illuminate\Support\Facades\Storage;
  *  @property-read string $password
  *  @property-read string|null $thumbnail
  *  @property-read bool $is_admin
- *  @property-read string|null $remember_token
  *  @property-read CarbonImmutable|null $created_at
  *  @property-read CarbonImmutable|null $updated_at
  */
@@ -95,7 +94,7 @@ final class User extends Authenticatable
      * Returns the user thumbnail or
      * the placeholder if there is none.
      */
-    public function getUrl(): string
+    public function getThumbnail(): string
     {
         return Storage::disk('users')
             ->url($this->thumbnail ?? $this->getPlaceholder());
