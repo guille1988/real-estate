@@ -5,8 +5,8 @@
         <div class="lg:pl-72">
             <Topbar v-model:open="open" />
 
-            <main class="py-10">
-                <div class="px-4 sm:px-6 lg:px-8">
+            <main class="h-[calc(100vh-4rem)] overflow-auto py-6">
+                <div class="h-full min-h-0 px-4 sm:px-6 lg:px-8">
                     <slot />
                 </div>
             </main>

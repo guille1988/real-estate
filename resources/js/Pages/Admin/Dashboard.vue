@@ -1,18 +1,24 @@
 <template>
     <Layout>
         <div
-            class="inset-ring inset-ring-white/10 mb-8 flex min-h-screen w-full flex-col rounded-xl bg-black p-6 text-white"
+            class="inset-ring inset-ring-white/10 flex h-full min-h-0 w-full flex-col rounded-xl bg-black p-4 text-white md:p-6"
         >
-            <div class="mb-6">
+            <div class="mb-4 md:mb-6">
                 <Stats />
             </div>
-            <div class="grid min-h-0 flex-1 grid-cols-1 gap-6 lg:grid-cols-2">
-                <div class="flex h-full flex-col rounded-lg bg-gray-800/75 p-4">
+            <div
+                class="grid min-h-0 flex-1 grid-cols-1 gap-4 md:grid-cols-2 md:gap-6"
+            >
+                <div
+                    class="flex min-h-0 flex-col rounded-lg bg-gray-800/75 p-4"
+                >
                     <div class="min-h-0 flex-1">
                         <BarChart />
                     </div>
                 </div>
-                <div class="flex h-full flex-col rounded-lg bg-gray-800/75 p-4">
+                <div
+                    class="flex min-h-0 flex-col rounded-lg bg-gray-800/75 p-4"
+                >
                     <div class="min-h-0 flex-1">
                         <LineChart />
                     </div>
