@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\ContactController;
@@ -60,6 +61,8 @@ Route::post('subscribers', SubscriberController::class)
 Route::prefix('admin')
     ->name('admin')
     ->group(function (): void {
+        Route::get('', AdminController::class);
+
         Route::controller(LoginController::class)
             ->group(function (): void {
                 Route::get('login', 'create')
