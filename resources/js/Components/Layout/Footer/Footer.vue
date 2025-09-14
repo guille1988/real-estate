@@ -133,8 +133,8 @@
 import EmailIcon from '@/Components/Icons/EmailIcon.vue';
 import RealEstateIcon from '@/Components/Icons/RealEstateIcon.vue';
 import SendIcon from '@/Components/Icons/SendIcon.vue';
-import FooterCategory from '@/Components/Layouts/Footer/FooterCategory.vue';
-import FooterSocialLink from '@/Components/Layouts/Footer/FooterSocialLink.vue';
+import FooterCategory from '@/Components/Layout/Footer/FooterCategory.vue';
+import FooterSocialLink from '@/Components/Layout/Footer/FooterSocialLink.vue';
 import { useSection } from '@/Composables/useSection';
 import HomeController from '@/Routes/actions/App/Http/Controllers/HomeController';
 import { SocialLinkIconEnum } from '@/Types/App/Enums/SocialLinkIconEnum';

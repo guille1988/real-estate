@@ -51,7 +51,7 @@
 </template>
 
 <script setup lang="ts">
-import { UserMenuInterface } from '@/Types/App/Interfaces/Admin/UserMenuInterface';
+import { UserMenuInterface } from '@/Types/Admin/Interfaces/UserMenuInterface';
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue';
 import { ChevronDownIcon } from '@heroicons/vue/20/solid';
 

@@ -158,7 +158,7 @@
 </template>
 
 <script setup lang="ts">
-import { SidebarNavigationInterface } from '@/Types/App/Interfaces/Admin/SidebarNavigationInterface';
+import { SidebarNavigationInterface } from '@/Types/Admin/Interfaces/SidebarNavigationInterface';
 import {
     Dialog,
     DialogPanel,
