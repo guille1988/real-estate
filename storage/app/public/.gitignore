@@ -1,2 +1,9 @@
 *
 !.gitignore
+
+!assets/
+!assets/**
+
+!users/
+!users/thumbnails/
+!users/thumbnails/placeholder.jpeg

@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 
 /**
  *  @property-read string $uuid
@@ -17,6 +18,7 @@ use Illuminate\Notifications\Notifiable;
  *  @property-read string $email
  *  @property-read CarbonImmutable|null $email_verified_at
  *  @property-read string $password
+ *  @property-read string|null $thumbnail
  *  @property-read bool $is_admin
  *  @property-read string|null $remember_token
  *  @property-read CarbonImmutable|null $created_at
@@ -87,5 +89,23 @@ final class User extends Authenticatable
     public function isAdmin(): bool
     {
         return $this->is_admin;
+    }
+
+    /*
+     * Returns the user thumbnail or
+     * the placeholder if there is none.
+     */
+    public function getUrl(): string
+    {
+        return Storage::disk('users')
+            ->url($this->thumbnail ?? $this->getPlaceholder());
+    }
+
+    /*
+     * Returns the placeholder image.
+     */
+    public function getPlaceholder(): string
+    {
+        return 'thumbnails/placeholder.jpeg';
     }
 }
