@@ -56,22 +56,15 @@ const isGetMethod = (method?: FormMethodEnum): boolean => {
     return (method ?? FormMethodEnum.GET) === FormMethodEnum.GET;
 };
 
+const routeHandlers: Record<FormMethodEnum, (route: string) => void> = {
+    [FormMethodEnum.GET]: (route: string) => router.get(route),
+    [FormMethodEnum.POST]: (route: string) => router.post(route),
+    [FormMethodEnum.PUT]: (route: string) => router.put(route),
+    [FormMethodEnum.PATCH]: (route: string) => router.patch(route),
+    [FormMethodEnum.DELETE]: (route: string) => router.delete(route),
+};
+
 const submit = (item: UserDropdownInterface): void => {
-    switch (item.method) {
-        case FormMethodEnum.POST:
-            router.post(item.route);
-            break;
-        case FormMethodEnum.PUT:
-            router.put(item.route);
-            break;
-        case FormMethodEnum.PATCH:
-            router.patch(item.route);
-            break;
-        case FormMethodEnum.DELETE:
-            router.delete(item.route);
-            break;
-        default:
-            break;
-    }
+    routeHandlers[item.method ?? FormMethodEnum.POST](item.route);
 };
 </script>
