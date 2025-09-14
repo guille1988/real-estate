@@ -2,7 +2,14 @@
 
 declare(strict_types=1);
 
+use App\Models\User;
+
 it('works on dashboard page.', function (): void {
-    $this->get(route('admin.dashboard'))
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $this->actingAs($user)
+        ->get(route('admin.dashboard'))
         ->assertOk();
 });
