@@ -63,9 +63,16 @@ Route::prefix('admin')
         Route::controller(LoginController::class)
             ->group(function (): void {
                 Route::get('login', 'create')
-                    ->name('.login');
+                    ->name('.login.create');
+
+                Route::post('login', 'store')
+                    ->name('.login.store')
+                    ->middleware('throttle:form');
             });
 
-        Route::get('dashboard', DashboardController::class)
-            ->name('.dashboard');
+        Route::middleware('auth:web')
+            ->group(function (): void {
+                Route::get('dashboard', DashboardController::class)
+                    ->name('.dashboard');
+            });
     });

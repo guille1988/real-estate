@@ -7,6 +7,7 @@ namespace App\Providers;
 use App\Exceptions\Handler;
 use App\Responses\InertiaResponse;
 use Carbon\CarbonImmutable;
+use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Database\Eloquent\Model;
@@ -18,10 +19,19 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Validation\Rules\Password;
 use Inertia\ResponseFactory;
 
 final class AppServiceProvider extends ServiceProvider
 {
+    /**
+     * Configure authentication redirect.
+     */
+    private function configureAuthenticationRedirect(): void
+    {
+        Authenticate::redirectUsing(fn (): string => route('admin.login'));
+    }
+
     /**
      * Configure commands.
      */
@@ -62,6 +72,25 @@ final class AppServiceProvider extends ServiceProvider
         Model::shouldBeStrict(! $this->app->isProduction());
         Model::automaticallyEagerLoadRelationships();
         Model::unguard();
+    }
+
+    /**
+     * Configure application's password validation.
+     */
+    private function configurePasswordValidation(): void
+    {
+        if ($this->app->isLocal()) {
+            return;
+        }
+
+        Password::defaults(function (): ?Password {
+            return Password::uncompromised()
+                ->numbers()
+                ->mixedCase()
+                ->symbols()
+                ->min(8)
+                ->max(200);
+        });
     }
 
     /**
@@ -117,10 +146,12 @@ final class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        $this->configureAuthenticationRedirect();
         $this->configureCommands();
         $this->configureDates();
         $this->configureExceptionHandler();
         $this->configureModels();
+        $this->configurePasswordValidation();
         $this->configureRateLimiting();
         $this->configureResources();
         $this->configureUrl();
