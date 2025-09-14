@@ -32,7 +32,7 @@
 <script setup lang="ts">
 import Bell from '@/Components/Admin/Layout/Topbar/Bell.vue';
 import SearchBar from '@/Components/Admin/Layout/Topbar/SearchBar.vue';
-import UserMenu from '@/Components/Admin/Layout/Topbar/UserMenu.vue';
+import UserMenu from '@/Components/Admin/Layout/Topbar/UserMenu/UserMenu.vue';
 import { Bars3Icon } from '@heroicons/vue/24/outline';
 
 defineProps<{

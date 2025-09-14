@@ -75,7 +75,7 @@
                                                 v-for="item in navigation"
                                                 :key="item.name"
                                             >
-                                                <a
+                                                <Link
                                                     :href="item.route"
                                                     :class="[
                                                         item.current
@@ -95,7 +95,7 @@
                                                         aria-hidden="true"
                                                     />
                                                     {{ item.name }}
-                                                </a>
+                                                </Link>
                                             </li>
                                         </ul>
                                     </li>
@@ -124,7 +124,7 @@
                     <li>
                         <ul role="list" class="-mx-2 space-y-1">
                             <li v-for="item in navigation" :key="item.name">
-                                <a
+                                <Link
                                     :href="item.route"
                                     :class="[
                                         item.current
@@ -144,7 +144,7 @@
                                         aria-hidden="true"
                                     />
                                     {{ item.name }}
-                                </a>
+                                </Link>
                             </li>
                         </ul>
                     </li>
@@ -156,6 +156,8 @@
 
 <script setup lang="ts">
 import RealEstateIcon from '@/Components/Icons/RealEstateIcon.vue';
+import DashboardController from '@/Routes/actions/App/Http/Controllers/Admin/DashboardController';
+import { PageEnum } from '@/Types/Admin/Enums/PageEnum';
 import { SidebarNavigationInterface } from '@/Types/Admin/Interfaces/SidebarNavigationInterface';
 import {
     Dialog,
@@ -163,31 +165,20 @@ import {
     TransitionChild,
     TransitionRoot,
 } from '@headlessui/vue';
-import {
-    CalendarIcon,
-    ChartPieIcon,
-    DocumentDuplicateIcon,
-    FolderIcon,
-    HomeIcon,
-    UsersIcon,
-    XMarkIcon,
-} from '@heroicons/vue/24/outline';
+import { ChartPieIcon, HomeIcon, XMarkIcon } from '@heroicons/vue/24/outline';
+import { Link } from '@inertiajs/vue3';
 import { computed, ComputedRef } from 'vue';
 
 const appName: string = import.meta.env.VITE_APP_NAME || 'Laravel';
 
 const navigation: SidebarNavigationInterface[] = [
-    { name: 'Dashboard', route: '#', icon: HomeIcon, current: true },
-    { name: 'Team', route: '#', icon: UsersIcon, current: false },
-    { name: 'Projects', route: '#', icon: FolderIcon, current: false },
-    { name: 'Calendar', route: '#', icon: CalendarIcon, current: false },
     {
-        name: 'Documents',
-        route: '#',
-        icon: DocumentDuplicateIcon,
-        current: false,
+        name: PageEnum.DASHBOARD,
+        route: DashboardController.url(),
+        icon: ChartPieIcon,
+        current: true,
     },
-    { name: 'Reports', route: '#', icon: ChartPieIcon, current: false },
+    { name: PageEnum.PROPERTIES, route: '#', icon: HomeIcon, current: false },
 ];
 
 const { open }: { open: boolean } = defineProps<{
