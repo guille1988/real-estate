@@ -7,7 +7,7 @@ import { createApp, DefineComponent, h } from 'vue';
 import Vue3Toastify from 'vue3-toastify';
 import 'vue3-toastify/dist/index.css';
 
-const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+const appName: string = import.meta.env.VITE_APP_NAME || 'Laravel';
 
 void createInertiaApp({
     title: (title) => `${title} - ${appName}`,

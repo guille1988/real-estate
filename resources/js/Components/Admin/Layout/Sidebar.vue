@@ -116,11 +116,8 @@
             class="relative flex grow flex-col gap-y-5 overflow-y-auto bg-purple-800 px-6 pb-4 after:pointer-events-none after:absolute after:inset-y-0 after:right-0 after:w-px after:bg-white/10"
         >
             <div class="flex h-16 shrink-0 items-center">
-                <img
-                    class="h-8 w-auto"
-                    src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=white"
-                    alt="Your Company"
-                />
+                <RealEstateIcon /> &nbsp;&nbsp;&nbsp;&nbsp;
+                <b class="text-lg font-black uppercase"> {{ appName }} </b>
             </div>
             <nav class="flex flex-1 flex-col">
                 <ul role="list" class="flex flex-1 flex-col gap-y-7">
@@ -158,6 +155,7 @@
 </template>
 
 <script setup lang="ts">
+import RealEstateIcon from '@/Components/Icons/RealEstateIcon.vue';
 import { SidebarNavigationInterface } from '@/Types/Admin/Interfaces/SidebarNavigationInterface';
 import {
     Dialog,
@@ -175,6 +173,8 @@ import {
     XMarkIcon,
 } from '@heroicons/vue/24/outline';
 import { computed, ComputedRef } from 'vue';
+
+const appName: string = import.meta.env.VITE_APP_NAME || 'Laravel';
 
 const navigation: SidebarNavigationInterface[] = [
     { name: 'Dashboard', route: '#', icon: HomeIcon, current: true },
