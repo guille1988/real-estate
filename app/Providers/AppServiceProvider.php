@@ -24,7 +24,7 @@ use Inertia\ResponseFactory;
 
 final class AppServiceProvider extends ServiceProvider
 {
-    /**
+    /*
      * Configure authentication redirect.
      */
     private function configureAuthenticationRedirect(): void
@@ -32,7 +32,7 @@ final class AppServiceProvider extends ServiceProvider
         Authenticate::redirectUsing(fn (): string => route('admin.login.create'));
     }
 
-    /**
+    /*
      * Configure commands.
      */
     private function configureCommands(): void
@@ -40,7 +40,7 @@ final class AppServiceProvider extends ServiceProvider
         DB::prohibitDestructiveCommands($this->app->isProduction());
     }
 
-    /**
+    /*
      * Configure dates.
      */
     private function configureDates(): void
@@ -48,7 +48,7 @@ final class AppServiceProvider extends ServiceProvider
         Date::use(CarbonImmutable::class);
     }
 
-    /**
+    /*
      * Configure the application exception handler.
      */
     private function configureExceptionHandler(): void
@@ -56,7 +56,7 @@ final class AppServiceProvider extends ServiceProvider
         $this->app->singleton(ExceptionHandler::class, Handler::class);
     }
 
-    /**
+    /*
      * Configure Inertia response.
      */
     private function configureInertiaResponse(): void
@@ -64,7 +64,7 @@ final class AppServiceProvider extends ServiceProvider
         $this->app->singleton(ResponseFactory::class, InertiaResponse::class);
     }
 
-    /**
+    /*
      * Configure models.
      */
     private function configureModels(): void
@@ -76,10 +76,12 @@ final class AppServiceProvider extends ServiceProvider
 
     /**
      * Configure application's password validation.
+     *
+     * @codeCoverageIgnore
      */
     private function configurePasswordValidation(): void
     {
-        if ($this->app->isLocal()) {
+        if (! $this->app->isProduction()) {
             return;
         }
 
@@ -93,7 +95,7 @@ final class AppServiceProvider extends ServiceProvider
         });
     }
 
-    /**
+    /*
      * Configure rate limiting.
      */
     private function configureRateLimiting(): void
@@ -109,7 +111,7 @@ final class AppServiceProvider extends ServiceProvider
         });
     }
 
-    /**
+    /*
      * Configure resources.
      */
     private function configureResources(): void
@@ -117,7 +119,7 @@ final class AppServiceProvider extends ServiceProvider
         JsonResource::withoutWrapping();
     }
 
-    /**
+    /*
      * Configure URL.
      */
     private function configureUrl(): void
@@ -125,7 +127,7 @@ final class AppServiceProvider extends ServiceProvider
         URL::forceHttps($this->app->isProduction());
     }
 
-    /**
+    /*
      * Configure Vite loading strategy.
      */
     private function configureVite(): void
@@ -133,7 +135,7 @@ final class AppServiceProvider extends ServiceProvider
         Vite::useAggressivePrefetching();
     }
 
-    /**
+    /*
      * Register any application services.
      */
     public function register(): void
@@ -141,7 +143,7 @@ final class AppServiceProvider extends ServiceProvider
         $this->configureInertiaResponse();
     }
 
-    /**
+    /*
      * Bootstrap any application services.
      */
     public function boot(): void

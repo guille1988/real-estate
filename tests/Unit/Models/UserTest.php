@@ -37,3 +37,11 @@ it('has the correct fields to implement unique ids.', function (): void {
     expect(User::factory()->create()->uniqueIds())
         ->toContain('uuid');
 });
+
+it("doesn't have remember token functionality.", function (): void {
+    $token = User::factory()
+        ->create()
+        ->getRememberToken();
+
+    expect($token)->toBeNull();
+});

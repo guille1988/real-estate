@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\Admin\AdminController::__invoke
-* @see app/Http/Controllers/Admin/AdminController.php:14
+* @see app/Http/Controllers/Admin/AdminController.php:11
 * @route '/admin'
 */
 const AdminController = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ AdminController.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\AdminController::__invoke
-* @see app/Http/Controllers/Admin/AdminController.php:14
+* @see app/Http/Controllers/Admin/AdminController.php:11
 * @route '/admin'
 */
 AdminController.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ AdminController.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\AdminController::__invoke
-* @see app/Http/Controllers/Admin/AdminController.php:14
+* @see app/Http/Controllers/Admin/AdminController.php:11
 * @route '/admin'
 */
 AdminController.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -35,7 +35,7 @@ AdminController.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => (
 
 /**
 * @see \App\Http\Controllers\Admin\AdminController::__invoke
-* @see app/Http/Controllers/Admin/AdminController.php:14
+* @see app/Http/Controllers/Admin/AdminController.php:11
 * @route '/admin'
 */
 AdminController.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({

@@ -211,7 +211,7 @@ subscribers.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\AdminController::__invoke
-* @see app/Http/Controllers/Admin/AdminController.php:14
+* @see app/Http/Controllers/Admin/AdminController.php:11
 * @route '/admin'
 */
 export const admin = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -226,7 +226,7 @@ admin.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\AdminController::__invoke
-* @see app/Http/Controllers/Admin/AdminController.php:14
+* @see app/Http/Controllers/Admin/AdminController.php:11
 * @route '/admin'
 */
 admin.url = (options?: RouteQueryOptions) => {
@@ -235,7 +235,7 @@ admin.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\AdminController::__invoke
-* @see app/Http/Controllers/Admin/AdminController.php:14
+* @see app/Http/Controllers/Admin/AdminController.php:11
 * @route '/admin'
 */
 admin.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -245,7 +245,7 @@ admin.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\AdminController::__invoke
-* @see app/Http/Controllers/Admin/AdminController.php:14
+* @see app/Http/Controllers/Admin/AdminController.php:11
 * @route '/admin'
 */
 admin.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
