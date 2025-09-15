@@ -17,6 +17,15 @@ enum ImageFormatEnum: string
     case WEBP = 'webp';
 
     /*
+     * Returns all formats as a string comma separated.
+     */
+    public static function toJoin(): string
+    {
+        return collect(self::cases())->map->toUpper()
+            ->join(', ', ' and ');
+    }
+
+    /*
      * Returns true if the format is jpg.
      */
     public function isJpg(): bool

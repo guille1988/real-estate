@@ -125,7 +125,7 @@
                                                 <p
                                                     class="text-xs/5 text-gray-400"
                                                 >
-                                                    PNG, JPG, GIF up to 10MB
+                                                    {{ formats }} up to 10MB
                                                 </p>
                                             </template>
                                         </div>
@@ -144,6 +144,10 @@ import Layout from '@/Components/Admin/Layout/Layout.vue';
 import TextInput from '@/Components/Shared/Inputs/TextInput.vue';
 import { PhotoIcon } from '@heroicons/vue/24/solid';
 import { onBeforeUnmount, Ref, ref } from 'vue';
+
+defineProps<{
+    formats: string;
+}>();
 
 const name: Ref<string> = ref<string>('');
 const avatarPreview: Ref<string | null> = ref<string | null>(null);
