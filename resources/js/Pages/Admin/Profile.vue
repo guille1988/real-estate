@@ -145,10 +145,10 @@ import { PhotoIcon } from '@heroicons/vue/24/solid';
 import { onBeforeUnmount, Ref, ref } from 'vue';
 
 const name: Ref<string> = ref<string>('');
-const avatarPreview = ref<string | null>(null);
-const coverFile = ref<File | null>(null);
-const coverPreview = ref<string | null>(null);
-const isDraggingCover = ref<boolean>(false);
+const avatarPreview: Ref<string | null> = ref<string | null>(null);
+const coverFile: Ref<File | null> = ref<File | null>(null);
+const coverPreview: Ref<string | null> = ref<string | null>(null);
+const isDraggingCover: Ref<boolean> = ref<boolean>(false);
 
 function setCoverFile(file: File): void {
     if (!file.type.startsWith('image/')) {
@@ -166,6 +166,7 @@ function setCoverFile(file: File): void {
 function onCoverSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
     const file = input.files && input.files[0] ? input.files[0] : null;
+
     if (file) {
         setCoverFile(file);
     }
@@ -186,17 +187,19 @@ function onCoverDragLeave(): void {
 function onCoverDrop(event: DragEvent): void {
     isDraggingCover.value = false;
     const files = event.dataTransfer?.files;
+
     if (!files || files.length === 0) {
         return;
     }
-    const file = files[0];
-    setCoverFile(file);
+
+    setCoverFile(files[0]);
 }
 
-onBeforeUnmount(() => {
+onBeforeUnmount((): void => {
     if (avatarPreview.value) {
         URL.revokeObjectURL(avatarPreview.value);
     }
+
     if (coverPreview.value) {
         URL.revokeObjectURL(coverPreview.value);
     }
