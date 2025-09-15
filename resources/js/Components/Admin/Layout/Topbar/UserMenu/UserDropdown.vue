@@ -35,6 +35,7 @@
 
 <script setup lang="ts">
 import LoginController from '@/Routes/actions/App/Http/Controllers/Admin/LoginController';
+import ProfileController from '@/Routes/actions/App/Http/Controllers/Admin/ProfileController';
 import { FormMethodEnum } from '@/Types/Admin/Enums/FormMethodEnum';
 import { UserDropdownInterface } from '@/Types/Admin/Interfaces/UserDropdownInterface';
 import { MenuItem, MenuItems } from '@headlessui/vue';
@@ -43,7 +44,7 @@ import { Link, router } from '@inertiajs/vue3';
 const userDropdown: UserDropdownInterface[] = [
     {
         name: 'Your profile',
-        route: '#',
+        route: ProfileController.edit().url,
     },
     {
         name: 'Sign out',
