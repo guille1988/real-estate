@@ -150,7 +150,7 @@ const coverFile: Ref<File | null> = ref<File | null>(null);
 const coverPreview: Ref<string | null> = ref<string | null>(null);
 const isDraggingCover: Ref<boolean> = ref<boolean>(false);
 
-function setCoverFile(file: File): void {
+const setCoverFile = (file: File): void => {
     if (!file.type.startsWith('image/')) {
         return;
     }
@@ -161,30 +161,30 @@ function setCoverFile(file: File): void {
 
     coverFile.value = file;
     coverPreview.value = URL.createObjectURL(file);
-}
+};
 
-function onCoverSelected(event: Event): void {
+const onCoverSelected = (event: Event): void => {
     const input = event.target as HTMLInputElement;
     const file = input.files && input.files[0] ? input.files[0] : null;
 
     if (file) {
         setCoverFile(file);
     }
-}
+};
 
-function onCoverDragEnter(): void {
+const onCoverDragEnter = (): void => {
     isDraggingCover.value = true;
-}
+};
 
-function onCoverDragOver(): void {
+const onCoverDragOver = (): void => {
     isDraggingCover.value = true;
-}
+};
 
-function onCoverDragLeave(): void {
+const onCoverDragLeave = (): void => {
     isDraggingCover.value = false;
-}
+};
 
-function onCoverDrop(event: DragEvent): void {
+const onCoverDrop = (event: DragEvent): void => {
     isDraggingCover.value = false;
     const files = event.dataTransfer?.files;
 
@@ -193,7 +193,7 @@ function onCoverDrop(event: DragEvent): void {
     }
 
     setCoverFile(files[0]);
-}
+};
 
 onBeforeUnmount((): void => {
     if (avatarPreview.value) {
