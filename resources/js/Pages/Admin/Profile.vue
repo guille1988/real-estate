@@ -52,7 +52,7 @@
                                     <div
                                         class="flex max-w-2xl justify-center rounded-lg border border-dashed border-white/25 px-6 py-10"
                                         :class="{
-                                            'ring-2 ring-indigo-500 ring-offset-2 ring-offset-black':
+                                            'ring-2 ring-purple-500 ring-offset-2 ring-offset-black':
                                                 isDraggingCover,
                                         }"
                                         @dragenter.prevent="onCoverDragEnter"
@@ -77,7 +77,7 @@
                                                 >
                                                     <label
                                                         for="cover-upload"
-                                                        class="relative cursor-pointer rounded-md bg-transparent font-semibold text-indigo-400 focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-indigo-500 hover:text-indigo-300"
+                                                        class="relative cursor-pointer rounded-md bg-transparent font-semibold text-purple-400 focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-purple-500 hover:text-purple-300"
                                                     >
                                                         <span>Change</span>
                                                         <input
@@ -102,10 +102,11 @@
                                                 >
                                                     <label
                                                         for="cover-upload"
-                                                        class="relative cursor-pointer rounded-md bg-transparent font-semibold text-indigo-400 focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-indigo-500 hover:text-indigo-300"
+                                                        class="relative cursor-pointer rounded-md bg-transparent font-semibold text-purple-400 focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-purple-500 hover:text-purple-300"
                                                     >
                                                         <span
-                                                            >Upload a file</span
+                                                            >Upload an
+                                                            image</span
                                                         >
                                                         <input
                                                             id="cover-upload"
