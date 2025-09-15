@@ -132,91 +132,13 @@
                                     >Thumbnail</label
                                 >
                                 <div class="mt-2 sm:col-span-2 sm:mt-0">
-                                    <div
-                                        class="flex max-w-2xl justify-center rounded-lg border border-dashed border-white/25 px-6 py-10"
-                                        :class="{
-                                            'ring-2 ring-purple-500 ring-offset-2 ring-offset-black':
-                                                isDraggingCover,
-                                        }"
-                                        @dragenter.prevent="onCoverDragEnter"
-                                        @dragover.prevent="onCoverDragOver"
-                                        @dragleave.prevent="onCoverDragLeave"
-                                        @drop.prevent="onCoverDrop"
-                                    >
-                                        <div class="w-full text-center">
-                                            <div
-                                                v-if="coverPreview"
-                                                class="flex flex-col items-center"
-                                            >
-                                                <div
-                                                    class="mx-auto w-full max-w-xs"
-                                                >
-                                                    <img
-                                                        :src="
-                                                            coverPreview as string
-                                                        "
-                                                        alt="Selected cover preview"
-                                                        class="h-40 w-full rounded-md bg-gray-900/50 object-contain"
-                                                    />
-                                                </div>
-                                                <div
-                                                    class="mt-3 flex items-center justify-center text-sm/6 text-gray-400"
-                                                >
-                                                    <label
-                                                        for="upload"
-                                                        class="relative cursor-pointer rounded-md bg-transparent font-semibold text-purple-400 focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-purple-500 hover:text-purple-300"
-                                                    >
-                                                        <span>Change</span>
-                                                        <input
-                                                            id="upload"
-                                                            type="file"
-                                                            accept="image/*"
-                                                            class="sr-only"
-                                                            @change="
-                                                                onCoverSelected
-                                                            "
-                                                        />
-                                                    </label>
-                                                </div>
-                                            </div>
-                                            <template v-else>
-                                                <PhotoIcon
-                                                    class="mx-auto size-12 text-gray-600"
-                                                    aria-hidden="true"
-                                                />
-                                                <div
-                                                    class="mt-4 flex items-center justify-center text-sm/6 text-gray-400"
-                                                >
-                                                    <label
-                                                        for="upload"
-                                                        class="relative cursor-pointer rounded-md bg-transparent font-semibold text-purple-400 focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-purple-500 hover:text-purple-300"
-                                                    >
-                                                        <span
-                                                            >Upload an
-                                                            image</span
-                                                        >
-                                                        <input
-                                                            id="upload"
-                                                            type="file"
-                                                            accept="image/*"
-                                                            class="sr-only"
-                                                            @change="
-                                                                onCoverSelected
-                                                            "
-                                                        />
-                                                    </label>
-                                                    <p class="pl-1">
-                                                        or drag and drop
-                                                    </p>
-                                                </div>
-                                                <p
-                                                    class="text-xs/5 text-gray-400"
-                                                >
-                                                    {{ formats }} up to 10MB
-                                                </p>
-                                            </template>
-                                        </div>
-                                    </div>
+                                    <FileInput
+                                        v-model="coverFile"
+                                        v-model:previewUrl="coverPreview"
+                                        :formats="formats"
+                                        accept="image/*"
+                                        :max-size-mb="10"
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -228,9 +150,9 @@
 </template>
 <script setup lang="ts">
 import Layout from '@/Components/Admin/Layout/Layout.vue';
+import FileInput from '@/Components/Shared/Inputs/FileInput.vue';
 import TextInput from '@/Components/Shared/Inputs/TextInput.vue';
-import { PhotoIcon } from '@heroicons/vue/24/solid';
-import { onBeforeUnmount, Ref, ref } from 'vue';
+import { Ref, ref } from 'vue';
 
 defineProps<{
     formats: string;
@@ -240,65 +162,6 @@ const name: Ref<string> = ref<string>('');
 const email: Ref<string> = ref<string>('');
 const password: Ref<string> = ref<string>('');
 const passwordConfirmation: Ref<string> = ref<string>('');
-const avatarPreview: Ref<string | null> = ref<string | null>(null);
 const coverFile: Ref<File | null> = ref<File | null>(null);
 const coverPreview: Ref<string | null> = ref<string | null>(null);
-const isDraggingCover: Ref<boolean> = ref<boolean>(false);
-
-const setCoverFile = (file: File): void => {
-    if (!file.type.startsWith('image/')) {
-        return;
-    }
-
-    if (coverPreview.value) {
-        URL.revokeObjectURL(coverPreview.value);
-    }
-
-    coverFile.value = file;
-    coverPreview.value = URL.createObjectURL(file);
-};
-
-const onCoverSelected = (event: Event): void => {
-    const input: HTMLInputElement = event.target as HTMLInputElement;
-
-    const file: File | null =
-        input.files && input.files[0] ? input.files[0] : null;
-
-    if (file) {
-        setCoverFile(file);
-    }
-};
-
-const onCoverDragEnter = (): void => {
-    isDraggingCover.value = true;
-};
-
-const onCoverDragOver = (): void => {
-    isDraggingCover.value = true;
-};
-
-const onCoverDragLeave = (): void => {
-    isDraggingCover.value = false;
-};
-
-const onCoverDrop = (event: DragEvent): void => {
-    isDraggingCover.value = false;
-    const files: FileList | undefined = event.dataTransfer?.files;
-
-    if (!files || files.length === 0) {
-        return;
-    }
-
-    setCoverFile(files[0]);
-};
-
-onBeforeUnmount((): void => {
-    if (avatarPreview.value) {
-        URL.revokeObjectURL(avatarPreview.value);
-    }
-
-    if (coverPreview.value) {
-        URL.revokeObjectURL(coverPreview.value);
-    }
-});
 </script>
