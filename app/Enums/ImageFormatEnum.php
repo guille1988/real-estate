@@ -50,7 +50,7 @@ enum ImageFormatEnum: string
     }
 
     /*
-     * Returns the format in upper case.
+     * Returns the format in uppercase.
      */
     public function toUpper(): string
     {
