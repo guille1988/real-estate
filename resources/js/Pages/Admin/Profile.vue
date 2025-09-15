@@ -27,14 +27,14 @@
                                 >
                                 <div class="mt-2 sm:col-span-2 sm:mt-0">
                                     <div
-                                        class="flex items-center rounded-md outline-1 -outline-offset-1 outline-white/10 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-500 sm:max-w-md"
+                                        class="flex items-center rounded-md outline-1 -outline-offset-1 outline-white/10 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-purple-500 sm:max-w-md"
                                     >
-                                        <input
+                                        <TextInput
+                                            id="username"
+                                            label=""
+                                            v-model:modelValue="username"
                                             type="text"
-                                            name="name"
-                                            id="name"
-                                            class="block min-w-0 grow bg-transparent py-1.5 pl-1 pr-3 text-base text-white placeholder:text-gray-500 focus:outline-none sm:text-sm/6"
-                                            placeholder="test@test.com"
+                                            placeholder="Enter your username"
                                         />
                                     </div>
                                 </div>
@@ -116,5 +116,9 @@
 </template>
 <script setup lang="ts">
 import Layout from '@/Components/Admin/Layout/Layout.vue';
+import TextInput from '@/Components/Shared/Inputs/TextInput.vue';
 import { PhotoIcon, UserCircleIcon } from '@heroicons/vue/24/solid';
+import { Ref, ref } from 'vue';
+
+const username: Ref<string> = ref<string>('');
 </script>
