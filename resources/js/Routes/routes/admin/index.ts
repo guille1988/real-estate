@@ -1,5 +1,6 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../wayfinder'
 import login from './login'
+import profile from './profile'
 /**
 * @see \App\Http\Controllers\Admin\DashboardController::__invoke
 * @see app/Http/Controllers/Admin/DashboardController.php:13
@@ -46,6 +47,7 @@ dashboard.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 const admin = {
     login: Object.assign(login, login),
+    profile: Object.assign(profile, profile),
     dashboard: Object.assign(dashboard, dashboard),
 }
 
