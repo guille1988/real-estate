@@ -25,9 +25,11 @@
                                     class="block text-sm/6 font-medium text-white sm:pt-1.5"
                                     >Name</label
                                 >
-                                <div class="mt-2 sm:col-span-2 sm:mt-0">
+                                <div
+                                    class="mt-2 w-full max-w-2xl sm:col-span-2 sm:mt-0"
+                                >
                                     <div
-                                        class="flex items-center rounded-md outline-1 -outline-offset-1 outline-white/10 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-purple-500 sm:max-w-md"
+                                        class="flex w-full max-w-2xl items-center rounded-md outline-1 -outline-offset-1 outline-white/10 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-purple-500"
                                     >
                                         <TextInput
                                             id="name"
@@ -35,6 +37,7 @@
                                             v-model:modelValue="name"
                                             type="text"
                                             placeholder="Enter your name"
+                                            class="w-full"
                                         />
                                     </div>
                                 </div>
