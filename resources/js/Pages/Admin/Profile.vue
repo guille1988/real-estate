@@ -44,9 +44,9 @@
                                 class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6"
                             >
                                 <label
-                                    for="cover-photo"
+                                    for="thumbnail"
                                     class="block text-sm/6 font-medium text-white sm:pt-1.5"
-                                    >Cover photo</label
+                                    >Thumbnail</label
                                 >
                                 <div class="mt-2 sm:col-span-2 sm:mt-0">
                                     <div
@@ -76,12 +76,12 @@
                                                     class="mt-4 flex items-center justify-center text-sm/6 text-gray-400"
                                                 >
                                                     <label
-                                                        for="cover-upload"
+                                                        for="upload"
                                                         class="relative cursor-pointer rounded-md bg-transparent font-semibold text-purple-400 focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-purple-500 hover:text-purple-300"
                                                     >
                                                         <span>Change</span>
                                                         <input
-                                                            id="cover-upload"
+                                                            id="upload"
                                                             type="file"
                                                             accept="image/*"
                                                             class="sr-only"
@@ -101,7 +101,7 @@
                                                     class="mt-4 flex items-center justify-center text-sm/6 text-gray-400"
                                                 >
                                                     <label
-                                                        for="cover-upload"
+                                                        for="upload"
                                                         class="relative cursor-pointer rounded-md bg-transparent font-semibold text-purple-400 focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-purple-500 hover:text-purple-300"
                                                     >
                                                         <span
@@ -109,7 +109,7 @@
                                                             image</span
                                                         >
                                                         <input
-                                                            id="cover-upload"
+                                                            id="upload"
                                                             type="file"
                                                             accept="image/*"
                                                             class="sr-only"
@@ -165,8 +165,10 @@ const setCoverFile = (file: File): void => {
 };
 
 const onCoverSelected = (event: Event): void => {
-    const input = event.target as HTMLInputElement;
-    const file = input.files && input.files[0] ? input.files[0] : null;
+    const input: HTMLInputElement = event.target as HTMLInputElement;
+
+    const file: File | null =
+        input.files && input.files[0] ? input.files[0] : null;
 
     if (file) {
         setCoverFile(file);
@@ -187,7 +189,7 @@ const onCoverDragLeave = (): void => {
 
 const onCoverDrop = (event: DragEvent): void => {
     isDraggingCover.value = false;
-    const files = event.dataTransfer?.files;
+    const files: FileList | undefined = event.dataTransfer?.files;
 
     if (!files || files.length === 0) {
         return;
