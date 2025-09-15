@@ -148,15 +148,19 @@
                                                 v-if="coverPreview"
                                                 class="flex flex-col items-center"
                                             >
-                                                <img
-                                                    :src="
-                                                        coverPreview as string
-                                                    "
-                                                    alt="Selected cover preview"
-                                                    class="mx-auto max-h-56 rounded-md object-cover"
-                                                />
                                                 <div
-                                                    class="mt-4 flex items-center justify-center text-sm/6 text-gray-400"
+                                                    class="mx-auto w-full max-w-xs"
+                                                >
+                                                    <img
+                                                        :src="
+                                                            coverPreview as string
+                                                        "
+                                                        alt="Selected cover preview"
+                                                        class="h-40 w-full rounded-md bg-gray-900/50 object-contain"
+                                                    />
+                                                </div>
+                                                <div
+                                                    class="mt-3 flex items-center justify-center text-sm/6 text-gray-400"
                                                 >
                                                     <label
                                                         for="upload"
