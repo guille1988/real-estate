@@ -21,20 +21,20 @@
                                 class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6"
                             >
                                 <label
-                                    for="username"
+                                    for="name"
                                     class="block text-sm/6 font-medium text-white sm:pt-1.5"
-                                    >Username</label
+                                    >Name</label
                                 >
                                 <div class="mt-2 sm:col-span-2 sm:mt-0">
                                     <div
                                         class="flex items-center rounded-md outline-1 -outline-offset-1 outline-white/10 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-purple-500 sm:max-w-md"
                                     >
                                         <TextInput
-                                            id="username"
+                                            id="name"
                                             label=""
-                                            v-model:modelValue="username"
+                                            v-model:modelValue="name"
                                             type="text"
-                                            placeholder="Enter your username"
+                                            placeholder="Enter your name"
                                         />
                                     </div>
                                 </div>
@@ -120,5 +120,5 @@ import TextInput from '@/Components/Shared/Inputs/TextInput.vue';
 import { PhotoIcon, UserCircleIcon } from '@heroicons/vue/24/solid';
 import { Ref, ref } from 'vue';
 
-const username: Ref<string> = ref<string>('');
+const name: Ref<string> = ref<string>('');
 </script>
