@@ -47,6 +47,86 @@
                                 class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6"
                             >
                                 <label
+                                    for="email"
+                                    class="block text-sm/6 font-medium text-white sm:pt-1.5"
+                                    >E-mail</label
+                                >
+                                <div
+                                    class="mt-2 w-full max-w-2xl sm:col-span-2 sm:mt-0"
+                                >
+                                    <div
+                                        class="flex w-full max-w-2xl items-center rounded-md outline-1 -outline-offset-1 outline-white/10 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-purple-500"
+                                    >
+                                        <TextInput
+                                            id="email"
+                                            label=""
+                                            v-model:modelValue="email"
+                                            type="email"
+                                            placeholder="Enter your email"
+                                            class="w-full"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div
+                                class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6"
+                            >
+                                <label
+                                    for="password"
+                                    class="block text-sm/6 font-medium text-white sm:pt-1.5"
+                                    >Password</label
+                                >
+                                <div
+                                    class="mt-2 w-full max-w-2xl sm:col-span-2 sm:mt-0"
+                                >
+                                    <div
+                                        class="flex w-full max-w-2xl items-center rounded-md outline-1 -outline-offset-1 outline-white/10 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-purple-500"
+                                    >
+                                        <TextInput
+                                            id="password"
+                                            label=""
+                                            v-model:modelValue="password"
+                                            type="password"
+                                            placeholder="Enter a new password"
+                                            class="w-full"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div
+                                class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6"
+                            >
+                                <label
+                                    for="password_confirmation"
+                                    class="block text-sm/6 font-medium text-white sm:pt-1.5"
+                                    >Password Confirmation</label
+                                >
+                                <div
+                                    class="mt-2 w-full max-w-2xl sm:col-span-2 sm:mt-0"
+                                >
+                                    <div
+                                        class="flex w-full max-w-2xl items-center rounded-md outline-1 -outline-offset-1 outline-white/10 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-purple-500"
+                                    >
+                                        <TextInput
+                                            id="password_confirmation"
+                                            label=""
+                                            v-model:modelValue="
+                                                passwordConfirmation
+                                            "
+                                            type="password"
+                                            placeholder="Confirm your new password"
+                                            class="w-full"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div
+                                class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6"
+                            >
+                                <label
                                     for="thumbnail"
                                     class="block text-sm/6 font-medium text-white sm:pt-1.5"
                                     >Thumbnail</label
@@ -153,6 +233,9 @@ defineProps<{
 }>();
 
 const name: Ref<string> = ref<string>('');
+const email: Ref<string> = ref<string>('');
+const password: Ref<string> = ref<string>('');
+const passwordConfirmation: Ref<string> = ref<string>('');
 const avatarPreview: Ref<string | null> = ref<string | null>(null);
 const coverFile: Ref<File | null> = ref<File | null>(null);
 const coverPreview: Ref<string | null> = ref<string | null>(null);
