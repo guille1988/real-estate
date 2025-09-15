@@ -6,7 +6,7 @@ use App\Enums\PageEnum;
 use App\Models\User;
 use Inertia\Testing\AssertableInertia as Assert;
 
-it('works on profile page.', function (): void {
+it('displays profile page.', function (): void {
     $user = User::factory()
         ->admin()
         ->create();
@@ -17,4 +17,14 @@ it('works on profile page.', function (): void {
             $page->component(PageEnum::ADMIN_PROFILE->value)
                 ->has('formats');
         });
+});
+
+it('updates profile page.', function (): void {
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $this->actingAs($user)
+        ->patch(route('admin.profile.update'))
+        ->assertRedirectBack();
 });

@@ -3,16 +3,50 @@
         <div
             class="inset-ring inset-ring-white/10 flex h-full min-h-0 w-full flex-col rounded-xl bg-black p-4 text-white md:p-6"
         >
-            <form>
+            <form @submit.prevent="submit()">
                 <div class="space-y-12 sm:space-y-16">
                     <div>
-                        <h2 class="text-base/7 font-semibold text-white">
-                            Profile
-                        </h2>
-                        <p class="mt-1 max-w-2xl text-sm/6 text-gray-400">
-                            This information will be displayed on the admin
-                            panel.
-                        </p>
+                        <div class="flex items-start justify-between">
+                            <div>
+                                <h2
+                                    class="text-base/7 font-semibold text-white"
+                                >
+                                    Profile
+                                </h2>
+                                <p
+                                    class="mt-1 max-w-2xl text-sm/6 text-gray-400"
+                                >
+                                    This information will be displayed on the
+                                    admin panel.
+                                </p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button
+                                    type="button"
+                                    class="rounded-lg bg-gray-700 px-4 py-2 text-sm font-medium text-white hover:bg-gray-600"
+                                    :disabled="form.processing"
+                                    :class="{
+                                        'cursor-not-allowed opacity-50':
+                                            form.processing,
+                                    }"
+                                    @click="clearForm()"
+                                >
+                                    Clear
+                                </button>
+                                <button
+                                    type="submit"
+                                    class="rounded-lg bg-purple-600 px-4 py-2 text-sm font-medium text-white hover:bg-purple-700"
+                                    :disabled="form.processing"
+                                    :class="{
+                                        'cursor-not-allowed opacity-50':
+                                            form.processing,
+                                    }"
+                                >
+                                    <span v-if="!form.processing">Save</span>
+                                    <span v-else>Saving...</span>
+                                </button>
+                            </div>
+                        </div>
 
                         <div
                             class="mt-10 space-y-8 border-b border-white/10 pb-12 sm:space-y-0 sm:divide-y sm:divide-white/10 sm:border-t sm:border-t-white/10 sm:pb-0"
@@ -34,11 +68,17 @@
                                         <TextInput
                                             id="name"
                                             label=""
-                                            v-model:modelValue="name"
+                                            v-model:modelValue="form.name"
                                             type="text"
                                             placeholder="Enter your name"
                                             class="w-full"
                                         />
+                                    </div>
+                                    <div
+                                        v-if="form.errors.name"
+                                        class="mt-1 text-sm text-red-500 dark:text-red-400"
+                                    >
+                                        {{ form.errors.name }}
                                     </div>
                                 </div>
                             </div>
@@ -60,11 +100,17 @@
                                         <TextInput
                                             id="email"
                                             label=""
-                                            v-model:modelValue="email"
+                                            v-model:modelValue="form.email"
                                             type="email"
                                             placeholder="Enter your email"
                                             class="w-full"
                                         />
+                                    </div>
+                                    <div
+                                        v-if="form.errors.email"
+                                        class="mt-1 text-sm text-red-500 dark:text-red-400"
+                                    >
+                                        {{ form.errors.email }}
                                     </div>
                                 </div>
                             </div>
@@ -86,11 +132,17 @@
                                         <TextInput
                                             id="password"
                                             label=""
-                                            v-model:modelValue="password"
+                                            v-model:modelValue="form.password"
                                             type="password"
                                             placeholder="Enter a new password"
                                             class="w-full"
                                         />
+                                    </div>
+                                    <div
+                                        v-if="form.errors.password"
+                                        class="mt-1 text-sm text-red-500 dark:text-red-400"
+                                    >
+                                        {{ form.errors.password }}
                                     </div>
                                 </div>
                             </div>
@@ -110,15 +162,21 @@
                                         class="flex w-full max-w-2xl items-center rounded-md outline-1 -outline-offset-1 outline-white/10 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-purple-500"
                                     >
                                         <TextInput
-                                            id="password_confirmation"
+                                            id="passwordConfirmation"
                                             label=""
                                             v-model:modelValue="
-                                                passwordConfirmation
+                                                form.passwordConfirmation
                                             "
                                             type="password"
                                             placeholder="Confirm your new password"
                                             class="w-full"
                                         />
+                                    </div>
+                                    <div
+                                        v-if="form.errors.passwordConfirmation"
+                                        class="mt-1 text-sm text-red-500 dark:text-red-400"
+                                    >
+                                        {{ form.errors.passwordConfirmation }}
                                     </div>
                                 </div>
                             </div>
@@ -139,7 +197,22 @@
                                         accept="image/*"
                                         :max-size-mb="10"
                                     />
+                                    <div
+                                        v-if="form.errors.thumbnail"
+                                        class="mt-1 text-sm text-red-500 dark:text-red-400"
+                                    >
+                                        {{ form.errors.thumbnail }}
+                                    </div>
                                 </div>
+                            </div>
+
+                            <div class="flex items-end justify-end">
+                                <p
+                                    v-if="showSuccessMessage"
+                                    class="mt-1 text-sm text-green-400"
+                                >
+                                    {{ successMessage }}
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -152,16 +225,67 @@
 import Layout from '@/Components/Admin/Layout/Layout.vue';
 import FileInput from '@/Components/Shared/Inputs/FileInput.vue';
 import TextInput from '@/Components/Shared/Inputs/TextInput.vue';
+import ProfileController from '@/Routes/actions/App/Http/Controllers/Admin/ProfileController';
+import { FormMethodEnum } from '@/Types/Admin/Enums/FormMethodEnum';
+import { InertiaForm, useForm } from '@inertiajs/vue3';
 import { Ref, ref } from 'vue';
 
 defineProps<{
     formats: string;
 }>();
 
-const name: Ref<string> = ref<string>('');
-const email: Ref<string> = ref<string>('');
-const password: Ref<string> = ref<string>('');
-const passwordConfirmation: Ref<string> = ref<string>('');
+const successMessage: string = 'Profile saved successfully.';
+const showSuccessMessage: Ref<boolean> = ref<boolean>(false);
 const coverFile: Ref<File | null> = ref<File | null>(null);
 const coverPreview: Ref<string | null> = ref<string | null>(null);
+
+const form: InertiaForm<ProfileFormInterface> = useForm<ProfileFormInterface>({
+    name: '',
+    email: '',
+    password: '',
+    passwordConfirmation: '',
+    thumbnail: null,
+});
+
+const clearForm = (): void => {
+    form.reset();
+    form.clearErrors();
+    coverFile.value = null;
+
+    if (coverPreview.value) {
+        URL.revokeObjectURL(coverPreview.value);
+    }
+
+    coverPreview.value = null;
+};
+
+const submit = (): void => {
+    showSuccessMessage.value = false;
+    form.thumbnail = coverFile.value;
+
+    form.transform((data: ProfileFormInterface): ProfileFormInterface => {
+        return {
+            ...data,
+            _method: FormMethodEnum.PATCH,
+        };
+    });
+
+    // This is a post form method to avoid spoofing the form data.
+    form.post(ProfileController.update().url, {
+        forceFormData: true,
+        preserveScroll: true,
+        onSuccess: (): void => {
+            showSuccessMessage.value = true;
+            clearForm();
+            setTimeout((): void => {
+                showSuccessMessage.value = false;
+            }, 4000);
+        },
+        onError: (): void => {
+            setTimeout((): void => {
+                form.clearErrors();
+            }, 4000);
+        },
+    });
+};
 </script>

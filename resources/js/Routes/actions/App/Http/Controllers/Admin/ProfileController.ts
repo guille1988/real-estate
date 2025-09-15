@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\Admin\ProfileController::edit
-* @see app/Http/Controllers/Admin/ProfileController.php:14
+* @see app/Http/Controllers/Admin/ProfileController.php:15
 * @route '/admin/profile'
 */
 export const edit = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ edit.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\ProfileController::edit
-* @see app/Http/Controllers/Admin/ProfileController.php:14
+* @see app/Http/Controllers/Admin/ProfileController.php:15
 * @route '/admin/profile'
 */
 edit.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ edit.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\ProfileController::edit
-* @see app/Http/Controllers/Admin/ProfileController.php:14
+* @see app/Http/Controllers/Admin/ProfileController.php:15
 * @route '/admin/profile'
 */
 edit.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -35,7 +35,7 @@ edit.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\ProfileController::edit
-* @see app/Http/Controllers/Admin/ProfileController.php:14
+* @see app/Http/Controllers/Admin/ProfileController.php:15
 * @route '/admin/profile'
 */
 edit.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -43,6 +43,40 @@ edit.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     method: 'head',
 })
 
-const ProfileController = { edit }
+/**
+* @see \App\Http\Controllers\Admin\ProfileController::update
+* @see app/Http/Controllers/Admin/ProfileController.php:22
+* @route '/admin/profile'
+*/
+export const update = (options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
+    url: update.url(options),
+    method: 'patch',
+})
+
+update.definition = {
+    methods: ["patch"],
+    url: '/admin/profile',
+} satisfies RouteDefinition<["patch"]>
+
+/**
+* @see \App\Http\Controllers\Admin\ProfileController::update
+* @see app/Http/Controllers/Admin/ProfileController.php:22
+* @route '/admin/profile'
+*/
+update.url = (options?: RouteQueryOptions) => {
+    return update.definition.url + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\Admin\ProfileController::update
+* @see app/Http/Controllers/Admin/ProfileController.php:22
+* @route '/admin/profile'
+*/
+update.patch = (options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
+    url: update.url(options),
+    method: 'patch',
+})
+
+const ProfileController = { edit, update }
 
 export default ProfileController

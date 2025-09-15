@@ -81,6 +81,9 @@ Route::prefix('admin')
             ->group(function (): void {
                 Route::get('profile', 'edit')
                     ->name('.profile.edit');
+
+                Route::patch('profile', 'update')
+                    ->name('.profile.update');
             });
 
         Route::middleware('auth:web')
