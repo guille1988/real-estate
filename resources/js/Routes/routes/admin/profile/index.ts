@@ -45,7 +45,7 @@ edit.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\ProfileController::update
-* @see app/Http/Controllers/Admin/ProfileController.php:22
+* @see app/Http/Controllers/Admin/ProfileController.php:23
 * @route '/admin/profile'
 */
 export const update = (options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
@@ -60,7 +60,7 @@ update.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\ProfileController::update
-* @see app/Http/Controllers/Admin/ProfileController.php:22
+* @see app/Http/Controllers/Admin/ProfileController.php:23
 * @route '/admin/profile'
 */
 update.url = (options?: RouteQueryOptions) => {
@@ -69,7 +69,7 @@ update.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\ProfileController::update
-* @see app/Http/Controllers/Admin/ProfileController.php:22
+* @see app/Http/Controllers/Admin/ProfileController.php:23
 * @route '/admin/profile'
 */
 update.patch = (options?: RouteQueryOptions): RouteDefinition<'patch'> => ({

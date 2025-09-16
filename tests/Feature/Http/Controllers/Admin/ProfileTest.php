@@ -15,7 +15,8 @@ it('displays profile page.', function (): void {
         ->get(route('admin.profile.edit'))
         ->assertInertia(function (Assert $page): void {
             $page->component(PageEnum::ADMIN_PROFILE->value)
-                ->has('formats');
+                ->has('formats')
+                ->has('thumbnail');
         });
 });
 

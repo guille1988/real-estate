@@ -16,6 +16,7 @@ final class ProfileController
     {
         return Inertia::render(PageEnum::ADMIN_PROFILE->value, [
             'formats' => fn (): string => ImageFormatEnum::toJoin(),
+            'thumbnail' => fn (): ?string => auth()->user()?->thumbnail,
         ]);
     }
 
