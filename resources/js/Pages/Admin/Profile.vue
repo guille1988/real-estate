@@ -215,6 +215,7 @@ import ImageInput from '@/Components/Shared/Inputs/ImageInput.vue';
 import TextInput from '@/Components/Shared/Inputs/TextInput.vue';
 import ProfileController from '@/Routes/actions/App/Http/Controllers/Admin/ProfileController';
 import { FormMethodEnum } from '@/Types/Admin/Enums/FormMethodEnum';
+import { ProfileFormInterface } from '@/Types/Admin/Interfaces/ProfileFormInterface';
 import { UserInterface } from '@/Types/App/Interfaces/UserInterface';
 import { InertiaForm, useForm, usePage } from '@inertiajs/vue3';
 import { Ref, ref } from 'vue';

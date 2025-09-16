@@ -1,4 +1,4 @@
-interface ProfileFormInterface {
+export interface ProfileFormInterface {
     [key: string]: string | File | null;
     name: string;
     email: string;
