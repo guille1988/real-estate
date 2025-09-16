@@ -56,7 +56,7 @@
                                         <TextInput
                                             id="name"
                                             label=""
-                                            v-model:modelValue="form.name"
+                                            v-model:modelValue="name"
                                             type="text"
                                             placeholder="Enter your name"
                                             class="w-full"
@@ -88,7 +88,7 @@
                                         <TextInput
                                             id="email"
                                             label=""
-                                            v-model:modelValue="form.email"
+                                            v-model:modelValue="email"
                                             type="email"
                                             placeholder="Enter your email"
                                             class="w-full"
@@ -184,9 +184,7 @@
                                         alt="Thumbnail"
                                         button-text="Change"
                                         v-model:modelValue="form.thumbnail"
-                                        :default-image="
-                                            $page.props.auth.user.thumbnail
-                                        "
+                                        :default-image="user.thumbnail"
                                     />
                                 </div>
                                 <div
@@ -217,9 +215,14 @@ import ImageInput from '@/Components/Shared/Inputs/ImageInput.vue';
 import TextInput from '@/Components/Shared/Inputs/TextInput.vue';
 import ProfileController from '@/Routes/actions/App/Http/Controllers/Admin/ProfileController';
 import { FormMethodEnum } from '@/Types/Admin/Enums/FormMethodEnum';
-import { InertiaForm, useForm } from '@inertiajs/vue3';
+import { UserInterface } from '@/Types/App/Interfaces/UserInterface';
+import { InertiaForm, useForm, usePage } from '@inertiajs/vue3';
 import { Ref, ref } from 'vue';
 
+const user: UserInterface = usePage().props.auth.user;
+
+const name: Ref<string> = ref<string>(user.name);
+const email: Ref<string> = ref<string>(user.email);
 const successMessage: string = 'Profile saved successfully.';
 const showSuccessMessage: Ref<boolean> = ref<boolean>(false);
 
@@ -242,6 +245,8 @@ const submit = (): void => {
     form.transform((data: ProfileFormInterface): ProfileFormInterface => {
         return {
             ...data,
+            name: name.value,
+            email: email.value,
             _method: FormMethodEnum.PATCH,
         };
     });
