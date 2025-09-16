@@ -178,54 +178,20 @@
                                     >Thumbnail</label
                                 >
                                 <div class="mt-2 sm:col-span-2 sm:mt-0">
-                                    <div class="col-span-full">
-                                        <div
-                                            class="mt-2 flex items-center gap-x-3"
-                                        >
-                                            <input
-                                                ref="fileInput"
-                                                id="thumbnail"
-                                                type="file"
-                                                accept="image/*"
-                                                class="hidden"
-                                                @change="onFileChange"
-                                            />
-                                            <div
-                                                class="flex size-12 items-center justify-center overflow-hidden rounded-full bg-gray-700"
-                                            >
-                                                <img
-                                                    v-if="
-                                                        previewUrl || thumbnail
-                                                    "
-                                                    :src="
-                                                        previewUrl ||
-                                                        thumbnail ||
-                                                        ''
-                                                    "
-                                                    alt="Thumbnail"
-                                                    class="h-full w-full object-cover"
-                                                />
-                                                <UserCircleIcon
-                                                    v-else
-                                                    class="size-12 text-gray-500"
-                                                    aria-hidden="true"
-                                                />
-                                            </div>
-                                            <button
-                                                type="button"
-                                                @click="openFilePicker"
-                                                class="inset-ring inset-ring-white/5 rounded-md bg-white/10 px-3 py-2 text-sm font-semibold text-white hover:bg-white/20"
-                                            >
-                                                Change
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div
-                                        v-if="form.errors.thumbnail"
-                                        class="mt-1 text-sm text-red-500 dark:text-red-400"
-                                    >
-                                        {{ form.errors.thumbnail }}
-                                    </div>
+                                    <ImageInput
+                                        id="thumbnail"
+                                        label=""
+                                        alt="Thumbnail"
+                                        button-text="Change"
+                                        v-model:modelValue="form.thumbnail"
+                                        :default-image="thumbnail"
+                                    />
+                                </div>
+                                <div
+                                    v-if="form.errors.thumbnail"
+                                    class="mt-1 text-sm text-red-500 dark:text-red-400"
+                                >
+                                    {{ form.errors.thumbnail }}
                                 </div>
                             </div>
                         </div>
@@ -245,18 +211,16 @@
 </template>
 <script setup lang="ts">
 import Layout from '@/Components/Admin/Layout/Layout.vue';
+import ImageInput from '@/Components/Shared/Inputs/ImageInput.vue';
 import TextInput from '@/Components/Shared/Inputs/TextInput.vue';
 import ProfileController from '@/Routes/actions/App/Http/Controllers/Admin/ProfileController';
 import { FormMethodEnum } from '@/Types/Admin/Enums/FormMethodEnum';
-import { UserCircleIcon } from '@heroicons/vue/24/solid';
 import { InertiaForm, useForm } from '@inertiajs/vue3';
-import { Ref, onBeforeUnmount, ref } from 'vue';
+import { Ref, ref } from 'vue';
 
 const successMessage: string = 'Profile saved successfully.';
 const showSuccessMessage: Ref<boolean> = ref<boolean>(false);
 const thumbnail: Ref<string | null> = ref<string | null>(null);
-const fileInput: Ref<HTMLInputElement | null> = ref(null);
-const previewUrl: Ref<string | null> = ref<string | null>(null);
 
 const form: InertiaForm<ProfileFormInterface> = useForm<ProfileFormInterface>({
     name: '',
@@ -265,27 +229,6 @@ const form: InertiaForm<ProfileFormInterface> = useForm<ProfileFormInterface>({
     passwordConfirmation: '',
     thumbnail: null,
 });
-
-const openFilePicker = (): void => {
-    fileInput.value?.click();
-};
-
-const onFileChange = (event: Event): void => {
-    const input: HTMLInputElement = event.target as HTMLInputElement;
-
-    if (!input.files || input.files.length === 0) {
-        return;
-    }
-
-    const file: File = input.files[0];
-    form.thumbnail = file;
-
-    if (previewUrl.value) {
-        URL.revokeObjectURL(previewUrl.value);
-    }
-
-    previewUrl.value = URL.createObjectURL(file);
-};
 
 const clearForm = (): void => {
     form.reset();
@@ -323,10 +266,4 @@ const submit = (): void => {
         },
     });
 };
-
-onBeforeUnmount((): void => {
-    if (previewUrl.value) {
-        URL.revokeObjectURL(previewUrl.value);
-    }
-});
 </script>
