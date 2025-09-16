@@ -22,18 +22,6 @@
                             </div>
                             <div class="flex items-center gap-2">
                                 <button
-                                    type="button"
-                                    class="rounded-lg bg-gray-700 px-4 py-2 text-sm font-medium text-white hover:bg-gray-600"
-                                    :disabled="form.processing"
-                                    :class="{
-                                        'cursor-not-allowed opacity-50':
-                                            form.processing,
-                                    }"
-                                    @click="clearForm()"
-                                >
-                                    Clear
-                                </button>
-                                <button
                                     type="submit"
                                     class="rounded-lg bg-purple-600 px-4 py-2 text-sm font-medium text-white hover:bg-purple-700"
                                     :disabled="form.processing"
@@ -190,13 +178,22 @@
                                     >Thumbnail</label
                                 >
                                 <div class="mt-2 sm:col-span-2 sm:mt-0">
-                                    <FileInput
-                                        v-model="coverFile"
-                                        v-model:previewUrl="coverPreview"
-                                        :formats="formats"
-                                        accept="image/*"
-                                        :max-size-mb="10"
-                                    />
+                                    <div class="col-span-full">
+                                        <div
+                                            class="mt-2 flex items-center gap-x-3"
+                                        >
+                                            <UserCircleIcon
+                                                class="size-12 text-gray-500"
+                                                aria-hidden="true"
+                                            />
+                                            <button
+                                                type="button"
+                                                class="inset-ring inset-ring-white/5 rounded-md bg-white/10 px-3 py-2 text-sm font-semibold text-white hover:bg-white/20"
+                                            >
+                                                Change
+                                            </button>
+                                        </div>
+                                    </div>
                                     <div
                                         v-if="form.errors.thumbnail"
                                         class="mt-1 text-sm text-red-500 dark:text-red-400"
@@ -223,10 +220,10 @@
 </template>
 <script setup lang="ts">
 import Layout from '@/Components/Admin/Layout/Layout.vue';
-import FileInput from '@/Components/Shared/Inputs/FileInput.vue';
 import TextInput from '@/Components/Shared/Inputs/TextInput.vue';
 import ProfileController from '@/Routes/actions/App/Http/Controllers/Admin/ProfileController';
 import { FormMethodEnum } from '@/Types/Admin/Enums/FormMethodEnum';
+import { UserCircleIcon } from '@heroicons/vue/24/solid';
 import { InertiaForm, useForm } from '@inertiajs/vue3';
 import { Ref, ref } from 'vue';
 
@@ -236,8 +233,6 @@ defineProps<{
 
 const successMessage: string = 'Profile saved successfully.';
 const showSuccessMessage: Ref<boolean> = ref<boolean>(false);
-const coverFile: Ref<File | null> = ref<File | null>(null);
-const coverPreview: Ref<string | null> = ref<string | null>(null);
 
 const form: InertiaForm<ProfileFormInterface> = useForm<ProfileFormInterface>({
     name: '',
@@ -250,18 +245,11 @@ const form: InertiaForm<ProfileFormInterface> = useForm<ProfileFormInterface>({
 const clearForm = (): void => {
     form.reset();
     form.clearErrors();
-    coverFile.value = null;
-
-    if (coverPreview.value) {
-        URL.revokeObjectURL(coverPreview.value);
-    }
-
-    coverPreview.value = null;
 };
 
 const submit = (): void => {
     showSuccessMessage.value = false;
-    form.thumbnail = coverFile.value;
+    form.thumbnail = null;
 
     form.transform((data: ProfileFormInterface): ProfileFormInterface => {
         return {
@@ -270,7 +258,10 @@ const submit = (): void => {
         };
     });
 
-    // This is a post form method to avoid spoofing the form data.
+    /*
+        ForceFormData to upload the file, makes me
+        put post-method and spoof to patch later.
+     */
     form.post(ProfileController.update().url, {
         forceFormData: true,
         preserveScroll: true,
