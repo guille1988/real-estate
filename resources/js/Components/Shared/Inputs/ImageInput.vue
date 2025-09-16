@@ -50,10 +50,10 @@ const {
     id,
     label,
     modelValue,
-    defaultImage,
+    defaultImage = null,
     alt,
     buttonText,
-    circle,
+    circle = true,
 }: {
     id: string;
     label: string;
@@ -62,21 +62,15 @@ const {
     alt: string;
     buttonText: string;
     circle?: boolean;
-} = withDefaults(
-    defineProps<{
-        id: string;
-        label: string;
-        modelValue: File | null;
-        defaultImage?: string | null;
-        alt: string;
-        buttonText: string;
-        circle?: boolean;
-    }>(),
-    {
-        initialUrl: null,
-        circle: true,
-    },
-);
+} = defineProps<{
+    id: string;
+    label: string;
+    modelValue: File | null;
+    defaultImage?: string | null;
+    alt: string;
+    buttonText: string;
+    circle?: boolean;
+}>();
 
 type Emits = {
     (e: 'update:modelValue', value: File | null): void;
