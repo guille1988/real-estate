@@ -228,15 +228,14 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="flex items-end justify-end">
-                                <p
-                                    v-if="showSuccessMessage"
-                                    class="mt-1 text-sm text-green-400"
-                                >
-                                    {{ successMessage }}
-                                </p>
-                            </div>
+                        </div>
+                        <div class="flex justify-end">
+                            <p
+                                v-if="showSuccessMessage"
+                                class="mt-1 text-sm text-green-400"
+                            >
+                                {{ successMessage }}
+                            </p>
                         </div>
                     </div>
                 </div>
