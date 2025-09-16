@@ -25,15 +25,9 @@
                         ]"
                     >
                         <img
-                            v-if="computedPreview"
                             :src="computedPreview"
                             :alt="alt"
                             class="h-full w-full object-cover"
-                        />
-                        <UserCircleIcon
-                            v-else
-                            class="size-12 text-gray-500"
-                            aria-hidden="true"
                         />
                     </div>
                     <button
@@ -50,7 +44,6 @@
 </template>
 
 <script setup lang="ts">
-import { UserCircleIcon } from '@heroicons/vue/24/solid';
 import { Ref, computed, onBeforeUnmount, ref, watch } from 'vue';
 
 const {
@@ -94,8 +87,8 @@ const emit = defineEmits<Emits>();
 const fileInput: Ref<HTMLInputElement | null> = ref(null);
 const preview: Ref<string | null> = ref<string | null>(null);
 
-const computedPreview = computed<string | null>((): string | null => {
-    return preview.value || defaultImage || null;
+const computedPreview = computed<string>((): string => {
+    return preview.value || defaultImage || '';
 });
 
 const openFilePicker = (): void => {

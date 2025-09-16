@@ -184,7 +184,9 @@
                                         alt="Thumbnail"
                                         button-text="Change"
                                         v-model:modelValue="form.thumbnail"
-                                        :default-image="thumbnail"
+                                        :default-image="
+                                            $page.props.auth.user.thumbnail
+                                        "
                                     />
                                 </div>
                                 <div
@@ -220,7 +222,6 @@ import { Ref, ref } from 'vue';
 
 const successMessage: string = 'Profile saved successfully.';
 const showSuccessMessage: Ref<boolean> = ref<boolean>(false);
-const thumbnail: Ref<string | null> = ref<string | null>(null);
 
 const form: InertiaForm<ProfileFormInterface> = useForm<ProfileFormInterface>({
     name: '',
