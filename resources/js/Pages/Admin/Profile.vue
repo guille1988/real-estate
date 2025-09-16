@@ -254,8 +254,8 @@ const submit = (): void => {
     });
 
     /*
-        ForceFormData to upload the file, makes me
-        put post-method and spoof to patch later.
+        "forceFormData" attribute to upload the file,
+        makes me put post-method and spoof to patch later.
      */
     form.post(ProfileController.update().url, {
         forceFormData: true,
