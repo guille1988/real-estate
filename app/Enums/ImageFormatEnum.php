@@ -16,6 +16,19 @@ enum ImageFormatEnum: string
     case PNG = 'png';
     case WEBP = 'webp';
 
+    /**
+     * Returns all the values of the enum.
+     *
+     * @return array<int, string>
+     */
+    public static function values(): array
+    {
+        return array_map(
+            fn (self $case): string => $case->value,
+            self::cases(),
+        );
+    }
+
     /*
      * Returns true if the format is jpg.
      */
@@ -25,7 +38,7 @@ enum ImageFormatEnum: string
     }
 
     /*
-     * Returns true if the format is jpeg.
+     * Returns true if the format is equal to the given format.
      */
     public function equalsTo(self $format): bool
     {
@@ -38,6 +51,14 @@ enum ImageFormatEnum: string
     public function isNotEqualTo(self $format): bool
     {
         return ! $this->equalsTo($format);
+    }
+
+    /*
+     * Returns true if the format value is equal to the given format.
+     */
+    public function valueEqualsTo(string $format): bool
+    {
+        return $this->value === $format;
     }
 
     /*
