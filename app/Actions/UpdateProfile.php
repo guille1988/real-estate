@@ -10,8 +10,6 @@ use Illuminate\Http\UploadedFile;
 
 final readonly class UpdateProfile
 {
-    public function __construct(private UpdateUserThumbnail $action) {}
-
     public function execute(User $user, ProfileData $data): void
     {
         if ($data->hasThumbnail()) {
@@ -20,7 +18,7 @@ final readonly class UpdateProfile
              */
             $thumbnail = $data->thumbnail;
 
-            $this->action->execute($user, $thumbnail);
+            app(UpdateUserThumbnail::class)->execute($user, $thumbnail);
         }
 
         $user->update($data->toArray());
