@@ -22,7 +22,7 @@ final class UpdateUserThumbnail
         $oldThumbnail = $user->thumbnail;
 
         $defaultFormat = ImageFormatEnum::from(
-            config()->string('app.default_image_format')
+            $format = config()->string('app.default_image_format')
         );
 
         $path = str('thumbnails')
@@ -30,7 +30,7 @@ final class UpdateUserThumbnail
                 '/',
                 Str::random(40),
                 '.',
-                config()->string('app.default_image_format'),
+                $format,
             )->toString();
 
         /*
