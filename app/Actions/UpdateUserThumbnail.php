@@ -25,8 +25,9 @@ final class UpdateUserThumbnail
             config()->string('app.default_image_format')
         );
 
-        $path = str('thumbnails/')
+        $path = str('thumbnails')
             ->append(
+                '/',
                 Str::random(40),
                 '.',
                 config()->string('app.default_image_format'),
