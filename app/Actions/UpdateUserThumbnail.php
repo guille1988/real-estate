@@ -14,11 +14,9 @@ final class UpdateUserThumbnail
 {
     public function execute(User $user, UploadedFile $thumbnail): void
     {
-        /**
+        /*
          * First, we save the old thumbnail and
          * prepare everything to process the new one.
-         *
-         * @var string $oldThumbnail
          */
         $oldThumbnail = $user->thumbnail;
 
@@ -45,11 +43,13 @@ final class UpdateUserThumbnail
 
         /*
          * At last, we update the user's thumbnail
-         * and gracefully delete the old one, once
-         * we know everything went well.
+         * and gracefully delete the old one if exists,
+         * once we know everything went well.
          */
         $user->update(['thumbnail' => $path]);
 
-        Storage::disk('users')->delete($oldThumbnail);
+        if (is_string($oldThumbnail)) {
+            Storage::disk('users')->delete($oldThumbnail);
+        }
     }
 }
