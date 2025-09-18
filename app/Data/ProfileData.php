@@ -8,7 +8,6 @@ use App\Enums\ImageFormatEnum;
 use App\Models\User;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\File;
 use Illuminate\Validation\Rules\Password;
 use Spatie\LaravelData\Attributes\MapName;
@@ -48,7 +47,7 @@ final class ProfileData extends Data
     {
         return [
             'name' => ['required', 'string', 'between:2,100'],
-            'email' => ['required', 'string', 'email', 'between:2,200', Rule::unique(User::class, 'email')],
+            'email' => ['required', 'string', 'email', 'between:2,200'],
             'password' => ['nullable', 'confirmed', Password::defaults()],
             'thumbnail' => ['nullable', File::types(ImageFormatEnum::values())->max('2mb')],
         ];

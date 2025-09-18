@@ -100,16 +100,6 @@ final class User extends Authenticatable
     }
 
     /*
-     * Returns the user thumbnail path.
-     */
-    public function getThumbnailPath(): string
-    {
-        $format = config()->string('app.default_image_format');
-
-        return "thumbnails/$this->uuid.$format";
-    }
-
-    /*
      * Returns the user thumbnail or
      * the placeholder if there is none.
      */

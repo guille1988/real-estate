@@ -8,6 +8,7 @@ use App\Enums\ImageFormatEnum;
 use App\Models\User;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Intervention\Image\Laravel\Facades\Image;
 
 final class UpdateUserThumbnail
@@ -24,7 +25,12 @@ final class UpdateUserThumbnail
             config()->string('app.default_image_format')
         );
 
-        $path = $user->getThumbnailPath();
+        $path = str('thumbnails/')
+            ->append(
+                Str::random(40),
+                '.',
+                config()->string('app.default_image_format'),
+            )->toString();
 
         /*
          * Second, we check if the thumbnail is already in
@@ -34,11 +40,11 @@ final class UpdateUserThumbnail
         if ($defaultFormat->valueEqualsTo($thumbnail->getExtension())) {
             $thumbnail->storeAs(path: $path, options: ['disk' => 'users']);
         } else {
-            $image = $defaultFormat->getEncodeMethod(
-                Image::read($thumbnail->getPathname())
-            )->toString();
+            $filePath = Storage::disk('users')->path($path);
 
-            Storage::disk('users')->putFileAs($path, $image);
+            $defaultFormat->getEncodeMethod(
+                Image::read($thumbnail->getPathname())
+            )->save($filePath);
         }
 
         /*
