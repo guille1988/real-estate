@@ -23,11 +23,8 @@ it('opens horizon dashboard to registered admin users.', function (): void {
         ->admin()
         ->create();
 
-    /** @var string $password */
-    $password = config('app.admin_password');
-
     $this->actingAs($user)
-        ->withBasicAuth($user->email, $password)
+        ->withBasicAuth($user->email, config()->string('app.admin_password'))
         ->get(route('horizon.index'))
         ->assertOk();
 });
