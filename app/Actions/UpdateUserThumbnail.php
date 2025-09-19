@@ -46,7 +46,7 @@ final class UpdateUserThumbnail
          * the desired format. If it is, we just store it.
          * Otherwise, we encode it and store it.
          */
-        if ($defaultFormat->valueEqualsTo($thumbnail->getExtension())) {
+        if ($defaultFormat->valueEqualsToLowered($thumbnail->getExtension())) {
             $thumbnail->storeAs(path: $path, options: ['disk' => 'users']);
         } else {
             $filePath = Storage::disk('users')->path($path);
