@@ -185,7 +185,7 @@ import ProfileController from '@/Routes/actions/App/Http/Controllers/Admin/Profi
 import { FormMethodEnum } from '@/Types/Admin/Enums/FormMethodEnum';
 import { ProfileFormInterface } from '@/Types/Admin/Interfaces/ProfileFormInterface';
 import { UserInterface } from '@/Types/App/Interfaces/UserInterface';
-import { InertiaForm, useForm, usePage } from '@inertiajs/vue3';
+import { InertiaForm, router, useForm, usePage } from '@inertiajs/vue3';
 import { Ref, ref } from 'vue';
 
 const user: UserInterface = usePage().props.auth.user;
@@ -201,11 +201,6 @@ const form: InertiaForm<ProfileFormInterface> = useForm<ProfileFormInterface>({
     passwordConfirmation: '',
     thumbnail: null,
 });
-
-const clearForm = (): void => {
-    form.reset();
-    form.clearErrors();
-};
 
 const submit = (): void => {
     showSuccessMessage.value = false;
@@ -226,8 +221,12 @@ const submit = (): void => {
         forceFormData: true,
         preserveScroll: true,
         onSuccess: (): void => {
+            router.reload({
+                only: ['auth.user'],
+            });
+
             showSuccessMessage.value = true;
-            clearForm();
+
             setTimeout((): void => {
                 showSuccessMessage.value = false;
             }, 4000);

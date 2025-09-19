@@ -9,6 +9,7 @@ use App\Support\InertiaRequestHelper;
 use App\Support\InertiaResponseHelper;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Inertia\Middleware;
 use Symfony\Component\HttpFoundation\Response;
 use Throwable;
@@ -60,9 +61,9 @@ final class HandleInertiaRequestMiddleware extends Middleware
          */
         $data = [
             ...$sharedProperties,
-            'global_assets' => $globalAssets,
+            'global_assets' => fn (): array => $globalAssets,
             'auth' => [
-                'user' => $request->user()?->toResource(),
+                'user' => fn (): ?JsonResource => $request->user()?->toResource(),
             ],
         ];
 
