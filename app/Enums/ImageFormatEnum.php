@@ -29,6 +29,19 @@ enum ImageFormatEnum: string
         );
     }
 
+    /**
+     * Returns each enum as an array.
+     *
+     * @return array<int, array{self}>
+     */
+    public static function eachAsArray(): array
+    {
+        return array_map(
+            fn (self $case): array => [$case],
+            self::cases(),
+        );
+    }
+
     /*
      * Returns true if the format is jpg.
      */

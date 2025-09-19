@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Enums\ImageFormatEnum;
 use App\Models\User;
 use Illuminate\Http\UploadedFile;
 
@@ -15,12 +16,12 @@ it('displays profile page.', function (): void {
         ->assertOk();
 });
 
-it('updates a whole profile with thumbnail with non-default format.', function (array $data): void {
+it('updates a whole profile with all thumbnail formats.', function (array $data, ImageFormatEnum $format): void {
     Storage::fake('users')
         ->makeDirectory('thumbnails');
 
     $thumbnail = UploadedFile::fake()
-        ->image('avatar.jpg');
+        ->image("avatar.$format->value");
 
     $data['thumbnail'] = $thumbnail;
 
@@ -35,22 +36,21 @@ it('updates a whole profile with thumbnail with non-default format.', function (
     $updatedUser = $user->fresh();
 
     expect($updatedUser->thumbnail)
-        ->not->toBeNull()
-        ->and($updatedUser->name)
-        ->toBe($data['name'])
-        ->and(Hash::check($data['password'], $updatedUser->password))
-        ->toBeTrue();
+        ->not->toBeNull();
+
+    if (isset($data['name'])) {
+        expect($updatedUser->name)
+            ->toBe($data['name']);
+    }
+
+    if (isset($data['password'])) {
+        expect(Hash::check($data['password'], $updatedUser->password))
+            ->toBeTrue();
+    }
 
     Storage::disk('users')
         ->assertCount('thumbnails', 1);
 })->with([
-    [
-        [
-            'name' => 'Test',
-            'password' => 'Test password',
-            'password_confirmation' => 'Test password',
-        ],
-    ],
-]);
-
-
+    [['name' => fake()->name()]],
+    [['name' => fake()->name(), 'password' => $password = fake()->password(10), 'password_confirmation' => $password]],
+])->with(ImageFormatEnum::eachAsArray());
