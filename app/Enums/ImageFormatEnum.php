@@ -58,7 +58,7 @@ enum ImageFormatEnum: string
      */
     public function valueEqualsTo(string $format): bool
     {
-        return $this->value === $format;
+        return $this->value === mb_strtolower($format);
     }
 
     /*

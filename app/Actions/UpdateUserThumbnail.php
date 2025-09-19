@@ -13,6 +13,23 @@ use Intervention\Image\Laravel\Facades\Image;
 
 final class UpdateUserThumbnail
 {
+    /*
+     * Returns the path where the thumbnail will be stored.
+     */
+    private function getPath(string $format): string
+    {
+        $parts = [
+            '/',
+            Str::random(40),
+            '.',
+            $format,
+        ];
+
+        return str('thumbnails')
+            ->append(...$parts)
+            ->toString();
+    }
+
     public function execute(User $user, UploadedFile $thumbnail): void
     {
         /*
@@ -20,18 +37,9 @@ final class UpdateUserThumbnail
          * prepare everything to process the new one.
          */
         $oldThumbnail = $user->thumbnail;
-
-        $defaultFormat = ImageFormatEnum::from(
-            $format = config()->string('app.default_image_format')
-        );
-
-        $path = str('thumbnails')
-            ->append(
-                '/',
-                Str::random(40),
-                '.',
-                $format,
-            )->toString();
+        $format = config()->string('app.default_image_format');
+        $defaultFormat = ImageFormatEnum::from($format);
+        $path = $this->getPath($format);
 
         /*
          * Second, we check if the thumbnail is already in
@@ -42,10 +50,9 @@ final class UpdateUserThumbnail
             $thumbnail->storeAs(path: $path, options: ['disk' => 'users']);
         } else {
             $filePath = Storage::disk('users')->path($path);
+            $image = Image::read($thumbnail->getPathname());
 
-            $defaultFormat->getEncodeMethod(
-                Image::read($thumbnail->getPathname())
-            )->save($filePath);
+            $defaultFormat->getEncodeMethod($image)->save($filePath);
         }
 
         /*
