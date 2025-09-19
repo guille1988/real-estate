@@ -19,7 +19,6 @@ final class ProfileData extends Data
 {
     public function __construct(
         public string $name,
-        public string $email,
         public ?string $password = null,
         public ?UploadedFile $thumbnail = null,
     ) {}
@@ -47,7 +46,6 @@ final class ProfileData extends Data
     {
         return [
             'name' => ['required', 'string', 'between:2,100'],
-            'email' => ['required', 'string', 'email', 'between:2,200'],
             'password' => ['nullable', 'confirmed', Password::defaults()],
             'thumbnail' => ['nullable', File::types(ImageFormatEnum::values())->max('2mb')],
         ];

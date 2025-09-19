@@ -75,38 +75,6 @@
                                 class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6"
                             >
                                 <label
-                                    for="email"
-                                    class="block text-sm/6 font-medium text-white sm:pt-1.5"
-                                    >E-mail</label
-                                >
-                                <div
-                                    class="mt-2 w-full max-w-2xl sm:col-span-2 sm:mt-0"
-                                >
-                                    <div
-                                        class="flex w-full max-w-2xl items-center rounded-md outline-1 -outline-offset-1 outline-white/10 focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-purple-500"
-                                    >
-                                        <TextInput
-                                            id="email"
-                                            label=""
-                                            v-model:modelValue="email"
-                                            type="email"
-                                            placeholder="Enter your email"
-                                            class="w-full"
-                                        />
-                                    </div>
-                                    <div
-                                        v-if="form.errors.email"
-                                        class="mt-1 text-sm text-red-500 dark:text-red-400"
-                                    >
-                                        {{ form.errors.email }}
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div
-                                class="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:py-6"
-                            >
-                                <label
                                     for="password"
                                     class="block text-sm/6 font-medium text-white sm:pt-1.5"
                                     >Password</label
@@ -224,13 +192,11 @@ const user: UserInterface = usePage().props.auth.user;
 
 const successMessage: string = 'Profile saved successfully.';
 const name: Ref<string> = ref<string>(user.name || '');
-const email: Ref<string> = ref<string>(user.email || '');
 const thumbnail: Ref<string> = ref<string>(user.thumbnail || '');
 const showSuccessMessage: Ref<boolean> = ref<boolean>(false);
 
 const form: InertiaForm<ProfileFormInterface> = useForm<ProfileFormInterface>({
     name: '',
-    email: '',
     password: '',
     passwordConfirmation: '',
     thumbnail: null,
@@ -248,7 +214,6 @@ const submit = (): void => {
         return {
             ...data,
             name: name.value,
-            email: email.value,
             _method: FormMethodEnum.PATCH,
         };
     });
