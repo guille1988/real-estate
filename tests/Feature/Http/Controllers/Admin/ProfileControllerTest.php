@@ -16,7 +16,40 @@ it('displays profile page.', function (): void {
         ->assertOk();
 });
 
-it('updates a whole profile with all thumbnail formats.', function (array $data, ImageFormatEnum $format): void {
+it('updates profile without thumbnail.', function (array $data): void {
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $this->actingAs($user)
+        ->patch(route('admin.profile.update'), $data)
+        ->assertRedirectBack();
+
+    $updatedUser = $user->fresh();
+
+    expect($updatedUser->thumbnail)
+        ->toBeNull()
+        ->and($updatedUser->name)
+        ->toBe($data['name']);
+
+    if (isset($data['password'])) {
+        expect(Hash::check($data['password'], $updatedUser->password))
+            ->toBeTrue();
+    }
+})->with([
+    [
+        [
+            'name' => fake()->name(),
+        ],
+        [
+            'name' => fake()->name(),
+            'password' => $password = fake()->password(10),
+            'password_confirmation' => $password,
+        ],
+    ],
+]);
+
+it('updates profile with all thumbnail formats.', function (array $data, ImageFormatEnum $format): void {
     Storage::fake('users')
         ->makeDirectory('thumbnails');
 
@@ -36,12 +69,9 @@ it('updates a whole profile with all thumbnail formats.', function (array $data,
     $updatedUser = $user->fresh();
 
     expect($updatedUser->thumbnail)
-        ->not->toBeNull();
-
-    if (isset($data['name'])) {
-        expect($updatedUser->name)
-            ->toBe($data['name']);
-    }
+        ->not->toBeNull()
+        ->and($updatedUser->name)
+        ->toBe($data['name']);
 
     if (isset($data['password'])) {
         expect(Hash::check($data['password'], $updatedUser->password))
@@ -51,6 +81,16 @@ it('updates a whole profile with all thumbnail formats.', function (array $data,
     Storage::disk('users')
         ->assertCount('thumbnails', 1);
 })->with([
-    [['name' => fake()->name()]],
-    [['name' => fake()->name(), 'password' => $password = fake()->password(10), 'password_confirmation' => $password]],
+    [
+        [
+            'name' => fake()->name(),
+        ],
+    ],
+    [
+        [
+            'name' => fake()->name(),
+            'password' => $password = fake()->password(10),
+            'password_confirmation' => $password,
+        ],
+    ],
 ])->with(ImageFormatEnum::eachAsArray());
