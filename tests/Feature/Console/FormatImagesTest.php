@@ -7,13 +7,13 @@ use Symfony\Component\Finder\SplFileInfo;
 
 beforeEach(function (): void {
     File::deleteDirectory(
-        base_path('tests/Fixtures/Commands/format_images/images')
+        base_path('tests/Fixtures/Feature/Console/format_images/images')
     );
 });
 
 it('formats images.', function (ImageFormatEnum $format): void {
-    $basePath = base_path('tests/Fixtures/Commands/format_images/default_images');
-    $path = base_path('tests/Fixtures/Commands/format_images/images');
+    $basePath = base_path('tests/Fixtures/Feature/Console/format_images/default_images');
+    $path = base_path('tests/Fixtures/Feature/Console/format_images/images');
 
     File::copyDirectory($basePath, $path);
 
@@ -33,8 +33,8 @@ it('formats images.', function (ImageFormatEnum $format): void {
 
 it("doesn't perform formatting if there are no images to format.", function (): void {
     $format = ImageFormatEnum::AVIF;
-    $basePath = base_path('tests/Fixtures/Commands/format_images/default_images');
-    $path = base_path('tests/Fixtures/Commands/format_images/images');
+    $basePath = base_path('tests/Fixtures/Feature/Console/format_images/default_images');
+    $path = base_path('tests/Fixtures/Feature/Console/format_images/images');
 
     File::copyDirectory($basePath, $path);
 
@@ -53,8 +53,8 @@ it("doesn't perform formatting if there are no images to format.", function (): 
 
 it("doesn't perform formatting if all images are of the same destination format.", function (): void {
     $format = ImageFormatEnum::JPEG;
-    $basePath = base_path('tests/Fixtures/Commands/format_images/default_images');
-    $path = base_path('tests/Fixtures/Commands/format_images/images');
+    $basePath = base_path('tests/Fixtures/Feature/Console/format_images/default_images');
+    $path = base_path('tests/Fixtures/Feature/Console/format_images/images');
 
     File::copyDirectory($basePath, $path);
 
@@ -67,8 +67,8 @@ it("doesn't perform formatting if all images are of the same destination format.
 });
 
 it('ignores files.', function (): void {
-    $basePath = base_path('tests/Fixtures/Commands/format_images/default_images');
-    $path = base_path('tests/Fixtures/Commands/format_images/images');
+    $basePath = base_path('tests/Fixtures/Feature/Console/format_images/default_images');
+    $path = base_path('tests/Fixtures/Feature/Console/format_images/images');
 
     File::copyDirectory($basePath, $path);
     File::put($fileName = "$path/fail.txt", 'Failed content.');
@@ -94,7 +94,7 @@ it('should fail due to invalid path.', function (): void {
 it('should fail due to invalid format.', function (): void {
     $this->artisan('format:images', [
         '--format' => 'invalid',
-        '--path' => base_path('tests/Fixtures/Commands/format_images/images'),
+        '--path' => base_path('tests/Fixtures/Feature/Console/format_images/images'),
     ])
         ->assertFailed()
         ->expectsOutputToContain('The selected format is invalid.');
