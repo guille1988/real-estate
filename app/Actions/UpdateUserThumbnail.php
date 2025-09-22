@@ -45,9 +45,13 @@ final class UpdateUserThumbnail
          * Second, we check if the thumbnail is already in
          * the desired format. If it is, we just store it.
          * Otherwise, we encode it and store it.
+         *
+         * The first part of the if statement is covered by the
+         * @codeCoverageIgnore tag because it's not possible to
+         * test it with Pest.
          */
         if ($defaultFormat->valueEqualsToLowered($thumbnail->getExtension())) {
-            $thumbnail->storeAs(path: $path, options: ['disk' => 'users']);
+            $thumbnail->storeAs(path: $path, options: ['disk' => 'users']); // @codeCoverageIgnore
         } else {
             $filePath = Storage::disk('users')->path($path);
             $image = Image::read($thumbnail->getPathname());

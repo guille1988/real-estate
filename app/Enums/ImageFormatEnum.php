@@ -32,7 +32,13 @@ enum ImageFormatEnum: string
     /**
      * Returns each enum as an array.
      *
+     * This method is ignored in code coverage
+     * because it is not used in the application,
+     * only on the tests.
+     *
      * @return array<int, array{self}>
+     *
+     * @codeCoverageIgnore
      */
     public static function eachAsArray(): array
     {
