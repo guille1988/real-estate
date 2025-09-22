@@ -7,6 +7,7 @@
 import DesktopSidebar from '@/Components/Admin/Layout/Sidebar/DesktopSidebar.vue';
 import MobileSidebar from '@/Components/Admin/Layout/Sidebar/MobileSidebar.vue';
 import DashboardController from '@/Routes/actions/App/Http/Controllers/Admin/DashboardController';
+import PropertyController from '@/Routes/actions/App/Http/Controllers/Admin/PropertyController';
 import { PageEnum } from '@/Types/Admin/Enums/PageEnum';
 import type { SidebarNavigationInterface } from '@/Types/Admin/Interfaces/SidebarNavigationInterface';
 import { ChartPieIcon, HomeIcon } from '@heroicons/vue/24/outline';
@@ -21,7 +22,7 @@ const navigationItems: SidebarNavigationInterface[] = [
     },
     {
         name: PageEnum.PROPERTIES,
-        route: '#',
+        route: PropertyController.index().url,
         icon: HomeIcon,
         current: false,
     },

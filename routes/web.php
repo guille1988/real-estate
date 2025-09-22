@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\PropertyController as AdminPropertyController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ContactMessageController;
 use App\Http\Controllers\HomeController;
@@ -90,5 +91,7 @@ Route::prefix('admin')
             ->group(function (): void {
                 Route::get('dashboard', DashboardController::class)
                     ->name('.dashboard');
+
+                Route::resource('properties', AdminPropertyController::class);
             });
     });
