@@ -2,26 +2,23 @@
     <div class="px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
-                <h1 class="text-base font-semibold text-white">Users</h1>
+                <h1 class="text-base font-semibold text-white">Properties</h1>
                 <p class="mt-2 text-sm text-gray-300">
-                    A list of all the users in your account including their
-                    name, title, email and role.
+                    A list of all the properties
                 </p>
             </div>
             <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
                 <button
                     type="button"
-                    class="shadow-xs block rounded-md bg-indigo-500 px-3 py-2 text-center text-sm font-semibold text-white hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                    class="shadow-xs block rounded-md bg-purple-500 px-3 py-2 text-center text-sm font-semibold text-white hover:bg-purple-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-500"
                 >
-                    Add user
+                    Add property
                 </button>
             </div>
         </div>
         <div class="mt-8 flow-root">
-            <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                <div
-                    class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8"
-                >
+            <div class="-my-2 overflow-x-auto">
+                <div class="inline-block min-w-full py-2 align-middle">
                     <table class="relative min-w-full divide-y divide-white/15">
                         <thead>
                             <tr>
@@ -51,7 +48,7 @@
                                 </th>
                                 <th
                                     scope="col"
-                                    class="py-3.5 pl-3 pr-4 sm:pr-0"
+                                    class="py-3.5 pl-3 pr-4 sm:pr-6 lg:pr-8"
                                 >
                                     <span class="sr-only">Edit</span>
                                 </th>
@@ -104,11 +101,11 @@
                                     {{ person.role }}
                                 </td>
                                 <td
-                                    class="whitespace-nowrap py-5 pl-3 pr-4 text-right text-sm font-medium sm:pr-0"
+                                    class="whitespace-nowrap py-5 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 lg:pr-8"
                                 >
                                     <a
                                         href="#"
-                                        class="text-indigo-400 hover:text-indigo-300"
+                                        class="text-purple-400 hover:text-purple-300"
                                         >Edit<span class="sr-only"
                                             >, {{ person.name }}</span
                                         ></a
