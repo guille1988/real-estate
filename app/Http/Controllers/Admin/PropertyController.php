@@ -5,44 +5,43 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Admin;
 
 use App\Enums\PageEnum;
-use App\Models\Property;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Inertia\Response;
 
 final class PropertyController
 {
-    public function index()
+    public function index(): Response
     {
         return Inertia::render(PageEnum::ADMIN_PROPERTIES->value);
     }
 
-    public function create()
-    {
-        //
-    }
-
-    public function store(Request $request)
-    {
-        //
-    }
-
-    public function show(Property $property)
-    {
-        //
-    }
-
-    public function edit(Property $property)
-    {
-        //
-    }
-
-    public function update(Request $request, Property $property)
-    {
-        //
-    }
-
-    public function destroy(Property $property)
-    {
-        //
-    }
+    //    public function create(): Response
+    //    {
+    //        return Inertia::render(PageEnum::ADMIN_PROPERTIES->value);
+    //    }
+    //
+    //    public function store(Request $request): RedirectResponse
+    //    {
+    //        return back();
+    //    }
+    //
+    //    public function show(Property $property): Response
+    //    {
+    //        return Inertia::render(PageEnum::ADMIN_PROPERTIES->value);
+    //    }
+    //
+    //    public function edit(Property $property): Response
+    //    {
+    //        return Inertia::render(PageEnum::ADMIN_PROPERTIES->value);
+    //    }
+    //
+    //    public function update(Request $request, Property $property): RedirectResponse
+    //    {
+    //        return back();
+    //    }
+    //
+    //    public function destroy(Property $property): RedirectResponse
+    //    {
+    //        return back();
+    //    }
 }

@@ -66,25 +66,29 @@ Route::prefix('admin')
         Route::get('', AdminController::class);
 
         Route::controller(LoginController::class)
+            ->prefix('login')
+            ->name('.login')
             ->group(function (): void {
-                Route::get('login', 'create')
-                    ->name('.login.create');
+                Route::get('', 'create')
+                    ->name('.create');
 
-                Route::post('login', 'store')
-                    ->name('.login.store')
+                Route::post('', 'store')
+                    ->name('.store')
                     ->middleware('throttle:form');
 
-                Route::delete('login', 'destroy')
-                    ->name('.login.destroy');
+                Route::delete('', 'destroy')
+                    ->name('.destroy');
             });
 
         Route::controller(ProfileController::class)
+            ->prefix('profile')
+            ->name('.profile')
             ->group(function (): void {
-                Route::get('profile', 'edit')
-                    ->name('.profile.edit');
+                Route::get('', 'edit')
+                    ->name('.edit');
 
-                Route::patch('profile', 'update')
-                    ->name('.profile.update');
+                Route::patch('', 'update')
+                    ->name('.update');
             });
 
         Route::middleware('auth:web')
@@ -92,6 +96,9 @@ Route::prefix('admin')
                 Route::get('dashboard', DashboardController::class)
                     ->name('.dashboard');
 
-                Route::resource('properties', AdminPropertyController::class);
+                Route::resource('properties', AdminPropertyController::class)
+                    ->names([
+                        'index' => '.properties.index',
+                    ])->only('index');
             });
     });
