@@ -71,9 +71,6 @@
                                             <div class="font-medium text-white">
                                                 {{ person.name }}
                                             </div>
-                                            <div class="mt-1 text-gray-400">
-                                                {{ person.email }}
-                                            </div>
                                         </div>
                                     </div>
                                 </td>
@@ -82,9 +79,6 @@
                                 >
                                     <div class="text-white">
                                         {{ person.title }}
-                                    </div>
-                                    <div class="mt-1 text-gray-400">
-                                        {{ person.department }}
                                     </div>
                                 </td>
                                 <td
