@@ -15,26 +15,24 @@
                         @apply="applyFilters"
                         @clear="clearFilters"
                     >
-                        <div class="space-y-3">
-                            <SelectFilter
-                                v-model="state"
-                                label="State"
-                                :options="[
-                                    { label: 'Active', value: 'active' },
-                                    { label: 'Inactive', value: 'inactive' },
-                                ]"
-                            />
+                        <SelectFilter
+                            v-model="state"
+                            label="State"
+                            :options="[
+                                { label: 'Active', value: 'active' },
+                                { label: 'Inactive', value: 'inactive' },
+                            ]"
+                        />
 
-                            <SelectFilter
-                                v-model="role"
-                                label="Role"
-                                :options="[
-                                    { label: 'Member', value: 'member' },
-                                    { label: 'Admin', value: 'admin' },
-                                    { label: 'Owner', value: 'owner' },
-                                ]"
-                            />
-                        </div>
+                        <SelectFilter
+                            v-model="role"
+                            label="Role"
+                            :options="[
+                                { label: 'Member', value: 'member' },
+                                { label: 'Admin', value: 'admin' },
+                                { label: 'Owner', value: 'owner' },
+                            ]"
+                        />
                     </Filter>
 
                     <button
@@ -247,7 +245,7 @@ const people = [
         image: 'https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
     },
     {
-        name: 'Leonard Krasner',
+        name: 'Leonard Miles',
         title: 'Senior Designer',
         department: 'Mobility',
         email: 'leonard.krasner@example.com',
