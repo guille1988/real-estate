@@ -26,6 +26,15 @@
                 </p>
                 <div class="flex items-center gap-2">
                     <button
+                        type="button"
+                        class="rounded-md p-1 text-gray-300 hover:bg-white/10 hover:text-white"
+                        aria-label="Close filters"
+                        title="Close"
+                        @click="closeDropdown"
+                    >
+                        <XMarkIcon class="size-4" />
+                    </button>
+                    <button
                         v-if="showClear"
                         type="button"
                         class="text-xs font-medium text-purple-300 hover:text-purple-200"
@@ -55,7 +64,7 @@
 <script setup lang="ts">
 import { FilterInterface } from '@/Types/Admin/Interfaces/FilterInterface';
 import { EmitFilterType } from '@/Types/Admin/Types/EmitFilterType';
-import { FunnelIcon } from '@heroicons/vue/24/outline';
+import { FunnelIcon, XMarkIcon } from '@heroicons/vue/24/outline';
 import { onBeforeUnmount, onMounted, Ref, ref, watch } from 'vue';
 
 const {
@@ -93,6 +102,10 @@ const handleClickOutside = (event: MouseEvent): void => {
 
 const apply = (): void => {
     emit('apply');
+    isOpen.value = false;
+};
+
+const closeDropdown = (): void => {
     isOpen.value = false;
 };
 
