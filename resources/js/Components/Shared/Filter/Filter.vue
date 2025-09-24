@@ -53,14 +53,9 @@
 </template>
 
 <script setup lang="ts">
+import { FilterInterface } from '@/Types/Admin/Interfaces/FilterInterface';
 import { FunnelIcon } from '@heroicons/vue/24/outline';
 import { onBeforeUnmount, onMounted, Ref, ref, watch } from 'vue';
-
-interface Props {
-    modelValue?: boolean;
-    count?: number;
-    showClear?: boolean;
-}
 
 const {
     modelValue = false,
@@ -70,9 +65,11 @@ const {
     modelValue?: boolean;
     count?: number;
     showClear?: boolean;
-} = defineProps<Props>();
+} = defineProps<FilterInterface>();
 
 const label: string = 'Filters';
+const isOpen: Ref<boolean> = ref<boolean>(modelValue);
+const container: Ref<HTMLElement | null> = ref<HTMLElement | null>(null);
 
 const emit = defineEmits<{
     (e: 'update:modelValue', value: boolean): void;
@@ -83,7 +80,27 @@ const emit = defineEmits<{
     (e: 'clear'): void;
 }>();
 
-const isOpen = ref<boolean>(modelValue);
+const toggle = (): void => {
+    isOpen.value = !isOpen.value;
+    emit('toggle', isOpen.value);
+};
+
+const handleClickOutside = (event: MouseEvent): void => {
+    const value: HTMLElement | null = container.value;
+
+    if (!value) {
+        return;
+    }
+
+    if (isOpen.value && !value.contains(event.target as Node)) {
+        isOpen.value = false;
+    }
+};
+
+const apply = (): void => {
+    emit('apply');
+    isOpen.value = false;
+};
 
 watch(
     (): boolean => modelValue,
@@ -97,27 +114,6 @@ watch(
 watch(isOpen, (value: boolean): void => {
     emit('update:modelValue', value);
 });
-
-const container: Ref<HTMLElement | null> = ref<HTMLElement | null>(null);
-
-const toggle = (): void => {
-    isOpen.value = !isOpen.value;
-    emit('toggle', isOpen.value);
-};
-
-const handleClickOutside = (event: MouseEvent): void => {
-    if (!container.value) {
-        return;
-    }
-    if (isOpen.value && !container.value.contains(event.target as Node)) {
-        isOpen.value = false;
-    }
-};
-
-const apply = (): void => {
-    emit('apply');
-    isOpen.value = false;
-};
 
 onMounted((): void => {
     document.addEventListener('click', handleClickOutside);
