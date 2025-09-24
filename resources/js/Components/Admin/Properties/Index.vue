@@ -8,12 +8,51 @@
                 </p>
             </div>
             <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-                <button
-                    type="button"
-                    class="shadow-xs block rounded-md bg-purple-500 px-3 py-2 text-center text-sm font-semibold text-white hover:bg-purple-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-500"
-                >
-                    Add property
-                </button>
+                <div class="flex items-center gap-3">
+                    <Filter
+                        v-model="filtersOpen"
+                        :count="activeFilters"
+                        @apply="applyFilters"
+                        @clear="clearFilters"
+                    >
+                        <div class="space-y-3">
+                            <div>
+                                <label class="block text-xs text-gray-400"
+                                    >Estado</label
+                                >
+                                <select
+                                    v-model="example.state"
+                                    class="mt-1 w-full rounded-md border border-white/10 bg-gray-900/60 px-2 py-1.5 text-sm text-white placeholder-gray-500 focus:border-purple-500 focus:outline-none focus:ring-purple-500"
+                                >
+                                    <option value="">All</option>
+                                    <option value="active">Active</option>
+                                    <option value="inactive">Inactive</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs text-gray-400"
+                                    >Rol</label
+                                >
+                                <select
+                                    v-model="example.role"
+                                    class="mt-1 w-full rounded-md border border-white/10 bg-gray-900/60 px-2 py-1.5 text-sm text-white placeholder-gray-500 focus:border-purple-500 focus:outline-none focus:ring-purple-500"
+                                >
+                                    <option value="">All</option>
+                                    <option value="member">Member</option>
+                                    <option value="admin">Admin</option>
+                                    <option value="owner">Owner</option>
+                                </select>
+                            </div>
+                        </div>
+                    </Filter>
+
+                    <button
+                        type="button"
+                        class="shadow-xs block rounded-md bg-purple-500 px-3 py-2 text-center text-sm font-semibold text-white hover:bg-purple-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-500"
+                    >
+                        Add property
+                    </button>
+                </div>
             </div>
         </div>
         <div class="mt-8 flow-root">
@@ -146,13 +185,45 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import Filter from '@/Components/Shared/Filter/Filter.vue';
 import Pagination from '@/Components/Shared/Pagination/Pagination.vue';
 import {
     EyeIcon,
     PencilSquareIcon,
     TrashIcon,
 } from '@heroicons/vue/24/outline';
+import type { Reactive, Ref } from 'vue';
+import { reactive, ref } from 'vue';
+
+const filtersOpen: Ref<boolean> = ref<boolean>(false);
+const activeFilters: Ref<number> = ref<number>(0);
+
+const example: Reactive<{ state: string; role: string }> = reactive<{
+    state: string;
+    role: string;
+}>({ state: '', role: '' });
+
+const applyFilters = (): void => {
+    let count = 0;
+
+    if (example.state) {
+        count++;
+    }
+
+    if (example.role) {
+        count++;
+    }
+
+    activeFilters.value = count;
+};
+
+const clearFilters = (): void => {
+    example.state = '';
+    example.role = '';
+    activeFilters.value = 0;
+};
+
 const people = [
     {
         name: 'Lindsay Walton',
