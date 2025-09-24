@@ -19,46 +19,46 @@
         <div class="mt-8 flow-root">
             <div class="-my-2 overflow-x-auto">
                 <div class="inline-block min-w-full py-2 align-middle">
-                    <table class="relative min-w-full divide-y divide-white/15">
+                    <table
+                        class="relative min-w-full table-fixed divide-y divide-white/15"
+                    >
                         <thead>
                             <tr>
                                 <th
                                     scope="col"
-                                    class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-white sm:pl-0"
+                                    class="px-4 py-3.5 text-left text-sm font-semibold text-white"
                                 >
                                     Name
                                 </th>
                                 <th
                                     scope="col"
-                                    class="px-3 py-3.5 text-left text-sm font-semibold text-white"
+                                    class="px-4 py-3.5 text-left text-sm font-semibold text-white"
                                 >
                                     Title
                                 </th>
                                 <th
                                     scope="col"
-                                    class="px-3 py-3.5 text-left text-sm font-semibold text-white"
+                                    class="px-4 py-3.5 text-left text-sm font-semibold text-white"
                                 >
                                     Status
                                 </th>
                                 <th
                                     scope="col"
-                                    class="px-3 py-3.5 text-left text-sm font-semibold text-white"
+                                    class="px-4 py-3.5 text-left text-sm font-semibold text-white"
                                 >
                                     Role
                                 </th>
                                 <th
                                     scope="col"
-                                    class="py-3.5 pl-3 pr-4 sm:pr-6 lg:pr-8"
+                                    class="w-0 px-4 py-3.5 text-left text-sm font-semibold text-white"
                                 >
-                                    <span class="sr-only">Edit</span>
+                                    Actions
                                 </th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-white/10 bg-gray-900">
                             <tr v-for="person in people" :key="person.email">
-                                <td
-                                    class="whitespace-nowrap py-5 pl-4 pr-3 text-sm sm:pl-0"
-                                >
+                                <td class="whitespace-nowrap px-4 py-5 text-sm">
                                     <div class="flex items-center">
                                         <div class="size-11 shrink-0">
                                             <img
@@ -78,7 +78,7 @@
                                     </div>
                                 </td>
                                 <td
-                                    class="whitespace-nowrap px-3 py-5 text-sm text-gray-400"
+                                    class="whitespace-nowrap px-4 py-5 text-sm text-gray-400"
                                 >
                                     <div class="text-white">
                                         {{ person.title }}
@@ -88,7 +88,7 @@
                                     </div>
                                 </td>
                                 <td
-                                    class="whitespace-nowrap px-3 py-5 text-sm text-gray-400"
+                                    class="whitespace-nowrap px-4 py-5 text-sm text-gray-400"
                                 >
                                     <span
                                         class="inline-flex items-center rounded-md bg-green-900/30 px-2 py-1 text-xs font-medium text-green-400 ring-1 ring-inset ring-green-500/50"
@@ -96,16 +96,14 @@
                                     >
                                 </td>
                                 <td
-                                    class="whitespace-nowrap px-3 py-5 text-sm text-gray-400"
+                                    class="whitespace-nowrap px-4 py-5 text-sm text-gray-400"
                                 >
                                     {{ person.role }}
                                 </td>
                                 <td
-                                    class="whitespace-nowrap py-5 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 lg:pr-8"
+                                    class="w-0 whitespace-nowrap px-4 py-5 text-left text-sm font-medium"
                                 >
-                                    <div
-                                        class="flex items-center justify-end gap-3"
-                                    >
+                                    <div class="flex items-center gap-3">
                                         <a
                                             href="#"
                                             class="text-purple-400 hover:text-purple-300"
@@ -114,7 +112,7 @@
                                                 >Show, {{ person.name }}</span
                                             >
                                             <EyeIcon
-                                                class="size-5"
+                                                class="size-6"
                                                 aria-hidden="true"
                                             />
                                         </a>
@@ -126,7 +124,7 @@
                                                 >Edit, {{ person.name }}</span
                                             >
                                             <PencilSquareIcon
-                                                class="size-5"
+                                                class="size-6"
                                                 aria-hidden="true"
                                             />
                                         </a>
