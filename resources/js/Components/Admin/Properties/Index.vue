@@ -17,20 +17,18 @@
                     >
                         <div class="space-y-3">
                             <SelectFilter
-                                v-model="example.state"
+                                v-model="state"
                                 label="State"
                                 :options="[
-                                    { label: 'All', value: '' },
                                     { label: 'Active', value: 'active' },
                                     { label: 'Inactive', value: 'inactive' },
                                 ]"
                             />
 
                             <SelectFilter
-                                v-model="example.role"
+                                v-model="role"
                                 label="Role"
                                 :options="[
-                                    { label: 'All', value: '' },
                                     { label: 'Member', value: 'member' },
                                     { label: 'Admin', value: 'admin' },
                                     { label: 'Owner', value: 'owner' },
@@ -187,34 +185,31 @@ import {
     PencilSquareIcon,
     TrashIcon,
 } from '@heroicons/vue/24/outline';
-import type { Reactive, Ref } from 'vue';
-import { reactive, ref } from 'vue';
+import type { Ref } from 'vue';
+import { ref } from 'vue';
 
 const filtersOpen: Ref<boolean> = ref<boolean>(false);
 const activeFilters: Ref<number> = ref<number>(0);
-
-const example: Reactive<{ state: string; role: string }> = reactive<{
-    state: string;
-    role: string;
-}>({ state: '', role: '' });
+const state: Ref<string> = ref<string>('');
+const role: Ref<string> = ref<string>('');
 
 const applyFilters = (): void => {
-    let count = 0;
+    let totalCount: number = 0;
 
-    if (example.state) {
-        count++;
-    }
+    const counts: string[] = [state.value, role.value];
 
-    if (example.role) {
-        count++;
-    }
+    counts.forEach((count: string): void => {
+        if (count) {
+            totalCount++;
+        }
+    });
 
-    activeFilters.value = count;
+    activeFilters.value = totalCount;
 };
 
 const clearFilters = (): void => {
-    example.state = '';
-    example.role = '';
+    state.value = '';
+    role.value = '';
     activeFilters.value = 0;
 };
 
