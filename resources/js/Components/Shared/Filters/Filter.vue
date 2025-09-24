@@ -18,7 +18,7 @@
 
         <div
             v-if="isOpen"
-            class="absolute right-0 z-20 mt-2 w-72 origin-top-right rounded-lg border border-white/10 bg-gray-800/90 p-3 text-sm text-gray-200 shadow-xl backdrop-blur supports-[backdrop-filter]:bg-gray-800/70"
+            class="fixed inset-x-4 top-20 z-20 rounded-lg border border-white/10 bg-gray-800/90 p-3 text-sm text-gray-200 shadow-xl backdrop-blur supports-[backdrop-filter]:bg-gray-800/70 sm:absolute sm:inset-auto sm:right-0 sm:top-auto sm:mt-2 sm:w-72 sm:origin-top-right"
         >
             <div class="flex items-center justify-between pb-2">
                 <p class="text-xs uppercase tracking-wide text-gray-400">
@@ -52,7 +52,9 @@
                 </div>
             </div>
 
-            <div class="max-h-80 space-y-3 overflow-y-auto pr-1">
+            <div
+                class="max-h-[60vh] space-y-3 overflow-y-auto pr-1 sm:max-h-80"
+            >
                 <slot>
                     <p class="text-gray-400">No filters configured.</p>
                 </slot>
