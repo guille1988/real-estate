@@ -16,33 +16,26 @@
                         @clear="clearFilters"
                     >
                         <div class="space-y-3">
-                            <div>
-                                <label class="block text-xs text-gray-400"
-                                    >Estado</label
-                                >
-                                <select
-                                    v-model="example.state"
-                                    class="mt-1 w-full rounded-md border border-white/10 bg-gray-900/60 px-2 py-1.5 text-sm text-white placeholder-gray-500 focus:border-purple-500 focus:outline-none focus:ring-purple-500"
-                                >
-                                    <option value="">All</option>
-                                    <option value="active">Active</option>
-                                    <option value="inactive">Inactive</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-xs text-gray-400"
-                                    >Rol</label
-                                >
-                                <select
-                                    v-model="example.role"
-                                    class="mt-1 w-full rounded-md border border-white/10 bg-gray-900/60 px-2 py-1.5 text-sm text-white placeholder-gray-500 focus:border-purple-500 focus:outline-none focus:ring-purple-500"
-                                >
-                                    <option value="">All</option>
-                                    <option value="member">Member</option>
-                                    <option value="admin">Admin</option>
-                                    <option value="owner">Owner</option>
-                                </select>
-                            </div>
+                            <SelectFilter
+                                v-model="example.state"
+                                label="State"
+                                :options="[
+                                    { label: 'All', value: '' },
+                                    { label: 'Active', value: 'active' },
+                                    { label: 'Inactive', value: 'inactive' },
+                                ]"
+                            />
+
+                            <SelectFilter
+                                v-model="example.role"
+                                label="Role"
+                                :options="[
+                                    { label: 'All', value: '' },
+                                    { label: 'Member', value: 'member' },
+                                    { label: 'Admin', value: 'admin' },
+                                    { label: 'Owner', value: 'owner' },
+                                ]"
+                            />
                         </div>
                     </Filter>
 
@@ -186,7 +179,8 @@
 </template>
 
 <script setup lang="ts">
-import Filter from '@/Components/Shared/Filter/Filter.vue';
+import Filter from '@/Components/Shared/Filters/Filter.vue';
+import SelectFilter from '@/Components/Shared/Filters/SelectFilter.vue';
 import Pagination from '@/Components/Shared/Pagination/Pagination.vue';
 import {
     EyeIcon,

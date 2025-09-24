@@ -54,6 +54,7 @@
 
 <script setup lang="ts">
 import { FilterInterface } from '@/Types/Admin/Interfaces/FilterInterface';
+import { EmitFilterType } from '@/Types/Admin/Types/EmitFilterType';
 import { FunnelIcon } from '@heroicons/vue/24/outline';
 import { onBeforeUnmount, onMounted, Ref, ref, watch } from 'vue';
 
@@ -71,14 +72,7 @@ const label: string = 'Filters';
 const isOpen: Ref<boolean> = ref<boolean>(modelValue);
 const container: Ref<HTMLElement | null> = ref<HTMLElement | null>(null);
 
-const emit = defineEmits<{
-    (e: 'update:modelValue', value: boolean): void;
-    (e: 'open'): void;
-    (e: 'close'): void;
-    (e: 'toggle', value: boolean): void;
-    (e: 'apply'): void;
-    (e: 'clear'): void;
-}>();
+const emit: EmitFilterType = defineEmits<EmitFilterType>();
 
 const toggle = (): void => {
     isOpen.value = !isOpen.value;
