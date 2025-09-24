@@ -103,13 +103,46 @@
                                 <td
                                     class="whitespace-nowrap py-5 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 lg:pr-8"
                                 >
-                                    <a
-                                        href="#"
-                                        class="text-purple-400 hover:text-purple-300"
-                                        >Edit<span class="sr-only"
-                                            >, {{ person.name }}</span
-                                        ></a
+                                    <div
+                                        class="flex items-center justify-end gap-3"
                                     >
+                                        <a
+                                            href="#"
+                                            class="text-purple-400 hover:text-purple-300"
+                                        >
+                                            <span class="sr-only"
+                                                >Show, {{ person.name }}</span
+                                            >
+                                            <EyeIcon
+                                                class="size-5"
+                                                aria-hidden="true"
+                                            />
+                                        </a>
+                                        <a
+                                            href="#"
+                                            class="text-purple-400 hover:text-purple-300"
+                                        >
+                                            <span class="sr-only"
+                                                >Edit, {{ person.name }}</span
+                                            >
+                                            <PencilSquareIcon
+                                                class="size-5"
+                                                aria-hidden="true"
+                                            />
+                                        </a>
+                                        <button
+                                            type="button"
+                                            class="text-purple-400 hover:text-purple-300"
+                                        >
+                                            <span class="sr-only"
+                                                >Delete, {{ person.name }}</span
+                                            >
+                                            <TrashIcon
+                                                class="size-5"
+                                                aria-hidden="true"
+                                            />
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>
@@ -121,6 +154,11 @@
 </template>
 
 <script setup>
+import {
+    EyeIcon,
+    PencilSquareIcon,
+    TrashIcon,
+} from '@heroicons/vue/24/outline';
 const people = [
     {
         name: 'Lindsay Walton',
