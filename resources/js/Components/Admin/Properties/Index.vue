@@ -142,10 +142,12 @@
                 </div>
             </div>
         </div>
+        <Pagination />
     </div>
 </template>
 
 <script setup>
+import Pagination from '@/Components/Shared/Pagination/Pagination.vue';
 import {
     EyeIcon,
     PencilSquareIcon,
