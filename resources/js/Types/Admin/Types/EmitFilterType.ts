@@ -5,4 +5,4 @@ export type EmitFilterType = {
     (e: 'toggle', value: boolean): void;
     (e: 'apply'): void;
     (e: 'clear'): void;
-}
+};
