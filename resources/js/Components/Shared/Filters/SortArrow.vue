@@ -10,10 +10,9 @@
         >
             <span>{{ label }}</span>
             <ChevronDownIcon
-                class="size-4 text-purple-400 transition-transform group-hover:text-white"
+                class="size-4 text-purple-500 transition-transform group-hover:text-white"
                 :class="{
-                    'opacity-0 group-hover:opacity-100': !isActive,
-                    'text-white opacity-100': isActive,
+                    'text-white': isActive,
                     'rotate-180': isActive && sortDirLocal === 'asc',
                 }"
                 aria-hidden="true"
