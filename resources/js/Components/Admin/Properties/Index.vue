@@ -18,7 +18,7 @@
                     />
                 </div>
             </div>
-            <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+            <div class="mt-4 sm:mt-0 sm:flex-none">
                 <div class="flex items-center gap-3">
                     <Filter
                         v-model="filtersOpen"
