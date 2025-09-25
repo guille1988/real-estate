@@ -7,6 +7,16 @@
                     A list of all the properties
                 </p>
             </div>
+            <div class="mt-4 sm:mt-0 sm:flex-1 sm:px-6">
+                <div
+                    class="mx-auto w-full max-w-xl sm:max-w-md md:max-w-lg lg:max-w-xl"
+                >
+                    <SearchBar
+                        v-model="search"
+                        placeholder="Search properties..."
+                    />
+                </div>
+            </div>
             <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
                 <div class="flex items-center gap-3">
                     <Filter
@@ -176,6 +186,7 @@
 
 <script setup lang="ts">
 import Filter from '@/Components/Shared/Filters/Filter.vue';
+import SearchBar from '@/Components/Shared/Filters/SearchBar.vue';
 import SelectFilter from '@/Components/Shared/Filters/SelectFilter.vue';
 import Pagination from '@/Components/Shared/Pagination/Pagination.vue';
 import {
@@ -183,13 +194,27 @@ import {
     PencilSquareIcon,
     TrashIcon,
 } from '@heroicons/vue/24/outline';
+import { router, usePage } from '@inertiajs/vue3';
 import type { Ref } from 'vue';
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 
 const filtersOpen: Ref<boolean> = ref<boolean>(false);
 const activeFilters: Ref<number> = ref<number>(0);
 const state: Ref<string> = ref<string>('');
 const role: Ref<string> = ref<string>('');
+const search: Ref<string> = ref<string>('');
+
+const page = usePage();
+let searchDebounceId: number | undefined;
+
+const submitSearch = (term: string): void => {
+    const basePath: string = (page.url as string).split('?')[0];
+    router.get(
+        basePath,
+        { search: term },
+        { preserveState: true, preserveScroll: true, replace: true },
+    );
+};
 
 const applyFilters = (): void => {
     let totalCount: number = 0;
@@ -261,4 +286,17 @@ const people = [
         image: 'https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
     },
 ];
+
+watch(
+    search,
+    (value: string): void => {
+        if (searchDebounceId) {
+            clearTimeout(searchDebounceId);
+        }
+        searchDebounceId = window.setTimeout((): void => {
+            submitSearch(value);
+        }, 300);
+    },
+    { immediate: false },
+);
 </script>
