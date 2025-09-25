@@ -4,7 +4,7 @@
         class="flex h-16 shrink-0 items-center"
     >
         <RealEstateIcon /> &nbsp;&nbsp;&nbsp;&nbsp;
-        <b class="text-lg font-black uppercase text-white"> {{ appName }} </b>
+        <b class="text-lg font-black text-white"> {{ appName }} </b>
     </Link>
 </template>
 
