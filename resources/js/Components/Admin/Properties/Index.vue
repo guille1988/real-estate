@@ -63,30 +63,26 @@
                     >
                         <thead>
                             <tr>
-                                <th
-                                    scope="col"
-                                    class="px-4 py-3.5 text-left text-sm font-semibold text-white"
-                                >
-                                    Name
-                                </th>
-                                <th
-                                    scope="col"
-                                    class="px-4 py-3.5 text-left text-sm font-semibold text-white"
-                                >
-                                    Title
-                                </th>
-                                <th
-                                    scope="col"
-                                    class="px-4 py-3.5 text-left text-sm font-semibold text-white"
-                                >
-                                    Status
-                                </th>
-                                <th
-                                    scope="col"
-                                    class="px-4 py-3.5 text-left text-sm font-semibold text-white"
-                                >
-                                    Role
-                                </th>
+                                <SortArrow
+                                    label="Name"
+                                    column="name"
+                                    :url="PropertyController.index().url"
+                                />
+                                <SortArrow
+                                    label="Title"
+                                    column="title"
+                                    :url="PropertyController.index().url"
+                                />
+                                <SortArrow
+                                    label="Status"
+                                    column="status"
+                                    :url="PropertyController.index().url"
+                                />
+                                <SortArrow
+                                    label="Role"
+                                    column="role"
+                                    :url="PropertyController.index().url"
+                                />
                                 <th
                                     scope="col"
                                     class="w-0 px-4 py-3.5 text-left text-sm font-semibold text-white"
@@ -189,6 +185,7 @@
 import Filter from '@/Components/Shared/Filters/Filter.vue';
 import SearchBar from '@/Components/Shared/Filters/SearchBar.vue';
 import SelectFilter from '@/Components/Shared/Filters/SelectFilter.vue';
+import SortArrow from '@/Components/Shared/Filters/SortArrow.vue';
 import Pagination from '@/Components/Shared/Pagination/Pagination.vue';
 import PropertyController from '@/Routes/actions/App/Http/Controllers/Admin/PropertyController';
 import {
