@@ -182,11 +182,11 @@
 </template>
 
 <script setup lang="ts">
-import Filter from '@/Components/Shared/Filters/Filter.vue';
-import SearchBar from '@/Components/Shared/Filters/SearchBar.vue';
-import SelectFilter from '@/Components/Shared/Filters/SelectFilter.vue';
-import SortArrow from '@/Components/Shared/Filters/SortArrow.vue';
-import Pagination from '@/Components/Shared/Pagination/Pagination.vue';
+import Filter from '@/Components/Shared/Tables/Filters/Filter.vue';
+import SelectFilter from '@/Components/Shared/Tables/Filters/SelectFilter.vue';
+import Pagination from '@/Components/Shared/Tables/Pagination.vue';
+import SearchBar from '@/Components/Shared/Tables/SearchBar.vue';
+import SortArrow from '@/Components/Shared/Tables/SortArrow.vue';
 import PropertyController from '@/Routes/actions/App/Http/Controllers/Admin/PropertyController';
 import {
     EyeIcon,
