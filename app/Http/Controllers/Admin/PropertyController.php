@@ -21,7 +21,7 @@ final class PropertyController
     {
         $properties = Property::query()
             ->forIndexing()
-            ->paginate(perPage: 8, page: 1)
+            ->paginate(perPage: 7, page: 1)
             ->through(function (Property $property): JsonResource {
                 return IndexPropertyResource::make($property);
             })->toArray();

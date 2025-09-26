@@ -12,7 +12,7 @@ it('works on index page.', function (): void {
         ->admin()
         ->create();
 
-    Property::factory($count = 8)
+    Property::factory($count = 7)
         ->create();
 
     $this->actingAs($user)
