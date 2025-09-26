@@ -12,13 +12,13 @@ it('works on index page.', function (): void {
         ->admin()
         ->create();
 
-    Property::factory($count = 10)
+    Property::factory($count = 8)
         ->create();
 
     $this->actingAs($user)
         ->get(route('admin.properties.index'))
         ->assertInertia(function (Assert $page) use ($count): void {
             $page->component(PageEnum::ADMIN_PROPERTIES->value)
-                ->has('properties', $count);
+                ->has('properties.data', $count);
         });
 });
