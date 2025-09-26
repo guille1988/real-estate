@@ -193,8 +193,8 @@ import {
     PencilSquareIcon,
     TrashIcon,
 } from '@heroicons/vue/24/outline';
-import type { Ref } from 'vue';
-import { ref } from 'vue';
+import { router } from '@inertiajs/vue3';
+import { onMounted, Ref, ref } from 'vue';
 
 const filtersOpen: Ref<boolean> = ref<boolean>(false);
 const activeFilters: Ref<number> = ref<number>(0);
@@ -272,4 +272,12 @@ const people = [
         image: 'https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
     },
 ];
+
+const clearQueryStrings = (): void => {
+    if (window.location.search) {
+        router.replace({ url: window.location.pathname });
+    }
+};
+
+onMounted((): void => clearQueryStrings());
 </script>

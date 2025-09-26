@@ -25,7 +25,7 @@
 import { SortDirection } from '@/Types/Admin/Enums/SortDirection';
 import { ChevronDownIcon } from '@heroicons/vue/20/solid';
 import { router, usePage } from '@inertiajs/vue3';
-import { computed, ComputedRef, onMounted } from 'vue';
+import { computed, ComputedRef } from 'vue';
 
 const { label, column, url }: { label: string; column: string; url: string } =
     defineProps<{
@@ -94,14 +94,4 @@ const onClick = (): void => {
         replace: true,
     });
 };
-
-const refreshOrder = (): void => {
-    if (window.location.search) {
-        router.replace({ url: window.location.pathname });
-    }
-};
-
-onMounted((): void => {
-    refreshOrder();
-});
 </script>
