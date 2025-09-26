@@ -107,4 +107,23 @@ final class PropertyBuilder extends Builder
                 $query->where('is_featured', $data->isFeatured);
             });
     }
+
+    /**
+     * @return self<TModel>
+     */
+    public function forIndexing(): self
+    {
+        $columns = [
+            'id',
+            'uuid',
+            'title',
+            'type',
+            'bathrooms',
+            'bedrooms',
+            'price',
+        ];
+
+        return $this->with('defaultImage:id,path,property_id')
+            ->select($columns);
+    }
 }

@@ -5,43 +5,27 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Admin;
 
 use App\Enums\PageEnum;
+use App\Http\Resources\Admin\IndexPropertyResource;
+use App\Models\Property;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 use Inertia\Inertia;
 use Inertia\Response;
+use Throwable;
 
 final class PropertyController
 {
+    /**
+     * @throws Throwable
+     */
     public function index(): Response
     {
-        return Inertia::render(PageEnum::ADMIN_PROPERTIES->value);
-    }
+        $properties = Property::query()
+            ->forIndexing()
+            ->get()
+            ->toResourceCollection(IndexPropertyResource::class);
 
-    //    public function create(): Response
-    //    {
-    //        return Inertia::render(PageEnum::ADMIN_PROPERTIES->value);
-    //    }
-    //
-    //    public function store(Request $request): RedirectResponse
-    //    {
-    //        return back();
-    //    }
-    //
-    //    public function show(Property $property): Response
-    //    {
-    //        return Inertia::render(PageEnum::ADMIN_PROPERTIES->value);
-    //    }
-    //
-    //    public function edit(Property $property): Response
-    //    {
-    //        return Inertia::render(PageEnum::ADMIN_PROPERTIES->value);
-    //    }
-    //
-    //    public function update(Request $request, Property $property): RedirectResponse
-    //    {
-    //        return back();
-    //    }
-    //
-    //    public function destroy(Property $property): RedirectResponse
-    //    {
-    //        return back();
-    //    }
+        return Inertia::render(PageEnum::ADMIN_PROPERTIES->value, [
+            'properties' => fn (): ResourceCollection => $properties,
+        ]);
+    }
 }
