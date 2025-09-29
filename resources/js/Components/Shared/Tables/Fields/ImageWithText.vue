@@ -5,7 +5,7 @@
                 <img
                     class="size-11 rounded-full outline outline-white/10"
                     :src="image"
-                    alt=""
+                    :alt="text"
                 />
             </div>
             <div class="ml-4">
