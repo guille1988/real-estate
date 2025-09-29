@@ -148,40 +148,30 @@
                                     class="w-0 whitespace-nowrap px-4 py-5 text-left text-sm font-medium"
                                 >
                                     <div class="flex items-center gap-3">
-                                        <a
+                                        <Link
+                                            prefetch
                                             href="#"
                                             class="text-purple-400 hover:text-purple-300"
                                         >
-                                            <span class="sr-only"
-                                                >Show,
-                                                {{ property.title }}</span
-                                            >
                                             <EyeIcon
                                                 class="size-6"
                                                 aria-hidden="true"
                                             />
-                                        </a>
-                                        <a
+                                        </Link>
+                                        <Link
+                                            prefetch
                                             href="#"
                                             class="text-purple-400 hover:text-purple-300"
                                         >
-                                            <span class="sr-only"
-                                                >Edit,
-                                                {{ property.title }}</span
-                                            >
                                             <PencilSquareIcon
                                                 class="size-6"
                                                 aria-hidden="true"
                                             />
-                                        </a>
+                                        </Link>
                                         <button
                                             type="button"
                                             class="text-purple-400 hover:text-purple-300"
                                         >
-                                            <span class="sr-only"
-                                                >Delete,
-                                                {{ property.title }}</span
-                                            >
                                             <TrashIcon
                                                 class="size-5"
                                                 aria-hidden="true"
@@ -212,7 +202,7 @@ import {
     PencilSquareIcon,
     TrashIcon,
 } from '@heroicons/vue/24/outline';
-import { router } from '@inertiajs/vue3';
+import { Link, router } from '@inertiajs/vue3';
 import { onMounted, Ref, ref } from 'vue';
 
 const { properties }: { properties: IndexPropertyPaginatedInterface } =
