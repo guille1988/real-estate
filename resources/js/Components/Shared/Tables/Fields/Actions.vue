@@ -3,6 +3,7 @@
         <div class="flex items-center gap-3">
             <Link
                 prefetch
+                :title="getTitle(ActionEnum.SHOW)"
                 :href="showUrl"
                 class="text-purple-400 hover:text-purple-300"
             >
@@ -11,11 +12,13 @@
             <Link
                 prefetch
                 :href="editUrl"
+                :title="getTitle(ActionEnum.EDIT)"
                 class="text-purple-400 hover:text-purple-300"
             >
                 <PencilSquareIcon class="size-6" aria-hidden="true" />
             </Link>
             <button
+                :title="getTitle(ActionEnum.DELETE)"
                 type="button"
                 class="text-purple-400 hover:text-purple-300"
                 @click="deleteRecord()"
@@ -27,6 +30,8 @@
 </template>
 
 <script setup lang="ts">
+import { title } from '@/Composables/useTitleCase';
+import { ActionEnum } from '@/Types/Admin/Enums/ActionEnum';
 import {
     EyeIcon,
     PencilSquareIcon,
@@ -34,11 +39,18 @@ import {
 } from '@heroicons/vue/24/outline';
 import { Link } from '@inertiajs/vue3';
 
-defineProps<{
+const { resource }: { resource: string } = defineProps<{
     showUrl: string;
     editUrl: string;
     deleteUrl: string;
+    resource: string;
 }>();
+
+const getTitle = (action: ActionEnum): string => {
+    const tooltip: string = `${action} ${resource}`;
+
+    return title(tooltip);
+};
 
 const deleteRecord = (): void => {
     const isConfirmed: boolean = confirm(

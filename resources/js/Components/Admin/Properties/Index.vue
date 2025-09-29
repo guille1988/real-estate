@@ -95,6 +95,7 @@
                                     show-url="#"
                                     edit-url="#"
                                     delete-url="#"
+                                    resource="property"
                                 />
                             </tr>
                         </tbody>
