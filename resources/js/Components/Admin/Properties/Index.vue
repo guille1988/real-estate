@@ -63,17 +63,16 @@
                     >
                         <thead>
                             <tr>
-                                <SortArrow column="title" :url="url" />
-                                <SortArrow column="bedrooms" :url="url" />
-                                <SortArrow column="bathrooms" :url="url" />
-                                <SortArrow column="type" :url="url" />
-                                <SortArrow column="price" :url="url" />
-                                <th
-                                    scope="col"
-                                    class="w-0 px-4 py-3.5 text-left text-sm font-semibold text-white"
-                                >
-                                    Actions
-                                </th>
+                                <TableHeader column="title" :url="url" />
+                                <TableHeader column="bathrooms" :url="url" />
+                                <TableHeader column="bedrooms" :url="url" />
+                                <TableHeader column="type" :url="url" />
+                                <TableHeader column="price" :url="url" />
+                                <TableHeader
+                                    column="actions"
+                                    :url="url"
+                                    :sort="false"
+                                />
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-white/10 bg-gray-900">
@@ -81,84 +80,22 @@
                                 v-for="property in properties.data"
                                 :key="property.uuid"
                             >
-                                <td class="whitespace-nowrap px-4 py-5 text-sm">
-                                    <div class="flex items-center">
-                                        <div class="size-11 shrink-0">
-                                            <img
-                                                class="size-11 rounded-full outline outline-white/10"
-                                                :src="property.image"
-                                                alt=""
-                                            />
-                                        </div>
-                                        <div class="ml-4">
-                                            <div class="font-medium text-white">
-                                                {{ property.title }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td
-                                    class="whitespace-nowrap px-4 py-5 text-sm text-gray-400"
-                                >
-                                    <div class="text-white">
-                                        {{ property.bedrooms }}
-                                    </div>
-                                </td>
-                                <td
-                                    class="whitespace-nowrap px-4 py-5 text-sm text-gray-400"
-                                >
-                                    <div class="text-white">
-                                        {{ property.bathrooms }}
-                                    </div>
-                                </td>
-                                <td
-                                    class="whitespace-nowrap px-4 py-5 text-sm text-gray-400"
-                                >
-                                    <span
-                                        class="inline-flex items-center rounded-md bg-green-900/30 px-2 py-1 text-xs font-medium uppercase text-green-400 ring-1 ring-inset ring-green-500/50"
-                                        >{{ property.type }}</span
-                                    >
-                                </td>
-                                <td
-                                    class="whitespace-nowrap px-4 py-5 text-sm text-gray-400"
-                                >
-                                    {{ property.price }}
-                                </td>
-                                <td
-                                    class="w-0 whitespace-nowrap px-4 py-5 text-left text-sm font-medium"
-                                >
-                                    <div class="flex items-center gap-3">
-                                        <Link
-                                            prefetch
-                                            href="#"
-                                            class="text-purple-400 hover:text-purple-300"
-                                        >
-                                            <EyeIcon
-                                                class="size-6"
-                                                aria-hidden="true"
-                                            />
-                                        </Link>
-                                        <Link
-                                            prefetch
-                                            href="#"
-                                            class="text-purple-400 hover:text-purple-300"
-                                        >
-                                            <PencilSquareIcon
-                                                class="size-6"
-                                                aria-hidden="true"
-                                            />
-                                        </Link>
-                                        <button
-                                            type="button"
-                                            class="text-purple-400 hover:text-purple-300"
-                                        >
-                                            <TrashIcon
-                                                class="size-5"
-                                                aria-hidden="true"
-                                            />
-                                        </button>
-                                    </div>
-                                </td>
+                                <ImageWithText
+                                    :image="property.image"
+                                    :text="property.title"
+                                />
+                                <Text :text="property.bathrooms" />
+                                <Text :text="property.bedrooms" />
+                                <Badge
+                                    :badge="property.type"
+                                    :mapping="PropertyTypeColors"
+                                />
+                                <Text :text="property.price" />
+                                <Actions
+                                    show-url="#"
+                                    edit-url="#"
+                                    delete-url="#"
+                                />
                             </tr>
                         </tbody>
                     </table>
@@ -170,20 +107,20 @@
 </template>
 
 <script setup lang="ts">
+import Actions from '@/Components/Shared/Tables/Fields/Actions.vue';
+import Badge from '@/Components/Shared/Tables/Fields/Badge.vue';
+import ImageWithText from '@/Components/Shared/Tables/Fields/ImageWithText.vue';
+import Text from '@/Components/Shared/Tables/Fields/Text.vue';
 import Filter from '@/Components/Shared/Tables/Filters/Filter.vue';
 import SelectFilter from '@/Components/Shared/Tables/Filters/SelectFilter.vue';
 import Pagination from '@/Components/Shared/Tables/Pagination.vue';
 import SearchBar from '@/Components/Shared/Tables/SearchBar.vue';
-import SortArrow from '@/Components/Shared/Tables/SortArrow.vue';
+import TableHeader from '@/Components/Shared/Tables/TableHeader.vue';
 import { IndexPropertyPaginatedInterface } from '@/Types/Admin/Interfaces/IndexPropertyPaginatedInterface';
+import { PropertyTypeColors } from '@/Types/App/Enums/PropertyTypeEnum';
 import { PageProps } from '@/Types/Core';
-import {
-    EyeIcon,
-    PencilSquareIcon,
-    TrashIcon,
-} from '@heroicons/vue/24/outline';
 import { Page } from '@inertiajs/core';
-import { Link, router, usePage } from '@inertiajs/vue3';
+import { router, usePage } from '@inertiajs/vue3';
 import { onMounted, Ref, ref } from 'vue';
 
 const { properties }: { properties: IndexPropertyPaginatedInterface } =

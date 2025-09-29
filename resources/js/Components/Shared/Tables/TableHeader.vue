@@ -10,6 +10,7 @@
         >
             <span>{{ title(column) }}</span>
             <ChevronDownIcon
+                v-if="sort"
                 class="size-4 text-purple-500 transition-transform group-hover:text-white"
                 :class="{
                     'text-white': isActive,
@@ -28,9 +29,14 @@ import { ChevronDownIcon } from '@heroicons/vue/20/solid';
 import { router, usePage } from '@inertiajs/vue3';
 import { computed, ComputedRef } from 'vue';
 
-const { column, url }: { column: string; url: string } = defineProps<{
+const {
+    column,
+    url,
+    sort = true,
+}: { column: string; url: string; sort?: boolean } = defineProps<{
     column: string;
     url: string;
+    sort?: boolean;
 }>();
 
 const sortKey: string = 'sort';
