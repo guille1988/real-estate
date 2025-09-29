@@ -14,7 +14,7 @@
                     <SearchBar
                         v-model="search"
                         placeholder="Search properties..."
-                        :url="PropertyController.index().url"
+                        :url="url"
                     />
                 </div>
             </div>
@@ -63,31 +63,11 @@
                     >
                         <thead>
                             <tr>
-                                <SortArrow
-                                    label="Title"
-                                    column="title"
-                                    :url="PropertyController.index().url"
-                                />
-                                <SortArrow
-                                    label="Bedrooms"
-                                    column="bedrooms"
-                                    :url="PropertyController.index().url"
-                                />
-                                <SortArrow
-                                    label="Bathrooms"
-                                    column="bathrooms"
-                                    :url="PropertyController.index().url"
-                                />
-                                <SortArrow
-                                    label="Type"
-                                    column="type"
-                                    :url="PropertyController.index().url"
-                                />
-                                <SortArrow
-                                    label="Price"
-                                    column="price"
-                                    :url="PropertyController.index().url"
-                                />
+                                <SortArrow column="title" :url="url" />
+                                <SortArrow column="bedrooms" :url="url" />
+                                <SortArrow column="bathrooms" :url="url" />
+                                <SortArrow column="type" :url="url" />
+                                <SortArrow column="price" :url="url" />
                                 <th
                                     scope="col"
                                     class="w-0 px-4 py-3.5 text-left text-sm font-semibold text-white"
@@ -195,14 +175,15 @@ import SelectFilter from '@/Components/Shared/Tables/Filters/SelectFilter.vue';
 import Pagination from '@/Components/Shared/Tables/Pagination.vue';
 import SearchBar from '@/Components/Shared/Tables/SearchBar.vue';
 import SortArrow from '@/Components/Shared/Tables/SortArrow.vue';
-import PropertyController from '@/Routes/actions/App/Http/Controllers/Admin/PropertyController';
 import { IndexPropertyPaginatedInterface } from '@/Types/Admin/Interfaces/IndexPropertyPaginatedInterface';
+import { PageProps } from '@/Types/Core';
 import {
     EyeIcon,
     PencilSquareIcon,
     TrashIcon,
 } from '@heroicons/vue/24/outline';
-import { Link, router } from '@inertiajs/vue3';
+import { Page } from '@inertiajs/core';
+import { Link, router, usePage } from '@inertiajs/vue3';
 import { onMounted, Ref, ref } from 'vue';
 
 const { properties }: { properties: IndexPropertyPaginatedInterface } =
@@ -210,6 +191,8 @@ const { properties }: { properties: IndexPropertyPaginatedInterface } =
         properties: IndexPropertyPaginatedInterface;
     }>();
 
+const page: Page<PageProps> = usePage();
+const url: Ref<string> = ref<string>(page.url);
 const filtersOpen: Ref<boolean> = ref<boolean>(false);
 const activeFilters: Ref<number> = ref<number>(0);
 const state: Ref<string> = ref<string>('');

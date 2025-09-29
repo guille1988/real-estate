@@ -59,7 +59,7 @@
                         class="h-4 w-4 text-gray-800 dark:text-white"
                     />
                     <span class="text-xs text-gray-400 md:text-sm">{{
-                        capitalizeFirstLetter(card.type)
+                        title(card.type)
                     }}</span>
                 </div>
             </div>
@@ -89,6 +89,7 @@
 import BathroomIcon from '@/Components/Icons/BathroomIcon.vue';
 import BedroomIcon from '@/Components/Icons/BedroomIcon.vue';
 import BuildingIcon from '@/Components/Icons/BuildingIcon.vue';
+import { title } from '@/Composables/useTitleCase';
 import { show } from '@/Routes/actions/App/Http/Controllers/PropertyController';
 import { IndexPropertyInterface } from '@/Types/App/Interfaces/IndexPropertyInterface';
 import { Link } from '@inertiajs/vue3';
@@ -102,9 +103,5 @@ const showFullDescription: Ref<boolean> = ref<boolean>(false);
 
 const toggleShowFullDescription = (): void => {
     showFullDescription.value = !showFullDescription.value;
-};
-
-const capitalizeFirstLetter = (word: string): string => {
-    return word.charAt(0).toUpperCase() + word.slice(1);
 };
 </script>
