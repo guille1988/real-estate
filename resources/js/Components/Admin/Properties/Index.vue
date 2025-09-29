@@ -102,7 +102,7 @@
                 </div>
             </div>
         </div>
-        <Pagination />
+        <Pagination v-if="showPagination()" />
     </div>
 </template>
 
@@ -128,6 +128,7 @@ const { properties }: { properties: IndexPropertyPaginatedInterface } =
         properties: IndexPropertyPaginatedInterface;
     }>();
 
+const paginationPageLimit: number = 7;
 const page: Page<PageProps> = usePage();
 const url: Ref<string> = ref<string>(page.url);
 const filtersOpen: Ref<boolean> = ref<boolean>(false);
@@ -135,6 +136,8 @@ const activeFilters: Ref<number> = ref<number>(0);
 const state: Ref<string> = ref<string>('');
 const role: Ref<string> = ref<string>('');
 const search: Ref<string> = ref<string>('');
+
+const showPagination = (): boolean => properties.total > paginationPageLimit;
 
 const applyFilters = (): void => {
     let totalCount: number = 0;
