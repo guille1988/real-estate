@@ -5,14 +5,18 @@
 </template>
 
 <script setup lang="ts">
-const { badge, mapping }: { badge: string; mapping: Record<string, string> } =
+const { badge, mapping }: { badge: string; mapping?: Record<string, string> } =
     defineProps<{
         badge: string;
-        mapping: Record<string, string>;
+        mapping?: Record<string, string>;
     }>();
 
 const getClass = (): string => {
-    const color: string = mapping[badge];
+    let color: string = 'green';
+
+    if (mapping && mapping[badge]) {
+        color = mapping[badge];
+    }
 
     return `inline-flex items-center rounded-md bg-${color}-900/30 px-2 py-1 text-xs font-medium uppercase text-${color}-400 ring-1 ring-inset ring-${color}-500/50`;
 };
