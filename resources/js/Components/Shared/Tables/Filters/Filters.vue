@@ -54,13 +54,17 @@
             <div
                 class="max-h-[60vh] space-y-3 overflow-y-auto pr-1 sm:max-h-80"
             >
-                <div v-if="Object.keys(filters).length === 0">
+                <div v-if="filtersAreEmpty()">
                     <p class="text-gray-400">No filters configured.</p>
                 </div>
 
                 <div v-else v-for="(options, name) in filters" :key="name">
                     <Filter
-                        v-model="selected[name]"
+                        :modelValue="selected[name]"
+                        @update:modelValue="
+                            (val: boolean | number | string) =>
+                                (selected[name] = val)
+                        "
                         :label="formatLabel(name)"
                         :options="options"
                     />
@@ -74,8 +78,11 @@
 import Filter from '@/Components/Shared/Tables/Filters/Filter.vue';
 import { FiltersInterface } from '@/Types/Admin/Interfaces/FiltersInterface';
 import { EmitFilterType } from '@/Types/Admin/Types/EmitFilterType';
+import { SelectFilterOptionType } from '@/Types/Admin/Types/SelectFilterOptionType';
+import { PageProps } from '@/Types/Core';
 import { FunnelIcon, XMarkIcon } from '@heroicons/vue/24/outline';
-import { router } from '@inertiajs/vue3';
+import { Page } from '@inertiajs/core';
+import { router, usePage } from '@inertiajs/vue3';
 import { computed, onBeforeUnmount, onMounted, Ref, ref, watch } from 'vue';
 
 const { modelValue = false, filters } = defineProps<FiltersInterface>();
@@ -83,14 +90,52 @@ const { modelValue = false, filters } = defineProps<FiltersInterface>();
 const label: string = 'Filters';
 const isOpen: Ref<boolean> = ref<boolean>(modelValue);
 const container: Ref<HTMLElement | null> = ref<HTMLElement | null>(null);
-
 const selected: Ref<Record<string, boolean | number | string>> = ref({});
 
-const activeCount = computed<number>(() => {
-    return Object.values(selected.value).filter(
-        (v: boolean | number | string | undefined | null) =>
-            v !== '' && v !== undefined && v !== null,
-    ).length;
+const filtersAreEmpty = (): boolean => Object.keys(filters).length === 0;
+
+const isSet = (value: undefined | null | boolean | number | string) =>
+    value !== '' && value !== undefined && value !== null;
+
+const initializeSelectedFromQuery = (): void => {
+    const params: URLSearchParams = new URLSearchParams(window.location.search);
+
+    Object.entries(filters).forEach(
+        ([name, options]: [string, SelectFilterOptionType[]]): void => {
+            const raw = params.get(name);
+
+            if (raw === null) {
+                return;
+            }
+
+            const match = options.find(
+                (option: SelectFilterOptionType) =>
+                    String(option.value) === String(raw),
+            );
+
+            selected.value[name] = match ? (match.value as any) : (raw as any);
+        },
+    );
+};
+
+const page: Page<PageProps> = usePage();
+
+const activeCount = computed<number>((): number => {
+    const url: string = page.url as unknown as string;
+    const query: string = url.includes('?') ? url.split('?')[1] : '';
+    const params: URLSearchParams = new URLSearchParams(query);
+
+    let count: number = 0;
+
+    Object.keys(filters).forEach((name: string): void => {
+        const raw: string | null = params.get(name);
+
+        if (isSet(raw)) {
+            count += 1;
+        }
+    });
+
+    return count;
 });
 
 const formatLabel = (name: string): string => {
@@ -121,9 +166,6 @@ const handleClickOutside = (event: MouseEvent): void => {
 const apply = (): void => {
     const params: Record<string, string | number | boolean> = {};
 
-    const isSet = (value: boolean | number | string) =>
-        value !== '' && value !== undefined && value !== null;
-
     Object.entries(selected.value).forEach(
         ([key, value]: [string, boolean | number | string]): void => {
             if (isSet(value)) {
@@ -142,10 +184,8 @@ const apply = (): void => {
 };
 
 const clear = (): void => {
-    // Reset selections
     selected.value = {};
 
-    // Clear query string via Inertia
     router.replace({ url: window.location.pathname });
 
     emit('clear');
@@ -169,8 +209,16 @@ watch(isOpen, (value: boolean): void => {
     emit('update:modelValue', value);
 });
 
+watch(
+    (): string => page.url,
+    (): void => {
+        initializeSelectedFromQuery();
+    },
+);
+
 onMounted((): void => {
     document.addEventListener('click', handleClickOutside);
+    initializeSelectedFromQuery();
 });
 
 onBeforeUnmount((): void => {
