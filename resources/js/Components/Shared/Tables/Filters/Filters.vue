@@ -60,7 +60,7 @@
 
                 <div v-else v-for="(options, name) in filters" :key="name">
                     <Filter
-                        :modelValue="selected[name]"
+                        :modelValue="selected[name] ?? ''"
                         @update:modelValue="
                             (val: boolean | number | string) =>
                                 (selected[name] = val)
