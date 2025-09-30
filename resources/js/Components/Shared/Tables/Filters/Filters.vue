@@ -60,11 +60,8 @@
 
                 <div v-else v-for="(options, name) in filters" :key="name">
                     <Filter
-                        :modelValue="selected[name] ?? ''"
-                        @update:modelValue="
-                            (val: boolean | number | string) =>
-                                (selected[name] = val)
-                        "
+                        :modelValue="getSelected(name)"
+                        @update:modelValue="onUpdate(name, $event)"
                         :label="formatLabel(name)"
                         :options="options"
                     />
@@ -87,12 +84,23 @@ import { computed, onBeforeUnmount, onMounted, Ref, ref, watch } from 'vue';
 
 const { modelValue = false, filters } = defineProps<FiltersInterface>();
 
+const page: Page<PageProps> = usePage();
 const label: string = 'Filters';
 const isOpen: Ref<boolean> = ref<boolean>(modelValue);
 const container: Ref<HTMLElement | null> = ref<HTMLElement | null>(null);
 const selected: Ref<Record<string, boolean | number | string>> = ref({});
 
 const filtersAreEmpty = (): boolean => Object.keys(filters).length === 0;
+
+const getSelected = (name: string): boolean | number | string | '' => {
+    const value = selected.value[name] as boolean | number | string | undefined;
+
+    return (value as any) ?? '';
+};
+
+const onUpdate = (name: string, val: boolean | number | string): void => {
+    selected.value[name] = val;
+};
 
 const isSet = (value: undefined | null | boolean | number | string) =>
     value !== '' && value !== undefined && value !== null;
@@ -117,8 +125,6 @@ const initializeSelectedFromQuery = (): void => {
         },
     );
 };
-
-const page: Page<PageProps> = usePage();
 
 const activeCount = computed<number>((): number => {
     const url: string = page.url as unknown as string;
