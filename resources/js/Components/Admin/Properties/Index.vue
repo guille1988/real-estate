@@ -20,32 +20,20 @@
             </div>
             <div class="mt-4 sm:mt-0 sm:flex-none">
                 <div class="flex items-center gap-3">
-                    <Filter
+                    <Filters
                         v-model="filtersOpen"
-                        :count="activeFilters"
-                        @apply="applyFilters"
-                        @clear="clearFilters"
-                    >
-                        <SelectFilter
-                            v-model="state"
-                            label="State"
-                            :options="[
+                        :filters="{
+                            state: [
                                 { label: 'Active', value: 'active' },
                                 { label: 'Inactive', value: 'inactive' },
-                            ]"
-                        />
-
-                        <SelectFilter
-                            v-model="role"
-                            label="Role"
-                            :options="[
+                            ],
+                            role: [
                                 { label: 'Member', value: 'member' },
                                 { label: 'Admin', value: 'admin' },
                                 { label: 'Owner', value: 'owner' },
-                            ]"
-                        />
-                    </Filter>
-
+                            ],
+                        }"
+                    />
                     <button
                         type="button"
                         class="shadow-xs block rounded-md bg-purple-500 px-3 py-2 text-center text-sm font-semibold text-white hover:bg-purple-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-500"
@@ -112,8 +100,7 @@ import Actions from '@/Components/Shared/Tables/Fields/Actions.vue';
 import Badge from '@/Components/Shared/Tables/Fields/Badge.vue';
 import ImageWithText from '@/Components/Shared/Tables/Fields/ImageWithText.vue';
 import Text from '@/Components/Shared/Tables/Fields/Text.vue';
-import Filter from '@/Components/Shared/Tables/Filters/Filter.vue';
-import SelectFilter from '@/Components/Shared/Tables/Filters/SelectFilter.vue';
+import Filters from '@/Components/Shared/Tables/Filters/Filters.vue';
 import Pagination from '@/Components/Shared/Tables/Pagination.vue';
 import SearchBar from '@/Components/Shared/Tables/SearchBar.vue';
 import TableHeader from '@/Components/Shared/Tables/TableHeader.vue';
@@ -121,8 +108,8 @@ import { IndexPropertyPaginatedInterface } from '@/Types/Admin/Interfaces/IndexP
 import { PropertyTypeColors } from '@/Types/App/Enums/PropertyTypeEnum';
 import { PageProps } from '@/Types/Core';
 import { Page } from '@inertiajs/core';
-import { router, usePage } from '@inertiajs/vue3';
-import { onMounted, Ref, ref } from 'vue';
+import { usePage } from '@inertiajs/vue3';
+import { Ref, ref } from 'vue';
 
 const { properties }: { properties: IndexPropertyPaginatedInterface } =
     defineProps<{
@@ -133,38 +120,7 @@ const paginationPageLimit: number = 7;
 const page: Page<PageProps> = usePage();
 const url: Ref<string> = ref<string>(page.url);
 const filtersOpen: Ref<boolean> = ref<boolean>(false);
-const activeFilters: Ref<number> = ref<number>(0);
-const state: Ref<string> = ref<string>('');
-const role: Ref<string> = ref<string>('');
 const search: Ref<string> = ref<string>('');
 
 const showPagination = (): boolean => properties.total > paginationPageLimit;
-
-const applyFilters = (): void => {
-    let totalCount: number = 0;
-
-    const counts: string[] = [state.value, role.value];
-
-    counts.forEach((count: string): void => {
-        if (count) {
-            totalCount++;
-        }
-    });
-
-    activeFilters.value = totalCount;
-};
-
-const clearFilters = (): void => {
-    state.value = '';
-    role.value = '';
-    activeFilters.value = 0;
-};
-
-const clearQueryStrings = (): void => {
-    if (window.location.search) {
-        router.replace({ url: window.location.pathname });
-    }
-};
-
-onMounted((): void => clearQueryStrings());
 </script>
