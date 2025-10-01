@@ -192,10 +192,17 @@ const apply = (): void => {
 const clear = (): void => {
     selected.value = {};
 
-    router.replace({ url: window.location.pathname });
+    router.get(
+        window.location.pathname,
+        {},
+        {
+            replace: true,
+            preserveScroll: true,
+            preserveState: true,
+        },
+    );
 
     emit('clear');
-    isOpen.value = false;
 };
 
 const closeDropdown = (): void => {
