@@ -34,16 +34,12 @@
                     >
                         <thead>
                             <tr>
-                                <TableHeader column="title" :url="url" />
-                                <TableHeader column="bathrooms" :url="url" />
-                                <TableHeader column="bedrooms" :url="url" />
-                                <TableHeader column="type" :url="url" />
-                                <TableHeader column="price" :url="url" />
-                                <TableHeader
-                                    column="actions"
-                                    :url="url"
-                                    :sort="false"
-                                />
+                                <TableHeader column="title" />
+                                <TableHeader column="bathrooms" />
+                                <TableHeader column="bedrooms" />
+                                <TableHeader column="type" />
+                                <TableHeader column="price" />
+                                <TableHeader column="actions" :sort="false" />
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-white/10 bg-gray-900">
@@ -93,10 +89,7 @@ import { PropertyTypeColors } from '@/Types/App/Enums/PropertyTypeEnum';
 import { PropertyBathroomInterface } from '@/Types/App/Interfaces/PropertyBathroomInterface';
 import { PropertyBedroomInterface } from '@/Types/App/Interfaces/PropertyBedroomInterface';
 import { PropertyTypeInterface } from '@/Types/App/Interfaces/PropertyTypeInterface';
-import { PageProps } from '@/Types/Core';
-import { Page } from '@inertiajs/core';
-import { usePage } from '@inertiajs/vue3';
-import { Ref, ref } from 'vue';
+import { ref, Ref } from 'vue';
 
 const {
     properties,
@@ -123,8 +116,6 @@ const filters: Record<string, SelectFilterOptionType[]> = {
     types: types,
 };
 
-const page: Page<PageProps> = usePage();
-const url: Ref<string> = ref<string>(page.url);
 const filtersOpen: Ref<boolean> = ref<boolean>(false);
 
 const showPagination = (): boolean => properties.total > paginationPageLimit;

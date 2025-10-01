@@ -29,15 +29,11 @@ import { ChevronDownIcon } from '@heroicons/vue/20/solid';
 import { router, usePage } from '@inertiajs/vue3';
 import { computed, ComputedRef } from 'vue';
 
-const {
-    column,
-    url,
-    sort = true,
-}: { column: string; url: string; sort?: boolean } = defineProps<{
-    column: string;
-    url: string;
-    sort?: boolean;
-}>();
+const { column, sort = true }: { column: string; sort?: boolean } =
+    defineProps<{
+        column: string;
+        sort?: boolean;
+    }>();
 
 const sortKey: string = 'sort';
 const dirKey: string = 'direction';
@@ -93,7 +89,7 @@ const onClick = (): void => {
         data[dirKey] = SortDirection.DESC;
     }
 
-    router.get(url, data, {
+    router.get(window.location.pathname, data, {
         preserveState: true,
         preserveScroll: true,
         replace: true,
