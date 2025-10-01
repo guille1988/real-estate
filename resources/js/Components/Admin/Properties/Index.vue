@@ -20,43 +20,7 @@
             </div>
             <div class="mt-4 sm:mt-0 sm:flex-none">
                 <div class="flex items-center gap-3">
-                    <Filters
-                        v-model="filtersOpen"
-                        :filters="{
-                            bathrooms: [
-                                { label: 'One', value: 1 },
-                                { label: 'Two', value: 2 },
-                                { label: 'Three', value: 3 },
-                                { label: 'Four', value: 4 },
-                                { label: 'Five', value: 5 },
-                            ],
-                            bedrooms: [
-                                { label: 'One', value: 1 },
-                                { label: 'Two', value: 2 },
-                                { label: 'Three', value: 3 },
-                                { label: 'Four', value: 4 },
-                                { label: 'Five', value: 5 },
-                            ],
-                            type: [
-                                {
-                                    label: 'Apartment',
-                                    value: PropertyTypeEnum.APARTMENT,
-                                },
-                                {
-                                    label: 'House',
-                                    value: PropertyTypeEnum.HOUSE,
-                                },
-                                {
-                                    label: 'Loft',
-                                    value: PropertyTypeEnum.LOFT,
-                                },
-                                {
-                                    label: 'Villa',
-                                    value: PropertyTypeEnum.VILLA,
-                                },
-                            ],
-                        }"
-                    />
+                    <FilterHandler v-model="filtersOpen" :filters="filters" />
                     <button
                         type="button"
                         class="shadow-xs block rounded-md bg-purple-500 px-3 py-2 text-center text-sm font-semibold text-white hover:bg-purple-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-500"
@@ -123,11 +87,12 @@ import Actions from '@/Components/Shared/Tables/Fields/Actions.vue';
 import Badge from '@/Components/Shared/Tables/Fields/Badge.vue';
 import ImageWithText from '@/Components/Shared/Tables/Fields/ImageWithText.vue';
 import Text from '@/Components/Shared/Tables/Fields/Text.vue';
-import Filters from '@/Components/Shared/Tables/Filters/Filters.vue';
+import FilterHandler from '@/Components/Shared/Tables/FilterHandler/FilterHandler.vue';
 import Pagination from '@/Components/Shared/Tables/Pagination.vue';
 import SearchBar from '@/Components/Shared/Tables/SearchBar.vue';
 import TableHeader from '@/Components/Shared/Tables/TableHeader.vue';
 import { IndexPropertyPaginatedInterface } from '@/Types/Admin/Interfaces/IndexPropertyPaginatedInterface';
+import { SelectFilterOptionType } from '@/Types/Admin/Types/SelectFilterOptionType';
 import {
     PropertyTypeColors,
     PropertyTypeEnum,
@@ -143,6 +108,42 @@ const { properties }: { properties: IndexPropertyPaginatedInterface } =
     }>();
 
 const paginationPageLimit: number = 7;
+
+const filters: Record<string, SelectFilterOptionType[]> = {
+    bathrooms: [
+        { label: 'One', value: 1 },
+        { label: 'Two', value: 2 },
+        { label: 'Three', value: 3 },
+        { label: 'Four', value: 4 },
+        { label: 'Five', value: 5 },
+    ],
+    bedrooms: [
+        { label: 'One', value: 1 },
+        { label: 'Two', value: 2 },
+        { label: 'Three', value: 3 },
+        { label: 'Four', value: 4 },
+        { label: 'Five', value: 5 },
+    ],
+    type: [
+        {
+            label: 'Apartment',
+            value: PropertyTypeEnum.APARTMENT,
+        },
+        {
+            label: 'House',
+            value: PropertyTypeEnum.HOUSE,
+        },
+        {
+            label: 'Loft',
+            value: PropertyTypeEnum.LOFT,
+        },
+        {
+            label: 'Villa',
+            value: PropertyTypeEnum.VILLA,
+        },
+    ],
+};
+
 const page: Page<PageProps> = usePage();
 const url: Ref<string> = ref<string>(page.url);
 const filtersOpen: Ref<boolean> = ref<boolean>(false);

@@ -72,7 +72,7 @@
 </template>
 
 <script setup lang="ts">
-import Filter from '@/Components/Shared/Tables/Filters/Filter.vue';
+import Filter from '@/Components/Shared/Tables/FilterHandler/Filter.vue';
 import { FiltersInterface } from '@/Types/Admin/Interfaces/FiltersInterface';
 import { EmitFilterType } from '@/Types/Admin/Types/EmitFilterType';
 import { SelectFilterOptionType } from '@/Types/Admin/Types/SelectFilterOptionType';
