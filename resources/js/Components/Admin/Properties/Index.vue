@@ -93,55 +93,38 @@ import SearchBar from '@/Components/Shared/Tables/SearchBar.vue';
 import TableHeader from '@/Components/Shared/Tables/TableHeader.vue';
 import { IndexPropertyPaginatedInterface } from '@/Types/Admin/Interfaces/IndexPropertyPaginatedInterface';
 import { SelectFilterOptionType } from '@/Types/Admin/Types/SelectFilterOptionType';
-import {
-    PropertyTypeColors,
-    PropertyTypeEnum,
-} from '@/Types/App/Enums/PropertyTypeEnum';
+import { PropertyTypeColors } from '@/Types/App/Enums/PropertyTypeEnum';
+import { PropertyBathroomInterface } from '@/Types/App/Interfaces/PropertyBathroomInterface';
+import { PropertyBedroomInterface } from '@/Types/App/Interfaces/PropertyBedroomInterface';
+import { PropertyTypeInterface } from '@/Types/App/Interfaces/PropertyTypeInterface';
 import { PageProps } from '@/Types/Core';
 import { Page } from '@inertiajs/core';
 import { usePage } from '@inertiajs/vue3';
 import { Ref, ref } from 'vue';
 
-const { properties }: { properties: IndexPropertyPaginatedInterface } =
-    defineProps<{
-        properties: IndexPropertyPaginatedInterface;
-    }>();
+const {
+    properties,
+    types,
+    bathrooms,
+    bedrooms,
+}: {
+    properties: IndexPropertyPaginatedInterface;
+    bathrooms: PropertyBathroomInterface[];
+    bedrooms: PropertyBedroomInterface[];
+    types: PropertyTypeInterface[];
+} = defineProps<{
+    properties: IndexPropertyPaginatedInterface;
+    types: PropertyTypeInterface[];
+    bathrooms: PropertyBathroomInterface[];
+    bedrooms: PropertyBedroomInterface[];
+}>();
 
 const paginationPageLimit: number = 7;
 
 const filters: Record<string, SelectFilterOptionType[]> = {
-    bathrooms: [
-        { label: 'One', value: 1 },
-        { label: 'Two', value: 2 },
-        { label: 'Three', value: 3 },
-        { label: 'Four', value: 4 },
-        { label: 'Five', value: 5 },
-    ],
-    bedrooms: [
-        { label: 'One', value: 1 },
-        { label: 'Two', value: 2 },
-        { label: 'Three', value: 3 },
-        { label: 'Four', value: 4 },
-        { label: 'Five', value: 5 },
-    ],
-    type: [
-        {
-            label: 'Apartment',
-            value: PropertyTypeEnum.APARTMENT,
-        },
-        {
-            label: 'House',
-            value: PropertyTypeEnum.HOUSE,
-        },
-        {
-            label: 'Loft',
-            value: PropertyTypeEnum.LOFT,
-        },
-        {
-            label: 'Villa',
-            value: PropertyTypeEnum.VILLA,
-        },
-    ],
+    bathrooms: bathrooms,
+    bedrooms: bedrooms,
+    types: types,
 };
 
 const page: Page<PageProps> = usePage();

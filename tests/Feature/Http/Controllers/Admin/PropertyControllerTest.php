@@ -19,6 +19,9 @@ it('works on index page.', function (): void {
         ->get(route('admin.properties.index'))
         ->assertInertia(function (Assert $page) use ($count): void {
             $page->component(PageEnum::ADMIN_PROPERTIES->value)
-                ->has('properties.data', $count);
+                ->has('properties.data', $count)
+                ->has('types')
+                ->has('bathrooms')
+                ->has('bedrooms');
         });
 });
