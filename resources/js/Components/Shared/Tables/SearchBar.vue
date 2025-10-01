@@ -6,10 +6,10 @@
             <MagnifyingGlassIcon class="size-5" />
         </span>
         <input
-            :value="modelValue"
+            :value="searchValue"
             @input="onInput"
             @keydown.enter.prevent="onSubmit"
-            :placeholder="placeholder"
+            :placeholder="placeholderText"
             type="search"
             class="w-full rounded-md border border-white/10 bg-gray-900/60 py-2 pl-10 pr-9 text-sm text-white placeholder-gray-500 focus:border-purple-500 focus:outline-none focus:ring-1 focus:ring-purple-500"
             aria-label="Search"
@@ -28,40 +28,35 @@
 </template>
 
 <script setup lang="ts">
-import { EmitSearchBarType } from '@/Types/Admin/Types/EmitSearchBarType';
 import { MagnifyingGlassIcon, XMarkIcon } from '@heroicons/vue/24/outline';
-import { router } from '@inertiajs/vue3';
-import { computed, ComputedRef, ref, Ref, watch } from 'vue';
+import { Page } from '@inertiajs/core';
+import { router, usePage } from '@inertiajs/vue3';
+import { computed, ComputedRef, onMounted, ref, Ref, watch } from 'vue';
 
-const {
-    modelValue = '',
-    placeholder,
-    url,
-}: {
-    modelValue?: string;
-    placeholder: string;
-    url: string;
-} = defineProps<{
-    modelValue?: string;
-    placeholder: string;
-    url: string;
-}>();
-
+const page: Page = usePage();
+const placeholderText: string = 'Search...';
+const searchValue: Ref<string> = ref<string>('');
 const debounceId: Ref<number | null> = ref<number | null>(null);
-const emit: EmitSearchBarType = defineEmits<EmitSearchBarType>();
 
 const isTyping: ComputedRef<boolean> = computed(
-    (): boolean => Boolean(modelValue) && String(modelValue).length > 0,
+    (): boolean => Boolean(searchValue.value) && searchValue.value.length > 0,
 );
 
-const visit = (search: string): void => {
-    const data: Record<string, string> = {};
+const readFromQuery = (): void => {
+    const url: string = page.url as unknown as string;
+    const query: string = url.includes('?') ? url.split('?')[1] : '';
+    const params: URLSearchParams = new URLSearchParams(query);
+    const raw: string | null = params.get('search');
+    searchValue.value = raw ?? '';
+};
 
+const visit = (search: string): void => {
+    const params: Record<string, string> = {};
     if (search && search.trim().length > 0) {
-        data.search = search.trim();
+        params.search = search.trim();
     }
 
-    router.get(url, data, {
+    router.get(window.location.pathname, params, {
         preserveState: true,
         preserveScroll: true,
         replace: true,
@@ -69,8 +64,7 @@ const visit = (search: string): void => {
 };
 
 const onInput = (event: Event): void => {
-    const value = (event.target as HTMLInputElement).value;
-    emit('update:modelValue', value);
+    searchValue.value = (event.target as HTMLInputElement).value;
 };
 
 const onSubmit = (): void => {
@@ -78,25 +72,34 @@ const onSubmit = (): void => {
         clearTimeout(debounceId.value);
         debounceId.value = null;
     }
-    visit(String(modelValue ?? ''));
-    emit('submit');
+    visit(String(searchValue.value ?? ''));
 };
 
 const onClear = (): void => {
-    emit('update:modelValue', '');
+    searchValue.value = '';
     visit('');
-    emit('clear');
 };
 
 watch(
-    (): string => modelValue,
+    (): string => searchValue.value,
     (value: string): void => {
         if (debounceId.value) {
             clearTimeout(debounceId.value);
         }
-        debounceId.value = window.setTimeout(() => {
+        debounceId.value = window.setTimeout((): void => {
             visit(String(value ?? ''));
         }, 300);
     },
 );
+
+watch(
+    (): string => page.url,
+    (): void => {
+        readFromQuery();
+    },
+);
+
+onMounted((): void => {
+    readFromQuery();
+});
 </script>

@@ -11,11 +11,7 @@
                 <div
                     class="mx-auto w-full max-w-xl sm:max-w-md md:max-w-lg lg:max-w-xl"
                 >
-                    <SearchBar
-                        v-model="search"
-                        placeholder="Search properties..."
-                        :url="url"
-                    />
+                    <SearchBar />
                 </div>
             </div>
             <div class="mt-4 sm:mt-0 sm:flex-none">
@@ -130,7 +126,6 @@ const filters: Record<string, SelectFilterOptionType[]> = {
 const page: Page<PageProps> = usePage();
 const url: Ref<string> = ref<string>(page.url);
 const filtersOpen: Ref<boolean> = ref<boolean>(false);
-const search: Ref<string> = ref<string>('');
 
 const showPagination = (): boolean => properties.total > paginationPageLimit;
 </script>
