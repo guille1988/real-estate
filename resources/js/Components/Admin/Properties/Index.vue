@@ -70,7 +70,16 @@
                 </div>
             </div>
         </div>
-        <Pagination v-if="showPagination()" class="flex-shrink-0" />
+        <Pagination
+            v-if="showPagination()"
+            class="flex-shrink-0"
+            :total="properties.total"
+            :from="properties.from"
+            :to="properties.to"
+            :links="properties.links"
+            :prev-page-url="properties.prevPageUrl"
+            :next-page-url="properties.nextPageUrl"
+        />
     </div>
 </template>
 
@@ -108,8 +117,6 @@ const {
     bedrooms: PropertyBedroomInterface[];
 }>();
 
-const paginationPageLimit: number = 7;
-
 const filters: Record<string, SelectFilterOptionType[]> = {
     bathrooms: bathrooms,
     bedrooms: bedrooms,
@@ -118,5 +125,5 @@ const filters: Record<string, SelectFilterOptionType[]> = {
 
 const filtersOpen: Ref<boolean> = ref<boolean>(false);
 
-const showPagination = (): boolean => properties.total > paginationPageLimit;
+const showPagination = (): boolean => properties.lastPage > 1;
 </script>
