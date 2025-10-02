@@ -1,5 +1,5 @@
 <template>
-    <div class="px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-1 min-h-0 flex-col px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
                 <h1 class="text-base font-semibold text-white">Properties</h1>
@@ -70,7 +70,7 @@
                 </div>
             </div>
         </div>
-        <Pagination v-if="showPagination()" />
+        <Pagination v-if="showPagination()" class="mt-auto" />
     </div>
 </template>
 
