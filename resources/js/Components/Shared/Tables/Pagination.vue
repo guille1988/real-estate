@@ -80,6 +80,7 @@ import { Link } from '@inertiajs/vue3';
 import { computed, ComputedRef } from 'vue';
 
 const {
+    perPage,
     total,
     from,
     to,
@@ -87,6 +88,7 @@ const {
     prevPageUrl,
     nextPageUrl,
 }: {
+    perPage: number;
     total: number;
     from: number;
     to: number;
@@ -94,6 +96,7 @@ const {
     prevPageUrl: string | null;
     nextPageUrl: string | null;
 } = defineProps<{
+    perPage: number;
     total: number;
     from: number;
     to: number;
@@ -101,8 +104,6 @@ const {
     prevPageUrl: string | null;
     nextPageUrl: string | null;
 }>();
-
-const perPage: number = 7;
 
 const allLinks: ComputedRef<number> = computed((): number => {
     return links.slice(1, Math.min(perPage + 1, links.length - 1));

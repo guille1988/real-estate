@@ -73,6 +73,7 @@
         <Pagination
             v-if="showPagination()"
             class="flex-shrink-0"
+            :per-page="properties.perPage"
             :total="properties.total"
             :from="properties.from"
             :to="properties.to"
