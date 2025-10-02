@@ -51,10 +51,7 @@
                     </Link>
 
                     <div v-for="link in allLinks" :key="link.page">
-                        <Link
-                            :href="link.url"
-                            class="inset-ring inset-ring-gray-700 relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-200 hover:bg-white/5 focus:z-20 focus:outline-offset-0"
-                        >
+                        <Link :href="link.url" :class="getClass(link.page)">
                             {{ link.page }}
                         </Link>
                     </div>
@@ -80,6 +77,7 @@ import { Link } from '@inertiajs/vue3';
 import { computed, ComputedRef } from 'vue';
 
 const {
+    currentPage,
     perPage,
     total,
     from,
@@ -88,6 +86,7 @@ const {
     prevPageUrl,
     nextPageUrl,
 }: {
+    currentPage: number;
     perPage: number;
     total: number;
     from: number;
@@ -96,6 +95,7 @@ const {
     prevPageUrl: string | null;
     nextPageUrl: string | null;
 } = defineProps<{
+    currentPage: number;
     perPage: number;
     total: number;
     from: number;
@@ -108,4 +108,10 @@ const {
 const allLinks: ComputedRef<number> = computed((): number => {
     return links.slice(1, Math.min(perPage + 1, links.length - 1));
 });
+
+const getClass = (page: number): string => {
+    return page === currentPage
+        ? 'relative z-10 inline-flex items-center bg-purple-500 px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-500'
+        : 'inset-ring inset-ring-gray-700 relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-200 hover:bg-white/5 focus:z-20 focus:outline-offset-0';
+};
 </script>
