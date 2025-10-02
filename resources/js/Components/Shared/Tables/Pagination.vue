@@ -50,10 +50,7 @@
                         <ChevronLeftIcon class="size-5" aria-hidden="true" />
                     </Link>
 
-                    <div
-                        v-for="link in links.slice(1, to + 1)"
-                        :key="link.page"
-                    >
+                    <div v-for="link in allLinks" :key="link.page">
                         <Link
                             :href="link.url"
                             class="inset-ring inset-ring-gray-700 relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-200 hover:bg-white/5 focus:z-20 focus:outline-offset-0"
@@ -80,6 +77,7 @@
 import type { PaginationLinksInterfaceInterface } from '@/Types/Admin/Interfaces/PaginationLinksInterfaceInterface.js';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/20/solid';
 import { Link } from '@inertiajs/vue3';
+import { computed, ComputedRef } from 'vue';
 
 const {
     total,
@@ -103,4 +101,10 @@ const {
     prevPageUrl: string | null;
     nextPageUrl: string | null;
 }>();
+
+const perPage: number = 7;
+
+const allLinks: ComputedRef<number> = computed((): number => {
+    return links.slice(1, Math.min(perPage + 1, links.length - 1));
+});
 </script>
