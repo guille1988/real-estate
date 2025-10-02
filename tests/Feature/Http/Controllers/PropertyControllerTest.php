@@ -46,8 +46,7 @@ it('indexes properties.', function (): void {
 });
 
 it('works with pagination.', function (): void {
-    $perPage = $this->app->make(Property::class)
-        ->getPerPage();
+    $perPage = 20;
 
     Property::factory($perPage + 10)
         ->create()

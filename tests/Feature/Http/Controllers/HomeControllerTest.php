@@ -28,8 +28,7 @@ it('renders properties on home page.', function (string $key): void {
 })->with(['properties']);
 
 it('works with pagination.', function (): void {
-    $perPage = $this->app->make(Property::class)
-        ->getPerPage();
+    $perPage = 20;
 
     Property::factory($perPage + 10)
         ->featured()

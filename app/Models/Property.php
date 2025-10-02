@@ -74,14 +74,6 @@ final class Property extends Model
         return 'uuid';
     }
 
-    /*
-     * Returns the per page value.
-     */
-    public function getPerPage(): int
-    {
-        return 20;
-    }
-
     /**
      * Get the fields from which will be unique.
      *

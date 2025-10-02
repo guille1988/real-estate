@@ -39,7 +39,7 @@ final class PropertyController
             ->rememberForever($data->getCacheKey(), function () use ($data) {
                 return Property::query()
                     ->search($data)
-                    ->paginate(page: $data->page)
+                    ->paginate(20, page: $data->page)
                     ->through(function (Property $property): JsonResource {
                         return IndexPropertyResource::make($property);
                     })->toArray();
