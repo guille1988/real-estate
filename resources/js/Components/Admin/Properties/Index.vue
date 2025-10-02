@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-1 min-h-0 flex-col px-4 sm:px-6 lg:px-8">
+    <div class="flex min-h-0 flex-1 flex-col px-4 sm:px-6 lg:px-8">
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
                 <h1 class="text-base font-semibold text-white">Properties</h1>
@@ -26,8 +26,8 @@
                 </div>
             </div>
         </div>
-        <div class="mt-8 flow-root">
-            <div class="-my-2 overflow-x-auto">
+        <div class="mt-8 flex min-h-0 flex-1 flex-col">
+            <div class="min-h-0 flex-1 overflow-auto">
                 <div class="inline-block min-w-full py-2 align-middle">
                     <table
                         class="relative min-w-full table-fixed divide-y divide-white/15"
@@ -70,7 +70,7 @@
                 </div>
             </div>
         </div>
-        <Pagination v-if="showPagination()" class="mt-auto" />
+        <Pagination v-if="showPagination()" class="flex-shrink-0" />
     </div>
 </template>
 
