@@ -50,7 +50,17 @@
                         <ChevronLeftIcon class="size-5" aria-hidden="true" />
                     </Link>
                     <div v-for="link in allLinks" :key="link.page">
-                        <Link :href="link.url" :class="getClass(link.active)">
+                        <span
+                            v-if="isSeparator(link.page)"
+                            :class="numberClass"
+                        >
+                            {{ link.label }}
+                        </span>
+                        <Link
+                            v-else
+                            :href="link.url"
+                            :class="getClass(link.active)"
+                        >
                             {{ link.label }}
                         </Link>
                     </div>
@@ -101,13 +111,18 @@ const {
     nextPageUrl: string | null;
 }>();
 
+const numberClass: string =
+    'inset-ring inset-ring-gray-700 relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-200 hover:bg-white/5 focus:z-20 focus:outline-offset-0';
+
 const allLinks: ComputedRef<number> = computed((): number => {
     return links.slice(1, Math.min(perPage + 1, links.length - 1));
 });
 
+const isSeparator = (page?: number): boolean => page === undefined;
+
 const getClass = (active: boolean): string => {
     return active
         ? 'relative z-10 inline-flex items-center bg-purple-500 px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-500'
-        : 'inset-ring inset-ring-gray-700 relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-200 hover:bg-white/5 focus:z-20 focus:outline-offset-0';
+        : numberClass;
 };
 </script>
