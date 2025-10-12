@@ -98,8 +98,8 @@ const getSelected = (name: string): boolean | number | string | '' => {
     return (value as any) ?? '';
 };
 
-const onUpdate = (name: string, val: boolean | number | string): void => {
-    selected.value[name] = val;
+const onUpdate = (name: string, value: boolean | number | string): void => {
+    selected.value[name] = value;
 };
 
 const isSet = (value: undefined | null | boolean | number | string) =>
@@ -192,15 +192,27 @@ const apply = (): void => {
 const clear = (): void => {
     selected.value = {};
 
-    router.get(
-        window.location.pathname,
-        {},
-        {
-            replace: true,
-            preserveScroll: true,
-            preserveState: true,
-        },
-    );
+    const url: string = page.url as unknown as string;
+    const query: string = url.includes('?') ? url.split('?')[1] : '';
+    const params: URLSearchParams = new URLSearchParams(query);
+
+    Object.keys(filters).forEach((name: string): void => {
+        params.delete(name);
+    });
+
+    const remaining: Record<string, string> = {};
+
+    params.forEach((value: string, key: string): void => {
+        if (isSet(value)) {
+            remaining[key] = value;
+        }
+    });
+
+    router.get(window.location.pathname, remaining, {
+        replace: true,
+        preserveScroll: true,
+        preserveState: true,
+    });
 
     emit('clear');
 };
