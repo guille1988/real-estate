@@ -3,16 +3,12 @@ import { PaginationLinksInterfaceInterface } from '@/Types/Admin/Interfaces/Pagi
 
 export interface IndexPropertyPaginatedInterface {
     data: IndexPropertyInterface[];
-    currentPage: number;
-    firstPageUrl: string;
+    links: PaginationLinksInterfaceInterface[];
     from: number;
     lastPage: number;
-    lastPageUrl: string;
     nextPageUrl: string;
-    path: string;
     perPage: number;
     prevPageUrl: null | string;
     to: number;
     total: number;
-    links: PaginationLinksInterfaceInterface[];
 }
