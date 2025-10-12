@@ -44,7 +44,7 @@
                     <Link
                         v-if="Boolean(prevPageUrl)"
                         :href="prevPageUrl ?? '#'"
-                        class="inset-ring inset-ring-gray-700 relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 hover:bg-white/5 focus:z-20 focus:outline-offset-0"
+                        class="inset-ring inset-ring-gray-700 relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 hover:bg-white/5 hover:text-purple-500 focus:z-20 focus:outline-offset-0"
                     >
                         <span class="sr-only">Previous</span>
                         <ChevronLeftIcon class="size-5" aria-hidden="true" />
@@ -68,7 +68,7 @@
                     <Link
                         v-if="Boolean(nextPageUrl)"
                         :href="nextPageUrl ?? '#'"
-                        class="inset-ring inset-ring-gray-700 relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 hover:bg-white/5 focus:z-20 focus:outline-offset-0"
+                        class="inset-ring inset-ring-gray-700 relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 hover:bg-white/5 hover:text-purple-500 focus:z-20 focus:outline-offset-0"
                     >
                         <span class="sr-only">Next</span>
                         <ChevronRightIcon class="size-5" aria-hidden="true" />
@@ -112,7 +112,7 @@ const {
 }>();
 
 const numberClass: string =
-    'inset-ring inset-ring-gray-700 relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-200 hover:bg-white/5 focus:z-20 focus:outline-offset-0';
+    'inset-ring inset-ring-gray-700 relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-200 hover:bg-white/5 hover:text-purple-500 focus:z-20 focus:outline-offset-0';
 
 const allLinks: ComputedRef<PaginationLinksInterfaceInterface[]> = computed(
     (): PaginationLinksInterfaceInterface[] => {
