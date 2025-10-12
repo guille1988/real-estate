@@ -16,6 +16,15 @@
             </div>
             <div class="mt-4 sm:mt-0 sm:flex-none">
                 <div class="flex items-center gap-3">
+                    <button
+                        type="button"
+                        title="Clear"
+                        aria-label="Clear"
+                        @click="clearAllQueryStrings"
+                        class="shadow-xs block rounded-md bg-red-600 p-2 text-white hover:bg-red-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
+                    >
+                        <TrashIcon class="size-5" aria-hidden="true" />
+                    </button>
                     <FilterHandler v-model="filtersOpen" :filters="filters" />
                     <button
                         type="button"
@@ -85,6 +94,7 @@
 </template>
 
 <script setup lang="ts">
+import TrashIcon from '@/Components/Icons/TrashIcon.vue';
 import Actions from '@/Components/Shared/Tables/Fields/Actions.vue';
 import Badge from '@/Components/Shared/Tables/Fields/Badge.vue';
 import ImageWithText from '@/Components/Shared/Tables/Fields/ImageWithText.vue';
@@ -99,6 +109,7 @@ import { PropertyTypeColors } from '@/Types/App/Enums/PropertyTypeEnum';
 import { PropertyBathroomInterface } from '@/Types/App/Interfaces/PropertyBathroomInterface';
 import { PropertyBedroomInterface } from '@/Types/App/Interfaces/PropertyBedroomInterface';
 import { PropertyTypeInterface } from '@/Types/App/Interfaces/PropertyTypeInterface';
+import { router } from '@inertiajs/vue3';
 import { ref, Ref } from 'vue';
 
 const {
@@ -127,4 +138,8 @@ const filters: Record<string, SelectFilterOptionType[]> = {
 const filtersOpen: Ref<boolean> = ref<boolean>(false);
 
 const showPagination = (): boolean => properties.lastPage > 1;
+
+const clearAllQueryStrings = (): void => {
+    router.visit(window.location.pathname, { replace: true });
+};
 </script>
