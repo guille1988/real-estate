@@ -52,7 +52,8 @@
                     <div v-for="link in allLinks" :key="link.label">
                         <span
                             v-if="isSeparator(link.page)"
-                            :class="numberClass"
+                            :class="separatorClass"
+                            aria-hidden="true"
                         >
                             {{ link.label }}
                         </span>
@@ -113,6 +114,9 @@ const {
 
 const numberClass: string =
     'relative inline-flex items-center border border-white/20 px-4 py-2 text-sm font-semibold text-gray-200 hover:bg-white/5 hover:text-purple-500 focus:z-20 focus:outline-offset-0';
+
+const separatorClass: string =
+    'relative inline-flex items-center border border-white/20 px-4 py-2 text-sm font-semibold text-gray-400 cursor-default select-none';
 
 const allLinks: ComputedRef<PaginationLinksInterfaceInterface[]> = computed(
     (): PaginationLinksInterfaceInterface[] => {
