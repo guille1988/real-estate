@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Builders;
 
+use App\Data\Admin\PropertyData as AdminPropertyData;
 use App\Data\PropertyData;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -111,7 +112,7 @@ final class PropertyBuilder extends Builder
     /**
      * @return self<TModel>
      */
-    public function forIndexing(): self
+    public function forIndexing(AdminPropertyData $data): self
     {
         $columns = [
             'id',
@@ -124,6 +125,15 @@ final class PropertyBuilder extends Builder
         ];
 
         return $this->with('defaultImage:id,path,property_id')
-            ->select($columns);
+            ->select($columns)
+            ->when($data->isNotNull('search'), function (self $query) use ($data): void {
+                $query->whereLike('title', "%$data->search%");
+            })->when($data->isNotNull('bathrooms'), function (self $query) use ($data): void {
+                $query->where('bathrooms', $data->bathrooms);
+            })->when($data->isNotNull('bedrooms'), function (self $query) use ($data): void {
+                $query->where('bedrooms', $data->bedrooms);
+            })->when($data->isNotNull('type'), function (self $query) use ($data): void {
+                $query->where('type', $data->type);
+            })->orderBy($data->getSort(), $data->getDirection());
     }
 }

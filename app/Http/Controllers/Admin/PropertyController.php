@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Admin;
 
 use App\Actions\GetRangeOfMax;
+use App\Data\Admin\PropertyData;
 use App\Enums\PageEnum;
 use App\Enums\PropertyTypeEnum;
 use App\Http\Resources\Admin\IndexPropertyResource;
@@ -20,11 +21,11 @@ final class PropertyController
     /**
      * @throws Throwable
      */
-    public function index(GetRangeOfMax $action): Response
+    public function index(PropertyData $data, GetRangeOfMax $action): Response
     {
         $properties = Property::query()
-            ->forIndexing()
-            ->paginate(7, page: request()->integer('page', 1))
+            ->forIndexing($data)
+            ->paginate(7, page: $data->page)
             ->through(function (Property $property): JsonResource {
                 return IndexPropertyResource::make($property);
             })->toArray();
