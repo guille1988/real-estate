@@ -5,13 +5,13 @@
         <div class="flex flex-1 justify-between sm:hidden">
             <Link
                 v-if="Boolean(prevPageUrl)"
-                :href="prevPageUrl"
+                :href="prevPageUrl ?? '#'"
                 class="relative inline-flex items-center rounded-md border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-gray-200 hover:bg-white/10"
                 >Previous</Link
             >
             <Link
                 v-if="Boolean(nextPageUrl)"
-                :href="nextPageUrl"
+                :href="nextPageUrl ?? '#'"
                 class="relative ml-3 inline-flex items-center rounded-md border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-gray-200 hover:bg-white/10"
                 >Next</Link
             >
@@ -43,13 +43,13 @@
                 >
                     <Link
                         v-if="Boolean(prevPageUrl)"
-                        :href="prevPageUrl"
+                        :href="prevPageUrl ?? '#'"
                         class="inset-ring inset-ring-gray-700 relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 hover:bg-white/5 focus:z-20 focus:outline-offset-0"
                     >
                         <span class="sr-only">Previous</span>
                         <ChevronLeftIcon class="size-5" aria-hidden="true" />
                     </Link>
-                    <div v-for="link in allLinks" :key="link.page">
+                    <div v-for="link in allLinks" :key="link.label">
                         <span
                             v-if="isSeparator(link.page)"
                             :class="numberClass"
@@ -58,7 +58,7 @@
                         </span>
                         <Link
                             v-else
-                            :href="link.url"
+                            :href="link.url ?? '#'"
                             :class="getClass(link.active)"
                         >
                             {{ link.label }}
@@ -67,7 +67,7 @@
 
                     <Link
                         v-if="Boolean(nextPageUrl)"
-                        :href="nextPageUrl"
+                        :href="nextPageUrl ?? '#'"
                         class="inset-ring inset-ring-gray-700 relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 hover:bg-white/5 focus:z-20 focus:outline-offset-0"
                     >
                         <span class="sr-only">Next</span>
@@ -114,11 +114,14 @@ const {
 const numberClass: string =
     'inset-ring inset-ring-gray-700 relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-200 hover:bg-white/5 focus:z-20 focus:outline-offset-0';
 
-const allLinks: ComputedRef<number> = computed((): number => {
-    return links.slice(1, Math.min(perPage + 1, links.length - 1));
-});
+const allLinks: ComputedRef<PaginationLinksInterfaceInterface[]> = computed(
+    (): PaginationLinksInterfaceInterface[] => {
+        return links.slice(1, Math.min(perPage + 1, links.length - 1));
+    },
+);
 
-const isSeparator = (page?: number): boolean => page === undefined;
+const isSeparator = (page?: null | number): boolean =>
+    page === null || page === undefined;
 
 const getClass = (active: boolean): string => {
     return active
