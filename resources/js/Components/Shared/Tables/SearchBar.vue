@@ -51,12 +51,23 @@ const readFromQuery = (): void => {
 };
 
 const visit = (search: string): void => {
-    const params: Record<string, string> = {};
+    const urlParams: URLSearchParams = new URLSearchParams(
+        window.location.search,
+    );
+
     if (search && search.trim().length > 0) {
-        params.search = search.trim();
+        urlParams.set('search', search.trim());
+    } else {
+        urlParams.delete('search');
     }
 
-    router.get(window.location.pathname, params, {
+    const mergedParams: Record<string, string> = {};
+
+    urlParams.forEach((value: string, key: string): void => {
+        mergedParams[key] = value;
+    });
+
+    router.get(window.location.pathname, mergedParams, {
         preserveState: true,
         preserveScroll: true,
         replace: true,

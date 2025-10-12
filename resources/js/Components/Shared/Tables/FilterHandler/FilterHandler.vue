@@ -170,19 +170,30 @@ const handleClickOutside = (event: MouseEvent): void => {
 };
 
 const apply = (): void => {
-    const params: Record<string, string | number | boolean> = {};
+    const urlParams: URLSearchParams = new URLSearchParams(
+        window.location.search,
+    );
 
     Object.entries(selected.value).forEach(
         ([key, value]: [string, boolean | number | string]): void => {
             if (isSet(value)) {
-                params[key] = value as any;
+                urlParams.set(key, String(value));
+            } else {
+                urlParams.delete(key);
             }
         },
     );
 
-    router.get(window.location.pathname, params, {
+    const mergedParams: Record<string, string> = {};
+
+    urlParams.forEach((value: string, key: string): void => {
+        mergedParams[key] = value;
+    });
+
+    router.get(window.location.pathname, mergedParams, {
         replace: true,
         preserveScroll: true,
+        preserveState: true,
     });
 
     emit('apply');
