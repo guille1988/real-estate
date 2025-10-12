@@ -26,7 +26,7 @@ ChartJS.register(
     LinearScale,
 );
 
-const chartData: Object = {
+const chartData: any = {
     labels: [
         'Jan',
         'Feb',

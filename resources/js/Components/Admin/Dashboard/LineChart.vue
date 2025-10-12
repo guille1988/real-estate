@@ -29,7 +29,7 @@ ChartJS.register(
     Filler,
 );
 
-const chartData: Object = {
+const chartData: any = {
     labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
     datasets: [
         {

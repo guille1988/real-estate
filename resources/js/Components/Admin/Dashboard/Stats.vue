@@ -61,7 +61,7 @@
 <script setup lang="ts">
 import { ArrowDownIcon, ArrowUpIcon } from '@heroicons/vue/20/solid';
 
-const stats: Object[] = [
+const stats: any[] = [
     {
         name: 'Total Subscribers',
         stat: '71,897',
