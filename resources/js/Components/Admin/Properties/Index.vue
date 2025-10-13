@@ -99,6 +99,7 @@ import { SelectFilterOptionType } from '@/Types/Admin/Types/SelectFilterOptionTy
 import { PropertyTypeColors } from '@/Types/App/Enums/PropertyTypeEnum';
 import { PropertyBathroomInterface } from '@/Types/App/Interfaces/PropertyBathroomInterface';
 import { PropertyBedroomInterface } from '@/Types/App/Interfaces/PropertyBedroomInterface';
+import { PropertyLocationInterface } from '@/Types/App/Interfaces/PropertyLocationInterface';
 import { PropertyTypeInterface } from '@/Types/App/Interfaces/PropertyTypeInterface';
 import { ref, Ref } from 'vue';
 
@@ -107,22 +108,32 @@ const {
     types,
     bathrooms,
     bedrooms,
+    locations,
 }: {
     properties: IndexPropertyPaginatedInterface;
     bathrooms: PropertyBathroomInterface[];
     bedrooms: PropertyBedroomInterface[];
     types: PropertyTypeInterface[];
+    locations: PropertyLocationInterface[];
 } = defineProps<{
     properties: IndexPropertyPaginatedInterface;
     types: PropertyTypeInterface[];
     bathrooms: PropertyBathroomInterface[];
     bedrooms: PropertyBedroomInterface[];
+    locations: PropertyLocationInterface[];
 }>();
+
+const isFeatured: SelectFilterOptionType[] = [
+    { label: 'Yes', value: '1' },
+    { label: 'No', value: '0' },
+];
 
 const filters: Record<string, SelectFilterOptionType[]> = {
     bathrooms: bathrooms,
     bedrooms: bedrooms,
-    types: types,
+    type: types,
+    location: locations,
+    isFeatured: isFeatured,
 };
 
 const filtersOpen: Ref<boolean> = ref<boolean>(false);

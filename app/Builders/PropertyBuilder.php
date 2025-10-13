@@ -134,6 +134,10 @@ final class PropertyBuilder extends Builder
                 $query->where('bedrooms', $data->bedrooms);
             })->when($data->isNotNull('type'), function (self $query) use ($data): void {
                 $query->where('type', $data->type);
+            })->when($data->isNotNull('location'), function (self $query) use ($data): void {
+                $query->where('location', $data->location);
+            })->when($data->isNotNull('isFeatured'), function (self $query) use ($data): void {
+                $query->where('is_featured', $data->isFeatured);
             })->orderBy($data->getSort(), $data->getDirection());
     }
 }

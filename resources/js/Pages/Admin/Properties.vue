@@ -8,6 +8,7 @@
                 :types="types"
                 :bathrooms="bathrooms"
                 :bedrooms="bedrooms"
+                :locations="locations"
             />
         </div>
     </Layout>
@@ -20,6 +21,7 @@ import { IndexPropertyPaginatedInterface } from '@/Types/Admin/Interfaces/IndexP
 import { ErrorInterface } from '@/Types/App/Interfaces/ErrorInterface';
 import { PropertyBathroomInterface } from '@/Types/App/Interfaces/PropertyBathroomInterface';
 import { PropertyBedroomInterface } from '@/Types/App/Interfaces/PropertyBedroomInterface';
+import { PropertyLocationInterface } from '@/Types/App/Interfaces/PropertyLocationInterface';
 import { PropertyTypeInterface } from '@/Types/App/Interfaces/PropertyTypeInterface';
 import { onMounted } from 'vue';
 
@@ -28,6 +30,7 @@ const { errors }: { errors: ErrorInterface } = defineProps<{
     types: PropertyTypeInterface[];
     bathrooms: PropertyBathroomInterface[];
     bedrooms: PropertyBedroomInterface[];
+    locations: PropertyLocationInterface[];
     errors: ErrorInterface;
 }>();
 

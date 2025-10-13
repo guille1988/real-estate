@@ -146,8 +146,9 @@ const activeCount = computed<number>((): number => {
 
 const formatLabel = (name: string): string => {
     return name
-        .replace(/[_-]+/g, ' ')
-        .replace(/\b\w/g, (char: string): string => char.toUpperCase());
+        .replace(/([A-Z])/g, ' $1')
+        .replace(/^./, (word: string) => word.toUpperCase())
+        .trim();
 };
 
 const emit: EmitFilterType = defineEmits<EmitFilterType>();
