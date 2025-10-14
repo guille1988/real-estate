@@ -6,6 +6,7 @@
             :value="modelValue"
             @change="onChange"
         >
+            <option value="">-</option>
             <option
                 v-for="option in options"
                 :key="option.label"
