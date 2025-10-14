@@ -11,6 +11,7 @@ use App\Enums\PropertyLocationEnum;
 use App\Enums\PropertyTypeEnum;
 use App\Http\Resources\Admin\IndexPropertyResource;
 use App\Models\Property;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Collection;
 use Inertia\Inertia;
@@ -44,5 +45,38 @@ final class PropertyController
     public function create(): Response
     {
         return Inertia::render(PageEnum::ADMIN_PROPERTIES_CREATE->value);
+    }
+
+    public function edit(Property $property): Response
+    {
+        info('property:', $property->toArray());
+
+        return Inertia::render(PageEnum::ADMIN_PROPERTIES_EDIT->value);
+    }
+
+    public function show(Property $property): Response
+    {
+        info('property:', $property->toArray());
+
+        return Inertia::render(PageEnum::ADMIN_PROPERTIES_SHOW->value);
+    }
+
+    public function store(): RedirectResponse
+    {
+        return back();
+    }
+
+    public function update(Property $property): RedirectResponse
+    {
+        info('property:', $property->toArray());
+
+        return back();
+    }
+
+    public function destroy(Property $property): RedirectResponse
+    {
+        info('property:', $property->toArray());
+
+        return back();
     }
 }

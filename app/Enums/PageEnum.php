@@ -20,4 +20,6 @@ enum PageEnum: string
     case ADMIN_PROFILE = 'Admin/Profile';
     case ADMIN_PROPERTIES_INDEX = 'Admin/Properties/Index';
     case ADMIN_PROPERTIES_CREATE = 'Admin/Properties/Create';
+    case ADMIN_PROPERTIES_EDIT = 'Admin/Properties/Edit';
+    case ADMIN_PROPERTIES_SHOW = 'Admin/Properties/Show';
 }

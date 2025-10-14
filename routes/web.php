@@ -100,6 +100,11 @@ Route::prefix('admin')
                     ->names([
                         'index' => '.properties.index',
                         'create' => '.properties.create',
-                    ])->only(['index', 'create']);
+                        'edit' => '.properties.edit',
+                        'show' => '.properties.show',
+                        'store' => '.properties.store',
+                        'update' => '.properties.update',
+                        'destroy' => '.properties.destroy',
+                    ]);
             });
     });

@@ -237,3 +237,69 @@ it('works on create page.', function (): void {
             $page->component(PageEnum::ADMIN_PROPERTIES_CREATE->value);
         });
 });
+
+it('works on edit page.', function (): void {
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $property = Property::factory()
+        ->create();
+
+    $this->actingAs($user)
+        ->get(route('admin.properties.edit', compact('property')))
+        ->assertInertia(function (Assert $page): void {
+            $page->component(PageEnum::ADMIN_PROPERTIES_EDIT->value);
+        });
+});
+
+it('works on show page.', function (): void {
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $property = Property::factory()
+        ->create();
+
+    $this->actingAs($user)
+        ->get(route('admin.properties.show', compact('property')))
+        ->assertInertia(function (Assert $page): void {
+            $page->component(PageEnum::ADMIN_PROPERTIES_SHOW->value);
+        });
+});
+
+it('works on storing property.', function (): void {
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $this->actingAs($user)
+        ->post(route('admin.properties.store'))
+        ->assertRedirectBack();
+});
+
+it('works on updating property.', function (): void {
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $property = Property::factory()
+        ->create();
+
+    $this->actingAs($user)
+        ->patch(route('admin.properties.update', compact('property')))
+        ->assertRedirectBack();
+});
+
+it('works on destroying property.', function (): void {
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $property = Property::factory()
+        ->create();
+
+    $this->actingAs($user)
+        ->delete(route('admin.properties.destroy', ['property' => $property->uuid]))
+        ->assertRedirectBack();
+});

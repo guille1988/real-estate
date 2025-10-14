@@ -61,9 +61,19 @@
                                 />
                                 <Text :text="property.price" />
                                 <Actions
-                                    show-url="#"
-                                    edit-url="#"
-                                    delete-url="#"
+                                    :show-url="
+                                        PropertyController.show(property.uuid)
+                                            .url
+                                    "
+                                    :edit-url="
+                                        PropertyController.edit(property.uuid)
+                                            .url
+                                    "
+                                    :delete-url="
+                                        PropertyController.destroy(
+                                            property.uuid,
+                                        ).url
+                                    "
                                     resource="property"
                                 />
                             </tr>
