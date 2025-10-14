@@ -18,12 +18,13 @@
                 <div class="flex items-center gap-3">
                     <ResetFilters />
                     <FilterHandler v-model="filtersOpen" :filters="filters" />
-                    <button
-                        type="button"
+                    <Link
+                        prefetch
+                        :href="PropertyController.create().url"
                         class="shadow-xs block rounded-md bg-purple-500 px-3 py-2 text-center text-sm font-semibold text-white hover:bg-purple-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-500"
                     >
-                        Add property
-                    </button>
+                        Add Property
+                    </Link>
                 </div>
             </div>
         </div>
@@ -94,6 +95,7 @@ import Pagination from '@/Components/Shared/Tables/Pagination.vue';
 import ResetFilters from '@/Components/Shared/Tables/ResetFilters.vue';
 import SearchBar from '@/Components/Shared/Tables/SearchBar.vue';
 import TableHeader from '@/Components/Shared/Tables/TableHeader.vue';
+import PropertyController from '@/Routes/actions/App/Http/Controllers/Admin/PropertyController';
 import { IndexPropertyPaginatedInterface } from '@/Types/Admin/Interfaces/IndexPropertyPaginatedInterface';
 import { SelectFilterOptionType } from '@/Types/Admin/Types/SelectFilterOptionType';
 import { PropertyTypeColors } from '@/Types/App/Enums/PropertyTypeEnum';
@@ -101,6 +103,7 @@ import { PropertyBathroomInterface } from '@/Types/App/Interfaces/PropertyBathro
 import { PropertyBedroomInterface } from '@/Types/App/Interfaces/PropertyBedroomInterface';
 import { PropertyLocationInterface } from '@/Types/App/Interfaces/PropertyLocationInterface';
 import { PropertyTypeInterface } from '@/Types/App/Interfaces/PropertyTypeInterface';
+import { Link } from '@inertiajs/vue3';
 import { ref, Ref } from 'vue';
 
 const {

@@ -21,7 +21,7 @@ it('works on index page.', function (): void {
     $this->actingAs($user)
         ->get(route('admin.properties.index'))
         ->assertInertia(function (Assert $page) use ($count): void {
-            $page->component(PageEnum::ADMIN_PROPERTIES->value)
+            $page->component(PageEnum::ADMIN_PROPERTIES_INDEX->value)
                 ->has('properties.data', $count)
                 ->has('types')
                 ->has('bathrooms')
@@ -41,7 +41,7 @@ it('works with page query string.', function (): void {
     $this->actingAs($user)
         ->get(route('admin.properties.index', ['page' => 2]))
         ->assertInertia(function (Assert $page): void {
-            $page->component(PageEnum::ADMIN_PROPERTIES->value)
+            $page->component(PageEnum::ADMIN_PROPERTIES_INDEX->value)
                 ->has('properties.data', 1);
         });
 });
@@ -64,7 +64,7 @@ it('works with search query string.', function (): void {
     $this->actingAs($user)
         ->get(route('admin.properties.index', ['search' => 'AdminTest']))
         ->assertInertia(function (Assert $page) use ($cases): void {
-            $page->component(PageEnum::ADMIN_PROPERTIES->value)
+            $page->component(PageEnum::ADMIN_PROPERTIES_INDEX->value)
                 ->has('properties.data', count($cases));
         });
 });
@@ -83,7 +83,7 @@ it('works with bathrooms query string.', function (int $bathrooms): void {
     $this->actingAs($user)
         ->get(route('admin.properties.index', ['bathrooms' => $bathrooms]))
         ->assertInertia(function (Assert $page) use ($count): void {
-            $page->component(PageEnum::ADMIN_PROPERTIES->value)
+            $page->component(PageEnum::ADMIN_PROPERTIES_INDEX->value)
                 ->has('properties.data', $count);
         });
 })->with([1, 2]);
@@ -102,7 +102,7 @@ it('works with bedrooms query string.', function (int $bedrooms): void {
     $this->actingAs($user)
         ->get(route('admin.properties.index', ['bedrooms' => $bedrooms]))
         ->assertInertia(function (Assert $page) use ($count): void {
-            $page->component(PageEnum::ADMIN_PROPERTIES->value)
+            $page->component(PageEnum::ADMIN_PROPERTIES_INDEX->value)
                 ->has('properties.data', $count);
         });
 })->with([1, 3]);
@@ -118,7 +118,7 @@ it('works with type query string.', function (PropertyTypeEnum $type): void {
     $this->actingAs($user)
         ->get(route('admin.properties.index', ['type' => $type->value]))
         ->assertInertia(function (Assert $page) use ($count): void {
-            $page->component(PageEnum::ADMIN_PROPERTIES->value)
+            $page->component(PageEnum::ADMIN_PROPERTIES_INDEX->value)
                 ->has('properties.data', $count);
         });
 })->with(PropertyTypeEnum::cases());
@@ -137,7 +137,7 @@ it('works with location query string.', function (PropertyLocationEnum $location
     $this->actingAs($user)
         ->get(route('admin.properties.index', ['location' => $location->value]))
         ->assertInertia(function (Assert $page) use ($count): void {
-            $page->component(PageEnum::ADMIN_PROPERTIES->value)
+            $page->component(PageEnum::ADMIN_PROPERTIES_INDEX->value)
                 ->has('properties.data', $count);
         });
 })->with([PropertyLocationEnum::AUSTIN, PropertyLocationEnum::MIAMI]);
@@ -156,7 +156,7 @@ it('works with is featured true query string.', function (): void {
     $this->actingAs($user)
         ->get(route('admin.properties.index', ['is_featured' => true]))
         ->assertInertia(function (Assert $page) use ($count): void {
-            $page->component(PageEnum::ADMIN_PROPERTIES->value)
+            $page->component(PageEnum::ADMIN_PROPERTIES_INDEX->value)
                 ->has('properties.data', $count);
         });
 });
@@ -175,7 +175,7 @@ it('works with is featured false query string.', function (): void {
     $this->actingAs($user)
         ->get(route('admin.properties.index', ['is_featured' => false]))
         ->assertInertia(function (Assert $page) use ($count): void {
-            $page->component(PageEnum::ADMIN_PROPERTIES->value)
+            $page->component(PageEnum::ADMIN_PROPERTIES_INDEX->value)
                 ->has('properties.data', $count);
         });
 });
@@ -195,7 +195,7 @@ it('works with sort title and direction asc query strings.', function (): void {
     $this->actingAs($user)
         ->get(route('admin.properties.index', ['sort' => 'title', 'direction' => PaginationDirection::ASC->value]))
         ->assertInertia(function (Assert $page): void {
-            $page->component(PageEnum::ADMIN_PROPERTIES->value)
+            $page->component(PageEnum::ADMIN_PROPERTIES_INDEX->value)
                 ->where('properties.data.0.title', 'Alpha')
                 ->where('properties.data.1.title', 'Omega')
                 ->where('properties.data.2.title', 'Zeta');
@@ -219,9 +219,21 @@ it('works with sort price and direction desc query strings.', function (): void 
     $this->actingAs($user)
         ->get(route('admin.properties.index', ['sort' => 'price', 'direction' => PaginationDirection::DESC->value]))
         ->assertInertia(function (Assert $page): void {
-            $page->component(PageEnum::ADMIN_PROPERTIES->value)
+            $page->component(PageEnum::ADMIN_PROPERTIES_INDEX->value)
                 ->where('properties.data.0.price', '$300')
                 ->where('properties.data.1.price', '$200')
                 ->where('properties.data.2.price', '$100');
+        });
+});
+
+it('works on create page.', function (): void {
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $this->actingAs($user)
+        ->get(route('admin.properties.create'))
+        ->assertInertia(function (Assert $page): void {
+            $page->component(PageEnum::ADMIN_PROPERTIES_CREATE->value);
         });
 });

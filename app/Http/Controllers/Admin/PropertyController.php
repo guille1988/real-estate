@@ -32,12 +32,17 @@ final class PropertyController
                 return IndexPropertyResource::make($property);
             })->toArray();
 
-        return Inertia::render(PageEnum::ADMIN_PROPERTIES->value, [
+        return Inertia::render(PageEnum::ADMIN_PROPERTIES_INDEX->value, [
             'properties' => fn (): array => $properties,
+            'locations' => fn (): Collection => PropertyLocationEnum::toResponse(),
             'types' => fn (): Collection => PropertyTypeEnum::toResponse(),
             'bathrooms' => fn (): array => $action->execute('bathrooms'),
             'bedrooms' => fn (): array => $action->execute('bedrooms'),
-            'locations' => PropertyLocationEnum::toResponse(),
         ]);
+    }
+
+    public function create(): Response
+    {
+        return Inertia::render(PageEnum::ADMIN_PROPERTIES_CREATE->value);
     }
 }

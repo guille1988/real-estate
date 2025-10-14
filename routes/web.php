@@ -99,6 +99,7 @@ Route::prefix('admin')
                 Route::resource('properties', AdminPropertyController::class)
                     ->names([
                         'index' => '.properties.index',
-                    ])->only('index');
+                        'create' => '.properties.create',
+                    ])->only(['index', 'create']);
             });
     });
