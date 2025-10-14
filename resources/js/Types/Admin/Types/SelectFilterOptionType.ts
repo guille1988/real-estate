@@ -1,4 +1,4 @@
 export type SelectFilterOptionType = {
     label: string;
-    value: boolean | number | string;
+    value: number | string;
 };
