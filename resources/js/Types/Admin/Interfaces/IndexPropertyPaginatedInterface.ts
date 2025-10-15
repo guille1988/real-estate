@@ -7,7 +7,6 @@ export interface IndexPropertyPaginatedInterface {
     from: number;
     lastPage: number;
     nextPageUrl: string;
-    perPage: number;
     prevPageUrl: null | string;
     to: number;
     total: number;

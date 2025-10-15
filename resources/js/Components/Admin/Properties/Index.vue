@@ -50,8 +50,8 @@
                                     class="divide-y divide-white/10 bg-gray-900"
                                 >
                                     <tr
-                                        v-for="perPage in properties.perPage"
-                                        :key="`properties-skeleton-${perPage}`"
+                                        v-for="n in 7"
+                                        :key="`properties-skeleton-${n}`"
                                     >
                                         <td class="whitespace-nowrap px-4 py-5">
                                             <div
