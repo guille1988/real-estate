@@ -30,7 +30,7 @@
                 <WhenVisible :data="['createForm']">
                     <template #fallback>
                         <div
-                            class="min-h-0 flex-1 space-y-8 overflow-auto pb-8"
+                            class="min-h-0 flex-1 space-y-8 overflow-auto pb-8 pr-3 md:pr-4"
                             aria-hidden="true"
                         >
                             <div
@@ -89,7 +89,9 @@
                         </div>
                     </template>
 
-                    <div class="min-h-0 flex-1 space-y-8 overflow-auto pb-8">
+                    <div
+                        class="min-h-0 flex-1 space-y-8 overflow-auto pb-8 pr-3 md:pr-4"
+                    >
                         <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
                             <TextInput
                                 id="caption"
