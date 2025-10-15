@@ -44,40 +44,105 @@
                                 <TableHeader column="actions" :sort="false" />
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-white/10 bg-gray-900">
-                            <tr
-                                v-for="property in properties.data"
-                                :key="property.uuid"
-                            >
-                                <ImageWithText
-                                    :image="property.image"
-                                    :text="property.title"
-                                />
-                                <Text :text="property.bathrooms" />
-                                <Text :text="property.bedrooms" />
-                                <Badge
-                                    :badge="property.type"
-                                    :mapping="PropertyTypeColors"
-                                />
-                                <Text :text="property.price" />
-                                <Actions
-                                    :show-url="
-                                        PropertyController.show(property.uuid)
-                                            .url
-                                    "
-                                    :edit-url="
-                                        PropertyController.edit(property.uuid)
-                                            .url
-                                    "
-                                    :delete-url="
-                                        PropertyController.destroy(
-                                            property.uuid,
-                                        ).url
-                                    "
-                                    resource="property"
-                                />
-                            </tr>
-                        </tbody>
+                        <WhenVisible :data="['properties']">
+                            <template #fallback>
+                                <tbody
+                                    class="divide-y divide-white/10 bg-gray-900"
+                                >
+                                    <tr
+                                        v-for="perPage in properties.perPage"
+                                        :key="`properties-skeleton-${perPage}`"
+                                    >
+                                        <td class="whitespace-nowrap px-4 py-5">
+                                            <div
+                                                class="flex items-center gap-3"
+                                            >
+                                                <div
+                                                    class="size-11 shrink-0 rounded-full bg-gray-800/60"
+                                                ></div>
+                                                <div
+                                                    class="h-5 w-40 rounded bg-gray-800/40"
+                                                ></div>
+                                            </div>
+                                        </td>
+                                        <td class="whitespace-nowrap px-4 py-5">
+                                            <div
+                                                class="h-5 w-10 rounded bg-gray-800/40"
+                                            ></div>
+                                        </td>
+                                        <td class="whitespace-nowrap px-4 py-5">
+                                            <div
+                                                class="h-5 w-10 rounded bg-gray-800/40"
+                                            ></div>
+                                        </td>
+                                        <td class="whitespace-nowrap px-4 py-5">
+                                            <div
+                                                class="h-6 w-20 rounded-full bg-gray-800/40"
+                                            ></div>
+                                        </td>
+                                        <td class="whitespace-nowrap px-4 py-5">
+                                            <div
+                                                class="h-5 w-16 rounded bg-gray-800/40"
+                                            ></div>
+                                        </td>
+                                        <td
+                                            class="whitespace-nowrap px-4 py-5 text-right"
+                                        >
+                                            <div
+                                                class="ml-auto flex w-24 justify-end gap-2"
+                                            >
+                                                <div
+                                                    class="h-8 w-8 rounded bg-gray-800/40"
+                                                ></div>
+                                                <div
+                                                    class="h-8 w-8 rounded bg-gray-800/40"
+                                                ></div>
+                                                <div
+                                                    class="h-8 w-8 rounded bg-gray-800/40"
+                                                ></div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </template>
+
+                            <tbody class="divide-y divide-white/10 bg-gray-900">
+                                <tr
+                                    v-for="property in properties.data"
+                                    :key="property.uuid"
+                                >
+                                    <ImageWithText
+                                        :image="property.image"
+                                        :text="property.title"
+                                    />
+                                    <Text :text="property.bathrooms" />
+                                    <Text :text="property.bedrooms" />
+                                    <Badge
+                                        :badge="property.type"
+                                        :mapping="PropertyTypeColors"
+                                    />
+                                    <Text :text="property.price" />
+                                    <Actions
+                                        :show-url="
+                                            PropertyController.show(
+                                                property.uuid,
+                                            ).url
+                                        "
+                                        :edit-url="
+                                            PropertyController.edit(
+                                                property.uuid,
+                                            ).url
+                                        "
+                                        :delete-url="
+                                            PropertyController.destroy(
+                                                property.uuid,
+                                            ).url
+                                        "
+                                        resource="property"
+                                    />
+                                </tr>
+                            </tbody>
+                        </WhenVisible>
                     </table>
                 </div>
             </div>
@@ -113,7 +178,7 @@ import { PropertyBathroomInterface } from '@/Types/App/Interfaces/PropertyBathro
 import { PropertyBedroomInterface } from '@/Types/App/Interfaces/PropertyBedroomInterface';
 import { PropertyLocationInterface } from '@/Types/App/Interfaces/PropertyLocationInterface';
 import { PropertyTypeInterface } from '@/Types/App/Interfaces/PropertyTypeInterface';
-import { Link } from '@inertiajs/vue3';
+import { Link, WhenVisible } from '@inertiajs/vue3';
 import { ref, Ref } from 'vue';
 
 const {
