@@ -1,5 +1,5 @@
 <template>
-    <div class="min-h-screen bg-gray-900 pb-4 text-white">
+    <div class="min-h-screen bg-gray-900 text-white">
         <Sidebar v-model:open="open" />
 
         <div class="lg:pl-72">

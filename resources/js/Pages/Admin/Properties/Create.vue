@@ -1,9 +1,9 @@
 <template>
     <Layout>
         <div
-            class="inset-ring inset-ring-white/10 mb-6 flex h-auto min-h-0 w-full flex-col rounded-xl bg-black p-8 text-white md:p-8"
+            class="inset-ring inset-ring-white/10 flex h-full min-h-0 w-full flex-col overflow-hidden rounded-xl bg-black p-4 text-white md:p-6"
         >
-            <div class="flex min-h-0 flex-col">
+            <div class="flex min-h-0 flex-1 flex-col">
                 <div class="sm:flex sm:items-center">
                     <div class="sm:flex-auto">
                         <h1 class="text-base font-semibold text-white">
@@ -25,10 +25,10 @@
                 </div>
 
                 <form
-                    class="mt-8 flex min-h-0 flex-col"
+                    class="mt-8 flex min-h-0 flex-1 flex-col"
                     @submit.prevent="submit"
                 >
-                    <div class="min-h-0 space-y-8 pb-8">
+                    <div class="min-h-0 flex-1 space-y-8 overflow-auto pb-8">
                         <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
                             <TextInput
                                 id="caption"
@@ -180,7 +180,7 @@
                         </div>
                     </div>
                     <div
-                        class="mt-8 flex justify-end gap-3 border-t border-white/10 pt-8"
+                        class="mt-8 flex flex-shrink-0 justify-end gap-3 border-t border-white/10 pt-8"
                     >
                         <button
                             type="submit"
