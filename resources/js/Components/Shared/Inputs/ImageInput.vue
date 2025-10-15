@@ -115,10 +115,15 @@ onBeforeUnmount((): void => {
 watch(
     (): File | null => modelValue,
     (file: File | null): void => {
-        if (!file && preview.value) {
+        if (preview.value) {
             URL.revokeObjectURL(preview.value);
             preview.value = null;
         }
+
+        if (file instanceof File) {
+            preview.value = URL.createObjectURL(file);
+        }
     },
+    { immediate: true },
 );
 </script>
