@@ -100,6 +100,12 @@
                                 type="text"
                                 placeholder="Short caption"
                             />
+                            <div
+                                v-if="form.errors.caption"
+                                class="-mt-4 text-sm text-red-500 dark:text-red-400"
+                            >
+                                {{ form.errors.caption }}
+                            </div>
                             <TextInput
                                 id="title"
                                 label="Title"
@@ -107,6 +113,12 @@
                                 type="text"
                                 placeholder="Property title"
                             />
+                            <div
+                                v-if="form.errors.title"
+                                class="-mt-4 text-sm text-red-500 dark:text-red-400"
+                            >
+                                {{ form.errors.title }}
+                            </div>
                             <TextInput
                                 id="address"
                                 label="Address"
@@ -114,6 +126,12 @@
                                 type="text"
                                 placeholder="Street, City, State"
                             />
+                            <div
+                                v-if="form.errors.address"
+                                class="-mt-4 text-sm text-red-500 dark:text-red-400"
+                            >
+                                {{ form.errors.address }}
+                            </div>
                             <DropdownInput
                                 id="type"
                                 label="Type"
@@ -121,6 +139,12 @@
                                 :options="typeOptions"
                                 placeholder="Select type"
                             />
+                            <div
+                                v-if="form.errors.type"
+                                class="-mt-4 text-sm text-red-500 dark:text-red-400"
+                            >
+                                {{ form.errors.type }}
+                            </div>
                             <DropdownInput
                                 id="location"
                                 label="Location"
@@ -128,6 +152,12 @@
                                 :options="locationOptions"
                                 placeholder="Select location"
                             />
+                            <div
+                                v-if="form.errors.location"
+                                class="-mt-4 text-sm text-red-500 dark:text-red-400"
+                            >
+                                {{ form.errors.location }}
+                            </div>
                             <TextInput
                                 id="bathrooms"
                                 label="Bathrooms"
@@ -135,6 +165,12 @@
                                 type="number"
                                 placeholder="0"
                             />
+                            <div
+                                v-if="form.errors.bathrooms"
+                                class="-mt-4 text-sm text-red-500 dark:text-red-400"
+                            >
+                                {{ form.errors.bathrooms }}
+                            </div>
                             <TextInput
                                 id="bedrooms"
                                 label="Bedrooms"
@@ -142,6 +178,12 @@
                                 type="number"
                                 placeholder="0"
                             />
+                            <div
+                                v-if="form.errors.bedrooms"
+                                class="-mt-4 text-sm text-red-500 dark:text-red-400"
+                            >
+                                {{ form.errors.bedrooms }}
+                            </div>
                             <TextInput
                                 id="area"
                                 label="Area (sq ft)"
@@ -149,6 +191,12 @@
                                 type="number"
                                 placeholder="0"
                             />
+                            <div
+                                v-if="form.errors.area"
+                                class="-mt-4 text-sm text-red-500 dark:text-red-400"
+                            >
+                                {{ form.errors.area }}
+                            </div>
                             <TextInput
                                 id="price"
                                 label="Price (USD)"
@@ -156,6 +204,12 @@
                                 type="number"
                                 placeholder="0"
                             />
+                            <div
+                                v-if="form.errors.price"
+                                class="-mt-4 text-sm text-red-500 dark:text-red-400"
+                            >
+                                {{ form.errors.price }}
+                            </div>
                             <div class="flex items-center gap-4 md:col-span-2">
                                 <CheckboxInput
                                     id="is_featured"
@@ -171,6 +225,12 @@
                                     :rows="5"
                                     placeholder="Describe the property"
                                 />
+                                <div
+                                    v-if="form.errors.description"
+                                    class="mt-1 text-sm text-red-500 dark:text-red-400"
+                                >
+                                    {{ form.errors.description }}
+                                </div>
                             </div>
                         </div>
 
@@ -191,7 +251,13 @@
                                     <button
                                         type="button"
                                         @click="openMultiImagePicker"
-                                        class="rounded-md bg-white/10 px-3 py-2 text-sm font-semibold text-white hover:bg-white/20"
+                                        :disabled="form.processing"
+                                        :class="[
+                                            'rounded-md px-3 py-2 text-sm font-semibold',
+                                            form.processing
+                                                ? 'cursor-not-allowed bg-white/10 text-white opacity-50'
+                                                : 'bg-white/10 text-white hover:bg-white/20',
+                                        ]"
                                     >
                                         Add Image
                                     </button>
@@ -226,7 +292,13 @@
                                             <button
                                                 type="button"
                                                 @click="removeImage(index)"
-                                                class="rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white hover:bg-red-500"
+                                                :disabled="form.processing"
+                                                :class="[
+                                                    'rounded-md px-3 py-2 text-sm font-semibold',
+                                                    form.processing
+                                                        ? 'cursor-not-allowed bg-red-600 text-white opacity-50'
+                                                        : 'bg-red-600 text-white hover:bg-red-500',
+                                                ]"
                                             >
                                                 Remove
                                             </button>
@@ -248,10 +320,20 @@
                 >
                     <button
                         type="submit"
-                        class="shadow-xs rounded-md bg-purple-500 px-4 py-2 text-sm font-semibold text-white hover:bg-purple-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-500"
+                        :disabled="form.processing"
+                        :class="[
+                            'shadow-xs rounded-md px-4 py-2 text-sm font-semibold',
+                            form.processing
+                                ? 'cursor-not-allowed bg-purple-500 text-white opacity-50'
+                                : 'bg-purple-500 text-white hover:bg-purple-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-500',
+                        ]"
                     >
-                        Save
+                        <span v-if="!form.processing">Save</span>
+                        <span v-else>Saving...</span>
                     </button>
+                    <p v-if="showSuccessMessage" class="text-sm text-green-400">
+                        {{ successMessage }}
+                    </p>
                 </div>
             </form>
         </div>
@@ -268,10 +350,26 @@ import PropertyController from '@/Routes/actions/App/Http/Controllers/Admin/Prop
 import { PropertyLocationEnum } from '@/Types/App/Enums/PropertyLocationEnum';
 import { PropertyTypeEnum } from '@/Types/App/Enums/PropertyTypeEnum';
 import { DropdownInputOptionsInterface } from '@/Types/App/Interfaces/DropdownInputOptionsInterface';
-import { Link, router, WhenVisible } from '@inertiajs/vue3';
-import { reactive, ref, Ref } from 'vue';
+import { InertiaForm, Link, useForm, WhenVisible } from '@inertiajs/vue3';
+import { ref, Ref } from 'vue';
 
-const form = reactive<{
+const successMessage: string = 'Property created successfully.';
+const showSuccessMessage: Ref<boolean> = ref<boolean>(false);
+
+const form: InertiaForm<{
+    caption: string;
+    title: string;
+    description: string;
+    address: string;
+    type: string | null;
+    location: string | null;
+    bathrooms: string;
+    bedrooms: string;
+    area: string;
+    price: string;
+    is_featured: boolean;
+    images: { file: File | null; is_default: boolean }[];
+}> = useForm<{
     caption: string;
     title: string;
     description: string;
@@ -337,27 +435,23 @@ const removeImage = (index: number): void => {
 };
 
 const submit = (): void => {
-    const fd = new FormData();
+    showSuccessMessage.value = false;
 
-    fd.append('caption', form.caption);
-    fd.append('title', form.title);
-    fd.append('description', form.description);
-    fd.append('address', form.address);
-    fd.append('type', form.type ?? '');
-    fd.append('location', form.location ?? '');
-    fd.append('bathrooms', form.bathrooms);
-    fd.append('bedrooms', form.bedrooms);
-    fd.append('area', form.area);
-    fd.append('price', form.price);
-    fd.append('is_featured', form.is_featured ? '1' : '0');
+    form.post(PropertyController.store().url, {
+        preserveScroll: true,
+        onSuccess: (): void => {
+            showSuccessMessage.value = true;
+            form.reset();
 
-    form.images.forEach((image, index) => {
-        if (image.file) {
-            fd.append(`images[${index}][file]`, image.file);
-        }
-        fd.append(`images[${index}][is_default]`, image.is_default ? '1' : '0');
+            setTimeout((): void => {
+                showSuccessMessage.value = false;
+            }, 4000);
+        },
+        onError: (): void => {
+            setTimeout((): void => {
+                form.clearErrors();
+            }, 4000);
+        },
     });
-
-    router.post(PropertyController.store().url, fd);
 };
 </script>
