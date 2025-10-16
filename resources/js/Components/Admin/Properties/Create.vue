@@ -214,7 +214,7 @@
                                 <CheckboxInput
                                     id="is_featured"
                                     label="Featured"
-                                    v-model="form.is_featured"
+                                    v-model="form.isFeatured"
                                 />
                             </div>
                             <div class="md:col-span-2">
@@ -287,7 +287,7 @@
                                             <CheckboxInput
                                                 :id="`image-default-${index}`"
                                                 label="Default"
-                                                v-model="image.is_default"
+                                                v-model="image.isDefault"
                                             />
                                             <button
                                                 type="button"
@@ -347,6 +347,7 @@ import ImageInput from '@/Components/Shared/Inputs/ImageInput.vue';
 import TextAreaInput from '@/Components/Shared/Inputs/TextAreaInput.vue';
 import TextInput from '@/Components/Shared/Inputs/TextInput.vue';
 import PropertyController from '@/Routes/actions/App/Http/Controllers/Admin/PropertyController';
+import type { StorePropertyInterface } from '@/Types/Admin/Interfaces/StorePropertyInterface';
 import { PropertyLocationEnum } from '@/Types/App/Enums/PropertyLocationEnum';
 import { PropertyTypeEnum } from '@/Types/App/Enums/PropertyTypeEnum';
 import { DropdownInputOptionsInterface } from '@/Types/App/Interfaces/DropdownInputOptionsInterface';
@@ -356,46 +357,21 @@ import { ref, Ref } from 'vue';
 const successMessage: string = 'Property created successfully.';
 const showSuccessMessage: Ref<boolean> = ref<boolean>(false);
 
-const form: InertiaForm<{
-    caption: string;
-    title: string;
-    description: string;
-    address: string;
-    type: string | null;
-    location: string | null;
-    bathrooms: string;
-    bedrooms: string;
-    area: string;
-    price: string;
-    is_featured: boolean;
-    images: { file: File | null; is_default: boolean }[];
-}> = useForm<{
-    caption: string;
-    title: string;
-    description: string;
-    address: string;
-    type: string | null;
-    location: string | null;
-    bathrooms: string;
-    bedrooms: string;
-    area: string;
-    price: string;
-    is_featured: boolean;
-    images: { file: File | null; is_default: boolean }[];
-}>({
-    caption: '',
-    title: '',
-    description: '',
-    address: '',
-    type: null,
-    location: null,
-    bathrooms: '',
-    bedrooms: '',
-    area: '',
-    price: '',
-    is_featured: false,
-    images: [],
-});
+const form: InertiaForm<StorePropertyInterface> =
+    useForm<StorePropertyInterface>({
+        caption: '',
+        title: '',
+        description: '',
+        address: '',
+        type: null,
+        location: null,
+        bathrooms: '',
+        bedrooms: '',
+        area: '',
+        price: '',
+        isFeatured: false,
+        images: [],
+    });
 
 const toLabel = (value: string): string =>
     value
@@ -424,7 +400,7 @@ const onMultiFiles = (event: Event): void => {
     }
 
     Array.from(input.files).forEach((file: File) => {
-        form.images.push({ file, is_default: false });
+        form.images.push({ file, isDefault: false });
     });
 
     input.value = '';
