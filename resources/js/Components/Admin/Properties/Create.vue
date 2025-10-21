@@ -12,15 +12,7 @@
                         Add a new property and its images
                     </p>
                 </div>
-                <div class="mt-4 sm:mt-0 sm:flex-none">
-                    <Link
-                        prefetch
-                        :href="PropertyController.index().url"
-                        class="shadow-xs block rounded-md bg-purple-500 px-3 py-2 text-center text-sm font-semibold text-white hover:bg-purple-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-500"
-                    >
-                        Back to Index
-                    </Link>
-                </div>
+                <BackToIndexButton :url="PropertyController.index().url" />
             </div>
 
             <form
@@ -341,6 +333,7 @@
 </template>
 
 <script setup lang="ts">
+import BackToIndexButton from '@/Components/Shared/Buttons/BackToIndexButton.vue';
 import CheckboxInput from '@/Components/Shared/Inputs/CheckboxInput.vue';
 import DropdownInput from '@/Components/Shared/Inputs/DropdownInput.vue';
 import ImageInput from '@/Components/Shared/Inputs/ImageInput.vue';
@@ -351,7 +344,7 @@ import type { StorePropertyInterface } from '@/Types/Admin/Interfaces/StorePrope
 import { PropertyLocationEnum } from '@/Types/App/Enums/PropertyLocationEnum';
 import { PropertyTypeEnum } from '@/Types/App/Enums/PropertyTypeEnum';
 import { DropdownInputOptionsInterface } from '@/Types/App/Interfaces/DropdownInputOptionsInterface';
-import { InertiaForm, Link, useForm, WhenVisible } from '@inertiajs/vue3';
+import { InertiaForm, useForm, WhenVisible } from '@inertiajs/vue3';
 import { ref, Ref } from 'vue';
 
 const successMessage: string = 'Property created successfully.';
@@ -395,6 +388,7 @@ const openMultiImagePicker = (): void => {
 
 const onMultiFiles = (event: Event): void => {
     const input = event.target as HTMLInputElement;
+
     if (!input.files || input.files.length === 0) {
         return;
     }
