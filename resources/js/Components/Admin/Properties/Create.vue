@@ -66,7 +66,7 @@
                             id="type"
                             label="Type"
                             v-model="form.type"
-                            :options="typeOptions"
+                            :options="types"
                             placeholder="Select type"
                         />
                         <div
@@ -79,7 +79,7 @@
                             id="location"
                             label="Location"
                             v-model="form.location"
-                            :options="locationOptions"
+                            :options="locations"
                             placeholder="Select location"
                         />
                         <div
@@ -278,11 +278,15 @@ import TextAreaInput from '@/Components/Shared/Inputs/TextAreaInput.vue';
 import TextInput from '@/Components/Shared/Inputs/TextInput.vue';
 import PropertyController from '@/Routes/actions/App/Http/Controllers/Admin/PropertyController';
 import type { StorePropertyInterface } from '@/Types/Admin/Interfaces/StorePropertyInterface';
-import { PropertyLocationEnum } from '@/Types/App/Enums/PropertyLocationEnum';
-import { PropertyTypeEnum } from '@/Types/App/Enums/PropertyTypeEnum';
-import { DropdownInputOptionsInterface } from '@/Types/App/Interfaces/DropdownInputOptionsInterface';
+import { PropertyLocationInterface } from '@/Types/App/Interfaces/PropertyLocationInterface';
+import { PropertyTypeInterface } from '@/Types/App/Interfaces/PropertyTypeInterface';
 import { InertiaForm, useForm } from '@inertiajs/vue3';
 import { ref, Ref } from 'vue';
+
+defineProps<{
+    locations: PropertyLocationInterface[];
+    types: PropertyTypeInterface[];
+}>();
 
 const successMessage: string = 'Property created successfully.';
 const showSuccessMessage: Ref<boolean> = ref<boolean>(false);
@@ -302,20 +306,6 @@ const form: InertiaForm<StorePropertyInterface> =
         isFeatured: false,
         images: [],
     });
-
-const toLabel = (value: string): string =>
-    value
-        .split('_')
-        .map((s: string) => s.charAt(0).toUpperCase() + s.slice(1))
-        .join(' ');
-
-const typeOptions: DropdownInputOptionsInterface[] = Object.values(
-    PropertyTypeEnum,
-).map((value: string) => ({ label: toLabel(value), value }));
-
-const locationOptions: DropdownInputOptionsInterface[] = Object.values(
-    PropertyLocationEnum,
-).map((value: string) => ({ label: toLabel(value), value }));
 
 const multiFileInput: Ref<HTMLInputElement | null> = ref(null);
 

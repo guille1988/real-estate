@@ -234,7 +234,9 @@ it('works on create page.', function (): void {
     $this->actingAs($user)
         ->get(route('admin.properties.create'))
         ->assertInertia(function (Assert $page): void {
-            $page->component(PageEnum::ADMIN_PROPERTIES_CREATE->value);
+            $page->component(PageEnum::ADMIN_PROPERTIES_CREATE->value)
+                ->has('types')
+                ->has('locations');
         });
 });
 

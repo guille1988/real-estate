@@ -44,7 +44,10 @@ final class PropertyController
 
     public function create(): Response
     {
-        return Inertia::render(PageEnum::ADMIN_PROPERTIES_CREATE->value);
+        return Inertia::render(PageEnum::ADMIN_PROPERTIES_CREATE->value, [
+            'locations' => fn (): Collection => PropertyLocationEnum::toResponse(),
+            'types' => fn (): Collection => PropertyTypeEnum::toResponse(),
+        ]);
     }
 
     public function edit(Property $property): Response
