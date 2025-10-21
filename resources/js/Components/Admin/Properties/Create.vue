@@ -88,12 +88,12 @@
                         >
                             {{ form.errors.location }}
                         </div>
-                        <TextInput
+                        <NumericInput
                             id="bathrooms"
                             label="Bathrooms"
                             v-model="form.bathrooms"
-                            type="number"
                             placeholder="0"
+                            :accept-negative-numbers="false"
                         />
                         <div
                             v-if="form.errors.bathrooms"
@@ -101,12 +101,12 @@
                         >
                             {{ form.errors.bathrooms }}
                         </div>
-                        <TextInput
+                        <NumericInput
                             id="bedrooms"
                             label="Bedrooms"
                             v-model="form.bedrooms"
-                            type="number"
                             placeholder="0"
+                            :accept-negative-numbers="false"
                         />
                         <div
                             v-if="form.errors.bedrooms"
@@ -114,12 +114,12 @@
                         >
                             {{ form.errors.bedrooms }}
                         </div>
-                        <TextInput
+                        <NumericInput
                             id="area"
                             label="Area (sq ft)"
                             v-model="form.area"
-                            type="number"
                             placeholder="0"
+                            :accept-negative-numbers="false"
                         />
                         <div
                             v-if="form.errors.area"
@@ -127,12 +127,12 @@
                         >
                             {{ form.errors.area }}
                         </div>
-                        <TextInput
+                        <NumericInput
                             id="price"
                             label="Price (USD)"
                             v-model="form.price"
-                            type="number"
                             placeholder="0"
+                            :accept-negative-numbers="false"
                         />
                         <div
                             v-if="form.errors.price"
@@ -142,7 +142,7 @@
                         </div>
                         <div class="flex items-center gap-4 md:col-span-2">
                             <CheckboxInput
-                                id="is_featured"
+                                id="isFeatured"
                                 label="Featured"
                                 v-model="form.isFeatured"
                             />
@@ -274,6 +274,7 @@ import BackToIndexButton from '@/Components/Shared/Buttons/BackToIndexButton.vue
 import CheckboxInput from '@/Components/Shared/Inputs/CheckboxInput.vue';
 import DropdownInput from '@/Components/Shared/Inputs/DropdownInput.vue';
 import ImageInput from '@/Components/Shared/Inputs/ImageInput.vue';
+import NumericInput from '@/Components/Shared/Inputs/NumericInput.vue';
 import TextAreaInput from '@/Components/Shared/Inputs/TextAreaInput.vue';
 import TextInput from '@/Components/Shared/Inputs/TextInput.vue';
 import PropertyController from '@/Routes/actions/App/Http/Controllers/Admin/PropertyController';
