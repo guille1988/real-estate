@@ -44,6 +44,9 @@ final class PropertyInquireData extends Data
      */
     public function toArray(): array
     {
+        /**
+         * @var array<string, mixed> $data
+         */
         $data = parent::toArray();
 
         $fieldsToUnset = [

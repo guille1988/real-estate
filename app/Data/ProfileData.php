@@ -74,11 +74,16 @@ final class ProfileData extends Data
             Hash::check($password, $user->password);
     }
 
-    /*
+    /**
      * Converts the data to an array.
+     *
+     * @return array<string, mixed>
      */
     public function toArray(): array
     {
+        /**
+         * @var array<string, mixed> $data
+         */
         $data = parent::toArray();
 
         if ($this->doesntHavePassword()) {

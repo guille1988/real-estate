@@ -51,6 +51,9 @@ final class ContactMessageData extends Data
      */
     public function toArray(): array
     {
+        /**
+         * @var array<string, mixed> $data
+         */
         $data = parent::toArray();
 
         unset($data['terms_agreed']);

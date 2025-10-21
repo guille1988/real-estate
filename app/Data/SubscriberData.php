@@ -33,4 +33,17 @@ final class SubscriberData extends Data
             'email' => ['required', 'string', 'email', Rule::unique(Subscriber::class, 'email')],
         ];
     }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function toArray(): array
+    {
+        /**
+         * @var array<string, mixed> $data
+         */
+        $data = parent::toArray();
+
+        return $data;
+    }
 }
