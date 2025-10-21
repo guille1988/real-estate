@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Builders;
 
-use App\Data\Admin\PropertyData as AdminPropertyData;
+use App\Data\Admin\PropertyIndexData as AdminPropertyData;
 use App\Data\PropertyData;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;

@@ -13,7 +13,7 @@ use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 
 #[MapName(SnakeCaseMapper::class)]
-final class PropertyData extends Data
+final class PropertyIndexData extends Data
 {
     public function __construct(
         public ?int $page = null,

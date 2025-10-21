@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../../wayfinder'
 /**
 * @see \App\Http\Controllers\Admin\PropertyController::index
-* @see app/Http/Controllers/Admin/PropertyController.php:26
+* @see app/Http/Controllers/Admin/PropertyController.php:27
 * @route '/admin/properties'
 */
 export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ index.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\PropertyController::index
-* @see app/Http/Controllers/Admin/PropertyController.php:26
+* @see app/Http/Controllers/Admin/PropertyController.php:27
 * @route '/admin/properties'
 */
 index.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ index.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\PropertyController::index
-* @see app/Http/Controllers/Admin/PropertyController.php:26
+* @see app/Http/Controllers/Admin/PropertyController.php:27
 * @route '/admin/properties'
 */
 index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -35,7 +35,7 @@ index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\PropertyController::index
-* @see app/Http/Controllers/Admin/PropertyController.php:26
+* @see app/Http/Controllers/Admin/PropertyController.php:27
 * @route '/admin/properties'
 */
 index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -45,7 +45,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\PropertyController::create
-* @see app/Http/Controllers/Admin/PropertyController.php:45
+* @see app/Http/Controllers/Admin/PropertyController.php:46
 * @route '/admin/properties/create'
 */
 export const create = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -60,7 +60,7 @@ create.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\PropertyController::create
-* @see app/Http/Controllers/Admin/PropertyController.php:45
+* @see app/Http/Controllers/Admin/PropertyController.php:46
 * @route '/admin/properties/create'
 */
 create.url = (options?: RouteQueryOptions) => {
@@ -69,7 +69,7 @@ create.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\PropertyController::create
-* @see app/Http/Controllers/Admin/PropertyController.php:45
+* @see app/Http/Controllers/Admin/PropertyController.php:46
 * @route '/admin/properties/create'
 */
 create.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -79,7 +79,7 @@ create.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\PropertyController::create
-* @see app/Http/Controllers/Admin/PropertyController.php:45
+* @see app/Http/Controllers/Admin/PropertyController.php:46
 * @route '/admin/properties/create'
 */
 create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -89,7 +89,7 @@ create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\PropertyController::store
-* @see app/Http/Controllers/Admin/PropertyController.php:67
+* @see app/Http/Controllers/Admin/PropertyController.php:68
 * @route '/admin/properties'
 */
 export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -104,7 +104,7 @@ store.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\PropertyController::store
-* @see app/Http/Controllers/Admin/PropertyController.php:67
+* @see app/Http/Controllers/Admin/PropertyController.php:68
 * @route '/admin/properties'
 */
 store.url = (options?: RouteQueryOptions) => {
@@ -113,7 +113,7 @@ store.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\PropertyController::store
-* @see app/Http/Controllers/Admin/PropertyController.php:67
+* @see app/Http/Controllers/Admin/PropertyController.php:68
 * @route '/admin/properties'
 */
 store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -123,7 +123,7 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\PropertyController::show
-* @see app/Http/Controllers/Admin/PropertyController.php:60
+* @see app/Http/Controllers/Admin/PropertyController.php:61
 * @route '/admin/properties/{property}'
 */
 export const show = (args: { property: string | { uuid: string } } | [property: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -138,7 +138,7 @@ show.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\PropertyController::show
-* @see app/Http/Controllers/Admin/PropertyController.php:60
+* @see app/Http/Controllers/Admin/PropertyController.php:61
 * @route '/admin/properties/{property}'
 */
 show.url = (args: { property: string | { uuid: string } } | [property: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
@@ -171,7 +171,7 @@ show.url = (args: { property: string | { uuid: string } } | [property: string | 
 
 /**
 * @see \App\Http\Controllers\Admin\PropertyController::show
-* @see app/Http/Controllers/Admin/PropertyController.php:60
+* @see app/Http/Controllers/Admin/PropertyController.php:61
 * @route '/admin/properties/{property}'
 */
 show.get = (args: { property: string | { uuid: string } } | [property: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -181,7 +181,7 @@ show.get = (args: { property: string | { uuid: string } } | [property: string | 
 
 /**
 * @see \App\Http\Controllers\Admin\PropertyController::show
-* @see app/Http/Controllers/Admin/PropertyController.php:60
+* @see app/Http/Controllers/Admin/PropertyController.php:61
 * @route '/admin/properties/{property}'
 */
 show.head = (args: { property: string | { uuid: string } } | [property: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -191,7 +191,7 @@ show.head = (args: { property: string | { uuid: string } } | [property: string |
 
 /**
 * @see \App\Http\Controllers\Admin\PropertyController::edit
-* @see app/Http/Controllers/Admin/PropertyController.php:53
+* @see app/Http/Controllers/Admin/PropertyController.php:54
 * @route '/admin/properties/{property}/edit'
 */
 export const edit = (args: { property: string | { uuid: string } } | [property: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -206,7 +206,7 @@ edit.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\PropertyController::edit
-* @see app/Http/Controllers/Admin/PropertyController.php:53
+* @see app/Http/Controllers/Admin/PropertyController.php:54
 * @route '/admin/properties/{property}/edit'
 */
 edit.url = (args: { property: string | { uuid: string } } | [property: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
@@ -239,7 +239,7 @@ edit.url = (args: { property: string | { uuid: string } } | [property: string | 
 
 /**
 * @see \App\Http\Controllers\Admin\PropertyController::edit
-* @see app/Http/Controllers/Admin/PropertyController.php:53
+* @see app/Http/Controllers/Admin/PropertyController.php:54
 * @route '/admin/properties/{property}/edit'
 */
 edit.get = (args: { property: string | { uuid: string } } | [property: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -249,7 +249,7 @@ edit.get = (args: { property: string | { uuid: string } } | [property: string | 
 
 /**
 * @see \App\Http\Controllers\Admin\PropertyController::edit
-* @see app/Http/Controllers/Admin/PropertyController.php:53
+* @see app/Http/Controllers/Admin/PropertyController.php:54
 * @route '/admin/properties/{property}/edit'
 */
 edit.head = (args: { property: string | { uuid: string } } | [property: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -259,7 +259,7 @@ edit.head = (args: { property: string | { uuid: string } } | [property: string |
 
 /**
 * @see \App\Http\Controllers\Admin\PropertyController::update
-* @see app/Http/Controllers/Admin/PropertyController.php:72
+* @see app/Http/Controllers/Admin/PropertyController.php:75
 * @route '/admin/properties/{property}'
 */
 export const update = (args: { property: string | { uuid: string } } | [property: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
@@ -274,7 +274,7 @@ update.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\PropertyController::update
-* @see app/Http/Controllers/Admin/PropertyController.php:72
+* @see app/Http/Controllers/Admin/PropertyController.php:75
 * @route '/admin/properties/{property}'
 */
 update.url = (args: { property: string | { uuid: string } } | [property: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
@@ -307,7 +307,7 @@ update.url = (args: { property: string | { uuid: string } } | [property: string 
 
 /**
 * @see \App\Http\Controllers\Admin\PropertyController::update
-* @see app/Http/Controllers/Admin/PropertyController.php:72
+* @see app/Http/Controllers/Admin/PropertyController.php:75
 * @route '/admin/properties/{property}'
 */
 update.put = (args: { property: string | { uuid: string } } | [property: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
@@ -317,7 +317,7 @@ update.put = (args: { property: string | { uuid: string } } | [property: string 
 
 /**
 * @see \App\Http\Controllers\Admin\PropertyController::update
-* @see app/Http/Controllers/Admin/PropertyController.php:72
+* @see app/Http/Controllers/Admin/PropertyController.php:75
 * @route '/admin/properties/{property}'
 */
 update.patch = (args: { property: string | { uuid: string } } | [property: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
@@ -327,7 +327,7 @@ update.patch = (args: { property: string | { uuid: string } } | [property: strin
 
 /**
 * @see \App\Http\Controllers\Admin\PropertyController::destroy
-* @see app/Http/Controllers/Admin/PropertyController.php:79
+* @see app/Http/Controllers/Admin/PropertyController.php:82
 * @route '/admin/properties/{property}'
 */
 export const destroy = (args: { property: string | { uuid: string } } | [property: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -342,7 +342,7 @@ destroy.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\PropertyController::destroy
-* @see app/Http/Controllers/Admin/PropertyController.php:79
+* @see app/Http/Controllers/Admin/PropertyController.php:82
 * @route '/admin/properties/{property}'
 */
 destroy.url = (args: { property: string | { uuid: string } } | [property: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
@@ -375,7 +375,7 @@ destroy.url = (args: { property: string | { uuid: string } } | [property: string
 
 /**
 * @see \App\Http\Controllers\Admin\PropertyController::destroy
-* @see app/Http/Controllers/Admin/PropertyController.php:79
+* @see app/Http/Controllers/Admin/PropertyController.php:82
 * @route '/admin/properties/{property}'
 */
 destroy.delete = (args: { property: string | { uuid: string } } | [property: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({

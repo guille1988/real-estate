@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Admin;
 
 use App\Actions\GetRangeOfMax;
-use App\Data\Admin\PropertyData;
+use App\Data\Admin\PropertyIndexData;
+use App\Data\Admin\PropertyStoreData;
 use App\Enums\PageEnum;
 use App\Enums\PropertyLocationEnum;
 use App\Enums\PropertyTypeEnum;
@@ -23,7 +24,7 @@ final class PropertyController
     /**
      * @throws Throwable
      */
-    public function index(PropertyData $data, GetRangeOfMax $action): Response
+    public function index(PropertyIndexData $data, GetRangeOfMax $action): Response
     {
         $properties = Property::query()
             ->forIndexing($data)
@@ -64,8 +65,10 @@ final class PropertyController
         return Inertia::render(PageEnum::ADMIN_PROPERTIES_SHOW->value);
     }
 
-    public function store(): RedirectResponse
+    public function store(PropertyStoreData $data): RedirectResponse
     {
+        info('data:', $data->toArray());
+
         return back();
     }
 
