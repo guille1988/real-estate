@@ -67,7 +67,7 @@ final class PropertyController
 
     public function store(PropertyStoreData $data): RedirectResponse
     {
-        info('data:', $data->toArray());
+        Property::create($data->toArray());
 
         return back();
     }

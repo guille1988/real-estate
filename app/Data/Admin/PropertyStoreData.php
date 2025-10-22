@@ -68,4 +68,18 @@ final class PropertyStoreData extends Data
             'images.*.is_default' => ['required', 'boolean'],
         ];
     }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function toArray(): array
+    {
+        /**
+         * @var array<string, mixed> $data
+         */
+        $data = parent::toArray();
+        unset($data['images']);
+
+        return $data;
+    }
 }
