@@ -46,10 +46,10 @@ final class PropertyStoreData extends Data
             'bathrooms' => ['required', 'integer', 'between:1,10'],
             'area' => ['required', 'integer', 'between:10,1000000'],
             'price' => ['required', 'integer', 'between:10,1000000000'],
-            'type' => ['required', Rule::enum(PropertyTypeEnum::class)],
-            'location' => ['required', Rule::enum(PropertyLocationEnum::class)],
+            'type' => ['required', 'string', Rule::enum(PropertyTypeEnum::class)],
+            'location' => ['required', 'string', Rule::enum(PropertyLocationEnum::class)],
             'is_featured' => ['required', 'boolean'],
-            'images' => ['required', 'array'],
+            'images' => ['required', 'array', 'between:1,30', 'in_array_keys:file,is_default'],
             'images.*.file' => ['required', File::types(ImageFormatEnum::values())->max('2mb')],
             'images.*.is_default' => ['required', 'boolean'],
         ];
