@@ -211,6 +211,12 @@
                                 </button>
                             </div>
                         </div>
+                        <div
+                            v-if="form.errors.images"
+                            class="mt-1 max-w-full break-words text-sm text-red-500 dark:text-red-400"
+                        >
+                            {{ form.errors.images }}
+                        </div>
                         <div class="space-y-6">
                             <div
                                 v-for="(image, index) in form.images"
@@ -251,6 +257,26 @@
                                             Remove
                                         </button>
                                     </div>
+                                </div>
+                                <div
+                                    v-if="form.errors[`images.${index}.file`]"
+                                    class="mt-2 max-w-full break-words text-sm text-red-500 dark:text-red-400"
+                                >
+                                    {{ form.errors[`images.${index}.file`] }}
+                                </div>
+                                <div
+                                    v-if="
+                                        form.errors[
+                                            `images.${index}.is_default`
+                                        ]
+                                    "
+                                    class="mt-1 max-w-full break-words text-sm text-red-500 dark:text-red-400"
+                                >
+                                    {{
+                                        form.errors[
+                                            `images.${index}.is_default`
+                                        ]
+                                    }}
                                 </div>
                             </div>
                             <div
