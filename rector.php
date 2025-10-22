@@ -3,6 +3,10 @@
 declare(strict_types=1);
 
 use Rector\CodeQuality\Rector\FuncCall\CompactToVariablesRector;
+use Rector\CodingStyle\Rector\Encapsed\EncapsedStringsToSprintfRector;
+use Rector\CodingStyle\Rector\Encapsed\WrapEncapsedVariableInCurlyBracesRector;
+use Rector\CodingStyle\Rector\FunctionLike\FunctionLikeToFirstClassCallableRector;
+use Rector\CodingStyle\Rector\Use_\SeparateMultiUseImportsRector;
 use Rector\Config\RectorConfig;
 use Rector\Php74\Rector\Closure\ClosureToArrowFunctionRector;
 use Rector\Php83\Rector\ClassMethod\AddOverrideAttributeToOverriddenMethodsRector;
@@ -22,13 +26,17 @@ return RectorConfig::configure()
         AddOverrideAttributeToOverriddenMethodsRector::class,
         CompactToVariablesRector::class,
         PrivatizeFinalClassMethodRector::class,
+        FunctionLikeToFirstClassCallableRector::class,
+        SeparateMultiUseImportsRector::class,
+        EncapsedStringsToSprintfRector::class,
+        WrapEncapsedVariableInCurlyBracesRector::class,
     ])
     ->withPreparedSets(
         deadCode: true,
         codeQuality: true,
+        codingStyle: true,
         typeDeclarations: true,
         privatization: true,
         earlyReturn: true,
-        strictBooleans: true,
     )
     ->withPhpSets();
