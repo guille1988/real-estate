@@ -8,6 +8,7 @@ use App\Enums\ImageFormatEnum;
 use App\Enums\PropertyLocationEnum;
 use App\Enums\PropertyTypeEnum;
 use App\Rules\AtLeastOneDefaultImage;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\File;
 use Spatie\LaravelData\Attributes\MapName;
@@ -30,7 +31,7 @@ final class PropertyStoreData extends Data
         public PropertyLocationEnum $location,
         public bool $isFeatured,
         /**
-         * @var array<int, array{file: string, is_default: bool}>
+         * @var array<int, array{file: UploadedFile, is_default: bool}>
          */
         public array $images,
     ) {}
