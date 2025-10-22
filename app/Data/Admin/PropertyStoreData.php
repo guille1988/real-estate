@@ -34,6 +34,13 @@ final class PropertyStoreData extends Data
         public array $images,
     ) {}
 
+    public static function messages(): array
+    {
+        return [
+            'images.*.file.max' => 'Image must not be greater than 2MB.',
+        ];
+    }
+
     /**
      * @return array<string, array<int, mixed>>
      */
