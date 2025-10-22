@@ -78,8 +78,7 @@ final class PropertyController
             $property = Property::create($data->toArray());
 
             foreach ($data->images as $image) {
-
-                Image::read($image)->save()
+                Image::read($image)->save();
 
             }
             DB::commit();
