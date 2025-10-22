@@ -23,122 +23,140 @@
                     class="min-h-0 flex-1 space-y-8 overflow-auto pb-8 pr-3 md:pr-4"
                 >
                     <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
-                        <TextInput
-                            id="caption"
-                            label="Caption"
-                            v-model="form.caption"
-                            type="text"
-                            placeholder="Short caption"
-                        />
-                        <div
-                            v-if="form.errors.caption"
-                            class="-mt-4 text-sm text-red-500 dark:text-red-400"
-                        >
-                            {{ form.errors.caption }}
+                        <div>
+                            <TextInput
+                                id="title"
+                                label="Title"
+                                v-model="form.title"
+                                type="text"
+                                placeholder="Property title"
+                            />
+                            <div
+                                v-if="form.errors.title"
+                                class="mt-1 max-w-full break-words text-sm text-red-500 dark:text-red-400"
+                            >
+                                {{ form.errors.title }}
+                            </div>
                         </div>
-                        <TextInput
-                            id="title"
-                            label="Title"
-                            v-model="form.title"
-                            type="text"
-                            placeholder="Property title"
-                        />
-                        <div
-                            v-if="form.errors.title"
-                            class="-mt-4 text-sm text-red-500 dark:text-red-400"
-                        >
-                            {{ form.errors.title }}
+                        <div>
+                            <TextInput
+                                id="caption"
+                                label="Caption"
+                                v-model="form.caption"
+                                type="text"
+                                placeholder="Short caption"
+                            />
+                            <div
+                                v-if="form.errors.caption"
+                                class="mt-1 max-w-full break-words text-sm text-red-500 dark:text-red-400"
+                            >
+                                {{ form.errors.caption }}
+                            </div>
                         </div>
-                        <TextInput
-                            id="address"
-                            label="Address"
-                            v-model="form.address"
-                            type="text"
-                            placeholder="Street, City, State"
-                        />
-                        <div
-                            v-if="form.errors.address"
-                            class="-mt-4 text-sm text-red-500 dark:text-red-400"
-                        >
-                            {{ form.errors.address }}
+                        <div>
+                            <TextInput
+                                id="address"
+                                label="Address"
+                                v-model="form.address"
+                                type="text"
+                                placeholder="Street, City, State"
+                            />
+                            <div
+                                v-if="form.errors.address"
+                                class="mt-1 max-w-full break-words text-sm text-red-500 dark:text-red-400"
+                            >
+                                {{ form.errors.address }}
+                            </div>
                         </div>
-                        <DropdownInput
-                            id="type"
-                            label="Type"
-                            v-model="form.type"
-                            :options="types"
-                            placeholder="Select type"
-                        />
-                        <div
-                            v-if="form.errors.type"
-                            class="-mt-4 text-sm text-red-500 dark:text-red-400"
-                        >
-                            {{ form.errors.type }}
+                        <div>
+                            <DropdownInput
+                                id="type"
+                                label="Type"
+                                v-model="form.type"
+                                :options="types"
+                                placeholder="Select type"
+                            />
+                            <div
+                                v-if="form.errors.type"
+                                class="mt-1 max-w-full break-words text-sm text-red-500 dark:text-red-400"
+                            >
+                                {{ form.errors.type }}
+                            </div>
                         </div>
-                        <DropdownInput
-                            id="location"
-                            label="Location"
-                            v-model="form.location"
-                            :options="locations"
-                            placeholder="Select location"
-                        />
-                        <div
-                            v-if="form.errors.location"
-                            class="-mt-4 text-sm text-red-500 dark:text-red-400"
-                        >
-                            {{ form.errors.location }}
+                        <div>
+                            <DropdownInput
+                                id="location"
+                                label="Location"
+                                v-model="form.location"
+                                :options="locations"
+                                placeholder="Select location"
+                            />
+                            <div
+                                v-if="form.errors.location"
+                                class="mt-1 max-w-full break-words text-sm text-red-500 dark:text-red-400"
+                            >
+                                {{ form.errors.location }}
+                            </div>
                         </div>
-                        <NumericInput
-                            id="bathrooms"
-                            label="Bathrooms"
-                            v-model="form.bathrooms"
-                            placeholder="0"
-                            :accept-negative-numbers="false"
-                        />
-                        <div
-                            v-if="form.errors.bathrooms"
-                            class="-mt-4 text-sm text-red-500 dark:text-red-400"
-                        >
-                            {{ form.errors.bathrooms }}
+                        <div>
+                            <NumericInput
+                                id="bathrooms"
+                                label="Bathrooms"
+                                v-model="form.bathrooms"
+                                placeholder="0"
+                                :accept-negative-numbers="false"
+                            />
+                            <div
+                                v-if="form.errors.bathrooms"
+                                class="mt-1 max-w-full break-words text-sm text-red-500 dark:text-red-400"
+                            >
+                                {{ form.errors.bathrooms }}
+                            </div>
                         </div>
-                        <NumericInput
-                            id="bedrooms"
-                            label="Bedrooms"
-                            v-model="form.bedrooms"
-                            placeholder="0"
-                            :accept-negative-numbers="false"
-                        />
-                        <div
-                            v-if="form.errors.bedrooms"
-                            class="-mt-4 text-sm text-red-500 dark:text-red-400"
-                        >
-                            {{ form.errors.bedrooms }}
+                        <div>
+                            <NumericInput
+                                id="bedrooms"
+                                label="Bedrooms"
+                                v-model="form.bedrooms"
+                                placeholder="0"
+                                :accept-negative-numbers="false"
+                            />
+                            <div
+                                v-if="form.errors.bedrooms"
+                                class="mt-1 max-w-full break-words text-sm text-red-500 dark:text-red-400"
+                            >
+                                {{ form.errors.bedrooms }}
+                            </div>
                         </div>
-                        <NumericInput
-                            id="area"
-                            label="Area (sq ft)"
-                            v-model="form.area"
-                            placeholder="0"
-                            :accept-negative-numbers="false"
-                        />
-                        <div
-                            v-if="form.errors.area"
-                            class="-mt-4 text-sm text-red-500 dark:text-red-400"
-                        >
-                            {{ form.errors.area }}
+                        <div>
+                            <NumericInput
+                                id="area"
+                                label="Area (sq ft)"
+                                v-model="form.area"
+                                placeholder="0"
+                                :accept-negative-numbers="false"
+                            />
+                            <div
+                                v-if="form.errors.area"
+                                class="mt-1 max-w-full break-words text-sm text-red-500 dark:text-red-400"
+                            >
+                                {{ form.errors.area }}
+                            </div>
                         </div>
-                        <NumericInput
-                            id="price"
-                            label="Price (USD)"
-                            v-model="form.price"
-                            placeholder="0"
-                            :accept-negative-numbers="false"
-                        />
-                        <div
-                            v-if="form.errors.price"
-                            class="-mt-4 text-sm text-red-500 dark:text-red-400"
-                        >
-                            {{ form.errors.price }}
+                        <div>
+                            <NumericInput
+                                id="price"
+                                label="Price (USD)"
+                                v-model="form.price"
+                                placeholder="0"
+                                :accept-negative-numbers="false"
+                            />
+                            <div
+                                v-if="form.errors.price"
+                                class="mt-1 max-w-full break-words text-sm text-red-500 dark:text-red-400"
+                            >
+                                {{ form.errors.price }}
+                            </div>
                         </div>
                         <div class="flex items-center gap-4 md:col-span-2">
                             <CheckboxInput
@@ -157,7 +175,7 @@
                             />
                             <div
                                 v-if="form.errors.description"
-                                class="mt-1 text-sm text-red-500 dark:text-red-400"
+                                class="mt-1 max-w-full break-words text-sm text-red-500 dark:text-red-400"
                             >
                                 {{ form.errors.description }}
                             </div>
