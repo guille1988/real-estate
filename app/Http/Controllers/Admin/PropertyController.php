@@ -15,8 +15,10 @@ use App\Models\Property;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 use Inertia\Response;
+use Intervention\Image\Laravel\Facades\Image;
 use Throwable;
 
 final class PropertyController
@@ -65,9 +67,25 @@ final class PropertyController
         return Inertia::render(PageEnum::ADMIN_PROPERTIES_SHOW->value);
     }
 
+    /**
+     * @throws Throwable
+     */
     public function store(PropertyStoreData $data): RedirectResponse
     {
-        Property::create($data->toArray());
+        DB::beginTransaction();
+
+        try {
+            $property = Property::create($data->toArray());
+
+            foreach ($data->images as $image) {
+
+                Image::read($image)->save()
+
+            }
+            DB::commit();
+        } catch (Throwable) {
+            DB::rollBack();
+        }
 
         return back();
     }
