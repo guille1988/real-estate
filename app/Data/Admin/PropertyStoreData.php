@@ -7,6 +7,7 @@ namespace App\Data\Admin;
 use App\Enums\ImageFormatEnum;
 use App\Enums\PropertyLocationEnum;
 use App\Enums\PropertyTypeEnum;
+use App\Rules\AtLeastOneDefaultImage;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\File;
 use Spatie\LaravelData\Attributes\MapName;
@@ -34,6 +35,9 @@ final class PropertyStoreData extends Data
         public array $images,
     ) {}
 
+    /**
+     * @return array<string, string>
+     */
     public static function messages(): array
     {
         return [
@@ -58,7 +62,7 @@ final class PropertyStoreData extends Data
             'type' => ['required', 'string', Rule::enum(PropertyTypeEnum::class)],
             'location' => ['required', 'string', Rule::enum(PropertyLocationEnum::class)],
             'is_featured' => ['required', 'boolean'],
-            'images' => ['required', 'array', 'between:1,30'],
+            'images' => ['required', 'array', new AtLeastOneDefaultImage],
             'images.*.file' => ['required', File::types(ImageFormatEnum::values())->max('2mb')],
             'images.*.is_default' => ['required', 'boolean'],
         ];
