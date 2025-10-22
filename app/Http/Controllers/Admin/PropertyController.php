@@ -16,6 +16,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Inertia\Response;
 use Intervention\Image\Laravel\Facades\Image;
@@ -79,7 +80,6 @@ final class PropertyController
 
             foreach ($data->images as $image) {
                 Image::read($image)->save();
-
             }
             DB::commit();
         } catch (Throwable) {
