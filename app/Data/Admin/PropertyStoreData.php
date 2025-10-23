@@ -7,7 +7,7 @@ namespace App\Data\Admin;
 use App\Enums\ImageFormatEnum;
 use App\Enums\PropertyLocationEnum;
 use App\Enums\PropertyTypeEnum;
-use App\Rules\AtLeastOneDefaultImage;
+use App\Rules\OnlyOneDefaultImage;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\File;
@@ -63,7 +63,7 @@ final class PropertyStoreData extends Data
             'type' => ['required', 'string', Rule::enum(PropertyTypeEnum::class)],
             'location' => ['required', 'string', Rule::enum(PropertyLocationEnum::class)],
             'is_featured' => ['required', 'boolean'],
-            'images' => ['required', 'array', 'between:1,30', new AtLeastOneDefaultImage],
+            'images' => ['required', 'array', 'between:1,30', new OnlyOneDefaultImage],
             'images.*.file' => ['required', File::types(ImageFormatEnum::values())->max('2mb')],
             'images.*.is_default' => ['required', 'boolean'],
         ];

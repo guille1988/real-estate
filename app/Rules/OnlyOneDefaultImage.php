@@ -8,7 +8,7 @@ use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Http\UploadedFile;
 
-final class AtLeastOneDefaultImage implements ValidationRule
+final class OnlyOneDefaultImage implements ValidationRule
 {
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
