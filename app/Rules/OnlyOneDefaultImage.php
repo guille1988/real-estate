@@ -20,7 +20,7 @@ final class OnlyOneDefaultImage implements ValidationRule
             ->count();
 
         if ($defaultImagesCount !== 1) {
-            $fail('You must have one default image as mandatory.');
+            $fail('You must have only one default image as mandatory.');
         }
     }
 }
