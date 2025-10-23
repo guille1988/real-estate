@@ -78,7 +78,10 @@ final class PropertyController
         try {
             $property = Property::create($data->toArray());
 
-            $defaultImage = '';
+            /**
+             * @var null|string $defaultImage
+             */
+            $defaultImage = null;
 
             foreach ($data->images as $image) {
                 /**
@@ -92,7 +95,7 @@ final class PropertyController
                 }
             }
 
-            info("Default image: $defaultImage");
+            info('Default image:', ['default_image' => $defaultImage]);
 
             // Logic of converting the images to JPEG and
             // attaching them to the property on a DB level.
