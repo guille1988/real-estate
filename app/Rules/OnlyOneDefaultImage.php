@@ -19,8 +19,19 @@ final class OnlyOneDefaultImage implements ValidationRule
             ->filter(fn (array $image): bool => $image['is_default'])
             ->count();
 
-        if ($defaultImagesCount !== 1) {
-            $fail('You must have only one default image.');
+        /**
+         * @var string|null $error
+         */
+        $error = match (true) {
+            $defaultImagesCount < 1 => 'You must have at least one default image.',
+            $defaultImagesCount > 1 => 'You must have only one default image.',
+            default => null,
+        };
+
+        if (is_null($error)) {
+            return;
         }
+
+        $fail($error);
     }
 }
