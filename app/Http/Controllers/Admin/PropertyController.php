@@ -14,12 +14,12 @@ use App\Http\Resources\Admin\IndexPropertyResource;
 use App\Models\Property;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Inertia\Response;
-use Intervention\Image\Laravel\Facades\Image;
 use Throwable;
 
 final class PropertyController
@@ -78,11 +78,32 @@ final class PropertyController
         try {
             $property = Property::create($data->toArray());
 
+            $defaultImage = '';
+
             foreach ($data->images as $image) {
-                Image::read($image)->save();
+                /**
+                 * @var UploadedFile $file
+                 */
+                $file = $image['file'];
+                $path = $file->store($property->uuid, 'tmp');
+
+                if ($image['is_default']) {
+                    $defaultImage = $path;
+                }
             }
+
+            info("Default image: $defaultImage");
+
+            // Logic of converting the images to JPEG and
+            // attaching them to the property on a DB level.
+
             DB::commit();
         } catch (Throwable) {
+            if (isset($property)) {
+                Storage::disk('tmp')
+                    ->deleteDirectory($property->uuid);
+            }
+
             DB::rollBack();
         }
 

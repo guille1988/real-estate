@@ -63,7 +63,7 @@ final class PropertyStoreData extends Data
             'type' => ['required', 'string', Rule::enum(PropertyTypeEnum::class)],
             'location' => ['required', 'string', Rule::enum(PropertyLocationEnum::class)],
             'is_featured' => ['required', 'boolean'],
-            'images' => ['required', 'array', new AtLeastOneDefaultImage],
+            'images' => ['required', 'array', 'between:1,30', new AtLeastOneDefaultImage],
             'images.*.file' => ['required', File::types(ImageFormatEnum::values())->max('2mb')],
             'images.*.is_default' => ['required', 'boolean'],
         ];

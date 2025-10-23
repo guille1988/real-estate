@@ -15,8 +15,12 @@ final class AtLeastOneDefaultImage implements ValidationRule
         /**
          * @var array<int, array{file: UploadedFile, is_default: bool}> $value
          */
-        if (array_all($value, fn (array $image): bool => ! $image['is_default'])) {
-            $fail('At least one image must be a default one.');
+        $defaultImagesCount = collect($value)
+            ->filter(fn (array $image): bool => $image['is_default'])
+            ->count();
+
+        if ($defaultImagesCount !== 1) {
+            $fail('You must have one default image as mandatory.');
         }
     }
 }
