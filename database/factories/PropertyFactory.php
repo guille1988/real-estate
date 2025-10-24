@@ -26,7 +26,7 @@ final class PropertyFactory extends Factory
     {
         return [
             'caption' => $this->faker->words(random_int(3, 4), true),
-            'title' => $this->faker->words(random_int(2, 3), true),
+            'title' => $this->faker->unique()->words(random_int(2, 3), true),
             'description' => $this->faker->realTextBetween(300, 500),
             'address' => $this->faker->address(),
             'type' => $this->faker->randomElement(PropertyTypeEnum::cases()),

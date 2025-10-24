@@ -13,10 +13,10 @@ final class OnlyOneDefaultImage implements ValidationRule
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         /**
-         * @var array<int, array{file: UploadedFile, is_default: bool}> $value
+         * @var array<int, array{file: UploadedFile, is_default: bool|string}> $value
          */
         $defaultImagesCount = collect($value)
-            ->filter(fn (array $image): bool => $image['is_default'])
+            ->filter(fn (array $image): bool => (bool) $image['is_default'])
             ->count();
 
         /**

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->uuid()->unique();
             $table->string('caption');
-            $table->string('title');
+            $table->string('title')->unique();
             $table->text('description');
             $table->string('address');
             $table->string('type');

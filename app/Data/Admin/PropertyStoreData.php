@@ -7,6 +7,7 @@ namespace App\Data\Admin;
 use App\Enums\ImageFormatEnum;
 use App\Enums\PropertyLocationEnum;
 use App\Enums\PropertyTypeEnum;
+use App\Models\Property;
 use App\Rules\OnlyOneDefaultImage;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Validation\Rule;
@@ -52,7 +53,7 @@ final class PropertyStoreData extends Data
     public static function rules(): array
     {
         return [
-            'title' => ['required', 'string', 'between:2,200'],
+            'title' => ['required', 'string', 'between:2,200', Rule::unique(Property::class, 'title')],
             'caption' => ['required', 'string', 'between:2,200'],
             'address' => ['required', 'string', 'between:2,200'],
             'description' => ['required', 'string', 'between:2,1000'],
