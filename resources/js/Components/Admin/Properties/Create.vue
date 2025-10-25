@@ -39,6 +39,21 @@
                             </div>
                         </div>
                         <div>
+                            <DropdownInput
+                                id="location"
+                                label="Location"
+                                v-model="form.location"
+                                :options="locations"
+                                placeholder="Select location"
+                            />
+                            <div
+                                v-if="form.errors.location"
+                                class="mt-1 max-w-full break-words text-sm text-red-500 dark:text-red-400"
+                            >
+                                {{ form.errors.location }}
+                            </div>
+                        </div>
+                        <div>
                             <TextInput
                                 id="caption"
                                 label="Caption"
@@ -51,21 +66,6 @@
                                 class="mt-1 max-w-full break-words text-sm text-red-500 dark:text-red-400"
                             >
                                 {{ form.errors.caption }}
-                            </div>
-                        </div>
-                        <div>
-                            <TextInput
-                                id="address"
-                                label="Address"
-                                v-model="form.address"
-                                type="text"
-                                placeholder="Street, City, State"
-                            />
-                            <div
-                                v-if="form.errors.address"
-                                class="mt-1 max-w-full break-words text-sm text-red-500 dark:text-red-400"
-                            >
-                                {{ form.errors.address }}
                             </div>
                         </div>
                         <div>
@@ -84,18 +84,18 @@
                             </div>
                         </div>
                         <div>
-                            <DropdownInput
-                                id="location"
-                                label="Location"
-                                v-model="form.location"
-                                :options="locations"
-                                placeholder="Select location"
+                            <TextInput
+                                id="address"
+                                label="Address"
+                                v-model="form.address"
+                                type="text"
+                                placeholder="Street, City, State"
                             />
                             <div
-                                v-if="form.errors.location"
+                                v-if="form.errors.address"
                                 class="mt-1 max-w-full break-words text-sm text-red-500 dark:text-red-400"
                             >
-                                {{ form.errors.location }}
+                                {{ form.errors.address }}
                             </div>
                         </div>
                         <div>
@@ -132,42 +132,46 @@
                                 </div>
                             </div>
                         </div>
-                        <div>
-                            <NumericInput
-                                id="area"
-                                label="Area (sq ft)"
-                                v-model="form.area"
-                                placeholder="0"
-                                :accept-negative-numbers="false"
-                            />
-                            <div
-                                v-if="form.errors.area"
-                                class="mt-1 max-w-full break-words text-sm text-red-500 dark:text-red-400"
-                            >
-                                {{ form.errors.area }}
-                            </div>
-                        </div>
-                        <div>
-                            <NumericInput
-                                id="price"
-                                label="Price (USD)"
-                                v-model="form.price"
-                                placeholder="0"
-                                :accept-negative-numbers="false"
-                            />
-                            <div
-                                v-if="form.errors.price"
-                                class="mt-1 max-w-full break-words text-sm text-red-500 dark:text-red-400"
-                            >
-                                {{ form.errors.price }}
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-4 md:col-span-2">
+                        <div class="flex items-center gap-4">
                             <CheckboxInput
                                 id="isFeatured"
                                 label="Featured"
                                 v-model="form.isFeatured"
                             />
+                        </div>
+                        <div class="md:col-start-2">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <NumericInput
+                                        id="price"
+                                        label="Price (USD)"
+                                        v-model="form.price"
+                                        placeholder="0"
+                                        :accept-negative-numbers="false"
+                                    />
+                                    <div
+                                        v-if="form.errors.price"
+                                        class="mt-1 max-w-full break-words text-sm text-red-500 dark:text-red-400"
+                                    >
+                                        {{ form.errors.price }}
+                                    </div>
+                                </div>
+                                <div>
+                                    <NumericInput
+                                        id="area"
+                                        label="Area (sq ft)"
+                                        v-model="form.area"
+                                        placeholder="0"
+                                        :accept-negative-numbers="false"
+                                    />
+                                    <div
+                                        v-if="form.errors.area"
+                                        class="mt-1 max-w-full break-words text-sm text-red-500 dark:text-red-400"
+                                    >
+                                        {{ form.errors.area }}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="md:col-span-2">
                             <TextAreaInput
