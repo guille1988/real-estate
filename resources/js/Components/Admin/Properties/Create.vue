@@ -191,8 +191,11 @@
                     </div>
                 </div>
                 <div
-                    class="mt-8 flex flex-shrink-0 justify-end gap-3 border-t border-white/10 pt-8"
+                    class="mt-8 flex flex-shrink-0 items-center justify-end gap-3 border-t border-white/10 pt-8"
                 >
+                    <p v-if="showSuccessMessage" class="text-sm text-green-400">
+                        {{ successMessage }}
+                    </p>
                     <button
                         type="submit"
                         :disabled="form.processing"
@@ -206,9 +209,6 @@
                         <span v-if="!form.processing">Save</span>
                         <span v-else>Saving...</span>
                     </button>
-                    <p v-if="showSuccessMessage" class="text-sm text-green-400">
-                        {{ successMessage }}
-                    </p>
                 </div>
             </form>
         </div>
