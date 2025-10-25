@@ -142,14 +142,6 @@ final class Property extends Model
             ->toString();
     }
 
-    /*
-     * Returns the destination path for the property.
-     */
-    public function getDestinationPath(): string
-    {
-        return "{$this->type->plural()}/$this->uuid";
-    }
-
     /**
      * Get the default image for the property.
      *

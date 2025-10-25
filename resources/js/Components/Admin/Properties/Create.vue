@@ -99,33 +99,37 @@
                             </div>
                         </div>
                         <div>
-                            <NumericInput
-                                id="bathrooms"
-                                label="Bathrooms"
-                                v-model="form.bathrooms"
-                                placeholder="0"
-                                :accept-negative-numbers="false"
-                            />
-                            <div
-                                v-if="form.errors.bathrooms"
-                                class="mt-1 max-w-full break-words text-sm text-red-500 dark:text-red-400"
-                            >
-                                {{ form.errors.bathrooms }}
-                            </div>
-                        </div>
-                        <div>
-                            <NumericInput
-                                id="bedrooms"
-                                label="Bedrooms"
-                                v-model="form.bedrooms"
-                                placeholder="0"
-                                :accept-negative-numbers="false"
-                            />
-                            <div
-                                v-if="form.errors.bedrooms"
-                                class="mt-1 max-w-full break-words text-sm text-red-500 dark:text-red-400"
-                            >
-                                {{ form.errors.bedrooms }}
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <NumericInput
+                                        id="bathrooms"
+                                        label="Bathrooms"
+                                        v-model="form.bathrooms"
+                                        placeholder="0"
+                                        :accept-negative-numbers="false"
+                                    />
+                                    <div
+                                        v-if="form.errors.bathrooms"
+                                        class="mt-1 max-w-full break-words text-sm text-red-500 dark:text-red-400"
+                                    >
+                                        {{ form.errors.bathrooms }}
+                                    </div>
+                                </div>
+                                <div>
+                                    <NumericInput
+                                        id="bedrooms"
+                                        label="Bedrooms"
+                                        v-model="form.bedrooms"
+                                        placeholder="0"
+                                        :accept-negative-numbers="false"
+                                    />
+                                    <div
+                                        v-if="form.errors.bedrooms"
+                                        class="mt-1 max-w-full break-words text-sm text-red-500 dark:text-red-400"
+                                    >
+                                        {{ form.errors.bedrooms }}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div>

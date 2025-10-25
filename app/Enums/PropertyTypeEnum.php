@@ -37,14 +37,4 @@ enum PropertyTypeEnum: string
             ->title()
             ->toString();
     }
-
-    /*
-     * Returns the plural version of the type value.
-     */
-    public function plural(): string
-    {
-        return str($this->value)
-            ->plural()
-            ->toString();
-    }
 }

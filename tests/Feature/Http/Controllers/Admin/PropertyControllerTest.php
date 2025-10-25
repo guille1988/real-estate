@@ -275,10 +275,16 @@ it('works on storing property.', function (): void {
         ->admin()
         ->create();
 
+    $data = Property::factory()
+        ->make()
+        ->toArray();
+
     $this->actingAs($user)
-        ->post(route('admin.properties.store'))
+        ->post(route('admin.properties.store'), $data)
         ->assertRedirectBack();
-})->skip('Skipping until finishing endpoint.');
+
+    $this->assertDatabaseHas(Property::class, $data);
+});
 
 it('works on updating property.', function (): void {
     $user = User::factory()
