@@ -66,7 +66,9 @@ it('updates profile without thumbnail.', function (array $data): void {
 ]);
 
 it('updates profile with all thumbnail formats.', function (array $data, ImageFormatEnum $format): void {
-    Storage::fake('users')
+    Storage::fake('users');
+
+    Storage::disk('users')
         ->makeDirectory('thumbnails');
 
     $thumbnail = UploadedFile::fake()
@@ -112,7 +114,9 @@ it('updates profile with all thumbnail formats.', function (array $data, ImageFo
 ])->with(ImageFormatEnum::eachAsArray());
 
 it('updates profile with all thumbnail formats with previous thumbnail saved.', function (array $data, ImageFormatEnum $format): void {
-    Storage::fake('users')
+    Storage::fake('users');
+
+    Storage::disk('users')
         ->makeDirectory('thumbnails');
 
     $thumbnail = UploadedFile::fake()
@@ -124,7 +128,7 @@ it('updates profile with all thumbnail formats with previous thumbnail saved.', 
         ->admin()
         ->create(['thumbnail' => $path = 'thumbnails/test.txt']);
 
-    Storage::fake('users')
+    Storage::disk('users')
         ->put($path, 'test');
 
     $this->actingAs($user->fresh())
