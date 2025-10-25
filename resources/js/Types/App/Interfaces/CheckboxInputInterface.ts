@@ -3,4 +3,5 @@ export interface CheckboxInputInterface {
     label: string;
     modelValue: boolean;
     textClass?: string;
+    icon?: boolean;
 }

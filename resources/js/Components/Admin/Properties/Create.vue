@@ -135,8 +135,10 @@
                         <div class="flex items-center gap-4">
                             <CheckboxInput
                                 id="isFeatured"
-                                label="Featured"
+                                label="Is Featured?"
                                 v-model="form.isFeatured"
+                                text-class="text-sm ml-1"
+                                :icon="true"
                             />
                         </div>
                         <div class="md:col-start-2">
