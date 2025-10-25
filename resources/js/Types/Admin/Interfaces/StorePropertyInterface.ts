@@ -13,5 +13,4 @@ export interface StorePropertyInterface {
     area: string;
     price: string;
     isFeatured: boolean;
-    images: ImageInterface[];
 }

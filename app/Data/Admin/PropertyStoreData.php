@@ -4,14 +4,10 @@ declare(strict_types=1);
 
 namespace App\Data\Admin;
 
-use App\Enums\ImageFormatEnum;
 use App\Enums\PropertyLocationEnum;
 use App\Enums\PropertyTypeEnum;
 use App\Models\Property;
-use App\Rules\OnlyOneDefaultImage;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Validation\Rule;
-use Illuminate\Validation\Rules\File;
 use Spatie\LaravelData\Attributes\MapName;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Mappers\SnakeCaseMapper;
@@ -31,21 +27,7 @@ final class PropertyStoreData extends Data
         public PropertyTypeEnum $type,
         public PropertyLocationEnum $location,
         public bool $isFeatured,
-        /**
-         * @var array<int, array{file: UploadedFile, is_default: bool}>
-         */
-        public array $images,
     ) {}
-
-    /**
-     * @return array<string, string>
-     */
-    public static function messages(): array
-    {
-        return [
-            'images.*.file.max' => 'Image must not be greater than 2MB.',
-        ];
-    }
 
     /**
      * @return array<string, array<int, mixed>>
@@ -64,9 +46,6 @@ final class PropertyStoreData extends Data
             'type' => ['required', 'string', Rule::enum(PropertyTypeEnum::class)],
             'location' => ['required', 'string', Rule::enum(PropertyLocationEnum::class)],
             'is_featured' => ['required', 'boolean'],
-            'images' => ['required', 'array', 'between:1,30', new OnlyOneDefaultImage],
-            'images.*.file' => ['required', File::types(ImageFormatEnum::values())->max('2mb')],
-            'images.*.is_default' => ['required', 'boolean'],
         ];
     }
 
@@ -79,7 +58,6 @@ final class PropertyStoreData extends Data
          * @var array<string, mixed> $data
          */
         $data = parent::toArray();
-        unset($data['images']);
 
         return $data;
     }
