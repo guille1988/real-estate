@@ -16,7 +16,7 @@ import { router } from '@inertiajs/vue3';
 
 const resetFilters = (): void => {
     const answer: boolean = confirm(
-        'Are you sure you want to reset all the filters?',
+        'Are you sure you want to reset all filters?',
     );
 
     if (!answer) {
