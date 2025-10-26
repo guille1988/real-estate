@@ -6,6 +6,9 @@ use App\Enums\PageEnum;
 use App\Enums\PaginationDirection;
 use App\Enums\PropertyLocationEnum;
 use App\Enums\PropertyTypeEnum;
+use App\Models\Amenity;
+use App\Models\Image;
+use App\Models\PricingDetail;
 use App\Models\Property;
 use App\Models\User;
 use Inertia\Testing\AssertableInertia as Assert;
@@ -322,7 +325,80 @@ it('works on destroying property.', function (): void {
     $property = Property::factory()
         ->create();
 
+    $folderPath = str($property->type->value)
+        ->plural()
+        ->append('/', $property->uuid)
+        ->toString();
+
+    $createFilePath = fn (string $name): string => str($folderPath)
+        ->append('/', $name, '.', config('app.default_image_format'))
+        ->toString();
+
+    $hasBeenCreated = Storage::disk('images')
+        ->makeDirectory($folderPath);
+
+    expect($hasBeenCreated)
+        ->toBeTrue();
+
+    $defaultImage = Image::factory()
+        ->default()
+        ->for($property)
+        ->create(['path' => $createFilePath('default')]);
+
+    $imageOne = Image::factory()
+        ->default()
+        ->for($property)
+        ->create(['path' => $createFilePath('1')]);
+
+    $imageTwo = Image::factory()
+        ->default()
+        ->for($property)
+        ->create(['path' => $createFilePath('2')]);
+
+    $amenityOne = Amenity::factory()
+        ->for($property)
+        ->create();
+
+    $amenityTwo = Amenity::factory()
+        ->for($property)
+        ->create();
+
+    $pricingDetailOne = PricingDetail::factory()
+        ->for($property)
+        ->create();
+
+    $pricingDetailTwo = PricingDetail::factory()
+        ->for($property)
+        ->create();
+
     $this->actingAs($user)
         ->delete(route('admin.properties.destroy', ['property' => $property->uuid]))
         ->assertRedirectBack();
-})->skip();
+
+    $missingModels = [
+        $property,
+        $defaultImage,
+        $imageOne,
+        $imageTwo,
+        $amenityOne,
+        $amenityTwo,
+        $pricingDetailOne,
+        $pricingDetailTwo,
+    ];
+
+    foreach ($missingModels as $model) {
+        $this->assertModelMissing($model);
+    }
+
+    $paths = [
+        $folderPath,
+        $defaultImage->path,
+        $imageOne->path,
+        $imageTwo->path,
+    ];
+
+    foreach ($paths as $path) {
+        expect(File::exists($path))
+            ->toBeFalse();
+    }
+});
