@@ -139,6 +139,9 @@
                                             ).url
                                         "
                                         resource="property"
+                                        :delete-confirmation-message="
+                                            deleteConfirmationMessage
+                                        "
                                     />
                                 </tr>
                             </tbody>
@@ -200,6 +203,9 @@ const {
     bedrooms: PropertyBedroomInterface[];
     locations: PropertyLocationInterface[];
 }>();
+
+const deleteConfirmationMessage: string =
+    'If you continue, you will delete all images, amenities and pricing details related to this property. This action cannot be undone. Are you sure you want to continue?.';
 
 const isFeatured: SelectFilterOptionType[] = [
     { label: 'Yes', value: '1' },

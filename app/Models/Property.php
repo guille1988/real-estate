@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Number;
+use Throwable;
 
 /**
  *  @property-read int $id
@@ -139,6 +140,23 @@ final class Property extends Model
     {
         return str($this->address)
             ->append(', ', $this->location->title())
+            ->toString();
+    }
+
+    /*
+     * Returns the folder path of the images of property.
+     */
+    /**
+     * @throws Throwable
+     */
+    public function getFolderPath(): string
+    {
+        $path = $this->defaultImage?->path;
+
+        throw_if(is_null($path), message: 'Default image not found.');
+
+        return str($path)
+            ->beforeLast('/')
             ->toString();
     }
 

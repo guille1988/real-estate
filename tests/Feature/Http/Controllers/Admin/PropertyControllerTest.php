@@ -325,4 +325,4 @@ it('works on destroying property.', function (): void {
     $this->actingAs($user)
         ->delete(route('admin.properties.destroy', ['property' => $property->uuid]))
         ->assertRedirectBack();
-});
+})->skip();

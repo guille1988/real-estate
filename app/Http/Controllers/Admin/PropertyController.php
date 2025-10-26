@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Admin;
 
+use App\Actions\DestroyProperty;
 use App\Actions\GetRangeOfMax;
 use App\Data\Admin\PropertyIndexData;
 use App\Data\Admin\PropertyStoreData;
@@ -89,9 +90,14 @@ final class PropertyController
         return back();
     }
 
-    public function destroy(Property $property): RedirectResponse
+    /**
+     * @throws Throwable
+     */
+    public function destroy(Property $property, DestroyProperty $action): RedirectResponse
     {
-        info('property:', $property->toArray());
+        $action->execute($property);
+
+        cache()->flush();
 
         return back();
     }

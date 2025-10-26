@@ -2,6 +2,7 @@
     <td class="w-0 whitespace-nowrap px-4 py-5 text-left text-sm font-medium">
         <div class="flex items-center gap-3">
             <Link
+                v-if="showUrl"
                 prefetch
                 :title="getTitle(ActionEnum.SHOW)"
                 :href="showUrl"
@@ -10,6 +11,7 @@
                 <EyeIcon class="size-6" aria-hidden="true" />
             </Link>
             <Link
+                v-if="editUrl"
                 prefetch
                 :href="editUrl"
                 :title="getTitle(ActionEnum.EDIT)"
@@ -18,6 +20,7 @@
                 <PencilSquareIcon class="size-6" aria-hidden="true" />
             </Link>
             <button
+                v-if="deleteUrl"
                 :title="getTitle(ActionEnum.DELETE)"
                 type="button"
                 class="text-purple-400 hover:text-purple-300"
@@ -37,14 +40,20 @@ import {
     PencilSquareIcon,
     TrashIcon,
 } from '@heroicons/vue/24/outline';
-import { Link } from '@inertiajs/vue3';
+import { Link, router } from '@inertiajs/vue3';
 
-const { resource }: { resource: string } = defineProps<{
-    showUrl: string;
-    editUrl: string;
-    deleteUrl: string;
-    resource: string;
-}>();
+const {
+    deleteUrl,
+    resource,
+    deleteConfirmationMessage,
+}: { deleteUrl: string; resource: string; deleteConfirmationMessage?: string } =
+    defineProps<{
+        showUrl: string;
+        editUrl: string;
+        deleteUrl: string;
+        resource: string;
+        deleteConfirmationMessage?: string;
+    }>();
 
 const getTitle = (action: ActionEnum): string => {
     const tooltip: string = `${action} ${resource}`;
@@ -53,15 +62,15 @@ const getTitle = (action: ActionEnum): string => {
 };
 
 const deleteRecord = (): void => {
-    const isConfirmed: boolean = confirm(
-        'Are you sure you want to delete this record?',
-    );
+    const message: string =
+        deleteConfirmationMessage ??
+        'Are you sure you want to delete this record?.';
 
-    if (!isConfirmed) {
+    if (!confirm(message)) {
         return;
     }
 
-    // Put logic here for deleting the record.
-    console.log('Deleting record...');
+    router.delete(deleteUrl);
+    router.reload();
 };
 </script>
