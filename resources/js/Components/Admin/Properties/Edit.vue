@@ -227,7 +227,7 @@ import type { StorePropertyInterface } from '@/Types/Admin/Interfaces/StorePrope
 import { UpdatePropertyInterface } from '@/Types/Admin/Interfaces/UpdatePropertyInterface';
 import { PropertyLocationInterface } from '@/Types/App/Interfaces/PropertyLocationInterface';
 import { PropertyTypeInterface } from '@/Types/App/Interfaces/PropertyTypeInterface';
-import { InertiaForm, useForm } from '@inertiajs/vue3';
+import { InertiaForm, router, useForm } from '@inertiajs/vue3';
 import { ref, Ref } from 'vue';
 
 const { property }: { property: UpdatePropertyInterface } = defineProps<{
@@ -261,7 +261,8 @@ const submit = (): void => {
         preserveScroll: true,
         onSuccess: (): void => {
             showSuccessMessage.value = true;
-            form.reset();
+
+            router.reload();
 
             setTimeout((): void => {
                 showSuccessMessage.value = false;

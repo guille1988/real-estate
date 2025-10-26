@@ -251,7 +251,10 @@ it('works on edit page.', function (): void {
     $this->actingAs($user)
         ->get(route('admin.properties.edit', compact('property')))
         ->assertInertia(function (Assert $page): void {
-            $page->component(PageEnum::ADMIN_PROPERTIES_EDIT->value);
+            $page->component(PageEnum::ADMIN_PROPERTIES_EDIT->value)
+                ->has('types')
+                ->has('locations')
+                ->has('property');
         });
 });
 
@@ -294,9 +297,21 @@ it('works on updating property.', function (): void {
     $property = Property::factory()
         ->create();
 
+    $data = Property::factory()
+        ->make()
+        ->toArray();
+
     $this->actingAs($user)
-        ->patch(route('admin.properties.update', compact('property')))
+        ->patch(route('admin.properties.update', compact('property')), $data)
         ->assertRedirectBack();
+
+    $freshProperty = $property->fresh()
+        ->except(['id', 'uuid', 'created_at', 'updated_at']);
+
+    $freshProperty['type'] = $freshProperty['type']->value;
+    $freshProperty['location'] = $freshProperty['location']->value;
+
+    expect($freshProperty)->toEqual($data);
 });
 
 it('works on destroying property.', function (): void {
