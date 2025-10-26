@@ -8,9 +8,7 @@
                     <h1 class="text-base font-semibold text-white">
                         Create Property
                     </h1>
-                    <p class="mt-2 text-sm text-gray-300">
-                        Add a new property and its images
-                    </p>
+                    <p class="mt-2 text-sm text-gray-300">Add a new property</p>
                 </div>
                 <BackToIndexButton :url="PropertyController.index().url" />
             </div>

@@ -72,6 +72,8 @@ final class PropertyController
     {
         Property::create($data->toArray());
 
+        cache()->flush();
+
         return back();
     }
 

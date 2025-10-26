@@ -259,7 +259,7 @@ edit.head = (args: { property: string | { uuid: string } } | [property: string |
 
 /**
 * @see \App\Http\Controllers\Admin\PropertyController::update
-* @see app/Http/Controllers/Admin/PropertyController.php:78
+* @see app/Http/Controllers/Admin/PropertyController.php:80
 * @route '/admin/properties/{property}'
 */
 export const update = (args: { property: string | { uuid: string } } | [property: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
@@ -274,7 +274,7 @@ update.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\PropertyController::update
-* @see app/Http/Controllers/Admin/PropertyController.php:78
+* @see app/Http/Controllers/Admin/PropertyController.php:80
 * @route '/admin/properties/{property}'
 */
 update.url = (args: { property: string | { uuid: string } } | [property: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
@@ -307,7 +307,7 @@ update.url = (args: { property: string | { uuid: string } } | [property: string 
 
 /**
 * @see \App\Http\Controllers\Admin\PropertyController::update
-* @see app/Http/Controllers/Admin/PropertyController.php:78
+* @see app/Http/Controllers/Admin/PropertyController.php:80
 * @route '/admin/properties/{property}'
 */
 update.put = (args: { property: string | { uuid: string } } | [property: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
@@ -317,7 +317,7 @@ update.put = (args: { property: string | { uuid: string } } | [property: string 
 
 /**
 * @see \App\Http\Controllers\Admin\PropertyController::update
-* @see app/Http/Controllers/Admin/PropertyController.php:78
+* @see app/Http/Controllers/Admin/PropertyController.php:80
 * @route '/admin/properties/{property}'
 */
 update.patch = (args: { property: string | { uuid: string } } | [property: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
@@ -327,7 +327,7 @@ update.patch = (args: { property: string | { uuid: string } } | [property: strin
 
 /**
 * @see \App\Http\Controllers\Admin\PropertyController::destroy
-* @see app/Http/Controllers/Admin/PropertyController.php:85
+* @see app/Http/Controllers/Admin/PropertyController.php:87
 * @route '/admin/properties/{property}'
 */
 export const destroy = (args: { property: string | { uuid: string } } | [property: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -342,7 +342,7 @@ destroy.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\PropertyController::destroy
-* @see app/Http/Controllers/Admin/PropertyController.php:85
+* @see app/Http/Controllers/Admin/PropertyController.php:87
 * @route '/admin/properties/{property}'
 */
 destroy.url = (args: { property: string | { uuid: string } } | [property: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
@@ -375,7 +375,7 @@ destroy.url = (args: { property: string | { uuid: string } } | [property: string
 
 /**
 * @see \App\Http\Controllers\Admin\PropertyController::destroy
-* @see app/Http/Controllers/Admin/PropertyController.php:85
+* @see app/Http/Controllers/Admin/PropertyController.php:87
 * @route '/admin/properties/{property}'
 */
 destroy.delete = (args: { property: string | { uuid: string } } | [property: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
