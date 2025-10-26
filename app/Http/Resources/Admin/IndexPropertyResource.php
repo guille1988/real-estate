@@ -25,7 +25,7 @@ final class IndexPropertyResource extends JsonResource
             'bathrooms' => $this->bathrooms,
             'bedrooms' => $this->bedrooms,
             'price' => $this->getDollarPrice(),
-            'image' => $this->defaultImage?->getUrl(),
+            'image' => $this->getDefaultImage(),
         ];
     }
 }

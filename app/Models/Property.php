@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Number;
 use Throwable;
 
@@ -158,6 +159,17 @@ final class Property extends Model
         return str($path)
             ->beforeLast('/')
             ->toString();
+    }
+
+    /*
+     * Returns the default image for the property.
+     * Otherwise, returns the wildcard image.
+     */
+    public function getDefaultImage(): string
+    {
+        return is_null($defaultImage = $this->defaultImage)
+            ? Storage::disk('images')->url('property_image_wildcard.jpeg')
+            : $defaultImage->getUrl();
     }
 
     /**
