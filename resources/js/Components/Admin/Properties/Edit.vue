@@ -224,38 +224,40 @@ import TextAreaInput from '@/Components/Shared/Inputs/TextAreaInput.vue';
 import TextInput from '@/Components/Shared/Inputs/TextInput.vue';
 import PropertyController from '@/Routes/actions/App/Http/Controllers/Admin/PropertyController';
 import type { StorePropertyInterface } from '@/Types/Admin/Interfaces/StorePropertyInterface';
+import { UpdatePropertyInterface } from '@/Types/Admin/Interfaces/UpdatePropertyInterface';
 import { PropertyLocationInterface } from '@/Types/App/Interfaces/PropertyLocationInterface';
 import { PropertyTypeInterface } from '@/Types/App/Interfaces/PropertyTypeInterface';
 import { InertiaForm, useForm } from '@inertiajs/vue3';
 import { ref, Ref } from 'vue';
 
-defineProps<{
+const { property }: { property: UpdatePropertyInterface } = defineProps<{
+    property: UpdatePropertyInterface;
     locations: PropertyLocationInterface[];
     types: PropertyTypeInterface[];
 }>();
 
-const successMessage: string = 'Property created successfully.';
+const successMessage: string = 'Property updated successfully.';
 const showSuccessMessage: Ref<boolean> = ref<boolean>(false);
 
 const form: InertiaForm<StorePropertyInterface> =
     useForm<StorePropertyInterface>({
-        caption: '',
-        title: '',
-        description: '',
-        address: '',
-        type: null,
-        location: null,
-        bathrooms: '',
-        bedrooms: '',
-        area: '',
-        price: '',
-        isFeatured: false,
+        caption: property.caption,
+        title: property.title,
+        description: property.description,
+        address: property.address,
+        type: property.type,
+        location: property.location,
+        bathrooms: property.bathrooms,
+        bedrooms: property.bedrooms,
+        area: property.area,
+        price: property.price,
+        isFeatured: property.isFeatured,
     });
 
 const submit = (): void => {
     showSuccessMessage.value = false;
 
-    form.post(PropertyController.store().url, {
+    form.patch(PropertyController.update(property.uuid).url, {
         preserveScroll: true,
         onSuccess: (): void => {
             showSuccessMessage.value = true;

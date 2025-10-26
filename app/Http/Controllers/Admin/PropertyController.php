@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Admin;
 use App\Actions\GetRangeOfMax;
 use App\Data\Admin\PropertyIndexData;
 use App\Data\Admin\PropertyStoreData;
+use App\Data\Admin\PropertyUpdateData;
 use App\Enums\PageEnum;
 use App\Enums\PropertyLocationEnum;
 use App\Enums\PropertyTypeEnum;
@@ -53,9 +54,11 @@ final class PropertyController
 
     public function edit(Property $property): Response
     {
-        info('property:', $property->toArray());
-
-        return Inertia::render(PageEnum::ADMIN_PROPERTIES_EDIT->value);
+        return Inertia::render(PageEnum::ADMIN_PROPERTIES_EDIT->value, [
+            'locations' => fn (): Collection => PropertyLocationEnum::toResponse(),
+            'types' => fn (): Collection => PropertyTypeEnum::toResponse(),
+            'property' => fn (): array => $property->except(['id', 'created_at', 'updated_at']),
+        ]);
     }
 
     public function show(Property $property): Response
@@ -77,9 +80,11 @@ final class PropertyController
         return back();
     }
 
-    public function update(Property $property): RedirectResponse
+    public function update(Property $property, PropertyUpdateData $data): RedirectResponse
     {
-        info('property:', $property->toArray());
+        $property->update($data->toArray());
+
+        cache()->flush();
 
         return back();
     }

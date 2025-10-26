@@ -237,20 +237,19 @@ defineProps<{
 const successMessage: string = 'Property created successfully.';
 const showSuccessMessage: Ref<boolean> = ref<boolean>(false);
 
-const form: InertiaForm<StorePropertyInterface> =
-    useForm<StorePropertyInterface>({
-        caption: '',
-        title: '',
-        description: '',
-        address: '',
-        type: null,
-        location: null,
-        bathrooms: '',
-        bedrooms: '',
-        area: '',
-        price: '',
-        isFeatured: false,
-    });
+const form: InertiaForm<StorePropertyInterface> = useForm<StorePropertyInterface>({
+    caption: '',
+    title: '',
+    description: '',
+    address: '',
+    type: null,
+    location: null,
+    bathrooms: '',
+    bedrooms: '',
+    area: '',
+    price: '',
+    isFeatured: false,
+});
 
 const submit = (): void => {
     showSuccessMessage.value = false;
