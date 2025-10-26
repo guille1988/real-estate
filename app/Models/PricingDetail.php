@@ -74,16 +74,6 @@ final class PricingDetail extends Model
         return ['uuid'];
     }
 
-    /**
-     * Get the property that owns the image.
-     *
-     * @return BelongsTo<Property, $this>
-     */
-    public function property(): BelongsTo
-    {
-        return $this->belongsTo(Property::class);
-    }
-
     /*
      * Formats the price to dollar.
      */
@@ -123,8 +113,21 @@ final class PricingDetail extends Model
         );
     }
 
+    /*
+     * Gets the category title.
+     */
     public function categoryTitle(): string
     {
         return $this->category->title();
+    }
+
+    /**
+     * Get the property that owns the image.
+     *
+     * @return BelongsTo<Property, $this>
+     */
+    public function property(): BelongsTo
+    {
+        return $this->belongsTo(Property::class);
     }
 }
