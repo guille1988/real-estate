@@ -4,6 +4,9 @@
 !assets/
 !assets/**
 
+!images/
+!images/property_image_wildcard.jpg
+
 !users/
 !users/thumbnails/
 !users/thumbnails/placeholder.jpeg
