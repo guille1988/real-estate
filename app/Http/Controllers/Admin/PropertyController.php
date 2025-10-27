@@ -64,9 +64,9 @@ final class PropertyController
 
     public function show(Property $property): Response
     {
-        info('property:', $property->toArray());
-
-        return Inertia::render(PageEnum::ADMIN_PROPERTIES_SHOW->value);
+        return Inertia::render(PageEnum::ADMIN_PROPERTIES_SHOW->value, [
+            'property' => fn (): array => $property->except(['id']),
+        ]);
     }
 
     /**

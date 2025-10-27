@@ -245,10 +245,10 @@ const form: InertiaForm<StorePropertyInterface> =
         address: '',
         type: null,
         location: null,
-        bathrooms: '',
-        bedrooms: '',
-        area: '',
-        price: '',
+        bathrooms: 0,
+        bedrooms: 0,
+        area: 0,
+        price: 0,
         isFeatured: false,
     });
 

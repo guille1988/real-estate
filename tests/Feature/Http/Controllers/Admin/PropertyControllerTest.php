@@ -272,7 +272,8 @@ it('works on show page.', function (): void {
     $this->actingAs($user)
         ->get(route('admin.properties.show', compact('property')))
         ->assertInertia(function (Assert $page): void {
-            $page->component(PageEnum::ADMIN_PROPERTIES_SHOW->value);
+            $page->component(PageEnum::ADMIN_PROPERTIES_SHOW->value)
+                ->has('property');
         });
 });
 
