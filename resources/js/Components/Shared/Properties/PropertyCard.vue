@@ -78,6 +78,7 @@
                         class="w-full rounded-md bg-purple-600 px-4 py-2 text-xs transition-colors duration-300 hover:bg-purple-500 disabled:cursor-not-allowed disabled:bg-purple-400 disabled:text-gray-300 disabled:hover:bg-purple-400 sm:w-auto md:px-6 md:py-3 md:text-sm"
                         :disabled="!card.canShowProperty"
                         :aria-disabled="!card.canShowProperty"
+                        :title="getTitle()"
                     >
                         View Property Details
                     </button>
@@ -106,4 +107,9 @@ const showFullDescription: Ref<boolean> = ref<boolean>(false);
 const toggleShowFullDescription = (): void => {
     showFullDescription.value = !showFullDescription.value;
 };
+
+const getTitle = (): string =>
+    card.canShowProperty
+        ? card.title
+        : 'This property has been disabled by the administrator.';
 </script>
