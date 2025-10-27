@@ -252,6 +252,68 @@ it('works showing a specific property.', function (): void {
         });
 });
 
+it("doesn't show a property if the property doesn't have images.", function (): void {
+    $property = Property::factory()
+        ->create();
+
+    Amenity::factory(8)
+        ->create(['property_id' => $property->id]);
+
+    collect(PricingDetailCategoryEnum::cases())
+        ->each(function (PricingDetailCategoryEnum $category) use ($property): void {
+            PricingDetail::factory(4)
+                ->create([
+                    'category' => $category,
+                    'property_id' => $property->id,
+                ]);
+        });
+
+    $this->get(route('properties.show', $property->uuid))
+        ->assertForbidden();
+});
+
+it("doesn't show a property if the property doesn't have amenities.", function (): void {
+    $property = Property::factory()
+        ->create();
+
+    Image::factory()
+        ->default()
+        ->create(['property_id' => $property->id]);
+
+    Image::factory(8)
+        ->create(['property_id' => $property->id]);
+
+    collect(PricingDetailCategoryEnum::cases())
+        ->each(function (PricingDetailCategoryEnum $category) use ($property): void {
+            PricingDetail::factory(4)
+                ->create([
+                    'category' => $category,
+                    'property_id' => $property->id,
+                ]);
+        });
+
+    $this->get(route('properties.show', $property->uuid))
+        ->assertForbidden();
+});
+
+it("doesn't show a property if the property doesn't have pricing details.", function (): void {
+    $property = Property::factory()
+        ->create();
+
+    Image::factory()
+        ->default()
+        ->create(['property_id' => $property->id]);
+
+    Image::factory(8)
+        ->create(['property_id' => $property->id]);
+
+    Amenity::factory(8)
+        ->create(['property_id' => $property->id]);
+
+    $this->get(route('properties.show', $property->uuid))
+        ->assertForbidden();
+});
+
 it('submits an inquiry.', function (array $data): void {
     $property = Property::factory()
         ->featured()
@@ -275,4 +337,4 @@ it('submits an inquiry.', function (array $data): void {
             'terms_agreed' => true,
         ],
     ],
-])->only();
+]);
