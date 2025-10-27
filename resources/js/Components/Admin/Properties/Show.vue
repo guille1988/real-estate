@@ -21,6 +21,15 @@
                 >
                     <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
                         <div>
+                            <label class="mb-2 block text-sm">UUID</label>
+                            <div
+                                class="rounded border border-gray-700 bg-black/70 p-3 text-sm text-gray-300"
+                            >
+                                {{ property.uuid }}
+                            </div>
+                        </div>
+
+                        <div>
                             <label class="mb-2 block text-sm">Title</label>
                             <div
                                 class="rounded border border-gray-700 bg-black/70 p-3 text-sm text-gray-300"
@@ -117,15 +126,6 @@
                                         {{ property.price }}
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="mb-2 block text-sm">UUID</label>
-                            <div
-                                class="rounded border border-gray-700 bg-black/70 p-3 text-sm text-gray-300"
-                            >
-                                {{ property.uuid }}
                             </div>
                         </div>
 
