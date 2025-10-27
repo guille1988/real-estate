@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\PropertyController::index
-* @see app/Http/Controllers/PropertyController.php:33
+* @see app/Http/Controllers/PropertyController.php:34
 * @route '/properties'
 */
 export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ index.definition = {
 
 /**
 * @see \App\Http\Controllers\PropertyController::index
-* @see app/Http/Controllers/PropertyController.php:33
+* @see app/Http/Controllers/PropertyController.php:34
 * @route '/properties'
 */
 index.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ index.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\PropertyController::index
-* @see app/Http/Controllers/PropertyController.php:33
+* @see app/Http/Controllers/PropertyController.php:34
 * @route '/properties'
 */
 index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -35,7 +35,7 @@ index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\PropertyController::index
-* @see app/Http/Controllers/PropertyController.php:33
+* @see app/Http/Controllers/PropertyController.php:34
 * @route '/properties'
 */
 index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -45,7 +45,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\PropertyController::show
-* @see app/Http/Controllers/PropertyController.php:64
+* @see app/Http/Controllers/PropertyController.php:65
 * @route '/properties/{property}'
 */
 export const show = (args: { property: string | { uuid: string } } | [property: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -60,7 +60,7 @@ show.definition = {
 
 /**
 * @see \App\Http\Controllers\PropertyController::show
-* @see app/Http/Controllers/PropertyController.php:64
+* @see app/Http/Controllers/PropertyController.php:65
 * @route '/properties/{property}'
 */
 show.url = (args: { property: string | { uuid: string } } | [property: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
@@ -93,7 +93,7 @@ show.url = (args: { property: string | { uuid: string } } | [property: string | 
 
 /**
 * @see \App\Http\Controllers\PropertyController::show
-* @see app/Http/Controllers/PropertyController.php:64
+* @see app/Http/Controllers/PropertyController.php:65
 * @route '/properties/{property}'
 */
 show.get = (args: { property: string | { uuid: string } } | [property: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -103,7 +103,7 @@ show.get = (args: { property: string | { uuid: string } } | [property: string | 
 
 /**
 * @see \App\Http\Controllers\PropertyController::show
-* @see app/Http/Controllers/PropertyController.php:64
+* @see app/Http/Controllers/PropertyController.php:65
 * @route '/properties/{property}'
 */
 show.head = (args: { property: string | { uuid: string } } | [property: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -113,7 +113,7 @@ show.head = (args: { property: string | { uuid: string } } | [property: string |
 
 /**
 * @see \App\Http\Controllers\PropertyController::inquire
-* @see app/Http/Controllers/PropertyController.php:95
+* @see app/Http/Controllers/PropertyController.php:107
 * @route '/properties/inquiries'
 */
 export const inquire = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -128,7 +128,7 @@ inquire.definition = {
 
 /**
 * @see \App\Http\Controllers\PropertyController::inquire
-* @see app/Http/Controllers/PropertyController.php:95
+* @see app/Http/Controllers/PropertyController.php:107
 * @route '/properties/inquiries'
 */
 inquire.url = (options?: RouteQueryOptions) => {
@@ -137,7 +137,7 @@ inquire.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\PropertyController::inquire
-* @see app/Http/Controllers/PropertyController.php:95
+* @see app/Http/Controllers/PropertyController.php:107
 * @route '/properties/inquiries'
 */
 inquire.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({

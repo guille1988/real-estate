@@ -28,6 +28,10 @@ final class IndexPropertyResource extends JsonResource
             'bedrooms' => $this->bedrooms,
             'price' => $this->getDollarPrice(),
             'image' => $this->getDefaultImage(),
+            'can_show_property' => cache()->rememberForever(
+                $this->getCanShowPropertyCacheKey(),
+                fn (): bool => $this->canShowProperty()
+            ),
         ];
     }
 }

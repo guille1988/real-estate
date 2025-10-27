@@ -10,4 +10,5 @@ export interface IndexPropertyInterface {
     title: string;
     description: string;
     price: string;
+    canShowProperty: boolean;
 }

@@ -75,7 +75,9 @@
                 </div>
                 <Link prefetch :href="show(card.uuid).url">
                     <button
-                        class="w-full rounded-md bg-purple-600 px-4 py-2 text-xs transition-colors duration-300 hover:bg-purple-500 sm:w-auto md:px-6 md:py-3 md:text-sm"
+                        class="w-full rounded-md bg-purple-600 px-4 py-2 text-xs transition-colors duration-300 hover:bg-purple-500 disabled:cursor-not-allowed disabled:bg-purple-400 disabled:text-gray-300 disabled:hover:bg-purple-400 sm:w-auto md:px-6 md:py-3 md:text-sm"
+                        :disabled="!card.canShowProperty"
+                        :aria-disabled="!card.canShowProperty"
                     >
                         View Property Details
                     </button>

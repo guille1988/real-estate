@@ -172,6 +172,43 @@ final class Property extends Model
             : $defaultImage->getUrl();
     }
 
+    /*
+     * Returns the can show property cache key for the property.
+     */
+    public function getCanShowPropertyCacheKey(): string
+    {
+        return "can_show_property_$this->uuid";
+    }
+
+    /*
+     * Returns true if the property can be shown.
+     * We cannot let the user see the property if
+     * the default image is not set, the amenities
+     * of that property are not set, and the pricing
+     * details of that property are not set.
+     */
+    public function canShowProperty(bool $loadCount = false): bool
+    {
+        $relations = ['amenities', 'images', 'pricingDetails'];
+
+        if ($loadCount) {
+            $this->loadCount($relations);
+        }
+
+        foreach ($relations as $relation) {
+            $field = str($relation)
+                ->snake()
+                ->append('_count')
+                ->toString();
+
+            if (! isset($this->$field) || $this->$field === 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     /**
      * Get the default image for the property.
      *

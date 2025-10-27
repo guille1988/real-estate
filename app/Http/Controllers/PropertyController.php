@@ -21,6 +21,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Gate;
 use Inertia\Inertia;
 use Inertia\Response;
 use Throwable;
@@ -63,6 +64,17 @@ final class PropertyController
      */
     public function show(Property $property): Response
     {
+        /**
+         * @var bool $canShowProperty
+         */
+        $canShowProperty = cache()
+            ->get(
+                $property->getCanShowPropertyCacheKey(),
+                $property->canShowProperty(true),
+            );
+
+        Gate::allowIf($canShowProperty);
+
         $cachedProperty = cache()->rememberForever(
             "property_$property->uuid",
             function () use ($property): JsonResource {

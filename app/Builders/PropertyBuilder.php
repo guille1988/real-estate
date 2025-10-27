@@ -42,8 +42,9 @@ final class PropertyBuilder extends Builder
             'price',
         ];
 
-        return $this->with('defaultImage:id,path,property_id')
-            ->select($columns)
+        return $this->select($columns)
+            ->with('defaultImage:id,path,property_id')
+            ->withCount(['amenities', 'images', 'pricingDetails'])
             ->whereFeatured();
     }
 
@@ -66,6 +67,7 @@ final class PropertyBuilder extends Builder
 
         return $this->select($columns)
             ->with('defaultImage:id,path,property_id')
+            ->withCount(['amenities', 'images', 'pricingDetails'])
             ->when($data->isNotNull('search'), function (self $query) use ($data): void {
                 $search = "%$data->search%";
 
