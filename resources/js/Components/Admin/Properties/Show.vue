@@ -30,11 +30,25 @@
                         </div>
 
                         <div>
-                            <label class="mb-2 block text-sm">Location</label>
-                            <div
-                                class="rounded border border-gray-700 bg-black/70 p-3 text-sm text-gray-300"
-                            >
-                                {{ property.location }}
+                            <div class="grid grid-cols-2 gap-6">
+                                <div>
+                                    <label class="mb-2 block text-sm"
+                                        >Location</label
+                                    >
+                                    <div
+                                        class="rounded border border-gray-700 bg-black/70 p-3 text-sm text-gray-300"
+                                    >
+                                        {{ property.location }}
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="mb-2 block text-sm"
+                                        >Type</label
+                                    >
+                                    <span :class="getTypeClass()">{{
+                                        property.type
+                                    }}</span>
+                                </div>
                             </div>
                         </div>
 
@@ -48,13 +62,6 @@
                         </div>
 
                         <div>
-                            <label class="mb-2 block text-sm">Type</label>
-                            <span :class="getTypeClass()">{{
-                                property.type
-                            }}</span>
-                        </div>
-
-                        <div>
                             <label class="mb-2 block text-sm">Address</label>
                             <div
                                 class="rounded border border-gray-700 bg-black/70 p-3 text-sm text-gray-300"
@@ -64,38 +71,52 @@
                         </div>
 
                         <div>
-                            <label class="mb-2 block text-sm">Bathrooms</label>
-                            <div
-                                class="rounded border border-gray-700 bg-black/70 p-3 text-sm text-gray-300"
-                            >
-                                {{ property.bathrooms }}
+                            <div class="grid grid-cols-2 gap-6">
+                                <div>
+                                    <label class="mb-2 block text-sm"
+                                        >Bathrooms</label
+                                    >
+                                    <div
+                                        class="rounded border border-gray-700 bg-black/70 p-3 text-sm text-gray-300"
+                                    >
+                                        {{ property.bathrooms }}
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="mb-2 block text-sm"
+                                        >Bedrooms</label
+                                    >
+                                    <div
+                                        class="rounded border border-gray-700 bg-black/70 p-3 text-sm text-gray-300"
+                                    >
+                                        {{ property.bedrooms }}
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
                         <div>
-                            <label class="mb-2 block text-sm">Bedrooms</label>
-                            <div
-                                class="rounded border border-gray-700 bg-black/70 p-3 text-sm text-gray-300"
-                            >
-                                {{ property.bedrooms }}
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="mb-2 block text-sm">Area</label>
-                            <div
-                                class="rounded border border-gray-700 bg-black/70 p-3 text-sm text-gray-300"
-                            >
-                                {{ property.area }}
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="mb-2 block text-sm">Price</label>
-                            <div
-                                class="rounded border border-gray-700 bg-black/70 p-3 text-sm text-gray-300"
-                            >
-                                {{ property.price }}
+                            <div class="grid grid-cols-2 gap-6">
+                                <div>
+                                    <label class="mb-2 block text-sm"
+                                        >Area</label
+                                    >
+                                    <div
+                                        class="rounded border border-gray-700 bg-black/70 p-3 text-sm text-gray-300"
+                                    >
+                                        {{ property.area }}
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="mb-2 block text-sm"
+                                        >Price</label
+                                    >
+                                    <div
+                                        class="rounded border border-gray-700 bg-black/70 p-3 text-sm text-gray-300"
+                                    >
+                                        {{ property.price }}
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
