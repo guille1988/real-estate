@@ -13,6 +13,7 @@ use App\Enums\PageEnum;
 use App\Enums\PropertyLocationEnum;
 use App\Enums\PropertyTypeEnum;
 use App\Http\Resources\Admin\IndexPropertyResource;
+use App\Http\Resources\Admin\ShowPropertyResource;
 use App\Models\Property;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -65,7 +66,7 @@ final class PropertyController
     public function show(Property $property): Response
     {
         return Inertia::render(PageEnum::ADMIN_PROPERTIES_SHOW->value, [
-            'property' => fn (): array => $property->except(['id']),
+            'property' => fn (): JsonResource => $property->toResource(ShowPropertyResource::class),
         ]);
     }
 
