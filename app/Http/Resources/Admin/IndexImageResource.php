@@ -21,7 +21,7 @@ final class IndexImageResource extends JsonResource
         return [
             'uuid' => $this->uuid,
             'property' => $this->property?->title,
-            'type' => $this->path,
+            'url' => $this->getUrl(),
             'is_default' => $this->is_default,
         ];
     }
