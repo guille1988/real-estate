@@ -231,6 +231,7 @@ import { PropertyLocationInterface } from '@/Types/App/Interfaces/PropertyLocati
 import { PropertyTypeInterface } from '@/Types/App/Interfaces/PropertyTypeInterface';
 import { Link, WhenVisible, router } from '@inertiajs/vue3';
 import { Ref, computed, ref } from 'vue';
+import { toast } from 'vue3-toastify';
 
 const {
     properties,
@@ -328,6 +329,8 @@ const bulkDelete = (): void => {
             selected.value.clear();
             selected.value = new Set();
             router.reload({ only: ['properties'] });
+
+            toast.success('Properties has been deleted successfully');
         },
     });
 };

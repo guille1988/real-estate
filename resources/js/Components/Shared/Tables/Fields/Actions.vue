@@ -41,6 +41,7 @@ import {
     TrashIcon,
 } from '@heroicons/vue/24/outline';
 import { Link, router } from '@inertiajs/vue3';
+import { toast } from 'vue3-toastify';
 
 const {
     deleteUrl,
@@ -72,5 +73,7 @@ const deleteRecord = (): void => {
 
     router.delete(deleteUrl);
     router.reload();
+
+    toast.success(`${title(resource)} has been deleted successfully`);
 };
 </script>
