@@ -114,7 +114,16 @@
                                     <ImageWithText
                                         :image="property.image"
                                         :text="property.title"
-                                    />
+                                    >
+                                        <template #badge>
+                                            <span
+                                                v-if="property.isFeatured"
+                                                class="inline-flex items-center rounded-md bg-red-900/30 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-red-400 ring-1 ring-inset ring-red-500/50"
+                                            >
+                                                Featured
+                                            </span>
+                                        </template>
+                                    </ImageWithText>
                                     <Text :text="property.bathrooms" />
                                     <Text :text="property.bedrooms" />
                                     <Badge

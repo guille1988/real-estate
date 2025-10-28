@@ -124,6 +124,7 @@ final class PropertyBuilder extends Builder
             'bathrooms',
             'bedrooms',
             'price',
+            'is_featured',
         ];
 
         return $this->with('defaultImage:id,path,property_id')

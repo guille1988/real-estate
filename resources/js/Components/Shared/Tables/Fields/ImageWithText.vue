@@ -9,8 +9,11 @@
                 />
             </div>
             <div class="ml-4">
-                <div class="font-medium text-white">
-                    {{ text }}
+                <div class="flex items-center gap-2">
+                    <div class="font-medium text-white">
+                        {{ text }}
+                    </div>
+                    <slot name="badge" />
                 </div>
             </div>
         </div>

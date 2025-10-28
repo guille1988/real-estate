@@ -8,4 +8,5 @@ export interface IndexPropertyInterface {
     image: string;
     title: string;
     price: string;
+    isFeatured: boolean;
 }
