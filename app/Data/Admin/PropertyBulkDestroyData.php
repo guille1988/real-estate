@@ -30,17 +30,4 @@ final class PropertyBulkDestroyData extends Data
             'uuids.*' => ['required', 'string', 'between:1,200', Rule::exists(Property::class, 'uuid')],
         ];
     }
-
-    /**
-     * @return array<string, string[]>
-     */
-    public function toArray(): array
-    {
-        /**
-         * @var array<string, string[]> $data
-         */
-        $data = parent::toArray();
-
-        return $data;
-    }
 }
