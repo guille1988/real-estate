@@ -56,7 +56,11 @@
                                         aria-label="Select all on page"
                                     />
                                 </th>
-                                <TableHeader label="Property" column="title" />
+                                <TableHeader
+                                    label="Property"
+                                    column="title"
+                                    :sort="false"
+                                />
                                 <TableHeader
                                     label="Created At"
                                     column="createdAt"
