@@ -56,12 +56,22 @@
                                         aria-label="Select all on page"
                                     />
                                 </th>
-                                <TableHeader column="title" />
-                                <TableHeader column="bathrooms" />
-                                <TableHeader column="bedrooms" />
-                                <TableHeader column="type" />
-                                <TableHeader column="price" />
-                                <TableHeader column="actions" :sort="false" />
+                                <TableHeader label="Title" column="title" />
+                                <TableHeader
+                                    label="Bathrooms"
+                                    column="bathrooms"
+                                />
+                                <TableHeader
+                                    label="Bedrooms"
+                                    column="bedrooms"
+                                />
+                                <TableHeader label="Type" column="type" />
+                                <TableHeader label="Price" column="price" />
+                                <TableHeader
+                                    label="Actions"
+                                    column="actions"
+                                    :sort="false"
+                                />
                             </tr>
                         </thead>
                         <WhenVisible :data="['properties']">

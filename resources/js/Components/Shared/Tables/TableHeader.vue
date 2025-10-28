@@ -8,7 +8,7 @@
             class="group inline-flex items-center gap-1 text-left"
             @click="onClick"
         >
-            <span>{{ title(column) }}</span>
+            <span>{{ label }}</span>
             <ChevronDownIcon
                 v-if="sort"
                 class="size-4 text-purple-500 transition-transform group-hover:text-white"
@@ -23,17 +23,20 @@
 </template>
 
 <script setup lang="ts">
-import { title } from '@/Composables/useTitleCase';
 import { SortDirection } from '@/Types/Admin/Enums/SortDirection';
 import { ChevronDownIcon } from '@heroicons/vue/20/solid';
 import { router, usePage } from '@inertiajs/vue3';
 import { computed, ComputedRef } from 'vue';
 
-const { column, sort = true }: { column: string; sort?: boolean } =
-    defineProps<{
-        column: string;
-        sort?: boolean;
-    }>();
+const {
+    label,
+    column,
+    sort = true,
+}: { label: string; column: string; sort?: boolean } = defineProps<{
+    label: string;
+    column: string;
+    sort?: boolean;
+}>();
 
 const sortKey: string = 'sort';
 const dirKey: string = 'direction';

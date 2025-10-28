@@ -23,6 +23,8 @@ final class IndexImageResource extends JsonResource
             'property' => $this->property?->title,
             'url' => $this->getUrl(),
             'is_default' => $this->is_default,
+            'created_at' => $this->created_at?->format('Y-m-d H:i:s'),
+            'updated_at' => $this->updated_at?->format('Y-m-d H:i:s'),
         ];
     }
 }

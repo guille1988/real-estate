@@ -49,8 +49,8 @@ const {
     deleteConfirmationMessage,
 }: { deleteUrl: string; resource: string; deleteConfirmationMessage?: string } =
     defineProps<{
-        showUrl: string;
-        editUrl: string;
+        showUrl?: string;
+        editUrl?: string;
         deleteUrl: string;
         resource: string;
         deleteConfirmationMessage?: string;

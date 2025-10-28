@@ -28,16 +28,7 @@ final class ImageBuilder extends Builder
      */
     public function forIndexing(ImageData $data): self
     {
-        $columns = [
-            'id',
-            'uuid',
-            'path',
-            'is_default',
-            'property_id',
-        ];
-
         return $this->with('property:id,title')
-            ->select($columns)
             ->when($data->isNotNull('search'), function (self $query) use ($data): void {
                 $query->whereRelation('property', 'title', 'like', "%$data->search%");
             })->when($data->isNotNull('path'), function (self $query) use ($data): void {
