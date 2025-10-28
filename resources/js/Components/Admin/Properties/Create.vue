@@ -195,16 +195,17 @@
                 >
                     <button
                         type="submit"
-                        :disabled="form.processing"
+                        :disabled="form.processing || disabled"
                         :class="[
                             'shadow-xs rounded-md px-4 py-2 text-sm font-semibold',
-                            form.processing
+                            form.processing || disabled
                                 ? 'cursor-not-allowed bg-purple-500 text-white opacity-50'
                                 : 'bg-purple-500 text-white hover:bg-purple-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-500',
                         ]"
                     >
-                        <span v-if="!form.processing">Save</span>
-                        <span v-else>Saving...</span>
+                        <span v-if="form.processing">Saving...</span>
+                        <span v-else-if="disabled">Please wait...</span>
+                        <span v-else>Save</span>
                     </button>
                 </div>
             </form>
@@ -224,12 +225,15 @@ import type { StorePropertyInterface } from '@/Types/Admin/Interfaces/StorePrope
 import { PropertyLocationInterface } from '@/Types/App/Interfaces/PropertyLocationInterface';
 import { PropertyTypeInterface } from '@/Types/App/Interfaces/PropertyTypeInterface';
 import { InertiaForm, useForm } from '@inertiajs/vue3';
+import { Ref, ref } from 'vue';
 import { toast } from 'vue3-toastify';
 
 defineProps<{
     locations: PropertyLocationInterface[];
     types: PropertyTypeInterface[];
 }>();
+
+const disabled: Ref<boolean> = ref<boolean>(false);
 
 const form: InertiaForm<StorePropertyInterface> =
     useForm<StorePropertyInterface>({
@@ -247,6 +251,12 @@ const form: InertiaForm<StorePropertyInterface> =
     });
 
 const submit = (): void => {
+    if (form.processing || disabled.value) {
+        return;
+    }
+
+    disabled.value = true;
+
     form.post(PropertyController.store().url, {
         preserveScroll: true,
         onSuccess: (): void => {
@@ -254,8 +264,17 @@ const submit = (): void => {
             toast.success('Property created successfully.');
         },
         onError: (): void => {
+            toast.error(
+                'There are some errors on the form. Please check and try again.',
+            );
+
             setTimeout((): void => {
                 form.clearErrors();
+            }, 4000);
+        },
+        onFinish: (): void => {
+            setTimeout(() => {
+                disabled.value = false;
             }, 4000);
         },
     });
