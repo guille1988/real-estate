@@ -18,12 +18,12 @@ final class PropertyIndexData extends Data
     public function __construct(
         public ?int $page = null,
         public ?string $search = null,
+        public ?string $sort = null,
+        public ?PaginationDirection $direction = null,
         public ?int $bedrooms = null,
         public ?int $bathrooms = null,
         public ?PropertyTypeEnum $type = null,
         public ?PropertyLocationEnum $location = null,
-        public ?string $sort = null,
-        public ?PaginationDirection $direction = null,
         public ?bool $isFeatured = null,
     ) {}
 
@@ -35,12 +35,12 @@ final class PropertyIndexData extends Data
         return [
             'page' => ['nullable', 'integer', 'digits_between:1,100'],
             'search' => ['nullable', 'string', 'between:1,200'],
+            'sort' => ['nullable', 'string', 'in:title,bathrooms,bedrooms,type,price'],
+            'direction' => ['nullable', 'string', Rule::enum(PaginationDirection::class)],
             'bedrooms' => ['nullable', 'integer', 'digits_between:1,20'],
             'bathrooms' => ['nullable', 'integer', 'digits_between:1,20'],
             'type' => ['nullable', Rule::enum(PropertyTypeEnum::class)],
             'location' => ['nullable', Rule::enum(PropertyLocationEnum::class)],
-            'sort' => ['nullable', 'string', 'in:title,bathrooms,bedrooms,type,price'],
-            'direction' => ['nullable', 'string', Rule::enum(PaginationDirection::class)],
             'is_featured' => ['nullable', 'boolean'],
         ];
     }
