@@ -106,5 +106,8 @@ Route::prefix('admin')
                         'update' => '.properties.update',
                         'destroy' => '.properties.destroy',
                     ]);
+
+                Route::post('properties/bulk-delete', [AdminPropertyController::class, 'bulkDestroy'])
+                    ->name('.properties.bulk-delete');
             });
     });

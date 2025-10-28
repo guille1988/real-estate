@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Admin;
 
+use App\Actions\BulkDestroyProperties;
 use App\Actions\DestroyProperty;
 use App\Actions\GetRangeOfMax;
+use App\Data\Admin\PropertyBulkDestroyData;
 use App\Data\Admin\PropertyIndexData;
 use App\Data\Admin\PropertyStoreData;
 use App\Data\Admin\PropertyUpdateData;
@@ -76,6 +78,18 @@ final class PropertyController
     public function store(PropertyStoreData $data): RedirectResponse
     {
         Property::create($data->toArray());
+
+        cache()->flush();
+
+        return back();
+    }
+
+    /**
+     * @throws Throwable
+     */
+    public function bulkDestroy(PropertyBulkDestroyData $data, BulkDestroyProperties $action): RedirectResponse
+    {
+        $action->execute($data);
 
         cache()->flush();
 

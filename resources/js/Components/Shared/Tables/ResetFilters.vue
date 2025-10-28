@@ -4,7 +4,7 @@
         title="Reset filters"
         aria-label="Resel filters"
         @click="resetFilters"
-        class="shadow-xs block rounded-md bg-red-600 p-2 text-white hover:bg-red-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
+        class="shadow-xs block rounded-md bg-indigo-600 p-2 text-white hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
     >
         <ArrowPathIcon class="size-5" aria-hidden="true" />
     </button>

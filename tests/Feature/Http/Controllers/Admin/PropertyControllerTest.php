@@ -403,3 +403,89 @@ it('works on destroying property.', function (): void {
             ->toBeFalse();
     }
 });
+
+it('works on bulk destroying properties.', function (): void {
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $property = Property::factory()
+        ->create();
+
+    $folderPath = str($property->type->value)
+        ->plural()
+        ->append('/', $property->uuid)
+        ->toString();
+
+    $createFilePath = fn (string $name): string => str($folderPath)
+        ->append('/', $name, '.', config('app.default_image_format'))
+        ->toString();
+
+    $hasBeenCreated = Storage::disk('images')
+        ->makeDirectory($folderPath);
+
+    expect($hasBeenCreated)
+        ->toBeTrue();
+
+    $defaultImage = Image::factory()
+        ->default()
+        ->for($property)
+        ->create(['path' => $createFilePath('default')]);
+
+    $imageOne = Image::factory()
+        ->default()
+        ->for($property)
+        ->create(['path' => $createFilePath('1')]);
+
+    $imageTwo = Image::factory()
+        ->default()
+        ->for($property)
+        ->create(['path' => $createFilePath('2')]);
+
+    $amenityOne = Amenity::factory()
+        ->for($property)
+        ->create();
+
+    $amenityTwo = Amenity::factory()
+        ->for($property)
+        ->create();
+
+    $pricingDetailOne = PricingDetail::factory()
+        ->for($property)
+        ->create();
+
+    $pricingDetailTwo = PricingDetail::factory()
+        ->for($property)
+        ->create();
+
+    $this->actingAs($user)
+        ->post(route('admin.properties.bulk-delete'), ['uuids' => [$property->uuid]])
+        ->assertRedirectBack();
+
+    $missingModels = [
+        $property,
+        $defaultImage,
+        $imageOne,
+        $imageTwo,
+        $amenityOne,
+        $amenityTwo,
+        $pricingDetailOne,
+        $pricingDetailTwo,
+    ];
+
+    foreach ($missingModels as $model) {
+        $this->assertModelMissing($model);
+    }
+
+    $paths = [
+        $folderPath,
+        $defaultImage->path,
+        $imageOne->path,
+        $imageTwo->path,
+    ];
+
+    foreach ($paths as $path) {
+        expect(File::exists($path))
+            ->toBeFalse();
+    }
+});
