@@ -15,7 +15,7 @@ final class PropertyBulkDestroyData extends Data
 {
     public function __construct(
         /**
-         * @var array<int, string>
+         * @var string[]
          */
         public array $uuids
     ) {}
@@ -26,13 +26,13 @@ final class PropertyBulkDestroyData extends Data
     public static function rules(): array
     {
         return [
-            'uuids' => ['required', 'array'],
+            'uuids' => ['required', 'array', 'min:1'],
             'uuids.*' => ['required', 'string', 'between:1,200', Rule::exists(Property::class, 'uuid')],
         ];
     }
 
     /**
-     * @return array<string, mixed>
+     * @return array<string, string[]>
      */
     public function toArray(): array
     {
