@@ -2,6 +2,7 @@ import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../
 import login from './login'
 import profile from './profile'
 import properties from './properties'
+import images from './images'
 /**
 * @see \App\Http\Controllers\Admin\DashboardController::__invoke
 * @see app/Http/Controllers/Admin/DashboardController.php:13
@@ -51,6 +52,7 @@ const admin = {
     profile: Object.assign(profile, profile),
     dashboard: Object.assign(dashboard, dashboard),
     properties: Object.assign(properties, properties),
+    images: Object.assign(images, images),
 }
 
 export default admin

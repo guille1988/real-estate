@@ -3,6 +3,7 @@ import LoginController from './LoginController'
 import ProfileController from './ProfileController'
 import DashboardController from './DashboardController'
 import PropertyController from './PropertyController'
+import ImageController from './ImageController'
 
 const Admin = {
     AdminController: Object.assign(AdminController, AdminController),
@@ -10,6 +11,7 @@ const Admin = {
     ProfileController: Object.assign(ProfileController, ProfileController),
     DashboardController: Object.assign(DashboardController, DashboardController),
     PropertyController: Object.assign(PropertyController, PropertyController),
+    ImageController: Object.assign(ImageController, ImageController),
 }
 
 export default Admin

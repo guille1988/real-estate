@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\PropertyController as AdminPropertyController;
@@ -109,5 +110,9 @@ Route::prefix('admin')
 
                 Route::post('properties/bulk-delete', [AdminPropertyController::class, 'bulkDestroy'])
                     ->name('.properties.bulk-delete');
+
+                Route::resource('images', ImageController::class)
+                    ->only('index')
+                    ->names(['index' => '.images.index']);
             });
     });
