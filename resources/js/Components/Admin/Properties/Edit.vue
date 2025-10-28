@@ -193,9 +193,6 @@
                 <div
                     class="mt-8 flex flex-shrink-0 items-center justify-end gap-3 border-t border-white/10 pt-8"
                 >
-                    <p v-if="showSuccessMessage" class="text-sm text-green-400">
-                        {{ successMessage }}
-                    </p>
                     <button
                         type="submit"
                         :disabled="form.processing"
@@ -228,16 +225,13 @@ import { UpdatePropertyInterface } from '@/Types/Admin/Interfaces/UpdateProperty
 import { PropertyLocationInterface } from '@/Types/App/Interfaces/PropertyLocationInterface';
 import { PropertyTypeInterface } from '@/Types/App/Interfaces/PropertyTypeInterface';
 import { InertiaForm, router, useForm } from '@inertiajs/vue3';
-import { ref, Ref } from 'vue';
+import { toast } from 'vue3-toastify';
 
 const { property }: { property: UpdatePropertyInterface } = defineProps<{
     property: UpdatePropertyInterface;
     locations: PropertyLocationInterface[];
     types: PropertyTypeInterface[];
 }>();
-
-const successMessage: string = 'Property updated successfully.';
-const showSuccessMessage: Ref<boolean> = ref<boolean>(false);
 
 const form: InertiaForm<StorePropertyInterface> =
     useForm<StorePropertyInterface>({
@@ -255,18 +249,11 @@ const form: InertiaForm<StorePropertyInterface> =
     });
 
 const submit = (): void => {
-    showSuccessMessage.value = false;
-
     form.patch(PropertyController.update(property.uuid).url, {
         preserveScroll: true,
         onSuccess: (): void => {
-            showSuccessMessage.value = true;
-
             router.reload();
-
-            setTimeout((): void => {
-                showSuccessMessage.value = false;
-            }, 4000);
+            toast.success('Property created successfully.');
         },
         onError: (): void => {
             setTimeout((): void => {
