@@ -253,7 +253,7 @@ const submit = (): void => {
         preserveScroll: true,
         onSuccess: (): void => {
             router.reload();
-            toast.success('Property created successfully.');
+            toast.success('Property updated successfully.');
         },
         onError: (): void => {
             setTimeout((): void => {
