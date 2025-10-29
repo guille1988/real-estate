@@ -1,6 +1,6 @@
 <template>
-    <MobileSidebar v-model:open="isOpen" :items="navigationItems" />
-    <DesktopSidebar :items="navigationItems" />
+    <MobileSidebar v-model:open="isOpen" :items="items" />
+    <DesktopSidebar :items="items" />
 </template>
 
 <script setup lang="ts">
@@ -11,7 +11,10 @@ import ImageController from '@/Routes/actions/App/Http/Controllers/Admin/ImageCo
 import PropertyController from '@/Routes/actions/App/Http/Controllers/Admin/PropertyController';
 import { PageEnum } from '@/Types/Admin/Enums/PageEnum';
 import type { SidebarNavigationInterface } from '@/Types/Admin/Interfaces/SidebarNavigationInterface';
+import { PageProps } from '@/Types/Core';
 import { ChartPieIcon, HomeIcon, PhotoIcon } from '@heroicons/vue/24/outline';
+import { Page } from '@inertiajs/core';
+import { usePage } from '@inertiajs/vue3';
 import { computed, ComputedRef } from 'vue';
 
 const navigationItems: SidebarNavigationInterface[] = [
@@ -45,4 +48,38 @@ const isOpen: ComputedRef<boolean> = computed({
     get: (): boolean => open ?? false,
     set: (value: boolean): void => emit('update:open', value),
 });
+
+const items = computed<SidebarNavigationInterface[]>(
+    (): SidebarNavigationInterface[] => {
+        const page: Page<PageProps> = usePage();
+        const currentPath: string = (page.url ?? '').split('?')[0] || '/';
+
+        let found: boolean = false;
+
+        const mapped = navigationItems.map(
+            (item: SidebarNavigationInterface): SidebarNavigationInterface => {
+                const isCurrent = item.route === currentPath;
+
+                if (isCurrent) {
+                    found = true;
+                }
+
+                return { ...item, current: isCurrent };
+            },
+        );
+
+        if (!found) {
+            return mapped.map(
+                (
+                    item: SidebarNavigationInterface,
+                ): SidebarNavigationInterface => ({
+                    ...item,
+                    current: item.name === PageEnum.DASHBOARD,
+                }),
+            );
+        }
+
+        return mapped;
+    },
+);
 </script>
