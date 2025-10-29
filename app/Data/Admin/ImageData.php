@@ -18,7 +18,6 @@ final class ImageData extends Data
         public ?string $search = null,
         public ?string $sort = null,
         public ?PaginationDirection $direction = null,
-        public ?string $path = null,
         public ?bool $isDefault = null,
     ) {}
 
@@ -32,7 +31,6 @@ final class ImageData extends Data
             'search' => ['nullable', 'string', 'between:1,200'],
             'sort' => ['nullable', 'string', 'in:createdAt,updatedAt'],
             'direction' => ['nullable', 'string', Rule::enum(PaginationDirection::class)],
-            'path' => ['nullable', 'string', 'between:1,200'],
             'is_default' => ['nullable', 'boolean'],
         ];
     }
