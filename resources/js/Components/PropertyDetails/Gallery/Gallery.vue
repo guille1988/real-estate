@@ -307,6 +307,12 @@ const thumbnailContainer: Ref<HTMLElement | null> = ref<HTMLElement | null>(
 );
 const thumbnailRefs: Record<string, HTMLElement> = {};
 
+const isPreviewOpen: Ref<boolean> = ref<boolean>(false);
+
+const openPreview = (): void => {
+    isPreviewOpen.value = true;
+};
+
 const setThumbnailRef = (
     el: Element | ComponentPublicInstance | null,
     uuid: string,
@@ -386,11 +392,6 @@ const previousImage = (): void => {
 watch(currentImage, (): void => {
     scrollToSelectedThumbnail();
 });
-
-const isPreviewOpen: Ref<boolean> = ref<boolean>(false);
-const openPreview = (): void => {
-    isPreviewOpen.value = true;
-};
 
 onMounted((): void => {
     scrollToSelectedThumbnail();
