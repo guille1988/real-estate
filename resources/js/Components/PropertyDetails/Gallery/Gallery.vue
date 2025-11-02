@@ -162,13 +162,31 @@
 
                 <div class="py-4">
                     <div class="mx-auto overflow-hidden rounded-lg">
+                        <button
+                            type="button"
+                            class="block w-full"
+                            @click="openPreview"
+                            aria-label="Ver imagen grande"
+                        >
+                            <img
+                                :src="getCurrentImage.url"
+                                alt="Property Photo"
+                                class="h-[300px] w-full cursor-zoom-in object-cover sm:h-[400px] md:h-[500px]"
+                            />
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Image Preview Modal-->
+                <Modal v-model="isPreviewOpen">
+                    <div class="flex items-center justify-center">
                         <img
                             :src="getCurrentImage.url"
                             alt="Property Photo"
-                            class="h-[300px] w-full object-cover sm:h-[400px] md:h-[500px]"
+                            class="max-h-[80vh] w-auto max-w-full rounded-md"
                         />
                     </div>
-                </div>
+                </Modal>
 
                 <div class="flex items-center justify-center gap-4 py-4">
                     <button
@@ -243,6 +261,7 @@ import HouseIcon from '@/Components/Icons/HouseIcon.vue';
 import LocalizationIcon from '@/Components/Icons/LocalizationIcon.vue';
 import Amenity from '@/Components/PropertyDetails/Gallery/Amenity.vue';
 import Description from '@/Components/PropertyDetails/Gallery/Description.vue';
+import Modal from '@/Components/Shared/Modals/Modal.vue';
 import { ChevronDirectionEnum } from '@/Types/App/Enums/ChevronDirectionEnum';
 import { PropertyDescriptionInterface } from '@/Types/App/Interfaces/PropertyDescriptionInterface';
 import { PropertyImageInterface } from '@/Types/App/Interfaces/PropertyImageInterface';
@@ -367,6 +386,11 @@ const previousImage = (): void => {
 watch(currentImage, (): void => {
     scrollToSelectedThumbnail();
 });
+
+const isPreviewOpen: Ref<boolean> = ref<boolean>(false);
+const openPreview = (): void => {
+    isPreviewOpen.value = true;
+};
 
 onMounted((): void => {
     scrollToSelectedThumbnail();
