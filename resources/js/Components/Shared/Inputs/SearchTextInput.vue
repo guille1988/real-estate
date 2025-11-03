@@ -3,11 +3,12 @@
         <label :for="id" class="mb-2 block text-sm">{{ label }}</label>
         <div class="relative">
             <input
+                ref="inputRef"
                 :id="id"
                 v-model="searchText"
                 type="text"
                 :placeholder="placeholder"
-                class="w-full rounded border border-gray-700 bg-black/70 p-3 text-sm focus:border-purple-500 focus:outline-none"
+                class="w-full rounded border border-gray-700 bg-black/70 p-3 pr-10 text-sm focus:border-purple-500 focus:outline-none"
                 @focus="open = true"
                 @blur="onBlur"
                 @keydown.down.prevent="highlightNext()"
@@ -15,33 +16,58 @@
                 @keydown.enter.prevent="selectHighlighted()"
                 @keydown.esc.prevent="open = false"
             />
+            <button
+                v-if="hasText"
+                type="button"
+                class="absolute right-2 top-1/2 -translate-y-1/2 rounded p-1 text-gray-400 hover:text-white focus:outline-none"
+                @mousedown.prevent
+                @click="clearSearch"
+                aria-label="Clear search"
+                :title="'Clear'"
+            >
+                <CancelSearchIcon />
+            </button>
             <div
-                v-if="open && filteredOptions.length > 0"
+                v-if="open"
                 class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md border border-white/10 bg-black/95 py-1 shadow-lg"
             >
-                <button
-                    v-for="(option, idx) in filteredOptions"
-                    :key="`${id}-option-${option.value}`"
-                    type="button"
-                    @mousedown.prevent="selectOption(option)"
-                    :class="[
-                        'flex w-full items-center px-3 py-2 text-left text-sm',
-                        highlightedIndex === idx
-                            ? 'bg-white/10 text-white'
-                            : 'text-gray-200 hover:bg-white/10 hover:text-white',
-                    ]"
-                >
-                    {{ option.label }}
-                </button>
+                <template v-if="filteredOptions.length > 0">
+                    <button
+                        v-for="(option, idx) in filteredOptions"
+                        :key="`${id}-option-${option.value}`"
+                        type="button"
+                        @mousedown.prevent="selectOption(option)"
+                        :class="[
+                            'flex w-full items-center px-3 py-2 text-left text-sm',
+                            highlightedIndex === idx
+                                ? 'bg-white/10 text-white'
+                                : 'text-gray-200 hover:bg-white/10 hover:text-white',
+                        ]"
+                    >
+                        {{ option.label }}
+                    </button>
+                </template>
+                <div v-else class="px-3 py-2 text-sm text-gray-400">
+                    No results found
+                </div>
             </div>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
+import CancelSearchIcon from '@/Components/Icons/CancelSearchIcon.vue';
 import { DropdownInputInterface } from '@/Types/App/Interfaces/DropdownInputInterface';
 import { DropdownInputOptionsInterface } from '@/Types/App/Interfaces/DropdownInputOptionsInterface';
-import { computed, ComputedRef, nextTick, onMounted, ref, watch } from 'vue';
+import {
+    computed,
+    ComputedRef,
+    nextTick,
+    onMounted,
+    Ref,
+    ref,
+    watch,
+} from 'vue';
 
 const {
     label,
@@ -65,6 +91,23 @@ const open = ref<boolean>(false);
 const searchText = ref<string>('');
 const highlightedIndex = ref<number>(-1);
 const suppressSearchWatch = ref<boolean>(false);
+const inputRef: Ref<HTMLInputElement | null> = ref(null);
+const hasText = computed<boolean>(() => searchText.value.trim().length > 0);
+
+const clearSearch = (): void => {
+    suppressSearchWatch.value = true;
+    searchText.value = '';
+
+    emit('update:modelValue', null);
+
+    open.value = true;
+    highlightedIndex.value = options.length > 0 ? 0 : -1;
+
+    nextTick((): void => {
+        suppressSearchWatch.value = false;
+        inputRef.value?.focus();
+    });
+};
 
 const findLabelByValue = (value: null | number | string): string => {
     if (value === null || value === '' || typeof value === 'undefined') {
