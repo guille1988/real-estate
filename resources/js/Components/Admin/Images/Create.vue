@@ -100,6 +100,7 @@
                                             :id="`image-default-${index}`"
                                             label="Default"
                                             v-model="image.isDefault"
+                                            :icon="true"
                                         />
                                         <button
                                             type="button"
