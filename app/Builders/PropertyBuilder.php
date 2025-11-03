@@ -143,4 +143,14 @@ final class PropertyBuilder extends Builder
                 $query->where('is_featured', $data->isFeatured);
             })->orderBy($data->getSort(), $data->getDirection());
     }
+
+    /**
+     * @return self<TModel>
+     */
+    public function forSelecting(): self
+    {
+        return $this->has('images')
+            ->has('pricingDetails')
+            ->has('amenities');
+    }
 }

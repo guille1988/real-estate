@@ -7,10 +7,14 @@ namespace App\Http\Controllers\Admin;
 use App\Data\Admin\ImageData;
 use App\Enums\PageEnum;
 use App\Http\Resources\Admin\IndexImageResource;
+use App\Http\Resources\Admin\SelectPropertyResource;
 use App\Models\Image;
+use App\Models\Property;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 use Inertia\Inertia;
 use Inertia\Response;
+use Throwable;
 
 final class ImageController
 {
@@ -26,6 +30,23 @@ final class ImageController
 
         return Inertia::render(PageEnum::ADMIN_IMAGES_INDEX->value, [
             'images' => fn (): array => $images,
+        ]);
+    }
+
+    /**
+     * @throws Throwable
+     */
+    public function create(): Response
+    {
+        $properties = cache()->rememberForever('admin_property_select', function (): ResourceCollection {
+            return Property::query()
+                ->forSelecting()
+                ->get(['uuid', 'title'])
+                ->toResourceCollection(SelectPropertyResource::class);
+        });
+
+        return Inertia::render(PageEnum::ADMIN_IMAGES_CREATE->value, [
+            'properties' => fn (): ResourceCollection => $properties,
         ]);
     }
 }

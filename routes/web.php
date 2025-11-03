@@ -112,7 +112,10 @@ Route::prefix('admin')
                     ->name('.properties.bulk-delete');
 
                 Route::resource('images', ImageController::class)
-                    ->only('index')
-                    ->names(['index' => '.images.index']);
+                    ->only(['index', 'create'])
+                    ->names([
+                        'index' => '.images.index',
+                        'create' => '.images.create',
+                    ]);
             });
     });

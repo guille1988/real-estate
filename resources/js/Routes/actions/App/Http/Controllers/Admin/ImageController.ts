@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\Admin\ImageController::index
-* @see app/Http/Controllers/Admin/ImageController.php:17
+* @see app/Http/Controllers/Admin/ImageController.php:21
 * @route '/admin/images'
 */
 export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ index.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\ImageController::index
-* @see app/Http/Controllers/Admin/ImageController.php:17
+* @see app/Http/Controllers/Admin/ImageController.php:21
 * @route '/admin/images'
 */
 index.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ index.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\ImageController::index
-* @see app/Http/Controllers/Admin/ImageController.php:17
+* @see app/Http/Controllers/Admin/ImageController.php:21
 * @route '/admin/images'
 */
 index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -35,7 +35,7 @@ index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\ImageController::index
-* @see app/Http/Controllers/Admin/ImageController.php:17
+* @see app/Http/Controllers/Admin/ImageController.php:21
 * @route '/admin/images'
 */
 index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -43,6 +43,50 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     method: 'head',
 })
 
-const ImageController = { index }
+/**
+* @see \App\Http\Controllers\Admin\ImageController::create
+* @see app/Http/Controllers/Admin/ImageController.php:39
+* @route '/admin/images/create'
+*/
+export const create = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: create.url(options),
+    method: 'get',
+})
+
+create.definition = {
+    methods: ["get","head"],
+    url: '/admin/images/create',
+} satisfies RouteDefinition<["get","head"]>
+
+/**
+* @see \App\Http\Controllers\Admin\ImageController::create
+* @see app/Http/Controllers/Admin/ImageController.php:39
+* @route '/admin/images/create'
+*/
+create.url = (options?: RouteQueryOptions) => {
+    return create.definition.url + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\Admin\ImageController::create
+* @see app/Http/Controllers/Admin/ImageController.php:39
+* @route '/admin/images/create'
+*/
+create.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: create.url(options),
+    method: 'get',
+})
+
+/**
+* @see \App\Http\Controllers\Admin\ImageController::create
+* @see app/Http/Controllers/Admin/ImageController.php:39
+* @route '/admin/images/create'
+*/
+create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+    url: create.url(options),
+    method: 'head',
+})
+
+const ImageController = { index, create }
 
 export default ImageController

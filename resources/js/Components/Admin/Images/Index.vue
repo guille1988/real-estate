@@ -31,7 +31,7 @@
 
                     <Link
                         prefetch
-                        :href="''"
+                        :href="ImageController.create().url"
                         class="shadow-xs block rounded-md bg-purple-500 px-3 py-2 text-center text-sm font-semibold text-white hover:bg-purple-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-500"
                     >
                         Add Image
@@ -208,6 +208,7 @@ import Pagination from '@/Components/Shared/Tables/Pagination.vue';
 import ResetFilters from '@/Components/Shared/Tables/ResetFilters.vue';
 import SearchBar from '@/Components/Shared/Tables/SearchBar.vue';
 import TableHeader from '@/Components/Shared/Tables/TableHeader.vue';
+import ImageController from '@/Routes/actions/App/Http/Controllers/Admin/ImageController';
 import { FormMethodEnum } from '@/Types/Admin/Enums/FormMethodEnum';
 import { IndexImageInterface } from '@/Types/Admin/Interfaces/IndexImageInterface';
 import { IndexImagePaginatedInterface } from '@/Types/Admin/Interfaces/IndexImagePaginatedInterface';
