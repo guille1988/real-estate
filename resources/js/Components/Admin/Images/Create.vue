@@ -24,12 +24,12 @@
                 >
                     <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
                         <div>
-                            <TextInput
-                                id="title"
-                                label="Title"
+                            <DropdownInput
+                                id="property"
+                                label="Property"
                                 v-model="form.property"
-                                type="text"
-                                placeholder="Property"
+                                :options="properties"
+                                placeholder="Select property"
                             />
                             <div
                                 v-if="form.errors.property"
@@ -172,12 +172,17 @@
 <script setup lang="ts">
 import BackToIndexButton from '@/Components/Shared/Buttons/BackToIndexButton.vue';
 import CheckboxInput from '@/Components/Shared/Inputs/CheckboxInput.vue';
+import DropdownInput from '@/Components/Shared/Inputs/DropdownInput.vue';
 import ImageInput from '@/Components/Shared/Inputs/ImageInput.vue';
-import TextInput from '@/Components/Shared/Inputs/TextInput.vue';
 import ImageController from '@/Routes/actions/App/Http/Controllers/Admin/ImageController';
+import { SelectFilterOptionType } from '@/Types/Admin/Types/SelectFilterOptionType';
 import { InertiaForm, useForm } from '@inertiajs/vue3';
 import { ref, Ref } from 'vue';
 import { toast } from 'vue3-toastify';
+
+defineProps<{
+    properties: SelectFilterOptionType[];
+}>();
 
 const disabled: Ref<boolean> = ref<boolean>(false);
 
