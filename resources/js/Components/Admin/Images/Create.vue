@@ -24,7 +24,7 @@
                 >
                     <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
                         <div>
-                            <DropdownInput
+                            <SearchTextInput
                                 id="property"
                                 label="Property"
                                 v-model="form.property"
@@ -172,8 +172,8 @@
 <script setup lang="ts">
 import BackToIndexButton from '@/Components/Shared/Buttons/BackToIndexButton.vue';
 import CheckboxInput from '@/Components/Shared/Inputs/CheckboxInput.vue';
-import DropdownInput from '@/Components/Shared/Inputs/DropdownInput.vue';
 import ImageInput from '@/Components/Shared/Inputs/ImageInput.vue';
+import SearchTextInput from '@/Components/Shared/Inputs/SearchTextInput.vue';
 import ImageController from '@/Routes/actions/App/Http/Controllers/Admin/ImageController';
 import { SelectFilterOptionType } from '@/Types/Admin/Types/SelectFilterOptionType';
 import { InertiaForm, useForm } from '@inertiajs/vue3';
