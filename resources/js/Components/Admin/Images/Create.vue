@@ -67,6 +67,23 @@
                                 >
                                     Add Image
                                 </button>
+                                <button
+                                    type="button"
+                                    @click="removeAllImages"
+                                    :disabled="
+                                        form.processing ||
+                                        form.images.length === 0
+                                    "
+                                    :class="[
+                                        'ml-2 rounded-md px-3 py-2 text-sm font-semibold',
+                                        form.processing ||
+                                        form.images.length === 0
+                                            ? 'cursor-not-allowed bg-red-800 text-white opacity-50'
+                                            : 'bg-red-800 text-white hover:bg-red-700',
+                                    ]"
+                                >
+                                    Remove all
+                                </button>
                             </div>
                         </div>
                         <div
@@ -237,7 +254,52 @@ const onMultiFiles = (event: Event): void => {
 };
 
 const removeImage = (index: number): void => {
+    if (form.processing) {
+        return;
+    }
+
+    const confirmed: boolean = confirm(
+        'Are you sure you want to remove this image?',
+    );
+
+    if (!confirmed) {
+        return;
+    }
+
     form.images.splice(index, 1);
+};
+
+const removeAllImages = (): void => {
+    if (form.processing || form.images.length === 0) {
+        return;
+    }
+
+    const confirmed: boolean = confirm(
+        'Are you sure you want to remove all images? This action cannot be undone.',
+    );
+
+    if (!confirmed) {
+        return;
+    }
+
+    if (isPreviewOpen.value) {
+        isPreviewOpen.value = false;
+    }
+    if (previewObjectUrl.value) {
+        URL.revokeObjectURL(previewObjectUrl.value);
+        previewObjectUrl.value = null;
+    }
+    previewSrc.value = null;
+
+    form.images.splice(0, form.images.length);
+
+    if (multiFileInput.value) {
+        multiFileInput.value.value = '';
+    }
+
+    if (typeof form.clearErrors === 'function') {
+        form.clearErrors();
+    }
 };
 
 const isPreviewOpen: Ref<boolean> = ref<boolean>(false);

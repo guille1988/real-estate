@@ -34,7 +34,7 @@
                         :href="ImageController.create().url"
                         class="shadow-xs block rounded-md bg-purple-500 px-3 py-2 text-center text-sm font-semibold text-white hover:bg-purple-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-500"
                     >
-                        Add Image
+                        Add Images
                     </Link>
                 </div>
             </div>
