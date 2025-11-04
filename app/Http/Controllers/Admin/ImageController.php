@@ -5,11 +5,13 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Admin;
 
 use App\Data\Admin\ImageData;
+use App\Data\Admin\ImageStoreData;
 use App\Enums\PageEnum;
 use App\Http\Resources\Admin\IndexImageResource;
 use App\Http\Resources\Admin\SelectPropertyResource;
 use App\Models\Image;
 use App\Models\Property;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Inertia\Inertia;
@@ -48,5 +50,12 @@ final class ImageController
         return Inertia::render(PageEnum::ADMIN_IMAGES_CREATE->value, [
             'properties' => fn (): ResourceCollection => $properties,
         ]);
+    }
+
+    public function store(ImageStoreData $data): RedirectResponse
+    {
+        info($data->property);
+
+        return back();
     }
 }

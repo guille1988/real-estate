@@ -61,8 +61,8 @@
                                     :class="[
                                         'rounded-md px-3 py-2 text-sm font-semibold',
                                         form.processing
-                                            ? 'cursor-not-allowed bg-white/10 text-white opacity-50'
-                                            : 'bg-white/10 text-white hover:bg-white/20',
+                                            ? 'cursor-not-allowed bg-green-600 text-white opacity-50'
+                                            : 'bg-green-600 text-white hover:bg-green-500',
                                     ]"
                                 >
                                     Add Image
@@ -217,6 +217,7 @@ import ImageInput from '@/Components/Shared/Inputs/ImageInput.vue';
 import SearchTextInput from '@/Components/Shared/Inputs/SearchTextInput.vue';
 import Modal from '@/Components/Shared/Modals/Modal.vue';
 import ImageController from '@/Routes/actions/App/Http/Controllers/Admin/ImageController';
+import { StoreImageInterface } from '@/Types/Admin/Interfaces/StoreImageInterface';
 import { SelectFilterOptionType } from '@/Types/Admin/Types/SelectFilterOptionType';
 import { InertiaForm, useForm } from '@inertiajs/vue3';
 import { onBeforeUnmount, ref, Ref, watch } from 'vue';
@@ -228,7 +229,7 @@ defineProps<{
 
 const disabled: Ref<boolean> = ref<boolean>(false);
 
-const form: InertiaForm<any> = useForm<any>({
+const form: InertiaForm<StoreImageInterface> = useForm<StoreImageInterface>({
     property: '',
     images: [],
 });
@@ -341,7 +342,7 @@ const submit = (): void => {
 
     disabled.value = true;
 
-    form.post('', {
+    form.post(ImageController.store().url, {
         preserveScroll: true,
         onSuccess: (): void => {
             form.reset();
