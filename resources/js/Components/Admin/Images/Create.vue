@@ -92,9 +92,20 @@
                                             button-text="Select"
                                             :circle="false"
                                         />
+                                        <div v-if="image.file" class="mt-2">
+                                            <button
+                                                type="button"
+                                                class="inset-ring inset-ring-white/5 rounded-md bg-indigo-600 px-2 py-1 text-xs font-semibold text-white hover:bg-indigo-400"
+                                                @click="
+                                                    openPreviewFromIndex(index)
+                                                "
+                                            >
+                                                Preview
+                                            </button>
+                                        </div>
                                     </div>
                                     <div
-                                        class="flex flex-1 items-center justify-end gap-4"
+                                        class="flex flex-1 items-center justify-end gap-8"
                                     >
                                         <CheckboxInput
                                             :id="`image-default-${index}`"
@@ -165,6 +176,18 @@
                         <span v-else>Save</span>
                     </button>
                 </div>
+
+                <!-- Image Preview Modal -->
+                <Modal v-model="isPreviewOpen">
+                    <div class="flex items-center justify-center">
+                        <img
+                            v-if="previewSrc"
+                            :src="previewSrc"
+                            alt="Preview image"
+                            class="max-h-[70vh] w-auto max-w-full rounded-md"
+                        />
+                    </div>
+                </Modal>
             </form>
         </div>
     </div>
@@ -175,10 +198,11 @@ import BackToIndexButton from '@/Components/Shared/Buttons/BackToIndexButton.vue
 import CheckboxInput from '@/Components/Shared/Inputs/CheckboxInput.vue';
 import ImageInput from '@/Components/Shared/Inputs/ImageInput.vue';
 import SearchTextInput from '@/Components/Shared/Inputs/SearchTextInput.vue';
+import Modal from '@/Components/Shared/Modals/Modal.vue';
 import ImageController from '@/Routes/actions/App/Http/Controllers/Admin/ImageController';
 import { SelectFilterOptionType } from '@/Types/Admin/Types/SelectFilterOptionType';
 import { InertiaForm, useForm } from '@inertiajs/vue3';
-import { ref, Ref } from 'vue';
+import { onBeforeUnmount, ref, Ref, watch } from 'vue';
 import { toast } from 'vue3-toastify';
 
 defineProps<{
@@ -216,6 +240,38 @@ const removeImage = (index: number): void => {
     form.images.splice(index, 1);
 };
 
+const isPreviewOpen: Ref<boolean> = ref<boolean>(false);
+const previewSrc: Ref<string | null> = ref<string | null>(null);
+const previewObjectUrl: Ref<string | null> = ref<string | null>(null);
+
+const openPreviewFromIndex = (index: number): void => {
+    const image:
+        | {
+              file: File | string | null;
+          }
+        | undefined = form.images[index] as
+        | { file: File | string | null }
+        | undefined;
+
+    if (!image || !image.file) {
+        return;
+    }
+
+    if (previewObjectUrl.value) {
+        URL.revokeObjectURL(previewObjectUrl.value);
+        previewObjectUrl.value = null;
+    }
+
+    if (image.file instanceof File) {
+        previewObjectUrl.value = URL.createObjectURL(image.file);
+        previewSrc.value = previewObjectUrl.value;
+    } else {
+        previewSrc.value = image.file;
+    }
+
+    isPreviewOpen.value = !!previewSrc.value;
+};
+
 const submit = (): void => {
     if (form.processing || disabled.value) {
         return;
@@ -245,4 +301,21 @@ const submit = (): void => {
         },
     });
 };
+
+watch(
+    (): boolean => isPreviewOpen.value,
+    (open: boolean): void => {
+        if (!open && previewObjectUrl.value) {
+            URL.revokeObjectURL(previewObjectUrl.value);
+            previewObjectUrl.value = null;
+        }
+    },
+);
+
+onBeforeUnmount((): void => {
+    if (previewObjectUrl.value) {
+        URL.revokeObjectURL(previewObjectUrl.value);
+        previewObjectUrl.value = null;
+    }
+});
 </script>
