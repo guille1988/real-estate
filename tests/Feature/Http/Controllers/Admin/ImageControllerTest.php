@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 use App\Enums\PageEnum;
 use App\Enums\PaginationDirection;
-use App\Models\Amenity;
 use App\Models\Image;
-use App\Models\PricingDetail;
 use App\Models\Property;
 use App\Models\User;
 use Inertia\Testing\AssertableInertia as Assert;
@@ -166,41 +164,13 @@ it('works showing create images page.', function (): void {
         ->admin()
         ->create();
 
-    $property = Property::factory()
-        ->create();
-
-    Amenity::factory()
-        ->for($property)
-        ->create();
-
-    Image::factory()
-        ->for($property)
-        ->create();
-
-    PricingDetail::factory()
-        ->for($property)
+    Property::factory($count = 10)
         ->create();
 
     $this->actingAs($user)
         ->get(route('admin.images.create'))
-        ->assertInertia(function (Assert $page): void {
+        ->assertInertia(function (Assert $page) use ($count): void {
             $page->component(PageEnum::ADMIN_IMAGES_CREATE->value)
-                ->has('properties', 1);
-        });
-});
-
-it("doesn't show property in create images page if the property doesn't contain all mandatory relations.", function (): void {
-    $user = User::factory()
-        ->admin()
-        ->create();
-
-    Property::factory()
-        ->create();
-
-    $this->actingAs($user)
-        ->get(route('admin.images.create'))
-        ->assertInertia(function (Assert $page): void {
-            $page->component(PageEnum::ADMIN_IMAGES_CREATE->value)
-                ->has('properties', 0);
+                ->has('properties', $count);
         });
 });

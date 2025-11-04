@@ -173,7 +173,7 @@ final class Property extends Model
     }
 
     /*
-     * Returns the can show property cache key for the property.
+     * Returns 'can_show' property cache key.
      */
     public function getCanShowPropertyCacheKey(): string
     {
@@ -207,6 +207,14 @@ final class Property extends Model
         }
 
         return true;
+    }
+
+    /*
+     * Returns the destination path for the property.
+     */
+    public function getDestinationPath(): string
+    {
+        return "{$this->type->plural()}/$this->uuid";
     }
 
     /**
