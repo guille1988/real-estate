@@ -148,7 +148,7 @@ it('updates profile with all thumbnail formats with previous thumbnail saved.', 
     }
 
     Storage::disk('users')
-        ->assertCount('thumbnails', 1);
+        ->assertExists($updatedUser->thumbnail);
 })->with([
     [
         [

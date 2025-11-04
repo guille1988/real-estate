@@ -14,6 +14,7 @@ use Rector\Php74\Rector\Closure\ClosureToArrowFunctionRector;
 use Rector\Php81\Rector\Array_\FirstClassCallableRector;
 use Rector\Php83\Rector\ClassMethod\AddOverrideAttributeToOverriddenMethodsRector;
 use Rector\Privatization\Rector\ClassMethod\PrivatizeFinalClassMethodRector;
+use Rector\Privatization\Rector\MethodCall\PrivatizeLocalGetterToPropertyRector;
 
 return RectorConfig::configure()
     ->withPaths([
@@ -36,6 +37,7 @@ return RectorConfig::configure()
         CatchExceptionNameMatchingTypeRector::class,
         StaticCallOnNonStaticToInstanceCallRector::class,
         FirstClassCallableRector::class,
+        PrivatizeLocalGetterToPropertyRector::class,
     ])
     ->withPreparedSets(
         deadCode: true,

@@ -87,4 +87,20 @@ final class Image extends Model
         return Storage::disk('images')
             ->url($this->path);
     }
+
+    /*
+     * Returns if the image is the default one.
+     */
+    public function isDefault(): bool
+    {
+        return $this->is_default;
+    }
+
+    /*
+     * Returns if the image is not the default one.
+     */
+    public function isNotDefault(): bool
+    {
+        return ! $this->isDefault();
+    }
 }
