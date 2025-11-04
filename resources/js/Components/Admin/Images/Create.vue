@@ -346,7 +346,7 @@ const submit = (): void => {
         preserveScroll: true,
         onSuccess: (): void => {
             form.reset();
-            toast.success('Property created successfully.');
+            toast.success('Images were created successfully.');
         },
         onError: (): void => {
             toast.error(
