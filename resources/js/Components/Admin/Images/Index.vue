@@ -176,7 +176,10 @@
                                     <Text :text="image.createdAt ?? 'N/A'" />
                                     <Text :text="image.updatedAt ?? 'N/A'" />
                                     <Actions
-                                        delete-url="https://www.google.com"
+                                        :delete-url="
+                                            ImageController.destroy(image.uuid)
+                                                .url
+                                        "
                                         resource="image"
                                     />
                                 </tr>
@@ -287,7 +290,7 @@ const bulkDelete = (): void => {
         return;
     }
 
-    router.visit('', {
+    router.visit(ImageController.bulkDestroy().url, {
         method: FormMethodEnum.POST,
         data: { uuids: Array.from(selected.value) },
         onSuccess: (): void => {

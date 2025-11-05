@@ -144,21 +144,16 @@ final class Property extends Model
             ->toString();
     }
 
-    /*
-     * Returns the folder path of the images of property.
-     */
     /**
+     * Returns the folder path for the property.
+     *
      * @throws Throwable
      */
     public function getFolderPath(): string
     {
-        $path = $this->defaultImage?->path;
+        throw_if(is_null($this->defaultImage), message: 'Default image not found.');
 
-        throw_if(is_null($path), message: 'Default image not found.');
-
-        return str($path)
-            ->beforeLast('/')
-            ->toString();
+        return $this->defaultImage->getFolderPath();
     }
 
     /*

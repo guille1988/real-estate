@@ -69,16 +69,6 @@ final class Image extends Model
         return ['uuid'];
     }
 
-    /**
-     * Get the property that owns the image.
-     *
-     * @return BelongsTo<Property, $this>
-     */
-    public function property(): BelongsTo
-    {
-        return $this->belongsTo(Property::class);
-    }
-
     /*
      * Returns the image url.
      */
@@ -102,5 +92,54 @@ final class Image extends Model
     public function isNotDefault(): bool
     {
         return ! $this->isDefault();
+    }
+
+    /*
+     * Returns the folder path of the image.
+     */
+    public function getFolderPath(): string
+    {
+        return str($this->path)
+            ->beforeLast('/')
+            ->toString();
+    }
+
+    /*
+     * Deletes the image completely from
+     * the storage and the database.
+     */
+    public function deleteCompletely(): void
+    {
+        $wasDeleted = Storage::disk('images')
+            ->delete($this->path);
+
+        if ($wasDeleted) {
+            $this->delete();
+            $this->deleteFolderIfEmpty();
+        }
+    }
+
+    /*
+     * Deletes the folder if it is empty.
+     */
+    public function deleteFolderIfEmpty(): void
+    {
+        $remainingFiles = Storage::disk('images')
+            ->allFiles($this->getFolderPath());
+
+        if (count($remainingFiles) === 0) {
+            Storage::disk('images')
+                ->deleteDirectory($this->getFolderPath());
+        }
+    }
+
+    /**
+     * Get the property that owns the image.
+     *
+     * @return BelongsTo<Property, $this>
+     */
+    public function property(): BelongsTo
+    {
+        return $this->belongsTo(Property::class);
     }
 }

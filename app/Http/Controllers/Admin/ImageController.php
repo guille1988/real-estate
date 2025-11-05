@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Admin;
 
+use App\Actions\BulkDestroyImages;
 use App\Actions\StoreImages;
+use App\Data\Admin\ImageBulkDestroyData;
 use App\Data\Admin\ImageData;
 use App\Data\Admin\ImageStoreData;
 use App\Enums\PageEnum;
@@ -61,6 +63,24 @@ final class ImageController
          */
         $property = Property::firstWhere('uuid', $data->property);
         $action->execute($property, $data->images);
+
+        cache()->flush();
+
+        return back();
+    }
+
+    public function bulkDestroy(ImageBulkDestroyData $data, BulkDestroyImages $action): RedirectResponse
+    {
+        $action->execute($data);
+
+        cache()->flush();
+
+        return back();
+    }
+
+    public function destroy(Image $image): RedirectResponse
+    {
+        $image->deleteCompletely();
 
         cache()->flush();
 
