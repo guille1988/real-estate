@@ -179,6 +179,11 @@ it('works showing create images page.', function (): void {
 });
 
 it('stores images and marks one as default, moving files and clearing cache.', function (): void {
+    Artisan::shouldReceive('call')
+        ->once()
+        ->with('format:images', Mockery::any())
+        ->andReturn(0);
+
     Storage::fake('tmp');
     Storage::fake('images');
 
@@ -292,6 +297,11 @@ it('validates request data for store: requires property and images, with one def
 });
 
 it('rolls back and cleans up when an error occurs during file copy.', function (): void {
+    Artisan::shouldReceive('call')
+        ->once()
+        ->with('format:images', Mockery::any())
+        ->andReturn(0);
+
     Storage::fake('tmp');
     Storage::fake('images');
 

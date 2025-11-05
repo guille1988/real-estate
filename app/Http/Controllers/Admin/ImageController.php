@@ -15,6 +15,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
@@ -60,13 +61,14 @@ final class ImageController
      */
     public function store(ImageStoreData $data): RedirectResponse
     {
+        /**
+         * @var Property $property
+         */
+        $property = Property::firstWhere('uuid', $data->property);
+
         DB::beginTransaction();
 
         try {
-            /**
-             * @var Property $property
-             */
-            $property = Property::firstWhere('uuid', $data->property);
             $defaultImage = '';
 
             foreach ($data->images as $image) {
@@ -84,6 +86,13 @@ final class ImageController
                     $defaultImage = $path;
                 }
             }
+
+            $result = Artisan::call('format:images', [
+                '--format' => config()->string('app.default_image_format'),
+                '--path' => Storage::disk('tmp')->path($property->uuid),
+            ]);
+
+            throw_if($result !== 0, message: 'Image formatting failed.');
 
             $fullDestinationPath = Storage::disk('images')
                 ->path($destinationPath = $property->getDestinationPath());
@@ -116,12 +125,10 @@ final class ImageController
 
             DB::commit();
         } catch (Throwable $exception) {
-            if (isset($property)) {
-                collect(['images', 'tmp'])
-                    ->each(function (string $disk) use ($property): void {
-                        Storage::disk($disk)->deleteDirectory($property->uuid);
-                    });
-            }
+            collect(['images', 'tmp'])
+                ->each(function (string $disk) use ($property): void {
+                    Storage::disk($disk)->deleteDirectory($property->uuid);
+                });
 
             DB::rollBack();
 
