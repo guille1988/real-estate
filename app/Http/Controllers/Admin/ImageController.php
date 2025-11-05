@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Admin;
 
+use App\Actions\StoreImages;
 use App\Data\Admin\ImageData;
 use App\Data\Admin\ImageStoreData;
 use App\Enums\PageEnum;
@@ -14,14 +15,8 @@ use App\Models\Property;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
-use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Inertia\Response;
-use SplFileInfo;
 use Throwable;
 
 final class ImageController
@@ -59,81 +54,15 @@ final class ImageController
     /**
      * @throws Throwable
      */
-    public function store(ImageStoreData $data): RedirectResponse
+    public function store(ImageStoreData $data, StoreImages $action): RedirectResponse
     {
         /**
          * @var Property $property
          */
         $property = Property::firstWhere('uuid', $data->property);
+        $action->execute($property, $data->images);
 
-        DB::beginTransaction();
-
-        try {
-            $defaultImage = '';
-
-            foreach ($data->images as $image) {
-                /**
-                 * @var UploadedFile $file
-                 */
-                $file = $image['file'];
-
-                /**
-                 * @var string $path
-                 */
-                $path = $file->store($property->uuid, 'tmp');
-
-                if ($image['is_default']) {
-                    $defaultImage = $path;
-                }
-            }
-
-            $result = Artisan::call('format:images', [
-                '--format' => config()->string('app.default_image_format'),
-                '--path' => Storage::disk('tmp')->path($property->uuid),
-            ]);
-
-            throw_if($result !== 0, message: 'Image formatting failed.');
-
-            $fullDestinationPath = Storage::disk('images')
-                ->path($destinationPath = $property->getDestinationPath());
-
-            File::copyDirectory(
-                Storage::disk('tmp')->path($property->uuid),
-                $fullDestinationPath,
-            );
-
-            Storage::disk('tmp')
-                ->deleteDirectory($property->uuid);
-
-            if (File::isEmptyDirectory(Storage::disk('tmp')->path(''))) {
-                Storage::disk('tmp')->deleteDirectory('');
-            }
-
-            $images = collect(File::allFiles($fullDestinationPath))
-                ->map(function (SplFileInfo $file) use ($destinationPath, $defaultImage): array {
-                    $name = $file->getFilename();
-
-                    return [
-                        'path' => "$destinationPath/$name",
-                        'is_default' => str($defaultImage)->contains($name),
-                    ];
-                });
-
-            $property->images()->createMany($images);
-
-            cache()->flush();
-
-            DB::commit();
-        } catch (Throwable $exception) {
-            collect(['images', 'tmp'])
-                ->each(function (string $disk) use ($property): void {
-                    Storage::disk($disk)->deleteDirectory($property->uuid);
-                });
-
-            DB::rollBack();
-
-            throw $exception;
-        }
+        cache()->flush();
 
         return back();
     }
