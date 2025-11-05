@@ -349,3 +349,124 @@ it('rolls back and cleans up when an error occurs during file copy.', function (
     expect($property->images()->count())
         ->toBe(0);
 });
+
+it('bulk deletes images and clears cache, removing files from storage.', function (): void {
+    Storage::fake('images');
+
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $images = Image::factory(3)
+        ->create();
+
+    foreach ($images as $image) {
+        Storage::disk('images')
+            ->put($image->path, 'content');
+    }
+
+    cache()->put('to-clear', 'yes');
+
+    $this->from(route('admin.images.index'))
+        ->actingAs($user)
+        ->post(route('admin.images.bulk-delete'), [
+            'uuids' => $images->pluck('uuid')->toArray(),
+        ])->assertRedirect(route('admin.images.index'));
+
+    foreach ($images as $image) {
+        Storage::disk('images')
+            ->assertMissing($image->path);
+
+        expect(Image::query()->whereKey($image->getKey())->exists())
+            ->toBeFalse();
+    }
+
+    expect(cache()->has('to-clear'))
+        ->toBeFalse();
+});
+
+it('validates bulk delete request.', function (): void {
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $this->actingAs($user)
+        ->post(route('admin.images.bulk-delete'))
+        ->assertSessionHasErrors(['uuids']);
+
+    $valid = Image::factory()
+        ->create();
+
+    $this->actingAs($user)
+        ->post(route('admin.images.bulk-delete'), [
+            'uuids' => ['non-existent', $valid->uuid],
+        ])->assertSessionHasErrors(['uuids.0']);
+
+    expect(Image::query()->whereKey($valid->getKey())->exists())
+        ->toBeTrue();
+});
+
+it('destroys a single image completely and clears cache, keeping folder until last file is removed.', function (): void {
+    Storage::fake('images');
+
+    $user = User::factory()->admin()
+        ->create();
+
+    $property = Property::factory()
+        ->create();
+
+    $folder = "properties/$property->uuid";
+
+    $first = Image::factory()
+        ->for($property)
+        ->create(['path' => "$folder/a.jpg"]);
+
+    $second = Image::factory()
+        ->for($property)
+        ->create(['path' => "$folder/b.jpg"]);
+
+    Storage::disk('images')
+        ->put($first->path, 'a');
+
+    Storage::disk('images')
+        ->put($second->path, 'b');
+
+    cache()->put('bar', 'baz');
+
+    $this->from(route('admin.images.index'))
+        ->actingAs($user)
+        ->delete(route('admin.images.destroy', $first))
+        ->assertRedirect(route('admin.images.index'));
+
+    Storage::disk('images')
+        ->assertMissing($first->path);
+
+    Storage::disk('images')
+        ->assertExists($second->path);
+
+    expect(Image::query()->whereKey($first->getKey())->exists())
+        ->toBeFalse()
+        ->and(cache()->has('bar'))
+        ->toBeFalse();
+
+    cache()->put('bar', 'baz');
+
+    $this->from(route('admin.images.index'))
+        ->actingAs($user)
+        ->delete(route('admin.images.destroy', $second))
+        ->assertRedirect(route('admin.images.index'));
+
+    Storage::disk('images')
+        ->assertMissing($second->path);
+
+    expect(Storage::disk('images')
+        ->allFiles($folder))->toBe([]);
+});
+
+it('returns 404 when destroying a non-existing image.', function (): void {
+    $user = User::factory()->admin()->create();
+
+    $this->actingAs($user)
+        ->delete(route('admin.images.destroy', '00000000-0000-0000-0000-000000000000'))
+        ->assertNotFound();
+});
