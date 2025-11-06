@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Builders\PricingDetailBuilder;
 use App\Collections\PricingDetailCollection;
 use App\Enums\PricingDetailCategoryEnum;
 use Carbon\CarbonImmutable;
 use Database\Factories\PricingDetailFactory;
 use Illuminate\Database\Eloquent\Attributes\CollectedBy;
+use Illuminate\Database\Eloquent\Attributes\UseEloquentBuilder;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -27,6 +29,7 @@ use Illuminate\Support\Number;
  *  @property-read CarbonImmutable|null $updated_at
  */
 #[CollectedBy(PricingDetailCollection::class)]
+#[UseEloquentBuilder(PricingDetailBuilder::class)]
 final class PricingDetail extends Model
 {
     /** @use HasFactory<PricingDetailFactory> */
