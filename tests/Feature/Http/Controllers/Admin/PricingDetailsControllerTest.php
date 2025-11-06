@@ -127,7 +127,7 @@ it('works with category query string.', function (PricingDetailCategoryEnum $cat
     PricingDetail::factory(2)
         ->create(compact('category'));
 
-    $oppositeCategory = collect(PricingDetailCategoryEnum::cases())->first->isNot($category);
+    $oppositeCategory = collect(PricingDetailCategoryEnum::cases())->first->isNotEqualTo($category);
 
     PricingDetail::factory()
         ->create(['category' => $oppositeCategory]);

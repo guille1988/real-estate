@@ -15,7 +15,7 @@ enum PricingDetailCategoryEnum: string
      * Returns true if the pricing detail category
      * is the same as the given category.
      */
-    public function is(self $category): bool
+    public function equalsTo(self $category): bool
     {
         return $this->value === $category->value;
     }
@@ -24,9 +24,9 @@ enum PricingDetailCategoryEnum: string
      * Returns true if the pricing detail category
      * is different from the given category.
      */
-    public function isNot(self $category): bool
+    public function isNotEqualTo(self $category): bool
     {
-        return ! $this->is($category);
+        return ! $this->equalsTo($category);
     }
 
     /*
