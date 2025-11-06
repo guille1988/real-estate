@@ -12,6 +12,24 @@ enum PricingDetailCategoryEnum: string
     case MONTHLY_EXPENSES = 'monthly_expenses';
 
     /*
+     * Returns true if the pricing detail category
+     * is the same as the given category.
+     */
+    public function is(self $category): bool
+    {
+        return $this->value === $category->value;
+    }
+
+    /*
+     * Returns true if the pricing detail category
+     * is different from the given category.
+     */
+    public function isNot(self $category): bool
+    {
+        return ! $this->is($category);
+    }
+
+    /*
      * Returns the special price for the pricing detail category.
      */
     public function getSpecialPrice(): string
