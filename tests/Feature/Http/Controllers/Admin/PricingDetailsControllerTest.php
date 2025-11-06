@@ -68,7 +68,9 @@ it('works with search by name query string.', function (): void {
 });
 
 it('works with search by description query string.', function (): void {
-    $user = User::factory()->admin()->create();
+    $user = User::factory()
+        ->admin()
+        ->create();
 
     PricingDetail::factory()
         ->create([
@@ -122,7 +124,9 @@ it('works with property query string.', function (): void {
 });
 
 it('works with category query string.', function (PricingDetailCategoryEnum $category): void {
-    $user = User::factory()->admin()->create();
+    $user = User::factory()
+        ->admin()
+        ->create();
 
     PricingDetail::factory(2)
         ->create(compact('category'));
