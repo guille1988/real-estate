@@ -22,7 +22,16 @@ final class PricingDetailBuilder extends Builder
     {
         return $this->with('property.defaultImage:id,path,property_id')
             ->when($data->isNotNull('search'), function (self $query) use ($data): void {
-                $query->whereLike('name', "%$data->search%");
+                $search = "%$data->search%";
+
+                $query->where(function (Builder $subQuery) use ($search): void {
+                    $subQuery->whereLike('name', $search)
+                        ->orWhereLike('description', $search);
+                });
+            })->when($data->isNotNull('property'), function (self $query) use ($data): void {
+                $query->whereRelation('property', 'uuid', $data->property);
+            })->when($data->isNotNull('category'), function (self $query) use ($data): void {
+                $query->where('category', $data->category);
             })->orderBy($data->getSort(), $data->getDirection());
     }
 }

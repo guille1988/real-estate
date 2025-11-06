@@ -21,10 +21,7 @@ final class PricingDetailIndexData extends Data
         public ?string $sort = null,
         public ?PaginationDirection $direction = null,
         public ?string $property = null,
-        public ?string $name = null,
-        public ?string $description = null,
         public ?PricingDetailCategoryEnum $category = null,
-        public ?int $price = null,
     ) {}
 
     /**
@@ -38,10 +35,7 @@ final class PricingDetailIndexData extends Data
             'sort' => ['nullable', 'string', 'in:title,bathrooms,bedrooms,type,price'],
             'direction' => ['nullable', 'string', Rule::enum(PaginationDirection::class)],
             'property' => ['nullable', 'string', 'between:1,200', Rule::exists(Property::class, 'uuid')],
-            'name' => ['nullable', 'string', 'between:1,100'],
-            'description' => ['nullable', 'string', 'between:1,200'],
             'category' => ['nullable', Rule::enum(PricingDetailCategoryEnum::class)],
-            'price' => ['nullable', 'integer', 'digits_between:1,20'],
         ];
     }
 
