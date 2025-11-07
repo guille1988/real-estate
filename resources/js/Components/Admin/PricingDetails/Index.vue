@@ -61,13 +61,14 @@
                                 <TableHeader
                                     label="Property"
                                     column="property"
+                                    :sort="false"
                                 />
                                 <TableHeader label="Name" column="name" />
+                                <TableHeader label="Price" column="price" />
                                 <TableHeader
                                     label="Category"
                                     column="category"
                                 />
-                                <TableHeader label="Price" column="Price" />
                                 <TableHeader
                                     label="Actions"
                                     column="actions"
@@ -77,69 +78,7 @@
                         </thead>
                         <WhenVisible :data="['pricingDetails']">
                             <template #fallback>
-                                <tbody
-                                    class="divide-y divide-white/10 bg-gray-900"
-                                >
-                                    <tr
-                                        v-for="n in 7"
-                                        :key="`pricing-details-skeleton-${n}`"
-                                    >
-                                        <td class="relative w-10 px-4">
-                                            <div
-                                                class="h-4 w-4 rounded bg-gray-800/40"
-                                            ></div>
-                                        </td>
-                                        <td class="whitespace-nowrap px-4 py-5">
-                                            <div
-                                                class="flex items-center gap-3"
-                                            >
-                                                <div
-                                                    class="size-11 shrink-0 rounded-full bg-gray-800/60"
-                                                ></div>
-                                                <div
-                                                    class="h-5 w-40 rounded bg-gray-800/40"
-                                                ></div>
-                                            </div>
-                                        </td>
-                                        <td class="whitespace-nowrap px-4 py-5">
-                                            <div
-                                                class="h-5 w-10 rounded bg-gray-800/40"
-                                            ></div>
-                                        </td>
-                                        <td class="whitespace-nowrap px-4 py-5">
-                                            <div
-                                                class="h-5 w-10 rounded bg-gray-800/40"
-                                            ></div>
-                                        </td>
-                                        <td class="whitespace-nowrap px-4 py-5">
-                                            <div
-                                                class="h-6 w-20 rounded-full bg-gray-800/40"
-                                            ></div>
-                                        </td>
-                                        <td class="whitespace-nowrap px-4 py-5">
-                                            <div
-                                                class="h-5 w-16 rounded bg-gray-800/40"
-                                            ></div>
-                                        </td>
-                                        <td
-                                            class="whitespace-nowrap px-4 py-5 text-right"
-                                        >
-                                            <div
-                                                class="ml-auto flex w-24 justify-end gap-2"
-                                            >
-                                                <div
-                                                    class="h-8 w-8 rounded bg-gray-800/40"
-                                                ></div>
-                                                <div
-                                                    class="h-8 w-8 rounded bg-gray-800/40"
-                                                ></div>
-                                                <div
-                                                    class="h-8 w-8 rounded bg-gray-800/40"
-                                                ></div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
+                                <Skeleton resource="pricing-details" />
                             </template>
 
                             <tbody class="divide-y divide-white/10 bg-gray-900">
@@ -216,6 +155,7 @@ import FilterHandler from '@/Components/Shared/Tables/FilterHandler/FilterHandle
 import Pagination from '@/Components/Shared/Tables/Pagination.vue';
 import ResetFilters from '@/Components/Shared/Tables/ResetFilters.vue';
 import SearchBar from '@/Components/Shared/Tables/SearchBar.vue';
+import Skeleton from '@/Components/Shared/Tables/Skeleton.vue';
 import TableHeader from '@/Components/Shared/Tables/TableHeader.vue';
 import { FormMethodEnum } from '@/Types/Admin/Enums/FormMethodEnum';
 import { PricingDetailCategoryColors } from '@/Types/Admin/Enums/PricingDetailCategoryEnum';

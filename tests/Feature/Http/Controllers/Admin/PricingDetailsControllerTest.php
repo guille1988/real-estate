@@ -67,56 +67,20 @@ it('works with search by name query string.', function (): void {
         });
 });
 
-it('works with search by description query string.', function (): void {
+it('works searching by property title.', function (): void {
     $user = User::factory()
         ->admin()
         ->create();
 
-    PricingDetail::factory()
-        ->create([
-            'name' => 'Alpha',
-            'description' => 'AdminTest Desc One',
-        ]);
-
-    PricingDetail::factory()
-        ->create([
-            'name' => 'Beta',
-            'description' => 'AdminTest Desc Two',
-        ]);
-
-    PricingDetail::factory()
-        ->create([
-            'name' => 'Gamma',
-            'description' => 'Nothing',
-        ]);
-
-    $this->actingAs($user)
-        ->get(route('admin.pricing-details.index', ['search' => 'AdminTest']))
-        ->assertInertia(function (Assert $page): void {
-            $page->component(PageEnum::ADMIN_PRICING_DETAILS_INDEX->value)
-                ->has('pricingDetails.data', 2);
-        });
-});
-
-it('works with property query string.', function (): void {
-    $user = User::factory()
-        ->admin()
-        ->create();
-
-    $matching = Property::factory()
-        ->create();
-
-    $nonMatching = Property::factory()
-        ->create();
+    $property = Property::factory()
+        ->create(['title' => 'AdminTest Alpha']);
 
     PricingDetail::factory(2)
-        ->for($matching)->create();
-
-    PricingDetail::factory()
-        ->for($nonMatching)->create();
+        ->for($property)
+        ->create();
 
     $this->actingAs($user)
-        ->get(route('admin.pricing-details.index', ['property' => $matching->uuid]))
+        ->get(route('admin.pricing-details.index', ['search' => 'Admin']))
         ->assertInertia(function (Assert $page): void {
             $page->component(PageEnum::ADMIN_PRICING_DETAILS_INDEX->value)
                 ->has('pricingDetails.data', 2);

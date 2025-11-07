@@ -20,16 +20,24 @@ final class PricingDetailBuilder extends Builder
      */
     public function forIndexing(PricingDetailIndexData $data): self
     {
+        $columns = [
+            'id',
+            'uuid',
+            'name',
+            'price',
+            'category',
+            'property_id',
+        ];
+
         return $this->with('property.defaultImage:id,path,property_id')
+            ->select($columns)
             ->when($data->isNotNull('search'), function (self $query) use ($data): void {
                 $search = "%$data->search%";
 
                 $query->where(function (Builder $subQuery) use ($search): void {
                     $subQuery->whereLike('name', $search)
-                        ->orWhereLike('description', $search);
+                        ->orWhereRelation('property', 'title', 'like', $search);
                 });
-            })->when($data->isNotNull('property'), function (self $query) use ($data): void {
-                $query->whereRelation('property', 'uuid', $data->property);
             })->when($data->isNotNull('category'), function (self $query) use ($data): void {
                 $query->where('category', $data->category);
             })->orderBy($data->getSort(), $data->getDirection());

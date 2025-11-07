@@ -1,6 +1,6 @@
 <template>
     <td class="whitespace-nowrap px-4 py-5 text-sm text-gray-400">
-        <span :class="getClass()">{{ badge }}</span>
+        <span :class="getClass()">{{ getBadge() }}</span>
     </td>
 </template>
 
@@ -20,4 +20,6 @@ const getClass = (): string => {
 
     return `inline-flex items-center rounded-md bg-${color}-900/30 px-2 py-1 text-xs font-medium uppercase text-${color}-400 ring-1 ring-inset ring-${color}-500/50`;
 };
+
+const getBadge = (): string => badge.replace(/_/g, ' ');
 </script>

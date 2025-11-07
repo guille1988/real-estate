@@ -6,7 +6,6 @@ namespace App\Data\Admin;
 
 use App\Enums\PaginationDirection;
 use App\Enums\PricingDetailCategoryEnum;
-use App\Models\Property;
 use Illuminate\Validation\Rule;
 use Spatie\LaravelData\Attributes\MapName;
 use Spatie\LaravelData\Data;
@@ -20,7 +19,6 @@ final class PricingDetailIndexData extends Data
         public ?string $search = null,
         public ?string $sort = null,
         public ?PaginationDirection $direction = null,
-        public ?string $property = null,
         public ?PricingDetailCategoryEnum $category = null,
     ) {}
 
@@ -34,7 +32,6 @@ final class PricingDetailIndexData extends Data
             'search' => ['nullable', 'string', 'between:1,200'],
             'sort' => ['nullable', 'string', 'in:title,bathrooms,bedrooms,type,price'],
             'direction' => ['nullable', 'string', Rule::enum(PaginationDirection::class)],
-            'property' => ['nullable', 'string', 'between:1,200', Rule::exists(Property::class, 'uuid')],
             'category' => ['nullable', Rule::enum(PricingDetailCategoryEnum::class)],
         ];
     }

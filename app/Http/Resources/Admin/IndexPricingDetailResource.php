@@ -21,7 +21,6 @@ final class IndexPricingDetailResource extends JsonResource
         return [
             'uuid' => $this->uuid,
             'name' => $this->name,
-            'description' => $this->description,
             'price' => $this->getDollarPrice(),
             'category' => $this->category,
             'property_title' => $this->property?->title,

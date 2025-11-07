@@ -3,7 +3,6 @@ import { PricingDetailCategoryEnum } from '@/Types/Admin/Enums/PricingDetailCate
 export interface IndexPricingDetailInterface {
     uuid: string;
     name: string;
-    description: string;
     category: PricingDetailCategoryEnum;
     price: string;
     propertyTitle: string;
