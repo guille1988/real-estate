@@ -7,6 +7,7 @@ namespace App\Builders;
 use App\Data\Admin\PricingDetailIndexData;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Relation;
 
 /**
  * @template TModel of Model
@@ -29,8 +30,10 @@ final class PricingDetailBuilder extends Builder
             'property_id',
         ];
 
-        return $this->with('property.defaultImage:id,path,property_id')
-            ->select($columns)
+        return $this->with('property', function (Relation $query): void {
+            $query->select(['id', 'uuid', 'title'])
+                ->with(['defaultImage:id,path,property_id']);
+        })->select($columns)
             ->when($data->isNotNull('search'), function (self $query) use ($data): void {
                 $search = "%$data->search%";
 
