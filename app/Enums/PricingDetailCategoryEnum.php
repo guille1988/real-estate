@@ -4,12 +4,28 @@ declare(strict_types=1);
 
 namespace App\Enums;
 
+use Illuminate\Support\Collection;
+
 enum PricingDetailCategoryEnum: string
 {
     case ADDITIONAL_FEES = 'additional_fees';
     case MONTHLY_COSTS = 'monthly_costs';
     case TOTAL_INITIAL_COSTS = 'total_initial_costs';
     case MONTHLY_EXPENSES = 'monthly_expenses';
+
+    /**
+     * @return Collection<int, array{label: string, value: string}>
+     *
+     * Returns the label and value response version of all categories.
+     */
+    public static function toResponse(): Collection
+    {
+        return collect(self::cases())
+            ->map(fn (self $case): array => [
+                'label' => $case->title(),
+                'value' => $case->value,
+            ]);
+    }
 
     /*
      * Returns true if the pricing detail category

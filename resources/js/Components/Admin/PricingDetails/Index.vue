@@ -161,6 +161,7 @@ import { FormMethodEnum } from '@/Types/Admin/Enums/FormMethodEnum';
 import { PricingDetailCategoryColors } from '@/Types/Admin/Enums/PricingDetailCategoryEnum';
 import { IndexPricingDetailInterface } from '@/Types/Admin/Interfaces/IndexPricingDetailInterface';
 import { IndexPricingDetailsPaginatedInterface } from '@/Types/Admin/Interfaces/IndexPricingDetailsPaginatedInterface';
+import { PricingDetailCategoryInterface } from '@/Types/Admin/Interfaces/PricingDetailCategoryInterface';
 import { SelectFilterOptionType } from '@/Types/Admin/Types/SelectFilterOptionType';
 import { Link, WhenVisible, router } from '@inertiajs/vue3';
 import { Ref, computed, ref } from 'vue';
@@ -168,13 +169,18 @@ import { toast } from 'vue3-toastify';
 
 const {
     pricingDetails,
+    categories,
 }: {
     pricingDetails: IndexPricingDetailsPaginatedInterface;
+    categories: PricingDetailCategoryInterface[];
 } = defineProps<{
     pricingDetails: IndexPricingDetailsPaginatedInterface;
+    categories: PricingDetailCategoryInterface[];
 }>();
 
-const filters: Record<string, SelectFilterOptionType[]> = {};
+const filters: Record<string, SelectFilterOptionType[]> = {
+    category: categories,
+};
 
 const filtersOpen: Ref<boolean> = ref<boolean>(false);
 
