@@ -30,7 +30,7 @@ final class PricingDetailIndexData extends Data
         return [
             'page' => ['nullable', 'integer', 'digits_between:1,100'],
             'search' => ['nullable', 'string', 'between:1,200'],
-            'sort' => ['nullable', 'string', 'in:title,bathrooms,bedrooms,type,price'],
+            'sort' => ['nullable', 'string', 'in:name,price,category'],
             'direction' => ['nullable', 'string', Rule::enum(PaginationDirection::class)],
             'category' => ['nullable', Rule::enum(PricingDetailCategoryEnum::class)],
         ];
