@@ -40,17 +40,191 @@
                         </div>
                         <div>
                             <DropdownInput
-                                id="location"
-                                label="Location"
+                                id="category"
+                                label="Category"
                                 v-model="form.category"
                                 :options="categories"
-                                placeholder="Select location"
+                                placeholder="Select category"
                             />
                             <div
                                 v-if="form.errors.category"
                                 class="mt-1 max-w-full break-words text-sm text-red-500 dark:text-red-400"
                             >
                                 {{ form.errors.category }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="flex items-center justify-between gap-2">
+                            <h2 class="text-sm font-semibold">
+                                Pricing details
+                            </h2>
+                            <div class="flex flex-wrap items-center gap-2">
+                                <button
+                                    type="button"
+                                    @click="addPricingDetail"
+                                    :disabled="form.processing"
+                                    :class="[
+                                        'rounded-md px-3 py-2 text-sm font-semibold text-white',
+                                        form.processing
+                                            ? 'cursor-not-allowed bg-indigo-600 opacity-50'
+                                            : 'bg-indigo-600 hover:bg-indigo-500',
+                                    ]"
+                                >
+                                    Add
+                                </button>
+                                <button
+                                    type="button"
+                                    @click="removeAllPricingDetails"
+                                    :disabled="
+                                        form.processing ||
+                                        form.pricingDetails.length === 0
+                                    "
+                                    :class="[
+                                        'rounded-md px-3 py-2 text-sm font-semibold text-white',
+                                        form.processing ||
+                                        form.pricingDetails.length === 0
+                                            ? 'cursor-not-allowed bg-red-800 opacity-50'
+                                            : 'bg-red-800 hover:bg-red-700',
+                                    ]"
+                                >
+                                    Remove all
+                                </button>
+                            </div>
+                        </div>
+
+                        <div
+                            v-if="
+                                form.errors.pricingDetails ||
+                                form.errors.pricing_details
+                            "
+                            class="mt-1 max-w-full break-words text-sm text-red-500 dark:text-red-400"
+                        >
+                            {{
+                                form.errors.pricingDetails ||
+                                form.errors.pricing_details
+                            }}
+                        </div>
+
+                        <div class="mt-4 space-y-6">
+                            <div
+                                v-for="(detail, index) in form.pricingDetails"
+                                :key="`pricing-detail-${index}`"
+                                class="rounded-lg border border-white/10 p-4"
+                            >
+                                <div class="flex items-center justify-end">
+                                    <button
+                                        type="button"
+                                        @click="removePricingDetail(index)"
+                                        :disabled="form.processing"
+                                        :class="[
+                                            'rounded-md px-3 py-2 text-sm font-semibold',
+                                            form.processing
+                                                ? 'cursor-not-allowed bg-red-600 text-white opacity-50'
+                                                : 'bg-red-600 text-white hover:bg-red-500',
+                                        ]"
+                                    >
+                                        Remove
+                                    </button>
+                                </div>
+                                <div
+                                    class="mt-4 grid grid-cols-1 gap-4 md:grid-cols-3"
+                                >
+                                    <div>
+                                        <TextInput
+                                            :id="`pricing-name-${index}`"
+                                            label="Name"
+                                            v-model="detail.name"
+                                            type="text"
+                                            placeholder="Enter name"
+                                        />
+                                        <div
+                                            v-if="
+                                                form.errors[
+                                                    `pricingDetails.${index}.name`
+                                                ] ||
+                                                form.errors[
+                                                    `pricing_details.${index}.name`
+                                                ]
+                                            "
+                                            class="mt-1 max-w-full break-words text-sm text-red-500 dark:text-red-400"
+                                        >
+                                            {{
+                                                form.errors[
+                                                    `pricingDetails.${index}.name`
+                                                ] ||
+                                                form.errors[
+                                                    `pricing_details.${index}.name`
+                                                ]
+                                            }}
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <NumericInput
+                                            :id="`pricing-price-${index}`"
+                                            label="Price"
+                                            v-model="detail.price"
+                                            placeholder="0"
+                                            :accept-negative-numbers="false"
+                                        />
+                                        <div
+                                            v-if="
+                                                form.errors[
+                                                    `pricingDetails.${index}.price`
+                                                ] ||
+                                                form.errors[
+                                                    `pricing_details.${index}.price`
+                                                ]
+                                            "
+                                            class="mt-1 max-w-full break-words text-sm text-red-500 dark:text-red-400"
+                                        >
+                                            {{
+                                                form.errors[
+                                                    `pricingDetails.${index}.price`
+                                                ] ||
+                                                form.errors[
+                                                    `pricing_details.${index}.price`
+                                                ]
+                                            }}
+                                        </div>
+                                    </div>
+                                    <div class="md:col-span-3">
+                                        <TextAreaInput
+                                            :id="`pricing-description-${index}`"
+                                            label="Description"
+                                            v-model="detail.description"
+                                            :rows="3"
+                                            placeholder="Enter description"
+                                        />
+                                        <div
+                                            v-if="
+                                                form.errors[
+                                                    `pricingDetails.${index}.description`
+                                                ] ||
+                                                form.errors[
+                                                    `pricing_details.${index}.description`
+                                                ]
+                                            "
+                                            class="mt-1 max-w-full break-words text-sm text-red-500 dark:text-red-400"
+                                        >
+                                            {{
+                                                form.errors[
+                                                    `pricingDetails.${index}.description`
+                                                ] ||
+                                                form.errors[
+                                                    `pricing_details.${index}.description`
+                                                ]
+                                            }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                v-if="form.pricingDetails.length === 0"
+                                class="text-sm text-gray-400"
+                            >
+                                No pricing details added yet.
                             </div>
                         </div>
                     </div>
@@ -81,7 +255,10 @@
 <script setup lang="ts">
 import BackToIndexButton from '@/Components/Shared/Buttons/BackToIndexButton.vue';
 import DropdownInput from '@/Components/Shared/Inputs/DropdownInput.vue';
+import NumericInput from '@/Components/Shared/Inputs/NumericInput.vue';
 import SearchTextInput from '@/Components/Shared/Inputs/SearchTextInput.vue';
+import TextAreaInput from '@/Components/Shared/Inputs/TextAreaInput.vue';
+import TextInput from '@/Components/Shared/Inputs/TextInput.vue';
 import PricingDetailController from '@/Routes/actions/App/Http/Controllers/Admin/PricingDetailController';
 import { PricingDetailCategoryInterface } from '@/Types/Admin/Interfaces/PricingDetailCategoryInterface';
 import { SelectFilterOptionType } from '@/Types/Admin/Types/SelectFilterOptionType';
@@ -102,6 +279,42 @@ const form: InertiaForm<any> = useForm<any>({
     pricingDetails: [],
 });
 
+const addPricingDetail = (): void => {
+    if (form.processing) {
+        return;
+    }
+    form.pricingDetails.push({ name: '', description: '', price: '' });
+};
+
+const removePricingDetail = (index: number): void => {
+    if (form.processing) {
+        return;
+    }
+    const confirmed: boolean = confirm(
+        'Are you sure you want to remove this pricing detail?',
+    );
+    if (!confirmed) {
+        return;
+    }
+    form.pricingDetails.splice(index, 1);
+};
+
+const removeAllPricingDetails = (): void => {
+    if (form.processing || form.pricingDetails.length === 0) {
+        return;
+    }
+    const confirmed: boolean = confirm(
+        'Are you sure you want to remove all pricing details? This action cannot be undone.',
+    );
+    if (!confirmed) {
+        return;
+    }
+    form.pricingDetails.splice(0, form.pricingDetails.length);
+    if (typeof form.clearErrors === 'function') {
+        form.clearErrors();
+    }
+};
+
 const submit = (): void => {
     if (form.processing || disabled.value) {
         return;
@@ -113,7 +326,7 @@ const submit = (): void => {
         preserveScroll: true,
         onSuccess: (): void => {
             form.reset();
-            toast.success('Images were created successfully.');
+            toast.success('Pricing details were created successfully.');
         },
         onError: (): void => {
             toast.error(
