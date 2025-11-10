@@ -2,11 +2,14 @@
     <Layout>
         <div
             class="inset-ring inset-ring-white/10 flex h-full min-h-0 w-full flex-col rounded-xl bg-black p-4 text-white md:p-6"
-        ></div>
+        >
+            <Create :properties="properties" :categories="categories" />
+        </div>
     </Layout>
 </template>
 <script setup lang="ts">
 import Layout from '@/Components/Admin/Layout/Layout.vue';
+import Create from '@/Components/Admin/PricingDetails/Create.vue';
 import { displayErrors } from '@/Composables/useErrorHandling';
 import { PricingDetailCategoryInterface } from '@/Types/Admin/Interfaces/PricingDetailCategoryInterface';
 import { SelectFilterOptionType } from '@/Types/Admin/Types/SelectFilterOptionType';
