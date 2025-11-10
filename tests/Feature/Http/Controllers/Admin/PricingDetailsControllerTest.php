@@ -166,6 +166,8 @@ it('works displaying create page.', function (): void {
     $this->actingAs($user)
         ->get(route('admin.pricing-details.create'))
         ->assertInertia(function (Assert $page): void {
-            $page->component(PageEnum::ADMIN_PRICING_DETAILS_CREATE->value);
+            $page->component(PageEnum::ADMIN_PRICING_DETAILS_CREATE->value)
+                ->has('categories')
+                ->has('properties');
         });
 });

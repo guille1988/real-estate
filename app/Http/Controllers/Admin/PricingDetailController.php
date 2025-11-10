@@ -8,11 +8,15 @@ use App\Data\Admin\PricingDetailIndexData;
 use App\Enums\PageEnum;
 use App\Enums\PricingDetailCategoryEnum;
 use App\Http\Resources\Admin\IndexPricingDetailResource;
+use App\Http\Resources\Admin\SelectPropertyResource;
 use App\Models\PricingDetail;
+use App\Models\Property;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Support\Collection;
 use Inertia\Inertia;
 use Inertia\Response;
+use Throwable;
 
 final class PricingDetailController
 {
@@ -32,8 +36,19 @@ final class PricingDetailController
         ]);
     }
 
+    /**
+     * @throws Throwable
+     */
     public function create(): Response
     {
-        return Inertia::render(PageEnum::ADMIN_PRICING_DETAILS_CREATE->value);
+        $properties = cache()->rememberForever('admin_property_select', function (): ResourceCollection {
+            return Property::all(['uuid', 'title'])
+                ->toResourceCollection(SelectPropertyResource::class);
+        });
+
+        return Inertia::render(PageEnum::ADMIN_PRICING_DETAILS_CREATE->value, [
+            'properties' => fn (): ResourceCollection => $properties,
+            'categories' => fn (): Collection => PricingDetailCategoryEnum::toResponse(),
+        ]);
     }
 }
