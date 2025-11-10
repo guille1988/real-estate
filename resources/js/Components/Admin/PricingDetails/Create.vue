@@ -111,25 +111,23 @@
                             <div
                                 v-for="(detail, index) in form.pricingDetails"
                                 :key="`pricing-detail-${index}`"
-                                class="rounded-lg border border-white/10 p-4"
+                                class="flex flex-col rounded-lg border border-white/10 p-4 md:relative"
                             >
-                                <div class="flex items-center justify-end">
-                                    <button
-                                        type="button"
-                                        @click="removePricingDetail(index)"
-                                        :disabled="form.processing"
-                                        :class="[
-                                            'rounded-md px-3 py-2 text-sm font-semibold',
-                                            form.processing
-                                                ? 'cursor-not-allowed bg-red-600 text-white opacity-50'
-                                                : 'bg-red-600 text-white hover:bg-red-500',
-                                        ]"
-                                    >
-                                        Remove
-                                    </button>
-                                </div>
+                                <button
+                                    type="button"
+                                    @click="removePricingDetail(index)"
+                                    :disabled="form.processing"
+                                    :class="[
+                                        'mb-3 self-end rounded-md px-3 py-2 text-sm font-semibold md:absolute md:right-4 md:top-4 md:mb-0',
+                                        form.processing
+                                            ? 'cursor-not-allowed bg-red-600 text-white opacity-50'
+                                            : 'bg-red-600 text-white hover:bg-red-500',
+                                    ]"
+                                >
+                                    Remove
+                                </button>
                                 <div
-                                    class="mt-4 grid grid-cols-1 gap-4 md:grid-cols-3"
+                                    class="grid grid-cols-1 gap-4 md:grid-cols-3"
                                 >
                                     <div>
                                         <TextInput
