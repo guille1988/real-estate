@@ -157,3 +157,15 @@ it('works with sort price and direction desc query strings.', function (): void 
                 ->where('pricingDetails.data.2.price', '$1.00');
         });
 });
+
+it('works displaying create page.', function (): void {
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $this->actingAs($user)
+        ->get(route('admin.pricing-details.create'))
+        ->assertInertia(function (Assert $page): void {
+            $page->component(PageEnum::ADMIN_PRICING_DETAILS_CREATE->value);
+        });
+});

@@ -28,4 +28,5 @@ enum PageEnum: string
     case ADMIN_IMAGES_CREATE = 'Admin/Images/Create';
 
     case ADMIN_PRICING_DETAILS_INDEX = 'Admin/PricingDetails/Index';
+    case ADMIN_PRICING_DETAILS_CREATE = 'Admin/PricingDetails/Create';
 }

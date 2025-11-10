@@ -33,10 +33,10 @@
 
                     <Link
                         prefetch
-                        href=""
+                        :href="PricingDetailController.create().url"
                         class="shadow-xs block rounded-md bg-purple-500 px-3 py-2 text-center text-sm font-semibold text-white hover:bg-purple-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-500"
                     >
-                        Add Pricing Detail
+                        Add Pricing Details
                     </Link>
                 </div>
             </div>
@@ -157,6 +157,7 @@ import ResetFilters from '@/Components/Shared/Tables/ResetFilters.vue';
 import SearchBar from '@/Components/Shared/Tables/SearchBar.vue';
 import Skeleton from '@/Components/Shared/Tables/Skeleton.vue';
 import TableHeader from '@/Components/Shared/Tables/TableHeader.vue';
+import PricingDetailController from '@/Routes/actions/App/Http/Controllers/Admin/PricingDetailController';
 import { FormMethodEnum } from '@/Types/Admin/Enums/FormMethodEnum';
 import { PricingDetailCategoryColors } from '@/Types/Admin/Enums/PricingDetailCategoryEnum';
 import { IndexPricingDetailInterface } from '@/Types/Admin/Interfaces/IndexPricingDetailInterface';

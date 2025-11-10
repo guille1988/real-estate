@@ -43,8 +43,53 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     method: 'head',
 })
 
+/**
+* @see \App\Http\Controllers\Admin\PricingDetailController::create
+* @see app/Http/Controllers/Admin/PricingDetailController.php:35
+* @route '/admin/pricing-details/create'
+*/
+export const create = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: create.url(options),
+    method: 'get',
+})
+
+create.definition = {
+    methods: ["get","head"],
+    url: '/admin/pricing-details/create',
+} satisfies RouteDefinition<["get","head"]>
+
+/**
+* @see \App\Http\Controllers\Admin\PricingDetailController::create
+* @see app/Http/Controllers/Admin/PricingDetailController.php:35
+* @route '/admin/pricing-details/create'
+*/
+create.url = (options?: RouteQueryOptions) => {
+    return create.definition.url + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\Admin\PricingDetailController::create
+* @see app/Http/Controllers/Admin/PricingDetailController.php:35
+* @route '/admin/pricing-details/create'
+*/
+create.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: create.url(options),
+    method: 'get',
+})
+
+/**
+* @see \App\Http\Controllers\Admin\PricingDetailController::create
+* @see app/Http/Controllers/Admin/PricingDetailController.php:35
+* @route '/admin/pricing-details/create'
+*/
+create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+    url: create.url(options),
+    method: 'head',
+})
+
 const pricingDetails = {
     index: Object.assign(index, index),
+    create: Object.assign(create, create),
 }
 
 export default pricingDetails

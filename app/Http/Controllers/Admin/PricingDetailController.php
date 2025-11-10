@@ -31,4 +31,9 @@ final class PricingDetailController
             'categories' => fn (): Collection => PricingDetailCategoryEnum::toResponse(),
         ]);
     }
+
+    public function create(): Response
+    {
+        return Inertia::render(PageEnum::ADMIN_PRICING_DETAILS_CREATE->value);
+    }
 }

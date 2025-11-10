@@ -125,7 +125,10 @@ Route::prefix('admin')
                     ->name('.images.bulk-delete');
 
                 Route::resource('pricing-details', PricingDetailController::class)
-                    ->only(['index'])
-                    ->names(['index' => '.pricing-details.index']);
+                    ->only(['index', 'create'])
+                    ->names([
+                        'index' => '.pricing-details.index',
+                        'create' => '.pricing-details.create',
+                    ]);
             });
     });
