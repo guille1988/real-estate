@@ -95,16 +95,10 @@
                         </div>
 
                         <div
-                            v-if="
-                                form.errors.pricingDetails ||
-                                form.errors.pricing_details
-                            "
+                            v-if="form.errors.pricingDetails"
                             class="mt-1 max-w-full break-words text-sm text-red-500 dark:text-red-400"
                         >
-                            {{
-                                form.errors.pricingDetails ||
-                                form.errors.pricing_details
-                            }}
+                            {{ form.errors.pricingDetails }}
                         </div>
 
                         <div class="mt-4 space-y-6">
@@ -141,9 +135,6 @@
                                             v-if="
                                                 form.errors[
                                                     `pricingDetails.${index}.name`
-                                                ] ||
-                                                form.errors[
-                                                    `pricing_details.${index}.name`
                                                 ]
                                             "
                                             class="mt-1 max-w-full break-words text-sm text-red-500 dark:text-red-400"
@@ -151,9 +142,6 @@
                                             {{
                                                 form.errors[
                                                     `pricingDetails.${index}.name`
-                                                ] ||
-                                                form.errors[
-                                                    `pricing_details.${index}.name`
                                                 ]
                                             }}
                                         </div>
@@ -170,9 +158,6 @@
                                             v-if="
                                                 form.errors[
                                                     `pricingDetails.${index}.price`
-                                                ] ||
-                                                form.errors[
-                                                    `pricing_details.${index}.price`
                                                 ]
                                             "
                                             class="mt-1 max-w-full break-words text-sm text-red-500 dark:text-red-400"
@@ -180,9 +165,6 @@
                                             {{
                                                 form.errors[
                                                     `pricingDetails.${index}.price`
-                                                ] ||
-                                                form.errors[
-                                                    `pricing_details.${index}.price`
                                                 ]
                                             }}
                                         </div>
@@ -199,9 +181,6 @@
                                             v-if="
                                                 form.errors[
                                                     `pricingDetails.${index}.description`
-                                                ] ||
-                                                form.errors[
-                                                    `pricing_details.${index}.description`
                                                 ]
                                             "
                                             class="mt-1 max-w-full break-words text-sm text-red-500 dark:text-red-400"
@@ -209,9 +188,6 @@
                                             {{
                                                 form.errors[
                                                     `pricingDetails.${index}.description`
-                                                ] ||
-                                                form.errors[
-                                                    `pricing_details.${index}.description`
                                                 ]
                                             }}
                                         </div>
@@ -259,6 +235,7 @@ import TextAreaInput from '@/Components/Shared/Inputs/TextAreaInput.vue';
 import TextInput from '@/Components/Shared/Inputs/TextInput.vue';
 import PricingDetailController from '@/Routes/actions/App/Http/Controllers/Admin/PricingDetailController';
 import { PricingDetailCategoryInterface } from '@/Types/Admin/Interfaces/PricingDetailCategoryInterface';
+import { StorePricingDetailInterface } from '@/Types/Admin/Interfaces/StorePricingDetailInterface';
 import { SelectFilterOptionType } from '@/Types/Admin/Types/SelectFilterOptionType';
 import { InertiaForm, useForm } from '@inertiajs/vue3';
 import { ref, Ref } from 'vue';
@@ -271,17 +248,18 @@ defineProps<{
 
 const disabled: Ref<boolean> = ref<boolean>(false);
 
-const form: InertiaForm<any> = useForm<any>({
-    property: '',
-    category: '',
-    pricingDetails: [],
-});
+const form: InertiaForm<StorePricingDetailInterface> =
+    useForm<StorePricingDetailInterface>({
+        property: '',
+        category: null,
+        pricingDetails: [],
+    });
 
 const addPricingDetail = (): void => {
     if (form.processing) {
         return;
     }
-    form.pricingDetails.push({ name: '', description: '', price: '' });
+    form.pricingDetails.push({ name: '', description: '', price: 0 });
 };
 
 const removePricingDetail = (index: number): void => {
