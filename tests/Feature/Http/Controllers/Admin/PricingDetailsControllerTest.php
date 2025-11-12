@@ -171,3 +171,61 @@ it('works displaying create page.', function (): void {
                 ->has('properties');
         });
 });
+
+it('stores pricing details successfully and clears cache.', function (): void {
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $property = Property::factory()
+        ->create();
+
+    $payload = [
+        'property' => $property->uuid,
+        'category' => PricingDetailCategoryEnum::MONTHLY_COSTS->value,
+        'pricing_details' => [
+            [
+                'name' => 'Test name one',
+                'description' => 'Test description one',
+                'price' => 100,
+            ],
+            [
+                'name' => 'Test name two',
+                'description' => 'Test description two',
+                'price' => 200,
+            ],
+        ],
+    ];
+
+    $this->from(route('admin.pricing-details.create'))
+        ->actingAs($user)
+        ->post(route('admin.pricing-details.store'), $payload)
+        ->assertRedirect(route('admin.pricing-details.create'));
+
+    $details = $property->pricingDetails()->get();
+
+    expect($details)
+        ->toHaveCount(2)
+        ->and($details->pluck('category')->unique()->first())
+        ->toBe(PricingDetailCategoryEnum::MONTHLY_COSTS);
+});
+
+it('requires authentication to store pricing details.', function (): void {
+    $property = Property::factory()
+        ->create();
+
+    $payload = [
+        'property' => $property->uuid,
+        'category' => PricingDetailCategoryEnum::MONTHLY_COSTS->value,
+        'pricing_details' => [
+            [
+                'name' => 'Test name one',
+                'description' => 'Test description one',
+                'price' => 100,
+            ],
+        ],
+    ];
+
+    $this->post(route('admin.pricing-details.store'), $payload)
+        ->assertRedirect(route('admin.login.create'));
+});
