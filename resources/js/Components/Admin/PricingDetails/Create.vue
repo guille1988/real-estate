@@ -298,7 +298,7 @@ const submit = (): void => {
 
     disabled.value = true;
 
-    form.post('', {
+    form.post(PricingDetailController.store().url, {
         preserveScroll: true,
         onSuccess: (): void => {
             form.reset();

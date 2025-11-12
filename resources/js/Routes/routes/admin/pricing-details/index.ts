@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../../wayfinder'
 /**
 * @see \App\Http\Controllers\Admin\PricingDetailController::index
-* @see app/Http/Controllers/Admin/PricingDetailController.php:23
+* @see app/Http/Controllers/Admin/PricingDetailController.php:26
 * @route '/admin/pricing-details'
 */
 export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ index.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\PricingDetailController::index
-* @see app/Http/Controllers/Admin/PricingDetailController.php:23
+* @see app/Http/Controllers/Admin/PricingDetailController.php:26
 * @route '/admin/pricing-details'
 */
 index.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ index.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\PricingDetailController::index
-* @see app/Http/Controllers/Admin/PricingDetailController.php:23
+* @see app/Http/Controllers/Admin/PricingDetailController.php:26
 * @route '/admin/pricing-details'
 */
 index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -35,7 +35,7 @@ index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\PricingDetailController::index
-* @see app/Http/Controllers/Admin/PricingDetailController.php:23
+* @see app/Http/Controllers/Admin/PricingDetailController.php:26
 * @route '/admin/pricing-details'
 */
 index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -45,7 +45,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\PricingDetailController::create
-* @see app/Http/Controllers/Admin/PricingDetailController.php:42
+* @see app/Http/Controllers/Admin/PricingDetailController.php:45
 * @route '/admin/pricing-details/create'
 */
 export const create = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -60,7 +60,7 @@ create.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\PricingDetailController::create
-* @see app/Http/Controllers/Admin/PricingDetailController.php:42
+* @see app/Http/Controllers/Admin/PricingDetailController.php:45
 * @route '/admin/pricing-details/create'
 */
 create.url = (options?: RouteQueryOptions) => {
@@ -69,7 +69,7 @@ create.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\PricingDetailController::create
-* @see app/Http/Controllers/Admin/PricingDetailController.php:42
+* @see app/Http/Controllers/Admin/PricingDetailController.php:45
 * @route '/admin/pricing-details/create'
 */
 create.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -79,7 +79,7 @@ create.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\PricingDetailController::create
-* @see app/Http/Controllers/Admin/PricingDetailController.php:42
+* @see app/Http/Controllers/Admin/PricingDetailController.php:45
 * @route '/admin/pricing-details/create'
 */
 create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -87,9 +87,44 @@ create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     method: 'head',
 })
 
+/**
+* @see \App\Http\Controllers\Admin\PricingDetailController::store
+* @see app/Http/Controllers/Admin/PricingDetailController.php:58
+* @route '/admin/pricing-details'
+*/
+export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: store.url(options),
+    method: 'post',
+})
+
+store.definition = {
+    methods: ["post"],
+    url: '/admin/pricing-details',
+} satisfies RouteDefinition<["post"]>
+
+/**
+* @see \App\Http\Controllers\Admin\PricingDetailController::store
+* @see app/Http/Controllers/Admin/PricingDetailController.php:58
+* @route '/admin/pricing-details'
+*/
+store.url = (options?: RouteQueryOptions) => {
+    return store.definition.url + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\Admin\PricingDetailController::store
+* @see app/Http/Controllers/Admin/PricingDetailController.php:58
+* @route '/admin/pricing-details'
+*/
+store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
+    url: store.url(options),
+    method: 'post',
+})
+
 const pricingDetails = {
     index: Object.assign(index, index),
     create: Object.assign(create, create),
+    store: Object.assign(store, store),
 }
 
 export default pricingDetails

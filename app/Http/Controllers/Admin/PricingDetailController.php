@@ -4,13 +4,16 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Admin;
 
+use App\Actions\StorePricingDetails;
 use App\Data\Admin\PricingDetailIndexData;
+use App\Data\Admin\PricingDetailStoreData;
 use App\Enums\PageEnum;
 use App\Enums\PricingDetailCategoryEnum;
 use App\Http\Resources\Admin\IndexPricingDetailResource;
 use App\Http\Resources\Admin\SelectPropertyResource;
 use App\Models\PricingDetail;
 use App\Models\Property;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Support\Collection;
@@ -50,5 +53,14 @@ final class PricingDetailController
             'properties' => fn (): ResourceCollection => $properties,
             'categories' => fn (): Collection => PricingDetailCategoryEnum::toResponse(),
         ]);
+    }
+
+    public function store(PricingDetailStoreData $data, StorePricingDetails $action): RedirectResponse
+    {
+        $action->execute($data);
+
+        cache()->flush();
+
+        return back();
     }
 }
