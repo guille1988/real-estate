@@ -54,21 +54,33 @@
                         </div>
                     </div>
 
-                    <div v-if="pricingDetail.createdAt">
-                        <label class="mb-2 block text-sm">Created At</label>
-                        <div
-                            class="rounded border border-gray-700 bg-black/70 p-3 text-sm text-gray-300"
-                        >
-                            {{ pricingDetail.createdAt }}
-                        </div>
-                    </div>
-
-                    <div v-if="pricingDetail.updatedAt">
-                        <label class="mb-2 block text-sm">Updated At</label>
-                        <div
-                            class="rounded border border-gray-700 bg-black/70 p-3 text-sm text-gray-300"
-                        >
-                            {{ pricingDetail.updatedAt }}
+                    <div
+                        v-if="
+                            pricingDetail.createdAt || pricingDetail.updatedAt
+                        "
+                        class="md:col-start-2"
+                    >
+                        <div class="grid grid-cols-2 gap-6">
+                            <div v-if="pricingDetail.createdAt">
+                                <label class="mb-2 block text-sm"
+                                    >Created At</label
+                                >
+                                <div
+                                    class="rounded border border-gray-700 bg-black/70 p-3 text-sm text-gray-300"
+                                >
+                                    {{ pricingDetail.createdAt }}
+                                </div>
+                            </div>
+                            <div v-if="pricingDetail.updatedAt">
+                                <label class="mb-2 block text-sm"
+                                    >Updated At</label
+                                >
+                                <div
+                                    class="rounded border border-gray-700 bg-black/70 p-3 text-sm text-gray-300"
+                                >
+                                    {{ pricingDetail.updatedAt }}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
