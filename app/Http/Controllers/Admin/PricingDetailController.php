@@ -11,6 +11,7 @@ use App\Enums\PageEnum;
 use App\Enums\PricingDetailCategoryEnum;
 use App\Http\Resources\Admin\IndexPricingDetailResource;
 use App\Http\Resources\Admin\SelectPropertyResource;
+use App\Http\Resources\Admin\ShowPricingDetailResource;
 use App\Models\PricingDetail;
 use App\Models\Property;
 use Illuminate\Http\RedirectResponse;
@@ -52,6 +53,13 @@ final class PricingDetailController
         return Inertia::render(PageEnum::ADMIN_PRICING_DETAILS_CREATE->value, [
             'properties' => fn (): ResourceCollection => $properties,
             'categories' => fn (): Collection => PricingDetailCategoryEnum::toResponse(),
+        ]);
+    }
+
+    public function show(PricingDetail $pricingDetail): Response
+    {
+        return Inertia::render(PageEnum::ADMIN_PRICING_DETAILS_SHOW->value, [
+            'pricing_detail' => fn (): JsonResource => $pricingDetail->toResource(ShowPricingDetailResource::class),
         ]);
     }
 

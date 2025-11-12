@@ -172,6 +172,21 @@ it('works displaying create page.', function (): void {
         });
 });
 
+it('shows a pricing detail.', function (): void {
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $pricingDetail = PricingDetail::factory()
+        ->create();
+
+    $this->actingAs($user)
+        ->get(route('admin.pricing-details.show', $pricingDetail->uuid))
+        ->assertInertia(function (Assert $page): void {
+            $page->component(PageEnum::ADMIN_PRICING_DETAILS_SHOW->value);
+        });
+});
+
 it('stores pricing details successfully and clears cache.', function (): void {
     $user = User::factory()
         ->admin()
