@@ -115,8 +115,10 @@
                                         :mapping="PricingDetailCategoryColors"
                                     />
                                     <Actions
-                                        show-url="
-                                           
+                                        :show-url="
+                                            PricingDetailController.show(
+                                                pricingDetail.uuid,
+                                            ).url
                                         "
                                         edit-url="
                                           
