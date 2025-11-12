@@ -21,8 +21,9 @@ final class ShowPricingDetailResource extends JsonResource
         return [
             'uuid' => $this->uuid,
             'name' => $this->name,
-            'price' => $this->getDollarPrice(),
             'category' => $this->category,
+            'description' => $this->description,
+            'price' => $this->getDollarPrice(),
             'created_at' => $this->created_at?->format('Y-m-d H:i:s'),
             'updated_at' => $this->updated_at?->format('Y-m-d H:i:s'),
         ];
