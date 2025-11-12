@@ -56,7 +56,7 @@
 
                     <div
                         v-if="
-                            pricingDetail.createdAt || pricingDetail.updatedAt
+                            pricingDetail.createdAt && pricingDetail.updatedAt
                         "
                         class="md:col-start-2"
                     >
@@ -81,6 +81,15 @@
                                     {{ pricingDetail.updatedAt }}
                                 </div>
                             </div>
+                        </div>
+                    </div>
+
+                    <div class="md:col-span-2">
+                        <label class="mb-2 block text-sm">Description</label>
+                        <div
+                            class="whitespace-pre-line rounded border border-gray-700 bg-black/70 p-3 text-sm text-gray-300"
+                        >
+                            {{ pricingDetail.description }}
                         </div>
                     </div>
                 </div>
