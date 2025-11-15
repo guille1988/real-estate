@@ -30,4 +30,5 @@ enum PageEnum: string
     case ADMIN_PRICING_DETAILS_INDEX = 'Admin/PricingDetails/Index';
     case ADMIN_PRICING_DETAILS_CREATE = 'Admin/PricingDetails/Create';
     case ADMIN_PRICING_DETAILS_SHOW = 'Admin/PricingDetails/Show';
+    case ADMIN_PRICING_DETAILS_EDIT = 'Admin/PricingDetails/Edit';
 }

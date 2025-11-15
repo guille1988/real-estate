@@ -183,7 +183,24 @@ it('shows a pricing detail.', function (): void {
     $this->actingAs($user)
         ->get(route('admin.pricing-details.show', $pricingDetail->uuid))
         ->assertInertia(function (Assert $page): void {
-            $page->component(PageEnum::ADMIN_PRICING_DETAILS_SHOW->value);
+            $page->component(PageEnum::ADMIN_PRICING_DETAILS_SHOW->value)
+                ->has('pricingDetail');
+        });
+});
+
+it('edits a pricing detail.', function (): void {
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $pricingDetail = PricingDetail::factory()
+        ->create();
+
+    $this->actingAs($user)
+        ->get(route('admin.pricing-details.edit', $pricingDetail->uuid))
+        ->assertInertia(function (Assert $page): void {
+            $page->component(PageEnum::ADMIN_PRICING_DETAILS_EDIT->value)
+                ->has('pricingDetail');
         });
 });
 

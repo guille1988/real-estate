@@ -9,6 +9,7 @@ use App\Data\Admin\PricingDetailIndexData;
 use App\Data\Admin\PricingDetailStoreData;
 use App\Enums\PageEnum;
 use App\Enums\PricingDetailCategoryEnum;
+use App\Http\Resources\Admin\EditPricingDetailResource;
 use App\Http\Resources\Admin\IndexPricingDetailResource;
 use App\Http\Resources\Admin\SelectPropertyResource;
 use App\Http\Resources\Admin\ShowPricingDetailResource;
@@ -60,6 +61,13 @@ final class PricingDetailController
     {
         return Inertia::render(PageEnum::ADMIN_PRICING_DETAILS_SHOW->value, [
             'pricing_detail' => fn (): JsonResource => $pricingDetail->toResource(ShowPricingDetailResource::class),
+        ]);
+    }
+
+    public function edit(PricingDetail $pricingDetail): Response
+    {
+        return Inertia::render(PageEnum::ADMIN_PRICING_DETAILS_EDIT->value, [
+            'pricing_detail' => fn (): JsonResource => $pricingDetail->toResource(EditPricingDetailResource::class),
         ]);
     }
 

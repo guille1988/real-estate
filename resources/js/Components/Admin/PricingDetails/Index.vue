@@ -120,8 +120,10 @@
                                                 pricingDetail.uuid,
                                             ).url
                                         "
-                                        edit-url="
-                                          
+                                        :edit-url="
+                                            PricingDetailController.edit(
+                                                pricingDetail.uuid,
+                                            ).url
                                         "
                                         delete-url="
                                           
