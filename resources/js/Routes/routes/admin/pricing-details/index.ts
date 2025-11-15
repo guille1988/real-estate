@@ -89,7 +89,7 @@ create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\PricingDetailController::store
-* @see app/Http/Controllers/Admin/PricingDetailController.php:74
+* @see app/Http/Controllers/Admin/PricingDetailController.php:75
 * @route '/admin/pricing-details'
 */
 export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -104,7 +104,7 @@ store.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\PricingDetailController::store
-* @see app/Http/Controllers/Admin/PricingDetailController.php:74
+* @see app/Http/Controllers/Admin/PricingDetailController.php:75
 * @route '/admin/pricing-details'
 */
 store.url = (options?: RouteQueryOptions) => {
@@ -113,7 +113,7 @@ store.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\PricingDetailController::store
-* @see app/Http/Controllers/Admin/PricingDetailController.php:74
+* @see app/Http/Controllers/Admin/PricingDetailController.php:75
 * @route '/admin/pricing-details'
 */
 store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({

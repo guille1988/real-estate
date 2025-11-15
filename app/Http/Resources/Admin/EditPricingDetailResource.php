@@ -23,7 +23,7 @@ final class EditPricingDetailResource extends JsonResource
             'name' => $this->name,
             'category' => $this->category,
             'description' => $this->description,
-            'price' => $this->getDollarPrice(),
+            'price' => $this->price,
         ];
     }
 }

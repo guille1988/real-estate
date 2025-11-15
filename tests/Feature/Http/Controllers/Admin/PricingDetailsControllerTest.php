@@ -200,7 +200,8 @@ it('edits a pricing detail.', function (): void {
         ->get(route('admin.pricing-details.edit', $pricingDetail->uuid))
         ->assertInertia(function (Assert $page): void {
             $page->component(PageEnum::ADMIN_PRICING_DETAILS_EDIT->value)
-                ->has('pricingDetail');
+                ->has('pricingDetail')
+                ->has('categories');
         });
 });
 

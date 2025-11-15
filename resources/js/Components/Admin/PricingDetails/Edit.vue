@@ -34,35 +34,38 @@
                         </div>
                     </div>
 
-                    <div>
-                        <DropdownInput
-                            id="category"
-                            label="Category"
-                            v-model="form.category"
-                            :options="categories"
-                            placeholder="Select category"
-                        />
-                        <div
-                            v-if="form.errors.category"
-                            class="mt-1 max-w-full break-words text-sm text-red-500 dark:text-red-400"
-                        >
-                            {{ form.errors.category }}
-                        </div>
-                    </div>
-
                     <div class="md:col-start-2">
-                        <NumericInput
-                            id="price"
-                            label="Price (USD)"
-                            v-model="form.price"
-                            placeholder="0"
-                            :accept-negative-numbers="false"
-                        />
-                        <div
-                            v-if="form.errors.price"
-                            class="mt-1 max-w-full break-words text-sm text-red-500 dark:text-red-400"
-                        >
-                            {{ form.errors.price }}
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <DropdownInput
+                                    id="category"
+                                    label="Category"
+                                    v-model="form.category"
+                                    :options="categories"
+                                    placeholder="Select category"
+                                />
+                                <div
+                                    v-if="form.errors.category"
+                                    class="mt-1 max-w-full break-words text-sm text-red-500 dark:text-red-400"
+                                >
+                                    {{ form.errors.category }}
+                                </div>
+                            </div>
+                            <div>
+                                <NumericInput
+                                    id="price"
+                                    label="Price (USD)"
+                                    v-model="form.price"
+                                    placeholder="0"
+                                    :accept-negative-numbers="false"
+                                />
+                                <div
+                                    v-if="form.errors.price"
+                                    class="mt-1 max-w-full break-words text-sm text-red-500 dark:text-red-400"
+                                >
+                                    {{ form.errors.price }}
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -111,11 +114,9 @@ import DropdownInput from '@/Components/Shared/Inputs/DropdownInput.vue';
 import NumericInput from '@/Components/Shared/Inputs/NumericInput.vue';
 import TextAreaInput from '@/Components/Shared/Inputs/TextAreaInput.vue';
 import TextInput from '@/Components/Shared/Inputs/TextInput.vue';
-import { title } from '@/Composables/useTitleCase';
 import PricingDetailController from '@/Routes/actions/App/Http/Controllers/Admin/PricingDetailController';
-import { PricingDetailCategoryEnum } from '@/Types/Admin/Enums/PricingDetailCategoryEnum';
 import { EditPricingDetailInterface } from '@/Types/Admin/Interfaces/EditPricingDetailInterface';
-import { DropdownInputOptionsInterface } from '@/Types/App/Interfaces/DropdownInputOptionsInterface';
+import { PricingDetailCategoryInterface } from '@/Types/Admin/Interfaces/PricingDetailCategoryInterface';
 import { InertiaForm, router, useForm } from '@inertiajs/vue3';
 import { ref, Ref } from 'vue';
 import { toast } from 'vue3-toastify';
@@ -123,20 +124,18 @@ import { toast } from 'vue3-toastify';
 const { pricingDetail }: { pricingDetail: EditPricingDetailInterface } =
     defineProps<{
         pricingDetail: EditPricingDetailInterface;
+        categories: PricingDetailCategoryInterface[];
     }>();
-
-const categories: DropdownInputOptionsInterface<string>[] = Object.values(
-    PricingDetailCategoryEnum,
-).map((value: string) => ({ label: title(value.replaceAll('_', ' ')), value }));
 
 const disabled: Ref<boolean> = ref<boolean>(false);
 
-const form: InertiaForm<any> = useForm<any>({
-    name: pricingDetail.name,
-    category: pricingDetail.category ?? null,
-    description: pricingDetail.description,
-    price: pricingDetail.price,
-});
+const form: InertiaForm<EditPricingDetailInterface> =
+    useForm<EditPricingDetailInterface>({
+        name: pricingDetail.name,
+        category: pricingDetail.category,
+        description: pricingDetail.description,
+        price: pricingDetail.price,
+    });
 
 const submit = (): void => {
     if (form.processing || disabled.value) {

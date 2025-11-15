@@ -68,6 +68,7 @@ final class PricingDetailController
     {
         return Inertia::render(PageEnum::ADMIN_PRICING_DETAILS_EDIT->value, [
             'pricing_detail' => fn (): JsonResource => $pricingDetail->toResource(EditPricingDetailResource::class),
+            'categories' => fn (): Collection => PricingDetailCategoryEnum::toResponse(),
         ]);
     }
 
