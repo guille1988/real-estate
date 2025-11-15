@@ -262,3 +262,32 @@ it('requires authentication to store pricing details.', function (): void {
     $this->post(route('admin.pricing-details.store'), $payload)
         ->assertRedirect(route('admin.login.create'));
 });
+
+it('updates a pricing detail.', function (array $data): void {
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $pricingDetail = PricingDetail::factory()
+        ->create();
+
+    $this->actingAs($user)
+        ->put(route('admin.pricing-details.update', $pricingDetail->uuid), $data)
+        ->assertRedirectBack();
+
+    $data['category'] = PricingDetailCategoryEnum::from($data['category']);
+
+    $expected = $pricingDetail->fresh()
+        ->only(['name', 'category', 'price', 'description']);
+
+    expect($expected)->toBe($data);
+})->with([
+    [
+        [
+            'name' => 'Test name.',
+            'category' => PricingDetailCategoryEnum::MONTHLY_COSTS->value,
+            'price' => 888888,
+            'description' => 'Test description.',
+        ],
+    ],
+]);
