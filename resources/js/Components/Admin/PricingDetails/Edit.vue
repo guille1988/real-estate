@@ -117,6 +117,7 @@ import TextInput from '@/Components/Shared/Inputs/TextInput.vue';
 import PricingDetailController from '@/Routes/actions/App/Http/Controllers/Admin/PricingDetailController';
 import { EditPricingDetailInterface } from '@/Types/Admin/Interfaces/EditPricingDetailInterface';
 import { PricingDetailCategoryInterface } from '@/Types/Admin/Interfaces/PricingDetailCategoryInterface';
+import { UpdatePricingDetailInterface } from '@/Types/Admin/Interfaces/UpdatePricingDetailInterface';
 import { InertiaForm, router, useForm } from '@inertiajs/vue3';
 import { ref, Ref } from 'vue';
 import { toast } from 'vue3-toastify';
@@ -129,8 +130,8 @@ const { pricingDetail }: { pricingDetail: EditPricingDetailInterface } =
 
 const disabled: Ref<boolean> = ref<boolean>(false);
 
-const form: InertiaForm<EditPricingDetailInterface> =
-    useForm<EditPricingDetailInterface>({
+const form: InertiaForm<UpdatePricingDetailInterface> =
+    useForm<UpdatePricingDetailInterface>({
         name: pricingDetail.name,
         category: pricingDetail.category,
         description: pricingDetail.description,
@@ -144,7 +145,7 @@ const submit = (): void => {
 
     disabled.value = true;
 
-    form.patch('', {
+    form.put('', {
         preserveScroll: true,
         onSuccess: (): void => {
             router.reload();
