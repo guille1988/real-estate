@@ -125,8 +125,10 @@
                                                 pricingDetail.uuid,
                                             ).url
                                         "
-                                        delete-url="
-                                          
+                                        :delete-url="
+                                            PricingDetailController.destroy(
+                                                pricingDetail.uuid,
+                                            ).url
                                         "
                                         resource="pricingDetail"
                                     />
@@ -242,7 +244,7 @@ const bulkDelete = (): void => {
         return;
     }
 
-    router.visit('', {
+    router.visit(PricingDetailController.bulkDestroy().url, {
         method: FormMethodEnum.POST,
         data: { uuids: Array.from(selected.value) },
         onSuccess: (): void => {

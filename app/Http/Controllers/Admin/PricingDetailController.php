@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Admin;
 
 use App\Actions\StorePricingDetails;
+use App\Data\Admin\PricingDetailBulkDestroyData;
 use App\Data\Admin\PricingDetailIndexData;
 use App\Data\Admin\PricingDetailStoreData;
 use App\Data\Admin\PricingDetailUpdateData;
@@ -76,6 +77,16 @@ final class PricingDetailController
     public function store(PricingDetailStoreData $data, StorePricingDetails $action): RedirectResponse
     {
         $action->execute($data);
+        cache()->flush();
+
+        return back();
+    }
+
+    public function bulkDestroy(PricingDetailBulkDestroyData $data): RedirectResponse
+    {
+        PricingDetail::query()
+            ->whereIn('uuid', $data->uuids)
+            ->delete();
 
         cache()->flush();
 
@@ -85,7 +96,14 @@ final class PricingDetailController
     public function update(PricingDetailUpdateData $data, PricingDetail $pricingDetail): RedirectResponse
     {
         $pricingDetail->update($data->toArray());
+        cache()->flush();
 
+        return back();
+    }
+
+    public function destroy(PricingDetail $pricingDetail): RedirectResponse
+    {
+        $pricingDetail->delete();
         cache()->flush();
 
         return back();
