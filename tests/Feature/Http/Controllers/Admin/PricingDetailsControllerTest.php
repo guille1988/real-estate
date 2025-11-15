@@ -291,3 +291,37 @@ it('updates a pricing detail.', function (array $data): void {
         ],
     ],
 ]);
+
+it('deletes a pricing detail.', function (): void {
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $pricingDetail = PricingDetail::factory()
+        ->create();
+
+    $this->actingAs($user)
+        ->delete(route('admin.pricing-details.destroy', $pricingDetail->uuid))
+        ->assertRedirectBack();
+
+    $this->assertModelMissing($pricingDetail);
+});
+
+it('bulks delete pricing details.', function (): void {
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $pricingDetails = PricingDetail::factory(2)
+        ->create();
+
+    $this->actingAs($user)
+        ->post(
+            route('admin.pricing-details.bulk-delete'),
+            ['uuids' => $pricingDetails->pluck('uuid')->toArray()],
+        )->assertRedirectBack();
+
+    $pricingDetails->each(function (PricingDetail $pricingDetail): void {
+        $this->assertModelMissing($pricingDetail);
+    });
+});
