@@ -145,7 +145,7 @@ const submit = (): void => {
 
     disabled.value = true;
 
-    form.put('', {
+    form.put(PricingDetailController.update(pricingDetail.uuid).url, {
         preserveScroll: true,
         onSuccess: (): void => {
             router.reload();

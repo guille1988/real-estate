@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Admin;
 use App\Actions\StorePricingDetails;
 use App\Data\Admin\PricingDetailIndexData;
 use App\Data\Admin\PricingDetailStoreData;
+use App\Data\Admin\PricingDetailUpdateData;
 use App\Enums\PageEnum;
 use App\Enums\PricingDetailCategoryEnum;
 use App\Http\Resources\Admin\EditPricingDetailResource;
@@ -75,6 +76,15 @@ final class PricingDetailController
     public function store(PricingDetailStoreData $data, StorePricingDetails $action): RedirectResponse
     {
         $action->execute($data);
+
+        cache()->flush();
+
+        return back();
+    }
+
+    public function update(PricingDetailUpdateData $data, PricingDetail $pricingDetail): RedirectResponse
+    {
+        $pricingDetail->update($data->toArray());
 
         cache()->flush();
 
