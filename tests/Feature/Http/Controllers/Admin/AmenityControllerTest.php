@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Enums\PageEnum;
 use App\Enums\PaginationDirection;
 use App\Models\Amenity;
+use App\Models\Property;
 use App\Models\User;
 use Inertia\Testing\AssertableInertia as Assert;
 
@@ -200,5 +201,162 @@ it('works combining search, direction and page.', function (): void {
         ]))->assertInertia(function (Assert $page): void {
             $page->component(PageEnum::ADMIN_AMENITIES_INDEX->value)
                 ->has('amenities.data', 2);
+        });
+});
+
+it('orders by createdAt asc when sort is provided.', function (): void {
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $older = Amenity::factory()
+        ->create([
+            'description' => 'Older',
+            'created_at' => now()->subDays(2),
+            'updated_at' => now()->subDays(2),
+        ]);
+
+    $newer = Amenity::factory()
+        ->create([
+            'description' => 'Newer',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+    $this->actingAs($user)
+        ->get(route('admin.amenities.index', ['sort' => 'createdAt']))
+        ->assertInertia(function (Assert $page) use ($older, $newer): void {
+            $page->component(PageEnum::ADMIN_AMENITIES_INDEX->value)
+                ->has('amenities.data', 2)
+                ->where('amenities.data.0.uuid', $older->uuid)
+                ->where('amenities.data.1.uuid', $newer->uuid);
+        });
+});
+
+it('orders by createdAt desc when sort and direction are provided.', function (): void {
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $older = Amenity::factory()
+        ->create([
+            'description' => 'Older',
+            'created_at' => now()->subDays(2),
+            'updated_at' => now()->subDays(2),
+        ]);
+
+    $newer = Amenity::factory()
+        ->create([
+            'description' => 'Newer',
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+    $this->actingAs($user)
+        ->get(route('admin.amenities.index', [
+            'sort' => 'createdAt',
+            'direction' => PaginationDirection::DESC->value,
+        ]))
+        ->assertInertia(function (Assert $page) use ($older, $newer): void {
+            $page->component(PageEnum::ADMIN_AMENITIES_INDEX->value)
+                ->has('amenities.data', 2)
+                ->where('amenities.data.0.uuid', $newer->uuid)
+                ->where('amenities.data.1.uuid', $older->uuid);
+        });
+});
+
+it('orders by updatedAt asc when sort is provided.', function (): void {
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $lessRecentUpdate = Amenity::factory()
+        ->create([
+            'description' => 'Less Recent',
+            'created_at' => now()->subDays(2),
+            'updated_at' => now()->subDays(2),
+        ]);
+
+    $moreRecentUpdate = Amenity::factory()
+        ->create([
+            'description' => 'More Recent',
+            'created_at' => now()->subDays(3),
+            'updated_at' => now()->subDay(),
+        ]);
+
+    $this->actingAs($user)
+        ->get(route('admin.amenities.index', ['sort' => 'updatedAt']))
+        ->assertInertia(function (Assert $page) use ($lessRecentUpdate, $moreRecentUpdate): void {
+            $page->component(PageEnum::ADMIN_AMENITIES_INDEX->value)
+                ->has('amenities.data', 2)
+                ->where('amenities.data.0.uuid', $lessRecentUpdate->uuid)
+                ->where('amenities.data.1.uuid', $moreRecentUpdate->uuid);
+        });
+});
+
+it('orders by updatedAt desc when sort and direction are provided.', function (): void {
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $lessRecentUpdate = Amenity::factory()
+        ->create([
+            'description' => 'Less Recent',
+            'created_at' => now()->subDays(3),
+            'updated_at' => now()->subDays(3),
+        ]);
+
+    $moreRecentUpdate = Amenity::factory()
+        ->create([
+            'description' => 'More Recent',
+            'created_at' => now()->subDays(2),
+            'updated_at' => now()->subDay(),
+        ]);
+
+    $this->actingAs($user)
+        ->get(route('admin.amenities.index', [
+            'sort' => 'updatedAt',
+            'direction' => PaginationDirection::DESC->value,
+        ]))
+        ->assertInertia(function (Assert $page) use ($lessRecentUpdate, $moreRecentUpdate): void {
+            $page->component(PageEnum::ADMIN_AMENITIES_INDEX->value)
+                ->has('amenities.data', 2)
+                ->where('amenities.data.0.uuid', $moreRecentUpdate->uuid)
+                ->where('amenities.data.1.uuid', $lessRecentUpdate->uuid);
+        });
+});
+
+it('searches by property title when search matches related property.', function (): void {
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $matchingProperty = Property::factory()
+        ->create([
+            'title' => 'AdminTest Sunny House',
+        ]);
+
+    Amenity::factory()
+        ->create([
+            'description' => 'Does not contain term',
+            'property_id' => $matchingProperty->id,
+        ]);
+
+    $otherProperty = Property::factory()
+        ->create([
+            'title' => 'Cozy Cabin',
+        ]);
+
+    Amenity::factory()
+        ->create([
+            'description' => 'Also without keyword',
+            'property_id' => $otherProperty->id,
+        ]);
+
+    $this->actingAs($user)
+        ->get(route('admin.amenities.index', ['search' => 'AdminTest']))
+        ->assertInertia(function (Assert $page): void {
+            $page->component(PageEnum::ADMIN_AMENITIES_INDEX->value)
+                ->has('amenities.data', 1);
         });
 });
