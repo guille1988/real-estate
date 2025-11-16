@@ -28,17 +28,4 @@ final class AmenityUpdateData extends Data
             'description' => ['required', 'string', 'between:2,200'],
         ];
     }
-
-    /**
-     * @return array<string, mixed>
-     */
-    public function toArray(): array
-    {
-        /**
-         * @var array<string, mixed> $data
-         */
-        $data = parent::toArray();
-
-        return $data;
-    }
 }

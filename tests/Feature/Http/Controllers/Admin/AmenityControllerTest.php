@@ -444,6 +444,34 @@ it('edits an amenity.', function (): void {
         });
 });
 
+it('updates an amenity.', function (string $description): void {
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $amenity = Amenity::factory()
+        ->create();
+
+    $property = Property::factory()
+        ->create();
+
+    $data = [
+        'property' => $property->uuid,
+        'description' => $description,
+    ];
+
+    $this->actingAs($user)
+        ->put(route('admin.amenities.update', $amenity->uuid), $data)
+        ->assertRedirectBack();
+
+    $freshAmenity = $amenity->fresh();
+
+    expect($freshAmenity->description)
+        ->toBe($description)
+        ->and($freshAmenity->property_id)
+        ->toBe($property->id);
+})->with(['Test description one', 'Test description two', 'Test description three']);
+
 it('deletes an amenity.', function (): void {
     $user = User::factory()
         ->admin()
