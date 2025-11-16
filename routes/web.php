@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AmenityController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\Admin\LoginController;
@@ -137,5 +138,11 @@ Route::prefix('admin')
 
                 Route::post('pricing-details/bulk-delete', [PricingDetailController::class, 'bulkDestroy'])
                     ->name('.pricing-details.bulk-delete');
+
+                Route::resource('amenities', AmenityController::class)
+                    ->only(['index'])
+                    ->names([
+                        'index' => '.amenities.index',
+                    ]);
             });
     });
