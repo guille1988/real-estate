@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Admin;
 
 use App\Actions\BulkDestroyImages;
-use App\Actions\StoreImages;
 use App\Data\Admin\ImageBulkDestroyData;
 use App\Data\Admin\ImageData;
 use App\Data\Admin\ImageStoreData;
@@ -56,13 +55,9 @@ final class ImageController
     /**
      * @throws Throwable
      */
-    public function store(ImageStoreData $data, StoreImages $action): RedirectResponse
+    public function store(ImageStoreData $data): RedirectResponse
     {
-        /**
-         * @var Property $property
-         */
-        $property = Property::firstWhere('uuid', $data->property);
-        $action->execute($property, $data->images);
+        info('DATA: ', $data->toArray());
 
         cache()->flush();
 

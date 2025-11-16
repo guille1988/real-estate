@@ -87,14 +87,6 @@ final class Image extends Model
     }
 
     /*
-     * Returns if the image is not the default one.
-     */
-    public function isNotDefault(): bool
-    {
-        return ! $this->isDefault();
-    }
-
-    /*
      * Returns the folder path of the image.
      */
     public function getFolderPath(): string

@@ -6,7 +6,6 @@ namespace App\Data\Admin;
 
 use App\Enums\ImageFormatEnum;
 use App\Models\Property;
-use App\Rules\OnlyOneDefaultImage;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\File;
@@ -42,7 +41,7 @@ final class ImageStoreData extends Data
     {
         return [
             'property' => ['required', 'string', Rule::exists(Property::class, 'uuid')],
-            'images' => ['required', 'array', 'between:1,30', new OnlyOneDefaultImage],
+            'images' => ['required', 'array', 'between:1,30'],
             'images.*.file' => ['required', File::types(ImageFormatEnum::values())->max('2mb')],
             'images.*.is_default' => ['required', 'boolean'],
         ];

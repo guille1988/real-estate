@@ -326,8 +326,7 @@ it('works on destroying property.', function (): void {
     $property = Property::factory()
         ->create();
 
-    $folderPath = str($property->type->value)
-        ->plural()
+    $folderPath = str($property->type->plural())
         ->append('/', $property->uuid)
         ->toString();
 
@@ -412,8 +411,7 @@ it('works on bulk destroying properties.', function (): void {
     $property = Property::factory()
         ->create();
 
-    $folderPath = str($property->type->value)
-        ->plural()
+    $folderPath = str($property->type->plural())
         ->append('/', $property->uuid)
         ->toString();
 
