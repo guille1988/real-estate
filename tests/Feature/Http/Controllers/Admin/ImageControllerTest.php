@@ -7,7 +7,9 @@ use App\Enums\PaginationDirection;
 use App\Models\Image;
 use App\Models\Property;
 use App\Models\User;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Testing\TestResponse;
 use Inertia\Testing\AssertableInertia as Assert;
 
 it('works on index page.', function (): void {
@@ -176,6 +178,91 @@ it('works showing create images page.', function (): void {
         });
 });
 
+it('stores images and redirects back.', function (): void {
+    Storage::fake('images');
+
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $property = Property::factory()
+        ->create();
+
+    config()->set('app.default_image_format', 'jpg');
+
+    $file = UploadedFile::fake()
+        ->image('photo.jpg', 100, 100)
+        ->size(100);
+
+    $this->from(route('admin.images.create'))
+        ->actingAs($user)
+        ->post(route('admin.images.store'), [
+            'property' => $property->uuid,
+            'images' => [
+                ['file' => $file, 'is_default' => true],
+            ],
+        ])->assertRedirectBack();
+});
+
+it('stores multiple images when valid.', function (): void {
+    Storage::fake('images');
+
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $property = Property::factory()
+        ->create();
+
+    config()->set('app.default_image_format', 'jpg');
+
+    $fileOne = UploadedFile::fake()
+        ->image('a.png')
+        ->size(200);
+
+    $fileTwo = UploadedFile::fake()
+        ->image('b.webp')
+        ->size(300);
+
+    $this->actingAs($user)
+        ->post(route('admin.images.store'), [
+            'property' => $property->uuid,
+            'images' => [
+                ['file' => $fileOne, 'is_default' => true],
+                ['file' => $fileTwo, 'is_default' => false],
+            ],
+        ])->assertRedirectBack();
+});
+
+it('bubbles the exception when storing images fails.', function (): void {
+    $this->withoutExceptionHandling();
+
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $property = Property::factory()
+        ->create();
+
+    Storage::fake('images');
+
+    config()->set('app.default_image_format', 'invalid-format');
+
+    $file = UploadedFile::fake()
+        ->image('photo.jpg')
+        ->size(100);
+
+    expect(function () use ($user, $property, $file): TestResponse {
+        return $this->actingAs($user)
+            ->post(route('admin.images.store'), [
+                'property' => $property->uuid,
+                'images' => [
+                    ['file' => $file, 'is_default' => false],
+                ],
+            ]);
+    })->toThrow(ValueError::class);
+});
+
 it('bulk deletes images and clears cache, removing files from storage.', function (): void {
     Storage::fake('images');
 
@@ -295,4 +382,9 @@ it('returns 404 when destroying a non-existing image.', function (): void {
     $this->actingAs($user)
         ->delete(route('admin.images.destroy', '00000000-0000-0000-0000-000000000000'))
         ->assertNotFound();
+});
+
+it('requires authentication to store images.', function (): void {
+    $this->post(route('admin.images.store'))
+        ->assertRedirect(route('admin.login.create'));
 });
