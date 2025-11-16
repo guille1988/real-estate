@@ -6,6 +6,7 @@
 <script setup lang="ts">
 import DesktopSidebar from '@/Components/Admin/Layout/Sidebar/DesktopSidebar.vue';
 import MobileSidebar from '@/Components/Admin/Layout/Sidebar/MobileSidebar.vue';
+import AmenityController from '@/Routes/actions/App/Http/Controllers/Admin/AmenityController';
 import DashboardController from '@/Routes/actions/App/Http/Controllers/Admin/DashboardController';
 import ImageController from '@/Routes/actions/App/Http/Controllers/Admin/ImageController';
 import PricingDetailController from '@/Routes/actions/App/Http/Controllers/Admin/PricingDetailController';
@@ -22,7 +23,6 @@ import {
 import { Page } from '@inertiajs/core';
 import { usePage } from '@inertiajs/vue3';
 import { computed, ComputedRef } from 'vue';
-import AmenityController from '@/Routes/actions/App/Http/Controllers/Admin/AmenityController';
 
 const navigationItems: SidebarNavigationInterface[] = [
     {
