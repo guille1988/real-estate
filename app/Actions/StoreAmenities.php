@@ -16,7 +16,7 @@ final readonly class StoreAmenities
          */
         $property = Property::firstWhere('uuid', $data->property);
 
-        $property->pricingDetails()
+        $property->amenities()
             ->createMany($data->amenities);
     }
 }

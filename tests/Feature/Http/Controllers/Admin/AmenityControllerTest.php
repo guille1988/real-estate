@@ -374,6 +374,43 @@ it('shows create page of amenities.', function (): void {
         });
 });
 
+it('stores an amenity.', function (string $description): void {
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $property = Property::factory()
+        ->create();
+
+    $data = [
+        'property' => $property->uuid,
+        'amenities' => [
+            ['description' => "$description A"],
+            ['description' => "$description B"],
+            ['description' => "$description C"],
+        ],
+    ];
+
+    $this->actingAs($user)
+        ->post(route('admin.amenities.store'), $data)
+        ->assertRedirectBack();
+
+    foreach (data_get($data, 'amenities') as $description) {
+        $expected = Amenity::query()
+            ->where([
+                'description' => $description,
+                'property_id' => $property->id,
+            ])->exists();
+
+        expect($expected)->toBeTrue();
+    }
+
+})->with([
+    'Test description one',
+    'Test description two',
+    'Test description three',
+]);
+
 it('deletes an amenity.', function (): void {
     $user = User::factory()
         ->admin()
