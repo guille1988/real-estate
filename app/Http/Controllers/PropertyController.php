@@ -42,7 +42,7 @@ final class PropertyController
                     ->search($data)
                     ->paginate(20, page: $data->page)
                     ->through(function (Property $property): JsonResource {
-                        return IndexPropertyResource::make($property);
+                        return $property->toResource(IndexPropertyResource::class);
                     })->toArray();
             });
 

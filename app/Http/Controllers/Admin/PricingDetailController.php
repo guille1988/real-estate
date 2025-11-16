@@ -35,7 +35,7 @@ final class PricingDetailController
             ->paginate(7, page: $data->page)
             ->withQueryString()
             ->through(function (PricingDetail $pricingDetail): JsonResource {
-                return IndexPricingDetailResource::make($pricingDetail);
+                return $pricingDetail->toResource(IndexPricingDetailResource::class);
             })->toArray();
 
         return Inertia::render(PageEnum::ADMIN_PRICING_DETAILS_INDEX->value, [

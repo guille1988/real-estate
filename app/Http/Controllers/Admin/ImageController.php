@@ -30,7 +30,7 @@ final class ImageController
             ->paginate(7, page: $data->page)
             ->withQueryString()
             ->through(function (Image $image): JsonResource {
-                return IndexImageResource::make($image);
+                return $image->toResource(IndexImageResource::class);
             })->toArray();
 
         return Inertia::render(PageEnum::ADMIN_IMAGES_INDEX->value, [

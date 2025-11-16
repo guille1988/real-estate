@@ -29,7 +29,7 @@ final class AmenityController
             ->paginate(7, page: $data->page)
             ->withQueryString()
             ->through(function (Amenity $amenity): JsonResource {
-                return AmenityResource::make($amenity);
+                return $amenity->toResource(AmenityResource::class);
             })->toArray();
 
         return Inertia::render(PageEnum::ADMIN_AMENITIES_INDEX->value, [

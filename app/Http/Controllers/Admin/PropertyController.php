@@ -36,7 +36,7 @@ final class PropertyController
             ->paginate(7, page: $data->page)
             ->withQueryString()
             ->through(function (Property $property): JsonResource {
-                return IndexPropertyResource::make($property);
+                return $property->toResource(IndexPropertyResource::class);
             })->toArray();
 
         return Inertia::render(PageEnum::ADMIN_PROPERTIES_INDEX->value, [
