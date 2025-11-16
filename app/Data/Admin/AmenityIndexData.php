@@ -28,7 +28,7 @@ final class AmenityIndexData extends Data
         return [
             'page' => ['nullable', 'integer', 'digits_between:1,100'],
             'search' => ['nullable', 'string', 'between:1,200'],
-            'sort' => ['nullable', 'string', 'in:description'],
+            'sort' => ['nullable', 'string', 'in:description,createdAt,updatedAt'],
             'direction' => ['nullable', 'string', Rule::enum(PaginationDirection::class)],
         ];
     }
@@ -46,14 +46,9 @@ final class AmenityIndexData extends Data
      */
     public function getSort(): string
     {
-        /**
-         * @var string $sort
-         */
-        $sort = $this->isNotNull('sort')
-            ? $this->sort
+        return $this->isNotNull('sort')
+            ? str($this->sort)->snake()->toString()
             : 'id';
-
-        return $sort;
     }
 
     /*

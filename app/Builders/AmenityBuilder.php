@@ -25,7 +25,12 @@ final class AmenityBuilder extends Builder
             $query->select(['id', 'uuid', 'title'])
                 ->with(['defaultImage:id,path,property_id']);
         })->when($data->isNotNull('search'), function (self $query) use ($data): void {
-            $query->whereLike('description', "%$data->search%");
+            $search = "%$data->search%";
+
+            $query->where(function (Builder $subQuery) use ($search): void {
+                $subQuery->whereLike('description', $search)
+                    ->orWhereRelation('property', 'title', 'like', $search);
+            });
         })->orderBy($data->getSort(), $data->getDirection());
     }
 }
