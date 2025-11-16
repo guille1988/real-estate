@@ -88,14 +88,14 @@
                             <div
                                 v-for="(amenity, index) in form.amenities"
                                 :key="`amenity-${index}`"
-                                class="flex flex-col rounded-lg border border-white/10 p-4 md:relative"
+                                class="flex flex-col rounded-lg border border-white/10 p-4 md:grid md:grid-cols-[1fr_auto] md:items-start md:gap-4"
                             >
                                 <button
                                     type="button"
                                     @click="removeAmenity(index)"
                                     :disabled="form.processing"
                                     :class="[
-                                        'mb-3 self-end rounded-md px-3 py-2 text-sm font-semibold md:absolute md:right-4 md:top-4 md:mb-0',
+                                        'mb-3 self-end rounded-md px-3 py-2 text-sm font-semibold md:col-start-2 md:col-end-3 md:mb-0 md:mt-[22px] md:self-start md:justify-self-end',
                                         form.processing
                                             ? 'cursor-not-allowed bg-red-600 text-white opacity-50'
                                             : 'bg-red-600 text-white hover:bg-red-500',
@@ -104,9 +104,9 @@
                                     Remove
                                 </button>
                                 <div
-                                    class="grid grid-cols-1 gap-4 md:grid-cols-3"
+                                    class="grid grid-cols-1 gap-4 md:col-start-1 md:col-end-2"
                                 >
-                                    <div class="md:col-span-3">
+                                    <div>
                                         <TextAreaInput
                                             :id="`amenity-description-${index}`"
                                             label="Description"
