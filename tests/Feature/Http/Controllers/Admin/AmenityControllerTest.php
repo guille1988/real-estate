@@ -360,3 +360,37 @@ it('searches by property title when search matches related property.', function 
                 ->has('amenities.data', 1);
         });
 });
+
+it('deletes an amenity.', function (): void {
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $amenity = Amenity::factory()
+        ->create();
+
+    $this->actingAs($user)
+        ->delete(route('admin.amenities.destroy', $amenity->uuid))
+        ->assertRedirectBack();
+
+    $this->assertModelMissing($amenity);
+});
+
+it('bulks delete amenities.', function (): void {
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $amenities = Amenity::factory(2)
+        ->create();
+
+    $this->actingAs($user)
+        ->post(
+            route('admin.amenities.bulk-delete'),
+            ['uuids' => $amenities->pluck('uuid')->toArray()],
+        )->assertRedirectBack();
+
+    $amenities->each(function (Amenity $amenity): void {
+        $this->assertModelMissing($amenity);
+    });
+});

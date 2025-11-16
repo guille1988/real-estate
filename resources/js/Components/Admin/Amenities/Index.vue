@@ -116,8 +116,10 @@
                                         edit-url="
                                            
                                         "
-                                        delete-url="
-                                          
+                                        :delete-url="
+                                            AmenityController.destroy(
+                                                amenity.uuid,
+                                            ).url
                                         "
                                         resource="amenity"
                                     />
@@ -151,6 +153,7 @@ import ResetFilters from '@/Components/Shared/Tables/ResetFilters.vue';
 import SearchBar from '@/Components/Shared/Tables/SearchBar.vue';
 import Skeleton from '@/Components/Shared/Tables/Skeleton.vue';
 import TableHeader from '@/Components/Shared/Tables/TableHeader.vue';
+import AmenityController from '@/Routes/actions/App/Http/Controllers/Admin/AmenityController';
 import { FormMethodEnum } from '@/Types/Admin/Enums/FormMethodEnum';
 import { IndexAmenitiesPaginatedInterface } from '@/Types/Admin/Interfaces/IndexAmenitiesPaginatedInterface';
 import { IndexAmenityInterface } from '@/Types/Admin/Interfaces/IndexAmenityInterface';
@@ -222,7 +225,7 @@ const bulkDelete = (): void => {
         return;
     }
 
-    router.visit('', {
+    router.visit(AmenityController.bulkDestroy().url, {
         method: FormMethodEnum.POST,
         data: { uuids: Array.from(selected.value) },
         onSuccess: (): void => {
