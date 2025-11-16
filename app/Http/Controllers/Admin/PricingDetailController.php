@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Admin;
 
 use App\Actions\StorePricingDetails;
+use App\Actions\UpdatePricingDetail;
 use App\Data\Admin\PricingDetailBulkDestroyData;
 use App\Data\Admin\PricingDetailIndexData;
 use App\Data\Admin\PricingDetailStoreData;
@@ -66,11 +67,20 @@ final class PricingDetailController
         ]);
     }
 
+    /**
+     * @throws Throwable
+     */
     public function edit(PricingDetail $pricingDetail): Response
     {
+        $properties = cache()->rememberForever('admin_property_select', function (): ResourceCollection {
+            return Property::all(['uuid', 'title'])
+                ->toResourceCollection(SelectPropertyResource::class);
+        });
+
         return Inertia::render(PageEnum::ADMIN_PRICING_DETAILS_EDIT->value, [
             'pricing_detail' => fn (): JsonResource => $pricingDetail->toResource(EditPricingDetailResource::class),
             'categories' => fn (): Collection => PricingDetailCategoryEnum::toResponse(),
+            'properties' => fn (): ResourceCollection => $properties,
         ]);
     }
 
@@ -93,9 +103,12 @@ final class PricingDetailController
         return back();
     }
 
-    public function update(PricingDetailUpdateData $data, PricingDetail $pricingDetail): RedirectResponse
-    {
-        $pricingDetail->update($data->toArray());
+    public function update(
+        PricingDetailUpdateData $data,
+        PricingDetail $pricingDetail,
+        UpdatePricingDetail $action,
+    ): RedirectResponse {
+        $action->execute($data, $pricingDetail);
         cache()->flush();
 
         return back();

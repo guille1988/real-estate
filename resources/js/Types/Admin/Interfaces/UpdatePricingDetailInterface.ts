@@ -6,4 +6,5 @@ export interface UpdatePricingDetailInterface {
     category: PricingDetailCategoryEnum;
     description: string;
     price: number;
+    property: string;
 }

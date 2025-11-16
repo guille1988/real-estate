@@ -201,7 +201,8 @@ it('edits a pricing detail.', function (): void {
         ->assertInertia(function (Assert $page): void {
             $page->component(PageEnum::ADMIN_PRICING_DETAILS_EDIT->value)
                 ->has('pricingDetail')
-                ->has('categories');
+                ->has('categories')
+                ->has('properties');
         });
 });
 
@@ -268,6 +269,11 @@ it('updates a pricing detail.', function (array $data): void {
         ->admin()
         ->create();
 
+    $property = Property::factory()
+        ->create();
+
+    $data['property'] = $property->uuid;
+
     $pricingDetail = PricingDetail::factory()
         ->create();
 
@@ -275,12 +281,18 @@ it('updates a pricing detail.', function (array $data): void {
         ->put(route('admin.pricing-details.update', $pricingDetail->uuid), $data)
         ->assertRedirectBack();
 
-    $data['category'] = PricingDetailCategoryEnum::from($data['category']);
+    $freshPricingDetail = $pricingDetail->fresh();
 
-    $expected = $pricingDetail->fresh()
-        ->only(['name', 'category', 'price', 'description']);
-
-    expect($expected)->toBe($data);
+    expect($freshPricingDetail->name)
+        ->toBe($data['name'])
+        ->and($freshPricingDetail->category)
+        ->toBe(PricingDetailCategoryEnum::from($data['category']))
+        ->and($freshPricingDetail->property_id)
+        ->toBe($property->id)
+        ->and($freshPricingDetail->price)
+        ->toBe($data['price'])
+        ->and($freshPricingDetail->description)
+        ->toBe($data['description']);
 })->with([
     [
         [

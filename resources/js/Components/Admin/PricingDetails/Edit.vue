@@ -19,6 +19,21 @@
             >
                 <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
                     <div>
+                        <SearchTextInput
+                            id="property"
+                            label="Property"
+                            v-model="form.property"
+                            :options="properties"
+                            placeholder="Select property"
+                        />
+                        <div
+                            v-if="form.errors.property"
+                            class="mt-1 max-w-full break-words text-sm text-red-500 dark:text-red-400"
+                        >
+                            {{ form.errors.property }}
+                        </div>
+                    </div>
+                    <div>
                         <TextInput
                             id="name"
                             label="Name"
@@ -34,38 +49,34 @@
                         </div>
                     </div>
 
-                    <div class="md:col-start-2">
-                        <div class="grid grid-cols-2 gap-4">
-                            <div>
-                                <DropdownInput
-                                    id="category"
-                                    label="Category"
-                                    v-model="form.category"
-                                    :options="categories"
-                                    placeholder="Select category"
-                                />
-                                <div
-                                    v-if="form.errors.category"
-                                    class="mt-1 max-w-full break-words text-sm text-red-500 dark:text-red-400"
-                                >
-                                    {{ form.errors.category }}
-                                </div>
-                            </div>
-                            <div>
-                                <NumericInput
-                                    id="price"
-                                    label="Price (USD)"
-                                    v-model="form.price"
-                                    placeholder="0"
-                                    :accept-negative-numbers="false"
-                                />
-                                <div
-                                    v-if="form.errors.price"
-                                    class="mt-1 max-w-full break-words text-sm text-red-500 dark:text-red-400"
-                                >
-                                    {{ form.errors.price }}
-                                </div>
-                            </div>
+                    <div>
+                        <DropdownInput
+                            id="category"
+                            label="Category"
+                            v-model="form.category"
+                            :options="categories"
+                            placeholder="Select category"
+                        />
+                        <div
+                            v-if="form.errors.category"
+                            class="mt-1 max-w-full break-words text-sm text-red-500 dark:text-red-400"
+                        >
+                            {{ form.errors.category }}
+                        </div>
+                    </div>
+                    <div>
+                        <NumericInput
+                            id="price"
+                            label="Price (USD)"
+                            v-model="form.price"
+                            placeholder="0"
+                            :accept-negative-numbers="false"
+                        />
+                        <div
+                            v-if="form.errors.price"
+                            class="mt-1 max-w-full break-words text-sm text-red-500 dark:text-red-400"
+                        >
+                            {{ form.errors.price }}
                         </div>
                     </div>
 
@@ -112,12 +123,14 @@
 import BackToIndexButton from '@/Components/Shared/Buttons/BackToIndexButton.vue';
 import DropdownInput from '@/Components/Shared/Inputs/DropdownInput.vue';
 import NumericInput from '@/Components/Shared/Inputs/NumericInput.vue';
+import SearchTextInput from '@/Components/Shared/Inputs/SearchTextInput.vue';
 import TextAreaInput from '@/Components/Shared/Inputs/TextAreaInput.vue';
 import TextInput from '@/Components/Shared/Inputs/TextInput.vue';
 import PricingDetailController from '@/Routes/actions/App/Http/Controllers/Admin/PricingDetailController';
 import { EditPricingDetailInterface } from '@/Types/Admin/Interfaces/EditPricingDetailInterface';
 import { PricingDetailCategoryInterface } from '@/Types/Admin/Interfaces/PricingDetailCategoryInterface';
 import { UpdatePricingDetailInterface } from '@/Types/Admin/Interfaces/UpdatePricingDetailInterface';
+import { SelectFilterOptionType } from '@/Types/Admin/Types/SelectFilterOptionType';
 import { InertiaForm, router, useForm } from '@inertiajs/vue3';
 import { ref, Ref } from 'vue';
 import { toast } from 'vue3-toastify';
@@ -126,6 +139,7 @@ const { pricingDetail }: { pricingDetail: EditPricingDetailInterface } =
     defineProps<{
         pricingDetail: EditPricingDetailInterface;
         categories: PricingDetailCategoryInterface[];
+        properties: SelectFilterOptionType[];
     }>();
 
 const disabled: Ref<boolean> = ref<boolean>(false);
@@ -136,6 +150,7 @@ const form: InertiaForm<UpdatePricingDetailInterface> =
         category: pricingDetail.category,
         description: pricingDetail.description,
         price: pricingDetail.price,
+        property: pricingDetail.property,
     });
 
 const submit = (): void => {

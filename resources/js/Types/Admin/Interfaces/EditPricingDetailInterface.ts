@@ -7,4 +7,5 @@ export interface EditPricingDetailInterface {
     category: PricingDetailCategoryEnum;
     description: string;
     price: number;
+    property: string;
 }

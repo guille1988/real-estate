@@ -24,6 +24,7 @@ final class EditPricingDetailResource extends JsonResource
             'category' => $this->category,
             'description' => $this->description,
             'price' => $this->price,
+            'property' => $this->property?->uuid,
         ];
     }
 }
