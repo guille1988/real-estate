@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Admin;
 
+use App\Actions\StoreAmenities;
 use App\Data\Admin\AmenityBulkDestroyData;
 use App\Data\Admin\AmenityIndexData;
+use App\Data\Admin\AmenityStoreData;
 use App\Enums\PageEnum;
 use App\Http\Resources\Admin\AmenityResource;
 use App\Http\Resources\Admin\SelectPropertyResource;
@@ -48,6 +50,14 @@ final class AmenityController
         return Inertia::render(PageEnum::ADMIN_AMENITIES_CREATE->value, [
             'properties' => fn (): ResourceCollection => $properties,
         ]);
+    }
+
+    public function store(AmenityStoreData $data, StoreAmenities $action): RedirectResponse
+    {
+        $action->execute($data);
+        cache()->flush();
+
+        return back();
     }
 
     public function bulkDestroy(AmenityBulkDestroyData $data): RedirectResponse

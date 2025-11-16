@@ -227,7 +227,7 @@ const submit = (): void => {
 
     disabled.value = true;
 
-    form.post('', {
+    form.post(AmenityController.store().url, {
         preserveScroll: true,
         onSuccess: (): void => {
             form.reset();
