@@ -427,6 +427,23 @@ it('shows an amenity.', function (): void {
         });
 });
 
+it('edits an amenity.', function (): void {
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $amenity = Amenity::factory()
+        ->create();
+
+    $this->actingAs($user)
+        ->get(route('admin.amenities.edit', $amenity->uuid))
+        ->assertInertia(function (Assert $page): void {
+            $page->component(PageEnum::ADMIN_AMENITIES_EDIT->value)
+                ->has('amenity')
+                ->has('properties');
+        });
+});
+
 it('deletes an amenity.', function (): void {
     $user = User::factory()
         ->admin()

@@ -114,8 +114,9 @@
                                             AmenityController.show(amenity.uuid)
                                                 .url
                                         "
-                                        edit-url="
-                                           
+                                        :edit-url="
+                                            AmenityController.edit(amenity.uuid)
+                                                .url
                                         "
                                         :delete-url="
                                             AmenityController.destroy(

@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../../wayfinder'
 /**
 * @see \App\Http\Controllers\Admin\AmenityController::index
-* @see app/Http/Controllers/Admin/AmenityController.php:26
+* @see app/Http/Controllers/Admin/AmenityController.php:27
 * @route '/admin/amenities'
 */
 export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ index.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\AmenityController::index
-* @see app/Http/Controllers/Admin/AmenityController.php:26
+* @see app/Http/Controllers/Admin/AmenityController.php:27
 * @route '/admin/amenities'
 */
 index.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ index.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\AmenityController::index
-* @see app/Http/Controllers/Admin/AmenityController.php:26
+* @see app/Http/Controllers/Admin/AmenityController.php:27
 * @route '/admin/amenities'
 */
 index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -35,7 +35,7 @@ index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\AmenityController::index
-* @see app/Http/Controllers/Admin/AmenityController.php:26
+* @see app/Http/Controllers/Admin/AmenityController.php:27
 * @route '/admin/amenities'
 */
 index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -45,7 +45,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\AmenityController::create
-* @see app/Http/Controllers/Admin/AmenityController.php:44
+* @see app/Http/Controllers/Admin/AmenityController.php:45
 * @route '/admin/amenities/create'
 */
 export const create = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -60,7 +60,7 @@ create.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\AmenityController::create
-* @see app/Http/Controllers/Admin/AmenityController.php:44
+* @see app/Http/Controllers/Admin/AmenityController.php:45
 * @route '/admin/amenities/create'
 */
 create.url = (options?: RouteQueryOptions) => {
@@ -69,7 +69,7 @@ create.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\AmenityController::create
-* @see app/Http/Controllers/Admin/AmenityController.php:44
+* @see app/Http/Controllers/Admin/AmenityController.php:45
 * @route '/admin/amenities/create'
 */
 create.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -79,7 +79,7 @@ create.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\AmenityController::create
-* @see app/Http/Controllers/Admin/AmenityController.php:44
+* @see app/Http/Controllers/Admin/AmenityController.php:45
 * @route '/admin/amenities/create'
 */
 create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -89,7 +89,7 @@ create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\AmenityController::store
-* @see app/Http/Controllers/Admin/AmenityController.php:63
+* @see app/Http/Controllers/Admin/AmenityController.php:80
 * @route '/admin/amenities'
 */
 export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -104,7 +104,7 @@ store.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\AmenityController::store
-* @see app/Http/Controllers/Admin/AmenityController.php:63
+* @see app/Http/Controllers/Admin/AmenityController.php:80
 * @route '/admin/amenities'
 */
 store.url = (options?: RouteQueryOptions) => {
@@ -113,7 +113,7 @@ store.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\AmenityController::store
-* @see app/Http/Controllers/Admin/AmenityController.php:63
+* @see app/Http/Controllers/Admin/AmenityController.php:80
 * @route '/admin/amenities'
 */
 store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -123,7 +123,7 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\AmenityController::show
-* @see app/Http/Controllers/Admin/AmenityController.php:56
+* @see app/Http/Controllers/Admin/AmenityController.php:57
 * @route '/admin/amenities/{amenity}'
 */
 export const show = (args: { amenity: string | { uuid: string } } | [amenity: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -138,7 +138,7 @@ show.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\AmenityController::show
-* @see app/Http/Controllers/Admin/AmenityController.php:56
+* @see app/Http/Controllers/Admin/AmenityController.php:57
 * @route '/admin/amenities/{amenity}'
 */
 show.url = (args: { amenity: string | { uuid: string } } | [amenity: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
@@ -171,7 +171,7 @@ show.url = (args: { amenity: string | { uuid: string } } | [amenity: string | { 
 
 /**
 * @see \App\Http\Controllers\Admin\AmenityController::show
-* @see app/Http/Controllers/Admin/AmenityController.php:56
+* @see app/Http/Controllers/Admin/AmenityController.php:57
 * @route '/admin/amenities/{amenity}'
 */
 show.get = (args: { amenity: string | { uuid: string } } | [amenity: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -181,7 +181,7 @@ show.get = (args: { amenity: string | { uuid: string } } | [amenity: string | { 
 
 /**
 * @see \App\Http\Controllers\Admin\AmenityController::show
-* @see app/Http/Controllers/Admin/AmenityController.php:56
+* @see app/Http/Controllers/Admin/AmenityController.php:57
 * @route '/admin/amenities/{amenity}'
 */
 show.head = (args: { amenity: string | { uuid: string } } | [amenity: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -190,8 +190,76 @@ show.head = (args: { amenity: string | { uuid: string } } | [amenity: string | {
 })
 
 /**
+* @see \App\Http\Controllers\Admin\AmenityController::edit
+* @see app/Http/Controllers/Admin/AmenityController.php:67
+* @route '/admin/amenities/{amenity}/edit'
+*/
+export const edit = (args: { amenity: string | { uuid: string } } | [amenity: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: edit.url(args, options),
+    method: 'get',
+})
+
+edit.definition = {
+    methods: ["get","head"],
+    url: '/admin/amenities/{amenity}/edit',
+} satisfies RouteDefinition<["get","head"]>
+
+/**
+* @see \App\Http\Controllers\Admin\AmenityController::edit
+* @see app/Http/Controllers/Admin/AmenityController.php:67
+* @route '/admin/amenities/{amenity}/edit'
+*/
+edit.url = (args: { amenity: string | { uuid: string } } | [amenity: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
+    if (typeof args === 'string' || typeof args === 'number') {
+        args = { amenity: args }
+    }
+
+    if (typeof args === 'object' && !Array.isArray(args) && 'uuid' in args) {
+        args = { amenity: args.uuid }
+    }
+
+    if (Array.isArray(args)) {
+        args = {
+            amenity: args[0],
+        }
+    }
+
+    args = applyUrlDefaults(args)
+
+    const parsedArgs = {
+        amenity: typeof args.amenity === 'object'
+        ? args.amenity.uuid
+        : args.amenity,
+    }
+
+    return edit.definition.url
+            .replace('{amenity}', parsedArgs.amenity.toString())
+            .replace(/\/+$/, '') + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\Admin\AmenityController::edit
+* @see app/Http/Controllers/Admin/AmenityController.php:67
+* @route '/admin/amenities/{amenity}/edit'
+*/
+edit.get = (args: { amenity: string | { uuid: string } } | [amenity: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: edit.url(args, options),
+    method: 'get',
+})
+
+/**
+* @see \App\Http\Controllers\Admin\AmenityController::edit
+* @see app/Http/Controllers/Admin/AmenityController.php:67
+* @route '/admin/amenities/{amenity}/edit'
+*/
+edit.head = (args: { amenity: string | { uuid: string } } | [amenity: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+    url: edit.url(args, options),
+    method: 'head',
+})
+
+/**
 * @see \App\Http\Controllers\Admin\AmenityController::destroy
-* @see app/Http/Controllers/Admin/AmenityController.php:82
+* @see app/Http/Controllers/Admin/AmenityController.php:99
 * @route '/admin/amenities/{amenity}'
 */
 export const destroy = (args: { amenity: string | { uuid: string } } | [amenity: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -206,7 +274,7 @@ destroy.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\AmenityController::destroy
-* @see app/Http/Controllers/Admin/AmenityController.php:82
+* @see app/Http/Controllers/Admin/AmenityController.php:99
 * @route '/admin/amenities/{amenity}'
 */
 destroy.url = (args: { amenity: string | { uuid: string } } | [amenity: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
@@ -239,7 +307,7 @@ destroy.url = (args: { amenity: string | { uuid: string } } | [amenity: string |
 
 /**
 * @see \App\Http\Controllers\Admin\AmenityController::destroy
-* @see app/Http/Controllers/Admin/AmenityController.php:82
+* @see app/Http/Controllers/Admin/AmenityController.php:99
 * @route '/admin/amenities/{amenity}'
 */
 destroy.delete = (args: { amenity: string | { uuid: string } } | [amenity: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -249,7 +317,7 @@ destroy.delete = (args: { amenity: string | { uuid: string } } | [amenity: strin
 
 /**
 * @see \App\Http\Controllers\Admin\AmenityController::bulkDelete
-* @see app/Http/Controllers/Admin/AmenityController.php:71
+* @see app/Http/Controllers/Admin/AmenityController.php:88
 * @route '/admin/amenities/bulk-delete'
 */
 export const bulkDelete = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -264,7 +332,7 @@ bulkDelete.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\AmenityController::bulkDelete
-* @see app/Http/Controllers/Admin/AmenityController.php:71
+* @see app/Http/Controllers/Admin/AmenityController.php:88
 * @route '/admin/amenities/bulk-delete'
 */
 bulkDelete.url = (options?: RouteQueryOptions) => {
@@ -273,7 +341,7 @@ bulkDelete.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\AmenityController::bulkDelete
-* @see app/Http/Controllers/Admin/AmenityController.php:71
+* @see app/Http/Controllers/Admin/AmenityController.php:88
 * @route '/admin/amenities/bulk-delete'
 */
 bulkDelete.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -286,6 +354,7 @@ const amenities = {
     create: Object.assign(create, create),
     store: Object.assign(store, store),
     show: Object.assign(show, show),
+    edit: Object.assign(edit, edit),
     destroy: Object.assign(destroy, destroy),
     bulkDelete: Object.assign(bulkDelete, bulkDelete),
 }
