@@ -32,13 +32,15 @@
                         </div>
                     </div>
 
-                    <CheckboxInput
-                        id="isDefault"
-                        label="Is Default?"
-                        v-model="form.isDefault"
-                        text-class="text-sm ml-1"
-                        :icon="true"
-                    />
+                    <div class="flex items-center md:pt-6">
+                        <CheckboxInput
+                            id="isDefault"
+                            label="Is Default?"
+                            v-model="form.isDefault"
+                            text-class="text-sm ml-1"
+                            :icon="true"
+                        />
+                    </div>
                 </div>
             </div>
             <div
