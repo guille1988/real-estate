@@ -8,11 +8,15 @@ use App\Data\Admin\AmenityBulkDestroyData;
 use App\Data\Admin\AmenityIndexData;
 use App\Enums\PageEnum;
 use App\Http\Resources\Admin\AmenityResource;
+use App\Http\Resources\Admin\SelectPropertyResource;
 use App\Models\Amenity;
+use App\Models\Property;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 use Inertia\Inertia;
 use Inertia\Response;
+use Throwable;
 
 final class AmenityController
 {
@@ -28,6 +32,21 @@ final class AmenityController
 
         return Inertia::render(PageEnum::ADMIN_AMENITIES_INDEX->value, [
             'amenities' => fn (): array => $amenities,
+        ]);
+    }
+
+    /**
+     * @throws Throwable
+     */
+    public function create(): Response
+    {
+        $properties = cache()->rememberForever('admin_property_select', function (): ResourceCollection {
+            return Property::all(['uuid', 'title'])
+                ->toResourceCollection(SelectPropertyResource::class);
+        });
+
+        return Inertia::render(PageEnum::ADMIN_AMENITIES_CREATE->value, [
+            'properties' => fn (): ResourceCollection => $properties,
         ]);
     }
 

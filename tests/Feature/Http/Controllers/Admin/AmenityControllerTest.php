@@ -361,6 +361,19 @@ it('searches by property title when search matches related property.', function 
         });
 });
 
+it('shows create page of amenities.', function (): void {
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $this->actingAs($user)
+        ->get(route('admin.amenities.create'))
+        ->assertInertia(function (Assert $page): void {
+            $page->component(PageEnum::ADMIN_AMENITIES_CREATE->value)
+                ->has('properties');
+        });
+});
+
 it('deletes an amenity.', function (): void {
     $user = User::factory()
         ->admin()
