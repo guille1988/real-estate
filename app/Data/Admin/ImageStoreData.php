@@ -46,4 +46,15 @@ final class ImageStoreData extends Data
             'images.*.is_default' => ['required', 'boolean'],
         ];
     }
+
+    /*
+     * Check if the image array contains at least one default image.
+     */
+    public function containsDefaultImage(): bool
+    {
+        return array_any(
+            $this->images,
+            fn (array $image): bool => (bool) $image['is_default'],
+        );
+    }
 }

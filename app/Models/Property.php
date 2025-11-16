@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Number;
+use Illuminate\Support\Str;
 use Throwable;
 
 /**
@@ -151,9 +152,33 @@ final class Property extends Model
      */
     public function getFolderPath(): string
     {
-        throw_if(is_null($this->defaultImage), message: 'Default image not found.');
+        $image = $this->images()
+            ->first();
+
+        throw_if(is_null($image), message: 'No images found for the property.');
 
         return $this->defaultImage->getFolderPath();
+    }
+
+    /**
+     * Returns the folder path for the property
+     * only for the new images.
+     */
+    public function getFolderPathForNewImages(): string
+    {
+        return "{$this->type->plural()}/$this->uuid";
+    }
+
+    /*
+     * Returns the file path for the property
+     * only for the new images.
+     */
+    public function getFilePathForNewImages(): string
+    {
+        return str($this->getFolderPathForNewImages())
+            ->append('/', Str::random())
+            ->append('.', config()->string('app.default_image_format'))
+            ->toString();
     }
 
     /*
