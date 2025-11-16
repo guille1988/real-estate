@@ -140,13 +140,13 @@ Route::prefix('admin')
                     ->name('.pricing-details.bulk-delete');
 
                 Route::resource('amenities', AmenityController::class)
-                    ->only(['index', 'create', 'show', 'edit', 'store', 'destroy'])
                     ->names([
                         'index' => '.amenities.index',
                         'create' => '.amenities.create',
                         'show' => '.amenities.show',
                         'edit' => '.amenities.edit',
                         'store' => '.amenities.store',
+                        'update' => '.amenities.update',
                         'destroy' => '.amenities.destroy',
                     ]);
 

@@ -100,7 +100,7 @@ const submit = (): void => {
 
     disabled.value = true;
 
-    form.put('', {
+    form.put(AmenityController.update(amenity.uuid).url, {
         preserveScroll: true,
         onSuccess: (): void => {
             router.reload();

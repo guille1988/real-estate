@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Admin;
 
 use App\Actions\StoreAmenities;
+use App\Actions\UpdateAmenity;
 use App\Data\Admin\AmenityBulkDestroyData;
 use App\Data\Admin\AmenityIndexData;
 use App\Data\Admin\AmenityStoreData;
+use App\Data\Admin\AmenityUpdateData;
 use App\Enums\PageEnum;
 use App\Http\Resources\Admin\EditAmenityResource;
 use App\Http\Resources\Admin\IndexAmenityResource;
@@ -91,6 +93,17 @@ final class AmenityController
             ->whereIn('uuid', $data->uuids)
             ->delete();
 
+        cache()->flush();
+
+        return back();
+    }
+
+    public function update(
+        AmenityUpdateData $data,
+        Amenity $amenity,
+        UpdateAmenity $action,
+    ): RedirectResponse {
+        $action->execute($data, $amenity);
         cache()->flush();
 
         return back();
