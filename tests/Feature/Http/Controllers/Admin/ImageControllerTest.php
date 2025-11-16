@@ -178,6 +178,22 @@ it('works showing create images page.', function (): void {
         });
 });
 
+it('edits an image.', function (): void {
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $image = Image::factory()
+        ->create();
+
+    $this->actingAs($user)
+        ->get(route('admin.images.edit', $image->uuid))
+        ->assertInertia(function (Assert $page): void {
+            $page->component(PageEnum::ADMIN_IMAGES_EDIT->value)
+                ->has('properties');
+        });
+});
+
 it('stores images and redirects back.', function (): void {
     Storage::fake('images');
 

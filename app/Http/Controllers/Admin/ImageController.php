@@ -10,6 +10,7 @@ use App\Data\Admin\ImageBulkDestroyData;
 use App\Data\Admin\ImageData;
 use App\Data\Admin\ImageStoreData;
 use App\Enums\PageEnum;
+use App\Http\Resources\Admin\EditImageResource;
 use App\Http\Resources\Admin\IndexImageResource;
 use App\Http\Resources\Admin\SelectPropertyResource;
 use App\Models\Image;
@@ -49,6 +50,22 @@ final class ImageController
         });
 
         return Inertia::render(PageEnum::ADMIN_IMAGES_CREATE->value, [
+            'properties' => fn (): ResourceCollection => $properties,
+        ]);
+    }
+
+    /**
+     * @throws Throwable
+     */
+    public function edit(Image $image): Response
+    {
+        $properties = cache()->rememberForever('admin_property_select', function (): ResourceCollection {
+            return Property::all(['uuid', 'title'])
+                ->toResourceCollection(SelectPropertyResource::class);
+        });
+
+        return Inertia::render(PageEnum::ADMIN_IMAGES_EDIT->value, [
+            'image' => fn (): JsonResource => $image->toResource(EditImageResource::class),
             'properties' => fn (): ResourceCollection => $properties,
         ]);
     }

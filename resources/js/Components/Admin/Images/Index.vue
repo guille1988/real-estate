@@ -114,6 +114,9 @@
                                     <Text :text="image.createdAt ?? 'N/A'" />
                                     <Text :text="image.updatedAt ?? 'N/A'" />
                                     <Actions
+                                        :edit-url="
+                                            ImageController.edit(image.uuid).url
+                                        "
                                         :delete-url="
                                             ImageController.destroy(image.uuid)
                                                 .url
