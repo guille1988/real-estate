@@ -111,7 +111,7 @@
                                     <Text :text="amenity.updatedAt ?? 'N/A'" />
                                     <Actions
                                         show-url="
-                                          
+
                                         "
                                         edit-url="
                                            

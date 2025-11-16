@@ -18,9 +18,13 @@ final class AmenityResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        $description = str($this->description)
+            ->limit(limit: 48, preserveWords: true)
+            ->toString();
+
         return [
             'uuid' => $this->uuid,
-            'description' => $this->description,
+            'description' => $description,
             'property_title' => $this->property?->title,
             'property_default_image' => $this->property?->getDefaultImage(),
             'created_at' => $this->created_at?->toDateTimeString(),
