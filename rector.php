@@ -9,6 +9,7 @@ use Rector\CodingStyle\Rector\Encapsed\WrapEncapsedVariableInCurlyBracesRector;
 use Rector\CodingStyle\Rector\FunctionLike\FunctionLikeToFirstClassCallableRector;
 use Rector\CodingStyle\Rector\Use_\SeparateMultiUseImportsRector;
 use Rector\Config\RectorConfig;
+use Rector\DeadCode\Rector\Cast\RecastingRemovalRector;
 use Rector\Php70\Rector\StaticCall\StaticCallOnNonStaticToInstanceCallRector;
 use Rector\Php74\Rector\Closure\ClosureToArrowFunctionRector;
 use Rector\Php81\Rector\Array_\FirstClassCallableRector;
@@ -38,6 +39,7 @@ return RectorConfig::configure()
         StaticCallOnNonStaticToInstanceCallRector::class,
         FirstClassCallableRector::class,
         PrivatizeLocalGetterToPropertyRector::class,
+        RecastingRemovalRector::class,
     ])
     ->withPreparedSets(
         deadCode: true,

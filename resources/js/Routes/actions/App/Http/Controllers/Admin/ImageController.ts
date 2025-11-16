@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\Admin\ImageController::index
-* @see app/Http/Controllers/Admin/ImageController.php:30
+* @see app/Http/Controllers/Admin/ImageController.php:26
 * @route '/admin/images'
 */
 export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ index.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\ImageController::index
-* @see app/Http/Controllers/Admin/ImageController.php:30
+* @see app/Http/Controllers/Admin/ImageController.php:26
 * @route '/admin/images'
 */
 index.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ index.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\ImageController::index
-* @see app/Http/Controllers/Admin/ImageController.php:30
+* @see app/Http/Controllers/Admin/ImageController.php:26
 * @route '/admin/images'
 */
 index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -35,7 +35,7 @@ index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\ImageController::index
-* @see app/Http/Controllers/Admin/ImageController.php:30
+* @see app/Http/Controllers/Admin/ImageController.php:26
 * @route '/admin/images'
 */
 index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -45,7 +45,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\ImageController::create
-* @see app/Http/Controllers/Admin/ImageController.php:48
+* @see app/Http/Controllers/Admin/ImageController.php:44
 * @route '/admin/images/create'
 */
 export const create = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -60,7 +60,7 @@ create.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\ImageController::create
-* @see app/Http/Controllers/Admin/ImageController.php:48
+* @see app/Http/Controllers/Admin/ImageController.php:44
 * @route '/admin/images/create'
 */
 create.url = (options?: RouteQueryOptions) => {
@@ -69,7 +69,7 @@ create.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\ImageController::create
-* @see app/Http/Controllers/Admin/ImageController.php:48
+* @see app/Http/Controllers/Admin/ImageController.php:44
 * @route '/admin/images/create'
 */
 create.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -79,7 +79,7 @@ create.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\ImageController::create
-* @see app/Http/Controllers/Admin/ImageController.php:48
+* @see app/Http/Controllers/Admin/ImageController.php:44
 * @route '/admin/images/create'
 */
 create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -89,7 +89,7 @@ create.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\ImageController::store
-* @see app/Http/Controllers/Admin/ImageController.php:63
+* @see app/Http/Controllers/Admin/ImageController.php:59
 * @route '/admin/images'
 */
 export const store = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -104,7 +104,7 @@ store.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\ImageController::store
-* @see app/Http/Controllers/Admin/ImageController.php:63
+* @see app/Http/Controllers/Admin/ImageController.php:59
 * @route '/admin/images'
 */
 store.url = (options?: RouteQueryOptions) => {
@@ -113,7 +113,7 @@ store.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\ImageController::store
-* @see app/Http/Controllers/Admin/ImageController.php:63
+* @see app/Http/Controllers/Admin/ImageController.php:59
 * @route '/admin/images'
 */
 store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -123,7 +123,7 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\ImageController::destroy
-* @see app/Http/Controllers/Admin/ImageController.php:126
+* @see app/Http/Controllers/Admin/ImageController.php:75
 * @route '/admin/images/{image}'
 */
 export const destroy = (args: { image: string | { uuid: string } } | [image: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -138,7 +138,7 @@ destroy.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\ImageController::destroy
-* @see app/Http/Controllers/Admin/ImageController.php:126
+* @see app/Http/Controllers/Admin/ImageController.php:75
 * @route '/admin/images/{image}'
 */
 destroy.url = (args: { image: string | { uuid: string } } | [image: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
@@ -171,7 +171,7 @@ destroy.url = (args: { image: string | { uuid: string } } | [image: string | { u
 
 /**
 * @see \App\Http\Controllers\Admin\ImageController::destroy
-* @see app/Http/Controllers/Admin/ImageController.php:126
+* @see app/Http/Controllers/Admin/ImageController.php:75
 * @route '/admin/images/{image}'
 */
 destroy.delete = (args: { image: string | { uuid: string } } | [image: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -181,7 +181,7 @@ destroy.delete = (args: { image: string | { uuid: string } } | [image: string | 
 
 /**
 * @see \App\Http\Controllers\Admin\ImageController::bulkDestroy
-* @see app/Http/Controllers/Admin/ImageController.php:117
+* @see app/Http/Controllers/Admin/ImageController.php:66
 * @route '/admin/images/bulk-delete'
 */
 export const bulkDestroy = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -196,7 +196,7 @@ bulkDestroy.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\ImageController::bulkDestroy
-* @see app/Http/Controllers/Admin/ImageController.php:117
+* @see app/Http/Controllers/Admin/ImageController.php:66
 * @route '/admin/images/bulk-delete'
 */
 bulkDestroy.url = (options?: RouteQueryOptions) => {
@@ -205,7 +205,7 @@ bulkDestroy.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\ImageController::bulkDestroy
-* @see app/Http/Controllers/Admin/ImageController.php:117
+* @see app/Http/Controllers/Admin/ImageController.php:66
 * @route '/admin/images/bulk-delete'
 */
 bulkDestroy.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({

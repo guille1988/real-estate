@@ -152,12 +152,13 @@ final class Property extends Model
      */
     public function getFolderPath(): string
     {
+        /** @var null|Image $image */
         $image = $this->images()
             ->first();
 
         throw_if(is_null($image), message: 'No images found for the property.');
 
-        return $this->defaultImage->getFolderPath();
+        return $image->getFolderPath();
     }
 
     /**
@@ -227,6 +228,14 @@ final class Property extends Model
         }
 
         return true;
+    }
+
+    /*
+     * Sets all images of the property as non-default.
+     */
+    public function setAllImagesAsNonDefault(): void
+    {
+        $this->images()->update(['is_default' => false]);
     }
 
     /**
