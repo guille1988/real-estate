@@ -34,4 +34,5 @@ enum PageEnum: string
 
     case ADMIN_AMENITIES_INDEX = 'Admin/Amenities/Index';
     case ADMIN_AMENITIES_CREATE = 'Admin/Amenities/Create';
+    case ADMIN_AMENITIES_SHOW = 'Admin/Amenities/Show';
 }

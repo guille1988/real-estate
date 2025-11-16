@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /** @mixin Amenity */
-final class AmenityResource extends JsonResource
+final class IndexAmenityResource extends JsonResource
 {
     /**
      * Transform the resource into an array.

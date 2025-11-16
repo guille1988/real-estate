@@ -110,8 +110,9 @@
                                     <Text :text="amenity.createdAt ?? 'N/A'" />
                                     <Text :text="amenity.updatedAt ?? 'N/A'" />
                                     <Actions
-                                        show-url="
-
+                                        :show-url="
+                                            AmenityController.show(amenity.uuid)
+                                                .url
                                         "
                                         edit-url="
                                            

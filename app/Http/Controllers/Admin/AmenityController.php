@@ -9,8 +9,9 @@ use App\Data\Admin\AmenityBulkDestroyData;
 use App\Data\Admin\AmenityIndexData;
 use App\Data\Admin\AmenityStoreData;
 use App\Enums\PageEnum;
-use App\Http\Resources\Admin\AmenityResource;
+use App\Http\Resources\Admin\IndexAmenityResource;
 use App\Http\Resources\Admin\SelectPropertyResource;
+use App\Http\Resources\Admin\ShowAmenityResource;
 use App\Models\Amenity;
 use App\Models\Property;
 use Illuminate\Http\RedirectResponse;
@@ -29,7 +30,7 @@ final class AmenityController
             ->paginate(7, page: $data->page)
             ->withQueryString()
             ->through(function (Amenity $amenity): JsonResource {
-                return $amenity->toResource(AmenityResource::class);
+                return $amenity->toResource(IndexAmenityResource::class);
             })->toArray();
 
         return Inertia::render(PageEnum::ADMIN_AMENITIES_INDEX->value, [
@@ -49,6 +50,13 @@ final class AmenityController
 
         return Inertia::render(PageEnum::ADMIN_AMENITIES_CREATE->value, [
             'properties' => fn (): ResourceCollection => $properties,
+        ]);
+    }
+
+    public function show(Amenity $amenity): Response
+    {
+        return Inertia::render(PageEnum::ADMIN_AMENITIES_SHOW->value, [
+            'amenity' => fn (): JsonResource => $amenity->toResource(ShowAmenityResource::class),
         ]);
     }
 

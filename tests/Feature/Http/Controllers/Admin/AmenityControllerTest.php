@@ -411,6 +411,22 @@ it('stores an amenity.', function (string $description): void {
     'Test description three',
 ]);
 
+it('shows an amenity.', function (): void {
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $amenity = Amenity::factory()
+        ->create();
+
+    $this->actingAs($user)
+        ->get(route('admin.amenities.show', $amenity->uuid))
+        ->assertInertia(function (Assert $page): void {
+            $page->component(PageEnum::ADMIN_AMENITIES_SHOW->value)
+                ->has('amenity');
+        });
+});
+
 it('deletes an amenity.', function (): void {
     $user = User::factory()
         ->admin()
