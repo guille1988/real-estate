@@ -131,6 +131,51 @@ it('validates sort query string.', function (): void {
         ->assertSessionHasErrors('sort');
 });
 
+it('orders by description asc when sort is provided.', function (): void {
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $alpha = Amenity::factory()
+        ->create(['description' => 'Alpha']);
+
+    $zeta = Amenity::factory()
+        ->create(['description' => 'Zeta']);
+
+    $this->actingAs($user)
+        ->get(route('admin.amenities.index', ['sort' => 'description']))
+        ->assertInertia(function (Assert $page) use ($alpha, $zeta): void {
+            $page->component(PageEnum::ADMIN_AMENITIES_INDEX->value)
+                ->has('amenities.data', 2)
+                ->where('amenities.data.0.uuid', $alpha->uuid)
+                ->where('amenities.data.1.uuid', $zeta->uuid);
+        });
+});
+
+it('orders by description desc when sort and direction are provided.', function (): void {
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $alpha = Amenity::factory()
+        ->create(['description' => 'Alpha']);
+
+    $zeta = Amenity::factory()
+        ->create(['description' => 'Zeta']);
+
+    $this->actingAs($user)
+        ->get(route('admin.amenities.index', [
+            'sort' => 'description',
+            'direction' => PaginationDirection::DESC->value,
+        ]))
+        ->assertInertia(function (Assert $page) use ($alpha, $zeta): void {
+            $page->component(PageEnum::ADMIN_AMENITIES_INDEX->value)
+                ->has('amenities.data', 2)
+                ->where('amenities.data.0.uuid', $zeta->uuid)
+                ->where('amenities.data.1.uuid', $alpha->uuid);
+        });
+});
+
 it('works combining search, direction and page.', function (): void {
     $perPage = 7;
 

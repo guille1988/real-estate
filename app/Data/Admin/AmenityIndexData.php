@@ -28,7 +28,7 @@ final class AmenityIndexData extends Data
         return [
             'page' => ['nullable', 'integer', 'digits_between:1,100'],
             'search' => ['nullable', 'string', 'between:1,200'],
-            'sort' => ['nullable', 'string', 'in:name,price,category'],
+            'sort' => ['nullable', 'string', 'in:description'],
             'direction' => ['nullable', 'string', Rule::enum(PaginationDirection::class)],
         ];
     }
