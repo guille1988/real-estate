@@ -22,6 +22,7 @@ import {
 import { Page } from '@inertiajs/core';
 import { usePage } from '@inertiajs/vue3';
 import { computed, ComputedRef } from 'vue';
+import AmenityController from '@/Routes/actions/App/Http/Controllers/Admin/AmenityController';
 
 const navigationItems: SidebarNavigationInterface[] = [
     {
@@ -45,6 +46,12 @@ const navigationItems: SidebarNavigationInterface[] = [
     {
         name: PageEnum.PRICING_DETAILS,
         route: PricingDetailController.index().url,
+        icon: CurrencyDollarIcon,
+        current: false,
+    },
+    {
+        name: PageEnum.AMENITIES,
+        route: AmenityController.index().url,
         icon: CurrencyDollarIcon,
         current: false,
     },

@@ -3,4 +3,5 @@ export enum PageEnum {
     PROPERTIES = 'Properties',
     IMAGES = 'Images',
     PRICING_DETAILS = 'Pricing Details',
+    AMENITIES = 'Amenities',
 }
