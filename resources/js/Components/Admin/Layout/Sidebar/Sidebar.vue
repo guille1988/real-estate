@@ -17,6 +17,7 @@ import { PageProps } from '@/Types/Core';
 import {
     ChartPieIcon,
     CurrencyDollarIcon,
+    GiftIcon,
     HomeIcon,
     PhotoIcon,
 } from '@heroicons/vue/24/outline';
@@ -52,7 +53,7 @@ const navigationItems: SidebarNavigationInterface[] = [
     {
         name: PageEnum.AMENITIES,
         route: AmenityController.index().url,
-        icon: CurrencyDollarIcon,
+        icon: GiftIcon,
         current: false,
     },
 ];
