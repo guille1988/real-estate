@@ -6,9 +6,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Actions\BulkDestroyImages;
 use App\Actions\StoreImages;
+use App\Actions\UpdateImage;
 use App\Data\Admin\ImageBulkDestroyData;
 use App\Data\Admin\ImageData;
 use App\Data\Admin\ImageStoreData;
+use App\Data\Admin\ImageUpdateData;
 use App\Enums\PageEnum;
 use App\Http\Resources\Admin\EditImageResource;
 use App\Http\Resources\Admin\IndexImageResource;
@@ -76,6 +78,7 @@ final class ImageController
     public function store(ImageStoreData $data, StoreImages $action): RedirectResponse
     {
         $action->execute($data);
+        cache()->flush();
 
         return back();
     }
@@ -83,7 +86,17 @@ final class ImageController
     public function bulkDestroy(ImageBulkDestroyData $data, BulkDestroyImages $action): RedirectResponse
     {
         $action->execute($data);
+        cache()->flush();
 
+        return back();
+    }
+
+    /**
+     * @throws Throwable
+     */
+    public function update(ImageUpdateData $data, Image $image, UpdateImage $action): RedirectResponse
+    {
+        $action->execute($data, $image);
         cache()->flush();
 
         return back();
@@ -92,7 +105,6 @@ final class ImageController
     public function destroy(Image $image): RedirectResponse
     {
         $image->deleteCompletely();
-
         cache()->flush();
 
         return back();

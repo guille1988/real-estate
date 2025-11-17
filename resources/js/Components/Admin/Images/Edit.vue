@@ -96,7 +96,7 @@ const submit = (): void => {
 
     disabled.value = true;
 
-    form.put('', {
+    form.patch(ImageController.update(image.uuid).url, {
         preserveScroll: true,
         onSuccess: (): void => {
             router.reload();

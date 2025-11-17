@@ -335,6 +335,62 @@ it('validates bulk delete request.', function (): void {
         ->toBeTrue();
 });
 
+it('updates image as non-default.', function (): void {
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $image = Image::factory()
+        ->default()
+        ->create();
+
+    $property = Property::factory()
+        ->create();
+
+    $this->actingAs($user)
+        ->put(
+            route('admin.images.update', $image->uuid),
+            [
+                'property' => $property->uuid,
+                'is_default' => false,
+            ],
+        )->assertRedirectBack();
+
+    expect($image->fresh()->isDefault())
+        ->toBeFalse();
+});
+
+it('updates image as default.', function (): void {
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $property = Property::factory()
+        ->create();
+
+    $defaultImage = Image::factory()
+        ->default()
+        ->create(['property_id' => $property->id]);
+
+    $image = Image::factory()
+        ->notDefault()
+        ->create(['property_id' => $property->id]);
+
+    $this->actingAs($user)
+        ->put(
+            route('admin.images.update', $image->uuid),
+            [
+                'property' => $property->uuid,
+                'is_default' => true,
+            ],
+        )->assertRedirectBack();
+
+    expect($image->fresh()->isDefault())
+        ->toBeTrue()
+        ->and($defaultImage->fresh()->isDefault())
+        ->toBeFalse();
+});
+
 it('destroys a single image completely and clears cache, keeping folder until last file is removed.', function (): void {
     Storage::fake('images');
 
