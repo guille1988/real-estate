@@ -60,6 +60,19 @@
                                 />
                                 <TableHeader label="E-mail" column="email" />
                                 <TableHeader
+                                    label="Read"
+                                    column="read"
+                                    :sort="false"
+                                />
+                                <TableHeader
+                                    label="Bathrooms"
+                                    column="bathrooms"
+                                />
+                                <TableHeader
+                                    label="Bedrooms"
+                                    column="bedrooms"
+                                />
+                                <TableHeader
                                     label="Property Type"
                                     column="propertyType"
                                 />
@@ -99,6 +112,16 @@
                                     <Text :text="propertyMessage.firstName" />
                                     <Text :text="propertyMessage.lastName" />
                                     <Text :text="propertyMessage.email" />
+                                    <Badge
+                                        :badge="
+                                            getReadBadge(
+                                                propertyMessage.read_at,
+                                            )
+                                        "
+                                        :mapping="badgeColorMapping"
+                                    />
+                                    <Text :text="propertyMessage.bathrooms" />
+                                    <Text :text="propertyMessage.bedrooms" />
                                     <Badge
                                         :badge="propertyMessage.propertyType"
                                         :mapping="PropertyTypeColors"
@@ -167,7 +190,15 @@ const filters: Record<string, SelectFilterOptionType[]> = {
     propertyType: propertyTypes,
 };
 
+const badgeColorMapping: Record<string, string> = {
+    read: 'green',
+    unread: 'red',
+};
+
 const filtersOpen: Ref<boolean> = ref<boolean>(false);
+
+const getReadBadge = (read: undefined | null | string): string =>
+    read === undefined || read === null ? 'unread' : 'read';
 
 const showPagination = (): boolean => propertyMessages.lastPage > 1;
 

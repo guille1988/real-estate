@@ -26,6 +26,8 @@ final class PropertyMessageBuilder extends Builder
             'first_name',
             'last_name',
             'email',
+            'bathrooms',
+            'bedrooms',
             'property_type',
             'read_at',
         ];

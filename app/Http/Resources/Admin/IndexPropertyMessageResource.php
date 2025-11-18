@@ -23,8 +23,10 @@ final class IndexPropertyMessageResource extends JsonResource
             'first_name' => $this->first_name,
             'last_name' => $this->last_name,
             'email' => $this->email,
+            'bathrooms' => $this->bathrooms,
+            'bedrooms' => $this->bedrooms,
             'property_type' => $this->property_type,
-            'read_at' => $this->read_at,
+            'read_at' => $this->read_at?->toDateTimeString(),
         ];
     }
 }

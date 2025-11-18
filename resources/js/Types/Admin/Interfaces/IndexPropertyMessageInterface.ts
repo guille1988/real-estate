@@ -5,6 +5,8 @@ export interface IndexPropertyMessageInterface {
     firstName: string;
     lastName: string;
     email: string;
-    read_at: null | string;
+    bathrooms: number;
+    bedrooms: number;
     propertyType: PropertyTypeEnum;
+    read_at: null | string;
 }
