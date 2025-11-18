@@ -43,6 +43,18 @@ final class OfficeLocation extends Model
     protected $guarded = [];
 
     /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array // @pest-arch-ignore-line
+    {
+        return [
+            'type' => OfficeLocationTypeEnum::class,
+        ];
+    }
+
+    /**
      * Get the field to use on route model binding.
      */
     public function getRouteKeyName(): string

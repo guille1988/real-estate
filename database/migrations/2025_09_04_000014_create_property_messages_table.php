@@ -26,6 +26,7 @@ return new class extends Migration
             $table->integer('bedrooms');
             $table->integer('bathrooms');
             $table->text('message')->nullable();
+            $table->timestamp('read_at')->nullable();
             $table->timestamps();
         });
     }

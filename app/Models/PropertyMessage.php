@@ -26,6 +26,7 @@ use Illuminate\Database\Eloquent\Model;
  *  @property-read int $bedrooms
  *  @property-read int $bathrooms
  *  @property-read string|null $message
+ *  @property-read CarbonImmutable|null $read_at
  *  @property-read CarbonImmutable|null $created_at
  *  @property-read CarbonImmutable|null $updated_at
  */
@@ -45,6 +46,21 @@ final class PropertyMessage extends Model
      * @var list<string>
      */
     protected $guarded = [];
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array // @pest-arch-ignore-line
+    {
+        return [
+            'read_at' => 'datetime',
+            'location' => PropertyLocationEnum::class,
+            'property_type' => PropertyTypeEnum::class,
+            'budget' => PropertyMessageBudgetEnum::class,
+        ];
+    }
 
     /**
      * Get the field to use on route model binding.

@@ -21,7 +21,7 @@ use Illuminate\Support\Number;
  *  @property-read int $id
  *  @property-read string $uuid
  *  @property-read string $name
- *  @property-read ?string $description
+ *  @property-read null|string $description
  *  @property-read PricingDetailCategoryEnum $category
  *  @property-read int $price
  *  @property-read int $property_id

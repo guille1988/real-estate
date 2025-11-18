@@ -4,11 +4,19 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Carbon\CarbonImmutable;
 use Database\Factories\SubscriberFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ *  @property-read int $id
+ *  @property-read string $uuid
+ *  @property-read string $email
+ *  @property-read CarbonImmutable|null $created_at
+ *  @property-read CarbonImmutable|null $updated_at
+ */
 final class Subscriber extends Model
 {
     /** @use HasFactory<SubscriberFactory> */

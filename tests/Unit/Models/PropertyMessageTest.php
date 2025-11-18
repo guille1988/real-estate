@@ -23,6 +23,7 @@ it('contains all proper attributes.', function (): void {
             'bedrooms',
             'bathrooms',
             'message',
+            'read_at',
             'created_at',
             'updated_at',
         ]);
