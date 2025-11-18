@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithCachedConfig;
 use Illuminate\Foundation\Testing\WithCachedRoutes;
 use Tests\TestCase;
 
@@ -18,7 +19,7 @@ use Tests\TestCase;
 */
 
 pest()->extend(TestCase::class)
-    ->use(RefreshDatabase::class, WithCachedRoutes::class)
+    ->use(RefreshDatabase::class, WithCachedConfig::class, WithCachedRoutes::class)
     ->in('Feature', 'Unit')
     ->beforeEach(function (): void {
         Http::preventStrayRequests();
