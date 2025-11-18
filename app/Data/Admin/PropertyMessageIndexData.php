@@ -28,7 +28,7 @@ final class PropertyMessageIndexData extends Data
         return [
             'page' => ['nullable', 'integer', 'digits_between:1,100'],
             'search' => ['nullable', 'string', 'between:1,200'],
-            'sort' => ['nullable', 'string', 'in:firstName,lastName,email'],
+            'sort' => ['nullable', 'string', 'in:firstName,lastName,email,propertyType'],
             'direction' => ['nullable', 'string', Rule::enum(PaginationDirection::class)],
         ];
     }

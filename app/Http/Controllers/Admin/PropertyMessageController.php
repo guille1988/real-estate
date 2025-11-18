@@ -6,9 +6,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Data\Admin\PropertyMessageIndexData;
 use App\Enums\PageEnum;
+use App\Enums\PropertyTypeEnum;
 use App\Http\Resources\Admin\IndexPropertyMessageResource;
 use App\Models\PropertyMessage;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Collection;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -26,6 +28,7 @@ final class PropertyMessageController
 
         return Inertia::render(PageEnum::ADMIN_PROPERTY_MESSAGES_INDEX->value, [
             'property_messages' => fn (): array => $propertyMessages,
+            'property_types' => fn (): Collection => PropertyTypeEnum::toResponse(),
         ]);
     }
 }
