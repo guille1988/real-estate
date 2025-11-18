@@ -37,4 +37,6 @@ enum PageEnum: string
     case ADMIN_AMENITIES_CREATE = 'Admin/Amenities/Create';
     case ADMIN_AMENITIES_SHOW = 'Admin/Amenities/Show';
     case ADMIN_AMENITIES_EDIT = 'Admin/Amenities/Edit';
+
+    case ADMIN_PROPERTY_MESSAGES_INDEX = 'Admin/PropertyMessages/Index';
 }

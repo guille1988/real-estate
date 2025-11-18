@@ -6,11 +6,13 @@
 <script setup lang="ts">
 import DesktopSidebar from '@/Components/Admin/Layout/Sidebar/DesktopSidebar.vue';
 import MobileSidebar from '@/Components/Admin/Layout/Sidebar/MobileSidebar.vue';
+import EmailIcon from '@/Components/Icons/EmailIcon.vue';
 import AmenityController from '@/Routes/actions/App/Http/Controllers/Admin/AmenityController';
 import DashboardController from '@/Routes/actions/App/Http/Controllers/Admin/DashboardController';
 import ImageController from '@/Routes/actions/App/Http/Controllers/Admin/ImageController';
 import PricingDetailController from '@/Routes/actions/App/Http/Controllers/Admin/PricingDetailController';
 import PropertyController from '@/Routes/actions/App/Http/Controllers/Admin/PropertyController';
+import PropertyMessageController from '@/Routes/actions/App/Http/Controllers/Admin/PropertyMessageController';
 import { PageEnum } from '@/Types/Admin/Enums/PageEnum';
 import type { SidebarNavigationInterface } from '@/Types/Admin/Interfaces/SidebarNavigationInterface';
 import { PageProps } from '@/Types/Core';
@@ -54,6 +56,12 @@ const navigationItems: SidebarNavigationInterface[] = [
         name: PageEnum.AMENITIES,
         route: AmenityController.index().url,
         icon: GiftIcon,
+        current: false,
+    },
+    {
+        name: PageEnum.PROPERTY_MESSAGES,
+        route: PropertyMessageController.index().url,
+        icon: EmailIcon,
         current: false,
     },
 ];

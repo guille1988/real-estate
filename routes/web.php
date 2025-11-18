@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\PricingDetailController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\PropertyController as AdminPropertyController;
+use App\Http\Controllers\Admin\PropertyMessageController as AdminPropertyMessageController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ContactMessageController;
 use App\Http\Controllers\HomeController;
@@ -154,5 +155,9 @@ Route::prefix('admin')
 
                 Route::post('amenities/bulk-delete', [AmenityController::class, 'bulkDestroy'])
                     ->name('.amenities.bulk-delete');
+
+                Route::resource('property-messages', AdminPropertyMessageController::class)
+                    ->only(['index'])
+                    ->names(['index' => '.property-messages.index']);
             });
     });

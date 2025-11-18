@@ -5,6 +5,7 @@ import properties from './properties'
 import images from './images'
 import pricingDetails from './pricing-details'
 import amenities from './amenities'
+import propertyMessages from './property-messages'
 /**
 * @see \App\Http\Controllers\Admin\DashboardController::__invoke
 * @see app/Http/Controllers/Admin/DashboardController.php:13
@@ -57,6 +58,7 @@ const admin = {
     images: Object.assign(images, images),
     pricingDetails: Object.assign(pricingDetails, pricingDetails),
     amenities: Object.assign(amenities, amenities),
+    propertyMessages: Object.assign(propertyMessages, propertyMessages),
 }
 
 export default admin
