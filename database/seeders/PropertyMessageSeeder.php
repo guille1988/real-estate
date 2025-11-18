@@ -14,6 +14,6 @@ final class PropertyMessageSeeder extends Seeder
      */
     public function run(): void
     {
-        PropertyMessage::factory(20)->create();
+        PropertyMessage::factory(48)->create();
     }
 }

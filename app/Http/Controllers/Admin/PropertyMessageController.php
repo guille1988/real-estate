@@ -20,7 +20,7 @@ final class PropertyMessageController
     {
         $propertyMessages = PropertyMessage::query()
             ->forIndexing($data)
-            ->paginate(7, page: $data->page)
+            ->paginate(9, page: $data->page)
             ->withQueryString()
             ->through(function (PropertyMessage $propertyMessage): JsonResource {
                 return $propertyMessage->toResource(IndexPropertyMessageResource::class);
