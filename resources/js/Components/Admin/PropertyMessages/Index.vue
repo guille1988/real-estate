@@ -3,7 +3,7 @@
         <div class="sm:flex sm:items-center">
             <div class="sm:flex-auto">
                 <h1 class="text-base font-semibold text-white">
-                    PropertyMessages
+                    Property Messages
                 </h1>
                 <p class="mt-2 text-sm text-gray-300">
                     A list of all pricing details for properties.
