@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Builders\PropertyMessageBuilder;
 use App\Enums\PropertyLocationEnum;
 use App\Enums\PropertyMessageBudgetEnum;
 use App\Enums\PropertyTypeEnum;
 use Carbon\CarbonImmutable;
 use Database\Factories\PropertyMessageFactory;
+use Illuminate\Database\Eloquent\Attributes\UseEloquentBuilder;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -30,6 +32,7 @@ use Illuminate\Database\Eloquent\Model;
  *  @property-read CarbonImmutable|null $created_at
  *  @property-read CarbonImmutable|null $updated_at
  */
+#[UseEloquentBuilder(PropertyMessageBuilder::class)]
 final class PropertyMessage extends Model
 {
     /** @use HasFactory<PropertyMessageFactory> */
