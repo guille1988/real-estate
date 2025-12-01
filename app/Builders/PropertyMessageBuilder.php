@@ -7,6 +7,7 @@ namespace App\Builders;
 use App\Data\Admin\PropertyMessageIndexData;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Stringable;
 
 /**
  * @template TModel of Model
@@ -41,6 +42,13 @@ final class PropertyMessageBuilder extends Builder
                         ->orWhereLike('last_name', $search)
                         ->orWhereLike('email', $search);
                 });
+            })->when($data->isNotNull('read'), function (self $query) use ($data): void {
+                $stringQuery = str('where')
+                    ->when($data->read, fn (Stringable $stringable): Stringable => $stringable->append('Not'))
+                    ->append('Null')
+                    ->toString();
+
+                $query->$stringQuery('read_at');
             })->orderBy($data->getSort(), $data->getDirection());
     }
 }

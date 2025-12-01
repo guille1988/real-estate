@@ -114,9 +114,7 @@
                                     <Text :text="propertyMessage.email" />
                                     <Badge
                                         :badge="
-                                            getReadBadge(
-                                                propertyMessage.read_at,
-                                            )
+                                            getReadBadge(propertyMessage.readAt)
                                         "
                                         :mapping="badgeColorMapping"
                                     />
@@ -186,8 +184,14 @@ const {
     propertyTypes: PropertyTypeInterface[];
 }>();
 
+const read: SelectFilterOptionType[] = [
+    { label: 'Yes', value: '1' },
+    { label: 'No', value: '0' },
+];
+
 const filters: Record<string, SelectFilterOptionType[]> = {
     propertyType: propertyTypes,
+    read: read,
 };
 
 const badgeColorMapping: Record<string, string> = {

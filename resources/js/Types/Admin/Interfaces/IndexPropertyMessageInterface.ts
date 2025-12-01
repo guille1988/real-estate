@@ -8,5 +8,5 @@ export interface IndexPropertyMessageInterface {
     bathrooms: number;
     bedrooms: number;
     propertyType: PropertyTypeEnum;
-    read_at: null | string;
+    readAt: null | string;
 }
