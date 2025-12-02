@@ -292,3 +292,37 @@ it('returns empty dataset when no records exist.', function (): void {
                 ->has('propertyMessages.data', 0);
         });
 });
+
+it('deletes a property message.', function (): void {
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $propertyMessage = PropertyMessage::factory()
+        ->create();
+
+    $this->actingAs($user)
+        ->delete(route('admin.property-messages.destroy', $propertyMessage->uuid))
+        ->assertRedirectBack();
+
+    $this->assertModelMissing($propertyMessage);
+});
+
+it('bulks delete property messages.', function (): void {
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $propertyMessages = PropertyMessage::factory(2)
+        ->create();
+
+    $this->actingAs($user)
+        ->post(
+            route('admin.property-messages.bulk-delete'),
+            ['uuids' => $propertyMessages->pluck('uuid')->toArray()],
+        )->assertRedirectBack();
+
+    $propertyMessages->each(function (PropertyMessage $propertyMessage): void {
+        $this->assertModelMissing($propertyMessage);
+    });
+});

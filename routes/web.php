@@ -157,7 +157,13 @@ Route::prefix('admin')
                     ->name('.amenities.bulk-delete');
 
                 Route::resource('property-messages', AdminPropertyMessageController::class)
-                    ->only(['index'])
-                    ->names(['index' => '.property-messages.index']);
+                    ->only(['index', 'destroy'])
+                    ->names([
+                        'index' => '.property-messages.index',
+                        'destroy' => '.property-messages.destroy',
+                    ]);
+
+                Route::post('property-messages/bulk-delete', [AdminPropertyMessageController::class, 'bulkDestroy'])
+                    ->name('.property-messages.bulk-delete');
             });
     });
