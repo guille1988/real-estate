@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Admin;
 
-use App\Actions\BulkDestroyPropertyMessages;
 use App\Data\Admin\PropertyMessageBulkDestroyData;
 use App\Data\Admin\PropertyMessageIndexData;
 use App\Enums\PageEnum;
@@ -35,9 +34,12 @@ final class PropertyMessageController
         ]);
     }
 
-    public function bulkDestroy(PropertyMessageBulkDestroyData $data, BulkDestroyPropertyMessages $action): RedirectResponse
+    public function bulkDestroy(PropertyMessageBulkDestroyData $data): RedirectResponse
     {
-        $action->execute($data);
+        PropertyMessage::query()
+            ->whereIn('uuid', $data->uuids)
+            ->delete();
+
         cache()->flush();
 
         return back();
