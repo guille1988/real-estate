@@ -82,4 +82,27 @@ final class PropertyMessage extends Model
     {
         return ['uuid'];
     }
+
+    /*
+     * Returns the message.
+     */
+    public function getMessage(): string
+    {
+        return $this->message ?? 'No message provided.';
+    }
+
+    /*
+     * Marks the message as read.
+     */
+    public function markAsRead(): self
+    {
+        $this->update(['read_at' => now()]);
+
+        /**
+         * @var self $propertyMessage
+         */
+        $propertyMessage = $this->fresh();
+
+        return $propertyMessage;
+    }
 }

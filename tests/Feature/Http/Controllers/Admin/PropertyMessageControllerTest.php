@@ -293,6 +293,27 @@ it('returns empty dataset when no records exist.', function (): void {
         });
 });
 
+it('shows a property message.', function (): void {
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $propertyMessage = PropertyMessage::factory()
+        ->unread()
+        ->create();
+
+    $this->actingAs($user)
+        ->get(route('admin.property-messages.show', $propertyMessage->uuid))
+        ->assertInertia(function (Assert $page): void {
+            $page->component(PageEnum::ADMIN_PROPERTY_MESSAGES_SHOW->value)
+                ->has('propertyMessage');
+        });
+
+    expect($propertyMessage->fresh()->read_at)
+        ->not()
+        ->toBeNull();
+});
+
 it('deletes a property message.', function (): void {
     $user = User::factory()
         ->admin()

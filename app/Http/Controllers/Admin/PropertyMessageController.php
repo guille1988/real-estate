@@ -9,6 +9,7 @@ use App\Data\Admin\PropertyMessageIndexData;
 use App\Enums\PageEnum;
 use App\Enums\PropertyTypeEnum;
 use App\Http\Resources\Admin\IndexPropertyMessageResource;
+use App\Http\Resources\Admin\ShowPropertyMessageResource;
 use App\Models\PropertyMessage;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -31,6 +32,16 @@ final class PropertyMessageController
         return Inertia::render(PageEnum::ADMIN_PROPERTY_MESSAGES_INDEX->value, [
             'property_messages' => fn (): array => $propertyMessages,
             'property_types' => fn (): Collection => PropertyTypeEnum::toResponse(),
+        ]);
+    }
+
+    public function show(PropertyMessage $propertyMessage): Response
+    {
+        $readPropertyMessage = $propertyMessage->markAsRead();
+        cache()->flush();
+
+        return Inertia::render(PageEnum::ADMIN_PROPERTY_MESSAGES_SHOW->value, [
+            'property_message' => fn (): JsonResource => $readPropertyMessage->toResource(ShowPropertyMessageResource::class),
         ]);
     }
 

@@ -6,7 +6,7 @@
             <Index
                 :propertyMessages="propertyMessages"
                 :propertyTypes="propertyTypes"
-            />>
+            />
         </div>
     </Layout>
 </template>

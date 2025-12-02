@@ -36,4 +36,12 @@ final class PropertyMessageFactory extends Factory
             'read_at' => $this->faker->optional()->dateTime(),
         ];
     }
+
+    /*
+     * Mark the message as unread.
+     */
+    public function unread(): self
+    {
+        return $this->state(['read_at' => null]);
+    }
 }
