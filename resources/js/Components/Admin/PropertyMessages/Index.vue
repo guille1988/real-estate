@@ -6,7 +6,7 @@
                     Property Messages
                 </h1>
                 <p class="mt-2 text-sm text-gray-300">
-                    A list of all pricing details for properties.
+                    A list of all property messages.
                 </p>
             </div>
             <div class="mt-4 sm:mt-0 sm:flex-1 sm:px-6">
@@ -85,7 +85,7 @@
                         </thead>
                         <WhenVisible :data="['propertyMessages']">
                             <template #fallback>
-                                <Skeleton resource="pricing-details" />
+                                <Skeleton resource="property-messages" />
                             </template>
 
                             <tbody class="divide-y divide-white/10 bg-gray-900">
@@ -128,8 +128,10 @@
                                         show-url="
                                            
                                         "
-                                        delete-url="
-                                        
+                                        :delete-url="
+                                            PropertyMessageController.destroy(
+                                                propertyMessage.uuid,
+                                            ).url
                                         "
                                         resource="propertyMessage"
                                     />
@@ -163,6 +165,7 @@ import ResetFilters from '@/Components/Shared/Tables/ResetFilters.vue';
 import SearchBar from '@/Components/Shared/Tables/SearchBar.vue';
 import Skeleton from '@/Components/Shared/Tables/Skeleton.vue';
 import TableHeader from '@/Components/Shared/Tables/TableHeader.vue';
+import PropertyMessageController from '@/Routes/actions/App/Http/Controllers/Admin/PropertyMessageController';
 import { FormMethodEnum } from '@/Types/Admin/Enums/FormMethodEnum';
 import { IndexPropertyMessageInterface } from '@/Types/Admin/Interfaces/IndexPropertyMessageInterface';
 import { IndexPropertyMessagePaginatedInterface } from '@/Types/Admin/Interfaces/IndexPropertyMessagePaginatedInterface';
@@ -246,7 +249,7 @@ const toggleSelectAll = (): void => {
 };
 
 const bulkDeleteConfirmationMessage: string =
-    'Are you sure you want to delete the selected pricing details?. This action cannot be undone.';
+    'Are you sure you want to delete the selected property messages?. This action cannot be undone.';
 
 const bulkDelete = (): void => {
     if (selected.value.size === 0) {
@@ -257,7 +260,7 @@ const bulkDelete = (): void => {
         return;
     }
 
-    router.visit('', {
+    router.visit(PropertyMessageController.bulkDestroy().url, {
         method: FormMethodEnum.POST,
         data: { uuids: Array.from(selected.value) },
         onSuccess: (): void => {
@@ -265,7 +268,7 @@ const bulkDelete = (): void => {
             selected.value = new Set();
             router.reload({ only: ['propertyMessages'] });
 
-            toast.success('Pricing Details has been deleted successfully');
+            toast.success('Property Messages has been deleted successfully');
         },
     });
 };
