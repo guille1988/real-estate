@@ -125,8 +125,10 @@
                                         :mapping="PropertyTypeColors"
                                     />
                                     <Actions
-                                        show-url="
-                                           
+                                        :show-url="
+                                            PropertyMessageController.show(
+                                                propertyMessage.uuid,
+                                            ).url
                                         "
                                         :delete-url="
                                             PropertyMessageController.destroy(
