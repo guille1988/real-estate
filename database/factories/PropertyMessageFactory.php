@@ -33,6 +33,7 @@ final class PropertyMessageFactory extends Factory
             'bedrooms' => $this->faker->numberBetween(1, 4),
             'bathrooms' => $this->faker->numberBetween(1, 4),
             'message' => $this->faker->optional()->realTextBetween(),
+            'read_at' => $this->faker->optional()->dateTime(),
         ];
     }
 }
