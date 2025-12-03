@@ -33,6 +33,56 @@
                         </div>
                     </div>
 
+                    <div>
+                        <label class="mb-2 block text-sm">E-mail</label>
+                        <div
+                            class="rounded border border-gray-700 bg-black/70 p-3 text-sm text-gray-300"
+                        >
+                            {{ propertyMessage.email }}
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="grid grid-cols-2 gap-6">
+                            <div>
+                                <label class="mb-2 block text-sm"
+                                    >Bathrooms</label
+                                >
+                                <div
+                                    class="rounded border border-gray-700 bg-black/70 p-3 text-sm text-gray-300"
+                                >
+                                    {{ propertyMessage.bathrooms }}
+                                </div>
+                            </div>
+                            <div>
+                                <label class="mb-2 block text-sm"
+                                    >Bedrooms</label
+                                >
+                                <div
+                                    class="rounded border border-gray-700 bg-black/70 p-3 text-sm text-gray-300"
+                                >
+                                    {{ propertyMessage.bedrooms }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="mb-2 block text-sm">Property Type</label>
+                        <span :class="getPropertyTypeClass()">
+                            {{ propertyMessage.propertyType }}
+                        </span>
+                    </div>
+
+                    <div v-if="propertyMessage.readAt">
+                        <label class="mb-2 block text-sm">Read At</label>
+                        <div
+                            class="rounded border border-gray-700 bg-black/70 p-3 text-sm text-gray-300"
+                        >
+                            {{ propertyMessage.readAt }}
+                        </div>
+                    </div>
+
                     <div
                         v-if="
                             propertyMessage.createdAt &&
@@ -72,6 +122,15 @@
                             {{ propertyMessage.lastName }}
                         </div>
                     </div>
+
+                    <div class="md:col-span-2">
+                        <label class="mb-2 block text-sm">Message</label>
+                        <div
+                            class="whitespace-pre-line rounded border border-gray-700 bg-black/70 p-3 text-sm text-gray-300"
+                        >
+                            {{ propertyMessage.message }}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -82,9 +141,16 @@
 import BackToIndexButton from '@/Components/Shared/Buttons/BackToIndexButton.vue';
 import PropertyMessageController from '@/Routes/actions/App/Http/Controllers/Admin/PropertyMessageController';
 import { ShowPropertyMessageInterface } from '@/Types/Admin/Interfaces/ShowPropertyMessageInterface';
+import { PropertyTypeColors } from '@/Types/App/Enums/PropertyTypeEnum';
 
 const { propertyMessage }: { propertyMessage: ShowPropertyMessageInterface } =
     defineProps<{
         propertyMessage: ShowPropertyMessageInterface;
     }>();
+
+const getPropertyTypeClass = (): string => {
+    const color: string = PropertyTypeColors[propertyMessage.propertyType];
+
+    return `inline-flex items-center rounded-md bg-${color}-900/30 px-2 py-1 text-xs font-medium uppercase text-${color}-400 ring-1 ring-inset ring-${color}-500/50`;
+};
 </script>

@@ -92,7 +92,16 @@ final class PropertyMessage extends Model
     }
 
     /*
-     * Marks the message as read.
+     * Determines if the message is not read.
+     */
+    public function isNotRead(): bool
+    {
+        return is_null($this->read_at);
+    }
+
+    /*
+     * Marks the message as read
+     * and returns the updated model.
      */
     public function markAsRead(): self
     {

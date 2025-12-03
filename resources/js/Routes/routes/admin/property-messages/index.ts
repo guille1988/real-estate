@@ -107,7 +107,7 @@ show.head = (args: { property_message: string | number } | [property_message: st
 
 /**
 * @see \App\Http\Controllers\Admin\PropertyMessageController::destroy
-* @see app/Http/Controllers/Admin/PropertyMessageController.php:59
+* @see app/Http/Controllers/Admin/PropertyMessageController.php:62
 * @route '/admin/property-messages/{property_message}'
 */
 export const destroy = (args: { property_message: string | number } | [property_message: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -122,7 +122,7 @@ destroy.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\PropertyMessageController::destroy
-* @see app/Http/Controllers/Admin/PropertyMessageController.php:59
+* @see app/Http/Controllers/Admin/PropertyMessageController.php:62
 * @route '/admin/property-messages/{property_message}'
 */
 destroy.url = (args: { property_message: string | number } | [property_message: string | number ] | string | number, options?: RouteQueryOptions) => {
@@ -149,7 +149,7 @@ destroy.url = (args: { property_message: string | number } | [property_message: 
 
 /**
 * @see \App\Http\Controllers\Admin\PropertyMessageController::destroy
-* @see app/Http/Controllers/Admin/PropertyMessageController.php:59
+* @see app/Http/Controllers/Admin/PropertyMessageController.php:62
 * @route '/admin/property-messages/{property_message}'
 */
 destroy.delete = (args: { property_message: string | number } | [property_message: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -159,7 +159,7 @@ destroy.delete = (args: { property_message: string | number } | [property_messag
 
 /**
 * @see \App\Http\Controllers\Admin\PropertyMessageController::bulkDelete
-* @see app/Http/Controllers/Admin/PropertyMessageController.php:48
+* @see app/Http/Controllers/Admin/PropertyMessageController.php:51
 * @route '/admin/property-messages/bulk-delete'
 */
 export const bulkDelete = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -174,7 +174,7 @@ bulkDelete.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\PropertyMessageController::bulkDelete
-* @see app/Http/Controllers/Admin/PropertyMessageController.php:48
+* @see app/Http/Controllers/Admin/PropertyMessageController.php:51
 * @route '/admin/property-messages/bulk-delete'
 */
 bulkDelete.url = (options?: RouteQueryOptions) => {
@@ -183,7 +183,7 @@ bulkDelete.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\PropertyMessageController::bulkDelete
-* @see app/Http/Controllers/Admin/PropertyMessageController.php:48
+* @see app/Http/Controllers/Admin/PropertyMessageController.php:51
 * @route '/admin/property-messages/bulk-delete'
 */
 bulkDelete.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
