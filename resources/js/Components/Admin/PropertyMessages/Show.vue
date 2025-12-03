@@ -43,6 +43,15 @@
                     </div>
 
                     <div>
+                        <label class="mb-2 block text-sm">Last Name</label>
+                        <div
+                            class="whitespace-pre-line rounded border border-gray-700 bg-black/70 p-3 text-sm text-gray-300"
+                        >
+                            {{ propertyMessage.lastName }}
+                        </div>
+                    </div>
+
+                    <div>
                         <div class="grid grid-cols-2 gap-6">
                             <div>
                                 <label class="mb-2 block text-sm"
@@ -68,18 +77,25 @@
                     </div>
 
                     <div>
-                        <label class="mb-2 block text-sm">Property Type</label>
-                        <span :class="getPropertyTypeClass()">
-                            {{ propertyMessage.propertyType }}
-                        </span>
-                    </div>
-
-                    <div v-if="propertyMessage.readAt">
-                        <label class="mb-2 block text-sm">Read At</label>
-                        <div
-                            class="rounded border border-gray-700 bg-black/70 p-3 text-sm text-gray-300"
-                        >
-                            {{ propertyMessage.readAt }}
+                        <div class="grid grid-cols-2 gap-6">
+                            <div>
+                                <label class="mb-2 block text-sm"
+                                    >Property Type</label
+                                >
+                                <span :class="getPropertyTypeClass()">
+                                    {{ propertyMessage.propertyType }}
+                                </span>
+                            </div>
+                            <div v-if="propertyMessage.readAt">
+                                <label class="mb-2 block text-sm"
+                                    >Read At</label
+                                >
+                                <div
+                                    class="rounded border border-gray-700 bg-black/70 p-3 text-sm text-gray-300"
+                                >
+                                    {{ propertyMessage.readAt }}
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -88,7 +104,6 @@
                             propertyMessage.createdAt &&
                             propertyMessage.updatedAt
                         "
-                        class="md:col-start-2"
                     >
                         <div class="grid grid-cols-2 gap-6">
                             <div v-if="propertyMessage.createdAt">
@@ -111,15 +126,6 @@
                                     {{ propertyMessage.updatedAt }}
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="md:col-span-2">
-                        <label class="mb-2 block text-sm">Last Name</label>
-                        <div
-                            class="whitespace-pre-line rounded border border-gray-700 bg-black/70 p-3 text-sm text-gray-300"
-                        >
-                            {{ propertyMessage.lastName }}
                         </div>
                     </div>
 
