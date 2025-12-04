@@ -7,6 +7,7 @@ import ImageController from './ImageController'
 import PricingDetailController from './PricingDetailController'
 import AmenityController from './AmenityController'
 import PropertyMessageController from './PropertyMessageController'
+import InquiryController from './InquiryController'
 
 const Admin = {
     AdminController: Object.assign(AdminController, AdminController),
@@ -18,6 +19,7 @@ const Admin = {
     PricingDetailController: Object.assign(PricingDetailController, PricingDetailController),
     AmenityController: Object.assign(AmenityController, AmenityController),
     PropertyMessageController: Object.assign(PropertyMessageController, PropertyMessageController),
+    InquiryController: Object.assign(InquiryController, InquiryController),
 }
 
 export default Admin

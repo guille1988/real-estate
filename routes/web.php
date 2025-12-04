@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AmenityController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ImageController;
+use App\Http\Controllers\Admin\InquiryController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\PricingDetailController;
 use App\Http\Controllers\Admin\ProfileController;
@@ -166,5 +167,11 @@ Route::prefix('admin')
 
                 Route::post('property-messages/bulk-delete', [AdminPropertyMessageController::class, 'bulkDestroy'])
                     ->name('.property-messages.bulk-delete');
+
+                Route::resource('inquiries', InquiryController::class)
+                    ->only(['index'])
+                    ->names([
+                        'index' => '.inquiries.index',
+                    ]);
             });
     });

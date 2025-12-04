@@ -5,4 +5,5 @@ export enum PageEnum {
     PRICING_DETAILS = 'Pricing Details',
     AMENITIES = 'Amenities',
     PROPERTY_MESSAGES = 'Property Messages',
+    INQUIRIES = 'Inquiries',
 }

@@ -40,4 +40,6 @@ enum PageEnum: string
 
     case ADMIN_PROPERTY_MESSAGES_INDEX = 'Admin/PropertyMessages/Index';
     case ADMIN_PROPERTY_MESSAGES_SHOW = 'Admin/PropertyMessages/Show';
+
+    case ADMIN_INQUIRIES_INDEX = 'Admin/Inquiries/Index';
 }

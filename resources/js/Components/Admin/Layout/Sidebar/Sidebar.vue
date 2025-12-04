@@ -10,6 +10,7 @@ import EmailIcon from '@/Components/Icons/EmailIcon.vue';
 import AmenityController from '@/Routes/actions/App/Http/Controllers/Admin/AmenityController';
 import DashboardController from '@/Routes/actions/App/Http/Controllers/Admin/DashboardController';
 import ImageController from '@/Routes/actions/App/Http/Controllers/Admin/ImageController';
+import InquiryController from '@/Routes/actions/App/Http/Controllers/Admin/InquiryController';
 import PricingDetailController from '@/Routes/actions/App/Http/Controllers/Admin/PricingDetailController';
 import PropertyController from '@/Routes/actions/App/Http/Controllers/Admin/PropertyController';
 import PropertyMessageController from '@/Routes/actions/App/Http/Controllers/Admin/PropertyMessageController';
@@ -61,6 +62,12 @@ const navigationItems: SidebarNavigationInterface[] = [
     {
         name: PageEnum.PROPERTY_MESSAGES,
         route: PropertyMessageController.index().url,
+        icon: EmailIcon,
+        current: false,
+    },
+    {
+        name: PageEnum.INQUIRIES,
+        route: InquiryController.index().url,
         icon: EmailIcon,
         current: false,
     },
