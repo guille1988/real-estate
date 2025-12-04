@@ -18,6 +18,7 @@ it('contains all proper attributes.', function (): void {
             'email',
             'phone',
             'message',
+            'read_at',
             'property_id',
             'created_at',
             'updated_at',
