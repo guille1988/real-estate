@@ -26,6 +26,7 @@ final class InquiryFactory extends Factory
             'email' => $this->faker->unique()->safeEmail(),
             'phone' => $this->faker->phoneNumber(),
             'message' => $this->faker->optional()->realText(),
+            'read_at' => $this->faker->optional()->dateTime(),
             'property_id' => Property::factory(),
         ];
     }

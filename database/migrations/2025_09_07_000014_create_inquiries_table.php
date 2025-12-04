@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('phone');
             $table->string('message')->nullable();
+            $table->timestamp('read_at')->nullable();
             $table->foreignIdFor(Property::class)->constrained();
             $table->timestamps();
         });

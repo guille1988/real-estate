@@ -68,6 +68,11 @@
                                     :sort="false"
                                 />
                                 <TableHeader
+                                    label="Read"
+                                    column="read"
+                                    :sort="false"
+                                />
+                                <TableHeader
                                     label="Actions"
                                     column="actions"
                                     :sort="false"
@@ -104,6 +109,10 @@
                                     <Text :text="inquiry.lastName" />
                                     <Text :text="inquiry.email" />
                                     <Text :text="inquiry.phone" />
+                                    <Badge
+                                        :badge="getReadBadge(inquiry.readAt)"
+                                        :mapping="badgeColorMapping"
+                                    />
                                     <Actions
                                         show-url="https://google.com"
                                         delete-url="https://google.com"
@@ -131,6 +140,7 @@
 
 <script setup lang="ts">
 import Actions from '@/Components/Shared/Tables/Fields/Actions.vue';
+import Badge from '@/Components/Shared/Tables/Fields/Badge.vue';
 import ImageWithText from '@/Components/Shared/Tables/Fields/ImageWithText.vue';
 import Text from '@/Components/Shared/Tables/Fields/Text.vue';
 import FilterHandler from '@/Components/Shared/Tables/FilterHandler/FilterHandler.vue';
@@ -155,9 +165,24 @@ const {
     inquiries: IndexInquiriesPaginatedInterface;
 }>();
 
-const filters: Record<string, SelectFilterOptionType[]> = {};
+const read: SelectFilterOptionType[] = [
+    { label: 'Yes', value: '1' },
+    { label: 'No', value: '0' },
+];
+
+const filters: Record<string, SelectFilterOptionType[]> = {
+    read: read,
+};
+
+const badgeColorMapping: Record<string, string> = {
+    read: 'green',
+    unread: 'red',
+};
 
 const filtersOpen: Ref<boolean> = ref<boolean>(false);
+
+const getReadBadge = (read: undefined | null | string): string =>
+    read === undefined || read === null ? 'unread' : 'read';
 
 const showPagination = (): boolean => inquiries.lastPage > 1;
 

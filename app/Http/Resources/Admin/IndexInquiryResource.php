@@ -24,6 +24,7 @@ final class IndexInquiryResource extends JsonResource
             'last_name' => $this->last_name,
             'email' => $this->email,
             'phone' => $this->phone,
+            'read_at' => $this->read_at?->toDateTimeString(),
             'property_title' => $this->property?->title,
             'property_default_image' => $this->property?->getDefaultImage(),
         ];

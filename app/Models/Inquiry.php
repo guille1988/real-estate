@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  *  @property-read string $phone
  *  @property-read string|null $message
  *  @property-read int $property_id
+ *  @property-read CarbonImmutable|null $read_at
  *  @property-read CarbonImmutable|null $created_at
  *  @property-read CarbonImmutable|null $updated_at
  */
@@ -42,6 +43,18 @@ final class Inquiry extends Model
      * @var list<string>
      */
     protected $guarded = [];
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array // @pest-arch-ignore-line
+    {
+        return [
+            'read_at' => 'datetime',
+        ];
+    }
 
     /**
      * Get the field to use on route model binding.

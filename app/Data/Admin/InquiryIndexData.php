@@ -14,6 +14,7 @@ use Spatie\LaravelData\Mappers\SnakeCaseMapper;
 final class InquiryIndexData extends Data
 {
     public function __construct(
+        public ?bool $read,
         public ?int $page = null,
         public ?string $search = null,
         public ?string $sort = null,
@@ -26,6 +27,7 @@ final class InquiryIndexData extends Data
     public static function rules(): array
     {
         return [
+            'read' => ['nullable', 'boolean'],
             'page' => ['nullable', 'integer', 'digits_between:1,100'],
             'search' => ['nullable', 'string', 'between:1,200'],
             'sort' => ['nullable', 'string', 'in:firstName,lastName,email'],

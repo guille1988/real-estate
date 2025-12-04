@@ -4,6 +4,7 @@ export interface IndexInquiryInterface {
     lastName: string;
     email: string;
     phone: string;
+    readAt: null | string;
     propertyTitle: string;
     propertyDefaultImage: string;
 }
