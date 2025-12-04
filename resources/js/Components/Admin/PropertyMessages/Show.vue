@@ -52,6 +52,15 @@
                     </div>
 
                     <div>
+                        <label class="mb-2 block text-sm">Phone</label>
+                        <div
+                            class="whitespace-pre-line rounded border border-gray-700 bg-black/70 p-3 text-sm text-gray-300"
+                        >
+                            {{ propertyMessage.phone }}
+                        </div>
+                    </div>
+
+                    <div>
                         <div class="grid grid-cols-2 gap-6">
                             <div>
                                 <label class="mb-2 block text-sm"

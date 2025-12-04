@@ -23,6 +23,7 @@ final class ShowPropertyMessageResource extends JsonResource
             'first_name' => $this->first_name,
             'last_name' => $this->last_name,
             'email' => $this->email,
+            'phone' => $this->phone,
             'bathrooms' => $this->bathrooms,
             'bedrooms' => $this->bedrooms,
             'property_type' => $this->property_type,

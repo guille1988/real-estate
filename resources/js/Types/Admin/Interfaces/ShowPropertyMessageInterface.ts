@@ -5,6 +5,7 @@ export interface ShowPropertyMessageInterface {
     firstName: string;
     lastName: string;
     email: string;
+    phone: string;
     bathrooms: number;
     bedrooms: number;
     propertyType: PropertyTypeEnum;

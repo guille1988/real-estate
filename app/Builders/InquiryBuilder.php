@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace App\Builders;
 
-use App\Data\Admin\PropertyMessageIndexData;
+use App\Data\Admin\InquiryIndexData;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Stringable;
 
 /**
  * @template TModel of Model
@@ -19,19 +18,9 @@ final class InquiryBuilder extends Builder
     /**
      * @return self<TModel>
      */
-    public function forIndexing(PropertyMessageIndexData $data): self
+    public function forIndexing(InquiryIndexData $data): self
     {
-        $columns = [
-            'id',
-            'uuid',
-            'first_name',
-            'last_name',
-            'email',
-            'phone',
-            'property_id',
-        ];
-
-        return $this->select($columns)
+        return $this->with('property:id,title')
             ->when($data->isNotNull('search'), function (self $query) use ($data): void {
                 $search = "%$data->search%";
 
