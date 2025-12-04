@@ -22,6 +22,7 @@ import {
     CurrencyDollarIcon,
     GiftIcon,
     HomeIcon,
+    InboxIcon,
     PhotoIcon,
 } from '@heroicons/vue/24/outline';
 import { Page } from '@inertiajs/core';
@@ -68,7 +69,7 @@ const navigationItems: SidebarNavigationInterface[] = [
     {
         name: PageEnum.INQUIRIES,
         route: InquiryController.index().url,
-        icon: EmailIcon,
+        icon: InboxIcon,
         current: false,
     },
 ];
