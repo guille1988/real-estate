@@ -7,7 +7,7 @@ import pricingDetails from './pricing-details'
 import amenities from './amenities'
 import propertyMessages from './property-messages'
 import inquiries from './inquiries'
-import contact from './contact'
+import contactMessages from './contact-messages'
 /**
 * @see \App\Http\Controllers\Admin\DashboardController::__invoke
 * @see app/Http/Controllers/Admin/DashboardController.php:13
@@ -62,7 +62,7 @@ const admin = {
     amenities: Object.assign(amenities, amenities),
     propertyMessages: Object.assign(propertyMessages, propertyMessages),
     inquiries: Object.assign(inquiries, inquiries),
-    contact: Object.assign(contact, contact),
+    contactMessages: Object.assign(contactMessages, contactMessages),
 }
 
 export default admin

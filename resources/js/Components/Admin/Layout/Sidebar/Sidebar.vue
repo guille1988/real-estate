@@ -7,7 +7,7 @@
 import DesktopSidebar from '@/Components/Admin/Layout/Sidebar/DesktopSidebar.vue';
 import MobileSidebar from '@/Components/Admin/Layout/Sidebar/MobileSidebar.vue';
 import AmenityController from '@/Routes/actions/App/Http/Controllers/Admin/AmenityController';
-import ContactController from '@/Routes/actions/App/Http/Controllers/Admin/ContactController';
+import ContactMessageController from '@/Routes/actions/App/Http/Controllers/Admin/ContactMessageController';
 import DashboardController from '@/Routes/actions/App/Http/Controllers/Admin/DashboardController';
 import ImageController from '@/Routes/actions/App/Http/Controllers/Admin/ImageController';
 import InquiryController from '@/Routes/actions/App/Http/Controllers/Admin/InquiryController';
@@ -75,8 +75,8 @@ const navigationItems: SidebarNavigationInterface[] = [
         current: false,
     },
     {
-        name: PageEnum.CONTACT,
-        route: ContactController.index().url,
+        name: PageEnum.CONTACT_MESSAGES,
+        route: ContactMessageController.index().url,
         icon: InboxStackIcon,
         current: false,
     },

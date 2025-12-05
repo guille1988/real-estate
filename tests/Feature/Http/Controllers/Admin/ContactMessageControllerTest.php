@@ -12,8 +12,8 @@ it('works on index page.', function (): void {
         ->create();
 
     $this->actingAs($user)
-        ->get(route('admin.contact.index'))
+        ->get(route('admin.contact-messages.index'))
         ->assertInertia(function (Assert $page): void {
-            $page->component(PageEnum::ADMIN_CONTACT_INDEX->value);
+            $page->component(PageEnum::ADMIN_CONTACT_MESSAGES_INDEX->value);
         });
 });

@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Builders\ContactMessageBuilder;
 use App\Enums\ContactMessageInquiryTypeEnum;
 use App\Enums\ContactMessageSourceEnum;
 use Carbon\CarbonImmutable;
 use Database\Factories\ContactMessageFactory;
+use Illuminate\Database\Eloquent\Attributes\UseEloquentBuilder;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -26,6 +28,7 @@ use Illuminate\Database\Eloquent\Model;
  *  @property-read CarbonImmutable|null $created_at
  *  @property-read CarbonImmutable|null $updated_at
  */
+#[UseEloquentBuilder(ContactMessageBuilder::class)]
 final class ContactMessage extends Model
 {
     /** @use HasFactory<ContactMessageFactory> */
