@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Admin;
 
 use App\Data\Admin\ContactIndexData;
+use App\Data\Admin\ContactMessageBulkDestroyData;
 use App\Enums\ContactMessageInquiryTypeEnum;
 use App\Enums\ContactMessageSourceEnum;
 use App\Enums\PageEnum;
 use App\Http\Resources\Admin\IndexContactMessageResource;
 use App\Http\Resources\Admin\ShowContactMessageResource;
 use App\Models\ContactMessage;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Collection;
 use Inertia\Inertia;
@@ -46,5 +48,24 @@ final class ContactMessageController
         return Inertia::render(PageEnum::ADMIN_CONTACT_MESSAGES_SHOW->value, [
             'contact_message' => fn (): JsonResource => $contactMessage->toResource(ShowContactMessageResource::class),
         ]);
+    }
+
+    public function bulkDestroy(ContactMessageBulkDestroyData $data): RedirectResponse
+    {
+        ContactMessage::query()
+            ->whereIn('uuid', $data->uuids)
+            ->delete();
+
+        cache()->flush();
+
+        return back();
+    }
+
+    public function destroy(ContactMessage $contactMessage): RedirectResponse
+    {
+        $contactMessage->delete();
+        cache()->flush();
+
+        return back();
     }
 }

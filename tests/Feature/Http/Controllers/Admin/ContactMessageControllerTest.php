@@ -341,3 +341,37 @@ it('shows a contact message.', function (): void {
         ->not()
         ->toBeNull();
 });
+
+it('deletes a contact message.', function (): void {
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $contactMessage = ContactMessage::factory()
+        ->create();
+
+    $this->actingAs($user)
+        ->delete(route('admin.contact-messages.destroy', $contactMessage->uuid))
+        ->assertRedirectBack();
+
+    $this->assertModelMissing($contactMessage);
+});
+
+it('bulks delete contact messages.', function (): void {
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $contactMessages = ContactMessage::factory(2)
+        ->create();
+
+    $this->actingAs($user)
+        ->post(
+            route('admin.contact-messages.bulk-delete'),
+            ['uuids' => $contactMessages->pluck('uuid')->toArray()],
+        )->assertRedirectBack();
+
+    $contactMessages->each(function (ContactMessage $contactMessage): void {
+        $this->assertModelMissing($contactMessage);
+    });
+});

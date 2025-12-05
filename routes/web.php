@@ -181,10 +181,14 @@ Route::prefix('admin')
                     ->name('.inquiries.bulk-delete');
 
                 Route::resource('contact-messages', ContactMessageController::class)
-                    ->only(['index', 'show'])
+                    ->only(['index', 'show', 'destroy'])
                     ->names([
                         'index' => '.contact-messages.index',
                         'show' => '.contact-messages.show',
+                        'destroy' => '.contact-messages.destroy',
                     ]);
+
+                Route::post('contact-messages/bulk-delete', [ContactMessageController::class, 'bulkDestroy'])
+                    ->name('.contact-messages.bulk-delete');
             });
     });
