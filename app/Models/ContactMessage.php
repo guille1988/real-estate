@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  *  @property-read ContactMessageInquiryTypeEnum $inquiry_type
  *  @property-read ContactMessageSourceEnum $source
  *  @property-read string|null $message
+ *  @property-read CarbonImmutable|null $read_at
  *  @property-read CarbonImmutable|null $created_at
  *  @property-read CarbonImmutable|null $updated_at
  */
@@ -50,6 +51,7 @@ final class ContactMessage extends Model
     protected function casts(): array // @pest-arch-ignore-line
     {
         return [
+            'read_at' => 'datetime',
             'inquiry_type' => ContactMessageInquiryTypeEnum::class,
             'source' => ContactMessageSourceEnum::class,
         ];
@@ -71,5 +73,37 @@ final class ContactMessage extends Model
     public function uniqueIds(): array
     {
         return ['uuid'];
+    }
+
+    /*
+     * Returns the message.
+     */
+    public function getMessage(): string
+    {
+        return $this->message ?? 'No message provided.';
+    }
+
+    /*
+     * Determines if the message is not read.
+     */
+    public function isNotRead(): bool
+    {
+        return is_null($this->read_at);
+    }
+
+    /*
+     * Marks the message as read
+     * and returns the updated model.
+     */
+    public function markAsRead(): self
+    {
+        $this->update(['read_at' => now()]);
+
+        /**
+         * @var self $contactMessage
+         */
+        $contactMessage = $this->fresh();
+
+        return $contactMessage;
     }
 }

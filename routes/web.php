@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AmenityController;
+use App\Http\Controllers\Admin\ContactMessageController as AdminContactMessageController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\Admin\InquiryController;
@@ -14,7 +15,6 @@ use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\PropertyController as AdminPropertyController;
 use App\Http\Controllers\Admin\PropertyMessageController as AdminPropertyMessageController;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\ContactMessageController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\PropertyMessageController;
@@ -34,10 +34,11 @@ Route::get('services', ServiceController::class)
 Route::prefix('contact')
     ->name('contact')
     ->group(function (): void {
-        Route::get('', ContactController::class);
+        Route::get('', [ContactController::class, 'index'])
+            ->name('.index');
 
-        Route::post('messages', ContactMessageController::class)
-            ->name('.messages')
+        Route::post('', [ContactController::class, 'store'])
+            ->name('.store')
             ->middleware('throttle:form');
     });
 
@@ -178,5 +179,9 @@ Route::prefix('admin')
 
                 Route::post('inquiries/bulk-delete', [InquiryController::class, 'bulkDestroy'])
                     ->name('.inquiries.bulk-delete');
+
+                Route::resource('contact-messages', AdminContactMessageController::class)
+                    ->only(['index'])
+                    ->names(['index' => '.contact-messages.index']);
             });
     });

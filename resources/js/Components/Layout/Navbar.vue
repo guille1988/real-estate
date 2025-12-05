@@ -44,7 +44,7 @@
             <div class="hidden lg:block">
                 <Link
                     prefetch
-                    :href="ContactController().url"
+                    :href="ContactController.index().url"
                     class="rounded-md bg-purple-600 px-6 py-2 text-sm font-medium text-white transition-colors hover:text-black"
                     :class="{
                         'pointer-events-none opacity-0': isPage(
@@ -82,7 +82,7 @@
                     <li v-if="isNotPage(PageEnum.CONTACT)">
                         <Link
                             prefetch
-                            :href="ContactController().url"
+                            :href="ContactController.index().url"
                             class="block w-full rounded-md bg-purple-600 px-6 py-2 text-center text-sm font-medium text-white transition-colors hover:text-black"
                             @click="closeMobileMenu"
                         >

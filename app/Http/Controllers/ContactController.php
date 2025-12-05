@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Data\ContactMessageData;
 use App\Enums\ContactMessageInquiryTypeEnum;
 use App\Enums\ContactMessageSourceEnum;
 use App\Enums\PageEnum;
+use App\Models\ContactMessage;
 use App\Models\OfficeLocation;
 use App\Support\AssetHelper;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Support\Collection;
 use Inertia\Inertia;
@@ -20,7 +23,7 @@ final class ContactController
     /**
      * @throws Throwable
      */
-    public function __invoke(): Response
+    public function index(): Response
     {
         $assets = cache()
             ->rememberForever('contact_assets', function (): array {
@@ -64,5 +67,12 @@ final class ContactController
             'inquiry_types' => fn (): Collection => ContactMessageInquiryTypeEnum::toResponse(),
             'sources' => fn (): Collection => ContactMessageSourceEnum::toResponse(),
         ]);
+    }
+
+    public function store(ContactMessageData $data): RedirectResponse
+    {
+        ContactMessage::create($data->toArray());
+
+        return back();
     }
 }

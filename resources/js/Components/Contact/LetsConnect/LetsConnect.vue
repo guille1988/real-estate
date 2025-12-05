@@ -196,7 +196,7 @@ import TextAreaInput from '@/Components/Shared/Inputs/TextAreaInput.vue';
 import TextInput from '@/Components/Shared/Inputs/TextInput.vue';
 import PrivacyPolicyModal from '@/Components/Shared/Modals/PrivacyPolicyModal/PrivacyPolicyModal.vue';
 import TermsOfUseModal from '@/Components/Shared/Modals/TermsOfUseModal/TermsOfUseModal.vue';
-import ContactMessageController from '@/Routes/actions/App/Http/Controllers/ContactMessageController';
+import ContactController from '@/Routes/actions/App/Http/Controllers/ContactController';
 import { ContactInquiryTypeInterface } from '@/Types/App/Interfaces/ContactInquiryTypeInterface';
 import { ContactSourceInterface } from '@/Types/App/Interfaces/ContactSourceInterface';
 import { LetsConnectFormInterface } from '@/Types/App/Interfaces/LetsConnectFormInterface';
@@ -244,7 +244,7 @@ const form: InertiaForm<LetsConnectFormInterface> =
 const submit = (): void => {
     showSuccessMessage.value = false;
 
-    form.post(ContactMessageController().url, {
+    form.post(ContactController.store().url, {
         preserveScroll: true,
         onSuccess: (): void => {
             showSuccessMessage.value = true;

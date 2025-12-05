@@ -20,6 +20,7 @@ it('contains all proper attributes.', function (): void {
             'inquiry_type',
             'source',
             'message',
+            'read_at',
             'created_at',
             'updated_at',
         ]);

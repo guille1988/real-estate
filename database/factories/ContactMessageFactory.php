@@ -29,6 +29,7 @@ final class ContactMessageFactory extends Factory
             'inquiry_type' => $this->faker->randomElement(ContactMessageInquiryTypeEnum::cases()),
             'source' => $this->faker->randomElement(ContactMessageSourceEnum::cases()),
             'message' => $this->faker->optional()->realText(),
+            'read_at' => $this->faker->optional()->dateTime(),
         ];
     }
 }

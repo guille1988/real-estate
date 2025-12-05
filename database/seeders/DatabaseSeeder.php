@@ -24,6 +24,7 @@ final class DatabaseSeeder extends Seeder
         OfficeLocationSeeder::class,
         PropertyMessageSeeder::class,
         InquirySeeder::class,
+        ContactMessageSeeder::class,
     ];
 
     /**

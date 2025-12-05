@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('inquiry_type');
             $table->string('source');
             $table->text('message')->nullable();
+            $table->timestamp('read_at')->nullable();
             $table->timestamps();
         });
     }

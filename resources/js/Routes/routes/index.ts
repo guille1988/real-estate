@@ -132,50 +132,6 @@ services.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
-* @see \App\Http\Controllers\ContactController::__invoke
-* @see app/Http/Controllers/ContactController.php:23
-* @route '/contact'
-*/
-export const contact = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
-    url: contact.url(options),
-    method: 'get',
-})
-
-contact.definition = {
-    methods: ["get","head"],
-    url: '/contact',
-} satisfies RouteDefinition<["get","head"]>
-
-/**
-* @see \App\Http\Controllers\ContactController::__invoke
-* @see app/Http/Controllers/ContactController.php:23
-* @route '/contact'
-*/
-contact.url = (options?: RouteQueryOptions) => {
-    return contact.definition.url + queryParams(options)
-}
-
-/**
-* @see \App\Http\Controllers\ContactController::__invoke
-* @see app/Http/Controllers/ContactController.php:23
-* @route '/contact'
-*/
-contact.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
-    url: contact.url(options),
-    method: 'get',
-})
-
-/**
-* @see \App\Http\Controllers\ContactController::__invoke
-* @see app/Http/Controllers/ContactController.php:23
-* @route '/contact'
-*/
-contact.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
-    url: contact.url(options),
-    method: 'head',
-})
-
-/**
 * @see \App\Http\Controllers\SubscriberController::__invoke
 * @see app/Http/Controllers/SubscriberController.php:13
 * @route '/subscribers'
