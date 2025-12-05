@@ -234,3 +234,37 @@ it('returns empty dataset when no records exist.', function (): void {
                 ->has('inquiries.data', 0);
         });
 });
+
+it('deletes an inquiry.', function (): void {
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $inquiry = Inquiry::factory()
+        ->create();
+
+    $this->actingAs($user)
+        ->delete(route('admin.inquiries.destroy', $inquiry->uuid))
+        ->assertRedirectBack();
+
+    $this->assertModelMissing($inquiry);
+});
+
+it('bulks delete inquiries.', function (): void {
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $inquiries = Inquiry::factory(2)
+        ->create();
+
+    $this->actingAs($user)
+        ->post(
+            route('admin.inquiries.bulk-delete'),
+            ['uuids' => $inquiries->pluck('uuid')->toArray()],
+        )->assertRedirectBack();
+
+    $inquiries->each(function (Inquiry $inquiry): void {
+        $this->assertModelMissing($inquiry);
+    });
+});

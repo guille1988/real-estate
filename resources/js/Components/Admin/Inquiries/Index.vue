@@ -115,7 +115,11 @@
                                     />
                                     <Actions
                                         show-url="https://google.com"
-                                        delete-url="https://google.com"
+                                        :delete-url="
+                                            InquiryController.destroy(
+                                                inquiry.uuid,
+                                            ).url
+                                        "
                                         resource="inquiry"
                                     />
                                 </tr>
@@ -149,6 +153,7 @@ import ResetFilters from '@/Components/Shared/Tables/ResetFilters.vue';
 import SearchBar from '@/Components/Shared/Tables/SearchBar.vue';
 import Skeleton from '@/Components/Shared/Tables/Skeleton.vue';
 import TableHeader from '@/Components/Shared/Tables/TableHeader.vue';
+import InquiryController from '@/Routes/actions/App/Http/Controllers/Admin/InquiryController';
 import { FormMethodEnum } from '@/Types/Admin/Enums/FormMethodEnum';
 import { IndexInquiriesPaginatedInterface } from '@/Types/Admin/Interfaces/IndexInquiriesPaginatedInterface';
 import { IndexInquiryInterface } from '@/Types/Admin/Interfaces/IndexInquiryInterface';
@@ -235,7 +240,7 @@ const bulkDelete = (): void => {
         return;
     }
 
-    router.visit('', {
+    router.visit(InquiryController.bulkDestroy().url, {
         method: FormMethodEnum.POST,
         data: { uuids: Array.from(selected.value) },
         onSuccess: (): void => {

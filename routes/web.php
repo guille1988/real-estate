@@ -169,9 +169,13 @@ Route::prefix('admin')
                     ->name('.property-messages.bulk-delete');
 
                 Route::resource('inquiries', InquiryController::class)
-                    ->only(['index'])
+                    ->only(['index', 'destroy'])
                     ->names([
                         'index' => '.inquiries.index',
+                        'destroy' => '.inquiries.destroy',
                     ]);
+
+                Route::post('inquiries/bulk-delete', [InquiryController::class, 'bulkDestroy'])
+                    ->name('.inquiries.bulk-delete');
             });
     });
