@@ -4,3 +4,13 @@ export enum ContactMessageSourceEnum {
     REFERRAL = 'referral',
     OTHER = 'other',
 }
+
+export const ContactMessageSourceColors: Record<
+    ContactMessageSourceEnum,
+    string
+> = {
+    [ContactMessageSourceEnum.SEARCH]: 'green',
+    [ContactMessageSourceEnum.SOCIAL]: 'indigo',
+    [ContactMessageSourceEnum.REFERRAL]: 'yellow',
+    [ContactMessageSourceEnum.OTHER]: 'purple',
+};
