@@ -177,16 +177,24 @@ import { IndexContactMessagePaginatedInterface } from '@/Types/Admin/Interfaces/
 import { SelectFilterOptionType } from '@/Types/Admin/Types/SelectFilterOptionType';
 import { ContactMessageInquiryTypeColors } from '@/Types/App/Enums/ContactMessageInquiryTypeEnum';
 import { ContactMessageSourceColors } from '@/Types/App/Enums/ContactMessageSourceEnum';
+import { ContactInquiryTypeInterface } from '@/Types/App/Interfaces/ContactInquiryTypeInterface';
+import { ContactSourceInterface } from '@/Types/App/Interfaces/ContactSourceInterface';
 import { WhenVisible, router } from '@inertiajs/vue3';
 import { Ref, computed, ref } from 'vue';
 import { toast } from 'vue3-toastify';
 
 const {
     contactMessages,
+    inquiryTypes,
+    sources,
 }: {
     contactMessages: IndexContactMessagePaginatedInterface;
+    inquiryTypes: ContactInquiryTypeInterface[];
+    sources: ContactSourceInterface[];
 } = defineProps<{
     contactMessages: IndexContactMessagePaginatedInterface;
+    inquiryTypes: ContactInquiryTypeInterface[];
+    sources: ContactSourceInterface[];
 }>();
 
 const read: SelectFilterOptionType[] = [
@@ -196,6 +204,8 @@ const read: SelectFilterOptionType[] = [
 
 const filters: Record<string, SelectFilterOptionType[]> = {
     read: read,
+    inquiryType: inquiryTypes,
+    source: sources,
 };
 
 const badgeColorMapping: Record<string, string> = {
