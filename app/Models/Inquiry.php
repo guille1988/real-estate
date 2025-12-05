@@ -85,6 +85,14 @@ final class Inquiry extends Model
     }
 
     /*
+     * Returns the message.
+     */
+    public function getMessage(): string
+    {
+        return $this->message ?? 'No message provided.';
+    }
+
+    /*
      * Determines if the inquiry is not read.
      */
     public function isNotRead(): bool
