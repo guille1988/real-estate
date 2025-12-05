@@ -6,7 +6,6 @@
 <script setup lang="ts">
 import DesktopSidebar from '@/Components/Admin/Layout/Sidebar/DesktopSidebar.vue';
 import MobileSidebar from '@/Components/Admin/Layout/Sidebar/MobileSidebar.vue';
-import EmailIcon from '@/Components/Icons/EmailIcon.vue';
 import AmenityController from '@/Routes/actions/App/Http/Controllers/Admin/AmenityController';
 import ContactController from '@/Routes/actions/App/Http/Controllers/Admin/ContactController';
 import DashboardController from '@/Routes/actions/App/Http/Controllers/Admin/DashboardController';
@@ -21,9 +20,11 @@ import { PageProps } from '@/Types/Core';
 import {
     ChartPieIcon,
     CurrencyDollarIcon,
+    EnvelopeIcon,
     GiftIcon,
     HomeIcon,
     InboxIcon,
+    InboxStackIcon,
     PhotoIcon,
 } from '@heroicons/vue/24/outline';
 import { Page } from '@inertiajs/core';
@@ -64,7 +65,7 @@ const navigationItems: SidebarNavigationInterface[] = [
     {
         name: PageEnum.PROPERTY_MESSAGES,
         route: PropertyMessageController.index().url,
-        icon: EmailIcon,
+        icon: EnvelopeIcon,
         current: false,
     },
     {
@@ -76,7 +77,7 @@ const navigationItems: SidebarNavigationInterface[] = [
     {
         name: PageEnum.CONTACT,
         route: ContactController.index().url,
-        icon: InboxIcon,
+        icon: InboxStackIcon,
         current: false,
     },
 ];
