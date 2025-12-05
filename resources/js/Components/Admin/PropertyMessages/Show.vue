@@ -95,7 +95,7 @@
                                     {{ propertyMessage.propertyType }}
                                 </span>
                             </div>
-                            <div v-if="propertyMessage.readAt">
+                            <div>
                                 <label class="mb-2 block text-sm"
                                     >Read At</label
                                 >

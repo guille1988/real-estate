@@ -59,7 +59,7 @@
                                     {{ inquiry.phone }}
                                 </div>
                             </div>
-                            <div v-if="inquiry.readAt">
+                            <div>
                                 <label class="mb-2 block text-sm"
                                     >Read At</label
                                 >
