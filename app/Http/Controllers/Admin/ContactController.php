@@ -8,10 +8,10 @@ use App\Enums\PageEnum;
 use Inertia\Inertia;
 use Inertia\Response;
 
-final class ContactMessageController
+final class ContactController
 {
     public function index(): Response
     {
-        return Inertia::render(PageEnum::ADMIN_CONTACT_MESSAGES_INDEX->value);
+        return Inertia::render(PageEnum::ADMIN_CONTACT_INDEX->value);
     }
 }

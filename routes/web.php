@@ -5,7 +5,7 @@ declare(strict_types=1);
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AmenityController;
-use App\Http\Controllers\Admin\ContactMessageController as AdminContactMessageController;
+use App\Http\Controllers\Admin\ContactController as AdminContactController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\Admin\InquiryController;
@@ -180,8 +180,8 @@ Route::prefix('admin')
                 Route::post('inquiries/bulk-delete', [InquiryController::class, 'bulkDestroy'])
                     ->name('.inquiries.bulk-delete');
 
-                Route::resource('contact-messages', AdminContactMessageController::class)
+                Route::resource('contact', AdminContactController::class)
                     ->only(['index'])
-                    ->names(['index' => '.contact-messages.index']);
+                    ->names(['index' => '.contact.index']);
             });
     });
