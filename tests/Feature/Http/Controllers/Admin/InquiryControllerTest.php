@@ -235,6 +235,27 @@ it('returns empty dataset when no records exist.', function (): void {
         });
 });
 
+it('shows an inquiry.', function (): void {
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $inquiry = Inquiry::factory()
+        ->unread()
+        ->create();
+
+    $this->actingAs($user)
+        ->get(route('admin.inquiries.show', $inquiry->uuid))
+        ->assertInertia(function (Assert $page): void {
+            $page->component(PageEnum::ADMIN_INQUIRIES_SHOW->value)
+                ->has('inquiry');
+        });
+
+    expect($inquiry->fresh()->read_at)
+        ->not()
+        ->toBeNull();
+});
+
 it('deletes an inquiry.', function (): void {
     $user = User::factory()
         ->admin()

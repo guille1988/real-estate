@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition, applyUrlDefaults } from './../../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\Admin\InquiryController::index
-* @see app/Http/Controllers/Admin/InquiryController.php:19
+* @see app/Http/Controllers/Admin/InquiryController.php:20
 * @route '/admin/inquiries'
 */
 export const index = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ index.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\InquiryController::index
-* @see app/Http/Controllers/Admin/InquiryController.php:19
+* @see app/Http/Controllers/Admin/InquiryController.php:20
 * @route '/admin/inquiries'
 */
 index.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ index.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\InquiryController::index
-* @see app/Http/Controllers/Admin/InquiryController.php:19
+* @see app/Http/Controllers/Admin/InquiryController.php:20
 * @route '/admin/inquiries'
 */
 index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -35,7 +35,7 @@ index.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
 
 /**
 * @see \App\Http\Controllers\Admin\InquiryController::index
-* @see app/Http/Controllers/Admin/InquiryController.php:19
+* @see app/Http/Controllers/Admin/InquiryController.php:20
 * @route '/admin/inquiries'
 */
 index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -44,8 +44,76 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 })
 
 /**
+* @see \App\Http\Controllers\Admin\InquiryController::show
+* @see app/Http/Controllers/Admin/InquiryController.php:35
+* @route '/admin/inquiries/{inquiry}'
+*/
+export const show = (args: { inquiry: string | { uuid: string } } | [inquiry: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: show.url(args, options),
+    method: 'get',
+})
+
+show.definition = {
+    methods: ["get","head"],
+    url: '/admin/inquiries/{inquiry}',
+} satisfies RouteDefinition<["get","head"]>
+
+/**
+* @see \App\Http\Controllers\Admin\InquiryController::show
+* @see app/Http/Controllers/Admin/InquiryController.php:35
+* @route '/admin/inquiries/{inquiry}'
+*/
+show.url = (args: { inquiry: string | { uuid: string } } | [inquiry: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
+    if (typeof args === 'string' || typeof args === 'number') {
+        args = { inquiry: args }
+    }
+
+    if (typeof args === 'object' && !Array.isArray(args) && 'uuid' in args) {
+        args = { inquiry: args.uuid }
+    }
+
+    if (Array.isArray(args)) {
+        args = {
+            inquiry: args[0],
+        }
+    }
+
+    args = applyUrlDefaults(args)
+
+    const parsedArgs = {
+        inquiry: typeof args.inquiry === 'object'
+        ? args.inquiry.uuid
+        : args.inquiry,
+    }
+
+    return show.definition.url
+            .replace('{inquiry}', parsedArgs.inquiry.toString())
+            .replace(/\/+$/, '') + queryParams(options)
+}
+
+/**
+* @see \App\Http\Controllers\Admin\InquiryController::show
+* @see app/Http/Controllers/Admin/InquiryController.php:35
+* @route '/admin/inquiries/{inquiry}'
+*/
+show.get = (args: { inquiry: string | { uuid: string } } | [inquiry: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+    url: show.url(args, options),
+    method: 'get',
+})
+
+/**
+* @see \App\Http\Controllers\Admin\InquiryController::show
+* @see app/Http/Controllers/Admin/InquiryController.php:35
+* @route '/admin/inquiries/{inquiry}'
+*/
+show.head = (args: { inquiry: string | { uuid: string } } | [inquiry: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+    url: show.url(args, options),
+    method: 'head',
+})
+
+/**
 * @see \App\Http\Controllers\Admin\InquiryController::destroy
-* @see app/Http/Controllers/Admin/InquiryController.php:45
+* @see app/Http/Controllers/Admin/InquiryController.php:59
 * @route '/admin/inquiries/{inquiry}'
 */
 export const destroy = (args: { inquiry: string | { uuid: string } } | [inquiry: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -60,7 +128,7 @@ destroy.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\InquiryController::destroy
-* @see app/Http/Controllers/Admin/InquiryController.php:45
+* @see app/Http/Controllers/Admin/InquiryController.php:59
 * @route '/admin/inquiries/{inquiry}'
 */
 destroy.url = (args: { inquiry: string | { uuid: string } } | [inquiry: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
@@ -93,7 +161,7 @@ destroy.url = (args: { inquiry: string | { uuid: string } } | [inquiry: string |
 
 /**
 * @see \App\Http\Controllers\Admin\InquiryController::destroy
-* @see app/Http/Controllers/Admin/InquiryController.php:45
+* @see app/Http/Controllers/Admin/InquiryController.php:59
 * @route '/admin/inquiries/{inquiry}'
 */
 destroy.delete = (args: { inquiry: string | { uuid: string } } | [inquiry: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -103,7 +171,7 @@ destroy.delete = (args: { inquiry: string | { uuid: string } } | [inquiry: strin
 
 /**
 * @see \App\Http\Controllers\Admin\InquiryController::bulkDestroy
-* @see app/Http/Controllers/Admin/InquiryController.php:34
+* @see app/Http/Controllers/Admin/InquiryController.php:48
 * @route '/admin/inquiries/bulk-delete'
 */
 export const bulkDestroy = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -118,7 +186,7 @@ bulkDestroy.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\InquiryController::bulkDestroy
-* @see app/Http/Controllers/Admin/InquiryController.php:34
+* @see app/Http/Controllers/Admin/InquiryController.php:48
 * @route '/admin/inquiries/bulk-delete'
 */
 bulkDestroy.url = (options?: RouteQueryOptions) => {
@@ -127,7 +195,7 @@ bulkDestroy.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\InquiryController::bulkDestroy
-* @see app/Http/Controllers/Admin/InquiryController.php:34
+* @see app/Http/Controllers/Admin/InquiryController.php:48
 * @route '/admin/inquiries/bulk-delete'
 */
 bulkDestroy.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -135,6 +203,6 @@ bulkDestroy.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
     method: 'post',
 })
 
-const InquiryController = { index, destroy, bulkDestroy }
+const InquiryController = { index, show, destroy, bulkDestroy }
 
 export default InquiryController

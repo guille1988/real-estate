@@ -114,7 +114,10 @@
                                         :mapping="badgeColorMapping"
                                     />
                                     <Actions
-                                        show-url="https://google.com"
+                                        :show-url="
+                                            InquiryController.show(inquiry.uuid)
+                                                .url
+                                        "
                                         :delete-url="
                                             InquiryController.destroy(
                                                 inquiry.uuid,

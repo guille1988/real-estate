@@ -30,4 +30,12 @@ final class InquiryFactory extends Factory
             'property_id' => Property::factory(),
         ];
     }
+
+    /*
+     * Mark the inquiry as unread.
+     */
+    public function unread(): self
+    {
+        return $this->state(['read_at' => null]);
+    }
 }

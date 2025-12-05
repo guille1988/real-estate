@@ -83,4 +83,28 @@ final class Inquiry extends Model
     {
         return $this->belongsTo(Property::class);
     }
+
+    /*
+     * Determines if the inquiry is not read.
+     */
+    public function isNotRead(): bool
+    {
+        return is_null($this->read_at);
+    }
+
+    /*
+     * Marks the inquiry as read
+     * and returns the updated model.
+     */
+    public function markAsRead(): self
+    {
+        $this->update(['read_at' => now()]);
+
+        /**
+         * @var self $inquiry
+         */
+        $inquiry = $this->fresh();
+
+        return $inquiry;
+    }
 }

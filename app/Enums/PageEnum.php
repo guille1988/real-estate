@@ -42,4 +42,5 @@ enum PageEnum: string
     case ADMIN_PROPERTY_MESSAGES_SHOW = 'Admin/PropertyMessages/Show';
 
     case ADMIN_INQUIRIES_INDEX = 'Admin/Inquiries/Index';
+    case ADMIN_INQUIRIES_SHOW = 'Admin/Inquiries/Show';
 }

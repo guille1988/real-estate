@@ -8,6 +8,7 @@ use App\Data\Admin\InquiryBulkDestroyData;
 use App\Data\Admin\InquiryIndexData;
 use App\Enums\PageEnum;
 use App\Http\Resources\Admin\IndexInquiryResource;
+use App\Http\Resources\Admin\ShowInquiryResource;
 use App\Models\Inquiry;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -28,6 +29,19 @@ final class InquiryController
 
         return Inertia::render(PageEnum::ADMIN_INQUIRIES_INDEX->value, [
             'inquiries' => fn (): array => $inquiries,
+        ]);
+    }
+
+    public function show(Inquiry $inquiry): Response
+    {
+        if ($inquiry->isNotRead()) {
+            $inquiry = $inquiry->markAsRead();
+
+            cache()->flush();
+        }
+
+        return Inertia::render(PageEnum::ADMIN_INQUIRIES_SHOW->value, [
+            'inquiry' => fn (): JsonResource => $inquiry->toResource(ShowInquiryResource::class),
         ]);
     }
 
