@@ -46,4 +46,6 @@ enum PageEnum: string
 
     case ADMIN_CONTACT_MESSAGES_INDEX = 'Admin/ContactMessages/Index';
     case ADMIN_CONTACT_MESSAGES_SHOW = 'Admin/ContactMessages/Show';
+
+    case ADMIN_SUBSCRIBERS_INDEX = 'Admin/Subscribers/Index';
 }

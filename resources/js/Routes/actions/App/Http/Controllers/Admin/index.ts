@@ -9,6 +9,7 @@ import AmenityController from './AmenityController'
 import PropertyMessageController from './PropertyMessageController'
 import InquiryController from './InquiryController'
 import ContactMessageController from './ContactMessageController'
+import SubscriberController from './SubscriberController'
 
 const Admin = {
     AdminController: Object.assign(AdminController, AdminController),
@@ -22,6 +23,7 @@ const Admin = {
     PropertyMessageController: Object.assign(PropertyMessageController, PropertyMessageController),
     InquiryController: Object.assign(InquiryController, InquiryController),
     ContactMessageController: Object.assign(ContactMessageController, ContactMessageController),
+    SubscriberController: Object.assign(SubscriberController, SubscriberController),
 }
 
 export default Admin

@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Builders\SubscriberBuilder;
 use Carbon\CarbonImmutable;
 use Database\Factories\SubscriberFactory;
+use Illuminate\Database\Eloquent\Attributes\UseEloquentBuilder;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -17,6 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  *  @property-read CarbonImmutable|null $created_at
  *  @property-read CarbonImmutable|null $updated_at
  */
+#[UseEloquentBuilder(SubscriberBuilder::class)]
 final class Subscriber extends Model
 {
     /** @use HasFactory<SubscriberFactory> */
@@ -28,7 +31,7 @@ final class Subscriber extends Model
     protected $table = 'subscribers';
 
     /**
-     * The attributes that are mass assignable.
+     * The attributes that are mass-assignable.
      *
      * @var list<string>
      */

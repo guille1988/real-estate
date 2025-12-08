@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\PricingDetailController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\PropertyController as AdminPropertyController;
 use App\Http\Controllers\Admin\PropertyMessageController as AdminPropertyMessageController;
+use App\Http\Controllers\Admin\SubscriberController as AdminSubscriberController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PropertyController;
@@ -190,5 +191,15 @@ Route::prefix('admin')
 
                 Route::post('contact-messages/bulk-delete', [ContactMessageController::class, 'bulkDestroy'])
                     ->name('.contact-messages.bulk-delete');
+
+                Route::resource('subscribers', AdminSubscriberController::class)
+                    ->only(['index', 'destroy'])
+                    ->names([
+                        'index' => '.subscribers.index',
+                        'destroy' => '.subscribers.destroy',
+                    ]);
+
+                Route::post('subscribers/bulk-delete', [AdminSubscriberController::class, 'bulkDestroy'])
+                    ->name('.subscribers.bulk-delete');
             });
     });
