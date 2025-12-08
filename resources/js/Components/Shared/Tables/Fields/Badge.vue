@@ -5,11 +5,19 @@
 </template>
 
 <script setup lang="ts">
-const { badge, mapping }: { badge: string; mapping?: Record<string, string> } =
-    defineProps<{
-        badge: string;
-        mapping?: Record<string, string>;
-    }>();
+const {
+    badge,
+    mapping,
+    label,
+}: {
+    badge: string;
+    mapping?: Record<string, string>;
+    label?: string;
+} = defineProps<{
+    badge: string;
+    mapping?: Record<string, string>;
+    label?: string;
+}>();
 
 const getClass = (): string => {
     let color: string = 'green';
@@ -21,5 +29,5 @@ const getClass = (): string => {
     return `inline-flex items-center rounded-md bg-${color}-900/30 px-2 py-1 text-xs font-medium uppercase text-${color}-400 ring-1 ring-inset ring-${color}-500/50`;
 };
 
-const getBadge = (): string => badge.replace(/_/g, ' ');
+const getBadge = (): string => (label ?? badge).replace(/_/g, ' ');
 </script>

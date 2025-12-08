@@ -126,7 +126,8 @@
                                         :mapping="PropertyTypeColors"
                                     />
                                     <Badge
-                                        :badge="
+                                        :badge="propertyMessage.budget"
+                                        :label="
                                             PropertyMessageBudgetLabels[
                                                 propertyMessage.budget
                                             ]
