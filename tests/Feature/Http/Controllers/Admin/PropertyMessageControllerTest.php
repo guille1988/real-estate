@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Enums\PageEnum;
 use App\Enums\PaginationDirection;
+use App\Enums\PropertyMessageBudgetEnum;
 use App\Enums\PropertyTypeEnum;
 use App\Models\PropertyMessage;
 use App\Models\User;
@@ -116,6 +117,36 @@ it('filters by read flag false.', function (): void {
                 ->where('propertyMessages.data.0.uuid', $unread->uuid)
                 ->where('propertyMessages.data.0.readAt', null);
         });
+});
+
+it('filters by property type query string.', function (): void {
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $apt = PropertyMessage::factory()
+        ->create(['property_type' => PropertyTypeEnum::APARTMENT]);
+
+    PropertyMessage::factory()
+        ->create(['property_type' => PropertyTypeEnum::HOUSE]);
+
+    $this->actingAs($user)
+        ->get(route('admin.property-messages.index', ['property_type' => PropertyTypeEnum::APARTMENT->value]))
+        ->assertInertia(function (Assert $page) use ($apt): void {
+            $page->component(PageEnum::ADMIN_PROPERTY_MESSAGES_INDEX->value)
+                ->has('propertyMessages.data', 1)
+                ->where('propertyMessages.data.0.uuid', $apt->uuid);
+        });
+});
+
+it('validates property type query string.', function (): void {
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $this->actingAs($user)
+        ->get(route('admin.property-messages.index', ['property_type' => 'castle']))
+        ->assertSessionHasErrors('propertyType');
 });
 
 it('orders by default id asc when sort is not provided.', function (): void {
@@ -265,6 +296,36 @@ it('orders by enum fields.', function (): void {
                 ->where('propertyMessages.data.0.uuid', $villa->uuid)
                 ->where('propertyMessages.data.1.uuid', $apartment->uuid);
         });
+});
+
+it('filters by budget query string.', function (): void {
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $low = PropertyMessage::factory()
+        ->create(['budget' => PropertyMessageBudgetEnum::UNDER_100_000]);
+
+    PropertyMessage::factory()
+        ->create(['budget' => PropertyMessageBudgetEnum::MORE_THAN_1_000_000]);
+
+    $this->actingAs($user)
+        ->get(route('admin.property-messages.index', ['budget' => PropertyMessageBudgetEnum::UNDER_100_000->value]))
+        ->assertInertia(function (Assert $page) use ($low): void {
+            $page->component(PageEnum::ADMIN_PROPERTY_MESSAGES_INDEX->value)
+                ->has('propertyMessages.data', 1)
+                ->where('propertyMessages.data.0.uuid', $low->uuid);
+        });
+});
+
+it('validates budget query string.', function (): void {
+    $user = User::factory()
+        ->admin()
+        ->create();
+
+    $this->actingAs($user)
+        ->get(route('admin.property-messages.index', ['budget' => '1-2-3']))
+        ->assertSessionHasErrors('budget');
 });
 
 it('includes property types with all enum values.', function (): void {

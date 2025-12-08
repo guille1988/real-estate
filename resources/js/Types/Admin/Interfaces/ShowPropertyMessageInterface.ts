@@ -1,5 +1,5 @@
-import { PropertyTypeEnum } from '@/Types/App/Enums/PropertyTypeEnum';
 import { PropertyMessageBudgetEnum } from '@/Types/App/Enums/PropertyMessageBudgetEnum';
+import { PropertyTypeEnum } from '@/Types/App/Enums/PropertyTypeEnum';
 
 export interface ShowPropertyMessageInterface {
     uuid: string;
