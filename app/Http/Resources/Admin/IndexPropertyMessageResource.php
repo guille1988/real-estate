@@ -26,6 +26,7 @@ final class IndexPropertyMessageResource extends JsonResource
             'bathrooms' => $this->bathrooms,
             'bedrooms' => $this->bedrooms,
             'property_type' => $this->property_type,
+            'budget' => $this->budget,
             'read_at' => $this->read_at?->toDateTimeString(),
         ];
     }

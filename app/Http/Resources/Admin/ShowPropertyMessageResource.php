@@ -27,7 +27,7 @@ final class ShowPropertyMessageResource extends JsonResource
             'bathrooms' => $this->bathrooms,
             'bedrooms' => $this->bedrooms,
             'property_type' => $this->property_type,
-            'budget' => $this->budget->getLabel(),
+            'budget' => $this->budget,
             'message' => $this->getMessage(),
             'read_at' => $this->read_at?->toDateTimeString(),
             'created_at' => $this->created_at?->toDateTimeString(),

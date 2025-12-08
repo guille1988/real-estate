@@ -6,6 +6,7 @@
             <Index
                 :propertyMessages="propertyMessages"
                 :propertyTypes="propertyTypes"
+                :budget="budget"
             />
         </div>
     </Layout>
@@ -16,12 +17,14 @@ import Index from '@/Components/Admin/PropertyMessages/Index.vue';
 import { displayErrors } from '@/Composables/useErrorHandling';
 import { IndexPropertyMessagePaginatedInterface } from '@/Types/Admin/Interfaces/IndexPropertyMessagePaginatedInterface';
 import { ErrorInterface } from '@/Types/App/Interfaces/ErrorInterface';
+import { PropertyBudgetInterface } from '@/Types/App/Interfaces/PropertyBudgetInterface';
 import { PropertyTypeInterface } from '@/Types/App/Interfaces/PropertyTypeInterface';
 import { onMounted } from 'vue';
 
 const { errors }: { errors: ErrorInterface } = defineProps<{
     propertyMessages: IndexPropertyMessagePaginatedInterface;
     propertyTypes: PropertyTypeInterface[];
+    budget: PropertyBudgetInterface[];
     errors: ErrorInterface;
 }>();
 

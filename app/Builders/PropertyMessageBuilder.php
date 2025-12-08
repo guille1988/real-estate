@@ -30,6 +30,7 @@ final class PropertyMessageBuilder extends Builder
             'bathrooms',
             'bedrooms',
             'property_type',
+            'budget',
             'read_at',
         ];
 
@@ -42,6 +43,10 @@ final class PropertyMessageBuilder extends Builder
                         ->orWhereLike('last_name', $search)
                         ->orWhereLike('email', $search);
                 });
+            })->when($data->isNotNull('propertyType'), function (self $query) use ($data): void {
+                $query->where('property_type', $data->propertyType);
+            })->when($data->isNotNull('budget'), function (self $query) use ($data): void {
+                $query->where('budget', $data->budget);
             })->when($data->isNotNull('read'), function (self $query) use ($data): void {
                 $stringQuery = str('where')
                     ->when($data->read, fn (Stringable $stringable): Stringable => $stringable->append('Not'))

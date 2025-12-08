@@ -1,4 +1,5 @@
 import { PropertyTypeEnum } from '@/Types/App/Enums/PropertyTypeEnum';
+import { PropertyMessageBudgetEnum } from '@/Types/App/Enums/PropertyMessageBudgetEnum';
 
 export interface ShowPropertyMessageInterface {
     uuid: string;
@@ -9,7 +10,7 @@ export interface ShowPropertyMessageInterface {
     bathrooms: number;
     bedrooms: number;
     propertyType: PropertyTypeEnum;
-    budget: string;
+    budget: PropertyMessageBudgetEnum;
     message: string;
     readAt: null | string;
     createdAt: null | string;

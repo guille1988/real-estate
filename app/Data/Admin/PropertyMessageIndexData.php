@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Data\Admin;
 
 use App\Enums\PaginationDirection;
+use App\Enums\PropertyMessageBudgetEnum;
+use App\Enums\PropertyTypeEnum;
 use Illuminate\Validation\Rule;
 use Spatie\LaravelData\Attributes\MapName;
 use Spatie\LaravelData\Data;
@@ -15,6 +17,8 @@ final class PropertyMessageIndexData extends Data
 {
     public function __construct(
         public ?bool $read,
+        public ?PropertyTypeEnum $propertyType,
+        public ?PropertyMessageBudgetEnum $budget,
         public ?int $page = null,
         public ?string $search = null,
         public ?string $sort = null,
@@ -28,9 +32,11 @@ final class PropertyMessageIndexData extends Data
     {
         return [
             'read' => ['nullable', 'boolean'],
+            'property_type' => ['nullable', 'string', Rule::enum(PropertyTypeEnum::class)],
+            'budget' => ['nullable', 'string', Rule::enum(PropertyMessageBudgetEnum::class)],
             'page' => ['nullable', 'integer', 'digits_between:1,100'],
             'search' => ['nullable', 'string', 'between:1,200'],
-            'sort' => ['nullable', 'string', 'in:firstName,lastName,email,bathrooms,bedrooms,propertyType'],
+            'sort' => ['nullable', 'string', 'in:firstName,lastName,email,bathrooms,bedrooms,propertyType,budget'],
             'direction' => ['nullable', 'string', Rule::enum(PaginationDirection::class)],
         ];
     }

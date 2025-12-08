@@ -1,3 +1,4 @@
+import { PropertyMessageBudgetEnum } from '@/Types/App/Enums/PropertyMessageBudgetEnum';
 import { PropertyTypeEnum } from '@/Types/App/Enums/PropertyTypeEnum';
 
 export interface IndexPropertyMessageInterface {
@@ -8,5 +9,6 @@ export interface IndexPropertyMessageInterface {
     bathrooms: number;
     bedrooms: number;
     propertyType: PropertyTypeEnum;
+    budget: PropertyMessageBudgetEnum;
     readAt: null | string;
 }

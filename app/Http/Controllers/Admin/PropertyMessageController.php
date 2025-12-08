@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Admin;
 use App\Data\Admin\PropertyMessageBulkDestroyData;
 use App\Data\Admin\PropertyMessageIndexData;
 use App\Enums\PageEnum;
+use App\Enums\PropertyMessageBudgetEnum;
 use App\Enums\PropertyTypeEnum;
 use App\Http\Resources\Admin\IndexPropertyMessageResource;
 use App\Http\Resources\Admin\ShowPropertyMessageResource;
@@ -32,6 +33,7 @@ final class PropertyMessageController
         return Inertia::render(PageEnum::ADMIN_PROPERTY_MESSAGES_INDEX->value, [
             'property_messages' => fn (): array => $propertyMessages,
             'property_types' => fn (): Collection => PropertyTypeEnum::toResponse(),
+            'budget' => fn (): Collection => PropertyMessageBudgetEnum::toResponse(),
         ]);
     }
 

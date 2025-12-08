@@ -76,6 +76,7 @@
                                     label="Property Type"
                                     column="propertyType"
                                 />
+                                <TableHeader label="Budget" column="budget" />
                                 <TableHeader
                                     label="Actions"
                                     column="actions"
@@ -123,6 +124,14 @@
                                     <Badge
                                         :badge="propertyMessage.propertyType"
                                         :mapping="PropertyTypeColors"
+                                    />
+                                    <Badge
+                                        :badge="
+                                            PropertyMessageBudgetLabels[
+                                                propertyMessage.budget
+                                            ]
+                                        "
+                                        :mapping="PropertyMessageBudgetColors"
                                     />
                                     <Actions
                                         :show-url="
@@ -172,7 +181,12 @@ import { FormMethodEnum } from '@/Types/Admin/Enums/FormMethodEnum';
 import { IndexPropertyMessageInterface } from '@/Types/Admin/Interfaces/IndexPropertyMessageInterface';
 import { IndexPropertyMessagePaginatedInterface } from '@/Types/Admin/Interfaces/IndexPropertyMessagePaginatedInterface';
 import { SelectFilterOptionType } from '@/Types/Admin/Types/SelectFilterOptionType';
+import {
+    PropertyMessageBudgetColors,
+    PropertyMessageBudgetLabels,
+} from '@/Types/App/Enums/PropertyMessageBudgetEnum';
 import { PropertyTypeColors } from '@/Types/App/Enums/PropertyTypeEnum';
+import { PropertyBudgetInterface } from '@/Types/App/Interfaces/PropertyBudgetInterface';
 import { PropertyTypeInterface } from '@/Types/App/Interfaces/PropertyTypeInterface';
 import { WhenVisible, router } from '@inertiajs/vue3';
 import { Ref, computed, ref } from 'vue';
@@ -181,12 +195,15 @@ import { toast } from 'vue3-toastify';
 const {
     propertyMessages,
     propertyTypes,
+    budget,
 }: {
     propertyMessages: IndexPropertyMessagePaginatedInterface;
     propertyTypes: PropertyTypeInterface[];
+    budget: PropertyBudgetInterface[];
 } = defineProps<{
     propertyMessages: IndexPropertyMessagePaginatedInterface;
     propertyTypes: PropertyTypeInterface[];
+    budget: PropertyBudgetInterface[];
 }>();
 
 const read: SelectFilterOptionType[] = [
@@ -197,6 +214,7 @@ const read: SelectFilterOptionType[] = [
 const filters: Record<string, SelectFilterOptionType[]> = {
     propertyType: propertyTypes,
     read: read,
+    budget: budget,
 };
 
 const badgeColorMapping: Record<string, string> = {
