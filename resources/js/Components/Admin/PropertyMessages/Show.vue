@@ -51,12 +51,22 @@
                         </div>
                     </div>
 
-                    <div>
-                        <label class="mb-2 block text-sm">Phone</label>
-                        <div
-                            class="whitespace-pre-line rounded border border-gray-700 bg-black/70 p-3 text-sm text-gray-300"
-                        >
-                            {{ propertyMessage.phone }}
+                    <div class="grid grid-cols-2 gap-6">
+                        <div>
+                            <label class="mb-2 block text-sm">Phone</label>
+                            <div
+                                class="rounded border border-gray-700 bg-black/70 p-3 text-sm text-gray-300"
+                            >
+                                {{ propertyMessage.phone }}
+                            </div>
+                        </div>
+                        <div>
+                            <label class="mb-2 block text-sm">Budget</label>
+                            <div
+                                class="rounded border border-gray-700 bg-black/70 p-3 text-sm text-gray-300"
+                            >
+                                {{ propertyMessage.budget }}
+                            </div>
                         </div>
                     </div>
 

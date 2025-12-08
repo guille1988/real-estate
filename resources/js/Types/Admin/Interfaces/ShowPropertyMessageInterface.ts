@@ -9,6 +9,7 @@ export interface ShowPropertyMessageInterface {
     bathrooms: number;
     bedrooms: number;
     propertyType: PropertyTypeEnum;
+    budget: string;
     message: string;
     readAt: null | string;
     createdAt: null | string;
