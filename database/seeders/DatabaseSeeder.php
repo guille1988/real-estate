@@ -25,6 +25,7 @@ final class DatabaseSeeder extends Seeder
         PropertyMessageSeeder::class,
         InquirySeeder::class,
         ContactMessageSeeder::class,
+        SubscriberSeeder::class,
     ];
 
     /**
