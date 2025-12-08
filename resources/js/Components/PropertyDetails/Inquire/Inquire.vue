@@ -224,12 +224,6 @@
                                     >
                                     <span v-else>Sending...</span>
                                 </button>
-                                <p
-                                    v-if="showSuccessMessage"
-                                    class="mt-1 text-sm text-green-400"
-                                >
-                                    {{ successMessage }}
-                                </p>
                             </div>
                         </form>
                     </div>
@@ -253,6 +247,7 @@ import PropertyController from '@/Routes/actions/App/Http/Controllers/PropertyCo
 import { InquireFormInterface } from '@/Types/App/Interfaces/InquireFormInterface';
 import { InertiaForm, useForm, WhenVisible } from '@inertiajs/vue3';
 import { ref, type Ref } from 'vue';
+import { toast } from 'vue3-toastify';
 
 const { propertyUuid }: { propertyUuid: string } = defineProps<{
     propertyUuid: string;
@@ -261,7 +256,6 @@ const { propertyUuid }: { propertyUuid: string } = defineProps<{
 
 const successMessage: string =
     'Thank you for contacting us. We will get back to you as soon as possible.';
-const showSuccessMessage: Ref<boolean> = ref<boolean>(false);
 const showTermsOfUseModal: Ref<boolean> = ref<boolean>(false);
 const showPrivacyPolicyModal: Ref<boolean> = ref<boolean>(false);
 
@@ -284,8 +278,6 @@ const openPrivacyPolicyModal = (): void => {
 };
 
 const submit = (): void => {
-    showSuccessMessage.value = false;
-
     if (!form.termsAgreed) {
         return;
     }
@@ -293,12 +285,8 @@ const submit = (): void => {
     form.post(PropertyController.inquire().url, {
         preserveScroll: true,
         onSuccess: (): void => {
-            showSuccessMessage.value = true;
             form.reset();
-
-            setTimeout((): void => {
-                showSuccessMessage.value = false;
-            }, 4000);
+            toast.success(successMessage);
         },
         onError: (): void => {
             setTimeout((): void => {

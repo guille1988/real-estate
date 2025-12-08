@@ -174,12 +174,6 @@
                         <span v-if="!form.processing">Send Your Message</span>
                         <span v-else>Sending...</span>
                     </button>
-                    <p
-                        v-if="showSuccessMessage"
-                        class="mt-1 text-sm text-green-400"
-                    >
-                        {{ successMessage }}
-                    </p>
                 </div>
             </form>
         </div>
@@ -202,6 +196,7 @@ import { ContactSourceInterface } from '@/Types/App/Interfaces/ContactSourceInte
 import { LetsConnectFormInterface } from '@/Types/App/Interfaces/LetsConnectFormInterface';
 import { InertiaForm, useForm } from '@inertiajs/vue3';
 import { Ref, ref } from 'vue';
+import { toast } from 'vue3-toastify';
 
 const {
     inquiryTypes,
@@ -217,7 +212,6 @@ const {
 const successMessage: string =
     'Thank you for contacting us. We will get back to you as soon as possible.';
 
-const showSuccessMessage: Ref<boolean> = ref<boolean>(false);
 const showTermsOfUseModal: Ref<boolean> = ref<boolean>(false);
 const showPrivacyPolicyModal: Ref<boolean> = ref<boolean>(false);
 
@@ -242,17 +236,11 @@ const form: InertiaForm<LetsConnectFormInterface> =
     });
 
 const submit = (): void => {
-    showSuccessMessage.value = false;
-
     form.post(ContactController.store().url, {
         preserveScroll: true,
         onSuccess: (): void => {
-            showSuccessMessage.value = true;
             form.reset();
-
-            setTimeout((): void => {
-                showSuccessMessage.value = false;
-            }, 4000);
+            toast.success(successMessage);
         },
         onError: (): void => {
             setTimeout((): void => {

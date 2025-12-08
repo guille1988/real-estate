@@ -238,12 +238,6 @@
                                     >
                                     <span v-else>Sending...</span>
                                 </button>
-                                <p
-                                    v-if="showSuccessMessage"
-                                    class="mt-1 text-sm text-green-400"
-                                >
-                                    {{ successMessage }}
-                                </p>
                             </div>
                         </div>
                     </form>
@@ -272,6 +266,7 @@ import { PropertyLocationInterface } from '@/Types/App/Interfaces/PropertyLocati
 import { PropertyTypeInterface } from '@/Types/App/Interfaces/PropertyTypeInterface';
 import { InertiaForm, useForm } from '@inertiajs/vue3';
 import { type Ref, ref } from 'vue';
+import { toast } from 'vue3-toastify';
 
 const {
     locations,
@@ -291,7 +286,6 @@ const {
 
 const successMessage: string =
     'Thank you for contacting us. We will get back to you as soon as possible.';
-const showSuccessMessage: Ref<boolean> = ref<boolean>(false);
 const showTermsOfUseModal: Ref<boolean> = ref<boolean>(false);
 const showPrivacyPolicyModal: Ref<boolean> = ref<boolean>(false);
 
@@ -319,8 +313,6 @@ const openPrivacyPolicyModal = (): void => {
 };
 
 const submit = (): void => {
-    showSuccessMessage.value = false;
-
     if (!form.termsAgreed) {
         return;
     }
@@ -328,12 +320,8 @@ const submit = (): void => {
     form.post(PropertyMessageController().url, {
         preserveScroll: true,
         onSuccess: (): void => {
-            showSuccessMessage.value = true;
             form.reset();
-
-            setTimeout((): void => {
-                showSuccessMessage.value = false;
-            }, 4000);
+            toast.success(successMessage);
         },
         onError: (): void => {
             setTimeout((): void => {

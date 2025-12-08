@@ -84,12 +84,6 @@
                         >
                             {{ form.errors.email }}
                         </p>
-                        <p
-                            v-if="showSuccessMessage"
-                            class="mt-2 text-sm text-green-400"
-                        >
-                            {{ successMessage }}
-                        </p>
                     </div>
                 </div>
 
@@ -257,9 +251,9 @@ const footerCategories: FooterCategoryInterface[] = [
 
 import SubscriberController from '@/Routes/actions/App/Http/Controllers/SubscriberController';
 import { ref, type Ref } from 'vue';
+import { toast } from 'vue3-toastify';
 
 const successMessage: string = 'Thanks for subscribing!';
-const showSuccessMessage: Ref<boolean> = ref<boolean>(false);
 const disableButton: Ref<boolean> = ref<boolean>(false);
 
 const form: InertiaForm<{ email: string }> = useForm<{ email: string }>({
@@ -267,18 +261,13 @@ const form: InertiaForm<{ email: string }> = useForm<{ email: string }>({
 });
 
 const submit = (): void => {
-    showSuccessMessage.value = false;
     disableButton.value = true;
 
     form.post(SubscriberController().url, {
         preserveScroll: true,
         onSuccess: (): void => {
-            showSuccessMessage.value = true;
             form.reset();
-
-            setTimeout((): void => {
-                showSuccessMessage.value = false;
-            }, 4000);
+            toast.success(successMessage);
         },
         onError: (): void => {
             setTimeout((): void => {
