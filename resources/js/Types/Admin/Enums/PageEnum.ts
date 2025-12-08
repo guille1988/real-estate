@@ -7,4 +7,5 @@ export enum PageEnum {
     PROPERTY_MESSAGES = 'Property Messages',
     INQUIRIES = 'Inquiries',
     CONTACT_MESSAGES = 'Contact Messages',
+    SUBSCRIBERS = 'Subscribers',
 }

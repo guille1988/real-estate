@@ -14,6 +14,7 @@ import InquiryController from '@/Routes/actions/App/Http/Controllers/Admin/Inqui
 import PricingDetailController from '@/Routes/actions/App/Http/Controllers/Admin/PricingDetailController';
 import PropertyController from '@/Routes/actions/App/Http/Controllers/Admin/PropertyController';
 import PropertyMessageController from '@/Routes/actions/App/Http/Controllers/Admin/PropertyMessageController';
+import SubscriberController from '@/Routes/actions/App/Http/Controllers/Admin/SubscriberController';
 import { PageEnum } from '@/Types/Admin/Enums/PageEnum';
 import type { SidebarNavigationInterface } from '@/Types/Admin/Interfaces/SidebarNavigationInterface';
 import { PageProps } from '@/Types/Core';
@@ -26,6 +27,7 @@ import {
     InboxIcon,
     InboxStackIcon,
     PhotoIcon,
+    UserGroupIcon,
 } from '@heroicons/vue/24/outline';
 import { Page } from '@inertiajs/core';
 import { usePage } from '@inertiajs/vue3';
@@ -78,6 +80,12 @@ const navigationItems: SidebarNavigationInterface[] = [
         name: PageEnum.CONTACT_MESSAGES,
         route: ContactMessageController.index().url,
         icon: InboxStackIcon,
+        current: false,
+    },
+    {
+        name: PageEnum.SUBSCRIBERS,
+        route: SubscriberController.index().url,
+        icon: UserGroupIcon,
         current: false,
     },
 ];
