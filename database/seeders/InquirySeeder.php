@@ -6,29 +6,92 @@ namespace Database\Seeders;
 
 use App\Models\Inquiry;
 use App\Models\Property;
+use Carbon\CarbonImmutable;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Seeder;
 
 final class InquirySeeder extends Seeder
 {
-    /*
-     * Seed inquiries for each property if
-     * there are any properties in the database.
+    /**
+     * @var array<int, int>
      */
-    private function seedInquiries(): void
+    private array $lastYearMapping = [
+        1 => 16,
+        2 => 22,
+        3 => 18,
+        4 => 24,
+        5 => 20,
+        6 => 26,
+        7 => 28,
+        8 => 29,
+        9 => 30,
+        10 => 43,
+        11 => 54,
+        12 => 68,
+    ];
+
+    /**
+     * @var array<int, int>
+     */
+    private array $lastWeekMapping = [
+        1 => 16,
+        2 => 22,
+        3 => 18,
+        4 => 24,
+        5 => 20,
+        6 => 26,
+        7 => 28,
+    ];
+
+    /*
+     * Seed last year inquiries.
+     */
+    private function seedLastYearInquiries(Collection $properties): void
     {
-        $properties = Property::limit(10)->get(['id']);
+        foreach ($this->lastYearMapping as $month => $count) {
+            /**
+             * @var CarbonImmutable $date
+             */
+            $date = now()->subMonths(12 - ($month - 1))
+                ->startOfMonth();
 
-        if ($properties->isEmpty()) {
-            Inquiry::factory(10)->create();
+            /**
+             * @var Property $property
+             */
+            $property = $properties->first(
+                fn (Property $property): bool => $property->id === $month
+            );
 
-            return;
-        }
-
-        $properties->each(function (Property $property): void {
-            Inquiry::factory()
+            Inquiry::factory($count)
                 ->for($property)
+                ->createdOn($date)
                 ->create();
-        });
+        }
+    }
+
+    /*
+     * Seed last week inquiries.
+     */
+    private function seedLastWeekInquiries(Collection $properties): void
+    {
+        foreach ($this->lastWeekMapping as $day => $count) {
+            /**
+             * @var CarbonImmutable $date
+             */
+            $date = now()->subDays(7 - ($day - 1));
+
+            /**
+             * @var Property $property
+             */
+            $property = $properties->first(
+                fn (Property $property): bool => $property->id === $day + 12
+            );
+
+            Inquiry::factory($count)
+                ->for($property)
+                ->createdOn($date)
+                ->create();
+        }
     }
 
     /**
@@ -36,6 +99,11 @@ final class InquirySeeder extends Seeder
      */
     public function run(): void
     {
-        $this->seedInquiries();
+        $properties = Property::query()
+            ->limit(20)
+            ->get(['id']);
+
+        $this->seedLastYearInquiries($properties->take(12));
+        $this->seedLastWeekInquiries($properties->skip(12)->take(7));
     }
 }

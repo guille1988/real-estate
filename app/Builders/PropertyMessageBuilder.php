@@ -56,4 +56,20 @@ final class PropertyMessageBuilder extends Builder
                 $query->$stringQuery('read_at');
             })->orderBy($data->getSort(), $data->getDirection());
     }
+
+    /**
+     * @return self<TModel>
+     */
+    public function lastTwelveMonths(): self
+    {
+        $now = now();
+
+        $twelveMonthsAgo = $now->subMonths(12)
+            ->startOfMonth();
+
+        return $this->selectRaw('MONTH(created_at) as month, COUNT(*) as total')
+            ->whereBetween('created_at', [$twelveMonthsAgo, $now])
+            ->groupBy('month')
+            ->orderBy('month');
+    }
 }

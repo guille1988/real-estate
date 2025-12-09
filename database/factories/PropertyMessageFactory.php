@@ -8,6 +8,7 @@ use App\Enums\PropertyLocationEnum;
 use App\Enums\PropertyMessageBudgetEnum;
 use App\Enums\PropertyTypeEnum;
 use App\Models\PropertyMessage;
+use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -43,5 +44,16 @@ final class PropertyMessageFactory extends Factory
     public function unread(): self
     {
         return $this->state(['read_at' => null]);
+    }
+
+    /*
+     * Create the message on a specific date.
+     */
+    public function createdOn(CarbonImmutable $date): self
+    {
+        return $this->state([
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
     }
 }

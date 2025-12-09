@@ -6,6 +6,7 @@ namespace Database\Factories;
 
 use App\Models\Inquiry;
 use App\Models\Property;
+use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -37,5 +38,16 @@ final class InquiryFactory extends Factory
     public function unread(): self
     {
         return $this->state(['read_at' => null]);
+    }
+
+    /*
+     * Create the message on a specific date.
+     */
+    public function createdOn(CarbonImmutable $date): self
+    {
+        return $this->state([
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
     }
 }
