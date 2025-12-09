@@ -25,13 +25,9 @@ final readonly class GetMonthlyMessages
             ->merge(range(1, $month))
             ->values();
 
-        dd($inquiryYearly->toArray());
-
-        $a = $lastTwelveMonths
+        return $lastTwelveMonths
             ->mapWithKeys(fn (int $month): array => [
                 $month => $propertyMessageYearly->get($month, 0) + $inquiryYearly->get($month, 0),
             ]);
-
-        dd($a->toArray());
     }
 }
