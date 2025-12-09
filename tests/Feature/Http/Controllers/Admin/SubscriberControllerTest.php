@@ -22,7 +22,7 @@ it('works on index page.', function (): void {
 });
 
 it('works with page query string.', function (): void {
-    $perPage = 9;
+    $perPage = 10;
 
     $user = User::factory()
         ->admin()

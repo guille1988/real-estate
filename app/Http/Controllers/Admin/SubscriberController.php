@@ -20,7 +20,7 @@ final class SubscriberController
     {
         $subscriber = Subscriber::query()
             ->forIndexing($data)
-            ->paginate(9, page: $data->page)
+            ->paginate(10, page: $data->page)
             ->withQueryString()
             ->through(function (Subscriber $subscriber): JsonResource {
                 return $subscriber->toResource(IndexSubscriberResource::class);
