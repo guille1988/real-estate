@@ -46,13 +46,11 @@ final class InquiryBuilder extends Builder
      */
     public function lastTwelveMonths(): self
     {
-        $now = now();
-
-        $twelveMonthsAgo = $now->subMonths(12)
-            ->startOfMonth();
+        $end = now()->endOfMonth();
+        $start = $end->subMonths(11)->startOfMonth();
 
         return $this->selectRaw('MONTH(created_at) as month, COUNT(*) as total')
-            ->whereBetween('created_at', [$twelveMonthsAgo, $now])
+            ->whereBetween('created_at', [$start, $end])
             ->groupBy('month')
             ->orderBy('month');
     }

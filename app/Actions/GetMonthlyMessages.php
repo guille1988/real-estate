@@ -20,14 +20,6 @@ final readonly class GetMonthlyMessages
             ->lastTwelveMonths()
             ->pluck('total', 'month');
 
-        $lastTwelveMonths = collect(range(1, 12))
-            ->slice($month = now()->month)
-            ->merge(range(1, $month))
-            ->values();
-
-        return $lastTwelveMonths
-            ->mapWithKeys(fn (int $month): array => [
-                $month => $propertyMessageYearly->get($month, 0) + $inquiryYearly->get($month, 0),
-            ]);
+        return collect();
     }
 }

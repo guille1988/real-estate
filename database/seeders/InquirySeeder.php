@@ -52,7 +52,7 @@ final class InquirySeeder extends Seeder
             /**
              * @var CarbonImmutable $date
              */
-            $date = now()->subMonths(12 - ($month - 1))
+            $date = now()->subMonths(12 - $month)
                 ->startOfMonth();
 
             /**
@@ -78,7 +78,7 @@ final class InquirySeeder extends Seeder
             /**
              * @var CarbonImmutable $date
              */
-            $date = now()->subDays(7 - ($day - 1));
+            $date = now()->subDays(7 - $day);
 
             /**
              * @var Property $property
