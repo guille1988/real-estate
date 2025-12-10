@@ -1,7 +1,7 @@
 import { queryParams, type RouteQueryOptions, type RouteDefinition } from './../../../../../wayfinder'
 /**
 * @see \App\Http\Controllers\Admin\DashboardController::__invoke
-* @see app/Http/Controllers/Admin/DashboardController.php:14
+* @see app/Http/Controllers/Admin/DashboardController.php:15
 * @route '/admin/dashboard'
 */
 const DashboardController = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -16,7 +16,7 @@ DashboardController.definition = {
 
 /**
 * @see \App\Http\Controllers\Admin\DashboardController::__invoke
-* @see app/Http/Controllers/Admin/DashboardController.php:14
+* @see app/Http/Controllers/Admin/DashboardController.php:15
 * @route '/admin/dashboard'
 */
 DashboardController.url = (options?: RouteQueryOptions) => {
@@ -25,7 +25,7 @@ DashboardController.url = (options?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Admin\DashboardController::__invoke
-* @see app/Http/Controllers/Admin/DashboardController.php:14
+* @see app/Http/Controllers/Admin/DashboardController.php:15
 * @route '/admin/dashboard'
 */
 DashboardController.get = (options?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -35,7 +35,7 @@ DashboardController.get = (options?: RouteQueryOptions): RouteDefinition<'get'> 
 
 /**
 * @see \App\Http\Controllers\Admin\DashboardController::__invoke
-* @see app/Http/Controllers/Admin/DashboardController.php:14
+* @see app/Http/Controllers/Admin/DashboardController.php:15
 * @route '/admin/dashboard'
 */
 DashboardController.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({

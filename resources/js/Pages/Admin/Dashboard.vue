@@ -20,7 +20,7 @@
                     class="flex min-h-0 flex-col rounded-lg bg-gray-800/75 p-4"
                 >
                     <div class="min-h-0 flex-1">
-                        <LineChart />
+                        <LineChart :weekly-messages="weeklyMessages" />
                     </div>
                 </div>
             </div>
@@ -35,10 +35,12 @@ import Layout from '@/Components/Admin/Layout/Layout.vue';
 import { displayErrors } from '@/Composables/useErrorHandling';
 import { AnnualMessagesInterface } from '@/Types/App/Interfaces/AnnualMessagesInterface';
 import { ErrorInterface } from '@/Types/App/Interfaces/ErrorInterface';
+import { WeeklyMessagesInterface } from '@/Types/App/Interfaces/WeeklyMessagesInterface';
 import { onMounted } from 'vue';
 
 const { errors }: { errors: ErrorInterface } = defineProps<{
     annualMessages: AnnualMessagesInterface;
+    weeklyMessages: WeeklyMessagesInterface;
     errors: ErrorInterface;
 }>();
 

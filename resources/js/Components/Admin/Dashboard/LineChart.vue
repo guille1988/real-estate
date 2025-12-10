@@ -5,6 +5,7 @@
 </template>
 
 <script setup lang="ts">
+import { WeeklyMessagesInterface } from '@/Types/App/Interfaces/WeeklyMessagesInterface';
 import {
     CategoryScale,
     Chart as ChartJS,
@@ -18,6 +19,11 @@ import {
 } from 'chart.js';
 import { Line } from 'vue-chartjs';
 
+const { weeklyMessages }: { weeklyMessages: WeeklyMessagesInterface } =
+    defineProps<{
+        weeklyMessages: WeeklyMessagesInterface;
+    }>();
+
 ChartJS.register(
     Title,
     Tooltip,
@@ -30,11 +36,11 @@ ChartJS.register(
 );
 
 const chartData: any = {
-    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+    labels: weeklyMessages.days,
     datasets: [
         {
-            label: 'Visitors',
-            data: [120, 150, 90, 170, 200, 140, 180],
+            label: 'Last Week Property Messages + Inquiries',
+            data: weeklyMessages.counts,
             borderColor: '#60a5fa',
             backgroundColor: 'rgba(96, 165, 250, 0.2)',
             tension: 0.35,

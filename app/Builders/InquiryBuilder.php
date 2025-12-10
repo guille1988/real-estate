@@ -54,4 +54,18 @@ final class InquiryBuilder extends Builder
             ->groupBy('period')
             ->orderBy('period');
     }
+
+    /**
+     * @return self<TModel>
+     */
+    public function weekly(): self
+    {
+        $end = now()->endOfDay();
+        $start = $end->copy()->subDays(6)->startOfDay();
+
+        return $this->selectRaw("DATE_FORMAT(created_at, '%Y-%m-%d') as period, COUNT(*) as total")
+            ->whereBetween('created_at', [$start, $end])
+            ->groupBy('period')
+            ->orderBy('period');
+    }
 }

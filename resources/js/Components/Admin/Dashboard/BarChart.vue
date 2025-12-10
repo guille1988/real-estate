@@ -36,7 +36,7 @@ const chartData: any = {
     labels: annualMessages.months,
     datasets: [
         {
-            label: 'Annual Property Messages + Inquiries',
+            label: "Last Year's Property Messages + Inquiries",
             data: annualMessages.counts,
             backgroundColor: '#4f46e5',
             borderColor: '#6366f1',
