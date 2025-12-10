@@ -32,4 +32,16 @@ import BarChart from '@/Components/Admin/Dashboard/BarChart.vue';
 import LineChart from '@/Components/Admin/Dashboard/LineChart.vue';
 import Stats from '@/Components/Admin/Dashboard/Stats.vue';
 import Layout from '@/Components/Admin/Layout/Layout.vue';
+import { displayErrors } from '@/Composables/useErrorHandling';
+import { ErrorInterface } from '@/Types/App/Interfaces/ErrorInterface';
+import { onMounted } from 'vue';
+
+const { errors }: { errors: ErrorInterface } = defineProps<{
+    monthlyMessagesData: object;
+    errors: ErrorInterface;
+}>();
+
+onMounted((): void => {
+    displayErrors(errors);
+});
 </script>
