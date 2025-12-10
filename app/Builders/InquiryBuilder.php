@@ -47,11 +47,11 @@ final class InquiryBuilder extends Builder
     public function lastTwelveMonths(): self
     {
         $end = now()->endOfMonth();
-        $start = $end->subMonths(11)->startOfMonth();
+        $start = $end->copy()->subMonths(11)->startOfMonth();
 
-        return $this->selectRaw('MONTH(created_at) as month, COUNT(*) as total')
+        return $this->selectRaw("DATE_FORMAT(created_at, '%Y-%m') as period, COUNT(*) as total")
             ->whereBetween('created_at', [$start, $end])
-            ->groupBy('month')
-            ->orderBy('month');
+            ->groupBy('period')
+            ->orderBy('period');
     }
 }
