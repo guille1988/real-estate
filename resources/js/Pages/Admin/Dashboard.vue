@@ -13,7 +13,7 @@
                     class="flex min-h-0 flex-col rounded-lg bg-gray-800/75 p-4"
                 >
                     <div class="min-h-0 flex-1">
-                        <BarChart />
+                        <BarChart :annual-messages="annualMessages" />
                     </div>
                 </div>
                 <div
@@ -33,11 +33,12 @@ import LineChart from '@/Components/Admin/Dashboard/LineChart.vue';
 import Stats from '@/Components/Admin/Dashboard/Stats.vue';
 import Layout from '@/Components/Admin/Layout/Layout.vue';
 import { displayErrors } from '@/Composables/useErrorHandling';
+import { AnnualMessagesInterface } from '@/Types/App/Interfaces/AnnualMessagesInterface';
 import { ErrorInterface } from '@/Types/App/Interfaces/ErrorInterface';
 import { onMounted } from 'vue';
 
 const { errors }: { errors: ErrorInterface } = defineProps<{
-    monthlyMessagesData: object;
+    annualMessages: AnnualMessagesInterface;
     errors: ErrorInterface;
 }>();
 

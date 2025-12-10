@@ -60,7 +60,7 @@ final class PropertyMessageBuilder extends Builder
     /**
      * @return self<TModel>
      */
-    public function lastTwelveMonths(): self
+    public function annual(): self
     {
         $end = now()->endOfMonth();
         $start = $end->copy()->subMonths(11)->startOfMonth();

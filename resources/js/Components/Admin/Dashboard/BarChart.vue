@@ -7,6 +7,7 @@
 <script setup lang="ts">
 import { Bar } from 'vue-chartjs';
 
+import { AnnualMessagesInterface } from '@/Types/App/Interfaces/AnnualMessagesInterface';
 import {
     BarElement,
     CategoryScale,
@@ -16,6 +17,11 @@ import {
     Title,
     Tooltip,
 } from 'chart.js';
+
+const { annualMessages }: { annualMessages: AnnualMessagesInterface } =
+    defineProps<{
+        annualMessages: AnnualMessagesInterface;
+    }>();
 
 ChartJS.register(
     Title,
@@ -27,24 +33,11 @@ ChartJS.register(
 );
 
 const chartData: any = {
-    labels: [
-        'Jan',
-        'Feb',
-        'Mar',
-        'Apr',
-        'May',
-        'Jun',
-        'Jul',
-        'Aug',
-        'Sep',
-        'Oct',
-        'Nov',
-        'Dec',
-    ],
+    labels: annualMessages.months,
     datasets: [
         {
-            label: 'Sales',
-            data: [42, 65, 51, 78, 93, 88, 104, 97, 86, 110, 123, 115],
+            label: 'Annual Messages',
+            data: annualMessages.counts,
             backgroundColor: '#4f46e5',
             borderColor: '#6366f1',
             borderWidth: 1,

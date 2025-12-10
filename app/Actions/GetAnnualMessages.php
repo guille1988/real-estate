@@ -8,12 +8,12 @@ use App\Models\Inquiry;
 use App\Models\PropertyMessage;
 use Illuminate\Support\Carbon;
 
-final readonly class GetMonthlyMessages
+final readonly class GetAnnualMessages
 {
     public function execute(): array
     {
-        $propertyMessageYearly = PropertyMessage::query()
-            ->lastTwelveMonths()
+        $propertyMessageAnnual = PropertyMessage::query()
+            ->annual()
             ->pluck('total', 'period')
             ->mapWithKeys(function (int $count, string $period): array {
                 $key = Carbon::parse($period)->format('M');
@@ -21,8 +21,8 @@ final readonly class GetMonthlyMessages
                 return [$key => $count];
             });
 
-        $inquiryYearly = Inquiry::query()
-            ->lastTwelveMonths()
+        $inquiryAnnual = Inquiry::query()
+            ->annual()
             ->pluck('total', 'period')
             ->mapWithKeys(function (int $count, string $period): array {
                 $key = Carbon::parse($period)->format('M');
@@ -30,13 +30,13 @@ final readonly class GetMonthlyMessages
                 return [$key => $count];
             });
 
-        $yearlyCount = $propertyMessageYearly->map(
-            fn (int $count, string $key): int => $count + $inquiryYearly->get($key, 0)
+        $annualCount = $propertyMessageAnnual->map(
+            fn (int $count, string $key): int => $count + $inquiryAnnual->get($key, 0)
         );
 
         return [
-            'months' => $yearlyCount->keys(),
-            'counts' => $yearlyCount->values(),
+            'months' => $annualCount->keys(),
+            'counts' => $annualCount->values(),
         ];
     }
 }
