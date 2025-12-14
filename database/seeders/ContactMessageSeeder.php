@@ -19,11 +19,11 @@ final class ContactMessageSeeder extends Seeder
         $lastMonth = $now->subMonth()
             ->startOfMonth();
 
-        ContactMessage::factory(20)
+        ContactMessage::factory(21)
             ->createdOn($lastMonth)
             ->create();
 
-        ContactMessage::factory(21)
+        ContactMessage::factory(20)
             ->createdOn($now)
             ->create();
     }
