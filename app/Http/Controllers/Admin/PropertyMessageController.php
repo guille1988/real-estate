@@ -39,7 +39,7 @@ final class PropertyMessageController
 
     public function show(PropertyMessage $propertyMessage): Response
     {
-        if ($propertyMessage->isNotRead()) {
+        if ($propertyMessage->unread()) {
             $propertyMessage = $propertyMessage->markAsRead();
 
             cache()->flush();

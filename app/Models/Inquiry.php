@@ -93,9 +93,9 @@ final class Inquiry extends Model
     }
 
     /*
-     * Determines if the inquiry is not read.
+     * Determines if the inquiry is unread.
      */
-    public function isNotRead(): bool
+    public function unread(): bool
     {
         return is_null($this->read_at);
     }

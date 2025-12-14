@@ -16,7 +16,7 @@ final class StatsData extends Data
         public string $name,
         public string $stat,
         public string $previousStat,
-        public string $change,
-        public ChangeTypeEnum $changeType
+        public ?string $change,
+        public ?ChangeTypeEnum $changeType
     ) {}
 }

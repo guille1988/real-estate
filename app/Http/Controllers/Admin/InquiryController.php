@@ -34,7 +34,7 @@ final class InquiryController
 
     public function show(Inquiry $inquiry): Response
     {
-        if ($inquiry->isNotRead()) {
+        if ($inquiry->unread()) {
             $inquiry = $inquiry->markAsRead();
 
             cache()->flush();

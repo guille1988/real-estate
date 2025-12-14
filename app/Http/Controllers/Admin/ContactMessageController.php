@@ -39,7 +39,7 @@ final class ContactMessageController
 
     public function show(ContactMessage $contactMessage): Response
     {
-        if ($contactMessage->isNotRead()) {
+        if ($contactMessage->unread()) {
             $contactMessage = $contactMessage->markAsRead();
 
             cache()->flush();

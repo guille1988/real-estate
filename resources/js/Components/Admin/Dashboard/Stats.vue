@@ -25,6 +25,7 @@
                     </div>
 
                     <div
+                        v-if="stat.change !== null"
                         :class="[
                             hasIncreased(stat)
                                 ? 'bg-green-400/10 text-green-400'

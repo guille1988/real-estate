@@ -12,10 +12,11 @@ final readonly class GetStats
     public function __construct(
         private GetSubscribersStats $getSubscribersStats,
         private GetContactMessagesStats $getContactMessagesStats,
+        private GetTotalUnreadMessagesStats $getTotalUnreadMessagesStats
     ) {}
 
     /**
-     * @return array<int, array<string, string|ChangeTypeEnum>>
+     * @return array<int, array<string, null|string|ChangeTypeEnum>>
      */
     public function execute(): array
     {
@@ -25,11 +26,11 @@ final readonly class GetStats
         $rawData = [
             $this->getSubscribersStats->execute(),
             $this->getContactMessagesStats->execute(),
-            $this->getSubscribersStats->execute(),
+            $this->getTotalUnreadMessagesStats->execute(),
         ];
 
         /**
-         * @var array<int, array<string, string|ChangeTypeEnum>> $data
+         * @var array<int, array<string, null|string|ChangeTypeEnum>> $data
          */
         $data = array_map(fn (StatsData $stats): array => $stats->toArray(), $rawData);
 

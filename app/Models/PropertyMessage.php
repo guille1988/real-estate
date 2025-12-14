@@ -92,9 +92,9 @@ final class PropertyMessage extends Model
     }
 
     /*
-     * Determines if the message is not read.
+     * Determines if the message is unread.
      */
-    public function isNotRead(): bool
+    public function unread(): bool
     {
         return is_null($this->read_at);
     }
