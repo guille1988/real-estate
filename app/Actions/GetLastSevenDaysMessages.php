@@ -10,6 +10,9 @@ use Illuminate\Support\Carbon;
 
 final readonly class GetLastSevenDaysMessages
 {
+    /**
+     * @return array<string, array<int|string>>
+     */
     public function execute(): array
     {
         $now = now()->toImmutable();
