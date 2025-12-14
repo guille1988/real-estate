@@ -11,6 +11,8 @@ use Illuminate\Support\Number;
 
 final readonly class GetContactMessagesStats
 {
+    public function __construct(private GetCountChangeBetweenMonths $getCountChangeBetweenMonths) {}
+
     public function execute(): StatsData
     {
         $now = now()->toImmutable();
@@ -31,15 +33,10 @@ final readonly class GetContactMessagesStats
             ->whereBetween('created_at', [$startOfMonth, $now])
             ->count();
 
-        /**
-         * @var float|int $rawChange
-         */
-        $rawChange = (($contactMessagesCountOfThisMonth - $contactMessagesCountOfLastMonth) / $contactMessagesCountOfLastMonth) * 100;
-
-        /**
-         * @var string $change
-         */
-        $change = Number::percentage($rawChange);
+        $change = $this->getCountChangeBetweenMonths->execute(
+            $contactMessagesCountOfThisMonth,
+            $contactMessagesCountOfLastMonth,
+        );
 
         $changeType = $contactMessagesCountOfThisMonth > $contactMessagesCountOfLastMonth
             ? ChangeTypeEnum::INCREASE

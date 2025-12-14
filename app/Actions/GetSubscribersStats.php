@@ -11,6 +11,8 @@ use Illuminate\Support\Number;
 
 final readonly class GetSubscribersStats
 {
+    public function __construct(private GetCountChangeBetweenMonths $getCountChangeBetweenMonths) {}
+
     public function execute(): StatsData
     {
         $now = now()->toImmutable();
@@ -31,15 +33,10 @@ final readonly class GetSubscribersStats
             ->whereBetween('created_at', [$startOfMonth, $now])
             ->count();
 
-        /**
-         * @var float|int $rawChange
-         */
-        $rawChange = (($subscribersCountOfThisMonth - $subscribersCountOfLastMonth) / $subscribersCountOfLastMonth) * 100;
-
-        /**
-         * @var string $change
-         */
-        $change = Number::percentage($rawChange);
+        $change = $this->getCountChangeBetweenMonths->execute(
+            $subscribersCountOfThisMonth,
+            $subscribersCountOfLastMonth,
+        );
 
         $changeType = $subscribersCountOfThisMonth > $subscribersCountOfLastMonth
             ? ChangeTypeEnum::INCREASE
