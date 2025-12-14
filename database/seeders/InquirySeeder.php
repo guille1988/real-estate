@@ -43,8 +43,10 @@ final class InquirySeeder extends Seeder
         7 => 28,
     ];
 
-    /*
+    /**
      * Seed last twelve-months inquiries.
+     *
+     * @param  Collection<int,Property>  $properties
      */
     private function seedLastTwelveMonthsInquiries(Collection $properties): void
     {
@@ -69,8 +71,10 @@ final class InquirySeeder extends Seeder
         }
     }
 
-    /*
+    /**
      * Seed last seven-days inquiries.
+     *
+     * @param  Collection<int,Property>  $properties
      */
     private function seedLastSevenDaysInquiries(Collection $properties): void
     {
@@ -103,7 +107,17 @@ final class InquirySeeder extends Seeder
             ->limit(20)
             ->get(['id']);
 
-        $this->seedLastTwelveMonthsInquiries($properties->take(12));
-        $this->seedLastSevenDaysInquiries($properties->skip(12)->take(7));
+        /**
+         * @var Collection<int, Property> $properties
+         */
+        $firstTwelveProperties = $properties->take(12);
+
+        /**
+         * @var Collection<int, Property> $properties
+         */
+        $restOfProperties = $properties->skip(12)->take(7);
+
+        $this->seedLastTwelveMonthsInquiries($firstTwelveProperties);
+        $this->seedLastSevenDaysInquiries($restOfProperties);
     }
 }
