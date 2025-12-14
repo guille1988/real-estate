@@ -38,7 +38,9 @@ final readonly class GetLastSevenDaysMessages
             ->lastSevenDays($now)
             ->pluck('total', 'period');
 
-        $inquiryWeekly = $inquiries->mapWithKeys(fn (int $count, string $period): array => [$period => $count]);
+        $inquiryWeekly = $inquiries->mapWithKeys(
+            fn (int $count, string $period): array => [$period => $count]
+        );
 
         /** @var Collection<string,int> $lastSevenDaysTotal */
         $lastSevenDaysTotal = $baseDays->map(function (int $zero, string $yearMonthDay) use ($propertyMessageWeekly, $inquiryWeekly): int {

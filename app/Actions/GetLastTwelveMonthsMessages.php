@@ -30,7 +30,9 @@ final readonly class GetLastTwelveMonthsMessages
             ->lastTwelveMonths($now)
             ->pluck('total', 'period');
 
-        $propertyMessageLastTwelveMonths = $propertyMessages->mapWithKeys(fn (int $count, string $period): array => [$period => $count]);
+        $propertyMessageLastTwelveMonths = $propertyMessages->mapWithKeys(
+            fn (int $count, string $period): array => [$period => $count]
+        );
 
         /** @var Collection<string,int> $inquiries */
         $inquiries = Inquiry::query()
