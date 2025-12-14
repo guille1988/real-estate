@@ -6,7 +6,12 @@ use App\Enums\PageEnum;
 use App\Models\User;
 use Inertia\Testing\AssertableInertia as Assert;
 
-it('works on dashboard page.', function (): void {
+it('redirects to login if there is no session', function (): void {
+    $this->get(route('admin.dashboard'))
+        ->assertRedirect(route('admin.login.create'));
+});
+
+it('works with authenticated user.', function (): void {
     $user = User::factory()
         ->admin()
         ->create();

@@ -1,541 +1,718 @@
-# Documentation Search Results
-
-**Packages:** laravel/framework@12.x
-**Results:** 4 documents, 52 chunks
-
----
-
-## helpers.md > Numbers > `Number::forHumans()` {.collection-method}
-Package: laravel/framework@12.x
-
-<a name="method-number-for-humans"></a>
-#### `Number::forHumans()` {.collection-method}
-
-The `Number::forHumans` method returns the human-readable format of the provided numerical value:
-
-```php
-use Illuminate\Support\Number;
-
-$number = Number::forHumans(1000);
-
-// 1 thousand
-
-$number = Number::forHumans(489939);
-
-// 490 thousand
-
-$number = Number::forHumans(1230000, precision: 2);
-
-// 1.23 million
-```
-
----
-
-## collections.md > Method Listing > `percentage()` {.collection-method}
-Package: laravel/framework@12.x
-
-<a name="method-percentage"></a>
-#### `percentage()` {.collection-method}
-
-The `percentage` method may be used to quickly determine the percentage of items in the collection that pass a given truth test:
-
-```php
-$collection = collect([1, 1, 2, 2, 2, 3]);
-
-$percentage = $collection->percentage(fn (int $value) => $value === 1);
-
-// 33.33
-```
-
-By default, the percentage will be rounded to two decimal places. However, you may customize this behavior by providing a second argument to the method:
-
-```php
-$percentage = $collection->percentage(fn (int $value) => $value === 1, precision: 3);
-
-// 33.333
-```
-
----
-
-## helpers.md > Numbers > `Number::format()` {.collection-method}
-Package: laravel/framework@12.x
-
-<a name="method-number-format"></a>
-#### `Number::format()` {.collection-method}
-
-The `Number::format` method formats the given number into a locale specific string:
-
-```php
-use Illuminate\Support\Number;
-
-$number = Number::format(100000);
-
-// 100,000
-
-$number = Number::format(100000, precision: 2);
-
-// 100,000.00
-
-$number = Number::format(100000.123, maxPrecision: 2);
-
-// 100,000.12
-
-$number = Number::format(100000, locale: 'de');
-
-// 100.000
-```
-
----
-
-## helpers.md > Numbers > `Number::useCurrency()` {.collection-method}
-Package: laravel/framework@12.x
-
-<a name="method-number-use-currency"></a>
-#### `Number::useCurrency()` {.collection-method}
-
-The `Number::useCurrency` method sets the default number currency globally, which affects how the currency is formatted by subsequent invocations to the `Number` class's methods:
-
-```php
-use Illuminate\Support\Number;
-
-/**
- * Bootstrap any application services.
- */
-public function boot(): void
-{
-    Number::useCurrency('GBP');
-}
-```
-
----
-
-## helpers.md > Numbers > `Number::useLocale()` {.collection-method}
-Package: laravel/framework@12.x
-
-<a name="method-number-use-locale"></a>
-#### `Number::useLocale()` {.collection-method}
-
-The `Number::useLocale` method sets the default number locale globally, which affects how numbers and currency are formatted by subsequent invocations to the `Number` class's methods:
-
-```php
-use Illuminate\Support\Number;
-
-/**
- * Bootstrap any application services.
- */
-public function boot(): void
-{
-    Number::useLocale('de');
-}
-```
-
----
-
-## helpers.md > Numbers > `Number::trim()` {.collection-method}
-Package: laravel/framework@12.x
-
-<a name="method-number-trim"></a>
-#### `Number::trim()` {.collection-method}
-
-The `Number::trim` method removes any trailing zero digits after the decimal point of the given number:
-
-```php
-use Illuminate\Support\Number;
-
-$number = Number::trim(12.0);
-
-// 12
-
-$number = Number::trim(12.30);
-
-// 12.3
-```
-
----
-
-## helpers.md > Numbers > `Number::percentage()` {.collection-method}
-Package: laravel/framework@12.x
-
-<a name="method-number-percentage"></a>
-#### `Number::percentage()` {.collection-method}
-
-The `Number::percentage` method returns the percentage representation of the given value as a string:
-
-```php
-use Illuminate\Support\Number;
-
-$percentage = Number::percentage(10);
-
-// 10%
-
-$percentage = Number::percentage(10, precision: 2);
-
-// 10.00%
-
-$percentage = Number::percentage(10.123, maxPrecision: 2);
-
-// 10.12%
-
-$percentage = Number::percentage(10, precision: 2, locale: 'de');
-
-// 10,00%
-```
-
----
-
-## notifications.md > SMS Notifications > Customizing the "From" Number
-Package: laravel/framework@12.x
-
-<a name="customizing-the-from-number"></a>
-### Customizing the "From" Number
-
-If you would like to send some notifications from a phone number that is different from the phone number specified by your `VONAGE_SMS_FROM` environment variable, you may call the `from` method on a `VonageMessage` instance:
-
-```php
-use Illuminate\Notifications\Messages\VonageMessage;
-
-/**
- * Get the Vonage / SMS representation of the notification.
- */
-public function toVonage(object $notifiable): VonageMessage
-{
-    return (new VonageMessage)
-        ->content('Your SMS message content')
-        ->from('15554443333');
-}
-```
-
----
-
-## helpers.md > Numbers > `Number::abbreviate()` {.collection-method}
-Package: laravel/framework@12.x
-
-<a name="method-number-abbreviate"></a>
-#### `Number::abbreviate()` {.collection-method}
-
-The `Number::abbreviate` method returns the human-readable format of the provided numerical value, with an abbreviation for the units:
-
-```php
-use Illuminate\Support\Number;
-
-$number = Number::abbreviate(1000);
-
-// 1K
-
-$number = Number::abbreviate(489939);
-
-// 490K
-
-$number = Number::abbreviate(1230000, precision: 2);
-
-// 1.23M
-```
-
----
-
-## helpers.md > Numbers > `Number::withCurrency()` {.collection-method}
-Package: laravel/framework@12.x
-
-<a name="method-number-with-currency"></a>
-#### `Number::withCurrency()` {.collection-method}
-
-The `Number::withCurrency` method executes the given closure using the specified currency and then restores the original currency after the callback has executed:
-
-```php
-use Illuminate\Support\Number;
-
-$number = Number::withCurrency('GBP', function () {
-    // ...
-});
-```
-
----
-
-## helpers.md > Available Methods > Numbers
-Package: laravel/framework@12.x
-
-<a name="numbers-method-list"></a>
-### Numbers
-
-<div class="collection-method-list" markdown="1">
-
-[Number::abbreviate](#method-number-abbreviate)
-[Number::clamp](#method-number-clamp)
-[Number::currency](#method-number-currency)
-[Number::defaultCurrency](#method-default-currency)
-[Number::defaultLocale](#method-default-locale)
-[Number::fileSize](#method-number-file-size)
-[Number::forHumans](#method-number-for-humans)
-[Number::format](#method-number-format)
-[Number::ordinal](#method-number-ordinal)
-[Number::pairs](#method-number-pairs)
-[Number::parseInt](#method-number-parse-int)
-[Number::parseFloat](#method-number-parse-float)
-[Number::percentage](#method-number-percentage)
-[Number::spell](#method-number-spell)
-[Number::spellOrdinal](#method-number-spell-ordinal)
-[Number::trim](#method-number-trim)
-[Number::useLocale](#method-number-use-locale)
-[Number::withLocale](#method-number-with-locale)
-[Number::useCurrency](#method-number-use-currency)
-[Number::withCurrency](#method-number-with-currency)
-
-</div>
-
----
-
-## helpers.md > Numbers > `Number::withLocale()` {.collection-method}
-Package: laravel/framework@12.x
-
-<a name="method-number-with-locale"></a>
-#### `Number::withLocale()` {.collection-method}
-
-The `Number::withLocale` method executes the given closure using the specified locale and then restores the original locale after the callback has executed:
-
-```php
-use Illuminate\Support\Number;
-
-$number = Number::withLocale('de', function () {
-    return Number::format(1500);
-});
-```
-
----
-
-## helpers.md > Numbers > `Number::parseFloat()` {.collection-method}
-Package: laravel/framework@12.x
-
-<a name="method-number-parse-float"></a>
-#### `Number::parseFloat()` {.collection-method}
-
-The `Number::parseFloat` method parse a string into a float according to the specified locale:
-
-```php
-use Illuminate\Support\Number;
-
-$result = Number::parseFloat('10');
-
-// (float) 10.0
-
-$result = Number::parseFloat('10', locale: 'fr');
-
-// (float) 10.0
-```
-
----
-
-## helpers.md > Numbers > `Number::parseInt()` {.collection-method}
-Package: laravel/framework@12.x
-
-<a name="method-number-parse-int"></a>
-#### `Number::parseInt()` {.collection-method}
-
-The `Number::parseInt` method parse a string into an integer according to the specified locale:
-
-```php
-use Illuminate\Support\Number;
-
-$result = Number::parseInt('10.123');
-
-// (int) 10
-
-$result = Number::parseInt('10,123', locale: 'fr');
-
-// (int) 10
-```
-
----
-
-## helpers.md > Numbers > `Number::spellOrdinal()` {.collection-method}
-Package: laravel/framework@12.x
-
-<a name="method-number-spell-ordinal"></a>
-#### `Number::spellOrdinal()` {.collection-method}
-
-The `Number::spellOrdinal` method returns the number's ordinal representation as a string of words:
-
-```php
-use Illuminate\Support\Number;
-
-$number = Number::spellOrdinal(1);
-
-// first
-
-$number = Number::spellOrdinal(2);
-
-// second
-
-$number = Number::spellOrdinal(21);
-
-// twenty-first
-```
-
----
-
-## helpers.md > Numbers > `Number::spell()` {.collection-method}
-Package: laravel/framework@12.x
-
-<a name="method-number-spell"></a>
-#### `Number::spell()` {.collection-method}
-
-The `Number::spell` method transforms the given number into a string of words:
-
-```php
-use Illuminate\Support\Number;
-
-$number = Number::spell(102);
-
-// one hundred and two
-
-$number = Number::spell(88, locale: 'fr');
-
-// quatre-vingt-huit
-```
-
-The `after` argument allows you to specify a value after which all numbers should be spelled out:
-
-```php
-$number = Number::spell(10, after: 10);
-
-// 10
-
-$number = Number::spell(11, after: 10);
-
-// eleven
-```
-
-The `until` argument allows you to specify a value before which all numbers should be spelled out:
-
-```php
-$number = Number::spell(5, until: 10);
-
-// five
-
-$number = Number::spell(10, until: 10);
-
-// 10
-```
-
----
-
-## helpers.md > Numbers > `Number::currency()` {.collection-method}
-Package: laravel/framework@12.x
-
-<a name="method-number-currency"></a>
-#### `Number::currency()` {.collection-method}
-
-The `Number::currency` method returns the currency representation of the given value as a string:
-
-```php
-use Illuminate\Support\Number;
-
-$currency = Number::currency(1000);
-
-// $1,000.00
-
-$currency = Number::currency(1000, in: 'EUR');
-
-// €1,000.00
-
-$currency = Number::currency(1000, in: 'EUR', locale: 'de');
-
-// 1.000,00 €
-
-$currency = Number::currency(1000, in: 'EUR', locale: 'de', precision: 0);
-
-// 1.000 €
-```
-
----
-
-## helpers.md > Numbers > `Number::defaultLocale()` {.collection-method}
-Package: laravel/framework@12.x
-
-<a name="method-default-locale"></a>
-#### `Number::defaultLocale()` {.collection-method}
-
-The `Number::defaultLocale` method returns the default locale being used by the `Number` class:
-
-```php
-use Illuminate\Support\Number;
-
-$locale = Number::defaultLocale();
-
-// en
-```
-
----
-
-## helpers.md > Numbers > `Number::pairs()` {.collection-method}
-Package: laravel/framework@12.x
-
-<a name="method-number-pairs"></a>
-#### `Number::pairs()` {.collection-method}
-
-The `Number::pairs` method generates an array of number pairs (sub-ranges) based on a specified range and step value. This method can be useful for dividing a larger range of numbers into smaller, manageable sub-ranges for things like pagination or batching tasks. The `pairs` method returns an array of arrays, where each inner array represents a pair (sub-range) of numbers:
-
-```php
-use Illuminate\Support\Number;
-
-$result = Number::pairs(25, 10);
-
-// [[0, 9], [10, 19], [20, 25]]
-
-$result = Number::pairs(25, 10, offset: 0);
-
-// [[0, 10], [10, 20], [20, 25]]
-```
-
----
-
-## helpers.md > Numbers > `Number::ordinal()` {.collection-method}
-Package: laravel/framework@12.x
-
-<a name="method-number-ordinal"></a>
-#### `Number::ordinal()` {.collection-method}
-
-The `Number::ordinal` method returns a number's ordinal representation:
-
-```php
-use Illuminate\Support\Number;
-
-$number = Number::ordinal(1);
-
-// 1st
-
-$number = Number::ordinal(2);
-
-// 2nd
-
-$number = Number::ordinal(21);
-
-// 21st
-```
-
----
-
-## helpers.md > Numbers > `Number::fileSize()` {.collection-method}
-Package: laravel/framework@12.x
-
-<a name="method-number-file-size"></a>
-#### `Number::fileSize()` {.collection-method}
-
-The `Number::fileSize` method returns the file size representation of the given byte value as a string:
-
-```php
-use Illuminate\Support\Number;
-
-$size = Number::fileSize(1024);
-
-// 1 KB
-
-$size = Number::fileSize(1024 * 1024);
-
-// 1 MB
-
-$size = Number::fileSize(1024, precision: 2);
-
-// 1.00 KB
-```
-
-_[Content truncated due to token limit]_
+[
+    {
+        "name": "_complete",
+        "description": "Internal command to provide shell completion suggestions"
+    },
+    {
+        "name": "about",
+        "description": "Display basic information about your application"
+    },
+    {
+        "name": "auth:clear-resets",
+        "description": "Flush expired password reset tokens"
+    },
+    {
+        "name": "boost:execute-tool",
+        "description": "Execute a Boost MCP tool in isolation (internal command)"
+    },
+    {
+        "name": "boost:install",
+        "description": ""
+    },
+    {
+        "name": "boost:mcp",
+        "description": "Starts Laravel Boost (usually from mcp.json)"
+    },
+    {
+        "name": "boost:update",
+        "description": "Update the Laravel Boost guidelines to the latest guidance"
+    },
+    {
+        "name": "breeze:install",
+        "description": "Install the Breeze controllers and resources"
+    },
+    {
+        "name": "cache:clear",
+        "description": "Flush the application cache"
+    },
+    {
+        "name": "cache:forget",
+        "description": "Remove an item from the cache"
+    },
+    {
+        "name": "cache:prune-stale-tags",
+        "description": "Prune stale cache tags from the cache (Redis only)"
+    },
+    {
+        "name": "cache:table",
+        "description": "Create a migration for the cache database table"
+    },
+    {
+        "name": "channel:list",
+        "description": "List all registered private broadcast channels"
+    },
+    {
+        "name": "clear-compiled",
+        "description": "Remove the compiled class file"
+    },
+    {
+        "name": "clear:all",
+        "description": "Clear the cache and the log file by executing the optimize:clear and the clear:log commands."
+    },
+    {
+        "name": "clear:log",
+        "description": "Clear a project specific log file."
+    },
+    {
+        "name": "completion",
+        "description": "Dump the shell completion script"
+    },
+    {
+        "name": "config:cache",
+        "description": "Create a cache file for faster configuration loading"
+    },
+    {
+        "name": "config:clear",
+        "description": "Remove the configuration cache file"
+    },
+    {
+        "name": "config:make",
+        "description": "Create a new configuration file"
+    },
+    {
+        "name": "config:publish",
+        "description": "Publish configuration files to your application"
+    },
+    {
+        "name": "config:show",
+        "description": "Display all of the values for a given configuration file or key"
+    },
+    {
+        "name": "data:cache-structures",
+        "description": "Cache the internal data structures"
+    },
+    {
+        "name": "db",
+        "description": "Start a new database CLI session"
+    },
+    {
+        "name": "db:monitor",
+        "description": "Monitor the number of connections on the specified database"
+    },
+    {
+        "name": "db:seed",
+        "description": "Seed the database with records"
+    },
+    {
+        "name": "db:show",
+        "description": "Display information about the given database"
+    },
+    {
+        "name": "db:table",
+        "description": "Display information about the given database table"
+    },
+    {
+        "name": "db:wipe",
+        "description": "Drop all tables, views, and types"
+    },
+    {
+        "name": "docs",
+        "description": "Access the Laravel documentation"
+    },
+    {
+        "name": "down",
+        "description": "Put the application into maintenance \/ demo mode"
+    },
+    {
+        "name": "env",
+        "description": "Display the current framework environment"
+    },
+    {
+        "name": "env:decrypt",
+        "description": "Decrypt an environment file"
+    },
+    {
+        "name": "env:encrypt",
+        "description": "Encrypt an environment file"
+    },
+    {
+        "name": "event:cache",
+        "description": "Discover and cache the application's events and listeners"
+    },
+    {
+        "name": "event:clear",
+        "description": "Clear all cached events and listeners"
+    },
+    {
+        "name": "event:generate",
+        "description": "Generate the missing events and listeners based on registration"
+    },
+    {
+        "name": "event:list",
+        "description": "List the application's events and listeners"
+    },
+    {
+        "name": "format:images",
+        "description": "This command formats images to the desired format given a path."
+    },
+    {
+        "name": "format:seeder-images",
+        "description": "This command formats seeder images to the desired format."
+    },
+    {
+        "name": "help",
+        "description": "Display help for a command"
+    },
+    {
+        "name": "horizon",
+        "description": "Start a master supervisor in the foreground"
+    },
+    {
+        "name": "horizon:clear",
+        "description": "Delete all of the jobs from the specified queue"
+    },
+    {
+        "name": "horizon:clear-metrics",
+        "description": "Delete metrics for all jobs and queues"
+    },
+    {
+        "name": "horizon:continue",
+        "description": "Instruct the master supervisor to continue processing jobs"
+    },
+    {
+        "name": "horizon:continue-supervisor",
+        "description": "Instruct the supervisor to continue processing jobs"
+    },
+    {
+        "name": "horizon:forget",
+        "description": "Delete a failed queue job"
+    },
+    {
+        "name": "horizon:install",
+        "description": "Install all of the Horizon resources"
+    },
+    {
+        "name": "horizon:list",
+        "description": "List all of the deployed machines"
+    },
+    {
+        "name": "horizon:pause",
+        "description": "Pause the master supervisor"
+    },
+    {
+        "name": "horizon:pause-supervisor",
+        "description": "Pause a supervisor"
+    },
+    {
+        "name": "horizon:publish",
+        "description": "Publish all of the Horizon resources"
+    },
+    {
+        "name": "horizon:purge",
+        "description": "Terminate any rogue Horizon processes"
+    },
+    {
+        "name": "horizon:snapshot",
+        "description": "Store a snapshot of the queue metrics"
+    },
+    {
+        "name": "horizon:status",
+        "description": "Get the current status of Horizon"
+    },
+    {
+        "name": "horizon:supervisor",
+        "description": "Start a new supervisor"
+    },
+    {
+        "name": "horizon:supervisor-status",
+        "description": "Show the status for a given supervisor"
+    },
+    {
+        "name": "horizon:supervisors",
+        "description": "List all of the supervisors"
+    },
+    {
+        "name": "horizon:terminate",
+        "description": "Terminate the master supervisor so it can be restarted"
+    },
+    {
+        "name": "horizon:timeout",
+        "description": "Get the maximum timeout for the given environment"
+    },
+    {
+        "name": "horizon:work",
+        "description": "Start processing jobs on the queue as a daemon"
+    },
+    {
+        "name": "inertia:check-ssr",
+        "description": "Check the Inertia SSR server health status"
+    },
+    {
+        "name": "inertia:middleware",
+        "description": "Create a new Inertia middleware"
+    },
+    {
+        "name": "inertia:start-ssr",
+        "description": "Start the Inertia SSR server"
+    },
+    {
+        "name": "inertia:stop-ssr",
+        "description": "Stop the Inertia SSR server"
+    },
+    {
+        "name": "install:api",
+        "description": "Create an API routes file and install Laravel Sanctum or Laravel Passport"
+    },
+    {
+        "name": "install:broadcasting",
+        "description": "Create a broadcasting channel routes file"
+    },
+    {
+        "name": "invoke-serialized-closure",
+        "description": "Invoke the given serialized closure"
+    },
+    {
+        "name": "key:generate",
+        "description": "Set the application key"
+    },
+    {
+        "name": "lang:publish",
+        "description": "Publish all language files that are available for customization"
+    },
+    {
+        "name": "list",
+        "description": "List commands"
+    },
+    {
+        "name": "make:cache-table",
+        "description": "Create a migration for the cache database table"
+    },
+    {
+        "name": "make:cast",
+        "description": "Create a new custom Eloquent cast class"
+    },
+    {
+        "name": "make:channel",
+        "description": "Create a new channel class"
+    },
+    {
+        "name": "make:class",
+        "description": "Create a new class"
+    },
+    {
+        "name": "make:command",
+        "description": "Create a new Artisan command"
+    },
+    {
+        "name": "make:component",
+        "description": "Create a new view component class"
+    },
+    {
+        "name": "make:config",
+        "description": "Create a new configuration file"
+    },
+    {
+        "name": "make:controller",
+        "description": "Create a new controller class"
+    },
+    {
+        "name": "make:data",
+        "description": "Create a new data class"
+    },
+    {
+        "name": "make:enum",
+        "description": "Create a new enum"
+    },
+    {
+        "name": "make:event",
+        "description": "Create a new event class"
+    },
+    {
+        "name": "make:exception",
+        "description": "Create a new custom exception class"
+    },
+    {
+        "name": "make:factory",
+        "description": "Create a new model factory"
+    },
+    {
+        "name": "make:interface",
+        "description": "Create a new interface"
+    },
+    {
+        "name": "make:job",
+        "description": "Create a new job class"
+    },
+    {
+        "name": "make:job-middleware",
+        "description": "Create a new job middleware class"
+    },
+    {
+        "name": "make:listener",
+        "description": "Create a new event listener class"
+    },
+    {
+        "name": "make:mail",
+        "description": "Create a new email class"
+    },
+    {
+        "name": "make:mcp-prompt",
+        "description": "Create a new MCP prompt class"
+    },
+    {
+        "name": "make:mcp-resource",
+        "description": "Create a new MCP resource class"
+    },
+    {
+        "name": "make:mcp-server",
+        "description": "Create a new MCP server class"
+    },
+    {
+        "name": "make:mcp-tool",
+        "description": "Create a new MCP tool class"
+    },
+    {
+        "name": "make:middleware",
+        "description": "Create a new HTTP middleware class"
+    },
+    {
+        "name": "make:migration",
+        "description": "Create a new migration file"
+    },
+    {
+        "name": "make:model",
+        "description": "Create a new Eloquent model class"
+    },
+    {
+        "name": "make:notification",
+        "description": "Create a new notification class"
+    },
+    {
+        "name": "make:notifications-table",
+        "description": "Create a migration for the notifications table"
+    },
+    {
+        "name": "make:observer",
+        "description": "Create a new observer class"
+    },
+    {
+        "name": "make:policy",
+        "description": "Create a new policy class"
+    },
+    {
+        "name": "make:provider",
+        "description": "Create a new service provider class"
+    },
+    {
+        "name": "make:queue-batches-table",
+        "description": "Create a migration for the batches database table"
+    },
+    {
+        "name": "make:queue-failed-table",
+        "description": "Create a migration for the failed queue jobs database table"
+    },
+    {
+        "name": "make:queue-table",
+        "description": "Create a migration for the queue jobs database table"
+    },
+    {
+        "name": "make:request",
+        "description": "Create a new form request class"
+    },
+    {
+        "name": "make:resource",
+        "description": "Create a new resource"
+    },
+    {
+        "name": "make:rule",
+        "description": "Create a new validation rule"
+    },
+    {
+        "name": "make:scope",
+        "description": "Create a new scope class"
+    },
+    {
+        "name": "make:seeder",
+        "description": "Create a new seeder class"
+    },
+    {
+        "name": "make:session-table",
+        "description": "Create a migration for the session database table"
+    },
+    {
+        "name": "make:test",
+        "description": "Create a new test class"
+    },
+    {
+        "name": "make:trait",
+        "description": "Create a new trait"
+    },
+    {
+        "name": "make:view",
+        "description": "Create a new view"
+    },
+    {
+        "name": "mcp:inspector",
+        "description": "Open the MCP Inspector tool to debug and test MCP Servers."
+    },
+    {
+        "name": "mcp:start",
+        "description": "Start the MCP Server for a given handle."
+    },
+    {
+        "name": "migrate",
+        "description": "Run the database migrations"
+    },
+    {
+        "name": "migrate:fresh",
+        "description": "Drop all tables and re-run all migrations"
+    },
+    {
+        "name": "migrate:install",
+        "description": "Create the migration repository"
+    },
+    {
+        "name": "migrate:refresh",
+        "description": "Reset and re-run all migrations"
+    },
+    {
+        "name": "migrate:reset",
+        "description": "Rollback all database migrations"
+    },
+    {
+        "name": "migrate:rollback",
+        "description": "Rollback the last database migration"
+    },
+    {
+        "name": "migrate:status",
+        "description": "Show the status of each migration"
+    },
+    {
+        "name": "model:prune",
+        "description": "Prune models that are no longer needed"
+    },
+    {
+        "name": "model:show",
+        "description": "Show information about an Eloquent model"
+    },
+    {
+        "name": "notifications:table",
+        "description": "Create a migration for the notifications table"
+    },
+    {
+        "name": "optimize",
+        "description": "Cache framework bootstrap, configuration, and metadata to increase performance"
+    },
+    {
+        "name": "optimize:clear",
+        "description": "Remove the cached bootstrap files"
+    },
+    {
+        "name": "package:discover",
+        "description": "Rebuild the cached package manifest"
+    },
+    {
+        "name": "pest:dataset",
+        "description": "Create a new dataset file"
+    },
+    {
+        "name": "pest:test",
+        "description": "Create a new test file"
+    },
+    {
+        "name": "queue:batches-table",
+        "description": "Create a migration for the batches database table"
+    },
+    {
+        "name": "queue:clear",
+        "description": "Delete all of the jobs from the specified queue"
+    },
+    {
+        "name": "queue:continue",
+        "description": "Resume job processing for a paused queue"
+    },
+    {
+        "name": "queue:failed",
+        "description": "List all of the failed queue jobs"
+    },
+    {
+        "name": "queue:failed-table",
+        "description": "Create a migration for the failed queue jobs database table"
+    },
+    {
+        "name": "queue:flush",
+        "description": "Flush all of the failed queue jobs"
+    },
+    {
+        "name": "queue:forget",
+        "description": "Delete a failed queue job"
+    },
+    {
+        "name": "queue:listen",
+        "description": "Listen to a given queue"
+    },
+    {
+        "name": "queue:monitor",
+        "description": "Monitor the size of the specified queues"
+    },
+    {
+        "name": "queue:pause",
+        "description": "Pause job processing for a specific queue"
+    },
+    {
+        "name": "queue:prune-batches",
+        "description": "Prune stale entries from the batches database"
+    },
+    {
+        "name": "queue:prune-failed",
+        "description": "Prune stale entries from the failed jobs table"
+    },
+    {
+        "name": "queue:restart",
+        "description": "Restart queue worker daemons after their current job"
+    },
+    {
+        "name": "queue:resume",
+        "description": "Resume job processing for a paused queue"
+    },
+    {
+        "name": "queue:retry",
+        "description": "Retry a failed queue job"
+    },
+    {
+        "name": "queue:retry-batch",
+        "description": "Retry the failed jobs for a batch"
+    },
+    {
+        "name": "queue:table",
+        "description": "Create a migration for the queue jobs database table"
+    },
+    {
+        "name": "queue:work",
+        "description": "Start processing jobs on the queue as a daemon"
+    },
+    {
+        "name": "reload",
+        "description": "Reload running services"
+    },
+    {
+        "name": "roster:scan",
+        "description": "Detect packages & approaches in use and output as JSON"
+    },
+    {
+        "name": "route:cache",
+        "description": "Create a route cache file for faster route registration"
+    },
+    {
+        "name": "route:clear",
+        "description": "Remove the route cache file"
+    },
+    {
+        "name": "route:list",
+        "description": "List all registered routes"
+    },
+    {
+        "name": "sail:add",
+        "description": "Add a service to an existing Sail installation"
+    },
+    {
+        "name": "sail:install",
+        "description": "Install Laravel Sail's default Docker Compose file"
+    },
+    {
+        "name": "sail:publish",
+        "description": "Publish the Laravel Sail Docker files"
+    },
+    {
+        "name": "sanctum:prune-expired",
+        "description": "Prune tokens expired for more than specified number of hours"
+    },
+    {
+        "name": "schedule:clear-cache",
+        "description": "Delete the cached mutex files created by scheduler"
+    },
+    {
+        "name": "schedule:finish",
+        "description": "Handle the completion of a scheduled command"
+    },
+    {
+        "name": "schedule:interrupt",
+        "description": "Interrupt the current schedule run"
+    },
+    {
+        "name": "schedule:list",
+        "description": "List all scheduled tasks"
+    },
+    {
+        "name": "schedule:run",
+        "description": "Run the scheduled commands"
+    },
+    {
+        "name": "schedule:test",
+        "description": "Run a scheduled command"
+    },
+    {
+        "name": "schedule:work",
+        "description": "Start the schedule worker"
+    },
+    {
+        "name": "schema:dump",
+        "description": "Dump the given database schema"
+    },
+    {
+        "name": "serve",
+        "description": "Serve the application on the PHP development server"
+    },
+    {
+        "name": "session:table",
+        "description": "Create a migration for the session database table"
+    },
+    {
+        "name": "storage:link",
+        "description": "Create the symbolic links configured for the application"
+    },
+    {
+        "name": "storage:unlink",
+        "description": "Delete existing symbolic links configured for the application"
+    },
+    {
+        "name": "structure-scouts:cache",
+        "description": "Cache discoverers within your application"
+    },
+    {
+        "name": "structure-scouts:clear",
+        "description": "Clear cached discoverers within your application"
+    },
+    {
+        "name": "stub:publish",
+        "description": "Publish all stubs that are available for customization"
+    },
+    {
+        "name": "test",
+        "description": "Run the application tests"
+    },
+    {
+        "name": "tinker",
+        "description": "Interact with your application"
+    },
+    {
+        "name": "up",
+        "description": "Bring the application out of maintenance mode"
+    },
+    {
+        "name": "vendor:publish",
+        "description": "Publish any publishable assets from vendor packages"
+    },
+    {
+        "name": "view:cache",
+        "description": "Compile all of the application's Blade templates"
+    },
+    {
+        "name": "view:clear",
+        "description": "Clear all compiled view files"
+    },
+    {
+        "name": "wayfinder:generate",
+        "description": ""
+    }
+]
