@@ -53,7 +53,7 @@ final readonly class GetContactMessagesStats
         $previousStat = Number::format($contactMessagesCountOfLastMonth);
 
         return StatsData::from([
-            'name' => 'Total Contact Messages',
+            'name' => 'Total Contact Messages From Last Month',
             'stat' => $stat,
             'previous_stat' => $previousStat,
             'change' => $change,

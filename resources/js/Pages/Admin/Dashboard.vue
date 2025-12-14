@@ -4,7 +4,7 @@
             class="inset-ring inset-ring-white/10 flex h-full min-h-0 w-full flex-col rounded-xl bg-black p-4 text-white md:p-6"
         >
             <div class="mb-4 md:mb-6">
-                <Stats />
+                <Stats :stats="stats"/>
             </div>
             <div
                 class="grid min-h-0 flex-1 grid-cols-1 gap-4 md:grid-cols-2 md:gap-6"
@@ -43,10 +43,12 @@ import { ErrorInterface } from '@/Types/App/Interfaces/ErrorInterface';
 import { LastSevenDaysMessagesInterface } from '@/Types/App/Interfaces/LastSevenDaysMessagesInterface';
 import { LastTwelveMonthsMessagesInterface } from '@/Types/App/Interfaces/LastTwelveMonthsMessagesInterface';
 import { onMounted } from 'vue';
+import { StatsInterface } from '@/Types/Admin/Interfaces/StatsInterface';
 
 const { errors }: { errors: ErrorInterface } = defineProps<{
     lastTwelveMonthsMessages: LastTwelveMonthsMessagesInterface;
     lastSevenDaysMessages: LastSevenDaysMessagesInterface;
+    stats: StatsInterface[];
     errors: ErrorInterface;
 }>();
 

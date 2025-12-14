@@ -25,6 +25,7 @@ final readonly class GetStats
         $rawData = [
             $this->getSubscribersStats->execute(),
             $this->getContactMessagesStats->execute(),
+            $this->getSubscribersStats->execute(),
         ];
 
         /**

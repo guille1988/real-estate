@@ -53,7 +53,7 @@ final readonly class GetSubscribersStats
         $previousStat = Number::format($subscribersCountOfLastMonth);
 
         return StatsData::from([
-            'name' => 'Total Subscribers',
+            'name' => 'Total Subscribers From Last Month',
             'stat' => $stat,
             'previous_stat' => $previousStat,
             'change' => $change,

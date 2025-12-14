@@ -19,7 +19,7 @@ final readonly class GetCountChangeBetweenMonths
         /**
          * @var string $change
          */
-        $change = Number::format($rawChange);
+        $change = Number::percentage($rawChange);
 
         return $change;
     }
