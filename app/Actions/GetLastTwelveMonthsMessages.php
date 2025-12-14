@@ -7,6 +7,7 @@ namespace App\Actions;
 use App\Models\Inquiry;
 use App\Models\PropertyMessage;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 
 final readonly class GetLastTwelveMonthsMessages
 {
@@ -24,29 +25,45 @@ final readonly class GetLastTwelveMonthsMessages
                 return [$yearMonth => 0];
             });
 
-        $propertyMessageLastTwelveMonths = PropertyMessage::query()
+        /** @var Collection<string,int> $propertyMessages */
+        $propertyMessages = PropertyMessage::query()
             ->lastTwelveMonths($now)
-            ->pluck('total', 'period')
-            ->mapWithKeys(fn (int $count, string $period): array => [$period => $count]);
+            ->pluck('total', 'period');
 
-        $inquiryLastTwelveMonths = Inquiry::query()
+        $propertyMessageLastTwelveMonths = $propertyMessages->mapWithKeys(fn (int $count, string $period): array => [$period => $count]);
+
+        /** @var Collection<string,int> $inquiries */
+        $inquiries = Inquiry::query()
             ->lastTwelveMonths($now)
-            ->pluck('total', 'period')
-            ->mapWithKeys(fn (int $count, string $period): array => [$period => $count]);
+            ->pluck('total', 'period');
 
+        $inquiryLastTwelveMonths = $inquiries->mapWithKeys(fn (int $count, string $period): array => [$period => $count]);
+
+        /** @var Collection<string,int> $lastTwelveMonthsTotal */
         $lastTwelveMonthsTotal = $baseMonths->map(function (int $zero, string $yearMonth) use ($propertyMessageLastTwelveMonths, $inquiryLastTwelveMonths): int {
             return $propertyMessageLastTwelveMonths->get($yearMonth, 0) + $inquiryLastTwelveMonths->get($yearMonth, 0);
         });
 
-        $labels = $lastTwelveMonthsTotal->keys()
-            ->map(function (string $yearMonth): string {
-                return Carbon::createFromFormat('Y-m', $yearMonth)->format("M 'y");
-            })->values();
+        /** @var Collection<int,string> $keys */
+        $keys = $lastTwelveMonthsTotal->keys();
 
-        return [
-            'labels' => $labels->toArray(),
-            'counts' => $lastTwelveMonthsTotal->values()
-                ->toArray(),
-        ];
+        /** @var Collection<int, string> $rawLabels */
+        $rawLabels = $keys->map(function (string $yearMonth): string {
+            /** @var Carbon $date */
+            $date = Carbon::createFromFormat('Y-m', $yearMonth);
+
+            return $date->format("M 'y");
+        })->values();
+
+        /** @var Collection<int,int> $rawCounts */
+        $rawCounts = $lastTwelveMonthsTotal->values();
+
+        /** @var array<int, string> $labels */
+        $labels = $rawLabels->toArray();
+
+        /** @var array<int,int> $counts */
+        $counts = $rawCounts->toArray();
+
+        return compact(['labels', 'counts']);
     }
 }

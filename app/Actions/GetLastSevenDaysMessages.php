@@ -7,6 +7,7 @@ namespace App\Actions;
 use App\Models\Inquiry;
 use App\Models\PropertyMessage;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 
 final readonly class GetLastSevenDaysMessages
 {
@@ -24,29 +25,46 @@ final readonly class GetLastSevenDaysMessages
                 return [$yearMonthDay => 0];
             });
 
-        $propertyMessageWeekly = PropertyMessage::query()
+        /** @var Collection<string,int> $propertyMessages */
+        $propertyMessages = PropertyMessage::query()
             ->lastSevenDays($now)
-            ->pluck('total', 'period')
+            ->pluck('total', 'period');
+
+        $propertyMessageWeekly = $propertyMessages
             ->mapWithKeys(fn (int $count, string $period): array => [$period => $count]);
 
-        $inquiryWeekly = Inquiry::query()
+        /** @var Collection<string,int> $inquiries */
+        $inquiries = Inquiry::query()
             ->lastSevenDays($now)
-            ->pluck('total', 'period')
-            ->mapWithKeys(fn (int $count, string $period): array => [$period => $count]);
+            ->pluck('total', 'period');
 
+        $inquiryWeekly = $inquiries->mapWithKeys(fn (int $count, string $period): array => [$period => $count]);
+
+        /** @var Collection<string,int> $lastSevenDaysTotal */
         $lastSevenDaysTotal = $baseDays->map(function (int $zero, string $yearMonthDay) use ($propertyMessageWeekly, $inquiryWeekly): int {
             return $propertyMessageWeekly->get($yearMonthDay, 0) + $inquiryWeekly->get($yearMonthDay, 0);
         });
 
-        $labels = $lastSevenDaysTotal->keys()
-            ->map(function (string $yearMonthDay): string {
-                return Carbon::createFromFormat('Y-m-d', $yearMonthDay)->format('D d');
-            })->values();
+        /** @var Collection<int,string> $keys */
+        $keys = $lastSevenDaysTotal->keys();
 
-        return [
-            'labels' => $labels->toArray(),
-            'counts' => $lastSevenDaysTotal->values()
-                ->toArray(),
-        ];
+        /** @var Collection<int, string> $rawLabels */
+        $rawLabels = $keys->map(function (string $yearMonthDay): string {
+            /** @var Carbon $date */
+            $date = Carbon::createFromFormat('Y-m-d', $yearMonthDay);
+
+            return $date->format('D d');
+        })->values();
+
+        /** @var Collection<int,int> $rawCounts */
+        $rawCounts = $lastSevenDaysTotal->values();
+
+        /** @var array<int, string> $labels */
+        $labels = $rawLabels->toArray();
+
+        /** @var array<int,int> $counts */
+        $counts = $rawCounts->toArray();
+
+        return compact(['labels', 'counts']);
     }
 }
