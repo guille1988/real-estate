@@ -5,5 +5,5 @@ export interface StatsInterface {
     stat: string;
     previousStat: string;
     change: null | string;
-    changeType: ChangeTypeEnum;
+    changeType: null | ChangeTypeEnum;
 }
