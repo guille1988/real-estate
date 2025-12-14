@@ -36,10 +36,10 @@ ChartJS.register(
 );
 
 const chartData: any = {
-    labels: weeklyMessages.days,
+    labels: weeklyMessages.labels,
     datasets: [
         {
-            label: 'Last Week Property Messages + Inquiries',
+            label: 'Last Seven Days Property Messages + Inquiries',
             data: weeklyMessages.counts,
             borderColor: '#60a5fa',
             backgroundColor: 'rgba(96, 165, 250, 0.2)',

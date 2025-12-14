@@ -1,4 +1,4 @@
 export interface WeeklyMessagesInterface {
-    days: string[];
+    labels: string[];
     counts: number[];
 }

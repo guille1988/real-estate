@@ -1,4 +1,4 @@
 export interface AnnualMessagesInterface {
-    months: string[];
+    labels: string[];
     counts: number[];
 }

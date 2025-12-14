@@ -15,7 +15,7 @@ final class InquirySeeder extends Seeder
     /**
      * @var array<int, int>
      */
-    private array $lastYearMapping = [
+    private array $lastTwelveMonthsMapping = [
         1 => 16,
         2 => 22,
         3 => 18,
@@ -33,7 +33,7 @@ final class InquirySeeder extends Seeder
     /**
      * @var array<int, int>
      */
-    private array $lastWeekMapping = [
+    private array $lastSevenDaysMapping = [
         1 => 16,
         2 => 22,
         3 => 18,
@@ -44,11 +44,11 @@ final class InquirySeeder extends Seeder
     ];
 
     /*
-     * Seed last year inquiries.
+     * Seed last twelve-months inquiries.
      */
-    private function seedLastYearInquiries(Collection $properties): void
+    private function seedLastTwelveMonthsInquiries(Collection $properties): void
     {
-        foreach ($this->lastYearMapping as $month => $count) {
+        foreach ($this->lastTwelveMonthsMapping as $month => $count) {
             /**
              * @var CarbonImmutable $date
              */
@@ -70,11 +70,11 @@ final class InquirySeeder extends Seeder
     }
 
     /*
-     * Seed last week inquiries.
+     * Seed last seven-days inquiries.
      */
-    private function seedLastWeekInquiries(Collection $properties): void
+    private function seedLastSevenDaysInquiries(Collection $properties): void
     {
-        foreach ($this->lastWeekMapping as $day => $count) {
+        foreach ($this->lastSevenDaysMapping as $day => $count) {
             /**
              * @var CarbonImmutable $date
              */
@@ -103,7 +103,7 @@ final class InquirySeeder extends Seeder
             ->limit(20)
             ->get(['id']);
 
-        $this->seedLastYearInquiries($properties->take(12));
-        $this->seedLastWeekInquiries($properties->skip(12)->take(7));
+        $this->seedLastTwelveMonthsInquiries($properties->take(12));
+        $this->seedLastSevenDaysInquiries($properties->skip(12)->take(7));
     }
 }

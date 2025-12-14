@@ -35,7 +35,7 @@ final readonly class GetWeeklyMessages
         );
 
         return [
-            'days' => $weeklyCount->keys(),
+            'labels' => $weeklyCount->keys(),
             'counts' => $weeklyCount->values(),
         ];
     }

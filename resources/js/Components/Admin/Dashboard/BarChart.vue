@@ -33,10 +33,10 @@ ChartJS.register(
 );
 
 const chartData: any = {
-    labels: annualMessages.months,
+    labels: annualMessages.labels,
     datasets: [
         {
-            label: 'Last Year Property Messages + Inquiries',
+            label: 'Last Twelve Months Property Messages + Inquiries',
             data: annualMessages.counts,
             backgroundColor: '#4f46e5',
             borderColor: '#6366f1',

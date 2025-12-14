@@ -13,7 +13,7 @@ final class PropertyMessageSeeder extends Seeder
     /**
      * @var array<int, int>
      */
-    private array $lastYearMapping = [
+    private array $lastTwelveMonthsMapping = [
         1 => 16,
         2 => 22,
         3 => 18,
@@ -31,7 +31,7 @@ final class PropertyMessageSeeder extends Seeder
     /**
      * @var array<int, int>
      */
-    private array $lastWeekMapping = [
+    private array $lastSevenDaysMapping = [
         1 => 16,
         2 => 22,
         3 => 18,
@@ -42,11 +42,11 @@ final class PropertyMessageSeeder extends Seeder
     ];
 
     /*
-     * Seed last year's property messages.
+     * Seed last twelve-months property messages.
      */
-    private function seedLastYearPropertyMessages(): void
+    private function seedLastTwelveMonthsPropertyMessages(): void
     {
-        foreach ($this->lastYearMapping as $month => $count) {
+        foreach ($this->lastTwelveMonthsMapping as $month => $count) {
             /**
              * @var CarbonImmutable $date
              */
@@ -60,11 +60,11 @@ final class PropertyMessageSeeder extends Seeder
     }
 
     /*
-     * Seed last week property messages.
+     * Seed last seven-day property messages.
      */
-    private function seedLastWeekPropertyMessages(): void
+    private function seedLastSevenDaysPropertyMessages(): void
     {
-        foreach ($this->lastWeekMapping as $day => $count) {
+        foreach ($this->lastSevenDaysMapping as $day => $count) {
             /**
              * @var CarbonImmutable $date
              */
@@ -81,7 +81,7 @@ final class PropertyMessageSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->seedLastYearPropertyMessages();
-        $this->seedLastWeekPropertyMessages();
+        $this->seedLastTwelveMonthsPropertyMessages();
+        $this->seedLastSevenDaysPropertyMessages();
     }
 }

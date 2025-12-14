@@ -6,37 +6,55 @@ namespace App\Actions;
 
 use App\Models\Inquiry;
 use App\Models\PropertyMessage;
+use Carbon\CarbonImmutable;
 use Illuminate\Support\Carbon;
 
 final readonly class GetAnnualMessages
 {
     public function execute(): array
     {
-        $propertyMessageAnnual = PropertyMessage::query()
-            ->annual()
-            ->pluck('total', 'period')
-            ->mapWithKeys(function (int $count, string $period): array {
-                $key = Carbon::parse($period)->format('M');
+        /**
+         * @var CarbonImmutable $now
+         */
+        $now = now();
 
-                return [$key => $count];
+        $baseMonths = collect(range(0, 11))
+            ->mapWithKeys(function (int $month) use ($now): array {
+                $yearMonth = $now->subMonths(11 - $month)->format('Y-m');
+
+                return [$yearMonth => 0];
             });
 
-        $inquiryAnnual = Inquiry::query()
-            ->annual()
+        $propertyMessageLastTwelveMonths = PropertyMessage::query()
+            ->lastTwelveMonths($now)
             ->pluck('total', 'period')
             ->mapWithKeys(function (int $count, string $period): array {
-                $key = Carbon::parse($period)->format('M');
+                $yearMonth = Carbon::parse($period)->format('Y-m');
 
-                return [$key => $count];
+                return [$yearMonth => $count];
             });
 
-        $annualCount = $propertyMessageAnnual->map(
-            fn (int $count, string $key): int => $count + $inquiryAnnual->get($key, 0)
-        );
+        $inquiryLastTwelveMonths = Inquiry::query()
+            ->lastTwelveMonths($now)
+            ->pluck('total', 'period')
+            ->mapWithKeys(function (int $count, string $period): array {
+                $yearMonth = Carbon::parse($period)->format('Y-m');
+
+                return [$yearMonth => $count];
+            });
+
+        $lastTwelveMonthsTotal = $baseMonths->map(function (int $zero, string $yearMonth) use ($propertyMessageLastTwelveMonths, $inquiryLastTwelveMonths): int {
+            return $propertyMessageLastTwelveMonths->get($yearMonth, 0) + $inquiryLastTwelveMonths->get($yearMonth, 0);
+        });
+
+        $labels = $lastTwelveMonthsTotal->keys()
+            ->map(function (string $yearMonth): string {
+                return Carbon::createFromFormat('Y-m', $yearMonth)->format("M 'y");
+            });
 
         return [
-            'months' => $annualCount->keys(),
-            'counts' => $annualCount->values(),
+            'labels' => $labels,
+            'counts' => $lastTwelveMonthsTotal->values(),
         ];
     }
 }

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Builders;
 
 use App\Data\Admin\PropertyMessageIndexData;
+use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Stringable;
@@ -60,10 +61,10 @@ final class PropertyMessageBuilder extends Builder
     /**
      * @return self<TModel>
      */
-    public function annual(): self
+    public function lastTwelveMonths(CarbonImmutable $now): self
     {
-        $end = now()->endOfMonth();
-        $start = $end->copy()->subMonths(11)->startOfMonth();
+        $end = $now->endOfMonth();
+        $start = $end->subMonths(11)->startOfMonth();
 
         return $this->selectRaw("DATE_FORMAT(created_at, '%Y-%m') as period, COUNT(*) as total")
             ->whereBetween('created_at', [$start, $end])
