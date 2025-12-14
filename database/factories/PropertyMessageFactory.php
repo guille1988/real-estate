@@ -47,7 +47,7 @@ final class PropertyMessageFactory extends Factory
     }
 
     /*
-     * Create the message on a specific date.
+     * Creates the message on a specific date.
      */
     public function createdOn(CarbonImmutable $date): self
     {

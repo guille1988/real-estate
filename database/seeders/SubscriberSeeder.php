@@ -14,6 +14,17 @@ final class SubscriberSeeder extends Seeder
      */
     public function run(): void
     {
-        Subscriber::factory(20)->create();
+        $now = now()->toImmutable();
+
+        $lastMonth = $now->subMonth()
+            ->startOfMonth();
+
+        Subscriber::factory(20)
+            ->createdOn($lastMonth)
+            ->create();
+
+        Subscriber::factory(22)
+            ->createdOn($now)
+            ->create();
     }
 }

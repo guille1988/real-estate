@@ -41,7 +41,7 @@ final class InquiryFactory extends Factory
     }
 
     /*
-     * Create the message on a specific date.
+     * Create the inquiry on a specific date.
      */
     public function createdOn(CarbonImmutable $date): self
     {
