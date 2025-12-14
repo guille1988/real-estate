@@ -36,8 +36,8 @@ final readonly class GetLastSevenDaysMessages
         });
 
         $labels = $lastSevenDaysTotal->keys()
-            ->map(function (string $ymd): string {
-                return Carbon::createFromFormat('Y-m-d', $ymd)->format('D d');
+            ->map(function (string $yearMonthDay): string {
+                return Carbon::createFromFormat('Y-m-d', $yearMonthDay)->format('D d');
             });
 
         return [
