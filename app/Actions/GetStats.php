@@ -9,15 +9,22 @@ use App\Enums\ChangeTypeEnum;
 
 final readonly class GetStats
 {
-    public function __construct(private GetSubscribersStats $getSubscribersStats) {}
+    public function __construct(
+        private GetSubscribersStats $getSubscribersStats,
+        private GetContactMessagesStats $getContactMessagesStats,
+    ) {}
 
+    /**
+     * @return array<int, array<string, string|ChangeTypeEnum>>
+     */
     public function execute(): array
     {
         /**
-         * @var array<int, StatsData> $data
+         * @var array<int, StatsData> $rawData
          */
         $rawData = [
             $this->getSubscribersStats->execute(),
+            $this->getContactMessagesStats->execute(),
         ];
 
         /**

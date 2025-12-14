@@ -1,0 +1,541 @@
+# Documentation Search Results
+
+**Packages:** laravel/framework@12.x
+**Results:** 4 documents, 52 chunks
+
+---
+
+## helpers.md > Numbers > `Number::forHumans()` {.collection-method}
+Package: laravel/framework@12.x
+
+<a name="method-number-for-humans"></a>
+#### `Number::forHumans()` {.collection-method}
+
+The `Number::forHumans` method returns the human-readable format of the provided numerical value:
+
+```php
+use Illuminate\Support\Number;
+
+$number = Number::forHumans(1000);
+
+// 1 thousand
+
+$number = Number::forHumans(489939);
+
+// 490 thousand
+
+$number = Number::forHumans(1230000, precision: 2);
+
+// 1.23 million
+```
+
+---
+
+## collections.md > Method Listing > `percentage()` {.collection-method}
+Package: laravel/framework@12.x
+
+<a name="method-percentage"></a>
+#### `percentage()` {.collection-method}
+
+The `percentage` method may be used to quickly determine the percentage of items in the collection that pass a given truth test:
+
+```php
+$collection = collect([1, 1, 2, 2, 2, 3]);
+
+$percentage = $collection->percentage(fn (int $value) => $value === 1);
+
+// 33.33
+```
+
+By default, the percentage will be rounded to two decimal places. However, you may customize this behavior by providing a second argument to the method:
+
+```php
+$percentage = $collection->percentage(fn (int $value) => $value === 1, precision: 3);
+
+// 33.333
+```
+
+---
+
+## helpers.md > Numbers > `Number::format()` {.collection-method}
+Package: laravel/framework@12.x
+
+<a name="method-number-format"></a>
+#### `Number::format()` {.collection-method}
+
+The `Number::format` method formats the given number into a locale specific string:
+
+```php
+use Illuminate\Support\Number;
+
+$number = Number::format(100000);
+
+// 100,000
+
+$number = Number::format(100000, precision: 2);
+
+// 100,000.00
+
+$number = Number::format(100000.123, maxPrecision: 2);
+
+// 100,000.12
+
+$number = Number::format(100000, locale: 'de');
+
+// 100.000
+```
+
+---
+
+## helpers.md > Numbers > `Number::useCurrency()` {.collection-method}
+Package: laravel/framework@12.x
+
+<a name="method-number-use-currency"></a>
+#### `Number::useCurrency()` {.collection-method}
+
+The `Number::useCurrency` method sets the default number currency globally, which affects how the currency is formatted by subsequent invocations to the `Number` class's methods:
+
+```php
+use Illuminate\Support\Number;
+
+/**
+ * Bootstrap any application services.
+ */
+public function boot(): void
+{
+    Number::useCurrency('GBP');
+}
+```
+
+---
+
+## helpers.md > Numbers > `Number::useLocale()` {.collection-method}
+Package: laravel/framework@12.x
+
+<a name="method-number-use-locale"></a>
+#### `Number::useLocale()` {.collection-method}
+
+The `Number::useLocale` method sets the default number locale globally, which affects how numbers and currency are formatted by subsequent invocations to the `Number` class's methods:
+
+```php
+use Illuminate\Support\Number;
+
+/**
+ * Bootstrap any application services.
+ */
+public function boot(): void
+{
+    Number::useLocale('de');
+}
+```
+
+---
+
+## helpers.md > Numbers > `Number::trim()` {.collection-method}
+Package: laravel/framework@12.x
+
+<a name="method-number-trim"></a>
+#### `Number::trim()` {.collection-method}
+
+The `Number::trim` method removes any trailing zero digits after the decimal point of the given number:
+
+```php
+use Illuminate\Support\Number;
+
+$number = Number::trim(12.0);
+
+// 12
+
+$number = Number::trim(12.30);
+
+// 12.3
+```
+
+---
+
+## helpers.md > Numbers > `Number::percentage()` {.collection-method}
+Package: laravel/framework@12.x
+
+<a name="method-number-percentage"></a>
+#### `Number::percentage()` {.collection-method}
+
+The `Number::percentage` method returns the percentage representation of the given value as a string:
+
+```php
+use Illuminate\Support\Number;
+
+$percentage = Number::percentage(10);
+
+// 10%
+
+$percentage = Number::percentage(10, precision: 2);
+
+// 10.00%
+
+$percentage = Number::percentage(10.123, maxPrecision: 2);
+
+// 10.12%
+
+$percentage = Number::percentage(10, precision: 2, locale: 'de');
+
+// 10,00%
+```
+
+---
+
+## notifications.md > SMS Notifications > Customizing the "From" Number
+Package: laravel/framework@12.x
+
+<a name="customizing-the-from-number"></a>
+### Customizing the "From" Number
+
+If you would like to send some notifications from a phone number that is different from the phone number specified by your `VONAGE_SMS_FROM` environment variable, you may call the `from` method on a `VonageMessage` instance:
+
+```php
+use Illuminate\Notifications\Messages\VonageMessage;
+
+/**
+ * Get the Vonage / SMS representation of the notification.
+ */
+public function toVonage(object $notifiable): VonageMessage
+{
+    return (new VonageMessage)
+        ->content('Your SMS message content')
+        ->from('15554443333');
+}
+```
+
+---
+
+## helpers.md > Numbers > `Number::abbreviate()` {.collection-method}
+Package: laravel/framework@12.x
+
+<a name="method-number-abbreviate"></a>
+#### `Number::abbreviate()` {.collection-method}
+
+The `Number::abbreviate` method returns the human-readable format of the provided numerical value, with an abbreviation for the units:
+
+```php
+use Illuminate\Support\Number;
+
+$number = Number::abbreviate(1000);
+
+// 1K
+
+$number = Number::abbreviate(489939);
+
+// 490K
+
+$number = Number::abbreviate(1230000, precision: 2);
+
+// 1.23M
+```
+
+---
+
+## helpers.md > Numbers > `Number::withCurrency()` {.collection-method}
+Package: laravel/framework@12.x
+
+<a name="method-number-with-currency"></a>
+#### `Number::withCurrency()` {.collection-method}
+
+The `Number::withCurrency` method executes the given closure using the specified currency and then restores the original currency after the callback has executed:
+
+```php
+use Illuminate\Support\Number;
+
+$number = Number::withCurrency('GBP', function () {
+    // ...
+});
+```
+
+---
+
+## helpers.md > Available Methods > Numbers
+Package: laravel/framework@12.x
+
+<a name="numbers-method-list"></a>
+### Numbers
+
+<div class="collection-method-list" markdown="1">
+
+[Number::abbreviate](#method-number-abbreviate)
+[Number::clamp](#method-number-clamp)
+[Number::currency](#method-number-currency)
+[Number::defaultCurrency](#method-default-currency)
+[Number::defaultLocale](#method-default-locale)
+[Number::fileSize](#method-number-file-size)
+[Number::forHumans](#method-number-for-humans)
+[Number::format](#method-number-format)
+[Number::ordinal](#method-number-ordinal)
+[Number::pairs](#method-number-pairs)
+[Number::parseInt](#method-number-parse-int)
+[Number::parseFloat](#method-number-parse-float)
+[Number::percentage](#method-number-percentage)
+[Number::spell](#method-number-spell)
+[Number::spellOrdinal](#method-number-spell-ordinal)
+[Number::trim](#method-number-trim)
+[Number::useLocale](#method-number-use-locale)
+[Number::withLocale](#method-number-with-locale)
+[Number::useCurrency](#method-number-use-currency)
+[Number::withCurrency](#method-number-with-currency)
+
+</div>
+
+---
+
+## helpers.md > Numbers > `Number::withLocale()` {.collection-method}
+Package: laravel/framework@12.x
+
+<a name="method-number-with-locale"></a>
+#### `Number::withLocale()` {.collection-method}
+
+The `Number::withLocale` method executes the given closure using the specified locale and then restores the original locale after the callback has executed:
+
+```php
+use Illuminate\Support\Number;
+
+$number = Number::withLocale('de', function () {
+    return Number::format(1500);
+});
+```
+
+---
+
+## helpers.md > Numbers > `Number::parseFloat()` {.collection-method}
+Package: laravel/framework@12.x
+
+<a name="method-number-parse-float"></a>
+#### `Number::parseFloat()` {.collection-method}
+
+The `Number::parseFloat` method parse a string into a float according to the specified locale:
+
+```php
+use Illuminate\Support\Number;
+
+$result = Number::parseFloat('10');
+
+// (float) 10.0
+
+$result = Number::parseFloat('10', locale: 'fr');
+
+// (float) 10.0
+```
+
+---
+
+## helpers.md > Numbers > `Number::parseInt()` {.collection-method}
+Package: laravel/framework@12.x
+
+<a name="method-number-parse-int"></a>
+#### `Number::parseInt()` {.collection-method}
+
+The `Number::parseInt` method parse a string into an integer according to the specified locale:
+
+```php
+use Illuminate\Support\Number;
+
+$result = Number::parseInt('10.123');
+
+// (int) 10
+
+$result = Number::parseInt('10,123', locale: 'fr');
+
+// (int) 10
+```
+
+---
+
+## helpers.md > Numbers > `Number::spellOrdinal()` {.collection-method}
+Package: laravel/framework@12.x
+
+<a name="method-number-spell-ordinal"></a>
+#### `Number::spellOrdinal()` {.collection-method}
+
+The `Number::spellOrdinal` method returns the number's ordinal representation as a string of words:
+
+```php
+use Illuminate\Support\Number;
+
+$number = Number::spellOrdinal(1);
+
+// first
+
+$number = Number::spellOrdinal(2);
+
+// second
+
+$number = Number::spellOrdinal(21);
+
+// twenty-first
+```
+
+---
+
+## helpers.md > Numbers > `Number::spell()` {.collection-method}
+Package: laravel/framework@12.x
+
+<a name="method-number-spell"></a>
+#### `Number::spell()` {.collection-method}
+
+The `Number::spell` method transforms the given number into a string of words:
+
+```php
+use Illuminate\Support\Number;
+
+$number = Number::spell(102);
+
+// one hundred and two
+
+$number = Number::spell(88, locale: 'fr');
+
+// quatre-vingt-huit
+```
+
+The `after` argument allows you to specify a value after which all numbers should be spelled out:
+
+```php
+$number = Number::spell(10, after: 10);
+
+// 10
+
+$number = Number::spell(11, after: 10);
+
+// eleven
+```
+
+The `until` argument allows you to specify a value before which all numbers should be spelled out:
+
+```php
+$number = Number::spell(5, until: 10);
+
+// five
+
+$number = Number::spell(10, until: 10);
+
+// 10
+```
+
+---
+
+## helpers.md > Numbers > `Number::currency()` {.collection-method}
+Package: laravel/framework@12.x
+
+<a name="method-number-currency"></a>
+#### `Number::currency()` {.collection-method}
+
+The `Number::currency` method returns the currency representation of the given value as a string:
+
+```php
+use Illuminate\Support\Number;
+
+$currency = Number::currency(1000);
+
+// $1,000.00
+
+$currency = Number::currency(1000, in: 'EUR');
+
+// €1,000.00
+
+$currency = Number::currency(1000, in: 'EUR', locale: 'de');
+
+// 1.000,00 €
+
+$currency = Number::currency(1000, in: 'EUR', locale: 'de', precision: 0);
+
+// 1.000 €
+```
+
+---
+
+## helpers.md > Numbers > `Number::defaultLocale()` {.collection-method}
+Package: laravel/framework@12.x
+
+<a name="method-default-locale"></a>
+#### `Number::defaultLocale()` {.collection-method}
+
+The `Number::defaultLocale` method returns the default locale being used by the `Number` class:
+
+```php
+use Illuminate\Support\Number;
+
+$locale = Number::defaultLocale();
+
+// en
+```
+
+---
+
+## helpers.md > Numbers > `Number::pairs()` {.collection-method}
+Package: laravel/framework@12.x
+
+<a name="method-number-pairs"></a>
+#### `Number::pairs()` {.collection-method}
+
+The `Number::pairs` method generates an array of number pairs (sub-ranges) based on a specified range and step value. This method can be useful for dividing a larger range of numbers into smaller, manageable sub-ranges for things like pagination or batching tasks. The `pairs` method returns an array of arrays, where each inner array represents a pair (sub-range) of numbers:
+
+```php
+use Illuminate\Support\Number;
+
+$result = Number::pairs(25, 10);
+
+// [[0, 9], [10, 19], [20, 25]]
+
+$result = Number::pairs(25, 10, offset: 0);
+
+// [[0, 10], [10, 20], [20, 25]]
+```
+
+---
+
+## helpers.md > Numbers > `Number::ordinal()` {.collection-method}
+Package: laravel/framework@12.x
+
+<a name="method-number-ordinal"></a>
+#### `Number::ordinal()` {.collection-method}
+
+The `Number::ordinal` method returns a number's ordinal representation:
+
+```php
+use Illuminate\Support\Number;
+
+$number = Number::ordinal(1);
+
+// 1st
+
+$number = Number::ordinal(2);
+
+// 2nd
+
+$number = Number::ordinal(21);
+
+// 21st
+```
+
+---
+
+## helpers.md > Numbers > `Number::fileSize()` {.collection-method}
+Package: laravel/framework@12.x
+
+<a name="method-number-file-size"></a>
+#### `Number::fileSize()` {.collection-method}
+
+The `Number::fileSize` method returns the file size representation of the given byte value as a string:
+
+```php
+use Illuminate\Support\Number;
+
+$size = Number::fileSize(1024);
+
+// 1 KB
+
+$size = Number::fileSize(1024 * 1024);
+
+// 1 MB
+
+$size = Number::fileSize(1024, precision: 2);
+
+// 1.00 KB
+```
+
+_[Content truncated due to token limit]_

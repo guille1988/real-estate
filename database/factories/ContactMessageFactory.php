@@ -7,6 +7,7 @@ namespace Database\Factories;
 use App\Enums\ContactMessageInquiryTypeEnum;
 use App\Enums\ContactMessageSourceEnum;
 use App\Models\ContactMessage;
+use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -31,5 +32,16 @@ final class ContactMessageFactory extends Factory
             'message' => $this->faker->optional()->realText(),
             'read_at' => $this->faker->optional()->dateTime(),
         ];
+    }
+
+    /*
+     * Creates the contact message on a specific date.
+     */
+    public function createdOn(CarbonImmutable $date): self
+    {
+        return $this->state([
+            'created_at' => $date,
+            'updated_at' => $date,
+        ]);
     }
 }

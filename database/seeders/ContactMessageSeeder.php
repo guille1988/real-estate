@@ -14,6 +14,17 @@ final class ContactMessageSeeder extends Seeder
      */
     public function run(): void
     {
-        ContactMessage::factory(10)->create();
+        $now = now()->toImmutable();
+
+        $lastMonth = $now->subMonth()
+            ->startOfMonth();
+
+        ContactMessage::factory(20)
+            ->createdOn($lastMonth)
+            ->create();
+
+        ContactMessage::factory(21)
+            ->createdOn($now)
+            ->create();
     }
 }

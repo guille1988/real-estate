@@ -16,6 +16,7 @@ it('works on dashboard page.', function (): void {
         ->assertInertia(function (Assert $page): void {
             $page->component(PageEnum::ADMIN_DASHBOARD->value)
                 ->has('lastTwelveMonthsMessages')
-                ->has('lastSevenDaysMessages');
+                ->has('lastSevenDaysMessages')
+                ->has('stats');
         });
 });
