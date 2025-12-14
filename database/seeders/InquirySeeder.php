@@ -113,11 +113,11 @@ final class InquirySeeder extends Seeder
         $firstTwelveProperties = $properties->take(12);
 
         /**
-         * @var Collection<int, Property> $properties
+         * @var Collection<int, Property> $sevenPropertiesFromTheRest
          */
-        $restOfProperties = $properties->skip(12)->take(7);
+        $sevenPropertiesFromTheRest = $properties->skip(12)->take(7);
 
         $this->seedLastTwelveMonthsInquiries($firstTwelveProperties);
-        $this->seedLastSevenDaysInquiries($restOfProperties);
+        $this->seedLastSevenDaysInquiries($sevenPropertiesFromTheRest);
     }
 }
