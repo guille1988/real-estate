@@ -6,17 +6,13 @@ namespace App\Actions;
 
 use App\Models\Inquiry;
 use App\Models\PropertyMessage;
-use Carbon\CarbonImmutable;
 use Illuminate\Support\Carbon;
 
 final readonly class GetLastSevenDaysMessages
 {
     public function execute(): array
     {
-        /**
-         * @var CarbonImmutable $now
-         */
-        $now = now();
+        $now = now()->toImmutable();
 
         $baseDays = collect(range(0, 6))
             ->mapWithKeys(function (int $day) use ($now): array {

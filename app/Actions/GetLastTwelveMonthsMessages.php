@@ -6,17 +6,13 @@ namespace App\Actions;
 
 use App\Models\Inquiry;
 use App\Models\PropertyMessage;
-use Carbon\CarbonImmutable;
 use Illuminate\Support\Carbon;
 
 final readonly class GetLastTwelveMonthsMessages
 {
     public function execute(): array
     {
-        /**
-         * @var CarbonImmutable $now
-         */
-        $now = now();
+        $now = now()->toImmutable();
 
         $baseMonths = collect(range(0, 11))
             ->mapWithKeys(function (int $month) use ($now): array {
