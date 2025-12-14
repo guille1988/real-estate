@@ -24,20 +24,12 @@ final readonly class GetLastTwelveMonthsMessages
         $propertyMessageLastTwelveMonths = PropertyMessage::query()
             ->lastTwelveMonths($now)
             ->pluck('total', 'period')
-            ->mapWithKeys(function (int $count, string $period): array {
-                $yearMonth = Carbon::parse($period)->format('Y-m');
-
-                return [$yearMonth => $count];
-            });
+            ->mapWithKeys(fn (int $count, string $period): array => [$period => $count]);
 
         $inquiryLastTwelveMonths = Inquiry::query()
             ->lastTwelveMonths($now)
             ->pluck('total', 'period')
-            ->mapWithKeys(function (int $count, string $period): array {
-                $yearMonth = Carbon::parse($period)->format('Y-m');
-
-                return [$yearMonth => $count];
-            });
+            ->mapWithKeys(fn (int $count, string $period): array => [$period => $count]);
 
         $lastTwelveMonthsTotal = $baseMonths->map(function (int $zero, string $yearMonth) use ($propertyMessageLastTwelveMonths, $inquiryLastTwelveMonths): int {
             return $propertyMessageLastTwelveMonths->get($yearMonth, 0) + $inquiryLastTwelveMonths->get($yearMonth, 0);

@@ -24,20 +24,12 @@ final readonly class GetLastSevenDaysMessages
         $propertyMessageWeekly = PropertyMessage::query()
             ->lastSevenDays($now)
             ->pluck('total', 'period')
-            ->mapWithKeys(function ($count, string $period): array {
-                $yearMonthDay = Carbon::createFromFormat('Y-m-d', $period)->format('Y-m-d');
-
-                return [$yearMonthDay => (int) $count];
-            });
+            ->mapWithKeys(fn (int $count, string $period): array => [$period => $count]);
 
         $inquiryWeekly = Inquiry::query()
             ->lastSevenDays($now)
             ->pluck('total', 'period')
-            ->mapWithKeys(function ($count, string $period): array {
-                $yearMonthDay = Carbon::createFromFormat('Y-m-d', $period)->format('Y-m-d');
-
-                return [$yearMonthDay => (int) $count];
-            });
+            ->mapWithKeys(fn (int $count, string $period): array => [$period => $count]);
 
         $lastSevenDaysTotal = $baseDays->map(function (int $zero, string $yearMonthDay) use ($propertyMessageWeekly, $inquiryWeekly): int {
             return $propertyMessageWeekly->get($yearMonthDay, 0) + $inquiryWeekly->get($yearMonthDay, 0);
