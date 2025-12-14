@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
+use App\Enums\PageEnum;
 use App\Models\User;
+use Inertia\Testing\AssertableInertia as Assert;
 
 it('works on dashboard page.', function (): void {
     $user = User::factory()
@@ -11,5 +13,9 @@ it('works on dashboard page.', function (): void {
 
     $this->actingAs($user)
         ->get(route('admin.dashboard'))
-        ->assertOk();
+        ->assertInertia(function (Assert $page): void {
+            $page->component(PageEnum::ADMIN_DASHBOARD->value)
+                ->has('lastTwelveMonthsMessages')
+                ->has('lastSevenDaysMessages');
+        });
 });
