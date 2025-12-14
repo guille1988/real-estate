@@ -15,7 +15,6 @@
 
         <div class="flex flex-1 justify-end gap-x-4 self-stretch lg:gap-x-6">
             <div class="flex items-center gap-x-4 lg:gap-x-6">
-                <Bell />
                 <div
                     class="hidden lg:block lg:h-6 lg:w-px lg:bg-gray-100/10"
                     aria-hidden="true"
@@ -27,7 +26,6 @@
 </template>
 
 <script setup lang="ts">
-import Bell from '@/Components/Admin/Layout/Topbar/Bell.vue';
 import UserMenu from '@/Components/Admin/Layout/Topbar/UserMenu/UserMenu.vue';
 import { Bars3Icon } from '@heroicons/vue/24/outline';
 
