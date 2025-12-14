@@ -38,11 +38,12 @@ final readonly class GetLastTwelveMonthsMessages
         $labels = $lastTwelveMonthsTotal->keys()
             ->map(function (string $yearMonth): string {
                 return Carbon::createFromFormat('Y-m', $yearMonth)->format("M 'y");
-            });
+            })->values();
 
         return [
-            'labels' => $labels,
-            'counts' => $lastTwelveMonthsTotal->values(),
+            'labels' => $labels->toArray(),
+            'counts' => $lastTwelveMonthsTotal->values()
+                ->toArray(),
         ];
     }
 }
