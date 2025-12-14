@@ -73,7 +73,6 @@ final class PropertyMessageBuilder extends Builder
     }
 
     /**
-     *
      * @return self<TModel>
      */
     public function lastSevenDays(CarbonImmutable $now): self
