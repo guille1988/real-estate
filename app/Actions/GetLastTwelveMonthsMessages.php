@@ -9,7 +9,7 @@ use App\Models\PropertyMessage;
 use Carbon\CarbonImmutable;
 use Illuminate\Support\Carbon;
 
-final readonly class GetAnnualMessages
+final readonly class GetLastTwelveMonthsMessages
 {
     public function execute(): array
     {

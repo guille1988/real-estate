@@ -7,7 +7,7 @@
 <script setup lang="ts">
 import { Bar } from 'vue-chartjs';
 
-import { AnnualMessagesInterface } from '@/Types/App/Interfaces/AnnualMessagesInterface';
+import { LastTwelveMonthsMessagesInterface } from '@/Types/App/Interfaces/LastTwelveMonthsMessagesInterface';
 import {
     BarElement,
     CategoryScale,
@@ -18,9 +18,11 @@ import {
     Tooltip,
 } from 'chart.js';
 
-const { annualMessages }: { annualMessages: AnnualMessagesInterface } =
+const {
+    lastTwelveMonthsMessages,
+}: { lastTwelveMonthsMessages: LastTwelveMonthsMessagesInterface } =
     defineProps<{
-        annualMessages: AnnualMessagesInterface;
+        lastTwelveMonthsMessages: LastTwelveMonthsMessagesInterface;
     }>();
 
 ChartJS.register(
@@ -33,11 +35,11 @@ ChartJS.register(
 );
 
 const chartData: any = {
-    labels: annualMessages.labels,
+    labels: lastTwelveMonthsMessages.labels,
     datasets: [
         {
             label: 'Last Twelve Months Property Messages + Inquiries',
-            data: annualMessages.counts,
+            data: lastTwelveMonthsMessages.counts,
             backgroundColor: '#4f46e5',
             borderColor: '#6366f1',
             borderWidth: 1,

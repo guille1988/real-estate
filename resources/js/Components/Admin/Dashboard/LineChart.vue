@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { WeeklyMessagesInterface } from '@/Types/App/Interfaces/WeeklyMessagesInterface';
+import { LastSevenDaysMessagesInterface } from '@/Types/App/Interfaces/LastSevenDaysMessagesInterface';
 import {
     CategoryScale,
     Chart as ChartJS,
@@ -19,10 +19,11 @@ import {
 } from 'chart.js';
 import { Line } from 'vue-chartjs';
 
-const { weeklyMessages }: { weeklyMessages: WeeklyMessagesInterface } =
-    defineProps<{
-        weeklyMessages: WeeklyMessagesInterface;
-    }>();
+const {
+    lastSevenDaysMessages,
+}: { lastSevenDaysMessages: LastSevenDaysMessagesInterface } = defineProps<{
+    lastSevenDaysMessages: LastSevenDaysMessagesInterface;
+}>();
 
 ChartJS.register(
     Title,
@@ -36,11 +37,11 @@ ChartJS.register(
 );
 
 const chartData: any = {
-    labels: weeklyMessages.labels,
+    labels: lastSevenDaysMessages.labels,
     datasets: [
         {
             label: 'Last Seven Days Property Messages + Inquiries',
-            data: weeklyMessages.counts,
+            data: lastSevenDaysMessages.counts,
             borderColor: '#60a5fa',
             backgroundColor: 'rgba(96, 165, 250, 0.2)',
             tension: 0.35,
