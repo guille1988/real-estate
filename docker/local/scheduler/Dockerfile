@@ -1,10 +1,6 @@
-#   COMPOSER
-FROM composer:latest AS composer
+FROM composer:2 AS composer
+FROM php:8.5-fpm AS php
 
-#   PHP BUILDERail up
-FROM php:8.4.2-fpm AS php
-
-# Install system dependencies.
 RUN apt-get update && apt-get install -y \
     git \
     curl \
@@ -16,7 +12,6 @@ RUN apt-get update && apt-get install -y \
     unzip \
     libzip-dev
 
-# Install PHP extensions.
 RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
 
 RUN pear update-channels
@@ -26,13 +21,10 @@ RUN pecl install -o -f redis \
     && docker-php-ext-enable redis \
     && rm -rf /tmp/pear
 
-# Clear cache.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Get latest Composer.
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+COPY --from=composer /usr/bin/composer /usr/bin/composer
 
-# Set working directory.
 WORKDIR /var/www
 COPY . /var/www
 COPY .env /var/www/.env

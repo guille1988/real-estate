@@ -9,7 +9,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^8.4",
+        "php": "^8.5",
         "inertiajs/inertia-laravel": "^2.0",
         "intervention/image-laravel": "^1.5",
         "laravel/framework": "^12.0",
@@ -17,7 +17,8 @@
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
         "laravel/wayfinder": "^0.1.4",
-        "spatie/laravel-data": "^4.17"
+        "spatie/laravel-data": "^4.17",
+        "ext-pdo": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
