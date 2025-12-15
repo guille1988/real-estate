@@ -20,8 +20,10 @@ it('works with authenticated user.', function (): void {
         ->get(route('admin.dashboard'))
         ->assertInertia(function (Assert $page): void {
             $page->component(PageEnum::ADMIN_DASHBOARD->value)
-                ->has('lastTwelveMonthsMessages')
-                ->has('lastSevenDaysMessages')
-                ->has('stats');
+                ->has('lastTwelveMonthsMessages.labels', 12)
+                ->has('lastTwelveMonthsMessages.counts', 12)
+                ->has('lastSevenDaysMessages.labels', 7)
+                ->has('lastSevenDaysMessages.counts', 7)
+                ->has('stats', 3);
         });
 });
