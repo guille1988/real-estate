@@ -12,7 +12,7 @@ use Illuminate\Support\Number;
 
 uses(RefreshDatabase::class);
 
-it('retorna incremento cuando este mes supera al anterior', function (): void {
+it('returns increase when this month exceeds the previous one.', function (): void {
     $now = CarbonImmutable::create(2025, 1, 15, 12);
 
     Carbon::setTestNow($now);
@@ -49,7 +49,7 @@ it('retorna incremento cuando este mes supera al anterior', function (): void {
         ->toBe(Number::percentage((($secondCount - $firstCount) / $firstCount) * 100));
 });
 
-it('retorna decremento cuando este mes es menor que el anterior', function (): void {
+it('returns decrease when this month is less than the previous one.', function (): void {
     $now = CarbonImmutable::create(2025, 2, 15, 12);
 
     Carbon::setTestNow($now);
