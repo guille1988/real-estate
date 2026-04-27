@@ -48,7 +48,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 * @see app/Http/Controllers/Admin/ContactMessageController.php:40
 * @route '/admin/contact-messages/{contact_message}'
 */
-export const show = (args: { contact_message: string | number } | [contact_message: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const show = (args: { contact_message: string | { uuid: string } } | [contact_message: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, options),
     method: 'get',
 })
@@ -63,9 +63,13 @@ show.definition = {
 * @see app/Http/Controllers/Admin/ContactMessageController.php:40
 * @route '/admin/contact-messages/{contact_message}'
 */
-show.url = (args: { contact_message: string | number } | [contact_message: string | number ] | string | number, options?: RouteQueryOptions) => {
+show.url = (args: { contact_message: string | { uuid: string } } | [contact_message: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { contact_message: args }
+    }
+
+    if (typeof args === 'object' && !Array.isArray(args) && 'uuid' in args) {
+        args = { contact_message: args.uuid }
     }
 
     if (Array.isArray(args)) {
@@ -77,7 +81,9 @@ show.url = (args: { contact_message: string | number } | [contact_message: strin
     args = applyUrlDefaults(args)
 
     const parsedArgs = {
-        contact_message: args.contact_message,
+        contact_message: typeof args.contact_message === 'object'
+        ? args.contact_message.uuid
+        : args.contact_message,
     }
 
     return show.definition.url
@@ -90,7 +96,7 @@ show.url = (args: { contact_message: string | number } | [contact_message: strin
 * @see app/Http/Controllers/Admin/ContactMessageController.php:40
 * @route '/admin/contact-messages/{contact_message}'
 */
-show.get = (args: { contact_message: string | number } | [contact_message: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+show.get = (args: { contact_message: string | { uuid: string } } | [contact_message: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, options),
     method: 'get',
 })
@@ -100,7 +106,7 @@ show.get = (args: { contact_message: string | number } | [contact_message: strin
 * @see app/Http/Controllers/Admin/ContactMessageController.php:40
 * @route '/admin/contact-messages/{contact_message}'
 */
-show.head = (args: { contact_message: string | number } | [contact_message: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+show.head = (args: { contact_message: string | { uuid: string } } | [contact_message: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: show.url(args, options),
     method: 'head',
 })
@@ -110,7 +116,7 @@ show.head = (args: { contact_message: string | number } | [contact_message: stri
 * @see app/Http/Controllers/Admin/ContactMessageController.php:64
 * @route '/admin/contact-messages/{contact_message}'
 */
-export const destroy = (args: { contact_message: string | number } | [contact_message: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+export const destroy = (args: { contact_message: string | { uuid: string } } | [contact_message: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, options),
     method: 'delete',
 })
@@ -125,9 +131,13 @@ destroy.definition = {
 * @see app/Http/Controllers/Admin/ContactMessageController.php:64
 * @route '/admin/contact-messages/{contact_message}'
 */
-destroy.url = (args: { contact_message: string | number } | [contact_message: string | number ] | string | number, options?: RouteQueryOptions) => {
+destroy.url = (args: { contact_message: string | { uuid: string } } | [contact_message: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { contact_message: args }
+    }
+
+    if (typeof args === 'object' && !Array.isArray(args) && 'uuid' in args) {
+        args = { contact_message: args.uuid }
     }
 
     if (Array.isArray(args)) {
@@ -139,7 +149,9 @@ destroy.url = (args: { contact_message: string | number } | [contact_message: st
     args = applyUrlDefaults(args)
 
     const parsedArgs = {
-        contact_message: args.contact_message,
+        contact_message: typeof args.contact_message === 'object'
+        ? args.contact_message.uuid
+        : args.contact_message,
     }
 
     return destroy.definition.url
@@ -152,7 +164,7 @@ destroy.url = (args: { contact_message: string | number } | [contact_message: st
 * @see app/Http/Controllers/Admin/ContactMessageController.php:64
 * @route '/admin/contact-messages/{contact_message}'
 */
-destroy.delete = (args: { contact_message: string | number } | [contact_message: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+destroy.delete = (args: { contact_message: string | { uuid: string } } | [contact_message: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, options),
     method: 'delete',
 })

@@ -48,7 +48,7 @@ index.head = (options?: RouteQueryOptions): RouteDefinition<'head'> => ({
 * @see app/Http/Controllers/Admin/PropertyMessageController.php:40
 * @route '/admin/property-messages/{property_message}'
 */
-export const show = (args: { property_message: string | number } | [property_message: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const show = (args: { property_message: string | { uuid: string } } | [property_message: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, options),
     method: 'get',
 })
@@ -63,9 +63,13 @@ show.definition = {
 * @see app/Http/Controllers/Admin/PropertyMessageController.php:40
 * @route '/admin/property-messages/{property_message}'
 */
-show.url = (args: { property_message: string | number } | [property_message: string | number ] | string | number, options?: RouteQueryOptions) => {
+show.url = (args: { property_message: string | { uuid: string } } | [property_message: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { property_message: args }
+    }
+
+    if (typeof args === 'object' && !Array.isArray(args) && 'uuid' in args) {
+        args = { property_message: args.uuid }
     }
 
     if (Array.isArray(args)) {
@@ -77,7 +81,9 @@ show.url = (args: { property_message: string | number } | [property_message: str
     args = applyUrlDefaults(args)
 
     const parsedArgs = {
-        property_message: args.property_message,
+        property_message: typeof args.property_message === 'object'
+        ? args.property_message.uuid
+        : args.property_message,
     }
 
     return show.definition.url
@@ -90,7 +96,7 @@ show.url = (args: { property_message: string | number } | [property_message: str
 * @see app/Http/Controllers/Admin/PropertyMessageController.php:40
 * @route '/admin/property-messages/{property_message}'
 */
-show.get = (args: { property_message: string | number } | [property_message: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+show.get = (args: { property_message: string | { uuid: string } } | [property_message: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, options),
     method: 'get',
 })
@@ -100,7 +106,7 @@ show.get = (args: { property_message: string | number } | [property_message: str
 * @see app/Http/Controllers/Admin/PropertyMessageController.php:40
 * @route '/admin/property-messages/{property_message}'
 */
-show.head = (args: { property_message: string | number } | [property_message: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+show.head = (args: { property_message: string | { uuid: string } } | [property_message: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: show.url(args, options),
     method: 'head',
 })
@@ -110,7 +116,7 @@ show.head = (args: { property_message: string | number } | [property_message: st
 * @see app/Http/Controllers/Admin/PropertyMessageController.php:64
 * @route '/admin/property-messages/{property_message}'
 */
-export const destroy = (args: { property_message: string | number } | [property_message: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+export const destroy = (args: { property_message: string | { uuid: string } } | [property_message: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, options),
     method: 'delete',
 })
@@ -125,9 +131,13 @@ destroy.definition = {
 * @see app/Http/Controllers/Admin/PropertyMessageController.php:64
 * @route '/admin/property-messages/{property_message}'
 */
-destroy.url = (args: { property_message: string | number } | [property_message: string | number ] | string | number, options?: RouteQueryOptions) => {
+destroy.url = (args: { property_message: string | { uuid: string } } | [property_message: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { property_message: args }
+    }
+
+    if (typeof args === 'object' && !Array.isArray(args) && 'uuid' in args) {
+        args = { property_message: args.uuid }
     }
 
     if (Array.isArray(args)) {
@@ -139,7 +149,9 @@ destroy.url = (args: { property_message: string | number } | [property_message: 
     args = applyUrlDefaults(args)
 
     const parsedArgs = {
-        property_message: args.property_message,
+        property_message: typeof args.property_message === 'object'
+        ? args.property_message.uuid
+        : args.property_message,
     }
 
     return destroy.definition.url
@@ -152,7 +164,7 @@ destroy.url = (args: { property_message: string | number } | [property_message: 
 * @see app/Http/Controllers/Admin/PropertyMessageController.php:64
 * @route '/admin/property-messages/{property_message}'
 */
-destroy.delete = (args: { property_message: string | number } | [property_message: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+destroy.delete = (args: { property_message: string | { uuid: string } } | [property_message: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, options),
     method: 'delete',
 })

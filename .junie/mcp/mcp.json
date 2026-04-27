@@ -1,15 +1,15 @@
 {
     "mcpServers": {
         "laravel-boost": {
-          "command": "docker",
-          "args": [
-            "exec",
-            "-i",
-            "real_estate-laravel.test-1",
-            "php",
-            "/var/www/html/artisan",
-            "boost:mcp"
-          ]
+            "command": "docker",
+            "args": [
+                "exec",
+                "-i",
+                "real_estate-laravel.test-1",
+                "php",
+                "/var/www/html/artisan",
+                "boost:mcp"
+            ]
         }
     }
 }

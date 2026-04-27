@@ -126,7 +126,7 @@ store.post = (options?: RouteQueryOptions): RouteDefinition<'post'> => ({
 * @see app/Http/Controllers/Admin/PricingDetailController.php:63
 * @route '/admin/pricing-details/{pricing_detail}'
 */
-export const show = (args: { pricing_detail: string | number } | [pricing_detail: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const show = (args: { pricing_detail: string | { uuid: string } } | [pricing_detail: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, options),
     method: 'get',
 })
@@ -141,9 +141,13 @@ show.definition = {
 * @see app/Http/Controllers/Admin/PricingDetailController.php:63
 * @route '/admin/pricing-details/{pricing_detail}'
 */
-show.url = (args: { pricing_detail: string | number } | [pricing_detail: string | number ] | string | number, options?: RouteQueryOptions) => {
+show.url = (args: { pricing_detail: string | { uuid: string } } | [pricing_detail: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { pricing_detail: args }
+    }
+
+    if (typeof args === 'object' && !Array.isArray(args) && 'uuid' in args) {
+        args = { pricing_detail: args.uuid }
     }
 
     if (Array.isArray(args)) {
@@ -155,7 +159,9 @@ show.url = (args: { pricing_detail: string | number } | [pricing_detail: string 
     args = applyUrlDefaults(args)
 
     const parsedArgs = {
-        pricing_detail: args.pricing_detail,
+        pricing_detail: typeof args.pricing_detail === 'object'
+        ? args.pricing_detail.uuid
+        : args.pricing_detail,
     }
 
     return show.definition.url
@@ -168,7 +174,7 @@ show.url = (args: { pricing_detail: string | number } | [pricing_detail: string 
 * @see app/Http/Controllers/Admin/PricingDetailController.php:63
 * @route '/admin/pricing-details/{pricing_detail}'
 */
-show.get = (args: { pricing_detail: string | number } | [pricing_detail: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+show.get = (args: { pricing_detail: string | { uuid: string } } | [pricing_detail: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, options),
     method: 'get',
 })
@@ -178,7 +184,7 @@ show.get = (args: { pricing_detail: string | number } | [pricing_detail: string 
 * @see app/Http/Controllers/Admin/PricingDetailController.php:63
 * @route '/admin/pricing-details/{pricing_detail}'
 */
-show.head = (args: { pricing_detail: string | number } | [pricing_detail: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+show.head = (args: { pricing_detail: string | { uuid: string } } | [pricing_detail: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: show.url(args, options),
     method: 'head',
 })
@@ -188,7 +194,7 @@ show.head = (args: { pricing_detail: string | number } | [pricing_detail: string
 * @see app/Http/Controllers/Admin/PricingDetailController.php:73
 * @route '/admin/pricing-details/{pricing_detail}/edit'
 */
-export const edit = (args: { pricing_detail: string | number } | [pricing_detail: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const edit = (args: { pricing_detail: string | { uuid: string } } | [pricing_detail: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: edit.url(args, options),
     method: 'get',
 })
@@ -203,9 +209,13 @@ edit.definition = {
 * @see app/Http/Controllers/Admin/PricingDetailController.php:73
 * @route '/admin/pricing-details/{pricing_detail}/edit'
 */
-edit.url = (args: { pricing_detail: string | number } | [pricing_detail: string | number ] | string | number, options?: RouteQueryOptions) => {
+edit.url = (args: { pricing_detail: string | { uuid: string } } | [pricing_detail: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { pricing_detail: args }
+    }
+
+    if (typeof args === 'object' && !Array.isArray(args) && 'uuid' in args) {
+        args = { pricing_detail: args.uuid }
     }
 
     if (Array.isArray(args)) {
@@ -217,7 +227,9 @@ edit.url = (args: { pricing_detail: string | number } | [pricing_detail: string 
     args = applyUrlDefaults(args)
 
     const parsedArgs = {
-        pricing_detail: args.pricing_detail,
+        pricing_detail: typeof args.pricing_detail === 'object'
+        ? args.pricing_detail.uuid
+        : args.pricing_detail,
     }
 
     return edit.definition.url
@@ -230,7 +242,7 @@ edit.url = (args: { pricing_detail: string | number } | [pricing_detail: string 
 * @see app/Http/Controllers/Admin/PricingDetailController.php:73
 * @route '/admin/pricing-details/{pricing_detail}/edit'
 */
-edit.get = (args: { pricing_detail: string | number } | [pricing_detail: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
+edit.get = (args: { pricing_detail: string | { uuid: string } } | [pricing_detail: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: edit.url(args, options),
     method: 'get',
 })
@@ -240,7 +252,7 @@ edit.get = (args: { pricing_detail: string | number } | [pricing_detail: string 
 * @see app/Http/Controllers/Admin/PricingDetailController.php:73
 * @route '/admin/pricing-details/{pricing_detail}/edit'
 */
-edit.head = (args: { pricing_detail: string | number } | [pricing_detail: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
+edit.head = (args: { pricing_detail: string | { uuid: string } } | [pricing_detail: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: edit.url(args, options),
     method: 'head',
 })
@@ -250,7 +262,7 @@ edit.head = (args: { pricing_detail: string | number } | [pricing_detail: string
 * @see app/Http/Controllers/Admin/PricingDetailController.php:106
 * @route '/admin/pricing-details/{pricing_detail}'
 */
-export const update = (args: { pricing_detail: string | number } | [pricing_detail: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
+export const update = (args: { pricing_detail: string | { uuid: string } } | [pricing_detail: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update.url(args, options),
     method: 'put',
 })
@@ -265,9 +277,13 @@ update.definition = {
 * @see app/Http/Controllers/Admin/PricingDetailController.php:106
 * @route '/admin/pricing-details/{pricing_detail}'
 */
-update.url = (args: { pricing_detail: string | number } | [pricing_detail: string | number ] | string | number, options?: RouteQueryOptions) => {
+update.url = (args: { pricing_detail: string | { uuid: string } } | [pricing_detail: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { pricing_detail: args }
+    }
+
+    if (typeof args === 'object' && !Array.isArray(args) && 'uuid' in args) {
+        args = { pricing_detail: args.uuid }
     }
 
     if (Array.isArray(args)) {
@@ -279,7 +295,9 @@ update.url = (args: { pricing_detail: string | number } | [pricing_detail: strin
     args = applyUrlDefaults(args)
 
     const parsedArgs = {
-        pricing_detail: args.pricing_detail,
+        pricing_detail: typeof args.pricing_detail === 'object'
+        ? args.pricing_detail.uuid
+        : args.pricing_detail,
     }
 
     return update.definition.url
@@ -292,7 +310,7 @@ update.url = (args: { pricing_detail: string | number } | [pricing_detail: strin
 * @see app/Http/Controllers/Admin/PricingDetailController.php:106
 * @route '/admin/pricing-details/{pricing_detail}'
 */
-update.put = (args: { pricing_detail: string | number } | [pricing_detail: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
+update.put = (args: { pricing_detail: string | { uuid: string } } | [pricing_detail: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update.url(args, options),
     method: 'put',
 })
@@ -302,7 +320,7 @@ update.put = (args: { pricing_detail: string | number } | [pricing_detail: strin
 * @see app/Http/Controllers/Admin/PricingDetailController.php:106
 * @route '/admin/pricing-details/{pricing_detail}'
 */
-update.patch = (args: { pricing_detail: string | number } | [pricing_detail: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
+update.patch = (args: { pricing_detail: string | { uuid: string } } | [pricing_detail: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     url: update.url(args, options),
     method: 'patch',
 })
@@ -312,7 +330,7 @@ update.patch = (args: { pricing_detail: string | number } | [pricing_detail: str
 * @see app/Http/Controllers/Admin/PricingDetailController.php:117
 * @route '/admin/pricing-details/{pricing_detail}'
 */
-export const destroy = (args: { pricing_detail: string | number } | [pricing_detail: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+export const destroy = (args: { pricing_detail: string | { uuid: string } } | [pricing_detail: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, options),
     method: 'delete',
 })
@@ -327,9 +345,13 @@ destroy.definition = {
 * @see app/Http/Controllers/Admin/PricingDetailController.php:117
 * @route '/admin/pricing-details/{pricing_detail}'
 */
-destroy.url = (args: { pricing_detail: string | number } | [pricing_detail: string | number ] | string | number, options?: RouteQueryOptions) => {
+destroy.url = (args: { pricing_detail: string | { uuid: string } } | [pricing_detail: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { pricing_detail: args }
+    }
+
+    if (typeof args === 'object' && !Array.isArray(args) && 'uuid' in args) {
+        args = { pricing_detail: args.uuid }
     }
 
     if (Array.isArray(args)) {
@@ -341,7 +363,9 @@ destroy.url = (args: { pricing_detail: string | number } | [pricing_detail: stri
     args = applyUrlDefaults(args)
 
     const parsedArgs = {
-        pricing_detail: args.pricing_detail,
+        pricing_detail: typeof args.pricing_detail === 'object'
+        ? args.pricing_detail.uuid
+        : args.pricing_detail,
     }
 
     return destroy.definition.url
@@ -354,7 +378,7 @@ destroy.url = (args: { pricing_detail: string | number } | [pricing_detail: stri
 * @see app/Http/Controllers/Admin/PricingDetailController.php:117
 * @route '/admin/pricing-details/{pricing_detail}'
 */
-destroy.delete = (args: { pricing_detail: string | number } | [pricing_detail: string | number ] | string | number, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+destroy.delete = (args: { pricing_detail: string | { uuid: string } } | [pricing_detail: string | { uuid: string } ] | string | { uuid: string }, options?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, options),
     method: 'delete',
 })
