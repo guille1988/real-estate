@@ -36,8 +36,8 @@ init:
 
 build:
 	@echo Building...
-	@./vendor/bin/build --no-cache
+	@./vendor/bin/sail build --no-cache
 
 down:
 	@echo Shutting down...
-	@./vendor/bin/down
+	@./vendor/bin/sail down
