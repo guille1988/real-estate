@@ -33,3 +33,7 @@ init:
 	@./vendor/bin/sail up -d
 	make whole
 	@./vendor/bin/sail npm run dev
+
+build:
+	@echo Building...
+	@./vendor/bin/build --no-cache
