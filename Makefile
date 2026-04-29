@@ -37,3 +37,7 @@ init:
 build:
 	@echo Building...
 	@./vendor/bin/build --no-cache
+
+down:
+	@echo Shutting down...
+	@./vendor/bin/down
