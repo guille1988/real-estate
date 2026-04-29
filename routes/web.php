@@ -21,7 +21,9 @@ use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\PropertyMessageController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SubscriberController;
+use App\Http\Middleware\ClearHistoryMiddleware;
 use Illuminate\Support\Facades\Route;
+use Inertia\Middleware\EncryptHistory;
 
 Route::get('', HomeController::class)
     ->name('home');
@@ -77,6 +79,7 @@ Route::prefix('admin')
             ->name('.login')
             ->group(function (): void {
                 Route::get('', 'create')
+                    ->middleware(ClearHistoryMiddleware::class)
                     ->name('.create');
 
                 Route::post('', 'store')
@@ -98,7 +101,7 @@ Route::prefix('admin')
                     ->name('.update');
             });
 
-        Route::middleware('auth:web')
+        Route::middleware(['auth:web', EncryptHistory::class])
             ->group(function (): void {
                 Route::get('dashboard', DashboardController::class)
                     ->name('.dashboard');
