@@ -51,8 +51,10 @@ final class AmenityIndexData extends Data
             : 'id';
     }
 
-    /*
+    /**
      * Get the direction field.
+     *
+     * @return 'asc'|'desc'
      */
     public function getDirection(): string
     {

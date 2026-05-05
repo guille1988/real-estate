@@ -68,8 +68,10 @@ final class PropertyIndexData extends Data
         return $sort;
     }
 
-    /*
+    /**
      * Get the direction field.
+     *
+     * @return 'asc'|'desc'
      */
     public function getDirection(): string
     {

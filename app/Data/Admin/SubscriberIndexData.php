@@ -51,8 +51,10 @@ final class SubscriberIndexData extends Data
             : 'id';
     }
 
-    /*
+    /**
      * Get the direction field.
+     *
+     * @return 'asc'|'desc'
      */
     public function getDirection(): string
     {
