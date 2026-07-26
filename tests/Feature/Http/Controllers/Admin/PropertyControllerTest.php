@@ -331,7 +331,7 @@ it('works on destroying property.', function (): void {
         ->toString();
 
     $createFilePath = fn (string $name): string => str($folderPath)
-        ->append('/', $name, '.', config('app.default_image_format'))
+        ->append('/', $name, '.', config('images.default_format'))
         ->toString();
 
     $hasBeenCreated = Storage::disk('images')
@@ -416,7 +416,7 @@ it('works on bulk destroying properties.', function (): void {
         ->toString();
 
     $createFilePath = fn (string $name): string => str($folderPath)
-        ->append('/', $name, '.', config('app.default_image_format'))
+        ->append('/', $name, '.', config('images.default_format'))
         ->toString();
 
     $hasBeenCreated = Storage::disk('images')

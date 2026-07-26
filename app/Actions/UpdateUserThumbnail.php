@@ -7,9 +7,9 @@ namespace App\Actions;
 use App\Enums\ImageFormatEnum;
 use App\Models\User;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Intervention\Image\Laravel\Facades\Image;
 
 final class UpdateUserThumbnail
 {
@@ -37,7 +37,7 @@ final class UpdateUserThumbnail
          * prepare everything to process the new one.
          */
         $oldThumbnail = $user->thumbnail;
-        $format = config()->string('app.default_image_format');
+        $format = config()->string('images.default_format');
         $defaultFormat = ImageFormatEnum::from($format);
         $path = $this->getPath($format);
 
@@ -53,10 +53,8 @@ final class UpdateUserThumbnail
         if ($defaultFormat->valueEqualsToLowered($thumbnail->getExtension())) {
             $thumbnail->storeAs(path: $path, options: ['disk' => 'users']); // @codeCoverageIgnore
         } else {
-            $filePath = Storage::disk('users')->path($path);
-            $image = Image::read($thumbnail->getPathname());
-
-            $defaultFormat->getEncodeMethod($image)->save($filePath);
+            $defaultFormat->getEncodeMethod(Image::fromUpload($thumbnail))
+                ->storeAs($path, disk: 'users');
         }
 
         /*

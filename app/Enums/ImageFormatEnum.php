@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace App\Enums;
 
+use Illuminate\Image\Image;
 use Illuminate\Support\Stringable;
-use Intervention\Image\Interfaces\EncodedImageInterface;
-use Intervention\Image\Interfaces\ImageInterface;
 
 enum ImageFormatEnum: string
 {
@@ -93,7 +92,7 @@ enum ImageFormatEnum: string
     /*
      * Returns the encode method for the given image.
      */
-    public function getEncodeMethod(ImageInterface $image): EncodedImageInterface
+    public function getEncodeMethod(Image $image): Image
     {
         return match ($this) {
             self::AVIF => $image->toAvif(),

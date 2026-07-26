@@ -32,7 +32,7 @@ final class FormatSeederImagesCommand extends Command
     public function handle(): void
     {
         $this->call('format:images', [
-            '--format' => config('app.default_image_format'),
+            '--format' => config('images.default_format'),
             '--path' => storage_path('app/private/seeders/images'),
         ]);
     }

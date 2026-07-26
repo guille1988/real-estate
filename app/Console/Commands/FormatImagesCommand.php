@@ -8,9 +8,9 @@ use App\Enums\ImageFormatEnum;
 use App\Rules\IsValidPath;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Image;
 use Illuminate\Support\LazyCollection;
 use Illuminate\Validation\Rule;
-use Intervention\Image\Laravel\Facades\Image;
 use Symfony\Component\Finder\SplFileInfo;
 use Throwable;
 
@@ -163,8 +163,10 @@ final class FormatImagesCommand extends Command
             ->append($format->getExtension())
             ->toString();
 
-        $format->getEncodeMethod(Image::read($path))
-            ->save($image);
+        File::put(
+            $image,
+            $format->getEncodeMethod(Image::fromPath($path))->toBytes(),
+        );
 
         File::delete($path);
     }

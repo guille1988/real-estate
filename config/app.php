@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-use App\Enums\ImageFormatEnum;
-
 return [
 
     /*
@@ -138,16 +136,4 @@ return [
     */
 
     'admin_password' => (string) env('ADMIN_PASSWORD', 'who_perseveres_wins_88888888'),
-
-    /*
-    |--------------------------------------------------------------------------
-    | Default Image Format
-    |--------------------------------------------------------------------------
-    |
-    | This value is the default image format
-    | that should be used for all images.
-    |
-    */
-
-    'default_image_format' => ImageFormatEnum::JPEG->value,
 ];

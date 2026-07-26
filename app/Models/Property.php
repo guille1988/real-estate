@@ -178,7 +178,7 @@ final class Property extends Model
     {
         return str($this->getFolderPathForNewImages())
             ->append('/', Str::random())
-            ->append('.', config()->string('app.default_image_format'))
+            ->append('.', config()->string('images.default_format'))
             ->toString();
     }
 

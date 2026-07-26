@@ -204,7 +204,7 @@ it('stores images and redirects back.', function (): void {
     $property = Property::factory()
         ->create();
 
-    config()->set('app.default_image_format', 'jpg');
+    config()->set('images.default_format', 'jpg');
 
     $file = UploadedFile::fake()
         ->image('photo.jpg', 100, 100)
@@ -230,7 +230,7 @@ it('stores multiple images when valid.', function (): void {
     $property = Property::factory()
         ->create();
 
-    config()->set('app.default_image_format', 'jpg');
+    config()->set('images.default_format', 'jpg');
 
     $fileOne = UploadedFile::fake()
         ->image('a.png')
@@ -262,7 +262,7 @@ it('bubbles the exception when storing images fails.', function (): void {
 
     Storage::fake('images');
 
-    config()->set('app.default_image_format', 'invalid-format');
+    config()->set('images.default_format', 'invalid-format');
 
     $file = UploadedFile::fake()
         ->image('photo.jpg')

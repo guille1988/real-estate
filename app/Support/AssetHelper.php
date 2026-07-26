@@ -14,7 +14,7 @@ final class AssetHelper
      */
     public function __invoke(string|array $asset): array
     {
-        $defaultImageFormat = config()->string('app.default_image_format');
+        $defaultImageFormat = config()->string('images.default_format');
 
         /**
          * @var array<string, string> $assets

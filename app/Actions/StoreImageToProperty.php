@@ -7,8 +7,7 @@ namespace App\Actions;
 use App\Enums\ImageFormatEnum;
 use App\Models\Property;
 use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Laravel\Facades\Image as ImageFacade;
+use Illuminate\Support\Facades\Image as ImageFacade;
 use Throwable;
 
 final readonly class StoreImageToProperty
@@ -20,15 +19,9 @@ final readonly class StoreImageToProperty
      */
     public function execute(Property $property, array $image): void
     {
-        Storage::disk('images')
-            ->makeDirectory($property->getFolderPathForNewImages());
-
-        $completePath = Storage::disk('images')
-            ->path($path = $property->getFilePathForNewImages());
-
-        ImageFormatEnum::from(config()->string('app.default_image_format'))
-            ->getEncodeMethod(ImageFacade::read($image['file']->getPathname()))
-            ->save($completePath);
+        ImageFormatEnum::from(config()->string('images.default_format'))
+            ->getEncodeMethod(ImageFacade::fromUpload($image['file']))
+            ->storeAs($path = $property->getFilePathForNewImages(), disk: 'images');
 
         $property->images()
             ->create([
