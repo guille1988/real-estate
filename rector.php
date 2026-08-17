@@ -22,8 +22,7 @@ return RectorConfig::configure()
         __DIR__.'/config',
         __DIR__.'/database',
         __DIR__.'/routes',
-    ])
-    ->withSkip([
+    ])->withSkip([
         __DIR__.'/bootstrap/cache',
         ClosureToArrowFunctionRector::class,
         CompactToVariablesRector::class,
@@ -36,13 +35,11 @@ return RectorConfig::configure()
         ArrowFunctionDelegatingCallToFirstClassCallableRector::class,
         ArrayToFirstClassCallableRector::class,
         AddOverrideAttributeToOverriddenPropertiesRector::class,
-    ])
-    ->withPreparedSets(
+    ])->withPreparedSets(
         deadCode: true,
         codeQuality: true,
         codingStyle: true,
         typeDeclarations: true,
         privatization: true,
         earlyReturn: true,
-    )
-    ->withPhpSets();
+    )->withPhpSets();
