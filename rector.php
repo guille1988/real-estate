@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Pest\Rector\Set\PestSetList;
 use Rector\CodeQuality\Rector\FuncCall\CompactToVariablesRector;
 use Rector\CodingStyle\Rector\ArrowFunction\ArrowFunctionDelegatingCallToFirstClassCallableRector;
 use Rector\CodingStyle\Rector\Catch_\CatchExceptionNameMatchingTypeRector;
@@ -22,6 +23,7 @@ return RectorConfig::configure()
         __DIR__.'/config',
         __DIR__.'/database',
         __DIR__.'/routes',
+        __DIR__.'/tests',
     ])->withSkip([
         __DIR__.'/bootstrap/cache',
         ClosureToArrowFunctionRector::class,
@@ -42,4 +44,6 @@ return RectorConfig::configure()
         typeDeclarations: true,
         privatization: true,
         earlyReturn: true,
-    )->withPhpSets();
+    )->withSets([
+        PestSetList::CODING_STYLE,
+    ])->withPhpSets();

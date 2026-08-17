@@ -10,7 +10,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Number;
 
-uses(RefreshDatabase::class);
+pest()->use(RefreshDatabase::class);
 
 it('returns increase when this month exceeds the previous one.', function (): void {
     $now = CarbonImmutable::create(2025, 1, 15, 12);

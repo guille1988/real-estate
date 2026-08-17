@@ -445,7 +445,7 @@ it('destroys a single image completely and clears cache, keeping folder until la
         ->assertMissing($second->path);
 
     expect(Storage::disk('images')
-        ->allFiles($folder))->toBe([]);
+        ->allFiles($folder))->toBeEmpty();
 });
 
 it('returns 404 when destroying a non-existing image.', function (): void {

@@ -50,7 +50,7 @@ pest()->extend(TestCase::class)
 |
 */
 
-function something()
+function something(): void
 {
     // ..
 }

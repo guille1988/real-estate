@@ -27,4 +27,4 @@ it('submits property message form.', function (PropertyLocationEnum $location, P
 
     expect(PropertyMessage::count())
         ->toBe(1);
-})->with(PropertyLocationEnum::cases(), PropertyTypeEnum::cases(), PropertyMessageBudgetEnum::cases())->only();
+})->with(PropertyLocationEnum::cases(), PropertyTypeEnum::cases(), PropertyMessageBudgetEnum::cases());
